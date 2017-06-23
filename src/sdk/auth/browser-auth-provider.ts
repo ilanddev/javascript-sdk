@@ -26,7 +26,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
         resolve(self._keycloak.token);
       }).error(function() {
          self._init().then(function() {
-          resolve('Bearer ' + self._keycloak.token);
+          resolve(self._keycloak.token);
         });
       });
     });
