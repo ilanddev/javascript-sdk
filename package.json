@@ -1,0 +1,85 @@
+{
+  "name": "iland-sdk",
+  "version": "1.0.0",
+  "description": "SDK for the ilandcloud REST API",
+  "main": "build/iland.js",
+  "typings": "build/src/index.d.ts",
+  "author": "csnyder@iland.com",
+  "license": "MIT",
+  "repository": " https://github.com/ilanddev/javascript-sdk",
+  "scripts": {
+    "info": "npm-scripts-info",
+    "build": "webpack",
+    "lint": "tslint src/**/*.ts",
+    "test": "jest --coverage",
+    "docs": "yarn docs:html && opn build/docs/index.html",
+    "docs:html": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out build/docs",
+    "docs:json": "typedoc --mode file --json build/docs/typedoc.json src/index.ts"
+  },
+  "scripts-info": {
+    "info": "Display information about the scripts",
+    "build": "(Trash and re)build the library",
+    "lint": "Lint all typescript source files",
+    "test": "Run tests",
+    "docs": "Generate HTML API documentation and open it in a browser",
+    "docs:json": "Generate API documentation in typedoc JSON format"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.1",
+    "@types/node": "^7.0.12",
+    "jest": "^20.0.4",
+    "ts-jest": "^20.0.6",
+    "ts-loader": "^2.1.0",
+    "tslint": "^5.0.0",
+    "tslint-config-standard": "^5.0.2",
+    "typedoc": "^0.5.10",
+    "typescript": "2.4.0",
+    "webpack": "^3.0.0"
+  },
+  "keywords": [
+    "iland",
+    "sdk",
+    "typescript"
+  ],
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test-setup.js",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/.*.test.ts$",
+    "clearMocks": true,
+    "bail": true,
+    "testPathIgnorePatterns": [
+      "/build/",
+      "/node_modules/",
+      "test-setup.js"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/index.ts",
+      "!src/sdk/model/api-spec/*.ts"
+    ],
+    "mapCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test-setup.js",
+      "/test/.*\\.js$",
+      "/build/.*\\.(ts|js)$"
+    ]
+  },
+  "dependencies": {
+    "@types/keycloak-js": "2.4.0",
+    "axios": "^0.16.2",
+    "keycloak-js": "1.9.8",
+    "rxjs": "^5.4.1",
+    "tslib": "1.7.1"
+  }
+}

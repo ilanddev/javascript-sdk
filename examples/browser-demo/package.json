@@ -1,0 +1,19 @@
+{
+  "name": "browser-demo",
+  "version": "1.0.0",
+  "description": "Demo of iland typescript SDK usage in the browser.",
+  "author": "csnyder@iland.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack",
+    "serve": "webpack-dev-server -d"
+  },
+  "devDependencies": {
+    "typescript": "2.4.0",
+    "webpack": "^3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  },
+  "dependencies": {
+    "iland-sdk": "file:../../"
+  }
+}

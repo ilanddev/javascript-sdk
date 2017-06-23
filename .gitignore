@@ -1,0 +1,9 @@
+node_modules
+build
+test
+src/**.js
+.idea
+coverage
+coverage_jest_raw
+*.log
+*.iml
