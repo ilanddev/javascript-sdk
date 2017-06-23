@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Demo of iland typescript SDK usage in the browser.",
   "author": "csnyder@iland.com",
-  "license": "MIT",
+  "license": "BSD",
   "scripts": {
     "build": "webpack",
     "serve": "webpack-dev-server -d"
