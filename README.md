@@ -1,3 +1,3 @@
-#iland Javascript SDK
+# iland Javascript SDK
 
-SDK for the browser and node.
+SDK for the browser and node with full support for typescript.
