@@ -13,7 +13,7 @@
     "lint": "tslint src/**/*.ts",
     "test": "jest --coverage",
     "docs": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out build/docs",
-    "deploy:docs": "yarn docs && gh-pages -d build/docs"
+    "publish:docs": "yarn docs && gh-pages -d build/docs"
   },
   "scripts-info": {
     "info": "Display information about the scripts",
@@ -21,7 +21,7 @@
     "lint": "Lint all typescript source files",
     "test": "Run tests",
     "docs": "Generate HTML API documentation and open it in a browser",
-    "docs:json": "Generate API documentation in typedoc JSON format"
+    "publish:docs": "Genrate HTML TypeDoc and deploy to GitHub Pages"
   },
   "engines": {
     "node": ">=4"
