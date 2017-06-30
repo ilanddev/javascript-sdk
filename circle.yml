@@ -11,4 +11,6 @@ deployment:
   production:
     branch: master
     commands:
+    - git config --global user.email "csnyder@iland.com"
+    - git config --global user.name "CircleCI"
     - yarn publish:docs
