@@ -3,3 +3,5 @@
 # iland Javascript SDK
 
 SDK for the browser and node with full support for typescript.
+
+Full TypeDoc reference is available [here](https://ilanddev.github.io/javascript-sdk) .

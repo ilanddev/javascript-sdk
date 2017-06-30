@@ -57,9 +57,9 @@ export class IlandBrowserAuthProvider implements AuthProvider {
     });
   }
 
-  logout(): Promise<null> {
+  logout(): Promise<any> {
     let self = this;
-    return new Promise(function(resolve, reject) {
+    return new Promise<any>(function(resolve, reject) {
       self._keycloak.logout().success(function() {
         resolve(null);
       }).error(function() {
