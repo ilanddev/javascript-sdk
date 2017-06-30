@@ -1,6 +1,14 @@
 general:
   artifacts:
     - "coverage"
+  branches:
+    ignore:
+      - gh-pages
 test:
   post:
     - bash <(curl -s https://codecov.io/bash)
+deployment:
+  production:
+    branch: master
+    commands:
+    - yarn publish:docs
