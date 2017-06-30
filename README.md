@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/project/github/ilanddev/javascript-sdk.svg)]() [![Codecov](https://img.shields.io/codecov/c/github/ilanddev/javascript-sdk.svg)]() [![npm](https://img.shields.io/npm/dt/iland-sdk.svg)]()
+[![CircleCI](https://img.shields.io/circleci/project/github/ilanddev/javascript-sdk.svg)](https://circleci.com/gh/ilanddev/javascript-sdk) [![Codecov](https://img.shields.io/codecov/c/github/ilanddev/javascript-sdk.svg)](https://codecov.io/gh/ilanddev/javascript-sdk) [![npm](https://img.shields.io/npm/dt/iland-sdk.svg)](https://www.npmjs.com/package/iland-sdk)
 
 # iland Javascript SDK
 
