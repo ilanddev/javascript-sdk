@@ -12,7 +12,7 @@
     "build": "webpack",
     "lint": "tslint src/**/*.ts",
     "test": "jest --coverage",
-    "docs": "typedoc src/index.ts --excludePrivate --mode file --theme minimal --out build/docs",
+    "docs": "typedoc src/index.ts --excludePrivate --exclude **/*.test.ts --mode file --theme minimal --out build/docs",
     "publish:docs": "yarn docs && cp circle.yml build/docs && gh-pages -d build/docs"
   },
   "scripts-info": {
