@@ -88,15 +88,23 @@ export class Task {
   getPromise(): Promise<Task> {
     let self = this;
     return new Promise(function(resolve, reject) {
-      self.getObservable().subscribe(function(task) {
-        if (task.isComplete()) {
-          if (task.getStatus() === 'error') {
-            reject(task);
-          } else {
-            resolve(task);
-          }
+      if (self.isComplete()) {
+        if (self.getStatus() === 'error') {
+          reject(self);
+        } else {
+          resolve(self);
         }
-      });
+      } else {
+        self.getObservable().subscribe(function(task) {
+          if (task.isComplete()) {
+            if (task.getStatus() === 'error') {
+              reject(task);
+            } else {
+              resolve(task);
+            }
+          }
+        });
+      }
     });
   }
 

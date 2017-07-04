@@ -33,3 +33,12 @@ test('Can create Iland sdk client, and retrieve current user', () => {
     expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
   });
 });
+
+test('Test generic http request method', function() {
+  return Iland.getHttp().request({
+    url: '/constants/country-codes',
+    method: 'GET'
+  }).then(function(response) {
+    expect(response.status).toBe(200);
+  });
+});

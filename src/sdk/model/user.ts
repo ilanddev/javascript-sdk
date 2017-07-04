@@ -177,6 +177,14 @@ export class User {
   }
 
   /**
+   * Gets the raw JSON object from the API.
+   * @returns {ApiUser} the API User object
+   */
+  getJson(): ApiUser {
+    return Object.assign({}, this._apiUser);
+  }
+
+  /**
    * Retrieves a new representation of the user from the API.
    * @returns {Promise<User>} promise that resolves with updated user
    */

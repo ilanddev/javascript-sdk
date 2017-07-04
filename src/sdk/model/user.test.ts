@@ -17,17 +17,30 @@ beforeAll(() => {
 
 test('Can get current user and verify required properties', () => {
   return User.getCurrentUser().then(function(user) {
+    let raw = user.getJson();
     expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
     expect(user.getCreatedDate()).toBeDefined();
+    expect(user.getCreatedDate().getTime()).toBe(raw.created_date);
     expect(user.getCrm()).toBeDefined();
+    expect(user.getCrm()).toBe(raw.crm);
     expect(user.getEmail()).toBeDefined();
+    expect(user.getEmail()).toBe(raw.email);
     expect(user.getDeletedDate()).toBeNull();
     expect(user.getFullName()).toBeDefined();
     expect(user.getFullName().length).toBeGreaterThan(1);
+    expect(user.getFullName()).toBe(raw.fullname);
     expect(user.isDeleted()).toBe(false);
     expect(user.isLocked()).toBe(false);
     expect(user.getUserType()).toEqual('CUSTOMER');
     expect(user.toString()).toContain(user.getUsername());
+    expect(user.getAddress()).toBe(raw.address);
+    expect(user.getEmail()).toBe(raw.email);
+    expect(user.getCity()).toBe(raw.city);
+    expect(user.getCompany()).toBe(raw.company);
+    expect(user.getCountry()).toBe(raw.country);
+    expect(user.getPhoneNumber()).toBe(raw.phone);
+    expect(user.getState()).toBe(raw.state);
+    expect(user.getZip()).toBe(raw.zip);
   });
 });
 

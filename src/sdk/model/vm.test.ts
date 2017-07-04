@@ -31,36 +31,63 @@ beforeAll(() => {
 
 test('Can get vm and verify required properties', () => {
   return Vm.getVm(inventoryVm.uuid).then(function(vm) {
+    let raw = vm.getJson();
     expect(vm.getName()).toBeDefined();
+    expect(vm.getName()).toBe(raw.name);
     expect(vm.getUuid()).toBe(inventoryVm.uuid);
+    expect(vm.getUuid()).toBe(raw.uuid);
     expect(vm.getCoresPerSocket()).toBeGreaterThan(0);
+    expect(vm.getCoresPerSocket()).toBe(raw.cores_per_socket);
     expect(vm.getCreatedDate()).toBeDefined();
+    expect(vm.getCreatedDate().getTime()).toBe(raw.created_date === null ?
+      0 : raw.created_date);
     expect(vm.getLocationId()).toBeDefined();
+    expect(vm.getLocationId()).toBe(raw.location_id);
     expect(vm.getVappUuid()).toBeDefined();
+    expect(vm.getVappUuid()).toBe(raw.vapp_uuid);
     expect(vm.getVdcUuid()).toBeDefined();
+    expect(vm.getVdcUuid()).toBe(raw.vdc_uuid);
     expect(vm.getHardwareVersion()).toBeDefined();
+    expect(vm.getHardwareVersion()).toBe(raw.hardware_version);
     expect(vm.getVmLocalId()).toBeDefined();
+    expect(vm.getVmLocalId()).toBe(raw.vm_local_id);
     expect(vm.getVcloudHref()).toBeDefined();
+    expect(vm.getVcloudHref()).toBe(raw.vcloud_href);
     expect(vm.getStorageProfiles()).toBeDefined();
     expect(vm.getStorageProfiles().length).toBeGreaterThan(0);
+    expect(vm.getStorageProfiles()).toBe(raw.storage_profiles);
     expect(vm.getVcenterInstanceUuid()).toBeDefined();
+    expect(vm.getVcenterInstanceUuid()).toBe(raw.vcenter_instance_uuid);
     expect(vm.getPowerStatus()).toBeDefined();
+    expect(vm.getPowerStatus()).toBe(raw.status);
     expect(vm.getMemorySize()).toBeGreaterThan(0);
+    expect(vm.getMemorySize()).toBe(raw.memory_size);
     expect(vm.getVimDatastoreRef()).toBeDefined();
+    expect(vm.getVimDatastoreRef()).toBe(raw.vim_datastore_ref);
     expect(vm.getVcenterName()).toBeDefined();
+    expect(vm.getVcenterName()).toBe(raw.vcenter_name);
     expect(vm.getVcenterMoRef()).toBeDefined();
+    expect(vm.getVcenterMoRef()).toBe(raw.vcenter_moref);
     expect(vm.getVcenterHref()).toBeDefined();
+    expect(vm.getVcenterHref()).toBe(raw.vcenter_href);
     expect(vm.getOperatingSystem()).toBeDefined();
+    expect(vm.getOperatingSystem()).toBe(raw.os);
     expect(vm.getOrgUuid()).toBeDefined();
+    expect(vm.getOrgUuid()).toBe(raw.org_uuid);
     expect(vm.getDescription()).toBeDefined();
+    expect(vm.getDescription()).toBe(raw.description);
     expect(vm.isDeployed()).toBeDefined();
+    expect(vm.isDeployed()).toBe(raw.deployed);
     expect(vm.isMediaInserted()).toBeDefined();
+    expect(vm.isMediaInserted()).toBe(raw.media_inserted);
     if (vm.isMediaInserted()) {
       expect(vm.getInsertedMediaName()).toBeDefined();
+      expect(vm.getInsertedMediaName()).toBe(raw.inserted_media_name);
     } else {
       expect(vm.getInsertedMediaName()).toBeNull();
     }
     expect(vm.getNumberOfCpus()).toBeDefined();
+    expect(vm.getNumberOfCpus()).toBe(raw.cpus_number);
     expect(vm.toString().length).toBeGreaterThan(0);
     expect(vm.isDeleted()).toBe(false);
     expect(vm.getUpdatedDate()).toBeDefined();
@@ -92,20 +119,35 @@ test('Can get vm vnics', () => {
   });
 });
 
-test('Can update VM description', (done) => {
+test('Can update VM description', () => {
   return Vm.getVm(inventoryVm.uuid).then(function(vm) {
     expect.hasAssertions();
     return vm.updateDescription('test description').then(function(task) {
       expect(task.isComplete()).toBe(false);
       expect(task.getUuid()).toBeDefined();
       expect(task.getLocationId()).toBeDefined();
-      task.getObservable().subscribe(function(update) {
-        expect(task.getUuid()).toBeDefined();
-        expect(task.getLocationId()).toBeDefined();
-        if (task.isComplete()) {
-          done();
-        }
-      });
+      let promises = [];
+      promises.push(new Promise(function(resolve) {
+        task.getObservable().subscribe(function(update) {
+          expect(task.getUuid()).toBeDefined();
+          expect(task.getLocationId()).toBeDefined();
+          expect(task.toString().length).toBeGreaterThan(0);
+          if (task.isComplete()) {
+            resolve(task.getPromise());
+          }
+        });
+      }));
+      promises.push(task.getPromise());
+      return Promise.all(promises);
+    });
+  });
+});
+
+test('Can refresh VM', () => {
+  return Vm.getVm(inventoryVm.uuid).then(function(vm) {
+    expect(vm.getUuid()).toBe(inventoryVm.uuid);
+    return vm.refresh().then(function(refreshed) {
+      expect(refreshed.getUuid()).toBe(inventoryVm.uuid);
     });
   });
 });

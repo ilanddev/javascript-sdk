@@ -220,13 +220,21 @@ export class Vm extends Entity {
   }
 
   /**
+   * Gets the raw JSON object from the API.
+   * @returns {ApiVm} the API VM object
+   */
+  getJson(): ApiVm {
+    return Object.assign({}, this._apiVm);
+  }
+
+  /**
    * Refreshes the VM data by retrieving it from the API again.
    * @returns {Promise<Vm>}
    */
   refresh(): Promise<Vm> {
     let self = this;
     return Iland.getHttp().get(
-        `/vm/${self.getUuid}`).then(function(response) {
+        `/vm/${self.getUuid()}`).then(function(response) {
       self._apiVm = response.data as ApiVm;
       return self;
     });
