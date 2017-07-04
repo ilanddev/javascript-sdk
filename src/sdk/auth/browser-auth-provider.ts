@@ -1,7 +1,6 @@
 import {KeycloakInstance} from 'keycloak-js';
-import Keycloak = require('keycloak-js');
 import {AuthProvider, DEFAULT_AUTH_URL} from "./auth-provider";
-import KeycloakInitOptions = Keycloak.KeycloakInitOptions;
+import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;
 
 export class IlandBrowserAuthProvider implements AuthProvider {
