@@ -185,7 +185,6 @@ export class Vm extends Entity {
    * @returns {Date} creation date
    */
   getCreatedDate(): Date|null {
-    let createdDate = this._apiVm.created_date;
     return this._apiVm.created_date !== null ? new Date(this._apiVm.created_date) : null;
   }
 

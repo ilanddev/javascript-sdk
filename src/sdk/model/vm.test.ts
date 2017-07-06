@@ -40,8 +40,10 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.getCoresPerSocket()).toBeGreaterThan(0);
     expect(vm.getCoresPerSocket()).toBe(raw.cores_per_socket);
     expect(vm.getCreatedDate()).toBeDefined();
-    expect(vm.getCreatedDate()!.getTime()).toBe(raw.created_date === null ?
-        0 : raw.created_date);
+    if (vm.getCreatedDate() !== null) {
+      expect(vm.getCreatedDate()!.getTime()).toBe(raw.created_date === null ?
+          0 : raw.created_date);
+    }
     expect(vm.getLocationId()).toBeDefined();
     expect(vm.getLocationId()).toBe(raw.location_id);
     expect(vm.getVappUuid()).toBeDefined();
