@@ -1,4 +1,4 @@
-import {ApiUser} from './api-spec/api-user';
+import {ApiUser, UserType} from './api-spec/api-user';
 import {Iland} from '../iland';
 import {OrgEntityTree} from './api-spec/api-org-entity-tree';
 import {Inventory} from './inventory';
@@ -154,9 +154,9 @@ export class User {
 
   /**
    * Gets the user type.
-   * @returns {string} user type
+   * @returns {UserType} user type
    */
-  getUserType(): string {
+  getUserType(): UserType {
     return this._apiUser.user_type;
   }
 

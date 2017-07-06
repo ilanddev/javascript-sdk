@@ -2,9 +2,27 @@ import {Task} from './task';
 import {Entity} from './entity';
 import {Iland} from '../iland';
 import {Vnic} from './vnic';
-import {ApiVm} from './api-spec/api-vm';
+import {ApiVm, ApiVmStatus} from './api-spec/api-vm';
 import {ApiVnic} from './api-spec/api-vnic';
 import {ApiTask} from './api-spec/api-task';
+import {EntityType} from './api-spec/api-entity-type';
+
+/**
+ * Enumeration of possible VM power statuses.
+ */
+export enum VmPowerStatus {
+  FAILED_CREATION = 'FAILED_CREATION',
+  INCONSISTENT_STATE = 'INCONSISTENT_STATE',
+  POWERED_OFF = 'POWERED_OFF',
+  POWERED_ON = 'POWERED_ON',
+  SUSPENDED = 'SUSPENDED',
+  UNKNOWN = 'UNKNOWN',
+  UNRECOGNIZED = 'UNRECOGNIZED',
+  UNRESOLVED = 'UNRESOLVED',
+  WAITING_FOR_INPUT = 'WAITING_FOR_INPUT',
+  MIXED = 'MIXED',
+  PARTIALLY_POWERED_OFF = 'PARTIALLY_POWERED_OFF'
+}
 
 /**
  * Virtual Machine.
@@ -25,6 +43,10 @@ export class Vm extends Entity {
       let apiVm = response.data as ApiVm;
       return new Vm(apiVm);
     });
+  }
+
+  getEntityType(): EntityType {
+    return EntityType.VM;
   }
 
   /**
@@ -109,10 +131,35 @@ export class Vm extends Entity {
 
   /**
    * Gets the power status of the VM.
-   * @returns {string} power status identifier
+   * @returns {VmPowerStatus} power status identifier
    */
-  getPowerStatus(): string {
-    return this._apiVm.status;
+  getPowerStatus(): VmPowerStatus {
+    switch (this._apiVm.status) {
+      case ApiVmStatus.POWERED_OFF:
+        if (this._apiVm.deployed) {
+          return VmPowerStatus.PARTIALLY_POWERED_OFF;
+        } else {
+          return VmPowerStatus.POWERED_OFF;
+        }
+      case ApiVmStatus.INCONSISTENT_STATE:
+        return VmPowerStatus.INCONSISTENT_STATE;
+      case ApiVmStatus.MIXED:
+        return VmPowerStatus.MIXED;
+      case ApiVmStatus.POWERED_ON:
+        return VmPowerStatus.POWERED_ON;
+      case ApiVmStatus.SUSPENDED:
+        return VmPowerStatus.SUSPENDED;
+      case ApiVmStatus.UNRECOGNIZED:
+        return VmPowerStatus.UNRECOGNIZED;
+      case ApiVmStatus.UNRESOLVED:
+        return VmPowerStatus.UNRESOLVED;
+      case ApiVmStatus.WAITING_FOR_INPUT:
+        return VmPowerStatus.WAITING_FOR_INPUT;
+      case ApiVmStatus.FAILED_CREATION:
+        return VmPowerStatus.FAILED_CREATION;
+      default:
+        return VmPowerStatus.UNKNOWN;
+    }
   }
 
   /**
@@ -304,14 +351,23 @@ export class Vm extends Entity {
 
 }
 
+/**
+ * Specification for VM memory configuration update request.
+ */
 interface VmMemoryUpdateSpec {
   memory_size: string;
 }
 
+/**
+ * Specification for VM description update request.
+ */
 interface VmUpdateDescriptionSpec {
   description: string;
 }
 
+/**
+ * Specification for VM CPU configuration update request.
+ */
 export interface VmCpuUpdateSpec {
   cpus_number: number;
   cores_per_socket?: number;

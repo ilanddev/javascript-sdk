@@ -1,4 +1,4 @@
-import {ApiVnic} from './api-spec/api-vnic';
+import {ApiVnic, VnicAddressMode} from './api-spec/api-vnic';
 
 /**
  * Virtual Network Interface Card.
@@ -20,7 +20,7 @@ export class Vnic {
    * Gets the address mode of the adapter.
    * @returns {string} address mode
    */
-  getAddressMode(): string {
+  getAddressMode(): VnicAddressMode {
     return this._apiVnic.address_mode;
   }
 

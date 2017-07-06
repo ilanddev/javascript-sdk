@@ -2,8 +2,11 @@ import {Iland} from '../iland';
 import {User} from './user';
 import {TestConfiguration} from '../../../tests/configuration';
 import {IlandDirectGrantAuthProvider} from '../auth/direct-grant-auth-provider';
-import {Vm} from './vm';
+import {Vm, VmPowerStatus} from './vm';
 import {InventoryEntity} from './inventory';
+import {EntityType} from './api-spec/api-entity-type';
+import {ApiVmStatus} from './api-spec/api-vm';
+import {Task} from './task';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;
@@ -18,7 +21,7 @@ beforeAll(async() => {
   Iland.init(auth);
   return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(function(inventory) {
-      let vms = inventory.getEntitiesByType('VM');
+      let vms = inventory.getEntitiesByType(EntityType.VM);
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
@@ -96,6 +99,7 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.getUpdatedDate()).toBeDefined();
     expect(vm.getUpdatedDate().getTime()).toBeLessThan(new Date().getTime());
     expect(vm.getDeletedDate()).toBeNull();
+    expect(vm.getEntityType()).toBe(EntityType.VM);
     return vm;
   });
 });
@@ -141,9 +145,49 @@ test('Can update VM description', async() => {
       expect(task.getUuid()).toBe(rawTask.uuid);
       expect(task.getLocationId()).toBeDefined();
       expect(task.getLocationId()).toBe(rawTask.location_id);
+      expect(task.getOperation()).toBeDefined();
+      expect(task.getOperation()).toBe(rawTask.operation);
+      if (rawTask.end_time !== null) {
+        expect(task.getEndTime()).toBeDefined();
+        expect(task.getEndTime()!.getTime()).toBe(rawTask.end_time);
+      } else {
+        expect(task.getEndTime()).toBeNull();
+      }
+      expect(task.getEntityUuid()).toBeDefined();
+      expect(task.getEntityUuid()).toBe(rawTask.entity_uuid);
+      expect(task.isInitiatedFromIlandApi()).toBeDefined();
+      expect(task.isInitiatedFromIlandApi()).toBe(rawTask.initiated_from_ecs);
+      expect(task.getInitiationTime()).toBeDefined();
+      expect(task.getInitiationTime().getTime()).toBe(rawTask.initiation_time);
+      expect(task.getMessage()).toBe(rawTask.message);
+      expect(task.getOperationDescription()).toBe(rawTask.operation_description);
+      expect(task.getOrgUuid()).toBeDefined();
+      expect(task.getOrgUuid()).toBe(rawTask.org_uuid);
+      expect(task.getOtherAttributes()).toBeDefined();
+      expect(task.getOtherAttributes().size).toBe(rawTask.other_attributes.size);
+      expect(task.getParentTaskUuid()).toBeNull();
+      expect(task.getProgress()).toBeDefined();
+      expect(task.getProgress()).toBeGreaterThanOrEqual(0);
+      expect(task.getProgress()).toBeLessThanOrEqual(100);
+      expect(task.getProgress()).toBe(rawTask.progress);
+      if (rawTask.start_time === null) {
+        expect(task.getStartTime()).toBeNull();
+      } else {
+        expect(task.getStartTime()!.getTime()).toBe(rawTask.start_time);
+      }
+      expect(task.getSubTasks()).toBeDefined();
+      expect(task.getSubTasks().length).toBe(0);
+      expect(task.getTaskId()).toBeDefined();
+      expect(task.getTaskId()).toBe(rawTask.task_id);
+      expect(task.getTaskType()).toBeDefined();
+      expect(task.getTaskType()).toBe(rawTask.task_type);
+      expect(task.getUserFullName()).toBeDefined();
+      expect(task.getUserFullName()).toBe(rawTask.user_full_name);
+      expect(task.getUsername()).toBeDefined();
+      expect(task.getUsername()).toBe(rawTask.username);
       let promises = [];
       promises.push(new Promise(function(resolve) {
-        task.getObservable().subscribe(function(update) {
+        task.getObservable().subscribe(function() {
           expect(task.getUuid()).toBeDefined();
           expect(task.getLocationId()).toBeDefined();
           expect(task.toString().length).toBeGreaterThan(0);
@@ -153,6 +197,13 @@ test('Can update VM description', async() => {
         });
       }));
       promises.push(task.getPromise());
+      promises.push(Task.getTask(task.getLocationId(), task.getUuid()).then(function(taskCopy) {
+        expect(taskCopy.getUuid()).toBe(task.getUuid());
+        expect(taskCopy.getLocationId()).toBe(task.getLocationId());
+        expect(taskCopy.getEntityUuid()).toBe(task.getEntityUuid());
+        expect(taskCopy.getOrgUuid()).toBe(task.getOrgUuid());
+        return taskCopy;
+      }));
       return Promise.all(promises);
     });
   });
@@ -165,4 +216,57 @@ test('Can refresh VM', async() => {
       expect(refreshed.getUuid()).toBe(inventoryVm.uuid);
     });
   });
+});
+
+test('Parses power status correctly', () => {
+  let apiVm = {
+    name: '',
+    uuid: '',
+    deleted: false,
+    deleted_date: 0,
+    updated_date: 0,
+    cores_per_socket: 2,
+    cpus_number: 2,
+    created_date: null,
+    deployed: true,
+    description: '',
+    hardware_version: '',
+    inserted_media_name: '',
+    location_id: '',
+    media_inserted: false,
+    memory_size: 500,
+    org_uuid: '',
+    os: '',
+    status: ApiVmStatus.POWERED_OFF,
+    storage_profiles: [],
+    vapp_uuid: '',
+    vcenter_href: '',
+    vcenter_instance_uuid: '',
+    vcenter_moref: '',
+    vcenter_name: '',
+    vcloud_href: '',
+    vdc_uuid: '',
+    vim_datastore_ref: '',
+    vm_local_id: ''
+  };
+  let vm = new Vm(apiVm);
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.PARTIALLY_POWERED_OFF);
+  apiVm.deployed = false;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.POWERED_OFF);
+  apiVm.status = ApiVmStatus.POWERED_ON;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.POWERED_ON);
+  apiVm.status = ApiVmStatus.WAITING_FOR_INPUT;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.WAITING_FOR_INPUT);
+  apiVm.status = ApiVmStatus.UNRESOLVED;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNRESOLVED);
+  apiVm.status = ApiVmStatus.UNRECOGNIZED;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNRECOGNIZED);
+  apiVm.status = ApiVmStatus.FAILED_CREATION;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.FAILED_CREATION);
+  apiVm.status = ApiVmStatus.UNKNOWN;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNKNOWN);
+  apiVm.status = ApiVmStatus.MIXED;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.MIXED);
+  apiVm.status = ApiVmStatus.SUSPENDED;
+  expect(vm.getPowerStatus()).toBe(VmPowerStatus.SUSPENDED);
 });

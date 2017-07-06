@@ -1,4 +1,5 @@
 import {ApiEntity} from './api-spec/api-entity';
+import {EntityType} from './api-spec/api-entity-type';
 
 /**
  * Entity.
@@ -48,20 +49,10 @@ export abstract class Entity {
     return this._apiEntity.deleted_date ? new Date(this._apiEntity.deleted_date) : null;
   }
 
-}
+  /**
+   * Gets the type of the entity.
+   * @returns {EntityType} the type of the entity
+   */
+  abstract getEntityType(): EntityType;
 
-export type EntityType =
-    'COMPANY'
-    | 'ORG'
-    | 'VDC'
-    | 'VAPP'
-    | 'VM'
-    | 'CATALOG'
-    | 'VPG'
-    | 'ORG_VDC_NETWORK'
-    | 'EDGE'
-    | 'VAPP_NETWORK'
-    | 'VAPP_TEMPLATE'
-    | 'MEDIA'
-    | 'EXTERNAL_NETWORK'
-    | 'VCC_TENANT';
+}

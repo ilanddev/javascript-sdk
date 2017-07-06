@@ -1,4 +1,4 @@
-import {EntityType} from '../entity';
+import {EntityType} from './api-entity-type';
 
 /**
  * API Org Entity Tree representation.

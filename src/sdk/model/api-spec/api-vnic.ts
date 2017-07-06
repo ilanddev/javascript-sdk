@@ -1,7 +1,9 @@
+/**
+ * Interface for VNIC properties.
+ */
 export interface ApiVnic {
-
   adapter_type: string;
-  address_mode: string;
+  address_mode: VnicAddressMode;
   connected: boolean;
   deleted: boolean;
   ip_addr: string;
@@ -9,5 +11,14 @@ export interface ApiVnic {
   net_name: string;
   primary_cnx: boolean;
   vnic_id: number;
+}
 
+/**
+ * Enumeration of possible VNIC addressing modes.
+ */
+export enum VnicAddressMode {
+  DHCP = 'DHCP',
+  MANUAL = 'MANUAL',
+  POOL = 'POOL',
+  NONE = 'NONE'
 }

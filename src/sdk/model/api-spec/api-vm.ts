@@ -1,7 +1,9 @@
 import {ApiEntity} from './api-entity';
 
+/**
+ * Interface for VM properties.
+ */
 export interface ApiVm extends ApiEntity {
-
   cores_per_socket: number;
   cpus_number: number;
   created_date: number|null;
@@ -14,7 +16,7 @@ export interface ApiVm extends ApiEntity {
   memory_size: number;
   org_uuid: string;
   os: string;
-  status: string;
+  status: ApiVmStatus;
   storage_profiles: Array<string>;
   vapp_uuid: string;
   vcenter_href: string;
@@ -25,5 +27,20 @@ export interface ApiVm extends ApiEntity {
   vdc_uuid: string;
   vim_datastore_ref: string;
   vm_local_id: string;
+}
 
+/**
+ * Enumeration of possible VM statuses.
+ */
+export enum ApiVmStatus {
+  FAILED_CREATION = 'FAILED_CREATION',
+  INCONSISTENT_STATE = 'INCONSISTENT_STATE',
+  POWERED_OFF = 'POWERED_OFF',
+  POWERED_ON = 'POWERED_ON',
+  SUSPENDED = 'SUSPENDED',
+  UNKNOWN = 'UNKNOWN',
+  UNRECOGNIZED = 'UNRECOGNIZED',
+  UNRESOLVED = 'UNRESOLVED',
+  WAITING_FOR_INPUT = 'WAITING_FOR_INPUT',
+  MIXED = 'MIXED'
 }

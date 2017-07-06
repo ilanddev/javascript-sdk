@@ -1,5 +1,5 @@
-import {OrgEntityTree, EntityTreeNode} from './api-spec/api-org-entity-tree';
-import {EntityType} from './entity';
+import {EntityTreeNode, OrgEntityTree} from './api-spec/api-org-entity-tree';
+import {EntityType} from './api-spec/api-entity-type';
 
 /**
  * User inventory.
@@ -76,6 +76,9 @@ export class Inventory {
   }
 }
 
+/**
+ * Inventory entity properties.
+ */
 export interface InventoryEntity {
 
   uuid: string;

@@ -2,7 +2,6 @@
  * API User Representation.
  */
 export interface ApiUser {
-
   name: string;
   address: string;
   city: string;
@@ -17,7 +16,15 @@ export interface ApiUser {
   locked: boolean;
   phone: string;
   state: string;
-  user_type: string;
+  user_type: UserType;
   zip: string;
+}
 
+/**
+ * Enumeration of possible user types.
+ */
+export enum UserType {
+  SYSTEM_ADMIN = 'SYSTEM_ADMIN',
+  READ_ONLY_SYSTEM_ADMIN = 'READ_ONLY_SYSTEM_ADMIN',
+  CUSTOMER = 'CUSTOMER'
 }
