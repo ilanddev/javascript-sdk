@@ -53,6 +53,14 @@ export class Task {
   }
 
   /**
+   * Gets the raw JSON object from the API.
+   * @returns {ApiTask} the API Task object
+   */
+  getJson(): ApiTask {
+    return Object.assign({}, this._apiTask);
+  }
+
+  /**
    * Retrieves a new representation of the task from the API.
    * @returns {Promise<Task>} promise that resolves with updated task
    */

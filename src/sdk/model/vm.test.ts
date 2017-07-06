@@ -107,15 +107,24 @@ test('Can get vm vnics', async() => {
       expect(vnics.length).toBeDefined();
       if (vnics.length > 0) {
         let vnic = vnics[0];
+        let raw = vnic.getJson();
         expect(vnic.getAdapterType()).toBeDefined();
+        expect(vnic.getAdapterType()).toBe(raw.adapter_type);
         expect(vnic.getAddressMode()).toBeDefined();
+        expect(vnic.getAddressMode()).toBe(raw.address_mode);
         expect(vnic.getConnectedNetworkName()).toBeDefined();
+        expect(vnic.getConnectedNetworkName()).toBe(raw.net_name);
         expect(vnic.getIpAddress()).toBeDefined();
+        expect(vnic.getIpAddress()).toBe(raw.ip_addr);
         expect(vnic.getVnicId()).toBeDefined();
+        expect(vnic.getVnicId()).toBe(raw.vnic_id);
         expect(vnic.getMacAddress()).toBeDefined();
+        expect(vnic.getMacAddress()).toBe(raw.mac_addr);
         expect(vnic.isPrimaryConnection()).toBeDefined();
+        expect(vnic.isPrimaryConnection()).toBe(raw.primary_cnx);
         expect(vnic.isDeleted()).toBe(false);
         expect(vnic.isConnected()).toBeDefined();
+        expect(vnic.isConnected()).toBe(raw.connected);
         expect(vnic.toString().length).toBeGreaterThan(0);
       }
     });
@@ -126,9 +135,12 @@ test('Can update VM description', async() => {
   return Vm.getVm(inventoryVm.uuid).then(async function(vm) {
     expect.hasAssertions();
     return vm.updateDescription('test description').then(async function(task) {
+      let rawTask = task.getJson();
       expect(task.isComplete()).toBe(false);
       expect(task.getUuid()).toBeDefined();
+      expect(task.getUuid()).toBe(rawTask.uuid);
       expect(task.getLocationId()).toBeDefined();
+      expect(task.getLocationId()).toBe(rawTask.location_id);
       let promises = [];
       promises.push(new Promise(function(resolve) {
         task.getObservable().subscribe(function(update) {

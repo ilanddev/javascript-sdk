@@ -88,4 +88,12 @@ export class Vnic {
     return JSON.stringify(this._apiVnic, undefined, 2);
   }
 
+  /**
+   * Gets the raw JSON object from the API.
+   * @returns {ApiVnic} the API VNIC object
+   */
+  getJson(): ApiVnic {
+    return Object.assign({}, this._apiVnic);
+  }
+
 }
