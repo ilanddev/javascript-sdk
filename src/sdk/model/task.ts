@@ -1,5 +1,5 @@
-import {Observable, Subject} from "rxjs";
-import {Iland} from "../iland";
+import {Observable, Subject} from 'rxjs';
+import {Iland} from '../iland';
 import {ApiTask} from './api-spec/api-task';
 
 /**
@@ -7,7 +7,7 @@ import {ApiTask} from './api-spec/api-task';
  */
 export class Task {
 
-  private _subject: Subject<Task>;
+  private _subject: Subject<Task>|undefined;
 
   constructor(private _apiTask: ApiTask) {
   }
@@ -56,7 +56,7 @@ export class Task {
    * Retrieves a new representation of the task from the API.
    * @returns {Promise<Task>} promise that resolves with updated task
    */
-  refresh(): Promise<Task> {
+  async refresh(): Promise<Task> {
     let self = this;
     return Iland.getHttp().get(`/task/${self.getLocationId()}/${self.getUuid()}`).then(function(response) {
       self._apiTask = response.data as ApiTask;
@@ -64,30 +64,13 @@ export class Task {
     });
   }
 
-  private _updateUntilComplete(): Promise<Task> {
-    let self = this;
-    return self.refresh().then(function(task) {
-      self._subject.next(task);
-      if (task.isComplete()) {
-        self._subject.complete();
-        return self;
-      } else {
-        return new Promise<Task>(function(resolve) {
-          setTimeout(function() {
-            resolve(self._updateUntilComplete());
-          }, 1000);
-        });
-      }
-    });
-  }
-
   /**
    * Gets a promise that resolves or rejects when the task is complete. An error status will cause rejection.
    * @returns {Promise<T>} completion promise
    */
-  getPromise(): Promise<Task> {
+  async getPromise(): Promise<Task> {
     let self = this;
-    return new Promise(function(resolve, reject) {
+    return new Promise<Task>(function(resolve, reject) {
       if (self.isComplete()) {
         if (self.getStatus() === 'error') {
           reject(self);
@@ -114,11 +97,30 @@ export class Task {
    */
   getObservable(): Observable<Task> {
     let self = this;
+    // tslint:disable-next-line:no-floating-promises
+    self._updateUntilComplete();
+    return self._subject!.asObservable();
+  }
+
+  private async _updateUntilComplete(): Promise<Task> {
+    let self = this;
     if (self._subject === undefined) {
       self._subject = new Subject<Task>();
-      self._updateUntilComplete();
     }
-    return self._subject.asObservable();
+    let subject = self._subject as Subject<Task>;
+    return self.refresh().then(function(task) {
+      subject.next(task);
+      if (task.isComplete()) {
+        subject.complete();
+        return self;
+      } else {
+        return new Promise<Task>(function(resolve) {
+          setTimeout(function() {
+            resolve(self._updateUntilComplete());
+          }, 1000);
+        });
+      }
+    });
   }
 
 }

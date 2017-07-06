@@ -1,10 +1,10 @@
-import {ApiEntity} from "./api-entity";
+import {ApiEntity} from './api-entity';
 
 export interface ApiVm extends ApiEntity {
 
   cores_per_socket: number;
   cpus_number: number;
-  created_date: number;
+  created_date: number|null;
   deployed: boolean;
   description: string;
   hardware_version: string;

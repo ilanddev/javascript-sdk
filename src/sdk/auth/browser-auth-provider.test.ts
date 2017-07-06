@@ -1,8 +1,6 @@
-import {TestConfiguration} from "../../../tests/configuration";
-import {IlandBrowserAuthProvider} from "./browser-auth-provider";
-import {
-  KeycloakPromiseCallback, KeycloakPromise, KeycloakInitOptions
-} from "keycloak-js";
+import {TestConfiguration} from '../../../tests/configuration';
+import {IlandBrowserAuthProvider} from './browser-auth-provider';
+import {KeycloakPromise, KeycloakPromiseCallback} from 'keycloak-js';
 
 class MockKeycloakPromise<TSuccess, TError> implements KeycloakPromise<any, string> {
 
@@ -50,12 +48,9 @@ class MockKeycloakPromise<TSuccess, TError> implements KeycloakPromise<any, stri
 
 class MockKeycloak {
 
-  private initialized: boolean = false;
   token: string;
   tokenParsed: any;
-
-  constructor() {
-  }
+  private initialized: boolean = false;
 
   updateToken() {
     let promise = new MockKeycloakPromise();
@@ -98,13 +93,13 @@ jest.mock('keycloak-js', () => {
   };
 });
 
-test('IlandBrowserAuthProvider can retrieve token', () => {
+test('IlandBrowserAuthProvider can retrieve token', async() => {
   let auth = new IlandBrowserAuthProvider({
     clientId: TestConfiguration.getClientId()
   });
-  return auth.getToken().then(function(token) {
+  return auth.getToken().then(async function(token) {
     expect(token).toBe('fake-auth-token-1');
-    return auth.getAuthenticatedUsername().then(function(preferredUsername) {
+    return auth.getAuthenticatedUsername().then(async function(preferredUsername) {
       expect(preferredUsername).toBe('csnyder');
       return auth.logout();
     });

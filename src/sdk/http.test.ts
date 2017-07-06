@@ -1,4 +1,4 @@
-import {Http} from "./http";
+import {Http} from './http';
 
 test('Test version utility function', function() {
   expect(Http.versionMime('application/vnd.ilandcloud.api.v0.7+json')).toBe('application/vnd.ilandcloud.api.v0.7+json');

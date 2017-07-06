@@ -1,13 +1,14 @@
-import {Iland} from "../iland";
-import {User} from "./user";
-import {TestConfiguration} from "../../../tests/configuration";
-import {IlandDirectGrantAuthProvider} from "../auth/direct-grant-auth-provider";
-import {Vm} from "./vm";
-import {InventoryEntity} from "./inventory";
+import {Iland} from '../iland';
+import {User} from './user';
+import {TestConfiguration} from '../../../tests/configuration';
+import {IlandDirectGrantAuthProvider} from '../auth/direct-grant-auth-provider';
+import {Vm} from './vm';
+import {InventoryEntity} from './inventory';
 
-let auth: IlandDirectGrantAuthProvider, inventoryVm: InventoryEntity;
+let auth: IlandDirectGrantAuthProvider;
+let inventoryVm: InventoryEntity;
 
-beforeAll(() => {
+beforeAll(async() => {
   auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
@@ -15,9 +16,9 @@ beforeAll(() => {
     clientId: TestConfiguration.getClientId()
   });
   Iland.init(auth);
-  return User.getCurrentUser().then(function(user) {
+  return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(function(inventory) {
-      let vms = inventory.getEntitiesByType("VM");
+      let vms = inventory.getEntitiesByType('VM');
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
@@ -29,7 +30,7 @@ beforeAll(() => {
   });
 });
 
-test('Can get vm and verify required properties', () => {
+test('Can get vm and verify required properties', async() => {
   return Vm.getVm(inventoryVm.uuid).then(function(vm) {
     let raw = vm.getJson();
     expect(vm.getName()).toBeDefined();
@@ -39,8 +40,8 @@ test('Can get vm and verify required properties', () => {
     expect(vm.getCoresPerSocket()).toBeGreaterThan(0);
     expect(vm.getCoresPerSocket()).toBe(raw.cores_per_socket);
     expect(vm.getCreatedDate()).toBeDefined();
-    expect(vm.getCreatedDate().getTime()).toBe(raw.created_date === null ?
-      0 : raw.created_date);
+    expect(vm.getCreatedDate()!.getTime()).toBe(raw.created_date === null ?
+        0 : raw.created_date);
     expect(vm.getLocationId()).toBeDefined();
     expect(vm.getLocationId()).toBe(raw.location_id);
     expect(vm.getVappUuid()).toBeDefined();
@@ -97,8 +98,8 @@ test('Can get vm and verify required properties', () => {
   });
 });
 
-test('Can get vm vnics', () => {
-  return Vm.getVm(inventoryVm.uuid).then(function(vm) {
+test('Can get vm vnics', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async function(vm) {
     return vm.getVnics().then(function(vnics) {
       expect(vnics).toBeDefined();
       expect(vnics.length).toBeDefined();
@@ -119,10 +120,10 @@ test('Can get vm vnics', () => {
   });
 });
 
-test('Can update VM description', () => {
-  return Vm.getVm(inventoryVm.uuid).then(function(vm) {
+test('Can update VM description', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async function(vm) {
     expect.hasAssertions();
-    return vm.updateDescription('test description').then(function(task) {
+    return vm.updateDescription('test description').then(async function(task) {
       expect(task.isComplete()).toBe(false);
       expect(task.getUuid()).toBeDefined();
       expect(task.getLocationId()).toBeDefined();
@@ -143,8 +144,8 @@ test('Can update VM description', () => {
   });
 });
 
-test('Can refresh VM', () => {
-  return Vm.getVm(inventoryVm.uuid).then(function(vm) {
+test('Can refresh VM', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async function(vm) {
     expect(vm.getUuid()).toBe(inventoryVm.uuid);
     return vm.refresh().then(function(refreshed) {
       expect(refreshed.getUuid()).toBe(inventoryVm.uuid);

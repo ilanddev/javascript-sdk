@@ -1,7 +1,7 @@
-import {Task} from "./task";
-import {Entity} from "./entity";
-import {Iland} from "../iland";
-import {Vnic} from "./vnic";
+import {Task} from './task';
+import {Entity} from './entity';
+import {Iland} from '../iland';
+import {Vnic} from './vnic';
 import {ApiVm} from './api-spec/api-vm';
 import {ApiVnic} from './api-spec/api-vnic';
 import {ApiTask} from './api-spec/api-task';
@@ -20,7 +20,7 @@ export class Vm extends Entity {
    * @param uuid VM UUID
    * @returns {Promise<Vm>} promise that resolves with the VM
    */
-  static getVm(uuid: string): Promise<Vm> {
+  static async getVm(uuid: string): Promise<Vm> {
     return Iland.getHttp().get(`/vm/${uuid}`).then(function(response) {
       let apiVm = response.data as ApiVm;
       return new Vm(apiVm);
@@ -144,7 +144,8 @@ export class Vm extends Entity {
    * @returns {string} the name of the inserted media or null if no media is currently inserted
    */
   getInsertedMediaName(): string | null {
-    return this._apiVm.inserted_media_name && this._apiVm.inserted_media_name.length > 0 ? this._apiVm.inserted_media_name : null;
+    return this._apiVm.inserted_media_name && this._apiVm.inserted_media_name.length > 0 ?
+        this._apiVm.inserted_media_name : null;
   }
 
   /**
@@ -183,8 +184,9 @@ export class Vm extends Entity {
    * Gets the date that the VM was created.
    * @returns {Date} creation date
    */
-  getCreatedDate(): Date {
-    return new Date(this._apiVm.created_date);
+  getCreatedDate(): Date|null {
+    let createdDate = this._apiVm.created_date;
+    return this._apiVm.created_date !== null ? new Date(this._apiVm.created_date) : null;
   }
 
   /**
@@ -207,7 +209,7 @@ export class Vm extends Entity {
    * Gets the VM's configured memory in MB.
    * @returns {number} the VM's configured memory in MB.
    */
-  getMemorySize():number {
+  getMemorySize(): number {
     return this._apiVm.memory_size;
   }
 
@@ -231,26 +233,26 @@ export class Vm extends Entity {
    * Refreshes the VM data by retrieving it from the API again.
    * @returns {Promise<Vm>}
    */
-  refresh(): Promise<Vm> {
+  async refresh(): Promise<Vm> {
     let self = this;
     return Iland.getHttp().get(
         `/vm/${self.getUuid()}`).then(function(response) {
-      self._apiVm = response.data as ApiVm;
-      return self;
-    });
+          self._apiVm = response.data as ApiVm;
+          return self;
+        });
   }
 
   /**
    * Gets the list of VNICs for this VM.
    * @returns {Promise<Vnic[]>}
    */
-  getVnics(): Promise<Array<Vnic>> {
+  async getVnics(): Promise<Array<Vnic>> {
     let self = this;
     return Iland.getHttp().get(
         `/vm/${self.getUuid()}/vnics`).then(function(response) {
-      let apiVnics = response.data as Array<ApiVnic>;
-      return apiVnics.map((apiVnic) => new Vnic(apiVnic));
-    });
+          let apiVnics = response.data as Array<ApiVnic>;
+          return apiVnics.map((apiVnic) => new Vnic(apiVnic));
+        });
   }
 
   /**
@@ -258,7 +260,7 @@ export class Vm extends Entity {
    * @param description the new description
    * @returns {Promise<Task>} task promise
    */
-  updateDescription(description: string): Promise<Task> {
+  async updateDescription(description: string): Promise<Task> {
     let self = this;
     let spec: VmUpdateDescriptionSpec = {
       description: description
@@ -275,16 +277,16 @@ export class Vm extends Entity {
    * @param memorySizeMb {number} the new memory size in MB
    * @returns {Promise<Task>} task promise
    */
-  updateMemorySize(memorySizeMb: number): Promise<Task> {
+  async updateMemorySize(memorySizeMb: number): Promise<Task> {
     let self = this;
     let spec: VmMemoryUpdateSpec = {
       memory_size: String(memorySizeMb)
     };
     return Iland.getHttp().put(`/vm/${self.getUuid()}/mem`, spec)
                 .then(function(response) {
-      let apiTask = response.data as ApiTask;
-      return new Task(apiTask);
-    });
+                  let apiTask = response.data as ApiTask;
+                  return new Task(apiTask);
+                });
   }
 
   /**
@@ -292,7 +294,7 @@ export class Vm extends Entity {
    * @param spec {VmCpuUpdateSpec} specifying new number of CPUs
    * @returns {Promise<Task>} task promise
    */
-  updateNumberOfCpus(spec: VmCpuUpdateSpec): Promise<Task> {
+  async updateNumberOfCpus(spec: VmCpuUpdateSpec): Promise<Task> {
     let self = this;
     return Iland.getHttp().put(`/vm/${self.getUuid()}/cpu`, spec)
                 .then(function(response) {
@@ -312,7 +314,6 @@ interface VmUpdateDescriptionSpec {
 }
 
 export interface VmCpuUpdateSpec {
-  cpus_number: number,
-  cores_per_socket?: number
+  cpus_number: number;
+  cores_per_socket?: number;
 }
-

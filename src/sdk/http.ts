@@ -1,5 +1,5 @@
-import axios, {AxiosResponse, AxiosInstance, AxiosRequestConfig} from "axios";
-import {Iland} from "./iland";
+import axios, {AxiosResponse, AxiosInstance, AxiosRequestConfig} from 'axios';
+import {Iland} from './iland';
 
 const DEFAULT_API_VERSION = 0.8;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
@@ -20,13 +20,13 @@ export class Http {
         'Content-Type': defaultMime
       }
     });
-    this._ilandAxios.interceptors.request.use(function(config: AxiosRequestConfig) {
+    this._ilandAxios.interceptors.request.use(async function(config: AxiosRequestConfig) {
       return Iland.getAuthProvider().getToken().then(function(token) {
         config.headers['Authorization'] = 'Bearer ' + token;
         return config;
       });
     });
-    this._ilandAxios.interceptors.response.use(function(response: AxiosResponse) {
+    this._ilandAxios.interceptors.response.use(async function(response: AxiosResponse) {
       let str = response.data as string;
       if (str.indexOf(")]}'\n") === 0) {
         response.data = JSON.parse(str.substring(5));
@@ -44,28 +44,28 @@ export class Http {
     if (parts.length === 2) {
       let prefix = parts[0];
       let suffix = parts[1];
-      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${version}+${suffix}`
+      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${version}+${suffix}`;
     }
     return mime;
   }
 
-  request(config: AxiosRequestConfig): Promise<AxiosResponse> {
+  async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.request(config) as Promise<AxiosResponse>;
   }
 
-  get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+  async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.get(url, config) as Promise<AxiosResponse>;
   }
 
-  delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+  async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.delete(url, config) as Promise<AxiosResponse>;
   }
 
-  post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+  async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.post(url, data, config) as Promise<AxiosResponse>;
   }
 
-  put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
+  async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.put(url, data, config) as Promise<AxiosResponse>;
   }
 

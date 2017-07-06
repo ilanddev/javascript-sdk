@@ -8,6 +8,6 @@ export interface ApiVnic {
   mac_addr: string;
   net_name: string;
   primary_cnx: boolean;
-  vnic_id: number
+  vnic_id: number;
 
 }

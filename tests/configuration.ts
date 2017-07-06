@@ -1,4 +1,6 @@
-
+/**
+ * Configuration for tests using environment variables.
+ */
 export class TestConfiguration {
 
   static getUsername(): string {

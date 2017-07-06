@@ -1,7 +1,7 @@
-import {Iland} from "../iland";
-import {User} from "./user";
-import {TestConfiguration} from "../../../tests/configuration";
-import {IlandDirectGrantAuthProvider} from "../auth/direct-grant-auth-provider";
+import {Iland} from '../iland';
+import {User} from './user';
+import {TestConfiguration} from '../../../tests/configuration';
+import {IlandDirectGrantAuthProvider} from '../auth/direct-grant-auth-provider';
 
 let auth;
 
@@ -15,7 +15,7 @@ beforeAll(() => {
   Iland.init(auth);
 });
 
-test('Can get current user and verify required properties', () => {
+test('Can get current user and verify required properties', async() => {
   return User.getCurrentUser().then(function(user) {
     let raw = user.getJson();
     expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
@@ -44,10 +44,10 @@ test('Can get current user and verify required properties', () => {
   });
 });
 
-test('Can get current user and verify required properties', () => {
-  return User.getCurrentUser().then(function(user) {
+test('Can get current user and verify required properties', async() => {
+  return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(inventory => {
-      let vms = inventory.getEntitiesByType("VM");
+      let vms = inventory.getEntitiesByType('VM');
       expect(vms).toBeDefined();
       if (vms !== undefined) {
         expect(vms.length).toBeGreaterThan(0);
@@ -62,8 +62,8 @@ test('Can get current user and verify required properties', () => {
   });
 });
 
-test('Test user refresh', () => {
-  return User.getCurrentUser().then(function(user) {
+test('Test user refresh', async() => {
+  return User.getCurrentUser().then(async function(user) {
     return user.refresh().then(function(user) {
       expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
       expect(user.getCreatedDate()).toBeDefined();
@@ -79,4 +79,3 @@ test('Test user refresh', () => {
     });
   });
 });
-

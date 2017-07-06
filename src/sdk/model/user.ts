@@ -1,7 +1,7 @@
-import {ApiUser} from "./api-spec/api-user";
-import {Iland} from "../iland";
-import {OrgEntityTree} from "./api-spec/api-org-entity-tree";
-import {Inventory} from "./inventory";
+import {ApiUser} from './api-spec/api-user';
+import {Iland} from '../iland';
+import {OrgEntityTree} from './api-spec/api-org-entity-tree';
+import {Inventory} from './inventory';
 
 /**
  * User.
@@ -16,7 +16,7 @@ export class User {
    * @param username the user's username
    * @returns {Promise<User>}
    */
-  static getUser(username: string): Promise<User> {
+  static async getUser(username: string): Promise<User> {
     return Iland.getHttp().get(`/user/${username}`).then(function(response) {
       let apiUser = response.data as ApiUser;
       return new User(apiUser);
@@ -27,12 +27,12 @@ export class User {
    * Gets the currently authenticated user.
    * @returns {Promise<User>}
    */
-  static getCurrentUser(): Promise<User> {
-    return Iland.getAuthProvider().getAuthenticatedUsername().then(function(username: string) {
+  static async getCurrentUser(): Promise<User> {
+    return Iland.getAuthProvider().getAuthenticatedUsername().then(async function(username: string) {
       if (username) {
         return User.getUser(username);
       } else {
-        return new Promise<User>(function(undefined, reject) {
+        return new Promise<User>(function(_, reject) {
           reject();
         });
       }
@@ -188,7 +188,7 @@ export class User {
    * Retrieves a new representation of the user from the API.
    * @returns {Promise<User>} promise that resolves with updated user
    */
-  refresh(): Promise<User> {
+  async refresh(): Promise<User> {
     let self = this;
     return Iland.getHttp().get(`/user/${self.getUsername()}`).then(function(response) {
       self._apiUser = response.data as ApiUser;
@@ -200,7 +200,7 @@ export class User {
    * Gets the user's entity inventory.
    * @returns {Promise<Inventory>} user's entity inventory
    */
-  getInventory(): Promise<Inventory> {
+  async getInventory(): Promise<Inventory> {
     let self = this;
     return Iland.getHttp().get(`/user/${self.getUsername()}/inventory`).then(function(response) {
       let inventory = response.data as Array<OrgEntityTree>;

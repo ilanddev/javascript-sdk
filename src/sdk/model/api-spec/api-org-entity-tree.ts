@@ -1,4 +1,4 @@
-import {EntityType} from "../entity";
+import {EntityType} from '../entity';
 
 /**
  * API Org Entity Tree representation.
@@ -22,14 +22,14 @@ export interface OrgEntityTree {
  */
 export interface EntityTreeNode {
 
-  type: EntityType,
+  type: EntityType;
 
-  uuid: string,
+  uuid: string;
 
-  name: string,
+  name: string;
 
-  update_date: number,
+  update_date: number;
 
-  children: {[entityType:string]: Array<EntityTreeNode>}
+  children: {[entityType: string]: Array<EntityTreeNode>};
 
 }

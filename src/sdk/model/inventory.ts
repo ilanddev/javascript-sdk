@@ -1,5 +1,5 @@
-import {OrgEntityTree, EntityTreeNode} from "./api-spec/api-org-entity-tree";
-import {EntityType} from "./entity";
+import {OrgEntityTree, EntityTreeNode} from './api-spec/api-org-entity-tree';
+import {EntityType} from './entity';
 
 /**
  * User inventory.
@@ -13,7 +13,8 @@ export class Inventory {
   constructor(private _inventory: Array<OrgEntityTree>) {
     this._flatMap = new Map();
     this._typeMap = new Map();
-    Inventory.visitInventoryEntities(_inventory, [Inventory.buildFlatMap(this._flatMap), Inventory.buildTypeMap(this._typeMap)]);
+    Inventory.visitInventoryEntities(_inventory, [Inventory.buildFlatMap(this._flatMap),
+      Inventory.buildTypeMap(this._typeMap)]);
   }
 
   private static visitInventoryEntities(inventory: Array<OrgEntityTree>,
@@ -39,7 +40,7 @@ export class Inventory {
   private static buildFlatMap(map: Map<string, InventoryEntity>): Visitor {
     return (entity: InventoryEntity) => {
       map.set(entity.uuid, entity);
-    }
+    };
   }
 
   /**
@@ -53,7 +54,7 @@ export class Inventory {
       } else {
         entityArray.push(entity);
       }
-    }
+    };
   }
 
   /**

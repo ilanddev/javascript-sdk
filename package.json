@@ -9,8 +9,8 @@
   "repository": " https://github.com/ilanddev/javascript-sdk",
   "scripts": {
     "info": "npm-scripts-info",
-    "build": "webpack",
-    "lint": "tslint src/**/*.ts",
+    "lint": "tslint --project tsconfig.json --type-check",
+    "build": "yarn lint && webpack",
     "test": "jest --coverage",
     "docs": "typedoc src/index.ts --excludePrivate --exclude **/*.test.ts --mode file --theme minimal --out build/docs",
     "publish:docs": "yarn docs && cp circle.yml build/docs && gh-pages -d build/docs"

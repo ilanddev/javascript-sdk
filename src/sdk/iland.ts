@@ -1,13 +1,13 @@
-import {AuthProvider} from "./auth/auth-provider";
-import {Http} from "./http";
+import {AuthProvider} from './auth/auth-provider';
+import {Http} from './http';
 
 const DEFAULT_API_URL = 'https://api.ilandcloud.com/ecs';
 
 export abstract class Iland {
 
-  private static _authProvider: AuthProvider ;
+  private static _authProvider: AuthProvider|undefined;
 
-  private static _http: Http;
+  private static _http: Http|undefined;
 
   static init(_authProvider: AuthProvider, _config?: IlandSdkConfig) {
     this._authProvider = _authProvider;
@@ -33,6 +33,6 @@ export abstract class Iland {
 
 export interface IlandSdkConfig {
 
-  baseUrl: string
+  baseUrl: string;
 
 }
