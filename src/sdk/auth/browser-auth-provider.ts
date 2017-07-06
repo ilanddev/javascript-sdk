@@ -1,5 +1,5 @@
-import {KeycloakInstance} from 'keycloak-js';
-import {AuthProvider, DEFAULT_AUTH_URL} from './auth-provider';
+import { KeycloakInstance } from 'keycloak-js';
+import { AuthProvider, DEFAULT_AUTH_URL } from './auth-provider';
 import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;
 

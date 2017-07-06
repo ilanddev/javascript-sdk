@@ -1,7 +1,7 @@
-import {ApiUser, UserType} from './api-spec/api-user';
-import {Iland} from '../iland';
-import {OrgEntityTree} from './api-spec/api-org-entity-tree';
-import {Inventory} from './inventory';
+import { ApiUser, UserType } from './api-spec/api-user';
+import { Iland } from '../iland';
+import { OrgEntityTree } from './api-spec/api-org-entity-tree';
+import { Inventory } from './inventory';
 
 /**
  * User.

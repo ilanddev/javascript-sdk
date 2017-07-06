@@ -1,6 +1,6 @@
-import {Observable, Subject} from 'rxjs';
-import {Iland} from '../iland';
-import {ApiTask, TaskOperation, TaskStatus, TaskType} from './api-spec/api-task';
+import { Observable, Subject } from 'rxjs';
+import { Iland } from '../iland';
+import { ApiTask, TaskOperation, TaskStatus, TaskType } from './api-spec/api-task';
 
 /**
  * Task.

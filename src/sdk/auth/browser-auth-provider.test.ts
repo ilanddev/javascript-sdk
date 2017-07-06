@@ -1,8 +1,8 @@
-import {TestConfiguration} from '../../../tests/configuration';
-import {IlandBrowserAuthProvider} from './browser-auth-provider';
-import {KeycloakPromise, KeycloakPromiseCallback} from 'keycloak-js';
+import { TestConfiguration } from '../../../tests/configuration';
+import { IlandBrowserAuthProvider } from './browser-auth-provider';
+import { KeycloakPromise, KeycloakPromiseCallback } from 'keycloak-js';
 
-class MockKeycloakPromise<TSuccess, TError> implements KeycloakPromise<any, string> {
+class MockKeycloakPromise implements KeycloakPromise<any, string> {
 
   private resolved = false;
   private rejected = false;

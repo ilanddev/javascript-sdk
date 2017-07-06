@@ -1,4 +1,4 @@
-import {ApiEntity} from './api-entity';
+import { ApiEntity } from './api-entity';
 
 /**
  * Interface for VM properties.
@@ -32,15 +32,13 @@ export interface ApiVm extends ApiEntity {
 /**
  * Enumeration of possible VM statuses.
  */
-export enum ApiVmStatus {
-  FAILED_CREATION = 'FAILED_CREATION',
-  INCONSISTENT_STATE = 'INCONSISTENT_STATE',
-  POWERED_OFF = 'POWERED_OFF',
-  POWERED_ON = 'POWERED_ON',
-  SUSPENDED = 'SUSPENDED',
-  UNKNOWN = 'UNKNOWN',
-  UNRECOGNIZED = 'UNRECOGNIZED',
-  UNRESOLVED = 'UNRESOLVED',
-  WAITING_FOR_INPUT = 'WAITING_FOR_INPUT',
-  MIXED = 'MIXED'
-}
+export type ApiVmStatus = 'FAILED_CREATION' |
+  'INCONSISTENT_STATE' |
+  'POWERED_OFF' |
+  'POWERED_ON' |
+  'SUSPENDED' |
+  'UNKNOWN' |
+  'UNRECOGNIZED' |
+  'UNRESOLVED' |
+  'WAITING_FOR_INPUT' |
+  'MIXED';

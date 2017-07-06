@@ -1,9 +1,7 @@
-import {Iland} from '../iland';
-import {User} from './user';
-import {TestConfiguration} from '../../../tests/configuration';
-import {IlandDirectGrantAuthProvider} from '../auth/direct-grant-auth-provider';
-import {EntityType} from './api-spec/api-entity-type';
-import {UserType} from './api-spec/api-user';
+import { Iland } from '../iland';
+import { User } from './user';
+import { TestConfiguration } from '../../../tests/configuration';
+import { IlandDirectGrantAuthProvider } from '../auth/direct-grant-auth-provider';
 
 let auth;
 
@@ -33,7 +31,7 @@ test('Can get current user and verify required properties', async() => {
     expect(user.getFullName()).toBe(raw.fullname);
     expect(user.isDeleted()).toBe(false);
     expect(user.isLocked()).toBe(false);
-    expect(user.getUserType()).toEqual(UserType.CUSTOMER);
+    expect(user.getUserType()).toEqual('CUSTOMER');
     expect(user.toString()).toContain(user.getUsername());
     expect(user.getAddress()).toBe(raw.address);
     expect(user.getEmail()).toBe(raw.email);
@@ -49,7 +47,7 @@ test('Can get current user and verify required properties', async() => {
 test('Can get current user and verify required properties', async() => {
   return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(inventory => {
-      let vms = inventory.getEntitiesByType(EntityType.VM);
+      let vms = inventory.getEntitiesByType('VM');
       expect(vms).toBeDefined();
       if (vms !== undefined) {
         expect(vms.length).toBeGreaterThan(0);
@@ -76,7 +74,7 @@ test('Test user refresh', async() => {
       expect(user.getFullName().length).toBeGreaterThan(1);
       expect(user.isDeleted()).toBe(false);
       expect(user.isLocked()).toBe(false);
-      expect(user.getUserType()).toEqual(UserType.CUSTOMER);
+      expect(user.getUserType()).toEqual('CUSTOMER');
       expect(user.toString()).toContain(user.getUsername());
     });
   });

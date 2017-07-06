@@ -1,5 +1,5 @@
-import {AuthProvider} from './auth/auth-provider';
-import {Http} from './http';
+import { AuthProvider } from './auth/auth-provider';
+import { Http } from './http';
 
 const DEFAULT_API_URL = 'https://api.ilandcloud.com/ecs';
 

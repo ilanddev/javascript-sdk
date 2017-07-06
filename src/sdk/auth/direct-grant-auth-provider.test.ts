@@ -1,5 +1,5 @@
-import {IlandDirectGrantAuthProvider} from './direct-grant-auth-provider';
-import {TestConfiguration} from '../../../tests/configuration';
+import { IlandDirectGrantAuthProvider } from './direct-grant-auth-provider';
+import { TestConfiguration } from '../../../tests/configuration';
 
 test('IlandDirectGrantAuthProvider can retrieve token', async() => {
   let auth = new IlandDirectGrantAuthProvider({

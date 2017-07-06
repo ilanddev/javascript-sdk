@@ -1,28 +1,17 @@
-import {Task} from './task';
-import {Entity} from './entity';
-import {Iland} from '../iland';
-import {Vnic} from './vnic';
-import {ApiVm, ApiVmStatus} from './api-spec/api-vm';
-import {ApiVnic} from './api-spec/api-vnic';
-import {ApiTask} from './api-spec/api-task';
-import {EntityType} from './api-spec/api-entity-type';
+import { Task } from './task';
+import { Entity } from './entity';
+import { Iland } from '../iland';
+import { Vnic } from './vnic';
+import { ApiVm, ApiVmStatus } from './api-spec/api-vm';
+import { ApiVnic } from './api-spec/api-vnic';
+import { ApiTask } from './api-spec/api-task';
+import { EntityType } from './api-spec/api-entity-type';
 
 /**
  * Enumeration of possible VM power statuses.
  */
-export enum VmPowerStatus {
-  FAILED_CREATION = 'FAILED_CREATION',
-  INCONSISTENT_STATE = 'INCONSISTENT_STATE',
-  POWERED_OFF = 'POWERED_OFF',
-  POWERED_ON = 'POWERED_ON',
-  SUSPENDED = 'SUSPENDED',
-  UNKNOWN = 'UNKNOWN',
-  UNRECOGNIZED = 'UNRECOGNIZED',
-  UNRESOLVED = 'UNRESOLVED',
-  WAITING_FOR_INPUT = 'WAITING_FOR_INPUT',
-  MIXED = 'MIXED',
-  PARTIALLY_POWERED_OFF = 'PARTIALLY_POWERED_OFF'
-}
+export type VmPowerStatus = ApiVmStatus |
+    'PARTIALLY_POWERED_OFF';
 
 /**
  * Virtual Machine.
@@ -46,7 +35,7 @@ export class Vm extends Entity {
   }
 
   getEntityType(): EntityType {
-    return EntityType.VM;
+    return 'VM';
   }
 
   /**
@@ -134,31 +123,10 @@ export class Vm extends Entity {
    * @returns {VmPowerStatus} power status identifier
    */
   getPowerStatus(): VmPowerStatus {
-    switch (this._apiVm.status) {
-      case ApiVmStatus.POWERED_OFF:
-        if (this._apiVm.deployed) {
-          return VmPowerStatus.PARTIALLY_POWERED_OFF;
-        } else {
-          return VmPowerStatus.POWERED_OFF;
-        }
-      case ApiVmStatus.INCONSISTENT_STATE:
-        return VmPowerStatus.INCONSISTENT_STATE;
-      case ApiVmStatus.MIXED:
-        return VmPowerStatus.MIXED;
-      case ApiVmStatus.POWERED_ON:
-        return VmPowerStatus.POWERED_ON;
-      case ApiVmStatus.SUSPENDED:
-        return VmPowerStatus.SUSPENDED;
-      case ApiVmStatus.UNRECOGNIZED:
-        return VmPowerStatus.UNRECOGNIZED;
-      case ApiVmStatus.UNRESOLVED:
-        return VmPowerStatus.UNRESOLVED;
-      case ApiVmStatus.WAITING_FOR_INPUT:
-        return VmPowerStatus.WAITING_FOR_INPUT;
-      case ApiVmStatus.FAILED_CREATION:
-        return VmPowerStatus.FAILED_CREATION;
-      default:
-        return VmPowerStatus.UNKNOWN;
+    if (this._apiVm.deployed && this._apiVm.status === 'POWERED_OFF') {
+      return 'PARTIALLY_POWERED_OFF';
+    } else {
+      return this._apiVm.status;
     }
   }
 

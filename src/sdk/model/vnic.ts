@@ -1,4 +1,4 @@
-import {ApiVnic, VnicAddressMode} from './api-spec/api-vnic';
+import { ApiVnic, VnicAddressMode } from './api-spec/api-vnic';
 
 /**
  * Virtual Network Interface Card.

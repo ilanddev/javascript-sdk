@@ -1,12 +1,11 @@
-import {Iland} from '../iland';
-import {User} from './user';
-import {TestConfiguration} from '../../../tests/configuration';
-import {IlandDirectGrantAuthProvider} from '../auth/direct-grant-auth-provider';
-import {Vm, VmPowerStatus} from './vm';
-import {InventoryEntity} from './inventory';
-import {EntityType} from './api-spec/api-entity-type';
-import {ApiVmStatus} from './api-spec/api-vm';
-import {Task} from './task';
+import { Iland } from '../iland';
+import { User } from './user';
+import { TestConfiguration } from '../../../tests/configuration';
+import { IlandDirectGrantAuthProvider } from '../auth/direct-grant-auth-provider';
+import { Vm } from './vm';
+import { InventoryEntity } from './inventory';
+import { Task } from './task';
+import { ApiVmStatus } from './api-spec/api-vm';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;
@@ -21,7 +20,7 @@ beforeAll(async() => {
   Iland.init(auth);
   return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(function(inventory) {
-      let vms = inventory.getEntitiesByType(EntityType.VM);
+      let vms = inventory.getEntitiesByType('VM');
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
@@ -99,7 +98,7 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.getUpdatedDate()).toBeDefined();
     expect(vm.getUpdatedDate().getTime()).toBeLessThan(new Date().getTime());
     expect(vm.getDeletedDate()).toBeNull();
-    expect(vm.getEntityType()).toBe(EntityType.VM);
+    expect(vm.getEntityType()).toBe('VM');
     return vm;
   });
 });
@@ -237,7 +236,7 @@ test('Parses power status correctly', () => {
     memory_size: 500,
     org_uuid: '',
     os: '',
-    status: ApiVmStatus.POWERED_OFF,
+    status: 'POWERED_OFF' as ApiVmStatus,
     storage_profiles: [],
     vapp_uuid: '',
     vcenter_href: '',
@@ -250,23 +249,23 @@ test('Parses power status correctly', () => {
     vm_local_id: ''
   };
   let vm = new Vm(apiVm);
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.PARTIALLY_POWERED_OFF);
+  expect(vm.getPowerStatus()).toBe('PARTIALLY_POWERED_OFF');
   apiVm.deployed = false;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.POWERED_OFF);
-  apiVm.status = ApiVmStatus.POWERED_ON;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.POWERED_ON);
-  apiVm.status = ApiVmStatus.WAITING_FOR_INPUT;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.WAITING_FOR_INPUT);
-  apiVm.status = ApiVmStatus.UNRESOLVED;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNRESOLVED);
-  apiVm.status = ApiVmStatus.UNRECOGNIZED;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNRECOGNIZED);
-  apiVm.status = ApiVmStatus.FAILED_CREATION;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.FAILED_CREATION);
-  apiVm.status = ApiVmStatus.UNKNOWN;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.UNKNOWN);
-  apiVm.status = ApiVmStatus.MIXED;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.MIXED);
-  apiVm.status = ApiVmStatus.SUSPENDED;
-  expect(vm.getPowerStatus()).toBe(VmPowerStatus.SUSPENDED);
+  expect(vm.getPowerStatus()).toBe('POWERED_OFF');
+  apiVm.status = 'POWERED_ON';
+  expect(vm.getPowerStatus()).toBe('POWERED_ON');
+  apiVm.status = 'WAITING_FOR_INPUT';
+  expect(vm.getPowerStatus()).toBe('WAITING_FOR_INPUT');
+  apiVm.status = 'UNRESOLVED';
+  expect(vm.getPowerStatus()).toBe('UNRESOLVED');
+  apiVm.status = 'UNRECOGNIZED';
+  expect(vm.getPowerStatus()).toBe('UNRECOGNIZED');
+  apiVm.status = 'FAILED_CREATION';
+  expect(vm.getPowerStatus()).toBe('FAILED_CREATION');
+  apiVm.status = 'UNKNOWN';
+  expect(vm.getPowerStatus()).toBe('UNKNOWN');
+  apiVm.status = 'MIXED';
+  expect(vm.getPowerStatus()).toBe('MIXED');
+  apiVm.status = 'SUSPENDED';
+  expect(vm.getPowerStatus()).toBe('SUSPENDED');
 });

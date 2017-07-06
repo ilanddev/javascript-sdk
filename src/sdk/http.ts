@@ -1,5 +1,5 @@
-import axios, {AxiosResponse, AxiosInstance, AxiosRequestConfig} from 'axios';
-import {Iland} from './iland';
+import axios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
+import { Iland } from './iland';
 
 const DEFAULT_API_VERSION = 0.8;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';

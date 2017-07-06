@@ -16,9 +16,7 @@ export interface ApiVnic {
 /**
  * Enumeration of possible VNIC addressing modes.
  */
-export enum VnicAddressMode {
-  DHCP = 'DHCP',
-  MANUAL = 'MANUAL',
-  POOL = 'POOL',
-  NONE = 'NONE'
-}
+export type VnicAddressMode = 'DHCP' |
+  'MANUAL' |
+  'POOL' |
+  'NONE';

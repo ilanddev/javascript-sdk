@@ -1,5 +1,5 @@
-import {ApiEntity} from './api-spec/api-entity';
-import {EntityType} from './api-spec/api-entity-type';
+import { ApiEntity } from './api-spec/api-entity';
+import { EntityType } from './api-spec/api-entity-type';
 
 /**
  * Entity.

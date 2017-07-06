@@ -1,5 +1,5 @@
-import {EntityTreeNode, OrgEntityTree} from './api-spec/api-org-entity-tree';
-import {EntityType} from './api-spec/api-entity-type';
+import { EntityTreeNode, OrgEntityTree } from './api-spec/api-org-entity-tree';
+import { EntityType } from './api-spec/api-entity-type';
 
 /**
  * User inventory.

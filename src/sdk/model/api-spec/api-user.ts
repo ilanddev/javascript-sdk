@@ -23,8 +23,6 @@ export interface ApiUser {
 /**
  * Enumeration of possible user types.
  */
-export enum UserType {
-  SYSTEM_ADMIN = 'SYSTEM_ADMIN',
-  READ_ONLY_SYSTEM_ADMIN = 'READ_ONLY_SYSTEM_ADMIN',
-  CUSTOMER = 'CUSTOMER'
-}
+export type UserType = 'SYSTEM_ADMIN' |
+    'READ_ONLY_SYSTEM_ADMIN' |
+    'CUSTOMER';
