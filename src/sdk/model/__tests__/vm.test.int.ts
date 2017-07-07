@@ -6,6 +6,7 @@ import { Vm } from '../vm';
 import { InventoryEntity } from '../inventory';
 import { Task } from '../task';
 import { ApiVmStatus } from '../api-spec/api-vm';
+import { ApiError } from '../../api-error';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;
@@ -30,6 +31,21 @@ beforeAll(async() => {
       }
     });
   });
+});
+
+test('Get a proper error when trying to retrieve non-existent VM', async() => {
+  try {
+    await Vm.getVm('fake-uuid');
+  } catch (err) {
+    const apiError = err as ApiError;
+    let raw = apiError.getJson();
+    expect(apiError.getType()).toBe('UnauthorizedError');
+    expect(apiError.getMessage()).toBeDefined();
+    expect(apiError.getDetailMessage()).toBe(raw.detail_message);
+    expect(apiError.getMessage()).toBe(raw.message);
+    expect(apiError.getType()).toBe(raw.type);
+    expect(apiError.toString().length).toBeGreaterThan(0);
+  }
 });
 
 test('Can get vm and verify required properties', async() => {

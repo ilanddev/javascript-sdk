@@ -1,5 +1,6 @@
-import axios, { AxiosResponse, AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Iland } from './iland';
+import { ApiError, ApiErrorJson } from './api-error';
 
 const DEFAULT_API_VERSION = 0.8;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
@@ -30,12 +31,22 @@ export class Http {
         return config;
       });
     });
-    this._ilandAxios.interceptors.response.use(async function(response: AxiosResponse) {
+    this._ilandAxios.interceptors.response.use(async(response: AxiosResponse) => {
       let str = response.data as string;
       if (str.indexOf(")]}'\n") === 0) {
         response.data = JSON.parse(str.substring(5));
       }
       return response;
+    }, async(reason: AxiosError) => {
+      if (reason.response) {
+        let str = reason.response.data as string;
+        if (str.indexOf(")]}'\n") === 0) {
+          str = str.substring(5);
+        }
+        const error = JSON.parse(str) as ApiErrorJson;
+        throw new ApiError(error);
+      }
+      throw new Error(reason.message);
     });
   }
 
@@ -63,6 +74,7 @@ export class Http {
    * Performs a request against the iland Cloud API.
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   * @throws {ApiError} if the server responds with an error
    */
   async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.request(config) as Promise<AxiosResponse>;
@@ -73,6 +85,7 @@ export class Http {
    * @param {string} url the URL path
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with server response
+   * @throws {ApiError} if the server responds with an error
    */
   async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.get(url, config) as Promise<AxiosResponse>;
@@ -83,6 +96,7 @@ export class Http {
    * @param {string} url the URL path
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   * @throws {ApiError} if the server responds with an error
    */
   async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.delete(url, config) as Promise<AxiosResponse>;
@@ -94,6 +108,7 @@ export class Http {
    * @param data the data to include in the request body
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   * @throws {ApiError} if the server responds with an error
    */
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.post(url, data, config) as Promise<AxiosResponse>;
@@ -105,6 +120,7 @@ export class Http {
    * @param data the data to include in the request body
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   * @throws {ApiError} if the server responds with an error
    */
   async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.put(url, data, config) as Promise<AxiosResponse>;
