@@ -10,6 +10,8 @@ import { VirtualDiskJson } from './json/virtual-disk';
 import { VirtualDisk } from './virtual-disk';
 import { Metadata } from './metadata';
 import { MetadataJson, MetadataType } from './json/metadata';
+import { BackupRestorePoint } from './backup-restore-point';
+import { BackupRestorePointJson } from './json/backup-restore-point';
 
 /**
  * Virtual Machine.
@@ -533,6 +535,34 @@ export class Vm extends Entity {
     return this.performPowerOperation('reboot');
   }
 
+  /**
+   * Gets the VMs available backup restore points.
+   * @returns {Promise<BackupRestorePoint[]>} promise that resolves with the list of backup restore points
+   */
+  async getBackupRestorePoints(): Promise<Array<BackupRestorePoint>> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/backups`).then(function(response) {
+      let restorePointsJson = response.data as Array<BackupRestorePointJson>;
+      return restorePointsJson.map((restorePointJson) => new BackupRestorePoint(restorePointJson));
+    });
+  }
+
+  /**
+   * Restores a backup of the VM.
+   * @param {Date} timestamp the timestamp of the restore point to be restored
+   * @returns {Promise<Task>} task promise
+   */
+  async restoreBackup(timestamp: Date): Promise<Task> {
+    let self = this;
+    const json: VmRestoreBackupJson = {
+      time: timestamp.getTime()
+    };
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/restore`, json).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
 }
 
 /**
@@ -562,6 +592,13 @@ export interface VmUpdateNameJson {
 export interface VmCpuUpdateJson {
   cpus_number: number;
   cores_per_socket?: number;
+}
+
+/**
+ * Specification for VM backup restore request.
+ */
+export interface VmRestoreBackupJson {
+  time: number;
 }
 
 /**

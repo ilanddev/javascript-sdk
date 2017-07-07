@@ -1,10 +1,13 @@
-import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson, VmUpdateNameJson } from '../vm';
+import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson, VmRestoreBackupJson, VmUpdateNameJson } from '../vm';
 import { MockVmJson } from '../../__mocks__/responses/vm/vm';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
-import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../../__mocks__/responses/vm/virtual-disks';
+import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../../__mocks__/responses/vm/virtual-disk';
 import { VirtualDiskJson } from '../json/virtual-disk';
 import { MockMetadataJson } from '../../__mocks__/responses/metadata/metadata';
+import {
+  MockBackupRestorPoint1Json, MockBackupRestorPoint2Json
+} from '../../__mocks__/responses/vm/backup-restore-point';
 
 jest.mock('../../http');
 
@@ -228,5 +231,36 @@ test('Properly submits request to rename a VM', async() => {
   return vm.updateName(newName).then(function(task) {
     expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/name`, json);
     expect(task.getOperation()).toBe('rename vm');
+  });
+});
+
+test('Properly submits request to get a VMs restore points', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getBackupRestorePoints().then(function(restorePoints) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/backups`);
+    expect(restorePoints.length).toBe(2);
+    expect(restorePoints[0].getName()).toBe(MockBackupRestorPoint1Json.name);
+    expect(restorePoints[0].getTimestamp().getTime()).toBe(MockBackupRestorPoint1Json.timestamp);
+    expect(restorePoints[0].getBackupServerName()).toBe(MockBackupRestorPoint1Json.backup_server_name);
+    expect(restorePoints[0].getJson()).toEqual(MockBackupRestorPoint1Json);
+    expect(restorePoints[0].toString().length).toBeGreaterThan(0);
+
+    expect(restorePoints[1].getName()).toBe(MockBackupRestorPoint2Json.name);
+    expect(restorePoints[1].getTimestamp().getTime()).toBe(MockBackupRestorPoint2Json.timestamp);
+    expect(restorePoints[1].getBackupServerName()).toBe(MockBackupRestorPoint2Json.backup_server_name);
+    expect(restorePoints[1].getJson()).toEqual(MockBackupRestorPoint2Json);
+    expect(restorePoints[1].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to restore a VM backup', async() => {
+  const vm = new Vm(MockVmJson);
+  const timestamp = new Date();
+  const json: VmRestoreBackupJson = {
+    time: timestamp.getTime()
+  };
+  return vm.restoreBackup(timestamp).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/restore`, json);
+    expect(task.getOperation()).toBe('restore backup');
   });
 });

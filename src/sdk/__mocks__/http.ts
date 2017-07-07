@@ -2,9 +2,10 @@ import { Http as RealHttp } from '../http';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { MockVmResponse } from './responses/vm/vm';
 import { MockNotFoundResponse } from './responses/errors';
-import { MockVmVirtualDisksResponse } from './responses/vm/virtual-disks';
+import { MockVmVirtualDisksResponse } from './responses/vm/virtual-disk';
 import { MockTaskService } from './responses/task/task';
 import { MockMetadataResponse } from './responses/metadata/metadata';
+import { MockVmBackupRestorePointsResponse } from './responses/vm/backup-restore-point';
 
 jest.unmock('../http');
 
@@ -58,6 +59,9 @@ export class Http {
       case /\/vdc\/[^\/]+?\/metadata$/.test(url):
         // get metadata
         return MockMetadataResponse;
+      case /\/vm\/[^\/]+?\/backups$/.test(url):
+        // get vm backup restore points
+        return MockVmBackupRestorePointsResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -102,6 +106,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/shutdown$/.test(url):
         // shutdown VM
         return MockTaskService.getNewMockTaskResponse('shutdown');
+      case /\/vm\/[^\/]+?\/restore$/.test(url):
+        // restore VM backup
+        return MockTaskService.getNewMockTaskResponse('restore backup');
       default:
         return MockNotFoundResponse;
     }
