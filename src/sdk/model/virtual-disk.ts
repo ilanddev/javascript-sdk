@@ -1,11 +1,11 @@
-import { ApiVirtualDisk, VirtualDiskType } from './api-spec/api-virtual-disk';
+import { VirtualDiskJson, VirtualDiskType } from './json/virtual-disk';
 
 /**
  * Virtual Disk.
  */
 export class VirtualDisk {
 
-  constructor(private _apiDisk: ApiVirtualDisk) {
+  constructor(private _apiDisk: VirtualDiskJson) {
   }
 
   /**
@@ -42,9 +42,9 @@ export class VirtualDisk {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {ApiVirtualDisk} the API virtual disk object
+   * @returns {VirtualDiskJson} the API virtual disk object
    */
-  getJson(): ApiVirtualDisk {
+  getJson(): VirtualDiskJson {
     return Object.assign({}, this._apiDisk);
   }
 

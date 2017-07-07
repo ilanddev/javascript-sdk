@@ -1,7 +1,7 @@
 /**
- * API User Representation.
+ * API User JSON Representation.
  */
-export interface ApiUser {
+export interface UserJson {
   name: string;
   address: string;
   city: string;

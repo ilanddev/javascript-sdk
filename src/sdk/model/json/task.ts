@@ -1,7 +1,7 @@
 /**
  * Api Task representation.
  */
-export interface ApiTask {
+export interface TaskJson {
   active: boolean;
   synchronized: boolean;
   uuid: string;

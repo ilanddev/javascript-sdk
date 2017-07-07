@@ -1,14 +1,14 @@
 import { AxiosResponse } from 'axios';
-import { ApiTask, TaskOperation, TaskStatus } from '../../../model/api-spec/api-task';
+import { TaskJson, TaskOperation, TaskStatus } from '../../../model/json/task';
 import { MockNotFoundResponse } from '../errors';
 
 export class MockTaskService {
 
-  private static taskMap: Map<string, ApiTask> = new Map();
+  private static taskMap: Map<string, TaskJson> = new Map();
 
   static async getNewMockTaskResponse(op: TaskOperation): Promise<AxiosResponse> {
     let uuid = 'task-uuid:' + Math.floor((Math.random() * 10000));
-    let mockTask: ApiTask = {
+    let mockTask: TaskJson = {
       active: true,
       synchronized: false,
       uuid: uuid,

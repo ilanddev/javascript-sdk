@@ -1,7 +1,7 @@
 /**
  * Interface for VNIC properties.
  */
-export interface ApiVnic {
+export interface VnicJson {
   adapter_type: string;
   address_mode: VnicAddressMode;
   connected: boolean;

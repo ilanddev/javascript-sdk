@@ -1,12 +1,12 @@
-import { ApiEntity } from './api-spec/api-entity';
-import { EntityType } from './api-spec/api-entity-type';
+import { EntityJson } from './json/entity';
+import { EntityType } from './json/entity-type';
 
 /**
  * Entity.
  */
 export abstract class Entity {
 
-  constructor(private _apiEntity: ApiEntity) {
+  constructor(private _apiEntity: EntityJson) {
   }
 
   /**

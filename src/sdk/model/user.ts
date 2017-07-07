@@ -1,6 +1,6 @@
-import { ApiUser, UserType } from './api-spec/api-user';
+import { UserJson, UserType } from './json/user';
 import { Iland } from '../iland';
-import { OrgEntityTree } from './api-spec/api-org-entity-tree';
+import { OrgEntityTreeJson } from './json/org-entity-tree';
 import { Inventory } from './inventory';
 
 /**
@@ -8,7 +8,7 @@ import { Inventory } from './inventory';
  */
 export class User {
 
-  constructor(private _apiUser: ApiUser) {
+  constructor(private _apiUser: UserJson) {
   }
 
   /**
@@ -18,7 +18,7 @@ export class User {
    */
   static async getUser(username: string): Promise<User> {
     return Iland.getHttp().get(`/user/${username}`).then(function(response) {
-      let apiUser = response.data as ApiUser;
+      let apiUser = response.data as UserJson;
       return new User(apiUser);
     });
   }
@@ -178,9 +178,9 @@ export class User {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {ApiUser} the API User object
+   * @returns {UserJson} the API User object
    */
-  getJson(): ApiUser {
+  getJson(): UserJson {
     return Object.assign({}, this._apiUser);
   }
 
@@ -191,7 +191,7 @@ export class User {
   async refresh(): Promise<User> {
     let self = this;
     return Iland.getHttp().get(`/user/${self.getUsername()}`).then(function(response) {
-      self._apiUser = response.data as ApiUser;
+      self._apiUser = response.data as UserJson;
       return self;
     });
   }
@@ -203,7 +203,7 @@ export class User {
   async getInventory(): Promise<Inventory> {
     let self = this;
     return Iland.getHttp().get(`/user/${self.getUsername()}/inventory`).then(function(response) {
-      let inventory = response.data as Array<OrgEntityTree>;
+      let inventory = response.data as Array<OrgEntityTreeJson>;
       return new Inventory(inventory);
     });
   }

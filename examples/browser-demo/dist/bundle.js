@@ -22090,7 +22090,7 @@ var Vm = (function (_super) {
     };
     /**
      * Edit the number of CPUs.
-     * @param spec {VmCpuUpdateSpec} specifying new number of CPUs
+     * @param spec {VmCpuUpdateJson} specifying new number of CPUs
      * @returns {Promise<Task>} task promise
      */
     Vm.prototype.updateNumberOfCpus = function (spec) {

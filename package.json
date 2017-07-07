@@ -65,7 +65,7 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/index.ts",
-      "!src/sdk/model/api-spec/*.ts"
+      "!src/sdk/model/json/*.ts"
     ],
     "mapCoverage": true,
     "coveragePathIgnorePatterns": [

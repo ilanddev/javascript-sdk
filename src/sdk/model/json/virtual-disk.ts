@@ -1,7 +1,7 @@
 /**
- * Interface for virtual disk properties.
+ * Interface for virtual disk properties JSON representation.
  */
-export interface ApiVirtualDisk {
+export interface VirtualDiskJson {
   name: string;
   size: number;
   type: VirtualDiskType;

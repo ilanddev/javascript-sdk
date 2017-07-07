@@ -3,4 +3,4 @@ export * from './task';
 export * from './vm';
 export * from './user';
 export * from './vnic';
-export * from './api-spec/index';
+export * from './json/index';

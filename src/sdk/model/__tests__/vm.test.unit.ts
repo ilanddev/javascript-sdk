@@ -1,9 +1,9 @@
-import { Vm, VmCpuUpdateSpec, VmMemoryUpdateSpec } from '../vm';
+import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson } from '../vm';
 import { MockVm } from '../../__mocks__/responses/vm/vm';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
 import { MockVirtualDisk1, MockVirtualDisks } from '../../__mocks__/responses/vm/virtual-disks';
-import { ApiVirtualDisk } from '../api-spec/api-virtual-disk';
+import { VirtualDiskJson } from '../json/virtual-disk';
 
 jest.mock('../../http');
 
@@ -32,7 +32,7 @@ test('Can get VM virtual disks', async() => {
 
 test('Properly submits request for updating VM virtual disks', async() => {
   const vm = new Vm(MockVm);
-  const updatedDisks: Array<ApiVirtualDisk> = [{
+  const updatedDisks: Array<VirtualDiskJson> = [{
     name: 'Virtual Disk 3',
     type: 'IDE',
     size: 100
@@ -45,7 +45,7 @@ test('Properly submits request for updating VM virtual disks', async() => {
 
 test('Properly submits request for updating single VM virtual disk', async() => {
   const vm = new Vm(MockVm);
-  const updatedDisk: ApiVirtualDisk = Object.assign({}, MockVirtualDisk1);
+  const updatedDisk: VirtualDiskJson = Object.assign({}, MockVirtualDisk1);
   return vm.updateVirtualDisk(updatedDisk).then(function(task) {
     expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/virtual-disk`, updatedDisk);
     expect(task.getOperation()).toBe('update vm disks');
@@ -54,7 +54,7 @@ test('Properly submits request for updating single VM virtual disk', async() => 
 
 test('Properly submits request for creating new VM virtual disk', async() => {
   const vm = new Vm(MockVm);
-  const newDisk: ApiVirtualDisk = {
+  const newDisk: VirtualDiskJson = {
     size: 10000,
     name: 'new disk',
     type: 'BUS_LOGIC'
@@ -77,7 +77,7 @@ test('Properly submits request for deleting VM virtual disk', async() => {
 test('Properly submits request for updating VM memory size', async() => {
   const vm = new Vm(MockVm);
   const newMemSize = 10000;
-  const expectedSpec: VmMemoryUpdateSpec = {
+  const expectedSpec: VmMemoryUpdateJson = {
     memory_size: newMemSize.toString()
   };
   return vm.updateMemorySize(newMemSize).then(function(task) {
@@ -88,7 +88,7 @@ test('Properly submits request for updating VM memory size', async() => {
 
 test('Properly submits request for updating VM cpu number', async() => {
   const vm = new Vm(MockVm);
-  const spec: VmCpuUpdateSpec = {
+  const spec: VmCpuUpdateJson = {
     cpus_number: 8,
     cores_per_socket: 2
   };

@@ -5,7 +5,7 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { Vm } from '../vm';
 import { InventoryEntity } from '../inventory';
 import { Task } from '../task';
-import { ApiVmStatus } from '../api-spec/api-vm';
+import { VmStatus } from '../json/vm';
 import { ApiError } from '../../api-error';
 
 let auth: IlandDirectGrantAuthProvider;
@@ -270,7 +270,7 @@ test('Parses power status correctly', () => {
     memory_size: 500,
     org_uuid: '',
     os: '',
-    status: 'POWERED_OFF' as ApiVmStatus,
+    status: 'POWERED_OFF' as VmStatus,
     storage_profiles: [],
     vapp_uuid: '',
     vcenter_href: '',

@@ -2,11 +2,11 @@ import { Task } from './task';
 import { Entity } from './entity';
 import { Iland } from '../iland';
 import { Vnic } from './vnic';
-import { ApiVm, ApiVmStatus } from './api-spec/api-vm';
-import { ApiVnic } from './api-spec/api-vnic';
-import { ApiTask } from './api-spec/api-task';
-import { EntityType } from './api-spec/api-entity-type';
-import { ApiVirtualDisk } from './api-spec/api-virtual-disk';
+import { VmJson, VmStatus } from './json/vm';
+import { VnicJson } from './json/vnic';
+import { TaskJson } from './json/task';
+import { EntityType } from './json/entity-type';
+import { VirtualDiskJson } from './json/virtual-disk';
 import { VirtualDisk } from './virtual-disk';
 
 /**
@@ -14,7 +14,7 @@ import { VirtualDisk } from './virtual-disk';
  */
 export class Vm extends Entity {
 
-  constructor(private _apiVm: ApiVm) {
+  constructor(private _apiVm: VmJson) {
     super(_apiVm);
   }
 
@@ -25,7 +25,7 @@ export class Vm extends Entity {
    */
   static async getVm(uuid: string): Promise<Vm> {
     return Iland.getHttp().get(`/vm/${uuid}`).then(function(response) {
-      let apiVm = response.data as ApiVm;
+      let apiVm = response.data as VmJson;
       return new Vm(apiVm);
     });
   }
@@ -233,9 +233,9 @@ export class Vm extends Entity {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {ApiVm} the API VM object
+   * @returns {VmJson} the API VM object
    */
-  getJson(): ApiVm {
+  getJson(): VmJson {
     return Object.assign({}, this._apiVm);
   }
 
@@ -247,7 +247,7 @@ export class Vm extends Entity {
     let self = this;
     return Iland.getHttp().get(
         `/vm/${self.getUuid()}`).then(function(response) {
-          self._apiVm = response.data as ApiVm;
+          self._apiVm = response.data as VmJson;
           return self;
         });
   }
@@ -260,7 +260,7 @@ export class Vm extends Entity {
     let self = this;
     return Iland.getHttp().get(
         `/vm/${self.getUuid()}/vnics`).then(function(response) {
-          let apiVnics = response.data as Array<ApiVnic>;
+          let apiVnics = response.data as Array<VnicJson>;
           return apiVnics.map((apiVnic) => new Vnic(apiVnic));
         });
   }
@@ -272,12 +272,12 @@ export class Vm extends Entity {
    */
   async updateDescription(description: string): Promise<Task> {
     let self = this;
-    let spec: VmUpdateDescriptionSpec = {
+    let spec: VmUpdateDescriptionJson = {
       description: description
     };
     return Iland.getHttp().put(`/vm/${self.getUuid()}/description`, spec)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
@@ -289,26 +289,26 @@ export class Vm extends Entity {
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
     let self = this;
-    let spec: VmMemoryUpdateSpec = {
+    let spec: VmMemoryUpdateJson = {
       memory_size: String(memorySizeMb)
     };
     return Iland.getHttp().put(`/vm/${self.getUuid()}/mem`, spec)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
 
   /**
    * Edit the number of CPUs.
-   * @param spec {VmCpuUpdateSpec} specifying new number of CPUs
+   * @param spec {VmCpuUpdateJson} specifying new number of CPUs
    * @returns {Promise<Task>} task promise
    */
-  async updateNumberOfCpus(spec: VmCpuUpdateSpec): Promise<Task> {
+  async updateNumberOfCpus(spec: VmCpuUpdateJson): Promise<Task> {
     let self = this;
     return Iland.getHttp().put(`/vm/${self.getUuid()}/cpu`, spec)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
@@ -320,49 +320,49 @@ export class Vm extends Entity {
   async getVirtualDisks(): Promise<Array<VirtualDisk>> {
     let self = this;
     return Iland.getHttp().get(`/vm/${self.getUuid()}/virtual-disks`).then(function(response) {
-      let apiDisks = response.data as Array<ApiVirtualDisk>;
+      let apiDisks = response.data as Array<VirtualDiskJson>;
       return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
     });
   }
 
   /**
    * Update the VM's virtual disks.
-   * @param {Array<VirtualDiskSpec>} disksSpec array of specs for new disks
+   * @param {Array<VirtualDiskJson>} disksJson array of specs for new disks
    * @returns {Promise<Task>} task promise
    */
-  async updateVirtualDisks(disksSpec: Array<VirtualDiskSpec>): Promise<Task> {
+  async updateVirtualDisks(disksJson: Array<VirtualDiskJson>): Promise<Task> {
     let self = this;
-    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disks`, disksSpec)
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disks`, disksJson)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
 
   /**
    * Update a virtual disk that is attached to this VM.
-   * @param {VirtualDiskSpec} diskSpec updated specification for the disk
+   * @param {VirtualDiskJson} diskJson updated specification for the disk
    * @returns {Promise<Task>} task promise
    */
-  async updateVirtualDisk(diskSpec: VirtualDiskSpec): Promise<Task> {
+  async updateVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
     let self = this;
-    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disk`, diskSpec)
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disk`, diskJson)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
 
   /**
    * Create a new virtual disk for this VM.
-   * @param {VirtualDiskSpec} diskSpec spec for the new disk
+   * @param {VirtualDiskJson} diskJson spec for the new disk
    * @returns {Promise<Task>} task promise
    */
-  async createVirtualDisk(diskSpec: VirtualDiskSpec): Promise<Task> {
+  async createVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
     let self = this;
-    return Iland.getHttp().post(`/vm/${self.getUuid()}/virtual-disk`, diskSpec)
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/virtual-disk`, diskJson)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
@@ -376,7 +376,7 @@ export class Vm extends Entity {
     let self = this;
     return Iland.getHttp().delete(`/vm/${self.getUuid()}/disks/${name}`)
                 .then(function(response) {
-                  let apiTask = response.data as ApiTask;
+                  let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
   }
@@ -386,29 +386,27 @@ export class Vm extends Entity {
 /**
  * Specification for VM memory configuration update request.
  */
-export interface VmMemoryUpdateSpec {
+export interface VmMemoryUpdateJson {
   memory_size: string;
 }
 
 /**
  * Specification for VM description update request.
  */
-export interface VmUpdateDescriptionSpec {
+export interface VmUpdateDescriptionJson {
   description: string;
 }
 
 /**
  * Specification for VM CPU configuration update request.
  */
-export interface VmCpuUpdateSpec {
+export interface VmCpuUpdateJson {
   cpus_number: number;
   cores_per_socket?: number;
 }
 
-export type VirtualDiskSpec = ApiVirtualDisk;
-
 /**
  * Enumeration of possible VM power statuses.
  */
-export type VmPowerStatus = ApiVmStatus |
+export type VmPowerStatus = VmStatus |
     'PARTIALLY_POWERED_OFF';

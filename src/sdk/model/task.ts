@@ -1,6 +1,6 @@
 import { Observable, Subject } from 'rxjs';
 import { Iland } from '../iland';
-import { ApiTask, TaskOperation, TaskStatus, TaskType } from './api-spec/api-task';
+import { TaskJson, TaskOperation, TaskStatus, TaskType } from './json/task';
 
 /**
  * Task.
@@ -9,7 +9,7 @@ export class Task {
 
   private _subject: Subject<Task>|undefined;
 
-  constructor(private _apiTask: ApiTask) {
+  constructor(private _apiTask: TaskJson) {
   }
 
   /**
@@ -20,7 +20,7 @@ export class Task {
    */
   static async getTask(locationId: string, taskUuid: string): Promise<Task> {
     return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`).then(function(response) {
-      let apiTask = response.data as ApiTask;
+      let apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -203,9 +203,9 @@ export class Task {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {ApiTask} the API Task object
+   * @returns {TaskJson} the API Task object
    */
-  getJson(): ApiTask {
+  getJson(): TaskJson {
     return Object.assign({}, this._apiTask);
   }
 
@@ -216,7 +216,7 @@ export class Task {
   async refresh(): Promise<Task> {
     let self = this;
     return Iland.getHttp().get(`/task/${self.getLocationId()}/${self.getUuid()}`).then(function(response) {
-      self._apiTask = response.data as ApiTask;
+      self._apiTask = response.data as TaskJson;
       return self;
     });
   }

@@ -1,5 +1,5 @@
-import { EntityTreeNode, OrgEntityTree } from './api-spec/api-org-entity-tree';
-import { EntityType } from './api-spec/api-entity-type';
+import { EntityTreeNodeJson, OrgEntityTreeJson } from './json/org-entity-tree';
+import { EntityType } from './json/entity-type';
 
 /**
  * User inventory.
@@ -10,16 +10,16 @@ export class Inventory {
 
   private _typeMap: Map<EntityType, Array<InventoryEntity>>;
 
-  constructor(private _inventory: Array<OrgEntityTree>) {
+  constructor(private _inventory: Array<OrgEntityTreeJson>) {
     this._flatMap = new Map();
     this._typeMap = new Map();
     Inventory.visitInventoryEntities(_inventory, [Inventory.buildFlatMap(this._flatMap),
       Inventory.buildTypeMap(this._typeMap)]);
   }
 
-  private static visitInventoryEntities(inventory: Array<OrgEntityTree>,
+  private static visitInventoryEntities(inventory: Array<OrgEntityTreeJson>,
                                         visitors: Array<Visitor>) {
-    function visit(entity: EntityTreeNode) {
+    function visit(entity: EntityTreeNodeJson) {
       for (let visitor of visitors) {
         visitor(entity);
       }

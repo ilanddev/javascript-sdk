@@ -1,11 +1,11 @@
-import { ApiVnic, VnicAddressMode } from './api-spec/api-vnic';
+import { VnicJson, VnicAddressMode } from './json/vnic';
 
 /**
  * Virtual Network Interface Card.
  */
 export class Vnic {
 
-  constructor(private _apiVnic: ApiVnic) {
+  constructor(private _apiVnic: VnicJson) {
   }
 
   /**
@@ -90,9 +90,9 @@ export class Vnic {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {ApiVnic} the API VNIC object
+   * @returns {VnicJson} the API VNIC object
    */
-  getJson(): ApiVnic {
+  getJson(): VnicJson {
     return Object.assign({}, this._apiVnic);
   }
 

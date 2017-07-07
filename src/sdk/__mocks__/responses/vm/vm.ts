@@ -1,7 +1,7 @@
-import { ApiVm, ApiVmStatus } from '../../../model/api-spec/api-vm';
+import { VmJson, VmStatus } from '../../../model/json/vm';
 import { AxiosResponse } from 'axios';
 
-export const MockVm: ApiVm = {
+export const MockVm: VmJson = {
   name: 'mock VM',
   uuid: 'mock-vm-uuid',
   deleted: false,
@@ -19,7 +19,7 @@ export const MockVm: ApiVm = {
   memory_size: 500,
   org_uuid: '',
   os: '',
-  status: 'POWERED_OFF' as ApiVmStatus,
+  status: 'POWERED_OFF' as VmStatus,
   storage_profiles: [],
   vapp_uuid: '',
   vcenter_href: '',

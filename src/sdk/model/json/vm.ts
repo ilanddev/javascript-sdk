@@ -1,9 +1,9 @@
-import { ApiEntity } from './api-entity';
+import { EntityJson } from './entity';
 
 /**
  * Interface for VM properties.
  */
-export interface ApiVm extends ApiEntity {
+export interface VmJson extends EntityJson {
   cores_per_socket: number;
   cpus_number: number;
   created_date: number|null;
@@ -16,7 +16,7 @@ export interface ApiVm extends ApiEntity {
   memory_size: number;
   org_uuid: string;
   os: string;
-  status: ApiVmStatus;
+  status: VmStatus;
   storage_profiles: Array<string>;
   vapp_uuid: string;
   vcenter_href: string;
@@ -30,9 +30,9 @@ export interface ApiVm extends ApiEntity {
 }
 
 /**
- * Enumeration of possible VM statuses.
+ * Enumeration of possible VM statuses from the API.
  */
-export type ApiVmStatus = 'FAILED_CREATION' |
+export type VmStatus = 'FAILED_CREATION' |
   'INCONSISTENT_STATE' |
   'POWERED_OFF' |
   'POWERED_ON' |

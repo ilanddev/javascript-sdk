@@ -1,7 +1,7 @@
 /**
- * Interface for generic API entity properties.
+ * Interface for API entity JSON representation.
  */
-export interface ApiEntity {
+export interface EntityJson {
   name: string;
   uuid: string;
   deleted: boolean;
