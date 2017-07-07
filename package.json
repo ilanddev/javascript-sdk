@@ -71,7 +71,7 @@
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test-setup.js",
-      "/test/.*\\.js$",
+      "/__test__/.*\\.js$",
       "/build/.*\\.(ts|js)$"
     ]
   },

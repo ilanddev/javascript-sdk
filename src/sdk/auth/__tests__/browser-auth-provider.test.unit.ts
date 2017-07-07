@@ -1,4 +1,4 @@
-import { TestConfiguration } from '../../../../tests/configuration';
+import { TestConfiguration } from '../../../../__tests__/configuration';
 import { IlandBrowserAuthProvider } from '../browser-auth-provider';
 import { KeycloakPromise, KeycloakPromiseCallback } from 'keycloak-js';
 

@@ -1,6 +1,6 @@
 import { Iland } from '../../iland';
 import { User } from '../user';
-import { TestConfiguration } from '../../../../tests/configuration';
+import { TestConfiguration } from '../../../../__tests__/configuration';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Vm } from '../vm';
 import { InventoryEntity } from '../inventory';

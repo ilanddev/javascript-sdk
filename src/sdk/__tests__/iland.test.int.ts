@@ -1,4 +1,4 @@
-import { TestConfiguration } from '../../../tests/configuration';
+import { TestConfiguration } from '../../../__tests__/configuration';
 import { IlandDirectGrantAuthProvider } from '../auth/direct-grant-auth-provider';
 import { Iland } from '../iland';
 import { User } from '../model/user';
