@@ -71,6 +71,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
         // delete single metadata entry
         return MockTaskService.getNewMockTaskResponse('delete metadata');
+      case /\/vm\/[^\/]+?$/.test(url):
+        // delete vm
+        return MockTaskService.getNewMockTaskResponse('delete entity');
       default:
         return MockNotFoundResponse;
     }

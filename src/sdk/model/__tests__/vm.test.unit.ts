@@ -150,3 +150,11 @@ test('Properly submits request for deleting a VM metadata entry', async() => {
     expect(task.getOperation()).toBe('delete metadata');
   });
 });
+
+test('Properly submits request for deleting a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.delete().then(function(task) {
+    expect(Iland.getHttp().delete).lastCalledWith(`/vm/${vm.getUuid()}`);
+    expect(task.getOperation()).toBe('delete entity');
+  });
+});

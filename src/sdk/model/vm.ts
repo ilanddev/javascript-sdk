@@ -433,6 +433,18 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Deletes this VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async delete(): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().delete(`/vm/${self.getUuid()}`).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
 }
 
 /**
