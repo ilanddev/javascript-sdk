@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>EntityTreeNodeJson | iland-sdk</title>
+	<title>BackupRestorePointJson | iland-sdk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -910,22 +910,16 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface">
-			<a href="entitytreenodejson.html" class="tsd-kind-icon">Entity<wbr>Tree<wbr>Node<wbr>Json</a>
+			<a href="backuprestorepointjson.html" class="tsd-kind-icon">Backup<wbr>Restore<wbr>Point<wbr>Json</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="entitytreenodejson.html#children" class="tsd-kind-icon">children</a>
+					<a href="backuprestorepointjson.html#backup_server_name" class="tsd-kind-icon">backup_<wbr>server_<wbr>name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="entitytreenodejson.html#name" class="tsd-kind-icon">name</a>
+					<a href="backuprestorepointjson.html#name" class="tsd-kind-icon">name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="entitytreenodejson.html#type" class="tsd-kind-icon">type</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="entitytreenodejson.html#update_date" class="tsd-kind-icon">update_<wbr>date</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="entitytreenodejson.html#uuid" class="tsd-kind-icon">uuid</a>
+					<a href="backuprestorepointjson.html#timestamp" class="tsd-kind-icon">timestamp</a>
 				</li>
 			</ul>
 		</li>
@@ -936,7 +930,7 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>API Entity Tree Node JSON representation.</p>
+					<p>Backup restore point JSON representation.</p>
 				</div>
 			</div>
 		</section>
@@ -944,7 +938,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">EntityTreeNodeJson</span>
+					<span class="target">BackupRestorePointJson</span>
 				</li>
 			</ul>
 		</section>
@@ -955,11 +949,9 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entitytreenodejson.html#children" class="tsd-kind-icon">children</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entitytreenodejson.html#name" class="tsd-kind-icon">name</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entitytreenodejson.html#type" class="tsd-kind-icon">type</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entitytreenodejson.html#update_date" class="tsd-kind-icon">update_<wbr>date</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="entitytreenodejson.html#uuid" class="tsd-kind-icon">uuid</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="backuprestorepointjson.html#backup_server_name" class="tsd-kind-icon">backup_<wbr>server_<wbr>name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="backuprestorepointjson.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="backuprestorepointjson.html#timestamp" class="tsd-kind-icon">timestamp</a></li>
 						</ul>
 					</section>
 				</div>
@@ -968,22 +960,14 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="children" class="tsd-anchor"></a>
-				<h3>children</h3>
-				<div class="tsd-signature tsd-kind-icon">children<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<a name="backup_server_name" class="tsd-anchor"></a>
+				<h3>backup_<wbr>server_<wbr>name</h3>
+				<div class="tsd-signature tsd-kind-icon">backup_<wbr>server_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/org-entity-tree.ts#L33">sdk/model/json/org-entity-tree.ts:33</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/backup-restore-point.ts#L7">sdk/model/json/backup-restore-point.ts:7</a></li>
 					</ul>
 				</aside>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-index-signature">
-							<h5><span class="tsd-signature-symbol">[</span>entityType: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="entitytreenodejson.html" class="tsd-signature-type">EntityTreeNodeJson</a><span class="tsd-signature-symbol">&gt;</span></h5>
-						</li>
-					</ul>
-				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 				<a name="name" class="tsd-anchor"></a>
@@ -991,37 +975,17 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/org-entity-tree.ts#L29">sdk/model/json/org-entity-tree.ts:29</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/backup-restore-point.ts#L5">sdk/model/json/backup-restore-point.ts:5</a></li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="type" class="tsd-anchor"></a>
-				<h3>type</h3>
-				<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../globals.html#entitytype" class="tsd-signature-type">EntityType</a></div>
+				<a name="timestamp" class="tsd-anchor"></a>
+				<h3>timestamp</h3>
+				<div class="tsd-signature tsd-kind-icon">timestamp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/org-entity-tree.ts#L25">sdk/model/json/org-entity-tree.ts:25</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="update_date" class="tsd-anchor"></a>
-				<h3>update_<wbr>date</h3>
-				<div class="tsd-signature tsd-kind-icon">update_<wbr>date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/org-entity-tree.ts#L31">sdk/model/json/org-entity-tree.ts:31</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="uuid" class="tsd-anchor"></a>
-				<h3>uuid</h3>
-				<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/org-entity-tree.ts#L27">sdk/model/json/org-entity-tree.ts:27</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fe67c04/src/sdk/model/json/backup-restore-point.ts#L6">sdk/model/json/backup-restore-point.ts:6</a></li>
 					</ul>
 				</aside>
 			</section>
