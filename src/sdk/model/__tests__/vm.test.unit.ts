@@ -1,4 +1,4 @@
-import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson } from '../vm';
+import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson, VmUpdateNameJson } from '../vm';
 import { MockVmJson } from '../../__mocks__/responses/vm/vm';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
@@ -216,5 +216,17 @@ test('Properly submits request to shutdown a VM', async() => {
   return vm.shutdownGuestOs().then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/shutdown`, undefined, undefined);
     expect(task.getOperation()).toBe('shutdown');
+  });
+});
+
+test('Properly submits request to rename a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  const newName = 'new VM name';
+  const json: VmUpdateNameJson = {
+    name: newName
+  };
+  return vm.updateName(newName).then(function(task) {
+    expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/name`, json);
+    expect(task.getOperation()).toBe('rename vm');
   });
 });

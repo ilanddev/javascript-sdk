@@ -285,6 +285,23 @@ export class Vm extends Entity {
   }
 
   /**
+   * Updates the VM's name.
+   * @param newName the new name
+   * @returns {Promise<Task>} task promise
+   */
+  async updateName(newName: string): Promise<Task> {
+    let self = this;
+    let json: VmUpdateNameJson = {
+      name: newName
+    };
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/name`, json)
+                .then(function(response) {
+                  let apiTask = response.data as TaskJson;
+                  return new Task(apiTask);
+                });
+  }
+
+  /**
    * Edit the memory size of the VM.
    * @param memorySizeMb {number} the new memory size in MB
    * @returns {Promise<Task>} task promise
@@ -530,6 +547,13 @@ export interface VmMemoryUpdateJson {
  */
 export interface VmUpdateDescriptionJson {
   description: string;
+}
+
+/**
+ * Specification for VM name update request.
+ */
+export interface VmUpdateNameJson {
+  name: string;
 }
 
 /**

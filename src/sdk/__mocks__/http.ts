@@ -124,6 +124,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/metadata$/.test(url):
         // update VMs metadata
         return MockTaskService.getNewMockTaskResponse('update metadata');
+      case /\/vm\/[^\/]+?\/name$/.test(url):
+        // rename VM
+        return MockTaskService.getNewMockTaskResponse('rename vm');
       default:
         return MockNotFoundResponse;
     }
