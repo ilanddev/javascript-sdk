@@ -1,7 +1,7 @@
 import { VmJson, VmStatus } from '../../../model/json/vm';
 import { AxiosResponse } from 'axios';
 
-export const MockVm: VmJson = {
+export const MockVmJson: VmJson = {
   name: 'mock VM',
   uuid: 'mock-vm-uuid',
   deleted: false,
@@ -34,7 +34,7 @@ export const MockVm: VmJson = {
 
 export const MockVmResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockVm,
+    data: MockVmJson,
     status: 200,
     statusText: '',
     headers: {},

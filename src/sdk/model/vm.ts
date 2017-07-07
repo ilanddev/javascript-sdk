@@ -8,6 +8,8 @@ import { TaskJson } from './json/task';
 import { EntityType } from './json/entity-type';
 import { VirtualDiskJson } from './json/virtual-disk';
 import { VirtualDisk } from './virtual-disk';
+import { Metadata } from './metadata';
+import { MetadataJson, MetadataType } from './json/metadata';
 
 /**
  * Virtual Machine.
@@ -379,6 +381,56 @@ export class Vm extends Entity {
                   let apiTask = response.data as TaskJson;
                   return new Task(apiTask);
                 });
+  }
+
+  /**
+   * Gets the VM's metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/metadata`).then(function(response) {
+      let jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
+    });
+  }
+
+  /**
+   * Updates the VM's metadata.
+   * @param {Array<MetadataJson<MetadataType>>} metadataJson the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadataJson: Array<MetadataJson<MetadataType>>): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/metadata`, metadataJson).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().delete(`/vm/${self.getUuid()}/metadata/${metadataKey}`).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
 }

@@ -4,6 +4,7 @@ import { MockVmResponse } from './responses/vm/vm';
 import { MockNotFoundResponse } from './responses/errors';
 import { MockVmVirtualDisksResponse } from './responses/vm/virtual-disks';
 import { MockTaskService } from './responses/task/task';
+import { MockMetadataResponse } from './responses/metadata/metadata';
 
 jest.unmock('../http');
 
@@ -52,6 +53,11 @@ export class Http {
         // get task by uuid
         const taskUuid = /\/task\/[^\/]+?\/([^\/]+)$/.exec(url)![1];
         return MockTaskService.getExistingMockTaskResponse(taskUuid);
+      case /\/vm\/[^\/]+?\/metadata$/.test(url):
+      case /\/vapp\/[^\/]+?\/metadata$/.test(url):
+      case /\/vdc\/[^\/]+?\/metadata$/.test(url):
+        // get metadata
+        return MockMetadataResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -62,6 +68,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/disks\/[^\/]+?$/.test(url):
         // delete single virtual disk
         return MockTaskService.getNewMockTaskResponse('delete virtual disk');
+      case /\/vm\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
+        // delete single metadata entry
+        return MockTaskService.getNewMockTaskResponse('delete metadata');
       default:
         return MockNotFoundResponse;
     }
@@ -91,6 +100,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/cpu$/.test(url):
         // update VMs CPUs
         return MockTaskService.getNewMockTaskResponse('update cpu count');
+      case /\/vm\/[^\/]+?\/metadata$/.test(url):
+        // update VMs metadata
+        return MockTaskService.getNewMockTaskResponse('update metadata');
       default:
         return MockNotFoundResponse;
     }
