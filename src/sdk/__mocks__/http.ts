@@ -84,6 +84,24 @@ export class Http {
       case /\/vm\/[^\/]+?\/virtual-disk$/.test(url):
         // update single virtual disk
         return MockTaskService.getNewMockTaskResponse('add virtual disk');
+      case /\/vm\/[^\/]+?\/poweron$/.test(url):
+        // power on VM
+        return MockTaskService.getNewMockTaskResponse('power on');
+      case /\/vm\/[^\/]+?\/poweroff$/.test(url):
+        // power off VM
+        return MockTaskService.getNewMockTaskResponse('power off');
+      case /\/vm\/[^\/]+?\/suspend$/.test(url):
+        // suspend VM
+        return MockTaskService.getNewMockTaskResponse('suspend');
+      case /\/vm\/[^\/]+?\/reboot$/.test(url):
+        // reboot VM
+        return MockTaskService.getNewMockTaskResponse('reboot');
+      case /\/vm\/[^\/]+?\/reset$/.test(url):
+        // reset VM
+        return MockTaskService.getNewMockTaskResponse('reset');
+      case /\/vm\/[^\/]+?\/shutdown$/.test(url):
+        // shutdown VM
+        return MockTaskService.getNewMockTaskResponse('shutdown');
       default:
         return MockNotFoundResponse;
     }

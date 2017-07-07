@@ -445,6 +445,77 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Performs a power operation on the VM.
+   * @param {VmPowerOperation} type the type of power operation to perform
+   * @param {boolean} forceGuestCustomization whether to force guest customization (only applicable when powering on)
+   * @returns {Promise<Task>} task promise
+   */
+  async performPowerOperation(type: VmPowerOperation, forceGuestCustomization?: boolean): Promise<Task> {
+    let self = this;
+    let config = undefined;
+    if (type === 'poweron' && forceGuestCustomization) {
+      config = {
+        params: {
+          forceGuestCustomization: forceGuestCustomization
+        }
+      };
+    }
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/${type}`, undefined, config).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Powers on the VM.
+   * @param {boolean} forceGuestCustomization whether to force guest customization
+   * @returns {Promise<Task>} task promise
+   */
+  async powerOn(forceGuestCustomization?: boolean): Promise<Task> {
+    return this.performPowerOperation('poweron', forceGuestCustomization);
+  }
+
+  /**
+   * Powers off the VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async powerOff(): Promise<Task> {
+    return this.performPowerOperation('poweroff');
+  }
+
+  /**
+   * Suspends VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async suspend(): Promise<Task> {
+    return this.performPowerOperation('suspend');
+  }
+
+  /**
+   * Shuts down the VMs guest operating system.
+   * @returns {Promise<Task>} task promise
+   */
+  async shutdownGuestOs(): Promise<Task> {
+    return this.performPowerOperation('shutdown');
+  }
+
+  /**
+   * Performs a hard reset power operation.
+   * @returns {Promise<Task>} task promise
+   */
+  async reset(): Promise<Task> {
+    return this.performPowerOperation('reset');
+  }
+
+  /**
+   * Requests that the guest OS restart.
+   * @returns {Promise<Task>} task promise
+   */
+  async rebootGuestOs(): Promise<Task> {
+    return this.performPowerOperation('reboot');
+  }
+
 }
 
 /**
@@ -468,6 +539,11 @@ export interface VmCpuUpdateJson {
   cpus_number: number;
   cores_per_socket?: number;
 }
+
+/**
+ * Enumeration of the available power operations for a VM.
+ */
+export type VmPowerOperation = 'poweron' | 'poweroff' | 'suspend' | 'shutdown' | 'reset' | 'reboot';
 
 /**
  * Enumeration of possible VM power statuses.

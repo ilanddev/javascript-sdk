@@ -158,3 +158,63 @@ test('Properly submits request for deleting a VM', async() => {
     expect(task.getOperation()).toBe('delete entity');
   });
 });
+
+test('Properly submits request to power on a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.powerOn().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/poweron`, undefined, undefined);
+    expect(task.getOperation()).toBe('power on');
+  });
+});
+
+test('Properly submits request to power on a VM and force guest customization', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.powerOn(true).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/poweron`, undefined, {
+      params: {
+        forceGuestCustomization: true
+      }
+    });
+    expect(task.getOperation()).toBe('power on');
+  });
+});
+
+test('Properly submits request to power off a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.powerOff().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/poweroff`, undefined, undefined);
+    expect(task.getOperation()).toBe('power off');
+  });
+});
+
+test('Properly submits request to reboot a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.rebootGuestOs().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/reboot`, undefined, undefined);
+    expect(task.getOperation()).toBe('reboot');
+  });
+});
+
+test('Properly submits request to reset a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.reset().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/reset`, undefined, undefined);
+    expect(task.getOperation()).toBe('reset');
+  });
+});
+
+test('Properly submits request to suspend a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.suspend().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/suspend`, undefined, undefined);
+    expect(task.getOperation()).toBe('suspend');
+  });
+});
+
+test('Properly submits request to shutdown a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.shutdownGuestOs().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/shutdown`, undefined, undefined);
+    expect(task.getOperation()).toBe('shutdown');
+  });
+});
