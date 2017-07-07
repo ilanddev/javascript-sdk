@@ -11,6 +11,10 @@ export class Http {
 
   private _ilandAxios: AxiosInstance;
 
+  /**
+   * Constructs a new Http instance.
+   * @param {string} baseUrl the base URL of the iland Cloud API
+   */
   constructor(baseUrl: string) {
     let defaultMime = Http.versionMime('application/json');
     this._ilandAxios = axios.create({
@@ -35,6 +39,12 @@ export class Http {
     });
   }
 
+  /**
+   * Gets a formatted Accept header from a standard MIME and optional version number.
+   * @param {string} mime the standard MIME string
+   * @param {number} version the targeted version (defaults to the SDK version)
+   * @returns {string} the formatted MIME type
+   */
   static versionMime(mime: string, version?: number): string {
     if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
       return mime;
@@ -49,22 +59,53 @@ export class Http {
     return mime;
   }
 
+  /**
+   * Performs a request against the iland Cloud API.
+   * @param {AxiosRequestConfig} config request configuration
+   * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   */
   async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.request(config) as Promise<AxiosResponse>;
   }
 
+  /**
+   * Perform a GET request against the iland Cloud API.
+   * @param {string} url the URL path
+   * @param {AxiosRequestConfig} config request configuration
+   * @returns {Promise<AxiosResponse>} promise that resolves with server response
+   */
   async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.get(url, config) as Promise<AxiosResponse>;
   }
 
+  /**
+   * Perform a DELETE request against the iland Cloud API.
+   * @param {string} url the URL path
+   * @param {AxiosRequestConfig} config request configuration
+   * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   */
   async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.delete(url, config) as Promise<AxiosResponse>;
   }
 
+  /**
+   * Perform a POST request against the iland Cloud API.
+   * @param {string} url the URL path
+   * @param data the data to include in the request body
+   * @param {AxiosRequestConfig} config request configuration
+   * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   */
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.post(url, data, config) as Promise<AxiosResponse>;
   }
 
+  /**
+   * Perform a PUT request against the iland Cloud API.
+   * @param {string} url the URL path
+   * @param data the data to include in the request body
+   * @param {AxiosRequestConfig} config request configuration
+   * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+   */
   async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.put(url, data, config) as Promise<AxiosResponse>;
   }

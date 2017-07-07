@@ -1,5 +1,5 @@
-import { TestConfiguration } from '../../../tests/configuration';
-import { IlandBrowserAuthProvider } from './browser-auth-provider';
+import { TestConfiguration } from '../../../../tests/configuration';
+import { IlandBrowserAuthProvider } from '../browser-auth-provider';
 import { KeycloakPromise, KeycloakPromiseCallback } from 'keycloak-js';
 
 class MockKeycloakPromise implements KeycloakPromise<any, string> {

@@ -1,7 +1,7 @@
-import { TestConfiguration } from '../../tests/configuration';
-import { IlandDirectGrantAuthProvider } from './auth/direct-grant-auth-provider';
-import { Iland } from './iland';
-import { User } from './model/user';
+import { TestConfiguration } from '../../../tests/configuration';
+import { IlandDirectGrantAuthProvider } from '../auth/direct-grant-auth-provider';
+import { Iland } from '../iland';
+import { User } from '../model/user';
 
 test('Throws error when trying to get the auth provider before the sdk is initialized', () => {
   expect.assertions(1);

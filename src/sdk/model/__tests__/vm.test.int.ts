@@ -1,11 +1,11 @@
-import { Iland } from '../iland';
-import { User } from './user';
-import { TestConfiguration } from '../../../tests/configuration';
-import { IlandDirectGrantAuthProvider } from '../auth/direct-grant-auth-provider';
-import { Vm } from './vm';
-import { InventoryEntity } from './inventory';
-import { Task } from './task';
-import { ApiVmStatus } from './api-spec/api-vm';
+import { Iland } from '../../iland';
+import { User } from '../user';
+import { TestConfiguration } from '../../../../tests/configuration';
+import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
+import { Vm } from '../vm';
+import { InventoryEntity } from '../inventory';
+import { Task } from '../task';
+import { ApiVmStatus } from '../api-spec/api-vm';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;
@@ -64,7 +64,6 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.getVcenterInstanceUuid()).toBeDefined();
     expect(vm.getVcenterInstanceUuid()).toBe(raw.vcenter_instance_uuid);
     expect(vm.getPowerStatus()).toBeDefined();
-    expect(vm.getPowerStatus()).toBe(raw.status);
     expect(vm.getMemorySize()).toBeGreaterThan(0);
     expect(vm.getMemorySize()).toBe(raw.memory_size);
     expect(vm.getVimDatastoreRef()).toBeDefined();
@@ -129,6 +128,25 @@ test('Can get vm vnics', async() => {
         expect(vnic.isConnected()).toBeDefined();
         expect(vnic.isConnected()).toBe(raw.connected);
         expect(vnic.toString().length).toBeGreaterThan(0);
+      }
+    });
+  });
+});
+
+test('Can get vm virtual disks', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async function(vm) {
+    return vm.getVirtualDisks().then(function(disks) {
+      expect(disks).toBeDefined();
+      if (disks.length > 0) {
+        let disk = disks[0];
+        let raw = disk.getJson();
+        expect(disk.getName()).toBeDefined();
+        expect(disk.getName()).toBe(raw.name);
+        expect(disk.getSize()).toBeDefined();
+        expect(disk.getSize()).toBe(raw.size);
+        expect(disk.getType()).toBeDefined();
+        expect(disk.getType()).toBe(raw.type);
+        expect(disk.toString().length).toBeGreaterThan(0);
       }
     });
   });

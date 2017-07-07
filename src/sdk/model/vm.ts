@@ -6,12 +6,8 @@ import { ApiVm, ApiVmStatus } from './api-spec/api-vm';
 import { ApiVnic } from './api-spec/api-vnic';
 import { ApiTask } from './api-spec/api-task';
 import { EntityType } from './api-spec/api-entity-type';
-
-/**
- * Enumeration of possible VM power statuses.
- */
-export type VmPowerStatus = ApiVmStatus |
-    'PARTIALLY_POWERED_OFF';
+import { ApiVirtualDisk } from './api-spec/api-virtual-disk';
+import { VirtualDisk } from './virtual-disk';
 
 /**
  * Virtual Machine.
@@ -317,19 +313,87 @@ export class Vm extends Entity {
                 });
   }
 
+  /**
+   * Gets the VM's virtual disks.
+   * @returns {Promise<VirtualDisk[]>} array of virtual disks
+   */
+  async getVirtualDisks(): Promise<Array<VirtualDisk>> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/virtual-disks`).then(function(response) {
+      let apiDisks = response.data as Array<ApiVirtualDisk>;
+      return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
+    });
+  }
+
+  /**
+   * Update the VM's virtual disks.
+   * @param {Array<VirtualDiskSpec>} disksSpec array of specs for new disks
+   * @returns {Promise<Task>} task promise
+   */
+  async updateVirtualDisks(disksSpec: Array<VirtualDiskSpec>): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disks`, disksSpec)
+                .then(function(response) {
+                  let apiTask = response.data as ApiTask;
+                  return new Task(apiTask);
+                });
+  }
+
+  /**
+   * Update a virtual disk that is attached to this VM.
+   * @param {VirtualDiskSpec} diskSpec updated specification for the disk
+   * @returns {Promise<Task>} task promise
+   */
+  async updateVirtualDisk(diskSpec: VirtualDiskSpec): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-disk`, diskSpec)
+                .then(function(response) {
+                  let apiTask = response.data as ApiTask;
+                  return new Task(apiTask);
+                });
+  }
+
+  /**
+   * Create a new virtual disk for this VM.
+   * @param {VirtualDiskSpec} diskSpec spec for the new disk
+   * @returns {Promise<Task>} task promise
+   */
+  async createVirtualDisk(diskSpec: VirtualDiskSpec): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/virtual-disk`, diskSpec)
+                .then(function(response) {
+                  let apiTask = response.data as ApiTask;
+                  return new Task(apiTask);
+                });
+  }
+
+  /**
+   * Delete a virtual disk.
+   * @param {string} name the name of the disk to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteVirtualDisk(name: string): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().delete(`/vm/${self.getUuid()}/disks/${name}`)
+                .then(function(response) {
+                  let apiTask = response.data as ApiTask;
+                  return new Task(apiTask);
+                });
+  }
+
 }
 
 /**
  * Specification for VM memory configuration update request.
  */
-interface VmMemoryUpdateSpec {
+export interface VmMemoryUpdateSpec {
   memory_size: string;
 }
 
 /**
  * Specification for VM description update request.
  */
-interface VmUpdateDescriptionSpec {
+export interface VmUpdateDescriptionSpec {
   description: string;
 }
 
@@ -340,3 +404,11 @@ export interface VmCpuUpdateSpec {
   cpus_number: number;
   cores_per_socket?: number;
 }
+
+export type VirtualDiskSpec = ApiVirtualDisk;
+
+/**
+ * Enumeration of possible VM power statuses.
+ */
+export type VmPowerStatus = ApiVmStatus |
+    'PARTIALLY_POWERED_OFF';
