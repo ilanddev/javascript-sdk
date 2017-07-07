@@ -1133,20 +1133,20 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Vm<span class="tsd-signature-symbol">(</span>_apiVm<span class="tsd-signature-symbol">: </span><a href="../interfaces/apivm.html" class="tsd-signature-type">ApiVm</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vm.html" class="tsd-signature-type">Vm</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Vm<span class="tsd-signature-symbol">(</span>_apiVm<span class="tsd-signature-symbol">: </span><a href="../interfaces/vmjson.html" class="tsd-signature-type">VmJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vm.html" class="tsd-signature-type">Vm</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<p>Overrides <a href="entity.html">Entity</a>.<a href="entity.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L15">sdk/model/vm.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L15">sdk/model/vm.ts:15</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>_apiVm: <a href="../interfaces/apivm.html" class="tsd-signature-type">ApiVm</a></h5>
+								<h5>_apiVm: <a href="../interfaces/vmjson.html" class="tsd-signature-type">VmJson</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="vm.html" class="tsd-signature-type">Vm</a></h4>
@@ -1160,13 +1160,13 @@ img { max-width: 100%; }
 				<a name="createvirtualdisk" class="tsd-anchor"></a>
 				<h3>create<wbr>Virtual<wbr>Disk</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">create<wbr>Virtual<wbr>Disk<span class="tsd-signature-symbol">(</span>diskSpec<span class="tsd-signature-symbol">: </span><a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Virtual<wbr>Disk<span class="tsd-signature-symbol">(</span>diskJson<span class="tsd-signature-symbol">: </span><a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L361">sdk/model/vm.ts:361</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L361">sdk/model/vm.ts:361</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1177,7 +1177,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>diskSpec: <a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a></h5>
+								<h5>diskJson: <a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>spec for the new disk</p>
 								</div>
@@ -1198,7 +1198,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L375">sdk/model/vm.ts:375</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L375">sdk/model/vm.ts:375</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1230,7 +1230,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L214">sdk/model/vm.ts:214</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L214">sdk/model/vm.ts:214</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1253,7 +1253,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L198">sdk/model/vm.ts:198</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L198">sdk/model/vm.ts:198</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1280,7 +1280,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#getdeleteddate">getDeletedDate</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/entity.ts#L48">sdk/model/entity.ts:48</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/entity.ts#L48">sdk/model/entity.ts:48</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1306,7 +1306,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L182">sdk/model/vm.ts:182</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L182">sdk/model/vm.ts:182</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1330,7 +1330,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="entity.html">Entity</a>.<a href="entity.html#getentitytype">getEntityType</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L33">sdk/model/vm.ts:33</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L33">sdk/model/vm.ts:33</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="../globals.html#entitytype" class="tsd-signature-type">EntityType</a></h4>
@@ -1347,7 +1347,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L174">sdk/model/vm.ts:174</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L174">sdk/model/vm.ts:174</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1370,7 +1370,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L157">sdk/model/vm.ts:157</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L157">sdk/model/vm.ts:157</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1390,13 +1390,13 @@ img { max-width: 100%; }
 				<a name="getjson" class="tsd-anchor"></a>
 				<h3>get<wbr>Json</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Json<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/apivm.html" class="tsd-signature-type">ApiVm</a></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Json<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/vmjson.html" class="tsd-signature-type">VmJson</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L238">sdk/model/vm.ts:238</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L238">sdk/model/vm.ts:238</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1404,7 +1404,7 @@ img { max-width: 100%; }
 								<p>Gets the raw JSON object from the API.</p>
 							</div>
 						</div>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/apivm.html" class="tsd-signature-type">ApiVm</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/vmjson.html" class="tsd-signature-type">VmJson</a></h4>
 						<p>the API VM object</p>
 					</li>
 				</ul>
@@ -1419,7 +1419,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L149">sdk/model/vm.ts:149</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L149">sdk/model/vm.ts:149</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1442,7 +1442,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L222">sdk/model/vm.ts:222</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L222">sdk/model/vm.ts:222</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1466,7 +1466,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#getname">getName</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/entity.ts#L16">sdk/model/entity.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/entity.ts#L16">sdk/model/entity.ts:16</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1489,7 +1489,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L206">sdk/model/vm.ts:206</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L206">sdk/model/vm.ts:206</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1512,7 +1512,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L133">sdk/model/vm.ts:133</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L133">sdk/model/vm.ts:133</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1535,7 +1535,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L141">sdk/model/vm.ts:141</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L141">sdk/model/vm.ts:141</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1558,7 +1558,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L121">sdk/model/vm.ts:121</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L121">sdk/model/vm.ts:121</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1581,7 +1581,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L113">sdk/model/vm.ts:113</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L113">sdk/model/vm.ts:113</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1605,7 +1605,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#getupdateddate">getUpdatedDate</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/entity.ts#L40">sdk/model/entity.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/entity.ts#L40">sdk/model/entity.ts:40</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1629,7 +1629,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#getuuid">getUuid</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/entity.ts#L24">sdk/model/entity.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/entity.ts#L24">sdk/model/entity.ts:24</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1652,7 +1652,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L105">sdk/model/vm.ts:105</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L105">sdk/model/vm.ts:105</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1675,7 +1675,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L97">sdk/model/vm.ts:97</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L97">sdk/model/vm.ts:97</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1698,7 +1698,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L89">sdk/model/vm.ts:89</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L89">sdk/model/vm.ts:89</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1721,7 +1721,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L81">sdk/model/vm.ts:81</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L81">sdk/model/vm.ts:81</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1744,7 +1744,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L73">sdk/model/vm.ts:73</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L73">sdk/model/vm.ts:73</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1767,7 +1767,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L65">sdk/model/vm.ts:65</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L65">sdk/model/vm.ts:65</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1790,7 +1790,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L57">sdk/model/vm.ts:57</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L57">sdk/model/vm.ts:57</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1813,7 +1813,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L49">sdk/model/vm.ts:49</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L49">sdk/model/vm.ts:49</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1836,7 +1836,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L320">sdk/model/vm.ts:320</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L320">sdk/model/vm.ts:320</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1859,7 +1859,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L41">sdk/model/vm.ts:41</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L41">sdk/model/vm.ts:41</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1882,7 +1882,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L259">sdk/model/vm.ts:259</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L259">sdk/model/vm.ts:259</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1905,7 +1905,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#isdeleted">isDeleted</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/entity.ts#L32">sdk/model/entity.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/entity.ts#L32">sdk/model/entity.ts:32</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1928,7 +1928,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L190">sdk/model/vm.ts:190</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L190">sdk/model/vm.ts:190</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1951,7 +1951,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L166">sdk/model/vm.ts:166</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L166">sdk/model/vm.ts:166</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1974,7 +1974,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L246">sdk/model/vm.ts:246</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L246">sdk/model/vm.ts:246</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1996,7 +1996,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L230">sdk/model/vm.ts:230</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L230">sdk/model/vm.ts:230</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2018,7 +2018,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L273">sdk/model/vm.ts:273</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L273">sdk/model/vm.ts:273</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2050,7 +2050,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L290">sdk/model/vm.ts:290</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L290">sdk/model/vm.ts:290</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2076,13 +2076,13 @@ img { max-width: 100%; }
 				<a name="updatenumberofcpus" class="tsd-anchor"></a>
 				<h3>update<wbr>Number<wbr>OfCpus</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">update<wbr>Number<wbr>OfCpus<span class="tsd-signature-symbol">(</span>spec<span class="tsd-signature-symbol">: </span><a href="../interfaces/vmcpuupdatespec.html" class="tsd-signature-type">VmCpuUpdateSpec</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">update<wbr>Number<wbr>OfCpus<span class="tsd-signature-symbol">(</span>spec<span class="tsd-signature-symbol">: </span><a href="../interfaces/vmcpuupdatejson.html" class="tsd-signature-type">VmCpuUpdateJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L307">sdk/model/vm.ts:307</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L307">sdk/model/vm.ts:307</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2093,7 +2093,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>spec: <a href="../interfaces/vmcpuupdatespec.html" class="tsd-signature-type">VmCpuUpdateSpec</a></h5>
+								<h5>spec: <a href="../interfaces/vmcpuupdatejson.html" class="tsd-signature-type">VmCpuUpdateJson</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>specifying new number of CPUs</p>
 								</div>
@@ -2108,13 +2108,13 @@ img { max-width: 100%; }
 				<a name="updatevirtualdisk" class="tsd-anchor"></a>
 				<h3>update<wbr>Virtual<wbr>Disk</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">update<wbr>Virtual<wbr>Disk<span class="tsd-signature-symbol">(</span>diskSpec<span class="tsd-signature-symbol">: </span><a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">update<wbr>Virtual<wbr>Disk<span class="tsd-signature-symbol">(</span>diskJson<span class="tsd-signature-symbol">: </span><a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L347">sdk/model/vm.ts:347</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L347">sdk/model/vm.ts:347</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2125,7 +2125,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>diskSpec: <a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a></h5>
+								<h5>diskJson: <a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>updated specification for the disk</p>
 								</div>
@@ -2140,13 +2140,13 @@ img { max-width: 100%; }
 				<a name="updatevirtualdisks" class="tsd-anchor"></a>
 				<h3>update<wbr>Virtual<wbr>Disks</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">update<wbr>Virtual<wbr>Disks<span class="tsd-signature-symbol">(</span>disksSpec<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">update<wbr>Virtual<wbr>Disks<span class="tsd-signature-symbol">(</span>disksJson<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L333">sdk/model/vm.ts:333</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L333">sdk/model/vm.ts:333</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2157,7 +2157,7 @@ img { max-width: 100%; }
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>disksSpec: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#virtualdiskspec" class="tsd-signature-type">VirtualDiskSpec</a><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>disksJson: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/virtualdiskjson.html" class="tsd-signature-type">VirtualDiskJson</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<p>array of specs for new disks</p>
 								</div>
@@ -2178,7 +2178,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/10e16d3/src/sdk/model/vm.ts#L26">sdk/model/vm.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/171a218/src/sdk/model/vm.ts#L26">sdk/model/vm.ts:26</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
