@@ -12,6 +12,8 @@ import { Metadata } from './metadata';
 import { MetadataJson, MetadataType } from './json/metadata';
 import { BackupRestorePoint } from './backup-restore-point';
 import { BackupRestorePointJson } from './json/backup-restore-point';
+import { Snapshot } from './snapshot';
+import { SnapshotJson } from './json/snapshot';
 
 /**
  * Virtual Machine.
@@ -563,6 +565,66 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Gets the VMs snapshot details.
+   * @returns {Promise<Snapshot>} promise that resolves with the current snapshot details
+   * @throws {ApiError} if the VM doesn't currently have a snapshot
+   */
+  async getSnapshot(): Promise<Snapshot> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/snapshot`).then(function(response) {
+      let json = response.data as SnapshotJson;
+      return new Snapshot(json);
+    });
+  }
+
+  /**
+   * Creates a snapshot of the VM.
+   * @param {VmCreateSnapshotJson} options the snapshot creation options
+   * @returns {Promise<Task>} task promise
+   */
+  async createSnapshot(options: VmCreateSnapshotJson): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/snapshot`, options).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Restore the VMs snapshot.
+   * @returns {Promise<Task>} task promise
+   */
+  async restoreSnapshot(): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/snapshot/restore`).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes the VMs snapshot.
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteSnapshot(): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().delete(`/vm/${self.getUuid()}/snapshot`).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+}
+
+/**
+ * Specifiation for VM snapshot creation request.
+ */
+export interface VmCreateSnapshotJson {
+  memory: boolean;
+  quiesce: boolean;
+  name: string;
+  description: string;
 }
 
 /**

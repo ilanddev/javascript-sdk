@@ -1,4 +1,6 @@
-import { Vm, VmCpuUpdateJson, VmMemoryUpdateJson, VmRestoreBackupJson, VmUpdateNameJson } from '../vm';
+import {
+  Vm, VmCpuUpdateJson, VmCreateSnapshotJson, VmMemoryUpdateJson, VmRestoreBackupJson, VmUpdateNameJson
+} from '../vm';
 import { MockVmJson } from '../../__mocks__/responses/vm/vm';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
@@ -6,8 +8,9 @@ import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../../__mocks__/resp
 import { VirtualDiskJson } from '../json/virtual-disk';
 import { MockMetadataJson } from '../../__mocks__/responses/metadata/metadata';
 import {
-  MockBackupRestorPoint1Json, MockBackupRestorPoint2Json
+  MockBackupRestorePoint1Json, MockBackupRestorePoint2Json
 } from '../../__mocks__/responses/vm/backup-restore-point';
+import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
 
 jest.mock('../../http');
 
@@ -239,16 +242,16 @@ test('Properly submits request to get a VMs restore points', async() => {
   return vm.getBackupRestorePoints().then(function(restorePoints) {
     expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/backups`);
     expect(restorePoints.length).toBe(2);
-    expect(restorePoints[0].getName()).toBe(MockBackupRestorPoint1Json.name);
-    expect(restorePoints[0].getTimestamp().getTime()).toBe(MockBackupRestorPoint1Json.timestamp);
-    expect(restorePoints[0].getBackupServerName()).toBe(MockBackupRestorPoint1Json.backup_server_name);
-    expect(restorePoints[0].getJson()).toEqual(MockBackupRestorPoint1Json);
+    expect(restorePoints[0].getName()).toBe(MockBackupRestorePoint1Json.name);
+    expect(restorePoints[0].getTimestamp().getTime()).toBe(MockBackupRestorePoint1Json.timestamp);
+    expect(restorePoints[0].getBackupServerName()).toBe(MockBackupRestorePoint1Json.backup_server_name);
+    expect(restorePoints[0].getJson()).toEqual(MockBackupRestorePoint1Json);
     expect(restorePoints[0].toString().length).toBeGreaterThan(0);
 
-    expect(restorePoints[1].getName()).toBe(MockBackupRestorPoint2Json.name);
-    expect(restorePoints[1].getTimestamp().getTime()).toBe(MockBackupRestorPoint2Json.timestamp);
-    expect(restorePoints[1].getBackupServerName()).toBe(MockBackupRestorPoint2Json.backup_server_name);
-    expect(restorePoints[1].getJson()).toEqual(MockBackupRestorPoint2Json);
+    expect(restorePoints[1].getName()).toBe(MockBackupRestorePoint2Json.name);
+    expect(restorePoints[1].getTimestamp().getTime()).toBe(MockBackupRestorePoint2Json.timestamp);
+    expect(restorePoints[1].getBackupServerName()).toBe(MockBackupRestorePoint2Json.backup_server_name);
+    expect(restorePoints[1].getJson()).toEqual(MockBackupRestorePoint2Json);
     expect(restorePoints[1].toString().length).toBeGreaterThan(0);
   });
 });
@@ -262,5 +265,48 @@ test('Properly submits request to restore a VM backup', async() => {
   return vm.restoreBackup(timestamp).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/restore`, json);
     expect(task.getOperation()).toBe('restore backup');
+  });
+});
+
+test('Properly submits request to retrieve a VMs snapshot', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getSnapshot().then(function(snapshot) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/snapshot`);
+    expect(snapshot).toBeDefined();
+    expect(snapshot.getSize()).toBe(MockSnapshotJson.size);
+    expect(snapshot.getCreationDate().getTime()).toBe(MockSnapshotJson.creation_date);
+    expect(snapshot.isPoweredOn()).toBe(MockSnapshotJson.is_powered_on);
+    expect(snapshot.getJson()).toEqual(MockSnapshotJson);
+    expect(snapshot.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to create a VM snapshot', async() => {
+  const vm = new Vm(MockVmJson);
+  let json: VmCreateSnapshotJson = {
+    memory: true,
+    quiesce: true,
+    name: 'snapshot name',
+    description: 'snapshot description'
+  };
+  return vm.createSnapshot(json).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/snapshot`, json);
+    expect(task.getOperation()).toBe('create snapshot');
+  });
+});
+
+test('Properly submits request to restore a VM snapshot', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.restoreSnapshot().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/snapshot/restore`);
+    expect(task.getOperation()).toBe('restore snapshot');
+  });
+});
+
+test('Properly submits request to delete a VM snapshot', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.deleteSnapshot().then(function(task) {
+    expect(Iland.getHttp().delete).lastCalledWith(`/vm/${vm.getUuid()}/snapshot`);
+    expect(task.getOperation()).toBe('remove snapshot');
   });
 });

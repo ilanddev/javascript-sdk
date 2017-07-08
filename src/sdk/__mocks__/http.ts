@@ -6,6 +6,7 @@ import { MockVmVirtualDisksResponse } from './responses/vm/virtual-disk';
 import { MockTaskService } from './responses/task/task';
 import { MockMetadataResponse } from './responses/metadata/metadata';
 import { MockVmBackupRestorePointsResponse } from './responses/vm/backup-restore-point';
+import { MockVmSnapshotResponse } from './responses/vm/snapshot';
 
 jest.unmock('../http');
 
@@ -62,6 +63,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/backups$/.test(url):
         // get vm backup restore points
         return MockVmBackupRestorePointsResponse;
+      case /\/vm\/[^\/]+?\/snapshot$/.test(url):
+        // get vm snapshot
+        return MockVmSnapshotResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -78,6 +82,9 @@ export class Http {
       case /\/vm\/[^\/]+?$/.test(url):
         // delete vm
         return MockTaskService.getNewMockTaskResponse('delete entity');
+      case /\/vm\/[^\/]+?\/snapshot$/.test(url):
+        // delete vm snapshot
+        return MockTaskService.getNewMockTaskResponse('remove snapshot');
       default:
         return MockNotFoundResponse;
     }
@@ -109,6 +116,12 @@ export class Http {
       case /\/vm\/[^\/]+?\/restore$/.test(url):
         // restore VM backup
         return MockTaskService.getNewMockTaskResponse('restore backup');
+      case /\/vm\/[^\/]+?\/snapshot$/.test(url):
+        // create snapshot
+        return MockTaskService.getNewMockTaskResponse('create snapshot');
+      case /\/vm\/[^\/]+?\/snapshot\/restore$/.test(url):
+        // restore snapshot
+        return MockTaskService.getNewMockTaskResponse('restore snapshot');
       default:
         return MockNotFoundResponse;
     }
