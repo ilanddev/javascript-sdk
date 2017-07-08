@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IlandBrowserAuthProvider | iland-sdk</title>
+	<title>Snapshot | iland-sdk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -910,19 +910,25 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-class">
-			<a href="ilandbrowserauthprovider.html" class="tsd-kind-icon">Iland<wbr>Browser<wbr>Auth<wbr>Provider</a>
+			<a href="snapshot.html" class="tsd-kind-icon">Snapshot</a>
 			<ul>
 				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="ilandbrowserauthprovider.html#constructor" class="tsd-kind-icon">constructor</a>
+					<a href="snapshot.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="ilandbrowserauthprovider.html#getauthenticatedusername" class="tsd-kind-icon">get<wbr>Authenticated<wbr>Username</a>
+					<a href="snapshot.html#getcreationdate" class="tsd-kind-icon">get<wbr>Creation<wbr>Date</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="ilandbrowserauthprovider.html#gettoken" class="tsd-kind-icon">get<wbr>Token</a>
+					<a href="snapshot.html#getjson" class="tsd-kind-icon">get<wbr>Json</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="ilandbrowserauthprovider.html#logout" class="tsd-kind-icon">logout</a>
+					<a href="snapshot.html#getsize" class="tsd-kind-icon">get<wbr>Size</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="snapshot.html#ispoweredon" class="tsd-kind-icon">is<wbr>Powered<wbr>On</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="snapshot.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 				</li>
 			</ul>
 		</li>
@@ -930,18 +936,19 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>Snapshot.</p>
+				</div>
+			</div>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">IlandBrowserAuthProvider</span>
+					<span class="target">Snapshot</span>
 				</li>
-			</ul>
-		</section>
-		<section class="tsd-panel">
-			<h3>Implements</h3>
-			<ul class="tsd-hierarchy">
-				<li><a href="../interfaces/authprovider.html" class="tsd-signature-type">AuthProvider</a></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -951,15 +958,17 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="ilandbrowserauthprovider.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="snapshot.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="ilandbrowserauthprovider.html#getauthenticatedusername" class="tsd-kind-icon">get<wbr>Authenticated<wbr>Username</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="ilandbrowserauthprovider.html#gettoken" class="tsd-kind-icon">get<wbr>Token</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="ilandbrowserauthprovider.html#logout" class="tsd-kind-icon">logout</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getcreationdate" class="tsd-kind-icon">get<wbr>Creation<wbr>Date</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getjson" class="tsd-kind-icon">get<wbr>Json</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getsize" class="tsd-kind-icon">get<wbr>Size</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#ispoweredon" class="tsd-kind-icon">is<wbr>Powered<wbr>On</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 						</ul>
 					</section>
 				</div>
@@ -971,22 +980,22 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Iland<wbr>Browser<wbr>Auth<wbr>Provider<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">: </span><a href="../interfaces/ilandbrowserauthconfig.html" class="tsd-signature-type">IlandBrowserAuthConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="ilandbrowserauthprovider.html" class="tsd-signature-type">IlandBrowserAuthProvider</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Snapshot<span class="tsd-signature-symbol">(</span>_json<span class="tsd-signature-symbol">: </span><a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="snapshot.html" class="tsd-signature-type">Snapshot</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/auth/browser-auth-provider.ts#L8">sdk/auth/browser-auth-provider.ts:8</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L6">sdk/model/snapshot.ts:6</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>config: <a href="../interfaces/ilandbrowserauthconfig.html" class="tsd-signature-type">IlandBrowserAuthConfig</a></h5>
+								<h5>_json: <a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="ilandbrowserauthprovider.html" class="tsd-signature-type">IlandBrowserAuthProvider</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="snapshot.html" class="tsd-signature-type">Snapshot</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -994,68 +1003,116 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getauthenticatedusername" class="tsd-anchor"></a>
-				<h3>get<wbr>Authenticated<wbr>Username</h3>
+				<a name="getcreationdate" class="tsd-anchor"></a>
+				<h3>get<wbr>Creation<wbr>Date</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Authenticated<wbr>Username<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Creation<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Implementation of <a href="../interfaces/authprovider.html">AuthProvider</a>.<a href="../interfaces/authprovider.html#getauthenticatedusername">getAuthenticatedUsername</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/auth/browser-auth-provider.ts#L40">sdk/auth/browser-auth-provider.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L15">sdk/model/snapshot.ts:15</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Gets the username of the currently authenticated user.</p>
+								<p>Gets the date that the snapshot was created.</p>
 							</div>
 						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>username</p>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
+						<p>the creation date</p>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="gettoken" class="tsd-anchor"></a>
-				<h3>get<wbr>Token</h3>
+				<a name="getjson" class="tsd-anchor"></a>
+				<h3>get<wbr>Json</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Token<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Json<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Implementation of <a href="../interfaces/authprovider.html">AuthProvider</a>.<a href="../interfaces/authprovider.html#gettoken">getToken</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/auth/browser-auth-provider.ts#L21">sdk/auth/browser-auth-provider.ts:21</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="logout" class="tsd-anchor"></a>
-				<h3>logout</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Implementation of <a href="../interfaces/authprovider.html">AuthProvider</a>.<a href="../interfaces/authprovider.html#logout">logout</a></p>
-							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/auth/browser-auth-provider.ts#L52">sdk/auth/browser-auth-provider.ts:52</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L47">sdk/model/snapshot.ts:47</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Log out the authenticated user.</p>
+								<p>Gets the raw JSON object from the API.</p>
 							</div>
 						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>promise that resolves when logout is complete.</p>
+						<h4 class="tsd-returns-title">Returns <a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a></h4>
+						<p>the JSON representation</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="getsize" class="tsd-anchor"></a>
+				<h3>get<wbr>Size</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L23">sdk/model/snapshot.ts:23</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Gets the size of the snapshot.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						<p>size</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="ispoweredon" class="tsd-anchor"></a>
+				<h3>is<wbr>Powered<wbr>On</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Powered<wbr>On<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L31">sdk/model/snapshot.ts:31</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Indicates whether the snapshot is powered on.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						<p>value</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="tostring" class="tsd-anchor"></a>
+				<h3>to<wbr>String</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/d8e0bed/src/sdk/model/snapshot.ts#L39">sdk/model/snapshot.ts:39</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>JSON format.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 					</li>
 				</ul>
 			</section>
