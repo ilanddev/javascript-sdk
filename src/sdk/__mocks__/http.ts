@@ -147,6 +147,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/name$/.test(url):
         // rename VM
         return MockTaskService.getNewMockTaskResponse('rename vm');
+      case /\/vm\/[^\/]+?\/virtual-hardware-version$/.test(url):
+        // upgrade vms virtual hardware
+        return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
       default:
         return MockNotFoundResponse;
     }

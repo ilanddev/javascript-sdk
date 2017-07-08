@@ -615,6 +615,18 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Updates the VM's virtual hardware to the latest version available.
+   * @returns {Promise<Task>} task promise
+   */
+  async updateVirtualHardwareVersion(): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-hardware-version`).then(function(response) {
+      let apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
 }
 
 /**

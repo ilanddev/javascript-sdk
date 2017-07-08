@@ -310,3 +310,11 @@ test('Properly submits request to delete a VM snapshot', async() => {
     expect(task.getOperation()).toBe('remove snapshot');
   });
 });
+
+test('Properly submits request to update VMs virtual hardware', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.updateVirtualHardwareVersion().then(function(task) {
+    expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/virtual-hardware-version`);
+    expect(task.getOperation()).toBe('upgrade virtual hardware');
+  });
+});
