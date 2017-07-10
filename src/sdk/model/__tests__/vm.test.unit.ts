@@ -11,6 +11,8 @@ import {
   MockBackupRestorePoint1Json, MockBackupRestorePoint2Json
 } from '../../__mocks__/responses/vm/backup-restore-point';
 import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
+import { MockScreenTicketJson } from '../../__mocks__/responses/vm/screen-ticket';
+import { MockMksScreenTicketJson } from '../../__mocks__/responses/vm/mks-screen-ticket';
 
 jest.mock('../../http');
 
@@ -316,5 +318,31 @@ test('Properly submits request to update VMs virtual hardware', async() => {
   return vm.updateVirtualHardwareVersion().then(function(task) {
     expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/virtual-hardware-version`);
     expect(task.getOperation()).toBe('upgrade virtual hardware');
+  });
+});
+
+test('Properly submits request to get a VM screen ticket', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getScreenTicket().then(function(screenTicket) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/screen-ticket`);
+    expect(screenTicket.getVmId()).toBe(MockScreenTicketJson.vm_id);
+    expect(screenTicket.getHost()).toBe(MockScreenTicketJson.host);
+    expect(screenTicket.getSslThumbprint()).toBe(MockScreenTicketJson.ssl_thumbprint);
+    expect(screenTicket.getTicket()).toBe(MockScreenTicketJson.ticket);
+    expect(screenTicket.getJson()).toEqual(MockScreenTicketJson);
+    expect(screenTicket.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get a VM MKS screen ticket', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getMksScreenTicket().then(function(mksScreenTicket) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/mks-screen-ticket`);
+    expect(mksScreenTicket.getVmx()).toBe(MockMksScreenTicketJson.vmx);
+    expect(mksScreenTicket.getHost()).toBe(MockMksScreenTicketJson.host);
+    expect(mksScreenTicket.getPort()).toBe(MockMksScreenTicketJson.port);
+    expect(mksScreenTicket.getTicket()).toBe(MockMksScreenTicketJson.ticket);
+    expect(mksScreenTicket.getJson()).toEqual(MockMksScreenTicketJson);
+    expect(mksScreenTicket.toString().length).toBeGreaterThan(0);
   });
 });

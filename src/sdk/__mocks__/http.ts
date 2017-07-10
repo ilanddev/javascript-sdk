@@ -7,6 +7,8 @@ import { MockTaskService } from './responses/task/task';
 import { MockMetadataResponse } from './responses/metadata/metadata';
 import { MockVmBackupRestorePointsResponse } from './responses/vm/backup-restore-point';
 import { MockVmSnapshotResponse } from './responses/vm/snapshot';
+import { MockVmScreenTicketResponse } from './responses/vm/screen-ticket';
+import { MockVmMksScreenTicketResponse } from './responses/vm/mks-screen-ticket';
 
 jest.unmock('../http');
 
@@ -66,6 +68,12 @@ export class Http {
       case /\/vm\/[^\/]+?\/snapshot$/.test(url):
         // get vm snapshot
         return MockVmSnapshotResponse;
+      case /\/vm\/[^\/]+?\/screen-ticket$/.test(url):
+        // get vm screenticket
+        return MockVmScreenTicketResponse;
+      case /\/vm\/[^\/]+?\/mks-screen-ticket$/.test(url):
+        // get vm mks screenticket
+        return MockVmMksScreenTicketResponse;
       default:
         return MockNotFoundResponse;
     }

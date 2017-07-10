@@ -14,6 +14,10 @@ import { BackupRestorePoint } from './backup-restore-point';
 import { BackupRestorePointJson } from './json/backup-restore-point';
 import { Snapshot } from './snapshot';
 import { SnapshotJson } from './json/snapshot';
+import { ScreenTicket } from './screen-ticket';
+import { ScreenTicketJson } from './json/screen-ticket';
+import { MksScreenTicket } from './mks-screen-ticket';
+import { MksScreenTicketJson } from './json/mks-screen-ticket';
 
 /**
  * Virtual Machine.
@@ -568,7 +572,7 @@ export class Vm extends Entity {
   /**
    * Gets the VMs snapshot details.
    * @returns {Promise<Snapshot>} promise that resolves with the current snapshot details
-   * @throws {ApiError} if the VM doesn't currently have a snapshot
+   * @throws {ApiError} as NotFoundError if the VM doesn't currently have a snapshot
    */
   async getSnapshot(): Promise<Snapshot> {
     let self = this;
@@ -624,6 +628,30 @@ export class Vm extends Entity {
     return Iland.getHttp().put(`/vm/${self.getUuid()}/virtual-hardware-version`).then(function(response) {
       let apiTask = response.data as TaskJson;
       return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Gets the VMs screen ticket for a remote console connection.
+   * @returns {Promise<ScreenTicket>} promise that resolves with the screen ticket
+   */
+  async getScreenTicket(): Promise<ScreenTicket> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/screen-ticket`).then(function(response) {
+      let json = response.data as ScreenTicketJson;
+      return new ScreenTicket(json);
+    });
+  }
+
+  /**
+   * Gets the VMs MKS screen ticket for a remote console connection.
+   * @returns {Promise<MksScreenTicket>} promise that resolves with the MKS screen ticket
+   */
+  async getMksScreenTicket(): Promise<MksScreenTicket> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/mks-screen-ticket`).then(function(response) {
+      let json = response.data as MksScreenTicketJson;
+      return new MksScreenTicket(json);
     });
   }
 
