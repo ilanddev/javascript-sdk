@@ -689,10 +689,38 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Inserts a specified media into the VM.
+   * @param {string} mediaUuid the UUID of the media to insert
+   * @returns {Promise<Task>} task promise
+   */
+  async insertMedia(mediaUuid: string): Promise<Task> {
+    let self = this;
+    let json: VmInsertMediaJson = {
+      media: mediaUuid
+    };
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/media/insert`, json).then(function(response) {
+      let json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Ejects any media from the VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async ejectMedia(): Promise<Task> {
+    let self = this;
+    return Iland.getHttp().post(`/vm/${self.getUuid()}/media/eject`).then(function(response) {
+      let json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
 }
 
 /**
- * Specifiation for VM snapshot creation request.
+ * Specification for VM snapshot creation request.
  */
 export interface VmCreateSnapshotJson {
   memory: boolean;
@@ -735,6 +763,13 @@ export interface VmCpuUpdateJson {
  */
 export interface VmRestoreBackupJson {
   time: number;
+}
+
+/**
+ * Specification for VM media insertion request.
+ */
+export interface VmInsertMediaJson {
+  media: string;
 }
 
 /**

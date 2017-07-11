@@ -436,3 +436,22 @@ test('Properly submits request to get VM current billing summary ', async() => {
     expect(summary.toString().length).toBeGreaterThan(0);
   });
 });
+
+test('Properly submits request to insert media into VM ', async() => {
+  const vm = new Vm(MockVmJson);
+  let mediaUuid = 'test-media-uuid';
+  return vm.insertMedia(mediaUuid).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/media/insert`, {
+      media: mediaUuid
+    });
+    expect(task.getOperation()).toBe('insert media');
+  });
+});
+
+test('Properly submits request to eject media from VM ', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.ejectMedia().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.getUuid()}/media/eject`);
+    expect(task.getOperation()).toBe('eject media');
+  });
+});

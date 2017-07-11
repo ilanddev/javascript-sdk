@@ -137,6 +137,12 @@ export class Http {
       case /\/vm\/[^\/]+?\/snapshot\/restore$/.test(url):
         // restore snapshot
         return MockTaskService.getNewMockTaskResponse('restore snapshot');
+      case /\/vm\/[^\/]+?\/media\/insert$/.test(url):
+        // insert media into vm
+        return MockTaskService.getNewMockTaskResponse('insert media');
+      case /\/vm\/[^\/]+?\/media\/eject$/.test(url):
+        // eject media from vm
+        return MockTaskService.getNewMockTaskResponse('eject media');
       default:
         return MockNotFoundResponse;
     }
