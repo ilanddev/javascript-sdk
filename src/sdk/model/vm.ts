@@ -18,6 +18,10 @@ import { ScreenTicket } from './screen-ticket';
 import { ScreenTicketJson } from './json/screen-ticket';
 import { MksScreenTicket } from './mks-screen-ticket';
 import { MksScreenTicketJson } from './json/mks-screen-ticket';
+import { Bill } from './bill';
+import { BillJson } from './json/bill';
+import { BillingSummaryJson } from './json/billing-summary';
+import { BillingSummary } from './billing-summary';
 
 /**
  * Virtual Machine.
@@ -652,6 +656,36 @@ export class Vm extends Entity {
     return Iland.getHttp().get(`/vm/${self.getUuid()}/mks-screen-ticket`).then(function(response) {
       let json = response.data as MksScreenTicketJson;
       return new MksScreenTicket(json);
+    });
+  }
+
+  /**
+   * Gets the bill for the VM for the specified month and year. Month and year default to current month and year if left
+   * unspecified.
+   * @returns {Promise<Bill>} promise that resolves with the Bill
+   */
+  async getBill(month?: number, year?: number): Promise<Bill> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/bill`, {
+      params: {
+        month: month,
+        year: year
+      }
+    }).then(function(response) {
+      let json = response.data as BillJson;
+      return new Bill(json);
+    });
+  }
+
+  /**
+   * Gets the current billing summary for the VM.
+   * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
+   */
+  async getCurrentBillingSummary(): Promise<BillingSummary> {
+    let self = this;
+    return Iland.getHttp().get(`/vm/${self.getUuid()}/billing/current`).then(function(response) {
+      let json = response.data as BillingSummaryJson;
+      return new BillingSummary(json);
     });
   }
 

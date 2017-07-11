@@ -13,6 +13,7 @@ import {
 import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
 import { MockScreenTicketJson } from '../../__mocks__/responses/vm/screen-ticket';
 import { MockMksScreenTicketJson } from '../../__mocks__/responses/vm/mks-screen-ticket';
+import { MockVmBillingSummaryJson, MockVmBillJson } from '../../__mocks__/responses/vm/bill';
 
 jest.mock('../../http');
 
@@ -344,5 +345,94 @@ test('Properly submits request to get a VM MKS screen ticket', async() => {
     expect(mksScreenTicket.getTicket()).toBe(MockMksScreenTicketJson.ticket);
     expect(mksScreenTicket.getJson()).toEqual(MockMksScreenTicketJson);
     expect(mksScreenTicket.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get a VM bill', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getBill(5, 2017).then(function(bill) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/bill`, {
+      params: {
+        month: 5,
+        year: 2017
+      }
+    });
+    expect(bill.getTimestamp().getTime()).toBe(MockVmBillJson.time);
+    expect(bill.getEntityUuid()).toBe(MockVmBillJson.entity_uuid);
+    expect(bill.getEntityType()).toBe(MockVmBillJson.entity_type);
+    expect(bill.getArchiveStorageBurstCost()).toBe(MockVmBillJson.archive_burst_cost);
+    expect(bill.getArchiveStorageBurstUsage()).toBe(MockVmBillJson.archive_burst_usage);
+    expect(bill.getArchiveStorageCost()).toBe(MockVmBillJson.archive_cost);
+    expect(bill.getArchiveStorageReservedCost()).toBe(MockVmBillJson.archive_reserved_cost);
+    expect(bill.getArchiveStorageReservedUsage()).toBe(MockVmBillJson.archive_reserved_usage);
+    expect(bill.getArchiveStorageUsage()).toBe(MockVmBillJson.archive_usage);
+    expect(bill.getBandwidthBurstCost()).toBe(MockVmBillJson.bandwidth_burst);
+    expect(bill.getBandwidthBurstUsage()).toBe(MockVmBillJson.bandwidth_burst_usage);
+    expect(bill.getBandwidthCost()).toBe(MockVmBillJson.bandwidth);
+    expect(bill.getBandwidthReservedCost()).toBe(MockVmBillJson.bandwidth_reserved_cost);
+    expect(bill.getBandwidthReservedUsage()).toBe(MockVmBillJson.bandwidth_reserved_usage);
+    expect(bill.getBandwidthUsage()).toBe(MockVmBillJson.bandwidth_usage);
+    expect(bill.getCpuBurstCost()).toBe(MockVmBillJson.cpu_burst);
+    expect(bill.getCpuBurstUsage()).toBe(MockVmBillJson.cpu_burst_usage);
+    expect(bill.getCpuCost()).toBe(MockVmBillJson.cpu);
+    expect(bill.getCpuReservedUsage()).toBe(MockVmBillJson.cpu_res_usage);
+    expect(bill.getCpuUsage()).toBe(MockVmBillJson.cpu_usage);
+    expect(bill.getCurrencyCode()).toBe(MockVmBillJson.currency_code);
+    expect(bill.getDiscount()).toBe(MockVmBillJson.discount);
+    expect(bill.getDiskBurstCost()).toBe(MockVmBillJson.disk_burst);
+    expect(bill.getDiskBurstUsage()).toBe(MockVmBillJson.disk_burst_usage);
+    expect(bill.getDiskCost()).toBe(MockVmBillJson.disk);
+    expect(bill.getDiskUsage()).toBe(MockVmBillJson.disk_usage);
+    expect(bill.getEntityName()).toBe(MockVmBillJson.entity_name);
+    expect(bill.getEstimatedCost()).toBe(MockVmBillJson.estimate);
+    expect(bill.getHddStorageCost()).toBe(MockVmBillJson.hdd_cost);
+    expect(bill.getHddStorageReservedCost()).toBe(MockVmBillJson.hdd_reserved_cost);
+    expect(bill.getHddStorageReservedUsage()).toBe(MockVmBillJson.hdd_reserved_usage);
+    expect(bill.getHddStorageUsage()).toBe(MockVmBillJson.hdd_usage);
+    expect(bill.getLineItems().length).toBe(MockVmBillJson.line_items.length);
+    let idx = 0;
+    for (const item of bill.getLineItems()) {
+      expect(item.getName()).toBe(MockVmBillJson.line_items[idx].name);
+      expect(item.getPrice()).toBe(MockVmBillJson.line_items[idx].price);
+      expect(item.getProductId()).toBe(MockVmBillJson.line_items[idx].product_id);
+      expect(item.getQuantity()).toBe(MockVmBillJson.line_items[idx].quantity);
+      expect(item.getJson()).toEqual(MockVmBillJson.line_items[idx]);
+      expect(item.toString().length).toBeGreaterThan(0);
+      idx++;
+    }
+    expect(bill.getMemoryBurstCost()).toBe(MockVmBillJson.mem_burst);
+    expect(bill.getMemoryBurstUsage()).toBe(MockVmBillJson.mem_burst_usage);
+    expect(bill.getMemoryCost()).toBe(MockVmBillJson.mem);
+    expect(bill.getMemoryReservedUsage()).toBe(MockVmBillJson.mem_res_usage);
+    expect(bill.getMemoryUsage()).toBe(MockVmBillJson.mem_usage);
+    expect(bill.getSsdStorageBurstCost()).toBe(MockVmBillJson.ssd_burst_cost);
+    expect(bill.getSsdStorageBurstUsage()).toBe(MockVmBillJson.ssd_burst_usage);
+    expect(bill.getSsdStorageCost()).toBe(MockVmBillJson.ssd_cost);
+    expect(bill.getSsdStorageReservedCost()).toBe(MockVmBillJson.ssd_reserved_cost);
+    expect(bill.getSsdStorageReservedUsage()).toBe(MockVmBillJson.ssd_reserved_usage);
+    expect(bill.getSsdStorageUsage()).toBe(MockVmBillJson.ssd_usage);
+    expect(bill.getTotalCost()).toBe(MockVmBillJson.total);
+    expect(bill.getZertoAdvancedStorageCost()).toBe(MockVmBillJson.zerto_advanced_cost);
+    expect(bill.getZertoAdvancedStorageUsage()).toBe(MockVmBillJson.zerto_advanced_usage);
+    expect(bill.getZertoArchiveStorageCost()).toBe(MockVmBillJson.zerto_archive_cost);
+    expect(bill.getZertoArchiveStorageUsage()).toBe(MockVmBillJson.zerto_archive_usage);
+    expect(bill.getHddStorageBurstCost()).toBe(MockVmBillJson.hdd_burst_cost);
+    expect(bill.isTestDrive()).toBe(MockVmBillJson.test_drive);
+    expect(bill.getJson()).toEqual(MockVmBillJson);
+    expect(bill.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get VM current billing summary ', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getCurrentBillingSummary().then(function(summary) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vm/${vm.getUuid()}/billing/current`);
+    expect(summary.getCurrentHour().getJson()).toEqual(MockVmBillingSummaryJson.current_hour);
+    expect(summary.getCurrentMonth().getJson()).toEqual(MockVmBillingSummaryJson.current_month);
+    expect(summary.getPreviousMonth().getJson()).toEqual(MockVmBillingSummaryJson.previous_month);
+    expect(summary.getPreviousHour().getJson()).toEqual(MockVmBillingSummaryJson.previous_hour);
+    expect(summary.isTestDrive()).toBe(MockVmBillingSummaryJson.test_drive);
+    expect(summary.getJson()).toEqual(MockVmBillingSummaryJson);
+    expect(summary.toString().length).toBeGreaterThan(0);
   });
 });

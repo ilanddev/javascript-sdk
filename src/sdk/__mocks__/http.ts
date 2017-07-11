@@ -9,6 +9,7 @@ import { MockVmBackupRestorePointsResponse } from './responses/vm/backup-restore
 import { MockVmSnapshotResponse } from './responses/vm/snapshot';
 import { MockVmScreenTicketResponse } from './responses/vm/screen-ticket';
 import { MockVmMksScreenTicketResponse } from './responses/vm/mks-screen-ticket';
+import { MockVmBillResponse, MockVmCurrentBillingSummaryResponse } from './responses/vm/bill';
 
 jest.unmock('../http');
 
@@ -74,6 +75,12 @@ export class Http {
       case /\/vm\/[^\/]+?\/mks-screen-ticket$/.test(url):
         // get vm mks screenticket
         return MockVmMksScreenTicketResponse;
+      case /\/vm\/[^\/]+?\/bill$/.test(url):
+        // get vm bill
+        return MockVmBillResponse;
+      case /\/vm\/[^\/]+?\/billing\/current$/.test(url):
+        // get vm current billing summary
+        return MockVmCurrentBillingSummaryResponse;
       default:
         return MockNotFoundResponse;
     }
