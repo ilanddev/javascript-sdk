@@ -717,6 +717,21 @@ export class Vm extends Entity {
     });
   }
 
+  /**
+   * Move the VM to a different storage profile.
+   * @returns {Promise<Task>} task promise
+   */
+  async relocate(storageProfileUuid: string): Promise<Task> {
+    let self = this;
+    let json: VmRelocationJson = {
+      storage_profile: storageProfileUuid
+    };
+    return Iland.getHttp().put(`/vm/${self.getUuid()}/storage-profile`, json).then(function(response) {
+      let json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
 }
 
 /**
@@ -770,6 +785,13 @@ export interface VmRestoreBackupJson {
  */
 export interface VmInsertMediaJson {
   media: string;
+}
+
+/**
+ * Specification for VM storage profile relocation request.
+ */
+export interface VmRelocationJson {
+  storage_profile: string;
 }
 
 /**

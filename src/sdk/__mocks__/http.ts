@@ -171,6 +171,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/virtual-hardware-version$/.test(url):
         // upgrade vms virtual hardware
         return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
+      case /\/vm\/[^\/]+?\/storage-profile$/.test(url):
+        // move VM to a different storage profile
+        return MockTaskService.getNewMockTaskResponse('relocate vm');
       default:
         return MockNotFoundResponse;
     }

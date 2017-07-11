@@ -80,12 +80,13 @@ export const MockVmBillResponse: Promise<AxiosResponse> = new Promise<AxiosRespo
   });
 });
 
-export const MockVmCurrentBillingSummaryResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
-  resolve({
-    data: MockVmBillingSummaryJson,
-    status: 200,
-    statusText: '',
-    headers: {},
-    config: {}
-  });
-});
+export const MockVmCurrentBillingSummaryResponse: Promise<AxiosResponse> =
+    new Promise<AxiosResponse>(function(resolve) {
+      resolve({
+        data: MockVmBillingSummaryJson,
+        status: 200,
+        statusText: '',
+        headers: {},
+        config: {}
+      });
+    });

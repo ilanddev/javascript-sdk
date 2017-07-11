@@ -455,3 +455,14 @@ test('Properly submits request to eject media from VM ', async() => {
     expect(task.getOperation()).toBe('eject media');
   });
 });
+
+test('Properly submits request to relocate VM to a different storage profile ', async() => {
+  const vm = new Vm(MockVmJson);
+  let storageProfileUuid = 'fake-storage-profile-uuid';
+  return vm.relocate(storageProfileUuid).then(function(task) {
+    expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.getUuid()}/storage-profile`, {
+      storage_profile: storageProfileUuid
+    });
+    expect(task.getOperation()).toBe('relocate vm');
+  });
+});
