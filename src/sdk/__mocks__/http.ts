@@ -11,6 +11,9 @@ import { MockVmScreenTicketResponse } from './responses/vm/screen-ticket';
 import { MockVmMksScreenTicketResponse } from './responses/vm/mks-screen-ticket';
 import { MockVmBillResponse, MockVmCurrentBillingSummaryResponse } from './responses/vm/bill';
 import { MockVappVmsResponse } from './responses/vapp/vms';
+import { MockVdcVappsResponse } from './responses/vdc/vapps';
+import { MockVdcVmsResponse } from './responses/vdc/vms';
+import { MockVdcResponse } from './responses/vdc/vdc';
 
 jest.unmock('../http');
 
@@ -85,6 +88,15 @@ export class Http {
       case /\/vapp\/[^\/]+?\/vms$/.test(url):
         // get a vapps child vms
         return MockVappVmsResponse;
+      case /\/vdc\/[^\/]+?$/.test(url):
+        // get a vdc
+        return MockVdcResponse;
+      case /\/vdc\/[^\/]+?\/vapps$/.test(url):
+        // get a vdcs child vapps
+        return MockVdcVappsResponse;
+      case /\/vdc\/[^\/]+?\/vms$/.test(url):
+        // get a vdcs child vms
+        return MockVdcVmsResponse;
       default:
         return MockNotFoundResponse;
     }

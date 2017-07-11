@@ -63,6 +63,7 @@ test('Parses power status correctly', () => {
 test('Properly submits request to get vApps child VMs', async() => {
   let vapp = new Vapp(MockVappJson);
   return vapp.getVms().then(function(vms) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.getUuid()}/vms`);
     expect(vms.length).toBe(MockVappVmsJson.length);
     let idx = 0;
     for (let vm of vms) {
