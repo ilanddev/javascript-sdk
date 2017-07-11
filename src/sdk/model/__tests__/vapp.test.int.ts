@@ -60,7 +60,7 @@ test('Can get vApp and verify required properties', async() => {
     expect(vapp.getVcloudHref()).toBeDefined();
     expect(vapp.getVcloudHref()).toBe(raw.vcloud_href);
     expect(vapp.getStorageProfiles()).toBeDefined();
-    expect(vapp.getStorageProfiles().length).toBeGreaterThan(0);
+    expect(vapp.getStorageProfiles()).toBeDefined();
     expect(vapp.getStorageProfiles()).toBe(raw.storage_profiles);
     expect(vapp.getPowerStatus()).toBeDefined();
     expect(vapp.getOrgUuid()).toBeDefined();
