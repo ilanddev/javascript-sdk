@@ -14,6 +14,7 @@ import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
 import { MockScreenTicketJson } from '../../__mocks__/responses/vm/screen-ticket';
 import { MockMksScreenTicketJson } from '../../__mocks__/responses/vm/mks-screen-ticket';
 import { MockVmBillingSummaryJson, MockVmBillJson } from '../../__mocks__/responses/vm/bill';
+import { VmStatus } from '../json/vm';
 
 jest.mock('../../http');
 
@@ -465,4 +466,57 @@ test('Properly submits request to relocate VM to a different storage profile ', 
     });
     expect(task.getOperation()).toBe('relocate vm');
   });
+});
+
+test('Parses power status correctly', () => {
+  let apiVm = {
+    name: '',
+    uuid: '',
+    deleted: false,
+    deleted_date: 0,
+    updated_date: 0,
+    cores_per_socket: 2,
+    cpus_number: 2,
+    created_date: null,
+    deployed: true,
+    description: '',
+    hardware_version: '',
+    inserted_media_name: '',
+    location_id: '',
+    media_inserted: false,
+    memory_size: 500,
+    org_uuid: '',
+    os: '',
+    status: 'POWERED_OFF' as VmStatus,
+    storage_profiles: [],
+    vapp_uuid: '',
+    vcenter_href: '',
+    vcenter_instance_uuid: '',
+    vcenter_moref: '',
+    vcenter_name: '',
+    vcloud_href: '',
+    vdc_uuid: '',
+    vim_datastore_ref: '',
+    vm_local_id: ''
+  };
+  let vm = new Vm(apiVm);
+  expect(vm.getPowerStatus()).toBe('PARTIALLY_POWERED_OFF');
+  apiVm.deployed = false;
+  expect(vm.getPowerStatus()).toBe('POWERED_OFF');
+  apiVm.status = 'POWERED_ON';
+  expect(vm.getPowerStatus()).toBe('POWERED_ON');
+  apiVm.status = 'WAITING_FOR_INPUT';
+  expect(vm.getPowerStatus()).toBe('WAITING_FOR_INPUT');
+  apiVm.status = 'UNRESOLVED';
+  expect(vm.getPowerStatus()).toBe('UNRESOLVED');
+  apiVm.status = 'UNRECOGNIZED';
+  expect(vm.getPowerStatus()).toBe('UNRECOGNIZED');
+  apiVm.status = 'FAILED_CREATION';
+  expect(vm.getPowerStatus()).toBe('FAILED_CREATION');
+  apiVm.status = 'UNKNOWN';
+  expect(vm.getPowerStatus()).toBe('UNKNOWN');
+  apiVm.status = 'MIXED';
+  expect(vm.getPowerStatus()).toBe('MIXED');
+  apiVm.status = 'SUSPENDED';
+  expect(vm.getPowerStatus()).toBe('SUSPENDED');
 });

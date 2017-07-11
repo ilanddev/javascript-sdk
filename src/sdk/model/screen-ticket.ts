@@ -50,7 +50,7 @@ export class ScreenTicket {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {SnapshotJson} the JSON representation
+   * @returns {ScreenTicketJson} the JSON representation
    */
   getJson(): ScreenTicketJson {
     return Object.assign({}, this._json);

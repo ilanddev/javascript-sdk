@@ -428,7 +428,7 @@ export class Bill {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {SnapshotJson} the JSON representation
+   * @returns {BillJson} the JSON representation
    */
   getJson(): BillJson {
     return Object.assign({}, this._json);

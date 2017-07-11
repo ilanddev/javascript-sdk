@@ -59,7 +59,7 @@ export class BillingSummary {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {SnapshotJson} the JSON representation
+   * @returns {BillingSummaryJson} the JSON representation
    */
   getJson(): BillingSummaryJson {
     return Object.assign({}, this._json);

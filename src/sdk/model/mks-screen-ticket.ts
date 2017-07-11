@@ -50,7 +50,7 @@ export class MksScreenTicket {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {SnapshotJson} the JSON representation
+   * @returns {MksScreenTicketJson} the JSON representation
    */
   getJson(): MksScreenTicketJson {
     return Object.assign({}, this._json);

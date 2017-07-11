@@ -10,6 +10,7 @@ import { MockVmSnapshotResponse } from './responses/vm/snapshot';
 import { MockVmScreenTicketResponse } from './responses/vm/screen-ticket';
 import { MockVmMksScreenTicketResponse } from './responses/vm/mks-screen-ticket';
 import { MockVmBillResponse, MockVmCurrentBillingSummaryResponse } from './responses/vm/bill';
+import { MockVappVmsResponse } from './responses/vapp/vms';
 
 jest.unmock('../http');
 
@@ -81,6 +82,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/billing\/current$/.test(url):
         // get vm current billing summary
         return MockVmCurrentBillingSummaryResponse;
+      case /\/vapp\/[^\/]+?\/vms$/.test(url):
+        // get a vapps child vms
+        return MockVappVmsResponse;
       default:
         return MockNotFoundResponse;
     }

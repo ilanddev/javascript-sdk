@@ -50,7 +50,7 @@ export class BillLineItem {
 
   /**
    * Gets the raw JSON object from the API.
-   * @returns {SnapshotJson} the JSON representation
+   * @returns {BillLineItemJson} the JSON representation
    */
   getJson(): BillLineItemJson {
     return Object.assign({}, this._json);
