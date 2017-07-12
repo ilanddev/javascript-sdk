@@ -19,6 +19,7 @@ import { MockOrgVappsResponse } from './responses/org/vapps';
 import { MockOrgResponse } from './responses/org/org';
 import { MockOrgVdcsResponse } from './responses/org/vdcs';
 import { MockInternalNetworkResponse } from './responses/internal-network/internal-network';
+import { MockEdgeResponse } from './responses/edge/edge';
 
 jest.unmock('../http');
 
@@ -117,6 +118,9 @@ export class Http {
       case /\/network\/[^\/]+?$/.test(url):
         // get a network
         return MockInternalNetworkResponse;
+      case /\/edge\/[^\/]+?$/.test(url):
+        // get an edge
+        return MockEdgeResponse;
       default:
         return MockNotFoundResponse;
     }
