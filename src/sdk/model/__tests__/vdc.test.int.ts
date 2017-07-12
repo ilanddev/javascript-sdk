@@ -4,7 +4,6 @@ import { Iland } from '../../iland';
 import { User } from '../user';
 import { InventoryEntity } from '../inventory';
 import { ApiError } from '../../api-error';
-import { Vapp } from '../vapp';
 import { Vdc } from '../vdc';
 
 let auth: IlandDirectGrantAuthProvider;
@@ -26,7 +25,7 @@ beforeAll(async() => {
         expect(vdcs.length).toBeGreaterThan(0);
         inventoryVdc = vdcs[0];
       } else {
-        fail('failed to get inventory vDCs for vapp integration tests');
+        fail('failed to get inventory vDCs for vDC integration tests');
       }
     });
   });
@@ -34,7 +33,7 @@ beforeAll(async() => {
 
 test('Get a proper error when trying to retrieve non-existent vDC', async() => {
   try {
-    await Vapp.getVapp('fake-uuid');
+    await Vdc.getVdc('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
     let raw = apiError.getJson();

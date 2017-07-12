@@ -18,7 +18,7 @@ beforeAll(() => {
 
 test('Properly submits request to get vDC', async() => {
   let uuid = 'test-vdc-uuid';
-  Vdc.getVdc(uuid).then(function(vdc) {
+  return Vdc.getVdc(uuid).then(function(vdc) {
     expect(Iland.getHttp().get).lastCalledWith(`/vdc/${uuid}`);
     expect(vdc.getEntityType()).toBe('VDC');
   });

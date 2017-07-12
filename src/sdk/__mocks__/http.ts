@@ -14,6 +14,10 @@ import { MockVappVmsResponse } from './responses/vapp/vms';
 import { MockVdcVappsResponse } from './responses/vdc/vapps';
 import { MockVdcVmsResponse } from './responses/vdc/vms';
 import { MockVdcResponse } from './responses/vdc/vdc';
+import { MockOrgVmsResponse } from './responses/org/vms';
+import { MockOrgVappsResponse } from './responses/org/vapps';
+import { MockOrgResponse } from './responses/org/org';
+import { MockOrgVdcsResponse } from './responses/org/vdcs';
 
 jest.unmock('../http');
 
@@ -97,6 +101,18 @@ export class Http {
       case /\/vdc\/[^\/]+?\/vms$/.test(url):
         // get a vdcs child vms
         return MockVdcVmsResponse;
+      case /\/org\/[^\/]+?$/.test(url):
+        // get a org
+        return MockOrgResponse;
+      case /\/org\/[^\/]+?\/vdcs$/.test(url):
+        // get a orgs child vdcs
+        return MockOrgVdcsResponse;
+      case /\/org\/[^\/]+?\/vapps$/.test(url):
+        // get a orgs child vapps
+        return MockOrgVappsResponse;
+      case /\/org\/[^\/]+?\/vms$/.test(url):
+        // get a orgs child vms
+        return MockOrgVmsResponse;
       default:
         return MockNotFoundResponse;
     }
