@@ -20,6 +20,8 @@ import { MockOrgResponse } from './responses/org/org';
 import { MockOrgVdcsResponse } from './responses/org/vdcs';
 import { MockInternalNetworkResponse } from './responses/internal-network/internal-network';
 import { MockEdgeResponse } from './responses/edge/edge';
+import { MockOrgInternalNetworksResponse } from './responses/org/internal-networks';
+import { MockOrgEdgesResponse } from './responses/org/edges';
 
 jest.unmock('../http');
 
@@ -121,6 +123,12 @@ export class Http {
       case /\/edge\/[^\/]+?$/.test(url):
         // get an edge
         return MockEdgeResponse;
+      case /\/org\/[^\/]+?\/vdc-networks$/.test(url):
+        // get an orgs internal networks
+        return MockOrgInternalNetworksResponse;
+      case /\/org\/[^\/]+?\/edges$/.test(url):
+        // get an orgs edges
+        return MockOrgEdgesResponse;
       default:
         return MockNotFoundResponse;
     }

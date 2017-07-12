@@ -8,6 +8,10 @@ import { VdcJson } from './json/vdc';
 import { Vapp } from './vapp';
 import { OrgJson } from './json/org';
 import { Vdc } from './vdc';
+import { Edge } from './edge';
+import { EdgeJson } from './json/edge';
+import { InternalNetwork } from './internal-network';
+import { InternalNetworkJson } from './json/internal-network';
 
 /**
  * IaaS Organization.
@@ -197,6 +201,32 @@ export class Org extends Entity {
         `/org/${self.getUuid()}/vms`).then(function(response) {
           let json = response.data as Array<VmJson>;
           return json.map((vmJson) => new Vm(vmJson));
+        });
+  }
+
+  /**
+   * Gets the Orgs child Edges.
+   * @returns {Promise<Edge[]>} promise that resolves with an array of child Edges
+   */
+  async getEdges(): Promise<Array<Edge>> {
+    let self = this;
+    return Iland.getHttp().get(
+        `/org/${self.getUuid()}/edges`).then(function(response) {
+          let json = response.data as Array<EdgeJson>;
+          return json.map((edgeJson) => new Edge(edgeJson));
+        });
+  }
+
+  /**
+   * Gets the Orgs child internal networks.
+   * @returns {Promise<InternalNetwork[]>} promise that resolves with an array of child Internal networks
+   */
+  async getInternalNetworks(): Promise<Array<InternalNetwork>> {
+    let self = this;
+    return Iland.getHttp().get(
+        `/org/${self.getUuid()}/vdc-networks`).then(function(response) {
+          let json = response.data as Array<InternalNetworkJson>;
+          return json.map((netJson) => new InternalNetwork(netJson));
         });
   }
 
