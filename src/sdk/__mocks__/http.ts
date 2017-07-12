@@ -18,6 +18,7 @@ import { MockOrgVmsResponse } from './responses/org/vms';
 import { MockOrgVappsResponse } from './responses/org/vapps';
 import { MockOrgResponse } from './responses/org/org';
 import { MockOrgVdcsResponse } from './responses/org/vdcs';
+import { MockInternalNetworkResponse } from './responses/internal-network/internal-network';
 
 jest.unmock('../http');
 
@@ -113,6 +114,9 @@ export class Http {
       case /\/org\/[^\/]+?\/vms$/.test(url):
         // get a orgs child vms
         return MockOrgVmsResponse;
+      case /\/network\/[^\/]+?$/.test(url):
+        // get a network
+        return MockInternalNetworkResponse;
       default:
         return MockNotFoundResponse;
     }
