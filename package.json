@@ -8,6 +8,7 @@
   "license": "BSD",
   "repository": " https://github.com/ilanddev/javascript-sdk",
   "scripts": {
+    "prepare": "yarn build",
     "info": "npm-scripts-info",
     "lint": "tslint --project tsconfig.json --type-check",
     "build": "yarn lint && webpack",
