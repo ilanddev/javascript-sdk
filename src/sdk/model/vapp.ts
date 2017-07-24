@@ -4,6 +4,8 @@ import { Iland } from '../iland';
 import { EntityType } from './json/entity-type';
 import { VmJson } from './json/vm';
 import { Vm } from './vm';
+import { VappNetwork } from './vapp-network';
+import { VappNetworkJson } from './json/vapp-network';
 
 /**
  * Virtual Application.
@@ -185,6 +187,19 @@ export class Vapp extends Entity {
         `/vapp/${self.getUuid()}/vms`).then(function(response) {
           let json = response.data as Array<VmJson>;
           return json.map((vmJson) => new Vm(vmJson));
+        });
+  }
+
+  /**
+   * Gets the vApps child vApp Networks.
+   * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp Networks
+   */
+  async getVappNetworks(): Promise<Array<VappNetwork>> {
+    let self = this;
+    return Iland.getHttp().get(
+        `/vapp/${self.getUuid()}/networks`).then(function(response) {
+          let json = response.data as Array<VappNetworkJson>;
+          return json.map((vappNetJson) => new VappNetwork(vappNetJson));
         });
   }
 

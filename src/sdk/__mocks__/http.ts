@@ -22,6 +22,8 @@ import { MockInternalNetworkResponse } from './responses/internal-network/intern
 import { MockEdgeResponse } from './responses/edge/edge';
 import { MockOrgInternalNetworksResponse } from './responses/org/internal-networks';
 import { MockOrgEdgesResponse } from './responses/org/edges';
+import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
+import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
 
 jest.unmock('../http');
 
@@ -96,6 +98,9 @@ export class Http {
       case /\/vapp\/[^\/]+?\/vms$/.test(url):
         // get a vapps child vms
         return MockVappVmsResponse;
+      case /\/vapp\/[^\/]+?\/networks$/.test(url):
+        // get a vapps child vapp networks
+        return MockVappVappNetworksResponse;
       case /\/vdc\/[^\/]+?$/.test(url):
         // get a vdc
         return MockVdcResponse;
@@ -119,7 +124,12 @@ export class Http {
         return MockOrgVmsResponse;
       case /\/network\/[^\/]+?$/.test(url):
         // get a network
-        return MockInternalNetworkResponse;
+        const netUuid = /\/network\/([^\/]+)$/.exec(url)![1];
+        if (netUuid.indexOf('vapp-network') > 0) {
+          return MockVappNetworkResponse;
+        } else {
+          return MockInternalNetworkResponse;
+        }
       case /\/edge\/[^\/]+?$/.test(url):
         // get an edge
         return MockEdgeResponse;

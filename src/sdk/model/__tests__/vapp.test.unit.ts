@@ -4,6 +4,7 @@ import { Vapp } from '../vapp';
 import { VappJson } from '../json/vapp';
 import { MockVappJson } from '../../__mocks__/responses/vapp/vapp';
 import { MockVappVmsJson } from '../../__mocks__/responses/vapp/vms';
+import { MockVappNetworksJson } from '../../__mocks__/responses/vapp/vapp-networks';
 
 jest.mock('../../http');
 
@@ -68,6 +69,19 @@ test('Properly submits request to get vApps child VMs', async() => {
     let idx = 0;
     for (let vm of vms) {
       expect(vm.getJson()).toEqual(MockVappVmsJson[idx]);
+      idx++;
+    }
+  });
+});
+
+test('Properly submits request to get vApps child vApp Networks', async() => {
+  let vapp = new Vapp(MockVappJson);
+  return vapp.getVappNetworks().then(function(networks) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.getUuid()}/networks`);
+    expect(networks.length).toBe(MockVappVmsJson.length);
+    let idx = 0;
+    for (let net of networks) {
+      expect(net.getJson()).toEqual(MockVappNetworksJson[idx]);
       idx++;
     }
   });
