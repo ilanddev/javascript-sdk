@@ -19,3 +19,5 @@ export * from './screen-ticket';
 export * from './snapshot';
 export * from './vapp';
 export * from './vdc';
+export * from './abstract-network';
+export * from './vapp-network';

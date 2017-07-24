@@ -22,3 +22,5 @@ export * from './snapshot';
 export * from './vapp';
 export * from './vdc';
 export * from './virtual-disk';
+export * from './vapp-network';
+export * from './abstract-network';
