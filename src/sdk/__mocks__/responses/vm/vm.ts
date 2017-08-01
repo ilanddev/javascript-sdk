@@ -1,4 +1,4 @@
-import { VmJson, VmStatus } from '../../../model/json/vm';
+import { OperatingSystem, VmJson, VmStatus } from '../../../model/json/vm';
 import { AxiosResponse } from 'axios';
 
 export const MockVmJson: VmJson = {
@@ -18,7 +18,7 @@ export const MockVmJson: VmJson = {
   media_inserted: false,
   memory_size: 500,
   org_uuid: '',
-  os: '',
+  os: 'ubuntuGuest' as OperatingSystem,
   status: 'POWERED_OFF' as VmStatus,
   storage_profiles: [],
   vapp_uuid: '',

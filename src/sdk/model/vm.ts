@@ -2,7 +2,7 @@ import { Task } from './task';
 import { Entity } from './entity';
 import { Iland } from '../iland';
 import { Vnic } from './vnic';
-import { VmJson, VmStatus } from './json/vm';
+import { OperatingSystem, VmJson, VmStatus } from './json/vm';
 import { VnicJson } from './json/vnic';
 import { TaskJson } from './json/task';
 import { EntityType } from './json/entity-type';
@@ -142,9 +142,9 @@ export class Vm extends Entity {
 
   /**
    * Gets the VM's operating system.
-   * @returns {string} operating system
+   * @returns {OperatingSystem} operating system
    */
-  getOperatingSystem(): string {
+  getOperatingSystem(): OperatingSystem {
     return this._apiVm.os;
   }
 

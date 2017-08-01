@@ -14,7 +14,7 @@ import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
 import { MockScreenTicketJson } from '../../__mocks__/responses/vm/screen-ticket';
 import { MockMksScreenTicketJson } from '../../__mocks__/responses/vm/mks-screen-ticket';
 import { MockVmBillingSummaryJson, MockVmBillJson } from '../../__mocks__/responses/vm/bill';
-import { VmStatus } from '../json/vm';
+import { OperatingSystem, VmStatus } from '../json/vm';
 
 jest.mock('../../http');
 
@@ -486,7 +486,7 @@ test('Parses power status correctly', () => {
     media_inserted: false,
     memory_size: 500,
     org_uuid: '',
-    os: '',
+    os: 'ubuntuGuest' as OperatingSystem,
     status: 'POWERED_OFF' as VmStatus,
     storage_profiles: [],
     vapp_uuid: '',
