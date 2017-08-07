@@ -24,6 +24,7 @@ import { MockOrgInternalNetworksResponse } from './responses/org/internal-networ
 import { MockOrgEdgesResponse } from './responses/org/edges';
 import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
 import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
+import { MockOrgVappNetworksResponse } from './responses/org/vapp-networks';
 
 jest.unmock('../http');
 
@@ -136,6 +137,9 @@ export class Http {
       case /\/org\/[^\/]+?\/vdc-networks$/.test(url):
         // get an orgs internal networks
         return MockOrgInternalNetworksResponse;
+      case /\/org\/[^\/]+?\/vapp-networks$/.test(url):
+        // get an orgs vapp networks
+        return MockOrgVappNetworksResponse;
       case /\/org\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;

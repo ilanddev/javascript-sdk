@@ -12,6 +12,8 @@ import { Edge } from './edge';
 import { EdgeJson } from './json/edge';
 import { InternalNetwork } from './internal-network';
 import { InternalNetworkJson } from './json/internal-network';
+import { VappNetwork } from './vapp-network';
+import { VappNetworkJson } from './json/vapp-network';
 
 /**
  * IaaS Organization.
@@ -227,6 +229,19 @@ export class Org extends Entity {
         `/org/${self.getUuid()}/vdc-networks`).then(function(response) {
           let json = response.data as Array<InternalNetworkJson>;
           return json.map((netJson) => new InternalNetwork(netJson));
+        });
+  }
+
+  /**
+   * Gets the Orgs child vApp networks.
+   * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp networks
+   */
+  async getVappNetworks(): Promise<Array<VappNetwork>> {
+    let self = this;
+    return Iland.getHttp().get(
+        `/org/${self.getUuid()}/vapp-networks`).then(function(response) {
+          let json = response.data as Array<VappNetworkJson>;
+          return json.map((netJson) => new VappNetwork(netJson));
         });
   }
 

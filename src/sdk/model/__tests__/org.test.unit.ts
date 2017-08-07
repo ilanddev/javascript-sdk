@@ -7,6 +7,7 @@ import { MockOrgVmsJson } from '../../__mocks__/responses/org/vms';
 import { MockOrgVdcsJson } from '../../__mocks__/responses/org/vdcs';
 import { MockOrgEdgesJson } from '../../__mocks__/responses/org/edges';
 import { MockOrgInternalNetworksJson } from '../../__mocks__/responses/org/internal-networks';
+import { MockOrgVappNetworksJson } from '../../__mocks__/responses/org/vapp-networks';
 
 jest.mock('../../http');
 
@@ -87,6 +88,19 @@ test('Properly submits request to get Orgs child internal networks', async() => 
     let idx = 0;
     for (let net of nets) {
       expect(net.getJson()).toEqual(MockOrgInternalNetworksJson[idx]);
+      idx++;
+    }
+  });
+});
+
+test('Properly submits request to get Orgs child vapp networks', async() => {
+  let org = new Org(MockOrgJson);
+  return org.getVappNetworks().then(function(nets) {
+    expect(Iland.getHttp().get).lastCalledWith(`/org/${org.getUuid()}/vapp-networks`);
+    expect(nets.length).toBe(MockOrgVappNetworksJson.length);
+    let idx = 0;
+    for (let net of nets) {
+      expect(net.getJson()).toEqual(MockOrgVappNetworksJson[idx]);
       idx++;
     }
   });
