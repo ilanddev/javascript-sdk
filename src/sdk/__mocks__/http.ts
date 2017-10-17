@@ -25,6 +25,7 @@ import { MockOrgEdgesResponse } from './responses/org/edges';
 import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
 import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
 import { MockOrgVappNetworksResponse } from './responses/org/vapp-networks';
+import { MockCompanyResponse } from './responses/company/company';
 
 jest.unmock('../http');
 
@@ -143,6 +144,9 @@ export class Http {
       case /\/org\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
+      case /\/companies\/[^\/]+?$/.test(url):
+        // get a company
+        return MockCompanyResponse;
       default:
         return MockNotFoundResponse;
     }

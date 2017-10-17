@@ -14,4 +14,5 @@ export type EntityType = 'COMPANY' |
   'VAPP_TEMPLATE' |
   'MEDIA' |
   'EXTERNAL_NETWORK' |
-  'VCC_TENANT';
+  'VCC_TENANT' |
+  'COMPANY';
