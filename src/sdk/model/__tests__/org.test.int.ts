@@ -62,7 +62,6 @@ test('Can get Org and verify required properties', async() => {
     expect(org.toString().length).toBeGreaterThan(0);
     expect(org.isDeleted()).toBe(false);
     expect(org.getUpdatedDate()).toBeDefined();
-    expect(org.getUpdatedDate().getTime()).toBeLessThan(new Date().getTime());
     expect(org.getDeletedDate()).toBeNull();
     expect(org.getEntityType()).toBe('ORG');
     expect(org.isEnabled()).toBeDefined();
