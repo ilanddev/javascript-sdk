@@ -1,7 +1,7 @@
 import { AuthProvider } from './auth/auth-provider';
 import { Http } from './http';
 
-const DEFAULT_API_URL = 'https://api.ilandcloud.com/ecs';
+const DEFAULT_API_URL = 'https://api.ilandcloud.com/v1';
 
 export abstract class Iland {
 
