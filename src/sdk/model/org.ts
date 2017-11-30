@@ -36,7 +36,7 @@ export class Org extends Entity {
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'ORG';
   }
 
@@ -44,7 +44,7 @@ export class Org extends Entity {
    * Indicates whether the Org is enabled.
    * @returns {boolean} value
    */
-  isEnabled(): boolean {
+  get enabled(): boolean {
     return this._json.enabled;
   }
 
@@ -52,7 +52,7 @@ export class Org extends Entity {
    * Gets the description.
    * @returns {string} description
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -60,7 +60,7 @@ export class Org extends Entity {
    * Gets the vCloud HREF
    * @returns {string} vCloud HREF
    */
-  getVcloudHref(): string {
+  get vcloudHref(): string {
     return this._json.vcloud_href;
   }
 
@@ -68,7 +68,7 @@ export class Org extends Entity {
    * Gets the datacenter location identifier.
    * @returns {string} location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._json.location_id;
   }
 
@@ -76,7 +76,7 @@ export class Org extends Entity {
    * Gets the Orgs max vApp runtime lease setting.
    * @returns {number} vApp max runtime lease
    */
-  getVappMaxRuntimeLease(): number {
+  get vappMaxRuntimeLease(): number {
     return this._json.vapp_max_runtime_lease;
   }
 
@@ -84,7 +84,7 @@ export class Org extends Entity {
    * Gets the vApps max storage lease setting.
    * @returns {number} vApp max storage lease
    */
-  getVappMaxStorageLease(): number {
+  get vappMaxStorageLease(): number {
     return this._json.vapp_max_storage_lease;
   }
 
@@ -92,7 +92,7 @@ export class Org extends Entity {
    * Gets the Orgs vApp template max storage lease setting.
    * @returns {number} vApp template max storage lease
    */
-  getVappTemplateMaxStorageLease(): number {
+  get vappTemplateMaxStorageLease(): number {
     return this._json.vapp_template_max_storage_lease;
   }
 
@@ -101,7 +101,7 @@ export class Org extends Entity {
    * as an expired item.
    * @returns {boolean} value
    */
-  isVappDeletedOnStorageLeaseExpiration(): boolean {
+  get vappDeletedOnStorageLeaseExpiration(): boolean {
     return this._json.vapp_delete_on_storage_expire;
   }
 
@@ -110,7 +110,7 @@ export class Org extends Entity {
    * being marked as an expired item.
    * @returns {boolean} value
    */
-  isVappTemplateDeletedOnStorageLeaseExpiration(): boolean {
+  get vappTemplateDeletedOnStorageLeaseExpiration(): boolean {
     return this._json.vapp_template_delete_on_storage_expire;
   }
 
@@ -118,7 +118,7 @@ export class Org extends Entity {
    * Indicates whether the Org is a Zerto continuity target.
    * @returns {boolean} value
    */
-  isZertoTarget(): boolean {
+  get zertoTarget(): boolean {
     return this._json.zerto_target;
   }
 
@@ -126,7 +126,7 @@ export class Org extends Entity {
    * Gets the full name of the organization.
    * @returns {string} full name
    */
-  getFullName(): string {
+  get fullName(): string {
     return this._json.fullname;
   }
 
@@ -134,7 +134,7 @@ export class Org extends Entity {
    * Gets the company ID (CRM).
    * @returns {string} company ID
    */
-  getCompanyId(): string {
+  get companyId(): string {
     return this._json.crm;
   }
 
@@ -150,7 +150,7 @@ export class Org extends Entity {
    * Gets the raw JSON object from the API.
    * @returns {OrgJson} the API json object
    */
-  getJson(): OrgJson {
+  get json(): OrgJson {
     return Object.assign({}, this._json);
   }
 
@@ -161,7 +161,7 @@ export class Org extends Entity {
   async refresh(): Promise<Org> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}`).then(function(response) {
+        `/org/${self.uuid}`).then(function(response) {
           self._json = response.data as OrgJson;
           return self;
         });
@@ -174,7 +174,7 @@ export class Org extends Entity {
   async getVdcs(): Promise<Array<Vdc>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/vdcs`).then(function(response) {
+        `/org/${self.uuid}/vdcs`).then(function(response) {
           let json = response.data as Array<VdcJson>;
           return json.map((vdcJson) => new Vdc(vdcJson));
         });
@@ -187,7 +187,7 @@ export class Org extends Entity {
   async getVapps(): Promise<Array<Vapp>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/vapps`).then(function(response) {
+        `/org/${self.uuid}/vapps`).then(function(response) {
           let json = response.data as Array<VappJson>;
           return json.map((vappJson) => new Vapp(vappJson));
         });
@@ -200,7 +200,7 @@ export class Org extends Entity {
   async getVms(): Promise<Array<Vm>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/vms`).then(function(response) {
+        `/org/${self.uuid}/vms`).then(function(response) {
           let json = response.data as Array<VmJson>;
           return json.map((vmJson) => new Vm(vmJson));
         });
@@ -213,7 +213,7 @@ export class Org extends Entity {
   async getEdges(): Promise<Array<Edge>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/edges`).then(function(response) {
+        `/org/${self.uuid}/edges`).then(function(response) {
           let json = response.data as Array<EdgeJson>;
           return json.map((edgeJson) => new Edge(edgeJson));
         });
@@ -226,7 +226,7 @@ export class Org extends Entity {
   async getInternalNetworks(): Promise<Array<InternalNetwork>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/vdc-networks`).then(function(response) {
+        `/org/${self.uuid}/vdc-networks`).then(function(response) {
           let json = response.data as Array<InternalNetworkJson>;
           return json.map((netJson) => new InternalNetwork(netJson));
         });
@@ -239,7 +239,7 @@ export class Org extends Entity {
   async getVappNetworks(): Promise<Array<VappNetwork>> {
     let self = this;
     return Iland.getHttp().get(
-        `/org/${self.getUuid()}/vapp-networks`).then(function(response) {
+        `/org/${self.uuid}/vapp-networks`).then(function(response) {
           let json = response.data as Array<VappNetworkJson>;
           return json.map((netJson) => new VappNetwork(netJson));
         });

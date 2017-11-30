@@ -1,8 +1,19 @@
 var webpack = require('webpack'),
-    path = require('path');
+    path = require('path'),
+    yargs = require('yargs');
 
 var libraryName = 'iland',
-    outputFile = libraryName + ".js";
+    outputFile;
+
+var plugins = [];
+
+if (yargs.argv.p) {
+  plugins.push(new DtsBundlePlugin());
+  plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true}));
+  outputFile = libraryName + ".min.js";
+} else {
+  outputFile = libraryName + ".js";
+}
 
 var config = {
   entry: './src/index.ts',
@@ -10,7 +21,8 @@ var config = {
     filename: outputFile,
     path: path.resolve(__dirname, 'build'),
     library: libraryName,
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    umdNamedDefine: true
   },
   externals: {
     "axios": {
@@ -25,11 +37,11 @@ var config = {
       amd: "keycloak-js",
       root: "keycloak-js"
     },
-    "rxjs-es": {
-      commonjs: "rxjs-es",
-      commonjs2: "rxjs-es",
-      amd: "rxjs-es",
-      root: "rxjs-es"
+    "rxjs": {
+      commonjs: "rxjs",
+      commonjs2: "rxjs",
+      amd: "rxjs",
+      root: "rxjs"
     },
     "tslib": {
       commonjs: "tslib",
@@ -49,7 +61,24 @@ var config = {
         exclude: /.*?node_modules/,
         loader: "ts-loader" }
     ]
-  }
+  },
+  plugins: plugins
 };
 
 module.exports = config;
+
+function DtsBundlePlugin() {
+}
+
+DtsBundlePlugin.prototype.apply = function(compiler) {
+  compiler.plugin('done', function() {
+    var dts = require('dts-bundle');
+    dts.bundle({
+      name: libraryName,
+      main: 'build/build/src/index.d.ts',
+      out: '../../' + libraryName + '.d.ts',
+      removeSource: true,
+      outputAsModuleFolder: true
+    });
+  });
+};

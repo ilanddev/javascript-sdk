@@ -2,6 +2,14 @@ import { Observable, Subject } from 'rxjs';
 import { Iland } from '../iland';
 import { TaskJson, TaskOperation, TaskStatus, TaskType } from './json/task';
 
+const TASK_CONFIG = {
+  baseURL: 'https://api.ilandcloud.com/ecs',
+  headers: {
+    'Accept': 'application/vnd.ilandcloud.api.v0.9+json',
+    'Content-Type': 'application/vnd.ilandcloud.api.v0.9+json'
+  }
+};
+
 /**
  * Task.
  */
@@ -19,7 +27,7 @@ export class Task {
    * @returns {Promise<Task>} promise that resolves with the Task
    */
   static async getTask(locationId: string, taskUuid: string): Promise<Task> {
-    return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`).then(function(response) {
+    return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`, TASK_CONFIG).then(function(response) {
       let apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -29,7 +37,7 @@ export class Task {
    * Gets the UUID of the task.
    * @returns {string} UUID
    */
-  getUuid(): string {
+  get uuid(): string {
     return this._apiTask.uuid;
   }
 
@@ -37,7 +45,7 @@ export class Task {
    * Gets the datacenter location ID of the task.
    * @returns {string} datacenter location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._apiTask.location_id;
   }
 
@@ -45,7 +53,7 @@ export class Task {
    * Indicates whether the task is complete.
    * @returns {boolean} value
    */
-  isComplete(): boolean {
+  get complete(): boolean {
     return this._apiTask.synchronized;
   }
 
@@ -53,14 +61,14 @@ export class Task {
    * Indicates the status of the task.
    * @returns {TaskStatus} task status
    */
-  getStatus(): TaskStatus {
+  get status(): TaskStatus {
     return this._apiTask.status;
   }
 
   /**
    * Gets the task's operation identifier.
    */
-  getOperation(): TaskOperation {
+  get operation(): TaskOperation {
     return this._apiTask.operation;
   }
 
@@ -68,7 +76,7 @@ export class Task {
    * Gets the end time of the task.
    * @returns {Date|null} end time of the task or null if the task hasn't yet completed
    */
-  getEndTime(): Date|null {
+  get endTime(): Date|null {
     return this._apiTask.end_time !== null ? new Date(this._apiTask.end_time) : null;
   }
 
@@ -76,7 +84,7 @@ export class Task {
    * Gets the UUID of the entity that is associated with the task.
    * @returns {string} the UUID of the associated entity
    */
-  getEntityUuid(): string {
+  get entityUuid(): string {
     return this._apiTask.entity_uuid;
   }
 
@@ -84,7 +92,7 @@ export class Task {
    * Indicates whether the task was initiated from the iland API.
    * @returns {boolean} value
    */
-  isInitiatedFromIlandApi(): boolean {
+  get initiatedFromIlandApi(): boolean {
     return this._apiTask.initiated_from_ecs;
   }
 
@@ -92,7 +100,7 @@ export class Task {
    * Gets the date/time that the task was received/queued by the API.
    * @returns {Date} the date that the task was initiated
    */
-  getInitiationTime(): Date {
+  get initiationTime(): Date {
     return new Date(this._apiTask.initiation_time);
   }
 
@@ -101,7 +109,7 @@ export class Task {
    * ended with an error status.
    * @returns {string|null} message string or null if no message is associated with the task
    */
-  getMessage(): string|null {
+  get message(): string|null {
     return this._apiTask.message;
   }
 
@@ -109,14 +117,14 @@ export class Task {
    * Returns an operation description that may provide more detail about the operation that the task is associated with.
    * @returns {string} description
    */
-  getOperationDescription(): string {
+  get operationDescription(): string {
     return this._apiTask.operation_description;
   }
 
   /**
    * Returns the UUID of the organization that the task is associated with.
    */
-  getOrgUuid(): string {
+  get orgUuid(): string {
     return this._apiTask.org_uuid;
   }
 
@@ -124,7 +132,7 @@ export class Task {
    * Gets a map of additional task details that are specific to the task operation type.
    * @returns {Map<string, any>} map of other task attributes
    */
-  getOtherAttributes(): Map<string, any> {
+  get otherAttributes(): Map<string, any> {
     return this._apiTask.other_attributes;
   }
 
@@ -132,7 +140,7 @@ export class Task {
    * If this is a sub-task, returns the UUID of the parent task, otherwise null.
    * @returns {string|null} returns the UUID of the parent task
    */
-  getParentTaskUuid(): string|null {
+  get parentTaskUuid(): string|null {
     return this._apiTask.parent_task_uuid;
   }
 
@@ -140,7 +148,7 @@ export class Task {
    * Gets the task progress as a percentage.
    * @returns {number} in the range 0-100
    */
-  getProgress(): number {
+  get progress(): number {
     return this._apiTask.progress;
   }
 
@@ -148,7 +156,7 @@ export class Task {
    * Gets the start time of the task, if the task has started. If the task is still queued, returns null.
    * @returns {Date|null} the start time of the task or null
    */
-  getStartTime(): Date|null {
+  get startTime(): Date|null {
     return this._apiTask.start_time === null ? null : new Date(this._apiTask.start_time);
   }
 
@@ -156,7 +164,7 @@ export class Task {
    * Gets the task's sub-tasks, if this is a composite task.
    * @returns {Array<string>}
    */
-  getSubTasks(): Array<string> {
+  get subTasks(): Array<string> {
     return this._apiTask.sub_tasks;
   }
 
@@ -165,7 +173,7 @@ export class Task {
    * the task known to that service. Otherwise returns Uhe task UUID.
    * @returns {string} the ID of the task
    */
-  getTaskId(): string {
+  get taskId(): string {
     return this._apiTask.task_id;
   }
 
@@ -173,7 +181,7 @@ export class Task {
    * Gets the task type.
    * @returns {TaskType} the type of the task
    */
-  getTaskType(): TaskType {
+  get taskType(): TaskType {
     return this._apiTask.task_type;
   }
 
@@ -181,7 +189,7 @@ export class Task {
    * Gets the username of the user that initiated the task.
    * @returns {string} username of the initiating user
    */
-  getUsername(): string {
+  get username(): string {
     return this._apiTask.username;
   }
 
@@ -189,7 +197,7 @@ export class Task {
    * Gets the full name of the user that initiated the task.
    * @returns {string} full name of the user that initiated the task
    */
-  getUserFullName(): string {
+  get userFullName(): string {
     return this._apiTask.user_full_name;
   }
 
@@ -205,7 +213,7 @@ export class Task {
    * Gets the raw JSON object from the API.
    * @returns {TaskJson} the API Task object
    */
-  getJson(): TaskJson {
+  get json(): TaskJson {
     return Object.assign({}, this._apiTask);
   }
 
@@ -215,7 +223,7 @@ export class Task {
    */
   async refresh(): Promise<Task> {
     let self = this;
-    return Iland.getHttp().get(`/task/${self.getLocationId()}/${self.getUuid()}`).then(function(response) {
+    return Iland.getHttp().get(`/task/${self.locationId}/${self.uuid}`, TASK_CONFIG).then(function(response) {
       self._apiTask = response.data as TaskJson;
       return self;
     });
@@ -228,16 +236,16 @@ export class Task {
   async getPromise(): Promise<Task> {
     let self = this;
     return new Promise<Task>(function(resolve, reject) {
-      if (self.isComplete()) {
-        if (self.getStatus() === 'error') {
+      if (self.complete) {
+        if (self.status === 'error') {
           reject(self);
         } else {
           resolve(self);
         }
       } else {
         self.getObservable().subscribe(function(task) {
-          if (task.isComplete()) {
-            if (task.getStatus() === 'error') {
+          if (task.complete) {
+            if (task.status === 'error') {
               reject(task);
             } else {
               resolve(task);
@@ -267,7 +275,7 @@ export class Task {
     let subject = self._subject as Subject<Task>;
     return self.refresh().then(function(task) {
       subject.next(task);
-      if (task.isComplete()) {
+      if (task.complete) {
         subject.complete();
         return self;
       } else {

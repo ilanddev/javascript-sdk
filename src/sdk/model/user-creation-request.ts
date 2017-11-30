@@ -5,7 +5,40 @@ import { UserCreationRequestJson } from './json/user-creation-request';
  */
 export class UserCreationRequest {
 
-  constructor(private _json: UserCreationRequestJson) {
+  public domain: string;
+  public username: string;
+  public fullName: string;
+  public email: string;
+  public password: string;
+
+  /**
+   * Creates a new user creation request.
+   * @param {string} domain the users' domain
+   * @param {string} username the user's username
+   * @param {string} fullName the users's full name
+   * @param {string} email the user's email address
+   * @param {string} password the user's initial password
+   */
+  constructor(domain: string, username: string, fullName: string, email: string, password: string) {
+    this.domain = domain;
+    this.username = username;
+    this.fullName = fullName;
+    this.email = email;
+    this.password = password;
+  }
+
+  /**
+   * Gets the raw JSON object from the API.
+   * @returns {UserCreationRequestJson} the JSON representation
+   */
+  get json(): UserCreationRequestJson {
+    return {
+      password: this.password,
+      domain: this.domain,
+      fullname: this.fullName,
+      email: this.email,
+      name: this.username
+    };
   }
 
   /**
@@ -13,15 +46,7 @@ export class UserCreationRequest {
    * @returns {string}
    */
   toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
-   * Gets the raw JSON object from the API.
-   * @returns {UserCreationRequestJson} the JSON representation
-   */
-  getJson(): UserCreationRequestJson {
-    return Object.assign({}, this._json);
+    return JSON.stringify(this.json, undefined, 2);
   }
 
 }

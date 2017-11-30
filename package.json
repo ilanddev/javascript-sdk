@@ -1,9 +1,9 @@
 {
   "name": "iland-sdk",
-  "version": "0.8.2",
+  "version": "1.0.0",
   "description": "SDK for the ilandcloud REST API",
   "main": "build/iland.js",
-  "typings": "build/src/index.d.ts",
+  "typings": "build/iland.d.ts",
   "author": "csnyder@iland.com",
   "license": "BSD",
   "repository": " https://github.com/ilanddev/javascript-sdk",
@@ -11,7 +11,8 @@
     "prepare": "yarn build",
     "info": "npm-scripts-info",
     "lint": "tslint --project tsconfig.json --type-check",
-    "build": "yarn lint && webpack",
+    "prepublish": "yarn build",
+    "build": "yarn lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
     "test": "jest --coverage --maxWorkers 2",
     "docs": "typedoc src/index.ts --excludePrivate --exclude **/__*__/**/* --mode file --theme minimal --out build/docs",
     "publish:docs": "yarn docs && cp circle.yml build/docs && gh-pages -d build/docs"
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@types/jest": "20.0.2",
     "@types/node": "7.0.12",
+    "dts-bundle": "^0.7.3",
     "gh-pages": "1.0.0",
     "jest": "20.0.4",
     "ts-jest": "20.0.6",

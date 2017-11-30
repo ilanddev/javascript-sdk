@@ -17,37 +17,39 @@ beforeAll(() => {
 
 test('Can get current user and verify required properties', async() => {
   return User.getCurrentUser().then(function(user) {
-    let raw = user.getJson();
-    expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
-    expect(user.getCreatedDate()).toBeDefined();
-    expect(user.getCreatedDate().getTime()).toBe(raw.created_date);
-    expect(user.getCrm()).toBeDefined();
-    expect(user.getCrm()).toBe(raw.crm);
-    expect(user.getEmail()).toBeDefined();
-    expect(user.getEmail()).toBe(raw.email);
-    expect(user.getDeletedDate()).toBeNull();
-    expect(user.getFullName()).toBeDefined();
-    expect(user.getFullName().length).toBeGreaterThan(1);
-    expect(user.getFullName()).toBe(raw.fullname);
-    expect(user.isDeleted()).toBe(false);
-    expect(user.isLocked()).toBe(false);
-    expect(user.getUserType()).toEqual('CUSTOMER');
-    expect(user.toString()).toContain(user.getUsername());
-    expect(user.getAddress()).toBe(raw.address);
-    expect(user.getEmail()).toBe(raw.email);
-    expect(user.getCity()).toBe(raw.city);
-    expect(user.getCompany()).toBe(raw.company);
-    expect(user.getCountry()).toBe(raw.country);
-    expect(user.getPhoneNumber()).toBe(raw.phone);
-    expect(user.getState()).toBe(raw.state);
-    expect(user.getZip()).toBe(raw.zip);
+    let raw = user.json;
+    expect(user.username).toEqual(TestConfiguration.getUsername());
+    expect(user.createdDate).toBeDefined();
+    expect(user.createdDate.getTime()).toBe(raw.created_date);
+    expect(user.email).toBeDefined();
+    expect(user.email).toBe(raw.email);
+    expect(user.deletedDate).toBeNull();
+    expect(user.fullName).toBeDefined();
+    expect(user.fullName.length).toBeGreaterThan(1);
+    expect(user.fullName).toBe(raw.fullname);
+    expect(user.deleted).toBe(false);
+    expect(user.locked).toBe(false);
+    expect(user.userType).toEqual('CUSTOMER');
+    expect(user.toString()).toContain(user.username);
+    expect(user.address).toBe(raw.address);
+    expect(user.email).toBe(raw.email);
+    expect(user.city).toBe(raw.city);
+    expect(user.company).toBe(raw.company);
+    expect(user.country).toBe(raw.country);
+    expect(user.phoneNumber).toBe(raw.phone);
+    expect(user.state).toBe(raw.state);
+    expect(user.zip).toBe(raw.zip);
   });
 });
 
 test('Can get current user and verify required properties', async() => {
   return User.getCurrentUser().then(async function(user) {
-    return user.getInventory().then(inventory => {
-      let vms = inventory.getEntitiesByType('VM');
+    return user.getInventory().then(inventories => {
+      if (inventories.length === 0) {
+        throw Error('no company inventories returned for test user, cant perform test.');
+      }
+      const inventory = inventories[0];
+      let vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
       expect(vms).toBeDefined();
       if (vms !== undefined) {
         expect(vms.length).toBeGreaterThan(0);
@@ -65,17 +67,16 @@ test('Can get current user and verify required properties', async() => {
 test('Test user refresh', async() => {
   return User.getCurrentUser().then(async function(user) {
     return user.refresh().then(function(user) {
-      expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
-      expect(user.getCreatedDate()).toBeDefined();
-      expect(user.getCrm()).toBeDefined();
-      expect(user.getEmail()).toBeDefined();
-      expect(user.getDeletedDate()).toBeNull();
-      expect(user.getFullName()).toBeDefined();
-      expect(user.getFullName().length).toBeGreaterThan(1);
-      expect(user.isDeleted()).toBe(false);
-      expect(user.isLocked()).toBe(false);
-      expect(user.getUserType()).toEqual('CUSTOMER');
-      expect(user.toString()).toContain(user.getUsername());
+      expect(user.username).toEqual(TestConfiguration.getUsername());
+      expect(user.createdDate).toBeDefined();
+      expect(user.email).toBeDefined();
+      expect(user.deletedDate).toBeNull();
+      expect(user.fullName).toBeDefined();
+      expect(user.fullName.length).toBeGreaterThan(1);
+      expect(user.deleted).toBe(false);
+      expect(user.locked).toBe(false);
+      expect(user.userType).toEqual('CUSTOMER');
+      expect(user.toString()).toContain(user.username);
     });
   });
 });

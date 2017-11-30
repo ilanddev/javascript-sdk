@@ -1020,12 +1020,12 @@ iland_sdk_1.User.getCurrentUser().then(function (you) {
 	if(true)
 		module.exports = factory(__webpack_require__(13), __webpack_require__(14), __webpack_require__(33));
 	else if(typeof define === 'function' && define.amd)
-		define(["tslib", "axios", "keycloak-js"], factory);
+		define("iland", ["tslib", "axios", "keycloak-js"], factory);
 	else if(typeof exports === 'object')
 		exports["iland"] = factory(require("tslib"), require("axios"), require("keycloak-js"));
 	else
 		root["iland"] = factory(root["tslib"], root["axios"], root["keycloak-js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_41__, __WEBPACK_EXTERNAL_MODULE_364__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_48__, __WEBPACK_EXTERNAL_MODULE_391__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -1088,7 +1088,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 77);
+/******/ 	return __webpack_require__(__webpack_require__.s = 100);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1097,9 +1097,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
-var toSubscriber_1 = __webpack_require__(80);
-var observable_1 = __webpack_require__(24);
+var root_1 = __webpack_require__(8);
+var toSubscriber_1 = __webpack_require__(104);
+var observable_1 = __webpack_require__(25);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
  * of RxJS.
@@ -1364,10 +1364,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(22);
-var Subscription_1 = __webpack_require__(4);
-var Observer_1 = __webpack_require__(47);
-var rxSubscriber_1 = __webpack_require__(23);
+var isFunction_1 = __webpack_require__(23);
+var Subscription_1 = __webpack_require__(5);
+var Observer_1 = __webpack_require__(53);
+var rxSubscriber_1 = __webpack_require__(24);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -1665,14 +1665,14 @@ exports.OuterSubscriber = OuterSubscriber;
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
-var isArrayLike_1 = __webpack_require__(49);
-var isPromise_1 = __webpack_require__(50);
-var isObject_1 = __webpack_require__(45);
+var root_1 = __webpack_require__(8);
+var isArrayLike_1 = __webpack_require__(55);
+var isPromise_1 = __webpack_require__(56);
+var isObject_1 = __webpack_require__(51);
 var Observable_1 = __webpack_require__(0);
-var iterator_1 = __webpack_require__(16);
-var InnerSubscriber_1 = __webpack_require__(89);
-var observable_1 = __webpack_require__(24);
+var iterator_1 = __webpack_require__(18);
+var InnerSubscriber_1 = __webpack_require__(113);
+var observable_1 = __webpack_require__(25);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
     if (destination.closed) {
@@ -1745,16 +1745,22 @@ exports.subscribeToResult = subscribeToResult;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var isArray_1 = __webpack_require__(10);
-var isObject_1 = __webpack_require__(45);
-var isFunction_1 = __webpack_require__(22);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
-var UnsubscriptionError_1 = __webpack_require__(46);
+var isArray_1 = __webpack_require__(12);
+var isObject_1 = __webpack_require__(51);
+var isFunction_1 = __webpack_require__(23);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
+var UnsubscriptionError_1 = __webpack_require__(52);
 /**
  * Represents a disposable resource, such as the execution of an Observable. A
  * Subscription has one important method, `unsubscribe`, that takes no argument
@@ -1943,7 +1949,7 @@ function flattenUnsubscriptionErrors(errors) {
 //# sourceMappingURL=Subscription.js.map
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1955,10 +1961,10 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(0);
 var Subscriber_1 = __webpack_require__(1);
-var Subscription_1 = __webpack_require__(4);
-var ObjectUnsubscribedError_1 = __webpack_require__(25);
-var SubjectSubscription_1 = __webpack_require__(48);
-var rxSubscriber_1 = __webpack_require__(23);
+var Subscription_1 = __webpack_require__(5);
+var ObjectUnsubscribedError_1 = __webpack_require__(26);
+var SubjectSubscription_1 = __webpack_require__(54);
+var rxSubscriber_1 = __webpack_require__(24);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -2117,7 +2123,7 @@ exports.AnonymousSubject = AnonymousSubject;
 //# sourceMappingURL=Subject.js.map
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2127,7 +2133,7 @@ exports.errorObject = { e: {} };
 //# sourceMappingURL=errorObject.js.map
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2150,15 +2156,15 @@ exports.root = _root;
     }
 })();
 //# sourceMappingURL=root.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var errorObject_1 = __webpack_require__(6);
+var errorObject_1 = __webpack_require__(7);
 var tryCatchTarget;
 function tryCatcher() {
     try {
@@ -2178,13 +2184,13 @@ exports.tryCatch = tryCatch;
 //# sourceMappingURL=tryCatch.js.map
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var AsyncAction_1 = __webpack_require__(18);
-var AsyncScheduler_1 = __webpack_require__(19);
+var AsyncAction_1 = __webpack_require__(20);
+var AsyncScheduler_1 = __webpack_require__(21);
 /**
  *
  * Async Scheduler
@@ -2231,7 +2237,41 @@ exports.async = new AsyncScheduler_1.AsyncScheduler(AsyncAction_1.AsyncAction);
 //# sourceMappingURL=async.js.map
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(47);
+var DEFAULT_API_URL = 'http://10.11.16.16:8080/v1';
+var Iland = (function () {
+    function Iland() {
+    }
+    Iland.init = function (_authProvider, _config) {
+        this._authProvider = _authProvider;
+        var baseUrl = _config !== undefined && _config.baseUrl ? _config.baseUrl : DEFAULT_API_URL;
+        this._http = new http_1.Http(baseUrl);
+    };
+    Iland.getAuthProvider = function () {
+        if (Iland._authProvider === undefined) {
+            throw new Error('The Iland SDK has not yet been initialized.');
+        }
+        return Iland._authProvider;
+    };
+    Iland.getHttp = function () {
+        if (Iland._http === undefined) {
+            throw new Error('The Iland SDK has not yet been initialized.');
+        }
+        return Iland._http;
+    };
+    return Iland;
+}());
+exports.Iland = Iland;
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2240,7 +2280,7 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 //# sourceMappingURL=isArray.js.map
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2252,7 +2292,7 @@ exports.isScheduler = isScheduler;
 //# sourceMappingURL=isScheduler.js.map
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2263,9 +2303,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var ScalarObservable_1 = __webpack_require__(32);
-var EmptyObservable_1 = __webpack_require__(13);
-var isScheduler_1 = __webpack_require__(11);
+var ScalarObservable_1 = __webpack_require__(34);
+var EmptyObservable_1 = __webpack_require__(16);
+var isScheduler_1 = __webpack_require__(13);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -2380,7 +2420,81 @@ exports.ArrayObservable = ArrayObservable;
 //# sourceMappingURL=ArrayObservable.js.map
 
 /***/ }),
-/* 13 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Entity.
+ */
+var Entity = (function () {
+    function Entity(_apiEntity) {
+        this._apiEntity = _apiEntity;
+    }
+    Object.defineProperty(Entity.prototype, "name", {
+        /**
+         * Gets the name.
+         * @returns {string} name
+         */
+        get: function () {
+            return this._apiEntity.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Entity.prototype, "uuid", {
+        /**
+         * Gets the UUID.
+         * @returns {string} UUID
+         */
+        get: function () {
+            return this._apiEntity.uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Entity.prototype, "deleted", {
+        /**
+         * Indicates whether the entity is deleted.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiEntity.deleted;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Entity.prototype, "updatedDate", {
+        /**
+         * Gets the last date that the entity was updated.
+         * @returns {Date} last updated date
+         */
+        get: function () {
+            return new Date(this._apiEntity.updated_date);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Entity.prototype, "deletedDate", {
+        /**
+         * Gets the date that the entity was deleted, or null if it is not deleted.
+         * @returns {Date} deleted date or null if not applicable
+         */
+        get: function () {
+            return this._apiEntity.deleted_date ? new Date(this._apiEntity.deleted_date) : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Entity;
+}());
+exports.Entity = Entity;
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2467,12 +2581,12 @@ exports.EmptyObservable = EmptyObservable;
 //# sourceMappingURL=EmptyObservable.js.map
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ConnectableObservable_1 = __webpack_require__(64);
+var ConnectableObservable_1 = __webpack_require__(70);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits the results of invoking a specified selector on items
@@ -2530,46 +2644,12 @@ exports.MulticastOperator = MulticastOperator;
 //# sourceMappingURL=multicast.js.map
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__(40);
-var DEFAULT_API_URL = 'https://api.ilandcloud.com/ecs';
-var Iland = (function () {
-    function Iland() {
-    }
-    Iland.init = function (_authProvider, _config) {
-        this._authProvider = _authProvider;
-        var baseUrl = _config !== undefined && _config.baseUrl ? _config.baseUrl : DEFAULT_API_URL;
-        this._http = new http_1.Http(baseUrl);
-    };
-    Iland.getAuthProvider = function () {
-        if (Iland._authProvider === undefined) {
-            throw new Error('The Iland SDK has not yet been initialized.');
-        }
-        return Iland._authProvider;
-    };
-    Iland.getHttp = function () {
-        if (Iland._http === undefined) {
-            throw new Error('The Iland SDK has not yet been initialized.');
-        }
-        return Iland._http;
-    };
-    return Iland;
-}());
-exports.Iland = Iland;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaWxhbmQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvc2RrL2lsYW5kLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQ0EsK0JBQTRCO0FBRTVCLElBQU0sZUFBZSxHQUFHLGdDQUFnQyxDQUFDO0FBRXpEO0lBQUE7SUEwQkEsQ0FBQztJQXBCUSxVQUFJLEdBQVgsVUFBWSxhQUEyQixFQUFFLE9BQXdCO1FBQy9ELElBQUksQ0FBQyxhQUFhLEdBQUcsYUFBYSxDQUFDO1FBQ25DLElBQUksT0FBTyxHQUFHLE9BQU8sS0FBSyxTQUFTLElBQUksT0FBTyxDQUFDLE9BQU8sR0FBRyxPQUFPLENBQUMsT0FBTyxHQUFHLGVBQWUsQ0FBQztRQUMzRixJQUFJLENBQUMsS0FBSyxHQUFHLElBQUksV0FBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDO0lBQ2pDLENBQUM7SUFFTSxxQkFBZSxHQUF0QjtRQUNFLEVBQUUsQ0FBQyxDQUFDLEtBQUssQ0FBQyxhQUFhLEtBQUssU0FBUyxDQUFDLENBQUMsQ0FBQztZQUN0QyxNQUFNLElBQUksS0FBSyxDQUFDLDZDQUE2QyxDQUFDLENBQUM7UUFDakUsQ0FBQztRQUNELE1BQU0sQ0FBQyxLQUFLLENBQUMsYUFBYSxDQUFDO0lBQzdCLENBQUM7SUFFTSxhQUFPLEdBQWQ7UUFDRSxFQUFFLENBQUMsQ0FBQyxLQUFLLENBQUMsS0FBSyxLQUFLLFNBQVMsQ0FBQyxDQUFDLENBQUM7WUFDOUIsTUFBTSxJQUFJLEtBQUssQ0FBQyw2Q0FBNkMsQ0FBQyxDQUFDO1FBQ2pFLENBQUM7UUFDRCxNQUFNLENBQUMsS0FBSyxDQUFDLEtBQUssQ0FBQztJQUNyQixDQUFDO0lBRUgsWUFBQztBQUFELENBQUMsQUExQkQsSUEwQkM7QUExQnFCLHNCQUFLIn0=
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 function symbolIteratorPonyfill(root) {
     var Symbol = root.Symbol;
     if (typeof Symbol === 'function') {
@@ -2608,7 +2688,7 @@ exports.$$iterator = exports.iterator;
 //# sourceMappingURL=iterator.js.map
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2741,7 +2821,7 @@ exports.Notification = Notification;
 //# sourceMappingURL=Notification.js.map
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2751,8 +2831,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(7);
-var Action_1 = __webpack_require__(120);
+var root_1 = __webpack_require__(8);
+var Action_1 = __webpack_require__(144);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -2889,7 +2969,7 @@ exports.AsyncAction = AsyncAction;
 //# sourceMappingURL=AsyncAction.js.map
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2899,7 +2979,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Scheduler_1 = __webpack_require__(121);
+var Scheduler_1 = __webpack_require__(145);
 var AsyncScheduler = (function (_super) {
     __extends(AsyncScheduler, _super);
     function AsyncScheduler() {
@@ -2946,7 +3026,7 @@ exports.AsyncScheduler = AsyncScheduler;
 //# sourceMappingURL=AsyncScheduler.js.map
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2980,13 +3060,7 @@ exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError;
 //# sourceMappingURL=ArgumentOutOfRangeError.js.map
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
-
-/***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2998,12 +3072,12 @@ exports.isFunction = isFunction;
 //# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 var Symbol = root_1.root.Symbol;
 exports.rxSubscriber = (typeof Symbol === 'function' && typeof Symbol.for === 'function') ?
     Symbol.for('rxSubscriber') : '@@rxSubscriber';
@@ -3014,12 +3088,12 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 //# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 function getSymbolObservable(context) {
     var $$observable;
     var Symbol = context.Symbol;
@@ -3046,7 +3120,7 @@ exports.$$observable = exports.observable;
 //# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3079,7 +3153,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3089,8 +3163,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var Subscription_1 = __webpack_require__(4);
+var Subject_1 = __webpack_require__(6);
+var Subscription_1 = __webpack_require__(5);
 /**
  * @class AsyncSubject<T>
  */
@@ -3138,7 +3212,7 @@ exports.AsyncSubject = AsyncSubject;
 //# sourceMappingURL=AsyncSubject.js.map
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3255,12 +3329,12 @@ exports.MergeAllSubscriber = MergeAllSubscriber;
 //# sourceMappingURL=mergeAll.js.map
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var isArray_1 = __webpack_require__(10);
+var isArray_1 = __webpack_require__(12);
 function isNumeric(val) {
     // parseFloat NaNs numeric-cast false positives (null|true|false|"")
     // ...but misinterprets leading-number strings, particularly hex literals ("0x...")
@@ -3273,7 +3347,7 @@ exports.isNumeric = isNumeric;
 //# sourceMappingURL=isNumeric.js.map
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3285,7 +3359,7 @@ exports.isDate = isDate;
 //# sourceMappingURL=isDate.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3295,12 +3369,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var queue_1 = __webpack_require__(58);
-var Subscription_1 = __webpack_require__(4);
-var observeOn_1 = __webpack_require__(35);
-var ObjectUnsubscribedError_1 = __webpack_require__(25);
-var SubjectSubscription_1 = __webpack_require__(48);
+var Subject_1 = __webpack_require__(6);
+var queue_1 = __webpack_require__(64);
+var Subscription_1 = __webpack_require__(5);
+var observeOn_1 = __webpack_require__(37);
+var ObjectUnsubscribedError_1 = __webpack_require__(26);
+var SubjectSubscription_1 = __webpack_require__(54);
 /**
  * @class ReplaySubject<T>
  */
@@ -3393,7 +3467,7 @@ var ReplayEvent = (function () {
 //# sourceMappingURL=ReplaySubject.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3427,7 +3501,956 @@ exports.EmptyError = EmptyError;
 //# sourceMappingURL=EmptyError.js.map
 
 /***/ }),
-/* 32 */
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var task_1 = __webpack_require__(49);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var vnic_1 = __webpack_require__(82);
+var virtual_disk_1 = __webpack_require__(83);
+var metadata_1 = __webpack_require__(84);
+var backup_restore_point_1 = __webpack_require__(85);
+var snapshot_1 = __webpack_require__(86);
+var screen_ticket_1 = __webpack_require__(87);
+var mks_screen_ticket_1 = __webpack_require__(88);
+var bill_1 = __webpack_require__(41);
+var billing_summary_1 = __webpack_require__(90);
+/**
+ * Virtual Machine.
+ */
+var Vm = (function (_super) {
+    tslib_1.__extends(Vm, _super);
+    function Vm(_apiVm) {
+        var _this = _super.call(this, _apiVm) || this;
+        _this._apiVm = _apiVm;
+        return _this;
+    }
+    /**
+     * Gets a VM by UUID.
+     * @param uuid VM UUID
+     * @returns {Promise<Vm>} promise that resolves with the VM
+     */
+    Vm.getVm = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + uuid).then(function (response) {
+                        var apiVm = response.data;
+                        return new Vm(apiVm);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(Vm.prototype, "entityType", {
+        get: function () {
+            return 'VM';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vmLocalId", {
+        /**
+         * Gets the VM's local ID.
+         * @returns {string} the VM's local ID
+         */
+        get: function () {
+            return this._apiVm.vm_local_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vimDatastoreRef", {
+        /**
+         * Gets the VM's datastore reference.
+         * @returns {string} datastore reference
+         */
+        get: function () {
+            return this._apiVm.vim_datastore_ref;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vdcUuid", {
+        /**
+         * Gets the UUID of the vDC that the VM belongs to.
+         * @returns {string} vDC UUID
+         */
+        get: function () {
+            return this._apiVm.vdc_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vcloudHref", {
+        /**
+         * Gets the HREF of the vCloud Director instance that this VM is associated with.
+         * @returns {string} vCloud HREF
+         */
+        get: function () {
+            return this._apiVm.vcloud_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vcenterName", {
+        /**
+         * Gets the name of the vCenter server that the VM is associated with.
+         * @returns {string} vCenter name
+         */
+        get: function () {
+            return this._apiVm.vcenter_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vcenterMoRef", {
+        /**
+         * Gets the VM'r vCenter reference.
+         * @returns {string} vCenter reference
+         */
+        get: function () {
+            return this._apiVm.vcenter_moref;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vcenterInstanceUuid", {
+        /**
+         * Gets the UUID of the vCenter instance that the VM is associated with.
+         * @returns {string} vCenter UUID
+         */
+        get: function () {
+            return this._apiVm.vcenter_instance_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vcenterHref", {
+        /**
+         * Gets the HREF of the vCenter instance that the VM is associated with.
+         * @returns {string} vCenter HREF
+         */
+        get: function () {
+            return this._apiVm.vcenter_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "vappUuid", {
+        /**
+         * Gets the UUID of the vApp that this VM belongs to.
+         * @returns {string} vApp UUID
+         */
+        get: function () {
+            return this._apiVm.vapp_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "storageProfiles", {
+        /**
+         * Gets the list of storage profiles that are available to this VM.
+         * @returns {Array<string>} list of storage profile UUIDs
+         */
+        get: function () {
+            return this._apiVm.storage_profiles;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "powerStatus", {
+        /**
+         * Gets the power status of the VM.
+         * @returns {VmPowerStatus} power status identifier
+         */
+        get: function () {
+            if (this._apiVm.deployed && this._apiVm.status === 'POWERED_OFF') {
+                return 'PARTIALLY_POWERED_OFF';
+            }
+            else {
+                return this._apiVm.status;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "operatingSystem", {
+        /**
+         * Gets the VM's operating system.
+         * @returns {OperatingSystem} operating system
+         */
+        get: function () {
+            return this._apiVm.os;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "orgUuid", {
+        /**
+         * Gets the UUID of the Organization that the VM belongs to.
+         * @returns {string} Org UUID
+         */
+        get: function () {
+            return this._apiVm.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "locationId", {
+        /**
+         * Gets the datacenter location identifier for the VM.
+         * @returns {string} datacenter location ID
+         */
+        get: function () {
+            return this._apiVm.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "insertedMediaName", {
+        /**
+         * Gets the name of the media that is currently inserted in the VM.
+         * @returns {string} the name of the inserted media or null if no media is currently inserted
+         */
+        get: function () {
+            return this._apiVm.inserted_media_name && this._apiVm.inserted_media_name.length > 0 ?
+                this._apiVm.inserted_media_name : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "mediaInserted", {
+        /**
+         * Indicates whether there is currently a media inserted in the VM.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiVm.media_inserted;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "hardwareVersion", {
+        /**
+         * Gets the VM's hardware version.
+         * @returns {string} hardware version
+         */
+        get: function () {
+            return this._apiVm.hardware_version;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "description", {
+        /**
+         * Gets the VM's description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._apiVm.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "deployed", {
+        /**
+         * Indicates whether the VM is deployed.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiVm.deployed;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "createdDate", {
+        /**
+         * Gets the date that the VM was created.
+         * @returns {Date} creation date
+         */
+        get: function () {
+            return this._apiVm.created_date !== null ? new Date(this._apiVm.created_date) : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "numberOfCpus", {
+        /**
+         * Gets the number of CPUs for the VM.
+         * @returns {number} number of CPUs
+         */
+        get: function () {
+            return this._apiVm.cpus_number;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "coresPerSocket", {
+        /**
+         * Gets the number of cores per CPU socket.
+         * @returns {number} cores per CPU socket
+         */
+        get: function () {
+            return this._apiVm.cores_per_socket;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vm.prototype, "memorySize", {
+        /**
+         * Gets the VM's configured memory in MB.
+         * @returns {number} the VM's configured memory in MB.
+         */
+        get: function () {
+            return this._apiVm.memory_size;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Vm.prototype.toString = function () {
+        return JSON.stringify(this._apiVm, undefined, 2);
+    };
+    Object.defineProperty(Vm.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VmJson} the API VM object
+         */
+        get: function () {
+            return Object.assign({}, this._apiVm);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the VM data by retrieving it from the API again.
+     * @returns {Promise<Vm>}
+     */
+    Vm.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid).then(function (response) {
+                        self._apiVm = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the list of VNICs for this VM.
+     * @returns {Promise<Vnic[]>}
+     */
+    Vm.prototype.getVnics = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/vnics").then(function (response) {
+                        var apiVnics = response.data;
+                        return apiVnics.map(function (apiVnic) { return new vnic_1.Vnic(apiVnic); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Updates the VM's description.
+     * @param description the new description
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateDescription = function (description) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, spec;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                spec = {
+                    description: description
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/description", spec)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Updates the VM's name.
+     * @param newName the new name
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateName = function (newName) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, json;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                json = {
+                    name: newName
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/name", json)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Edit the memory size of the VM.
+     * @param memorySizeMb {number} the new memory size in MB
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateMemorySize = function (memorySizeMb) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, spec;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                spec = {
+                    memory_size: String(memorySizeMb)
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/mem", spec)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Edit the number of CPUs.
+     * @param request {VmCpuUpdateRequest} specifying new number of CPUs
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateNumberOfCpus = function (request) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/cpu", request.json)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the VM's virtual disks.
+     * @returns {Promise<VirtualDisk[]>} array of virtual disks
+     */
+    Vm.prototype.getVirtualDisks = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/virtual-disks").then(function (response) {
+                        var apiDisks = response.data;
+                        return apiDisks.map(function (apiDisk) { return new virtual_disk_1.VirtualDisk(apiDisk); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Update the VM's virtual disks.
+     * @param {Array<VirtualDiskJson>} disksJson array of specs for new disks
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateVirtualDisks = function (disksJson) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/virtual-disks", disksJson)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Update a virtual disk that is attached to this VM.
+     * @param {VirtualDiskJson} diskJson updated specification for the disk
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateVirtualDisk = function (diskJson) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/virtual-disk", diskJson)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Create a new virtual disk for this VM.
+     * @param {VirtualDiskJson} diskJson spec for the new disk
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.createVirtualDisk = function (diskJson) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/virtual-disk", diskJson)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Delete a virtual disk.
+     * @param {string} name the name of the disk to delete
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.deleteVirtualDisk = function (name) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().delete("/vm/" + self.uuid + "/disks/" + name)
+                        .then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the VM's metadata.
+     * @returns {Promise<Metadata<MetadataType>[]>}
+     */
+    Vm.prototype.getMetadata = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/metadata").then(function (response) {
+                        var jsonMetadata = response.data;
+                        return jsonMetadata.map(function (json) {
+                            switch (json.type) {
+                                case 'number':
+                                    return new metadata_1.Metadata(json);
+                                case 'boolean':
+                                    return new metadata_1.Metadata(json);
+                                case 'datetime':
+                                    return new metadata_1.Metadata(json);
+                                case 'string':
+                                    return new metadata_1.Metadata(json);
+                            }
+                            throw new Error("Metadata with type " + json.type + " is unknown.");
+                        });
+                    })];
+            });
+        });
+    };
+    /**
+     * Updates the VM's metadata.
+     * @param {Array<MetadataJson<MetadataType>>} metadataJson the new array of metadata
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateMetadata = function (metadataJson) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/metadata", metadataJson).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Deletes a metadata entry.
+     * @param {string} metadataKey the key of the metadata entry to delete
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.deleteMetadata = function (metadataKey) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().delete("/vm/" + self.uuid + "/metadata/" + metadataKey).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Deletes this VM.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.delete = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().delete("/vm/" + self.uuid).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Performs a power operation on the VM.
+     * @param {VmPowerOperation} type the type of power operation to perform
+     * @param {boolean} forceGuestCustomization whether to force guest customization (only applicable when powering on)
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.performPowerOperation = function (type, forceGuestCustomization) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, config;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                config = undefined;
+                if (type === 'poweron' && forceGuestCustomization) {
+                    config = {
+                        params: {
+                            forceGuestCustomization: forceGuestCustomization
+                        }
+                    };
+                }
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/" + type, undefined, config).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Powers on the VM.
+     * @param {boolean} forceGuestCustomization whether to force guest customization
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.powerOn = function (forceGuestCustomization) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('poweron', forceGuestCustomization)];
+            });
+        });
+    };
+    /**
+     * Powers off the VM.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.powerOff = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('poweroff')];
+            });
+        });
+    };
+    /**
+     * Suspends VM.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.suspend = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('suspend')];
+            });
+        });
+    };
+    /**
+     * Shuts down the VMs guest operating system.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.shutdownGuestOs = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('shutdown')];
+            });
+        });
+    };
+    /**
+     * Performs a hard reset power operation.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.reset = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('reset')];
+            });
+        });
+    };
+    /**
+     * Requests that the guest OS restart.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.rebootGuestOs = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this.performPowerOperation('reboot')];
+            });
+        });
+    };
+    /**
+     * Gets the VMs available backup restore points.
+     * @returns {Promise<BackupRestorePoint[]>} promise that resolves with the list of backup restore points
+     */
+    Vm.prototype.getBackupRestorePoints = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/backups").then(function (response) {
+                        var restorePointsJson = response.data;
+                        return restorePointsJson.map(function (restorePointJson) { return new backup_restore_point_1.BackupRestorePoint(restorePointJson); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Restores a backup of the VM.
+     * @param {Date} timestamp the timestamp of the restore point to be restored
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.restoreBackup = function (timestamp) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, json;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                json = {
+                    time: timestamp.getTime()
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/restore", json).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the VMs snapshot details.
+     * @returns {Promise<Snapshot>} promise that resolves with the current snapshot details
+     * @throws {ApiError} as NotFoundError if the VM doesn't currently have a snapshot
+     */
+    Vm.prototype.getSnapshot = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/snapshot").then(function (response) {
+                        var json = response.data;
+                        return new snapshot_1.Snapshot(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Creates a snapshot of the VM.
+     * @param {VmCreateSnapshotRequest} options the snapshot creation options
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.createSnapshot = function (options) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/snapshot", options.json).then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Restore the VMs snapshot.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.restoreSnapshot = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/snapshot/restore").then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Deletes the VMs snapshot.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.deleteSnapshot = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().delete("/vm/" + self.uuid + "/snapshot").then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Updates the VM's virtual hardware to the latest version available.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.updateVirtualHardwareVersion = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/virtual-hardware-version").then(function (response) {
+                        var apiTask = response.data;
+                        return new task_1.Task(apiTask);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the VMs screen ticket for a remote console connection.
+     * @returns {Promise<ScreenTicket>} promise that resolves with the screen ticket
+     */
+    Vm.prototype.getScreenTicket = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/screen-ticket").then(function (response) {
+                        var json = response.data;
+                        return new screen_ticket_1.ScreenTicket(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the VMs MKS screen ticket for a remote console connection.
+     * @returns {Promise<MksScreenTicket>} promise that resolves with the MKS screen ticket
+     */
+    Vm.prototype.getMksScreenTicket = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/mks-screen-ticket").then(function (response) {
+                        var json = response.data;
+                        return new mks_screen_ticket_1.MksScreenTicket(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the bill for the VM for the specified month and year. Month and year default to current month and year if left
+     * unspecified.
+     * @returns {Promise<Bill>} promise that resolves with the Bill
+     */
+    Vm.prototype.getBill = function (month, year) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/bill", {
+                        params: {
+                            month: month,
+                            year: year
+                        }
+                    }).then(function (response) {
+                        var json = response.data;
+                        return new bill_1.Bill(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the current billing summary for the VM.
+     * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
+     */
+    Vm.prototype.getCurrentBillingSummary = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vm/" + self.uuid + "/billing/current").then(function (response) {
+                        var json = response.data;
+                        return new billing_summary_1.BillingSummary(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Inserts a specified media into the VM.
+     * @param {string} mediaUuid the UUID of the media to insert
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.insertMedia = function (mediaUuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, json;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                json = {
+                    media: mediaUuid
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/media/insert", json).then(function (response) {
+                        var json = response.data;
+                        return new task_1.Task(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Ejects any media from the VM.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.ejectMedia = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/vm/" + self.uuid + "/media/eject").then(function (response) {
+                        var json = response.data;
+                        return new task_1.Task(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Move the VM to a different storage profile.
+     * @returns {Promise<Task>} task promise
+     */
+    Vm.prototype.relocate = function (storageProfileUuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, json;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                json = {
+                    storage_profile: storageProfileUuid
+                };
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/vm/" + self.uuid + "/storage-profile", json).then(function (response) {
+                        var json = response.data;
+                        return new task_1.Task(json);
+                    })];
+            });
+        });
+    };
+    return Vm;
+}(entity_1.Entity));
+exports.Vm = Vm;
+
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3491,7 +4514,7 @@ exports.ScalarObservable = ScalarObservable;
 //# sourceMappingURL=ScalarObservable.js.map
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3501,8 +4524,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var ArrayObservable_1 = __webpack_require__(12);
-var isArray_1 = __webpack_require__(10);
+var ArrayObservable_1 = __webpack_require__(14);
+var isArray_1 = __webpack_require__(12);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 var none = {};
@@ -3649,15 +4672,15 @@ exports.CombineLatestSubscriber = CombineLatestSubscriber;
 //# sourceMappingURL=combineLatest.js.map
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var isScheduler_1 = __webpack_require__(11);
-var ArrayObservable_1 = __webpack_require__(12);
-var mergeAll_1 = __webpack_require__(27);
+var isScheduler_1 = __webpack_require__(13);
+var ArrayObservable_1 = __webpack_require__(14);
+var mergeAll_1 = __webpack_require__(28);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which sequentially emits all values from every
@@ -3829,7 +4852,7 @@ exports.concatStatic = concatStatic;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3840,7 +4863,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(17);
+var Notification_1 = __webpack_require__(19);
 /**
  *
  * Re-emits all notifications from source Observable with specified scheduler.
@@ -3948,7 +4971,7 @@ exports.ObserveOnMessage = ObserveOnMessage;
 //# sourceMappingURL=observeOn.js.map
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3958,12 +4981,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var ArrayObservable_1 = __webpack_require__(12);
-var isArray_1 = __webpack_require__(10);
+var ArrayObservable_1 = __webpack_require__(14);
+var isArray_1 = __webpack_require__(12);
 var Subscriber_1 = __webpack_require__(1);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
-var iterator_1 = __webpack_require__(16);
+var iterator_1 = __webpack_require__(18);
 /* tslint:enable:max-line-length */
 /**
  * @param observables
@@ -4233,7 +5256,7 @@ var ZipBufferIterator = (function (_super) {
 //# sourceMappingURL=zip.js.map
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4326,7 +5349,7 @@ var MapSubscriber = (function (_super) {
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4458,92 +5481,603 @@ exports.ReduceSubscriber = ReduceSubscriber;
 //# sourceMappingURL=reduce.js.map
 
 /***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DEFAULT_AUTH_URL = 'https://console.ilandcloud.com/auth';
-exports.DEFAULT_REALM = 'iland-core';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aC1wcm92aWRlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9zZGsvYXV0aC9hdXRoLXByb3ZpZGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBdUJhLFFBQUEsZ0JBQWdCLEdBQUcscUNBQXFDLENBQUM7QUFFekQsUUFBQSxhQUFhLEdBQUcsWUFBWSxDQUFDIn0=
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var axios_1 = __webpack_require__(41);
-var iland_1 = __webpack_require__(15);
-var DEFAULT_API_VERSION = 0.8;
-var ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
-/**
- * Iland API HTTP Client.
- */
-var Http = (function () {
-    function Http(baseUrl) {
-        var defaultMime = Http.versionMime('application/json');
-        this._ilandAxios = axios_1.default.create({
-            baseURL: baseUrl,
-            headers: {
-                'Accept': defaultMime,
-                'Content-Type': defaultMime
-            }
-        });
-        this._ilandAxios.interceptors.request.use(function (config) {
-            return iland_1.Iland.getAuthProvider().getToken().then(function (token) {
-                config.headers['Authorization'] = 'Bearer ' + token;
-                return config;
-            });
-        });
-        this._ilandAxios.interceptors.response.use(function (response) {
-            var str = response.data;
-            if (str.indexOf(")]}'\n") === 0) {
-                response.data = JSON.parse(str.substring(5));
-            }
-            return response;
-        });
-    }
-    Http.versionMime = function (mime, version) {
-        if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
-            return mime;
-        }
-        version = version ? version : DEFAULT_API_VERSION;
-        var parts = mime.split('/');
-        if (parts.length === 2) {
-            var prefix = parts[0];
-            var suffix = parts[1];
-            return prefix + "/" + ILAND_MIME_VND_PREFIX + ".v" + version + "+" + suffix;
-        }
-        return mime;
-    };
-    Http.prototype.request = function (config) {
-        return this._ilandAxios.request(config);
-    };
-    Http.prototype.get = function (url, config) {
-        return this._ilandAxios.get(url, config);
-    };
-    Http.prototype.delete = function (url, config) {
-        return this._ilandAxios.delete(url, config);
-    };
-    Http.prototype.post = function (url, data, config) {
-        return this._ilandAxios.post(url, data, config);
-    };
-    Http.prototype.put = function (url, data, config) {
-        return this._ilandAxios.put(url, data, config);
-    };
-    return Http;
-}());
-exports.Http = Http;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaHR0cC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9zZGsvaHR0cC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLCtCQUE4RTtBQUM5RSxpQ0FBOEI7QUFFOUIsSUFBTSxtQkFBbUIsR0FBRyxHQUFHLENBQUM7QUFDaEMsSUFBTSxxQkFBcUIsR0FBRyxvQkFBb0IsQ0FBQztBQUVuRDs7R0FFRztBQUNIO0lBSUUsY0FBWSxPQUFlO1FBQ3pCLElBQUksV0FBVyxHQUFHLElBQUksQ0FBQyxXQUFXLENBQUMsa0JBQWtCLENBQUMsQ0FBQztRQUN2RCxJQUFJLENBQUMsV0FBVyxHQUFHLGVBQUssQ0FBQyxNQUFNLENBQUM7WUFDOUIsT0FBTyxFQUFFLE9BQU87WUFDaEIsT0FBTyxFQUFFO2dCQUNQLFFBQVEsRUFBRSxXQUFXO2dCQUNyQixjQUFjLEVBQUUsV0FBVzthQUM1QjtTQUNGLENBQUMsQ0FBQztRQUNILElBQUksQ0FBQyxXQUFXLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsVUFBUyxNQUEwQjtZQUMzRSxNQUFNLENBQUMsYUFBSyxDQUFDLGVBQWUsRUFBRSxDQUFDLFFBQVEsRUFBRSxDQUFDLElBQUksQ0FBQyxVQUFTLEtBQUs7Z0JBQzNELE1BQU0sQ0FBQyxPQUFPLENBQUMsZUFBZSxDQUFDLEdBQUcsU0FBUyxHQUFHLEtBQUssQ0FBQztnQkFDcEQsTUFBTSxDQUFDLE1BQU0sQ0FBQztZQUNoQixDQUFDLENBQUMsQ0FBQztRQUNMLENBQUMsQ0FBQyxDQUFDO1FBQ0gsSUFBSSxDQUFDLFdBQVcsQ0FBQyxZQUFZLENBQUMsUUFBUSxDQUFDLEdBQUcsQ0FBQyxVQUFTLFFBQXVCO1lBQ3pFLElBQUksR0FBRyxHQUFHLFFBQVEsQ0FBQyxJQUFjLENBQUM7WUFDbEMsRUFBRSxDQUFDLENBQUMsR0FBRyxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO2dCQUNoQyxRQUFRLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQy9DLENBQUM7WUFDRCxNQUFNLENBQUMsUUFBUSxDQUFDO1FBQ2xCLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVNLGdCQUFXLEdBQWxCLFVBQW1CLElBQVksRUFBRSxPQUFnQjtRQUMvQyxFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLHFCQUFxQixDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQztZQUM1QyxNQUFNLENBQUMsSUFBSSxDQUFDO1FBQ2QsQ0FBQztRQUNELE9BQU8sR0FBRyxPQUFPLEdBQUcsT0FBTyxHQUFHLG1CQUFtQixDQUFDO1FBQ2xELElBQUksS0FBSyxHQUFHLElBQUksQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUM7UUFDNUIsRUFBRSxDQUFDLENBQUMsS0FBSyxDQUFDLE1BQU0sS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBQ3ZCLElBQUksTUFBTSxHQUFHLEtBQUssQ0FBQyxDQUFDLENBQUMsQ0FBQztZQUN0QixJQUFJLE1BQU0sR0FBRyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUM7WUFDdEIsTUFBTSxDQUFJLE1BQU0sU0FBSSxxQkFBcUIsVUFBSyxPQUFPLFNBQUksTUFBUSxDQUFBO1FBQ25FLENBQUM7UUFDRCxNQUFNLENBQUMsSUFBSSxDQUFDO0lBQ2QsQ0FBQztJQUVELHNCQUFPLEdBQVAsVUFBUSxNQUEwQjtRQUNoQyxNQUFNLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxPQUFPLENBQUMsTUFBTSxDQUEyQixDQUFDO0lBQ3BFLENBQUM7SUFFRCxrQkFBRyxHQUFILFVBQUksR0FBVyxFQUFFLE1BQTJCO1FBQzFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDLEdBQUcsQ0FBQyxHQUFHLEVBQUUsTUFBTSxDQUEyQixDQUFDO0lBQ3JFLENBQUM7SUFFRCxxQkFBTSxHQUFOLFVBQU8sR0FBVyxFQUFFLE1BQTJCO1FBQzdDLE1BQU0sQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sQ0FBQyxHQUFHLEVBQUUsTUFBTSxDQUEyQixDQUFDO0lBQ3hFLENBQUM7SUFFRCxtQkFBSSxHQUFKLFVBQUssR0FBVyxFQUFFLElBQVUsRUFBRSxNQUEyQjtRQUN2RCxNQUFNLENBQUMsSUFBSSxDQUFDLFdBQVcsQ0FBQyxJQUFJLENBQUMsR0FBRyxFQUFFLElBQUksRUFBRSxNQUFNLENBQTJCLENBQUM7SUFDNUUsQ0FBQztJQUVELGtCQUFHLEdBQUgsVUFBSSxHQUFXLEVBQUUsSUFBVSxFQUFFLE1BQTJCO1FBQ3RELE1BQU0sQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDLEdBQUcsQ0FBQyxHQUFHLEVBQUUsSUFBSSxFQUFFLE1BQU0sQ0FBMkIsQ0FBQztJQUMzRSxDQUFDO0lBRUgsV0FBQztBQUFELENBQUMsQUE5REQsSUE4REM7QUE5RFksb0JBQUkifQ==
-
-/***/ }),
 /* 41 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_41__;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var bill_line_item_1 = __webpack_require__(89);
+/**
+ * Bill Ticket.
+ */
+var Bill = (function () {
+    function Bill(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(Bill.prototype, "entityUuid", {
+        /**
+         * Gets the UUID of the entity that the bill is associated with.
+         * @returns {string} entity UUID
+         */
+        get: function () {
+            return this._json.entity_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "totalCost", {
+        /**
+         * Gets the total cost.
+         * @returns {number} total
+         */
+        get: function () {
+            return this._json.total;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "cpuCost", {
+        /**
+         * Gets the cost of CPU.
+         * @returns {number} cpu cost
+         */
+        get: function () {
+            return this._json.cpu;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthCost", {
+        /**
+         * Gets the cost of bandwidth.
+         * @returns {number} bandwidth cost
+         */
+        get: function () {
+            return this._json.bandwidth;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "memoryCost", {
+        /**
+         * Gets the cost of memory.
+         * @returns {number} memory cost
+         */
+        get: function () {
+            return this._json.mem;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "estimatedCost", {
+        /**
+         * Gets an estimate of what the cost could be at the end of the billing period.
+         * @returns {number} estimated cost
+         */
+        get: function () {
+            return this._json.estimate;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "cpuUsage", {
+        /**
+         * Gets the CPU usage.
+         * @returns {number} cpu usage
+         */
+        get: function () {
+            return this._json.cpu_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "cpuBurstUsage", {
+        /**
+         * Gets the CPU burst usage.
+         * @returns {number} cpu burst usage
+         */
+        get: function () {
+            return this._json.cpu_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "cpuReservedUsage", {
+        /**
+         * Gets the CPU reserved usage.
+         * @returns {number} cpu reserved usage
+         */
+        get: function () {
+            return this._json.cpu_res_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "memoryUsage", {
+        /**
+         * Gets the memory usage.
+         * @returns {number} memory usage
+         */
+        get: function () {
+            return this._json.mem_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "memoryReservedUsage", {
+        /**
+         * Gets the reserved memory usage.
+         * @returns {number} reserved memory usage
+         */
+        get: function () {
+            return this._json.mem_res_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "memoryBurstUsage", {
+        /**
+         * Gets the burst memory usage.
+         * @returns {number} burst memory usage
+         */
+        get: function () {
+            return this._json.mem_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthUsage", {
+        /**
+         * Gets the bandwidth usage.
+         * @returns {number} bandwidth usage
+         */
+        get: function () {
+            return this._json.bandwidth_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "cpuBurstCost", {
+        /**
+         * Gets the burst CPU cost.
+         * @returns {number} burst cpu cost
+         */
+        get: function () {
+            return this._json.cpu_burst;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "memoryBurstCost", {
+        /**
+         * Gets the burst memory cost.
+         * @returns {number} burst memory cost
+         */
+        get: function () {
+            return this._json.mem_burst;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthBurstCost", {
+        /**
+         * Gets the burst bandwidth cost.
+         * @returns {number} burst bandwidth cost
+         */
+        get: function () {
+            return this._json.bandwidth_burst;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "currencyCode", {
+        /**
+         * Gets the currency code.
+         * @returns {CurrencyCode} the currency code
+         */
+        get: function () {
+            return this._json.currency_code;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "timestamp", {
+        /**
+         * Gets the timestamp of the bill.
+         * @returns {Date} the bill timestamp
+         */
+        get: function () {
+            return new Date(this._json.time);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "testDrive", {
+        /**
+         * Indicates whether this is a test drive.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.test_drive;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "lineItems", {
+        /**
+         * Gets the line items.
+         * @returns {Array<BillLineItem>} line items
+         */
+        get: function () {
+            return this._json.line_items.map(function (json) { return new bill_line_item_1.BillLineItem(json); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "discount", {
+        /**
+         * Gets the discount factor.
+         * @returns {number} discount
+         */
+        get: function () {
+            return this._json.discount;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "diskUsage", {
+        /**
+         * Gets the disk usage for the billing period.
+         * @returns {number} disk usage
+         */
+        get: function () {
+            return this._json.disk_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "diskCost", {
+        /**
+         * Gets the disk cost for the billing period.
+         * @returns {number} disk cost
+         */
+        get: function () {
+            return this._json.disk;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "diskBurstUsage", {
+        /**
+         * Gets the disk burst usage for the billing period.
+         * @returns {number} disk burst usage
+         */
+        get: function () {
+            return this._json.disk_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "diskBurstCost", {
+        /**
+         * Gets the disk burst cost for the billing period.
+         * @returns {number} disk burst cost
+         */
+        get: function () {
+            return this._json.disk_burst;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "hddStorageUsage", {
+        /**
+         * Gets the hard drive storage usage for the billing period.
+         * @returns {number} hard drive storage usage
+         */
+        get: function () {
+            return this._json.hdd_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "hddStorageCost", {
+        /**
+         * Gets the hard drive storage usage for the billing period.
+         * @returns {number} hard drive storage usage
+         */
+        get: function () {
+            return this._json.hdd_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "hddStorageBurstCost", {
+        /**
+         * Gets the hard drive storage burst cost for the billing period.
+         * @returns {number} hard drive storage burst cost.
+         */
+        get: function () {
+            return this._json.hdd_burst_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "hddStorageReservedCost", {
+        /**
+         * Gets the hard drive storage reserved cost for the billing period.
+         * @returns {number} hard drive storage reserved cost.
+         */
+        get: function () {
+            return this._json.hdd_reserved_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "hddStorageReservedUsage", {
+        /**
+         * Gets the hard drive storage reserved usage.
+         * @returns {number} hard drive storage reserved usage.
+         */
+        get: function () {
+            return this._json.hdd_reserved_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageReservedUsage", {
+        /**
+         * Gets the solid state storage reserved usage.
+         * @returns {number} solid state storage reserved usage.
+         */
+        get: function () {
+            return this._json.ssd_reserved_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageReservedCost", {
+        /**
+         * Gets the solid state storage reserved cost.
+         * @returns {number} solid state storage reserved cost.
+         */
+        get: function () {
+            return this._json.ssd_reserved_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageUsage", {
+        /**
+         * Gets the solid state storage usage.
+         * @returns {number} solid state storage usage.
+         */
+        get: function () {
+            return this._json.ssd_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageCost", {
+        /**
+         * Gets the solid state storage cost.
+         * @returns {number} solid state storage cost
+         */
+        get: function () {
+            return this._json.ssd_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageBurstUsage", {
+        /**
+         * Gets the solid state storage burst usage.
+         * @returns {number} solid state storge burst usage
+         */
+        get: function () {
+            return this._json.ssd_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "ssdStorageBurstCost", {
+        /**
+         * Gets the solid state storage burst cost.
+         * @returns {number} solid state storage burst cost
+         */
+        get: function () {
+            return this._json.ssd_burst_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageUsage", {
+        /**
+         * Gets the archive storage usage.
+         * @returns {number} archive storage usage
+         */
+        get: function () {
+            return this._json.archive_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageCost", {
+        /**
+         * Gets the archive storage cost.
+         * @returns {number} archive storage cost
+         */
+        get: function () {
+            return this._json.archive_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageBurstUsage", {
+        /**
+         * Gets the archive storage burst usage.
+         * @returns {number} archive storage burst usage
+         */
+        get: function () {
+            return this._json.archive_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageBurstCost", {
+        /**
+         * Gets the archive storage burst cost.
+         * @returns {number} archive storage burst cost
+         */
+        get: function () {
+            return this._json.archive_burst_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageReservedCost", {
+        /**
+         * Gets the archive storage reserved cost.
+         * @returns {number} archive storage reserved cost
+         */
+        get: function () {
+            return this._json.archive_reserved_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "archiveStorageReservedUsage", {
+        /**
+         * Gets the archive storage reserved usage.
+         * @returns {number} archive storage reserved usage
+         */
+        get: function () {
+            return this._json.archive_reserved_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "zertoArchiveStorageUsage", {
+        /**
+         * Gets the zerto archive storage usage.
+         * @returns {number} zerto archive storage usage
+         */
+        get: function () {
+            return this._json.zerto_archive_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "zertoArchiveStorageCost", {
+        /**
+         * Gets the zerto archive storage cost.
+         * @returns {number} zerto archive storage cost
+         */
+        get: function () {
+            return this._json.zerto_archive_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "zertoAdvancedStorageCost", {
+        /**
+         * Gets the zerto advanced storage cost.
+         * @returns {number} zerto advanced storage cost
+         */
+        get: function () {
+            return this._json.zerto_advanced_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "zertoAdvancedStorageUsage", {
+        /**
+         * Gets the zerto advanced storage usage.
+         * @returns {number} zerto advanced storage usage
+         */
+        get: function () {
+            return this._json.zerto_advanced_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "entityType", {
+        /**
+         * Gets the entity type that the bill is associated with.
+         * @returns {EntityType} entity type
+         */
+        get: function () {
+            return this._json.entity_type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "entityName", {
+        /**
+         * Gets the name of the entity that the bill is associated with.
+         * @returns {string} entity name
+         */
+        get: function () {
+            return this._json.entity_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthReservedUsage", {
+        /**
+         * Gets the bandwidth reserved usage.
+         * @returns {number} bandwidth reserved usage
+         */
+        get: function () {
+            return this._json.bandwidth_reserved_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthReservedCost", {
+        /**
+         * Gets the bandwidth reserved cost.
+         * @returns {number} bandwidth reserved cost
+         */
+        get: function () {
+            return this._json.bandwidth_reserved_cost;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Bill.prototype, "bandwidthBurstUsage", {
+        /**
+         * Gets the bandwidth burst usage.
+         * @returns {number} bandwidth burst usage
+         */
+        get: function () {
+            return this._json.bandwidth_burst_usage;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Bill.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Bill.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {BillJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Bill;
+}());
+exports.Bill = Bill;
+
 
 /***/ }),
 /* 42 */
@@ -4553,51 +6087,56 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_41__;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * Entity.
+ * IP Range.
  */
-var Entity = (function () {
-    function Entity(_apiEntity) {
-        this._apiEntity = _apiEntity;
+var IpRange = (function () {
+    function IpRange(_json) {
+        this._json = _json;
     }
+    Object.defineProperty(IpRange.prototype, "startAddress", {
+        /**
+         * Gets the IP address at the start of the range.
+         * @returns {string} start IP
+         */
+        get: function () {
+            return this._json.start;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(IpRange.prototype, "endAddress", {
+        /**
+         * Gets the IP address at the end of the range.
+         * @returns {string} end IP
+         */
+        get: function () {
+            return this._json.end;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * Gets the name.
-     * @returns {string} name
+     * JSON format.
+     * @returns {string}
      */
-    Entity.prototype.getName = function () {
-        return this._apiEntity.name;
+    IpRange.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
     };
-    /**
-     * Gets the UUID.
-     * @returns {string} UUID
-     */
-    Entity.prototype.getUuid = function () {
-        return this._apiEntity.uuid;
-    };
-    /**
-     * Indicates whether the entity is deleted.
-     * @returns {boolean} value
-     */
-    Entity.prototype.isDeleted = function () {
-        return this._apiEntity.deleted;
-    };
-    /**
-     * Gets the last date that the entity was updated.
-     * @returns {Date} last updated date
-     */
-    Entity.prototype.getUpdatedDate = function () {
-        return new Date(this._apiEntity.updated_date);
-    };
-    /**
-     * Gets the date that the entity was deleted, or null if it is not deleted.
-     * @returns {Date} deleted date or null if not applicable
-     */
-    Entity.prototype.getDeletedDate = function () {
-        return this._apiEntity.deleted_date ? new Date(this._apiEntity.deleted_date) : null;
-    };
-    return Entity;
+    Object.defineProperty(IpRange.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {IpRangeJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return IpRange;
 }());
-exports.Entity = Entity;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZW50aXR5LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL3Nkay9tb2RlbC9lbnRpdHkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFFQTs7R0FFRztBQUNIO0lBRUUsZ0JBQW9CLFVBQXFCO1FBQXJCLGVBQVUsR0FBVixVQUFVLENBQVc7SUFDekMsQ0FBQztJQUVEOzs7T0FHRztJQUNILHdCQUFPLEdBQVA7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUM7SUFDOUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILHdCQUFPLEdBQVA7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUM7SUFDOUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILDBCQUFTLEdBQVQ7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxPQUFPLENBQUM7SUFDakMsQ0FBQztJQUVEOzs7T0FHRztJQUNILCtCQUFjLEdBQWQ7UUFDRSxNQUFNLENBQUMsSUFBSSxJQUFJLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxZQUFZLENBQUMsQ0FBQztJQUNoRCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsK0JBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDLFlBQVksR0FBRyxJQUFJLElBQUksQ0FBQyxJQUFJLENBQUMsVUFBVSxDQUFDLFlBQVksQ0FBQyxHQUFHLElBQUksQ0FBQztJQUN0RixDQUFDO0lBRUgsYUFBQztBQUFELENBQUMsQUE3Q0QsSUE2Q0M7QUE3Q3FCLHdCQUFNIn0=
+exports.IpRange = IpRange;
+
 
 /***/ }),
 /* 43 */
@@ -4606,8 +6145,740 @@ exports.Entity = Entity;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var rxjs_1 = __webpack_require__(79);
-var iland_1 = __webpack_require__(15);
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var ip_range_1 = __webpack_require__(42);
+/**
+ * Abstract Network.
+ */
+var AbstractNetwork = (function (_super) {
+    tslib_1.__extends(AbstractNetwork, _super);
+    function AbstractNetwork(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
+        return _this;
+    }
+    Object.defineProperty(AbstractNetwork.prototype, "description", {
+        /**
+         * Gets the description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "locationId", {
+        /**
+         * Gets the datacenter location identifier.
+         * @returns {string} location ID
+         */
+        get: function () {
+            return this._json.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "orgUuid", {
+        /**
+         * Gets the UUID of the Org that the network is associated with.
+         * @returns {string} Org UUID
+         */
+        get: function () {
+            return this._json.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "vdcUuid", {
+        /**
+         * Gets the UUID of the vDC that the network is associated with.
+         * @returns {string} vDC UUID
+         */
+        get: function () {
+            return this._json.vdc_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "primaryDns", {
+        /**
+         * Gets the primary DNS host.
+         * @returns {string} primary DNS host
+         */
+        get: function () {
+            return this._json.primary_dns;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "secondaryDns", {
+        /**
+         * Gets the secondary DSN host.
+         * @returns {string} secondary DNS host
+         */
+        get: function () {
+            return this._json.secondary_dns;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "dnsSuffix", {
+        /**
+         * Gets the DNS suffix.
+         * @returns {string} DNS suffix
+         */
+        get: function () {
+            return this._json.dns_suffix;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "fenceMode", {
+        /**
+         * Gets the networks fence mode.
+         * @returns {NetworkFenceMode} fence mode
+         */
+        get: function () {
+            return this._json.fence_mode;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "gatewayAddress", {
+        /**
+         * Gets the gateway address of the network.
+         * @returns {string} gateway address
+         */
+        get: function () {
+            return this._json.gateway;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "netmask", {
+        /**
+         * Gets the netmask of the network.
+         * @returns {string} netmask
+         */
+        get: function () {
+            return this._json.netmask;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "ipRanges", {
+        /**
+         * Gets the static IP Ranges for the newtork.
+         * @returns {[IpRange]} static IP ranges
+         */
+        get: function () {
+            return this._json.ip_ranges.map(function (ipRangeJson) { return new ip_range_1.IpRange(ipRangeJson); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "inherited", {
+        /**
+         * Indicates whether this network is inherited.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.inherited;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(AbstractNetwork.prototype, "parentNetworkUuid", {
+        /**
+         * Gets the UUID of the parent external network if this is a bridged network, otherwise null.
+         * @returns {string|null} parent external network UUID
+         */
+        get: function () {
+            return this._json.parent_network_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    AbstractNetwork.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    return AbstractNetwork;
+}(entity_1.Entity));
+exports.AbstractNetwork = AbstractNetwork;
+
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var vm_1 = __webpack_require__(33);
+var vapp_network_1 = __webpack_require__(45);
+/**
+ * Virtual Application.
+ */
+var Vapp = (function (_super) {
+    tslib_1.__extends(Vapp, _super);
+    function Vapp(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
+        return _this;
+    }
+    /**
+     * Gets a vApp by UUID.
+     * @param uuid vApp UUID
+     * @returns {Promise<Vapp>} promise that resolves with the vApp
+     */
+    Vapp.getVapp = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vapp/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new Vapp(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(Vapp.prototype, "entityType", {
+        get: function () {
+            return 'VAPP';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "deployed", {
+        /**
+         * Indicates whether this vApp is currently deployed.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.deployed;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "powerStatus", {
+        /**
+         * Gets the vApps current power status.
+         * @returns {VappPowerStatus} power status
+         */
+        get: function () {
+            if (this._json.deployed && this._json.status === 'POWERED_OFF') {
+                return 'PARTIALLY_POWERED_OFF';
+            }
+            else {
+                return this._json.status;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "storageProfiles", {
+        /**
+         * Gets the storage profiles that are associated with this VM
+         * @returns {Array<string>} array of storage profile UUIDs
+         */
+        get: function () {
+            return this._json.storage_profiles;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "runtimeLease", {
+        /**
+         * Gets the runtime lease setting, in seconds.
+         * @returns {number} runtime lease
+         */
+        get: function () {
+            return this._json.runtime_lease;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "storageLease", {
+        /**
+         * Gets the storage lease setting, in seconds.
+         * @returns {number} storage lease
+         */
+        get: function () {
+            return this._json.storage_lease;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "runtimeLeaseExpirationDate", {
+        /**
+         * Gets the expiration date of the runtime lease, if one is currently active.
+         * @returns {Date} runtime lease expiration date
+         */
+        get: function () {
+            return this._json.runtime_expire === null ? null : new Date(this._json.runtime_expire);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "storageLeaseExpirationDate", {
+        /**
+         * Gets the expiration date of the storage lease, if one is currently active.
+         * @returns {Date} storage lease expiration date
+         */
+        get: function () {
+            return this._json.storage_expire === null ? null : new Date(this._json.storage_expire);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "vdcUuid", {
+        /**
+         * Gets the UUID of the vDC that this vApp is associated with.
+         * @returns {string} vDC UUID
+         */
+        get: function () {
+            return this._json.vdc_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "orgUuid", {
+        /**
+         * Gets the UUID of the Org that this vApp is associated with.
+         * @returns {string} org UUID
+         */
+        get: function () {
+            return this._json.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "locationId", {
+        /**
+         * Gets the datacenter location identifier for the vApp.
+         * @returns {string} datacenter location ID
+         */
+        get: function () {
+            return this._json.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "description", {
+        /**
+         * Gets the vApps description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "vcloudHref", {
+        /**
+         * Gets the vCloud HREF of the vApp.
+         * @returns {string} vCloud HREF
+         */
+        get: function () {
+            return this._json.vcloud_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "creationDate", {
+        /**
+         * Gets the date that this vApp was created.
+         * @returns {Date} creation date
+         */
+        get: function () {
+            return new Date(this._json.created_date);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vapp.prototype, "expired", {
+        /**
+         * Indicates whether this vApp is currently in the expired items bin.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.is_expired;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Vapp.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Vapp.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VappJson} the API json object
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the vApp data by retrieving it from the API again.
+     * @returns {Promise<Vapp>}
+     */
+    Vapp.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vapp/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the vApps child VMs.
+     * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
+     */
+    Vapp.prototype.getVms = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vapp/" + self.uuid + "/vms").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vmJson) { return new vm_1.Vm(vmJson); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the vApps child vApp Networks.
+     * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp Networks
+     */
+    Vapp.prototype.getVappNetworks = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vapp/" + self.uuid + "/networks").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vappNetJson) { return new vapp_network_1.VappNetwork(vappNetJson); });
+                    })];
+            });
+        });
+    };
+    return Vapp;
+}(entity_1.Entity));
+exports.Vapp = Vapp;
+
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var iland_1 = __webpack_require__(11);
+var abstract_network_1 = __webpack_require__(43);
+/**
+ * vApp Network.
+ */
+var VappNetwork = (function (_super) {
+    tslib_1.__extends(VappNetwork, _super);
+    function VappNetwork(_json) {
+        return _super.call(this, _json) || this;
+    }
+    /**
+     * Gets an vApp network by UUID.
+     * @param uuid vApp network UUID
+     * @returns {Promise<VappNetwork>} promise that resolves with the vApp network
+     */
+    VappNetwork.getVappNetwork = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/network/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new VappNetwork(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(VappNetwork.prototype, "entityType", {
+        /**
+         * Gets the entity type.
+         * @returns {EntityType}
+         */
+        get: function () {
+            return 'VAPP_NETWORK';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VappNetwork.prototype, "vappUuid", {
+        /**
+         * Gets the UUID of the vApp that the network is associated with.
+         * @returns {string} vApp UUID
+         */
+        get: function () {
+            return this._json.vapp_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VappNetwork.prototype, "routerExternalIp", {
+        /**
+         * If this is a NAT Routed network, gets the external IP of the router for the vApp Network edge gateway.
+         * @returns {string} IP address
+         */
+        get: function () {
+            return this._json.router_external_ip;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VappNetwork.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VappNetworkJson} the API json object
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the vApp network data by retrieving it from the API again.
+     * @returns {Promise<VappNetwork>} promise that resolves with this object
+     */
+    VappNetwork.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/network/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    return VappNetwork;
+}(abstract_network_1.AbstractNetwork));
+exports.VappNetwork = VappNetwork;
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DEFAULT_AUTH_URL = 'http://current.iland.dev/auth';
+exports.DEFAULT_REALM = 'iland-core';
+
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var axios_1 = __webpack_require__(48);
+var iland_1 = __webpack_require__(11);
+var api_error_1 = __webpack_require__(101);
+var DEFAULT_API_VERSION = 1.0;
+var ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
+/**
+ * Iland API HTTP Client.
+ */
+var Http = (function () {
+    /**
+     * Constructs a new Http instance.
+     * @param {string} baseUrl the base URL of the iland Cloud API
+     */
+    function Http(baseUrl) {
+        var _this = this;
+        var defaultMime = Http.versionMime('application/json');
+        this._ilandAxios = axios_1.default.create({
+            baseURL: baseUrl,
+            headers: {
+                'Accept': defaultMime,
+                'Content-Type': defaultMime
+            }
+        });
+        this._ilandAxios.interceptors.request.use(function (config) {
+            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                return tslib_1.__generator(this, function (_a) {
+                    return [2 /*return*/, iland_1.Iland.getAuthProvider().getToken().then(function (token) {
+                            config.headers['Authorization'] = 'Bearer ' + token;
+                            return config;
+                        })];
+                });
+            });
+        });
+        this._ilandAxios.interceptors.response.use(function (response) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+            var str;
+            return tslib_1.__generator(this, function (_a) {
+                str = response.data;
+                if (str.indexOf(")]}'\n") === 0) {
+                    response.data = JSON.parse(str.substring(5));
+                }
+                return [2 /*return*/, response];
+            });
+        }); }, function (reason) { return tslib_1.__awaiter(_this, void 0, void 0, function () {
+            var str, error;
+            return tslib_1.__generator(this, function (_a) {
+                if (reason.response) {
+                    str = reason.response.data;
+                    if (str.indexOf(")]}'\n") === 0) {
+                        str = str.substring(5);
+                    }
+                    error = JSON.parse(str);
+                    throw new api_error_1.ApiError(error);
+                }
+                throw new Error(reason.message);
+            });
+        }); });
+    }
+    /**
+     * Gets a formatted Accept header from a standard MIME and optional version number.
+     * @param {string} mime the standard MIME string
+     * @param {number} version the targeted version (defaults to the SDK version)
+     * @returns {string} the formatted MIME type
+     */
+    Http.versionMime = function (mime, version) {
+        if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
+            return mime;
+        }
+        var versionStr = (version ? version : DEFAULT_API_VERSION).toFixed(1);
+        var parts = mime.split('/');
+        if (parts.length === 2) {
+            var prefix = parts[0];
+            var suffix = parts[1];
+            return prefix + "/" + ILAND_MIME_VND_PREFIX + ".v" + versionStr + "+" + suffix;
+        }
+        return mime;
+    };
+    /**
+     * Performs a request against the iland Cloud API.
+     * @param {AxiosRequestConfig} config request configuration
+     * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+     * @throws {ApiError} if the server responds with an error
+     */
+    Http.prototype.request = function (config) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this._ilandAxios.request(config)];
+            });
+        });
+    };
+    /**
+     * Perform a GET request against the iland Cloud API.
+     * @param {string} url the URL path
+     * @param {AxiosRequestConfig} config request configuration
+     * @returns {Promise<AxiosResponse>} promise that resolves with server response
+     * @throws {ApiError} if the server responds with an error
+     */
+    Http.prototype.get = function (url, config) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this._ilandAxios.get(url, config)];
+            });
+        });
+    };
+    /**
+     * Perform a DELETE request against the iland Cloud API.
+     * @param {string} url the URL path
+     * @param {AxiosRequestConfig} config request configuration
+     * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+     * @throws {ApiError} if the server responds with an error
+     */
+    Http.prototype.delete = function (url, config) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this._ilandAxios.delete(url, config)];
+            });
+        });
+    };
+    /**
+     * Perform a POST request against the iland Cloud API.
+     * @param {string} url the URL path
+     * @param data the data to include in the request body
+     * @param {AxiosRequestConfig} config request configuration
+     * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+     * @throws {ApiError} if the server responds with an error
+     */
+    Http.prototype.post = function (url, data, config) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this._ilandAxios.post(url, data, config)];
+            });
+        });
+    };
+    /**
+     * Perform a PUT request against the iland Cloud API.
+     * @param {string} url the URL path
+     * @param data the data to include in the request body
+     * @param {AxiosRequestConfig} config request configuration
+     * @returns {Promise<AxiosResponse>} promise that resolves with the server response
+     * @throws {ApiError} if the server responds with an error
+     */
+    Http.prototype.put = function (url, data, config) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, this._ilandAxios.put(url, data, config)];
+            });
+        });
+    };
+    return Http;
+}());
+exports.Http = Http;
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_48__;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var rxjs_1 = __webpack_require__(103);
+var iland_1 = __webpack_require__(11);
+var TASK_CONFIG = {
+    baseURL: 'http://10.11.16.16:8080/ecs',
+    headers: {
+        'Accept': 'application/vnd.ilandcloud.api.v0.9+json',
+        'Content-Type': 'application/vnd.ilandcloud.api.v0.9+json'
+    }
+};
 /**
  * Task.
  */
@@ -4616,33 +6887,252 @@ var Task = (function () {
         this._apiTask = _apiTask;
     }
     /**
-     * Gets the UUID of the task.
-     * @returns {string} UUID
+     * Gets a Task by datacenter and UUID.
+     * @param locationId the datacenter identifier
+     * @param taskUuid the task uuid
+     * @returns {Promise<Task>} promise that resolves with the Task
      */
-    Task.prototype.getUuid = function () {
-        return this._apiTask.uuid;
+    Task.getTask = function (locationId, taskUuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/task/" + locationId + "/" + taskUuid, TASK_CONFIG).then(function (response) {
+                        var apiTask = response.data;
+                        return new Task(apiTask);
+                    })];
+            });
+        });
     };
-    /**
-     * Gets the datacenter location ID of the task.
-     * @returns {string} datacenter location ID
-     */
-    Task.prototype.getLocationId = function () {
-        return this._apiTask.location_id;
-    };
-    /**
-     * Indicates whether the task is complete.
-     * @returns {boolean} value
-     */
-    Task.prototype.isComplete = function () {
-        return this._apiTask.synchronized;
-    };
-    /**
-     * Indicates the status of the task.
-     * @returns {string} task status
-     */
-    Task.prototype.getStatus = function () {
-        return this._apiTask.status;
-    };
+    Object.defineProperty(Task.prototype, "uuid", {
+        /**
+         * Gets the UUID of the task.
+         * @returns {string} UUID
+         */
+        get: function () {
+            return this._apiTask.uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "locationId", {
+        /**
+         * Gets the datacenter location ID of the task.
+         * @returns {string} datacenter location ID
+         */
+        get: function () {
+            return this._apiTask.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "complete", {
+        /**
+         * Indicates whether the task is complete.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiTask.synchronized;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "status", {
+        /**
+         * Indicates the status of the task.
+         * @returns {TaskStatus} task status
+         */
+        get: function () {
+            return this._apiTask.status;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "operation", {
+        /**
+         * Gets the task's operation identifier.
+         */
+        get: function () {
+            return this._apiTask.operation;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "endTime", {
+        /**
+         * Gets the end time of the task.
+         * @returns {Date|null} end time of the task or null if the task hasn't yet completed
+         */
+        get: function () {
+            return this._apiTask.end_time !== null ? new Date(this._apiTask.end_time) : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "entityUuid", {
+        /**
+         * Gets the UUID of the entity that is associated with the task.
+         * @returns {string} the UUID of the associated entity
+         */
+        get: function () {
+            return this._apiTask.entity_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "initiatedFromIlandApi", {
+        /**
+         * Indicates whether the task was initiated from the iland API.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiTask.initiated_from_ecs;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "initiationTime", {
+        /**
+         * Gets the date/time that the task was received/queued by the API.
+         * @returns {Date} the date that the task was initiated
+         */
+        get: function () {
+            return new Date(this._apiTask.initiation_time);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "message", {
+        /**
+         * Gets the message associated with the task, if there is one. The message may provide extra information if the task
+         * ended with an error status.
+         * @returns {string|null} message string or null if no message is associated with the task
+         */
+        get: function () {
+            return this._apiTask.message;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "operationDescription", {
+        /**
+         * Returns an operation description that may provide more detail about the operation that the task is associated with.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._apiTask.operation_description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "orgUuid", {
+        /**
+         * Returns the UUID of the organization that the task is associated with.
+         */
+        get: function () {
+            return this._apiTask.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "otherAttributes", {
+        /**
+         * Gets a map of additional task details that are specific to the task operation type.
+         * @returns {Map<string, any>} map of other task attributes
+         */
+        get: function () {
+            return this._apiTask.other_attributes;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "parentTaskUuid", {
+        /**
+         * If this is a sub-task, returns the UUID of the parent task, otherwise null.
+         * @returns {string|null} returns the UUID of the parent task
+         */
+        get: function () {
+            return this._apiTask.parent_task_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "progress", {
+        /**
+         * Gets the task progress as a percentage.
+         * @returns {number} in the range 0-100
+         */
+        get: function () {
+            return this._apiTask.progress;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "startTime", {
+        /**
+         * Gets the start time of the task, if the task has started. If the task is still queued, returns null.
+         * @returns {Date|null} the start time of the task or null
+         */
+        get: function () {
+            return this._apiTask.start_time === null ? null : new Date(this._apiTask.start_time);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "subTasks", {
+        /**
+         * Gets the task's sub-tasks, if this is a composite task.
+         * @returns {Array<string>}
+         */
+        get: function () {
+            return this._apiTask.sub_tasks;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "taskId", {
+        /**
+         * If this task is a wrapper for a task from another service (vCloud director, Zerto, etc), this will return the ID of
+         * the task known to that service. Otherwise returns Uhe task UUID.
+         * @returns {string} the ID of the task
+         */
+        get: function () {
+            return this._apiTask.task_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "taskType", {
+        /**
+         * Gets the task type.
+         * @returns {TaskType} the type of the task
+         */
+        get: function () {
+            return this._apiTask.task_type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "username", {
+        /**
+         * Gets the username of the user that initiated the task.
+         * @returns {string} username of the initiating user
+         */
+        get: function () {
+            return this._apiTask.username;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Task.prototype, "userFullName", {
+        /**
+         * Gets the full name of the user that initiated the task.
+         * @returns {string} full name of the user that initiated the task
+         */
+        get: function () {
+            return this._apiTask.user_full_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * JSON format.
      * @returns {string}
@@ -4650,32 +7140,31 @@ var Task = (function () {
     Task.prototype.toString = function () {
         return JSON.stringify(this._apiTask, undefined, 2);
     };
+    Object.defineProperty(Task.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {TaskJson} the API Task object
+         */
+        get: function () {
+            return Object.assign({}, this._apiTask);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Retrieves a new representation of the task from the API.
      * @returns {Promise<Task>} promise that resolves with updated task
      */
     Task.prototype.refresh = function () {
-        var self = this;
-        return iland_1.Iland.getHttp().get("/task/" + self.getLocationId() + "/" + self.getUuid()).then(function (response) {
-            self._apiTask = response.data;
-            return self;
-        });
-    };
-    Task.prototype._updateUntilComplete = function () {
-        var self = this;
-        return self.refresh().then(function (task) {
-            self._subject.next(task);
-            if (task.isComplete()) {
-                self._subject.complete();
-                return self;
-            }
-            else {
-                return new Promise(function (resolve) {
-                    setTimeout(function () {
-                        resolve(self._updateUntilComplete());
-                    }, 1000);
-                });
-            }
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/task/" + self.locationId + "/" + self.uuid, TASK_CONFIG).then(function (response) {
+                        self._apiTask = response.data;
+                        return self;
+                    })];
+            });
         });
     };
     /**
@@ -4683,17 +7172,32 @@ var Task = (function () {
      * @returns {Promise<T>} completion promise
      */
     Task.prototype.getPromise = function () {
-        var self = this;
-        return new Promise(function (resolve, reject) {
-            self.getObservable().subscribe(function (task) {
-                if (task.isComplete()) {
-                    if (task.getStatus() === 'error') {
-                        reject(task);
-                    }
-                    else {
-                        resolve(task);
-                    }
-                }
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        if (self.complete) {
+                            if (self.status === 'error') {
+                                reject(self);
+                            }
+                            else {
+                                resolve(self);
+                            }
+                        }
+                        else {
+                            self.getObservable().subscribe(function (task) {
+                                if (task.complete) {
+                                    if (task.status === 'error') {
+                                        reject(task);
+                                    }
+                                    else {
+                                        resolve(task);
+                                    }
+                                }
+                            });
+                        }
+                    })];
             });
         });
     };
@@ -4703,19 +7207,43 @@ var Task = (function () {
      */
     Task.prototype.getObservable = function () {
         var self = this;
-        if (self._subject === undefined) {
-            self._subject = new rxjs_1.Subject();
-            self._updateUntilComplete();
-        }
+        // tslint:disable-next-line:no-floating-promises
+        self._updateUntilComplete();
         return self._subject.asObservable();
+    };
+    Task.prototype._updateUntilComplete = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, subject;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                if (self._subject === undefined) {
+                    self._subject = new rxjs_1.Subject();
+                }
+                subject = self._subject;
+                return [2 /*return*/, self.refresh().then(function (task) {
+                        subject.next(task);
+                        if (task.complete) {
+                            subject.complete();
+                            return self;
+                        }
+                        else {
+                            return new Promise(function (resolve) {
+                                setTimeout(function () {
+                                    resolve(self._updateUntilComplete());
+                                }, 1000);
+                            });
+                        }
+                    })];
+            });
+        });
     };
     return Task;
 }());
 exports.Task = Task;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGFzay5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9zZGsvbW9kZWwvdGFzay50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDZCQUF5QztBQUN6QyxrQ0FBK0I7QUFHL0I7O0dBRUc7QUFDSDtJQUlFLGNBQW9CLFFBQWlCO1FBQWpCLGFBQVEsR0FBUixRQUFRLENBQVM7SUFDckMsQ0FBQztJQUVEOzs7T0FHRztJQUNILHNCQUFPLEdBQVA7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUM7SUFDNUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILDRCQUFhLEdBQWI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxXQUFXLENBQUM7SUFDbkMsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFVLEdBQVY7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxZQUFZLENBQUM7SUFDcEMsQ0FBQztJQUVEOzs7T0FHRztJQUNILHdCQUFTLEdBQVQ7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxNQUFNLENBQUM7SUFDOUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILHVCQUFRLEdBQVI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLFNBQVMsRUFBRSxDQUFDLENBQUMsQ0FBQztJQUNyRCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsc0JBQU8sR0FBUDtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixNQUFNLENBQUMsYUFBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsQ0FBQyxXQUFTLElBQUksQ0FBQyxhQUFhLEVBQUUsU0FBSSxJQUFJLENBQUMsT0FBTyxFQUFJLENBQUMsQ0FBQyxJQUFJLENBQUMsVUFBUyxRQUFRO1lBQ2xHLElBQUksQ0FBQyxRQUFRLEdBQUcsUUFBUSxDQUFDLElBQWUsQ0FBQztZQUN6QyxNQUFNLENBQUMsSUFBSSxDQUFDO1FBQ2QsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRU8sbUNBQW9CLEdBQTVCO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxJQUFJLENBQUMsT0FBTyxFQUFFLENBQUMsSUFBSSxDQUFDLFVBQVMsSUFBSTtZQUN0QyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztZQUN6QixFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsVUFBVSxFQUFFLENBQUMsQ0FBQyxDQUFDO2dCQUN0QixJQUFJLENBQUMsUUFBUSxDQUFDLFFBQVEsRUFBRSxDQUFDO2dCQUN6QixNQUFNLENBQUMsSUFBSSxDQUFDO1lBQ2QsQ0FBQztZQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNOLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBTyxVQUFTLE9BQU87b0JBQ3ZDLFVBQVUsQ0FBQzt3QkFDVCxPQUFPLENBQUMsSUFBSSxDQUFDLG9CQUFvQixFQUFFLENBQUMsQ0FBQztvQkFDdkMsQ0FBQyxFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUNYLENBQUMsQ0FBQyxDQUFDO1lBQ0wsQ0FBQztRQUNILENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFVLEdBQVY7UUFDRSxJQUFJLElBQUksR0FBRyxJQUFJLENBQUM7UUFDaEIsTUFBTSxDQUFDLElBQUksT0FBTyxDQUFDLFVBQVMsT0FBTyxFQUFFLE1BQU07WUFDekMsSUFBSSxDQUFDLGFBQWEsRUFBRSxDQUFDLFNBQVMsQ0FBQyxVQUFTLElBQUk7Z0JBQzFDLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxVQUFVLEVBQUUsQ0FBQyxDQUFDLENBQUM7b0JBQ3RCLEVBQUUsQ0FBQyxDQUFDLElBQUksQ0FBQyxTQUFTLEVBQUUsS0FBSyxPQUFPLENBQUMsQ0FBQyxDQUFDO3dCQUNqQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7b0JBQ2YsQ0FBQztvQkFBQyxJQUFJLENBQUMsQ0FBQzt3QkFDTixPQUFPLENBQUMsSUFBSSxDQUFDLENBQUM7b0JBQ2hCLENBQUM7Z0JBQ0gsQ0FBQztZQUNILENBQUMsQ0FBQyxDQUFDO1FBQ0wsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsNEJBQWEsR0FBYjtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsUUFBUSxLQUFLLFNBQVMsQ0FBQyxDQUFDLENBQUM7WUFDaEMsSUFBSSxDQUFDLFFBQVEsR0FBRyxJQUFJLGNBQU8sRUFBUSxDQUFDO1lBQ3BDLElBQUksQ0FBQyxvQkFBb0IsRUFBRSxDQUFDO1FBQzlCLENBQUM7UUFDRCxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxZQUFZLEVBQUUsQ0FBQztJQUN0QyxDQUFDO0lBRUgsV0FBQztBQUFELENBQUMsQUE1R0QsSUE0R0M7QUE1R1ksb0JBQUkifQ==
+
 
 /***/ }),
-/* 44 */
+/* 50 */
 /***/ (function(module, exports) {
 
 var g;
@@ -4742,7 +7270,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 45 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4754,7 +7282,7 @@ exports.isObject = isObject;
 //# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 46 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4785,7 +7313,7 @@ exports.UnsubscriptionError = UnsubscriptionError;
 //# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ }),
-/* 47 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4799,7 +7327,7 @@ exports.empty = {
 //# sourceMappingURL=Observer.js.map
 
 /***/ }),
-/* 48 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4809,7 +7337,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -4845,7 +7373,7 @@ exports.SubjectSubscription = SubjectSubscription;
 //# sourceMappingURL=SubjectSubscription.js.map
 
 /***/ }),
-/* 49 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4854,7 +7382,7 @@ exports.isArrayLike = (function (x) { return x && typeof x.length === 'number'; 
 //# sourceMappingURL=isArrayLike.js.map
 
 /***/ }),
-/* 50 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4866,7 +7394,7 @@ exports.isPromise = isPromise;
 //# sourceMappingURL=isPromise.js.map
 
 /***/ }),
-/* 51 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4876,17 +7404,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isArray_1 = __webpack_require__(10);
-var isArrayLike_1 = __webpack_require__(49);
-var isPromise_1 = __webpack_require__(50);
-var PromiseObservable_1 = __webpack_require__(52);
-var IteratorObservable_1 = __webpack_require__(102);
-var ArrayObservable_1 = __webpack_require__(12);
-var ArrayLikeObservable_1 = __webpack_require__(103);
-var iterator_1 = __webpack_require__(16);
+var isArray_1 = __webpack_require__(12);
+var isArrayLike_1 = __webpack_require__(55);
+var isPromise_1 = __webpack_require__(56);
+var PromiseObservable_1 = __webpack_require__(58);
+var IteratorObservable_1 = __webpack_require__(126);
+var ArrayObservable_1 = __webpack_require__(14);
+var ArrayLikeObservable_1 = __webpack_require__(127);
+var iterator_1 = __webpack_require__(18);
 var Observable_1 = __webpack_require__(0);
-var observeOn_1 = __webpack_require__(35);
-var observable_1 = __webpack_require__(24);
+var observeOn_1 = __webpack_require__(37);
+var observable_1 = __webpack_require__(25);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -4994,7 +7522,7 @@ exports.FromObservable = FromObservable;
 //# sourceMappingURL=FromObservable.js.map
 
 /***/ }),
-/* 52 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5004,7 +7532,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 var Observable_1 = __webpack_require__(0);
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -5121,15 +7649,15 @@ function dispatchError(arg) {
 //# sourceMappingURL=PromiseObservable.js.map
 
 /***/ }),
-/* 53 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var ArrayObservable_1 = __webpack_require__(12);
-var mergeAll_1 = __webpack_require__(27);
-var isScheduler_1 = __webpack_require__(11);
+var ArrayObservable_1 = __webpack_require__(14);
+var mergeAll_1 = __webpack_require__(28);
+var isScheduler_1 = __webpack_require__(13);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
@@ -5272,7 +7800,7 @@ exports.mergeStatic = mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 54 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5282,8 +7810,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isArray_1 = __webpack_require__(10);
-var ArrayObservable_1 = __webpack_require__(12);
+var isArray_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(14);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /* tslint:enable:max-line-length */
@@ -5389,7 +7917,7 @@ exports.RaceSubscriber = RaceSubscriber;
 //# sourceMappingURL=race.js.map
 
 /***/ }),
-/* 55 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5400,7 +7928,7 @@ exports.noop = noop;
 //# sourceMappingURL=noop.js.map
 
 /***/ }),
-/* 56 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5410,8 +7938,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var FromObservable_1 = __webpack_require__(51);
-var isArray_1 = __webpack_require__(10);
+var FromObservable_1 = __webpack_require__(57);
+var isArray_1 = __webpack_require__(12);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /* tslint:enable:max-line-length */
@@ -5543,7 +8071,7 @@ var OnErrorResumeNextSubscriber = (function (_super) {
 //# sourceMappingURL=onErrorResumeNext.js.map
 
 /***/ }),
-/* 57 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5553,12 +8081,12 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(7);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var root_1 = __webpack_require__(8);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var Observable_1 = __webpack_require__(0);
 var Subscriber_1 = __webpack_require__(1);
-var map_1 = __webpack_require__(37);
+var map_1 = __webpack_require__(39);
 function getCORSRequest() {
     if (root_1.root.XMLHttpRequest) {
         return new root_1.root.XMLHttpRequest();
@@ -5964,13 +8492,13 @@ exports.AjaxTimeoutError = AjaxTimeoutError;
 //# sourceMappingURL=AjaxObservable.js.map
 
 /***/ }),
-/* 58 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var QueueAction_1 = __webpack_require__(153);
-var QueueScheduler_1 = __webpack_require__(154);
+var QueueAction_1 = __webpack_require__(177);
+var QueueScheduler_1 = __webpack_require__(178);
 /**
  *
  * Queue Scheduler
@@ -6036,7 +8564,7 @@ exports.queue = new QueueScheduler_1.QueueScheduler(QueueAction_1.QueueAction);
 //# sourceMappingURL=queue.js.map
 
 /***/ }),
-/* 59 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6213,7 +8741,7 @@ exports.MergeMapSubscriber = MergeMapSubscriber;
 //# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
-/* 60 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6374,7 +8902,7 @@ exports.MergeMapToSubscriber = MergeMapToSubscriber;
 //# sourceMappingURL=mergeMapTo.js.map
 
 /***/ }),
-/* 61 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6385,8 +8913,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits all items emitted by the source Observable that are distinct by comparison from the previous item.
@@ -6488,7 +9016,7 @@ var DistinctUntilChangedSubscriber = (function (_super) {
 //# sourceMappingURL=distinctUntilChanged.js.map
 
 /***/ }),
-/* 62 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6587,7 +9115,7 @@ var FilterSubscriber = (function (_super) {
 //# sourceMappingURL=filter.js.map
 
 /***/ }),
-/* 63 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6694,7 +9222,7 @@ exports.FindValueSubscriber = FindValueSubscriber;
 //# sourceMappingURL=find.js.map
 
 /***/ }),
-/* 64 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6704,10 +9232,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
+var Subject_1 = __webpack_require__(6);
 var Observable_1 = __webpack_require__(0);
 var Subscriber_1 = __webpack_require__(1);
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 /**
  * @class ConnectableObservable<T>
  */
@@ -6869,7 +9397,7 @@ var RefCountSubscriber = (function (_super) {
 //# sourceMappingURL=ConnectableObservable.js.map
 
 /***/ }),
-/* 65 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6879,8 +9407,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var ObjectUnsubscribedError_1 = __webpack_require__(25);
+var Subject_1 = __webpack_require__(6);
+var ObjectUnsubscribedError_1 = __webpack_require__(26);
 /**
  * @class BehaviorSubject<T>
  */
@@ -6924,13 +9452,13 @@ exports.BehaviorSubject = BehaviorSubject;
 //# sourceMappingURL=BehaviorSubject.js.map
 
 /***/ }),
-/* 66 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var AsapAction_1 = __webpack_require__(305);
-var AsapScheduler_1 = __webpack_require__(309);
+var AsapAction_1 = __webpack_require__(329);
+var AsapScheduler_1 = __webpack_require__(333);
 /**
  *
  * Asap Scheduler
@@ -6969,7 +9497,7 @@ exports.asap = new AsapScheduler_1.AsapScheduler(AsapAction_1.AsapAction);
 //# sourceMappingURL=asap.js.map
 
 /***/ }),
-/* 67 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -7022,13 +9550,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(307);
+__webpack_require__(331);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 68 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7176,7 +9704,7 @@ var ThrottleSubscriber = (function (_super) {
 //# sourceMappingURL=throttle.js.map
 
 /***/ }),
-/* 69 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7187,7 +9715,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 /**
  * @param scheduler
  * @return {Observable<TimeInterval<any>>|WebSocketSubject<T>|Observable<T>}
@@ -7241,7 +9769,7 @@ var TimeIntervalSubscriber = (function (_super) {
 //# sourceMappingURL=timeInterval.js.map
 
 /***/ }),
-/* 70 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7272,7 +9800,7 @@ exports.TimeoutError = TimeoutError;
 //# sourceMappingURL=TimeoutError.js.map
 
 /***/ }),
-/* 71 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7283,7 +9811,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 /**
  * @param scheduler
  * @return {Observable<Timestamp<any>>|WebSocketSubject<T>|Observable<T>}
@@ -7328,12 +9856,12 @@ var TimestampSubscriber = (function (_super) {
 //# sourceMappingURL=timestamp.js.map
 
 /***/ }),
-/* 72 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var SubscriptionLog_1 = __webpack_require__(73);
+var SubscriptionLog_1 = __webpack_require__(79);
 var SubscriptionLoggable = (function () {
     function SubscriptionLoggable() {
         this.subscriptions = [];
@@ -7353,7 +9881,7 @@ exports.SubscriptionLoggable = SubscriptionLoggable;
 //# sourceMappingURL=SubscriptionLoggable.js.map
 
 /***/ }),
-/* 73 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7370,7 +9898,7 @@ exports.SubscriptionLog = SubscriptionLog;
 //# sourceMappingURL=SubscriptionLog.js.map
 
 /***/ }),
-/* 74 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7389,7 +9917,7 @@ exports.applyMixins = applyMixins;
 //# sourceMappingURL=applyMixins.js.map
 
 /***/ }),
-/* 75 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7399,8 +9927,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(18);
-var AsyncScheduler_1 = __webpack_require__(19);
+var AsyncAction_1 = __webpack_require__(20);
+var AsyncScheduler_1 = __webpack_require__(21);
 var VirtualTimeScheduler = (function (_super) {
     __extends(VirtualTimeScheduler, _super);
     function VirtualTimeScheduler(SchedulerAction, maxFrames) {
@@ -7508,7 +10036,7 @@ exports.VirtualAction = VirtualAction;
 //# sourceMappingURL=VirtualTimeScheduler.js.map
 
 /***/ }),
-/* 76 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7521,69 +10049,105 @@ var Vnic = (function () {
     function Vnic(_apiVnic) {
         this._apiVnic = _apiVnic;
     }
-    /**
-     * Gets the type of the adapter.
-     * @returns {string} adapter type
-     */
-    Vnic.prototype.getAdapterType = function () {
-        return this._apiVnic.adapter_type;
-    };
-    /**
-     * Gets the address mode of the adapter.
-     * @returns {string} address mode
-     */
-    Vnic.prototype.getAddressMode = function () {
-        return this._apiVnic.address_mode;
-    };
-    /**
-     * Indicates whether the VNIC is currently connected.
-     * @returns {boolean} value
-     */
-    Vnic.prototype.isConnected = function () {
-        return this._apiVnic.connected;
-    };
-    /**
-     * Indicates whether the VNIC is deleted.
-     * @returns {boolean} value
-     */
-    Vnic.prototype.isDeleted = function () {
-        return this._apiVnic.deleted;
-    };
-    /**
-     * Gets the IP address that is assigned to the VNIC.
-     * @returns {string} IP Address
-     */
-    Vnic.prototype.getIpAddress = function () {
-        return this._apiVnic.ip_addr;
-    };
-    /**
-     * Gets the MAC address that is assigned to the VNIC.
-     * @returns {string} MAC address
-     */
-    Vnic.prototype.getMacAddress = function () {
-        return this._apiVnic.mac_addr;
-    };
-    /**
-     * Gets the name of the network that the VNIC is connected to.
-     * @returns {string} vApp network name
-     */
-    Vnic.prototype.getConnectedNetworkName = function () {
-        return this._apiVnic.net_name;
-    };
-    /**
-     * Indicates whether this is the VM's primary VNIC.
-     * @returns {boolean} value
-     */
-    Vnic.prototype.isPrimaryConnection = function () {
-        return this._apiVnic.primary_cnx;
-    };
-    /**
-     * Gets the ID of the VNIC among other VNICs connected to the VM.
-     * @returns {number} VNIC ID
-     */
-    Vnic.prototype.getVnicId = function () {
-        return this._apiVnic.vnic_id;
-    };
+    Object.defineProperty(Vnic.prototype, "adapterType", {
+        /**
+         * Gets the type of the adapter.
+         * @returns {string} adapter type
+         */
+        get: function () {
+            return this._apiVnic.adapter_type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "addressMode", {
+        /**
+         * Gets the address mode of the adapter.
+         * @returns {string} address mode
+         */
+        get: function () {
+            return this._apiVnic.address_mode;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "connected", {
+        /**
+         * Indicates whether the VNIC is currently connected.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiVnic.connected;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "deleted", {
+        /**
+         * Indicates whether the VNIC is deleted.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiVnic.deleted;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "ipAddress", {
+        /**
+         * Gets the IP address that is assigned to the VNIC.
+         * @returns {string} IP Address
+         */
+        get: function () {
+            return this._apiVnic.ip_addr;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "macAddress", {
+        /**
+         * Gets the MAC address that is assigned to the VNIC.
+         * @returns {string} MAC address
+         */
+        get: function () {
+            return this._apiVnic.mac_addr;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "connectedNetworkName", {
+        /**
+         * Gets the name of the network that the VNIC is connected to.
+         * @returns {string} vApp network name
+         */
+        get: function () {
+            return this._apiVnic.net_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "primaryConnection", {
+        /**
+         * Indicates whether this is the VM's primary VNIC.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiVnic.primary_cnx;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vnic.prototype, "vnicId", {
+        /**
+         * Gets the ID of the VNIC among other VNICs connected to the VM.
+         * @returns {number} VNIC ID
+         */
+        get: function () {
+            return this._apiVnic.vnic_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * JSON format.
      * @returns {string}
@@ -7591,42 +10155,2268 @@ var Vnic = (function () {
     Vnic.prototype.toString = function () {
         return JSON.stringify(this._apiVnic, undefined, 2);
     };
+    Object.defineProperty(Vnic.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VnicJson} the API VNIC object
+         */
+        get: function () {
+            return Object.assign({}, this._apiVnic);
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Vnic;
 }());
 exports.Vnic = Vnic;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidm5pYy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9zZGsvbW9kZWwvdm5pYy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUVBOztHQUVHO0FBQ0g7SUFFRSxjQUFvQixRQUFpQjtRQUFqQixhQUFRLEdBQVIsUUFBUSxDQUFTO0lBQ3JDLENBQUM7SUFFRDs7O09BR0c7SUFDSCw2QkFBYyxHQUFkO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsWUFBWSxDQUFDO0lBQ3BDLENBQUM7SUFFRDs7O09BR0c7SUFDSCw2QkFBYyxHQUFkO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsWUFBWSxDQUFDO0lBQ3BDLENBQUM7SUFFRDs7O09BR0c7SUFDSCwwQkFBVyxHQUFYO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDO0lBQ2pDLENBQUM7SUFFRDs7O09BR0c7SUFDSCx3QkFBUyxHQUFUO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDO0lBQy9CLENBQUM7SUFFRDs7O09BR0c7SUFDSCwyQkFBWSxHQUFaO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsT0FBTyxDQUFDO0lBQy9CLENBQUM7SUFFRDs7O09BR0c7SUFDSCw0QkFBYSxHQUFiO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUMsUUFBUSxDQUFDO0lBQ2hDLENBQUM7SUFFRDs7O09BR0c7SUFDSCxzQ0FBdUIsR0FBdkI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxRQUFRLENBQUM7SUFDaEMsQ0FBQztJQUVEOzs7T0FHRztJQUNILGtDQUFtQixHQUFuQjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFdBQVcsQ0FBQztJQUNuQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsd0JBQVMsR0FBVDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQztJQUMvQixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsU0FBUyxFQUFFLENBQUMsQ0FBQyxDQUFDO0lBQ3JELENBQUM7SUFFSCxXQUFDO0FBQUQsQ0FBQyxBQXJGRCxJQXFGQztBQXJGWSxvQkFBSSJ9
+
 
 /***/ }),
-/* 77 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(21);
+/**
+ * Virtual Disk.
+ */
+var VirtualDisk = (function () {
+    function VirtualDisk(_apiDisk) {
+        this._apiDisk = _apiDisk;
+    }
+    Object.defineProperty(VirtualDisk.prototype, "name", {
+        /**
+         * Gets the name of the virtual disk.
+         * @returns {string} the name
+         */
+        get: function () {
+            return this._apiDisk.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VirtualDisk.prototype, "size", {
+        /**
+         * Gets the size of the virtual disk in MB.
+         * @returns {number} size in MB
+         */
+        get: function () {
+            return this._apiDisk.size;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(VirtualDisk.prototype, "type", {
+        /**
+         * Gets the Virtual Hard Disk type.
+         * @returns {VirtualDiskType} the type
+         */
+        get: function () {
+            return this._apiDisk.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    VirtualDisk.prototype.toString = function () {
+        return JSON.stringify(this._apiDisk, undefined, 2);
+    };
+    Object.defineProperty(VirtualDisk.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VirtualDiskJson} the API virtual disk object
+         */
+        get: function () {
+            return Object.assign({}, this._apiDisk);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return VirtualDisk;
+}());
+exports.VirtualDisk = VirtualDisk;
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Metadata.
+ */
+var Metadata = (function () {
+    function Metadata(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(Metadata.prototype, "key", {
+        /**
+         * Gets the metadata key.
+         * @returns {string} the key
+         */
+        get: function () {
+            return this._json.key;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Metadata.prototype, "access", {
+        /**
+         * Gets the metadata's access restriction type.
+         * @returns {MetadataAccessMode} the type of access restriction
+         */
+        get: function () {
+            return this._json.access;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Metadata.prototype, "type", {
+        /**
+         * Gets the type of the metadata.
+         * @returns {VirtualDiskType} the type
+         */
+        get: function () {
+            return this._json.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Metadata.prototype, "value", {
+        /**
+         * Gets the metadata value.
+         * @returns {} the type
+         */
+        get: function () {
+            return this._json.value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Metadata.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Metadata.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {MetadataJson} the API JSON representation of the metadata
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Metadata;
+}());
+exports.Metadata = Metadata;
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * VM Backup Restore Point.
+ */
+var BackupRestorePoint = (function () {
+    function BackupRestorePoint(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(BackupRestorePoint.prototype, "name", {
+        /**
+         * Gets the name of the restore point.
+         * @returns {string} the name
+         */
+        get: function () {
+            return this._json.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BackupRestorePoint.prototype, "timestamp", {
+        /**
+         * Gets the timestamp of the backup restore point.
+         * @returns {Date} date of the restore point
+         */
+        get: function () {
+            return new Date(this._json.timestamp);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BackupRestorePoint.prototype, "backupServerName", {
+        /**
+         * Gets the name of the backup server that the restore point is stored on.
+         * @returns {string} the name of the backup server
+         */
+        get: function () {
+            return this._json.backup_server_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    BackupRestorePoint.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(BackupRestorePoint.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {BackupRestorePointJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BackupRestorePoint;
+}());
+exports.BackupRestorePoint = BackupRestorePoint;
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Snapshot.
+ */
+var Snapshot = (function () {
+    function Snapshot(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(Snapshot.prototype, "creationDate", {
+        /**
+         * Gets the date that the snapshot was created.
+         * @returns {Date} the creation date
+         */
+        get: function () {
+            return new Date(this._json.creation_date);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Snapshot.prototype, "size", {
+        /**
+         * Gets the size of the snapshot.
+         * @returns {number} size
+         */
+        get: function () {
+            return this._json.size;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Snapshot.prototype, "poweredOn", {
+        /**
+         * Indicates whether the snapshot is powered on.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.is_powered_on;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Snapshot.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Snapshot.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {SnapshotJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Snapshot;
+}());
+exports.Snapshot = Snapshot;
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * VM Screen Ticket.
+ */
+var ScreenTicket = (function () {
+    function ScreenTicket(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(ScreenTicket.prototype, "vmId", {
+        /**
+         * Gets the VM ID attribute.
+         * @returns {string} VM ID
+         */
+        get: function () {
+            return this._json.vm_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ScreenTicket.prototype, "ticket", {
+        /**
+         * Gets the ticket.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.ticket;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ScreenTicket.prototype, "host", {
+        /**
+         * Gets the host.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.host;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ScreenTicket.prototype, "sslThumbprint", {
+        /**
+         * Gets the SSL thumbprint.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.ssl_thumbprint;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    ScreenTicket.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(ScreenTicket.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {ScreenTicketJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ScreenTicket;
+}());
+exports.ScreenTicket = ScreenTicket;
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * VM MKS Screen Ticket.
+ */
+var MksScreenTicket = (function () {
+    function MksScreenTicket(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(MksScreenTicket.prototype, "vmx", {
+        /**
+         * Gets the VMX attribute.
+         * @returns {string} vmx
+         */
+        get: function () {
+            return this._json.vmx;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MksScreenTicket.prototype, "ticket", {
+        /**
+         * Gets the ticket.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.ticket;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MksScreenTicket.prototype, "host", {
+        /**
+         * Gets the host.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.host;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MksScreenTicket.prototype, "port", {
+        /**
+         * Gets the port.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.port;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    MksScreenTicket.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(MksScreenTicket.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {MksScreenTicketJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return MksScreenTicket;
+}());
+exports.MksScreenTicket = MksScreenTicket;
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Bill Line Item.
+ */
+var BillLineItem = (function () {
+    function BillLineItem(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(BillLineItem.prototype, "name", {
+        /**
+         * Gets the line item name.
+         * @returns {string} name
+         */
+        get: function () {
+            return this._json.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillLineItem.prototype, "price", {
+        /**
+         * Gets the price.
+         * @returns {number} price
+         */
+        get: function () {
+            return this._json.price;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillLineItem.prototype, "quantity", {
+        /**
+         * Gets the quantity.
+         * @returns {number} quantity
+         */
+        get: function () {
+            return this._json.quantity;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillLineItem.prototype, "productId", {
+        /**
+         * Gets the product ID.
+         * @returns {string} the product ID
+         */
+        get: function () {
+            return this._json.product_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    BillLineItem.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(BillLineItem.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {BillLineItemJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BillLineItem;
+}());
+exports.BillLineItem = BillLineItem;
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var bill_1 = __webpack_require__(41);
+/**
+ * Billing Summary.
+ */
+var BillingSummary = (function () {
+    function BillingSummary(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(BillingSummary.prototype, "currentMonth", {
+        /**
+         * Gets the current month bill.
+         * @returns {Bill} the current month bill
+         */
+        get: function () {
+            return new bill_1.Bill(this._json.current_month);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillingSummary.prototype, "previousMonth", {
+        /**
+         * Gets the previous month bill.
+         * @returns {Bill} the previous month bill
+         */
+        get: function () {
+            return new bill_1.Bill(this._json.previous_month);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillingSummary.prototype, "currentHour", {
+        /**
+         * Gets the current hour bill.
+         * @returns {Bill} the current hour bill
+         */
+        get: function () {
+            return new bill_1.Bill(this._json.current_hour);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillingSummary.prototype, "previousHour", {
+        /**
+         * Gets the previous hour bill.
+         * @returns {Bill} the previous hour bill
+         */
+        get: function () {
+            return new bill_1.Bill(this._json.previous_hour);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BillingSummary.prototype, "testDrive", {
+        /**
+         * Indicates whether this is a test drive bill.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.test_drive;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    BillingSummary.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(BillingSummary.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {BillingSummaryJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return BillingSummary;
+}());
+exports.BillingSummary = BillingSummary;
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var iland_1 = __webpack_require__(11);
+var company_inventory_1 = __webpack_require__(92);
+/**
+ * User.
+ */
+var User = (function () {
+    function User(_apiUser) {
+        this._apiUser = _apiUser;
+    }
+    /**
+     * Gets a user by username.
+     * @param username the user's username
+     * @returns {Promise<User>}
+     */
+    User.getUser = function (username) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/user/" + username).then(function (response) {
+                        var apiUser = response.data;
+                        return new User(apiUser);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the currently authenticated user.
+     * @returns {Promise<User>}
+     */
+    User.getCurrentUser = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getAuthProvider().getAuthenticatedUsername().then(function (username) {
+                        return tslib_1.__awaiter(this, void 0, void 0, function () {
+                            return tslib_1.__generator(this, function (_a) {
+                                if (username) {
+                                    return [2 /*return*/, User.getUser(username)];
+                                }
+                                else {
+                                    return [2 /*return*/, new Promise(function (_, reject) {
+                                            reject();
+                                        })];
+                                }
+                                return [2 /*return*/];
+                            });
+                        });
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(User.prototype, "username", {
+        /**
+         * Gets the user's username.
+         * @returns {string} username
+         */
+        get: function () {
+            return this._apiUser.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "address", {
+        /**
+         * Gets the user's address.
+         * @returns {string} address
+         */
+        get: function () {
+            return this._apiUser.address;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "city", {
+        /**
+         * Gets the user's city.
+         * @returns {string} city
+         */
+        get: function () {
+            return this._apiUser.city;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "company", {
+        /**
+         * Gets the user's company.
+         * @returns {string} company
+         */
+        get: function () {
+            return this._apiUser.company;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "country", {
+        /**
+         * Gets the user's country.
+         * @returns {string} country
+         */
+        get: function () {
+            return this._apiUser.country;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "createdDate", {
+        /**
+         * Gets the user's created date.
+         * @returns {Date} created date
+         */
+        get: function () {
+            return new Date(this._apiUser.created_date);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "domain", {
+        /**
+         * Gets the user's domain.
+         * @returns {string} user domain
+         */
+        get: function () {
+            return this._apiUser.domain;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "deleted", {
+        /**
+         * Indicates whether the user is deleted.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiUser.deleted;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "deletedDate", {
+        /**
+         * Gets the deleted date of the user.
+         * @returns {Date} deleted date or null if the user is not deleted
+         */
+        get: function () {
+            return this._apiUser.deleted_date ? new Date(this._apiUser.deleted_date) :
+                null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "email", {
+        /**
+         * Gets the user's email address.
+         * @returns {string} email address
+         */
+        get: function () {
+            return this._apiUser.email;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "fullName", {
+        /**
+         * Gets the user's full name.
+         * @returns {string} full name
+         */
+        get: function () {
+            return this._apiUser.fullname;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "locked", {
+        /**
+         * Indicates whether the user is locked out of their account.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._apiUser.locked;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "phoneNumber", {
+        /**
+         * Gets the phone number of the user.
+         * @returns {string} phone number
+         */
+        get: function () {
+            return this._apiUser.phone;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "state", {
+        /**
+         * Gets the user's state.
+         * @returns {string} state
+         */
+        get: function () {
+            return this._apiUser.state;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "userType", {
+        /**
+         * Gets the user type.
+         * @returns {UserType} user type
+         */
+        get: function () {
+            return this._apiUser.user_type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(User.prototype, "zip", {
+        /**
+         * Gets the user's zip code.
+         * @returns {string} zip code.
+         */
+        get: function () {
+            return this._apiUser.zip;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    User.prototype.toString = function () {
+        return JSON.stringify(this._apiUser, undefined, 2);
+    };
+    Object.defineProperty(User.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {UserJson} the API User object
+         */
+        get: function () {
+            return Object.assign({}, this._apiUser);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Retrieves a new representation of the user from the API.
+     * @returns {Promise<User>} promise that resolves with updated user
+     */
+    User.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/user/" + self.username).then(function (response) {
+                        self._apiUser = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the user's inventory within the specified company..
+     * @param {string} companyId the ID of the company to retrieve inventory for
+     * @returns {Promise<CompanyInventory>}  entity inventory
+     */
+    User.prototype.getInventoryInCompany = function (companyId) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/user/" + self.username + "/inventory", {
+                        params: {
+                            company: companyId
+                        }
+                    }).then(function (response) {
+                        var userInventory = response.data;
+                        if (!userInventory.inventory || userInventory.inventory.length === 0) {
+                            throw new Error("No inventory found for company with id=" + companyId + ".");
+                        }
+                        return new company_inventory_1.CompanyInventory(userInventory.inventory[0]);
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the user's entity inventory.
+     * @returns {Promise<Array<CompanyInventory>>} user's entity inventory
+     */
+    User.prototype.getInventory = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/user/" + self.username + "/inventory").then(function (response) {
+                        var userInventory = response.data;
+                        return userInventory.inventory.map(function (it) { return new company_inventory_1.CompanyInventory(it); });
+                    })];
+            });
+        });
+    };
+    return User;
+}());
+exports.User = User;
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Inventory entity properties.
+ */
+var InventoryEntity = (function () {
+    function InventoryEntity(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(InventoryEntity.prototype, "uuid", {
+        /**
+         * Gets the UUID of the entity.
+         * @returns {string} UUID
+         */
+        get: function () {
+            return this._json.uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryEntity.prototype, "type", {
+        /**
+         * Gets the type of the entity.
+         * @returns {EntityDomain} entity type
+         */
+        get: function () {
+            return this._json.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryEntity.prototype, "name", {
+        /**
+         * Gets the name of the entity.
+         * @returns {string} entity name
+         */
+        get: function () {
+            return this._json.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryEntity.prototype, "parentUuid", {
+        /**
+         * Gets the UUID of the parent entity.
+         * @returns {string} the parent entity UUID
+         */
+        get: function () {
+            return this._json.parent_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InventoryEntity.prototype, "parentType", {
+        /**
+         * Gets the type of the parent entity.
+         * @returns {EntityDomain} the parent entity type
+         */
+        get: function () {
+            return this._json.parent_type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return InventoryEntity;
+}());
+exports.InventoryEntity = InventoryEntity;
+var CompanyInventory = (function () {
+    function CompanyInventory(_inventory) {
+        this._inventory = _inventory;
+        this._uuidMap = {};
+        for (var type in this._inventory.entities) {
+            for (var _i = 0, _a = this._inventory.entities[type]; _i < _a.length; _i++) {
+                var entity = _a[_i];
+                this._uuidMap[entity.uuid] = new InventoryEntity(entity);
+            }
+        }
+    }
+    /**
+     * Get an inventory entity by UUID.
+     * @param uuid {string} UUID of the entity
+     * @returns {undefined|InventoryEntity}
+     */
+    CompanyInventory.prototype.getEntityByUuid = function (uuid) {
+        return this._uuidMap[uuid];
+    };
+    /**
+     * Get an array of inventory entities of the specified type.
+     * @param type {EntityType} the type to retrieve
+     * @returns {undefined|InventoryEntity}
+     */
+    CompanyInventory.prototype.getEntitiesByType = function (type) {
+        var result = this._inventory.entities[type];
+        return result ? result.map(function (it) { return new InventoryEntity(it); }) : undefined;
+    };
+    return CompanyInventory;
+}());
+exports.CompanyInventory = CompanyInventory;
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var edge_interface_1 = __webpack_require__(94);
+/**
+ * Edge Gateway.
+ */
+var Edge = (function (_super) {
+    tslib_1.__extends(Edge, _super);
+    function Edge(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
+        return _this;
+    }
+    /**
+     * Gets an Edge by UUID.
+     * @param uuid Edge UUID
+     * @returns {Promise<Edge>} promise that resolves with the Edge
+     */
+    Edge.getEdge = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/edge/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new Edge(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(Edge.prototype, "entityType", {
+        get: function () {
+            return 'EDGE';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "status", {
+        /**
+         * Gets the status of the Edge gateway.
+         * @returns {string} status
+         */
+        get: function () {
+            return this._json.status === 1 ? 'UP' : 'DOWN';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "vdcUuid", {
+        /**
+         * Gets the UUID of the associated vDC.
+         * @returns {string} vDC UUID
+         */
+        get: function () {
+            return this._json.vdc_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "orgUuid", {
+        /**
+         * Gets the UUID of the associated Org.
+         * @returns {string} org UUID
+         */
+        get: function () {
+            return this._json.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "interfaces", {
+        /**
+         * Gets the Edges network interfaces.
+         * @returns {[EdgeInterface]} array of interfaces
+         */
+        get: function () {
+            return this._json.interfaces.map(function (interfaceJson) { return new edge_interface_1.EdgeInterface(interfaceJson); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "backwardCompatibilityMode", {
+        /**
+         * Indicates whether the edge is in backwards compatibility mode.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.backward_compatibility_mode;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "backingConfigurationType", {
+        /**
+         * Gets the type of backing configuration.
+         * @returns {EdgeBackingConfigurationType} backing configuration type
+         */
+        get: function () {
+            return this._json.gateway_backing_config;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "highAvailabilityEnabled", {
+        /**
+         * Indicates whether high availability mode is enabled.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.high_availability_enabled;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "defaultDnsRelayRoute", {
+        /**
+         * Indicates whether this edge is the default DNS relay route.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.default_dns_relay_route;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "locationId", {
+        /**
+         * Gets the data center location ID that the edge is associated with.
+         * @returns {string} location ID
+         */
+        get: function () {
+            return this._json.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "description", {
+        /**
+         * Gets the description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Edge.prototype, "vcloudHref", {
+        /**
+         * Gets the vCloud HREF.
+         * @returns {string|null} vCloud HREF
+         */
+        get: function () {
+            return this._json.vcloud_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Edge.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Edge.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {EdgeJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the Edge data by retrieving it from the API again.
+     * @returns {Promise<Edge>} promise that resolves with this object
+     */
+    Edge.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/edge/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    return Edge;
+}(entity_1.Entity));
+exports.Edge = Edge;
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var edge_subnet_participation_1 = __webpack_require__(95);
+/**
+ * Edge Gateway Interface.
+ */
+var EdgeInterface = (function () {
+    function EdgeInterface(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(EdgeInterface.prototype, "name", {
+        /**
+         * Gets the interface name.
+         * @returns {string} interface name
+         */
+        get: function () {
+            return this._json.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "displayName", {
+        /**
+         * Gets the display name.
+         * @returns {string} display name
+         */
+        get: function () {
+            return this._json.display_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "inRateLimit", {
+        /**
+         * Gets the incoming rate limit setting.
+         * @returns {number} incoming rate limit
+         */
+        get: function () {
+            return this._json.in_rate_limit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "outRateLimit", {
+        /**
+         * Gets the outgoing rate limit setting.
+         * @returns {number} outgoing rate limit
+         */
+        get: function () {
+            return this._json.out_rate_limit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "type", {
+        /**
+         * Gets the interface type.
+         * @returns {EdgeInterfaceType} interface type
+         */
+        get: function () {
+            return this._json.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "rateLimitEnabled", {
+        /**
+         * Indicates whether rate limiting is enabled on this edge.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.apply_rate_limit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "defaultRoute", {
+        /**
+         * Indicates whether this edge is used as the default DNS relay route.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.default_route;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "networkName", {
+        /**
+         * Gets the name of the network that is attached to this interface.
+         * @returns {string} network name
+         */
+        get: function () {
+            return this._json.network;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "networkUuid", {
+        /**
+         * Gets the UUID of the network that is attached to this interface.
+         * @returns {string} network UUID
+         */
+        get: function () {
+            return this._json.network_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeInterface.prototype, "subnetParticipation", {
+        /**
+         * Gets the subnet participation information.
+         * @returns {[EdgeSubnetParticipation]} subnet participation array
+         */
+        get: function () {
+            return this._json.subnet_participation.map(function (spJson) { return new edge_subnet_participation_1.EdgeSubnetParticipation(spJson); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    EdgeInterface.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(EdgeInterface.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {EdgeInterfaceJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return EdgeInterface;
+}());
+exports.EdgeInterface = EdgeInterface;
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var ip_range_1 = __webpack_require__(42);
+/**
+ * Edge Gateway Subnet Participation.
+ */
+var EdgeSubnetParticipation = (function () {
+    function EdgeSubnetParticipation(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(EdgeSubnetParticipation.prototype, "gatewayAddress", {
+        /**
+         * Gets the gateway address on the network.
+         * @returns {string} gateway address
+         */
+        get: function () {
+            return this._json.gateway;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeSubnetParticipation.prototype, "netmask", {
+        /**
+         * Gets the networks netmask.
+         * @returns {string} netmask
+         */
+        get: function () {
+            return this._json.netmask;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeSubnetParticipation.prototype, "ipAddress", {
+        /**
+         * Gets the IP address.
+         * @returns {string} IP address
+         */
+        get: function () {
+            return this._json.ip_address;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(EdgeSubnetParticipation.prototype, "ipRanges", {
+        /**
+         * Gets the assigned IP ranges.
+         * @returns {[IpRange]} IP address ranges
+         */
+        get: function () {
+            return this._json.ip_ranges.map(function (rangeJson) { return new ip_range_1.IpRange(rangeJson); });
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    EdgeSubnetParticipation.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(EdgeSubnetParticipation.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {EdgeSubnetParticipationJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return EdgeSubnetParticipation;
+}());
+exports.EdgeSubnetParticipation = EdgeSubnetParticipation;
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var iland_1 = __webpack_require__(11);
+var abstract_network_1 = __webpack_require__(43);
+/**
+ * Internal Network.
+ */
+var InternalNetwork = (function (_super) {
+    tslib_1.__extends(InternalNetwork, _super);
+    function InternalNetwork(_json) {
+        return _super.call(this, _json) || this;
+    }
+    /**
+     * Gets an internal network by UUID.
+     * @param uuid internal network UUID
+     * @returns {Promise<InternalNetwork>} promise that resolves with the internal network
+     */
+    InternalNetwork.getInternalNetwork = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/network/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new InternalNetwork(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(InternalNetwork.prototype, "entityType", {
+        get: function () {
+            return 'ORG_VDC_NETWORK';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InternalNetwork.prototype, "edgeUuid", {
+        /**
+         * Gets the UUID of the edge gateway that the network is connected to, if its a NAT routed network or null otherwise.
+         * @returns {string|null} edge gateway UUID or null
+         */
+        get: function () {
+            return this._json.edge_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InternalNetwork.prototype, "shared", {
+        /**
+         * Indicates whether this network is shared with other vDCs within the same organization.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.shared;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(InternalNetwork.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {InternalNetworkJson} the API json object
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the internal network data by retrieving it from the API again.
+     * @returns {Promise<InternalNetwork>} promise that resolves with this object
+     */
+    InternalNetwork.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/network/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    return InternalNetwork;
+}(abstract_network_1.AbstractNetwork));
+exports.InternalNetwork = InternalNetwork;
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var vm_1 = __webpack_require__(33);
+var vapp_1 = __webpack_require__(44);
+/**
+ * Virtual Data Center.
+ */
+var Vdc = (function (_super) {
+    tslib_1.__extends(Vdc, _super);
+    function Vdc(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
+        return _this;
+    }
+    /**
+     * Gets a vDC by UUID.
+     * @param uuid vDC UUID
+     * @returns {Promise<Vdc>} promise that resolves with the vDC
+     */
+    Vdc.getVdc = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vdc/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new Vdc(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(Vdc.prototype, "entityType", {
+        get: function () {
+            return 'VDC';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "enabled", {
+        /**
+         * Indicates whether the vDC is enabled.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.enabled;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "vcenterMoref", {
+        /**
+         * Gets the vCenter HREF.
+         * @returns {string} vCenter HREF
+         */
+        get: function () {
+            return this._json.vcenter_moref;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "vcenterName", {
+        /**
+         * Gets the vCenter name.
+         * @returns {string} vCenter name
+         */
+        get: function () {
+            return this._json.vcenter_name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "description", {
+        /**
+         * Gets the description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "vcloudHref", {
+        /**
+         * Gets the vCloud HREF
+         * @returns {string} vCloud HREF
+         */
+        get: function () {
+            return this._json.vcloud_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "vcenterInstanceUuid", {
+        /**
+         * Gets the vCenter instance UUID.
+         * @returns {string} vCenter instance UUID
+         */
+        get: function () {
+            return this._json.vcenter_instance_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "vcenterHref", {
+        /**
+         * Gets the vCenter HREF
+         * @returns {string} vCenter HREF
+         */
+        get: function () {
+            return this._json.vcenter_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "allocationModel", {
+        /**
+         * Gets the vDC allocation model
+         * @returns {VdcAllocationModel} allocation model identifier
+         */
+        get: function () {
+            return this._json.allocation_model;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "reservedCpu", {
+        /**
+         * Gets the amount of reserved CPU
+         * @returns {number} reserved cpu
+         */
+        get: function () {
+            return this._json.reserved_cpu;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "reservedMemory", {
+        /**
+         * Gets the amount of reserved memory.
+         * @returns {number} reserved memory
+         */
+        get: function () {
+            return this._json.reserved_mem;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "diskLimit", {
+        /**
+         * Gets the disk limit within the vDc.
+         * @returns {number} disk limit
+         */
+        get: function () {
+            return this._json.disk_limit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "allocatedCpu", {
+        /**
+         * Gets the amount of CPU allocated
+         * @returns {number} allocated CPU
+         */
+        get: function () {
+            return this._json.alloc_cpu;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "allocatedMemory", {
+        /**
+         * Gets the amount of memory allocated
+         * @returns {number} allocated memory
+         */
+        get: function () {
+            return this._json.alloc_mem;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "maxHardwareVersion", {
+        /**
+         * Gets the maximum hardware version of the vDC.
+         * @returns {string} max hardware version
+         */
+        get: function () {
+            return this._json.max_hdw_version;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "networkQuota", {
+        /**
+         * Gets the network quota.
+         * @returns {number} network quota
+         */
+        get: function () {
+            return this._json.network_quota;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "usedNetworkCount", {
+        /**
+         * Gets the number of networks that exist within this vDC.
+         * @returns {number} used network count
+         */
+        get: function () {
+            return this._json.used_network_count;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "locationId", {
+        /**
+         * Gets the datacenter location identifier.
+         * @returns {string} location ID
+         */
+        get: function () {
+            return this._json.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Vdc.prototype, "orgUuid", {
+        /**
+         * Gets the UUID of the organization that the vDC is associated with.
+         * @returns {string} Org UUID
+         */
+        get: function () {
+            return this._json.org_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Vdc.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Vdc.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {VdcJson} the API json object
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the vDC data by retrieving it from the API again.
+     * @returns {Promise<Vdc>}
+     */
+    Vdc.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vdc/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the vDCs child vApps.
+     * @returns {Promise<Vapp[]>} promise that resolves with an array of child vApps
+     */
+    Vdc.prototype.getVapps = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vdc/" + self.uuid + "/vapps").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vappJson) { return new vapp_1.Vapp(vappJson); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the vDCs child VMs.
+     * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
+     */
+    Vdc.prototype.getVms = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/vdc/" + self.uuid + "/vms").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vmJson) { return new vm_1.Vm(vmJson); });
+                    })];
+            });
+        });
+    };
+    return Vdc;
+}(entity_1.Entity));
+exports.Vdc = Vdc;
+
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var policy_1 = __webpack_require__(99);
+/**
+ * Role.
+ */
+var Role = (function () {
+    function Role(_json) {
+        this._json = _json;
+        this._policies = this._json.policies.map(function (it) { return new policy_1.Policy(it); });
+    }
+    Object.defineProperty(Role.prototype, "uuid", {
+        /**
+         * Gets the UUID of the role.
+         * @returns {string} role UUID
+         */
+        get: function () {
+            return this._json.uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Role.prototype, "companyId", {
+        /**
+         * Gets the ID of the company that the role is associated with.
+         * @returns {string} company ID
+         */
+        get: function () {
+            return this._json.company_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Role.prototype, "name", {
+        /**
+         * Gets the name of the role.
+         * @returns {string} the role name
+         */
+        get: function () {
+            return this._json.name;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Role.prototype, "description", {
+        /**
+         * Gets the role description.
+         * @returns {string}
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Role.prototype, "policies", {
+        /**
+         * Gets the policies that define the role.
+         * @returns {Array<Policy>} the array of role policies
+         */
+        get: function () {
+            return this._policies.slice();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Role.prototype, "type", {
+        /**
+         * Gets the role type.
+         * @returns {RoleType} role type
+         */
+        get: function () {
+            return this._json.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Role.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Role.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {RoleJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Role;
+}());
+exports.Role = Role;
+
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Policy.
+ */
+var Policy = (function () {
+    function Policy(_json) {
+        this._json = _json;
+    }
+    Object.defineProperty(Policy.prototype, "entityUuid", {
+        /**
+         * Gets the entity UUID associated with the policy.
+         * @returns {string} the entity UUID
+         */
+        get: function () {
+            return this._json.entity_uuid;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Policy.prototype, "entityDomain", {
+        /**
+         * Gets the entity domain of the policy.
+         * @returns {EntityDomain} the entity domain
+         */
+        get: function () {
+            return this._json.domain;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Policy.prototype, "type", {
+        /**
+         * Gets the policy type.
+         * @returns {PolicyType} the policy type
+         */
+        get: function () {
+            return this._json.type;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Policy.prototype, "permissions", {
+        /**
+         * Gets the permissions assigned to the policy.
+         * @returns {Array<Permission>} the policy permissions
+         */
+        get: function () {
+            return this._json.permissions.slice();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Policy.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Policy.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {PolicyJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Policy;
+}());
+exports.Policy = Policy;
+/**
+ * Policy Builder.
+ */
+var PolicyBuilder = (function () {
+    /**
+     * Creates a new PolicyBuilder.
+     * @param {string} _entityUuid the UUID of the entity that the policy will apply to
+     * @param {EntityDomain} _entityDomain the EntityDomain of the entity that the policy will apply to
+     * @param {PolicyType} _type the policy type
+     */
+    function PolicyBuilder(_entityUuid, _entityDomain, _type) {
+        this._entityUuid = _entityUuid;
+        this._entityDomain = _entityDomain;
+        this._type = _type;
+        this._permissions = [];
+    }
+    /**
+     * Adds a permission.
+     * @param {Permission} permission the permission to add
+     * @returns {PolicyBuilder} the builder
+     */
+    PolicyBuilder.prototype.addPermission = function (permission) {
+        if (!this._permissions.some(function (it) { return it === permission; })) {
+            this._permissions.push(permission);
+        }
+        return this;
+    };
+    /**
+     * Removes a permission.
+     * @param {Permission} permission the permission to remove
+     * @returns {PolicyBuilder} the builder
+     */
+    PolicyBuilder.prototype.removePermission = function (permission) {
+        var idx = this._permissions.findIndex(function (it) { return it === permission; });
+        if (idx >= 0) {
+            this._permissions.splice(idx, 1);
+        }
+        return this;
+    };
+    /**
+     * Builds the policy.
+     * @returns {Policy} the new policy
+     */
+    PolicyBuilder.prototype.build = function () {
+        return new Policy({
+            entity_uuid: this._entityUuid,
+            domain: this._entityDomain,
+            type: this._type,
+            permissions: this._permissions
+        });
+    };
+    return PolicyBuilder;
+}());
+exports.PolicyBuilder = PolicyBuilder;
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+tslib_1.__exportStar(__webpack_require__(11), exports);
+tslib_1.__exportStar(__webpack_require__(47), exports);
+tslib_1.__exportStar(__webpack_require__(102), exports);
+tslib_1.__exportStar(__webpack_require__(389), exports);
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+/**
+ * Wrapper for iland API errors.
+ */
+var ApiError = (function (_super) {
+    tslib_1.__extends(ApiError, _super);
+    /**
+     * Constructor.
+     * @param {ApiErrorJson} _json error JSON from the API
+     */
+    function ApiError(_json) {
+        var _this = _super.call(this, _json.detail_message ? _json.detail_message : _json.message) || this;
+        _this._json = _json;
+        Object.setPrototypeOf(_this, ApiError.prototype);
+        return _this;
+    }
+    /**
+     * Gets the error message.
+     * @returns {string}
+     */
+    ApiError.prototype.getMessage = function () {
+        return this._json.message;
+    };
+    /**
+     * Gets the error detail message.
+     * @returns {string|any} detailed message or null if none exists
+     */
+    ApiError.prototype.getDetailMessage = function () {
+        return this._json.detail_message || null;
+    };
+    /**
+     * Gets the error type.
+     * @returns {ApiErrorType} the type of API error
+     */
+    ApiError.prototype.getType = function () {
+        return this._json.type;
+    };
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    ApiError.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    /**
+     * Gets the raw JSON object from the API.
+     * @returns {ApiErrorJson} the API Error JSON object
+     */
+    ApiError.prototype.getJson = function () {
+        return Object.assign({}, this._json);
+    };
+    return ApiError;
+}(Error));
+exports.ApiError = ApiError;
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
 tslib_1.__exportStar(__webpack_require__(15), exports);
-tslib_1.__exportStar(__webpack_require__(40), exports);
-tslib_1.__exportStar(__webpack_require__(78), exports);
-tslib_1.__exportStar(__webpack_require__(362), exports);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsc0RBQTRCO0FBQzVCLHFEQUEyQjtBQUMzQiw0REFBaUM7QUFDakMsMkRBQWdDIn0=
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(21);
+tslib_1.__exportStar(__webpack_require__(49), exports);
+tslib_1.__exportStar(__webpack_require__(33), exports);
+tslib_1.__exportStar(__webpack_require__(91), exports);
+tslib_1.__exportStar(__webpack_require__(82), exports);
+tslib_1.__exportStar(__webpack_require__(85), exports);
+tslib_1.__exportStar(__webpack_require__(41), exports);
+tslib_1.__exportStar(__webpack_require__(90), exports);
+tslib_1.__exportStar(__webpack_require__(89), exports);
+tslib_1.__exportStar(__webpack_require__(93), exports);
+tslib_1.__exportStar(__webpack_require__(94), exports);
+tslib_1.__exportStar(__webpack_require__(95), exports);
+tslib_1.__exportStar(__webpack_require__(96), exports);
 tslib_1.__exportStar(__webpack_require__(42), exports);
+tslib_1.__exportStar(__webpack_require__(84), exports);
+tslib_1.__exportStar(__webpack_require__(88), exports);
+tslib_1.__exportStar(__webpack_require__(383), exports);
+tslib_1.__exportStar(__webpack_require__(87), exports);
+tslib_1.__exportStar(__webpack_require__(86), exports);
+tslib_1.__exportStar(__webpack_require__(44), exports);
+tslib_1.__exportStar(__webpack_require__(97), exports);
+tslib_1.__exportStar(__webpack_require__(83), exports);
+tslib_1.__exportStar(__webpack_require__(45), exports);
 tslib_1.__exportStar(__webpack_require__(43), exports);
-tslib_1.__exportStar(__webpack_require__(359), exports);
-tslib_1.__exportStar(__webpack_require__(360), exports);
-tslib_1.__exportStar(__webpack_require__(76), exports);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvc2RrL21vZGVsL2luZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLG1EQUF5QjtBQUN6QixpREFBdUI7QUFDdkIsK0NBQXFCO0FBQ3JCLGlEQUF1QjtBQUN2QixpREFBdUIifQ==
+tslib_1.__exportStar(__webpack_require__(384), exports);
+tslib_1.__exportStar(__webpack_require__(385), exports);
+tslib_1.__exportStar(__webpack_require__(386), exports);
+tslib_1.__exportStar(__webpack_require__(387), exports);
+tslib_1.__exportStar(__webpack_require__(388), exports);
+tslib_1.__exportStar(__webpack_require__(98), exports);
+tslib_1.__exportStar(__webpack_require__(99), exports);
+tslib_1.__exportStar(__webpack_require__(92), exports);
+
 
 /***/ }),
-/* 79 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7635,7 +12425,7 @@ tslib_1.__exportStar(__webpack_require__(76), exports);
 // Subject imported before Observable to bypass circular dependency issue since
 // Subject extends Observable and Observable references Subject in it's
 // definition
-var Subject_1 = __webpack_require__(5);
+var Subject_1 = __webpack_require__(6);
 exports.Subject = Subject_1.Subject;
 exports.AnonymousSubject = Subject_1.AnonymousSubject;
 /* tslint:enable:no-unused-variable */
@@ -7643,48 +12433,35 @@ var Observable_1 = __webpack_require__(0);
 exports.Observable = Observable_1.Observable;
 // statics
 /* tslint:disable:no-use-before-declare */
-__webpack_require__(81);
-__webpack_require__(84);
-__webpack_require__(87);
-__webpack_require__(90);
-__webpack_require__(92);
-__webpack_require__(95);
-__webpack_require__(97);
-__webpack_require__(100);
-__webpack_require__(104);
-__webpack_require__(107);
-__webpack_require__(110);
-__webpack_require__(112);
+__webpack_require__(105);
+__webpack_require__(108);
+__webpack_require__(111);
 __webpack_require__(114);
-__webpack_require__(117);
-__webpack_require__(122);
+__webpack_require__(116);
+__webpack_require__(119);
+__webpack_require__(121);
 __webpack_require__(124);
-__webpack_require__(125);
 __webpack_require__(128);
-__webpack_require__(130);
 __webpack_require__(131);
 __webpack_require__(134);
-__webpack_require__(137);
-__webpack_require__(140);
-__webpack_require__(143);
+__webpack_require__(136);
+__webpack_require__(138);
+__webpack_require__(141);
 __webpack_require__(146);
-//dom
 __webpack_require__(148);
-__webpack_require__(150);
-//operators
-__webpack_require__(156);
+__webpack_require__(149);
+__webpack_require__(152);
+__webpack_require__(154);
+__webpack_require__(155);
 __webpack_require__(158);
-__webpack_require__(160);
-__webpack_require__(162);
+__webpack_require__(161);
 __webpack_require__(164);
-__webpack_require__(166);
-__webpack_require__(168);
+__webpack_require__(167);
 __webpack_require__(170);
-__webpack_require__(171);
+//dom
 __webpack_require__(172);
 __webpack_require__(174);
-__webpack_require__(176);
-__webpack_require__(178);
+//operators
 __webpack_require__(180);
 __webpack_require__(182);
 __webpack_require__(184);
@@ -7692,6 +12469,7 @@ __webpack_require__(186);
 __webpack_require__(188);
 __webpack_require__(190);
 __webpack_require__(192);
+__webpack_require__(194);
 __webpack_require__(195);
 __webpack_require__(196);
 __webpack_require__(198);
@@ -7700,57 +12478,60 @@ __webpack_require__(202);
 __webpack_require__(204);
 __webpack_require__(206);
 __webpack_require__(208);
-__webpack_require__(209);
-__webpack_require__(211);
+__webpack_require__(210);
 __webpack_require__(212);
 __webpack_require__(214);
 __webpack_require__(216);
-__webpack_require__(221);
-__webpack_require__(223);
-__webpack_require__(225);
-__webpack_require__(227);
-__webpack_require__(229);
-__webpack_require__(231);
+__webpack_require__(219);
+__webpack_require__(220);
+__webpack_require__(222);
+__webpack_require__(224);
+__webpack_require__(226);
+__webpack_require__(228);
+__webpack_require__(230);
+__webpack_require__(232);
 __webpack_require__(233);
 __webpack_require__(235);
 __webpack_require__(236);
 __webpack_require__(238);
 __webpack_require__(240);
-__webpack_require__(242);
-__webpack_require__(243);
-__webpack_require__(244);
 __webpack_require__(245);
-__webpack_require__(246);
-__webpack_require__(248);
-__webpack_require__(250);
+__webpack_require__(247);
+__webpack_require__(249);
 __webpack_require__(251);
-__webpack_require__(252);
 __webpack_require__(253);
 __webpack_require__(255);
-__webpack_require__(258);
+__webpack_require__(257);
+__webpack_require__(259);
 __webpack_require__(260);
 __webpack_require__(262);
 __webpack_require__(264);
 __webpack_require__(266);
+__webpack_require__(267);
 __webpack_require__(268);
 __webpack_require__(269);
 __webpack_require__(270);
 __webpack_require__(272);
 __webpack_require__(274);
+__webpack_require__(275);
 __webpack_require__(276);
-__webpack_require__(278);
-__webpack_require__(280);
+__webpack_require__(277);
+__webpack_require__(279);
 __webpack_require__(282);
 __webpack_require__(284);
 __webpack_require__(286);
 __webpack_require__(288);
 __webpack_require__(290);
 __webpack_require__(292);
+__webpack_require__(293);
 __webpack_require__(294);
 __webpack_require__(296);
 __webpack_require__(298);
 __webpack_require__(300);
 __webpack_require__(302);
+__webpack_require__(304);
+__webpack_require__(306);
+__webpack_require__(308);
 __webpack_require__(310);
 __webpack_require__(312);
 __webpack_require__(314);
@@ -7759,65 +12540,74 @@ __webpack_require__(318);
 __webpack_require__(320);
 __webpack_require__(322);
 __webpack_require__(324);
-__webpack_require__(325);
-__webpack_require__(327);
-__webpack_require__(328);
-__webpack_require__(330);
-__webpack_require__(332);
-__webpack_require__(333);
-__webpack_require__(335);
-__webpack_require__(337);
-__webpack_require__(339);
-__webpack_require__(341);
-__webpack_require__(343);
-__webpack_require__(345);
-__webpack_require__(347);
+__webpack_require__(326);
+__webpack_require__(334);
+__webpack_require__(336);
+__webpack_require__(338);
+__webpack_require__(340);
+__webpack_require__(342);
+__webpack_require__(344);
+__webpack_require__(346);
+__webpack_require__(348);
 __webpack_require__(349);
-__webpack_require__(350);
+__webpack_require__(351);
+__webpack_require__(352);
+__webpack_require__(354);
+__webpack_require__(356);
+__webpack_require__(357);
+__webpack_require__(359);
+__webpack_require__(361);
+__webpack_require__(363);
+__webpack_require__(365);
+__webpack_require__(367);
+__webpack_require__(369);
+__webpack_require__(371);
+__webpack_require__(373);
+__webpack_require__(374);
 /* tslint:disable:no-unused-variable */
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 exports.Subscription = Subscription_1.Subscription;
 var Subscriber_1 = __webpack_require__(1);
 exports.Subscriber = Subscriber_1.Subscriber;
-var AsyncSubject_1 = __webpack_require__(26);
+var AsyncSubject_1 = __webpack_require__(27);
 exports.AsyncSubject = AsyncSubject_1.AsyncSubject;
-var ReplaySubject_1 = __webpack_require__(30);
+var ReplaySubject_1 = __webpack_require__(31);
 exports.ReplaySubject = ReplaySubject_1.ReplaySubject;
-var BehaviorSubject_1 = __webpack_require__(65);
+var BehaviorSubject_1 = __webpack_require__(71);
 exports.BehaviorSubject = BehaviorSubject_1.BehaviorSubject;
-var ConnectableObservable_1 = __webpack_require__(64);
+var ConnectableObservable_1 = __webpack_require__(70);
 exports.ConnectableObservable = ConnectableObservable_1.ConnectableObservable;
-var Notification_1 = __webpack_require__(17);
+var Notification_1 = __webpack_require__(19);
 exports.Notification = Notification_1.Notification;
-var EmptyError_1 = __webpack_require__(31);
+var EmptyError_1 = __webpack_require__(32);
 exports.EmptyError = EmptyError_1.EmptyError;
-var ArgumentOutOfRangeError_1 = __webpack_require__(20);
+var ArgumentOutOfRangeError_1 = __webpack_require__(22);
 exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError_1.ArgumentOutOfRangeError;
-var ObjectUnsubscribedError_1 = __webpack_require__(25);
+var ObjectUnsubscribedError_1 = __webpack_require__(26);
 exports.ObjectUnsubscribedError = ObjectUnsubscribedError_1.ObjectUnsubscribedError;
-var TimeoutError_1 = __webpack_require__(70);
+var TimeoutError_1 = __webpack_require__(76);
 exports.TimeoutError = TimeoutError_1.TimeoutError;
-var UnsubscriptionError_1 = __webpack_require__(46);
+var UnsubscriptionError_1 = __webpack_require__(52);
 exports.UnsubscriptionError = UnsubscriptionError_1.UnsubscriptionError;
-var timeInterval_1 = __webpack_require__(69);
+var timeInterval_1 = __webpack_require__(75);
 exports.TimeInterval = timeInterval_1.TimeInterval;
-var timestamp_1 = __webpack_require__(71);
+var timestamp_1 = __webpack_require__(77);
 exports.Timestamp = timestamp_1.Timestamp;
-var TestScheduler_1 = __webpack_require__(352);
+var TestScheduler_1 = __webpack_require__(376);
 exports.TestScheduler = TestScheduler_1.TestScheduler;
-var VirtualTimeScheduler_1 = __webpack_require__(75);
+var VirtualTimeScheduler_1 = __webpack_require__(81);
 exports.VirtualTimeScheduler = VirtualTimeScheduler_1.VirtualTimeScheduler;
-var AjaxObservable_1 = __webpack_require__(57);
+var AjaxObservable_1 = __webpack_require__(63);
 exports.AjaxResponse = AjaxObservable_1.AjaxResponse;
 exports.AjaxError = AjaxObservable_1.AjaxError;
 exports.AjaxTimeoutError = AjaxObservable_1.AjaxTimeoutError;
-var asap_1 = __webpack_require__(66);
-var async_1 = __webpack_require__(9);
-var queue_1 = __webpack_require__(58);
-var animationFrame_1 = __webpack_require__(355);
-var rxSubscriber_1 = __webpack_require__(23);
-var iterator_1 = __webpack_require__(16);
-var observable_1 = __webpack_require__(24);
+var asap_1 = __webpack_require__(72);
+var async_1 = __webpack_require__(10);
+var queue_1 = __webpack_require__(64);
+var animationFrame_1 = __webpack_require__(379);
+var rxSubscriber_1 = __webpack_require__(24);
+var iterator_1 = __webpack_require__(18);
+var observable_1 = __webpack_require__(25);
 /* tslint:enable:no-unused-variable */
 /**
  * @typedef {Object} Rx.Scheduler
@@ -7861,14 +12651,14 @@ exports.Symbol = Symbol;
 //# sourceMappingURL=Rx.js.map
 
 /***/ }),
-/* 80 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Subscriber_1 = __webpack_require__(1);
-var rxSubscriber_1 = __webpack_require__(23);
-var Observer_1 = __webpack_require__(47);
+var rxSubscriber_1 = __webpack_require__(24);
+var Observer_1 = __webpack_require__(53);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
         if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -7887,28 +12677,28 @@ exports.toSubscriber = toSubscriber;
 //# sourceMappingURL=toSubscriber.js.map
 
 /***/ }),
-/* 81 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bindCallback_1 = __webpack_require__(82);
+var bindCallback_1 = __webpack_require__(106);
 Observable_1.Observable.bindCallback = bindCallback_1.bindCallback;
 //# sourceMappingURL=bindCallback.js.map
 
 /***/ }),
-/* 82 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var BoundCallbackObservable_1 = __webpack_require__(83);
+var BoundCallbackObservable_1 = __webpack_require__(107);
 exports.bindCallback = BoundCallbackObservable_1.BoundCallbackObservable.create;
 //# sourceMappingURL=bindCallback.js.map
 
 /***/ }),
-/* 83 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7919,9 +12709,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
-var AsyncSubject_1 = __webpack_require__(26);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
+var AsyncSubject_1 = __webpack_require__(27);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -8182,28 +12972,28 @@ function dispatchError(arg) {
 //# sourceMappingURL=BoundCallbackObservable.js.map
 
 /***/ }),
-/* 84 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bindNodeCallback_1 = __webpack_require__(85);
+var bindNodeCallback_1 = __webpack_require__(109);
 Observable_1.Observable.bindNodeCallback = bindNodeCallback_1.bindNodeCallback;
 //# sourceMappingURL=bindNodeCallback.js.map
 
 /***/ }),
-/* 85 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var BoundNodeCallbackObservable_1 = __webpack_require__(86);
+var BoundNodeCallbackObservable_1 = __webpack_require__(110);
 exports.bindNodeCallback = BoundNodeCallbackObservable_1.BoundNodeCallbackObservable.create;
 //# sourceMappingURL=bindNodeCallback.js.map
 
 /***/ }),
-/* 86 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8214,9 +13004,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
-var AsyncSubject_1 = __webpack_require__(26);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
+var AsyncSubject_1 = __webpack_require__(27);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -8472,26 +13262,26 @@ function dispatchError(arg) {
 //# sourceMappingURL=BoundNodeCallbackObservable.js.map
 
 /***/ }),
-/* 87 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var combineLatest_1 = __webpack_require__(88);
+var combineLatest_1 = __webpack_require__(112);
 Observable_1.Observable.combineLatest = combineLatest_1.combineLatest;
 //# sourceMappingURL=combineLatest.js.map
 
 /***/ }),
-/* 88 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var isScheduler_1 = __webpack_require__(11);
-var isArray_1 = __webpack_require__(10);
-var ArrayObservable_1 = __webpack_require__(12);
-var combineLatest_1 = __webpack_require__(33);
+var isScheduler_1 = __webpack_require__(13);
+var isArray_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(14);
+var combineLatest_1 = __webpack_require__(35);
 /* tslint:enable:max-line-length */
 /**
  * Combines multiple Observables to create an Observable whose values are
@@ -8625,7 +13415,7 @@ exports.combineLatest = combineLatest;
 //# sourceMappingURL=combineLatest.js.map
 
 /***/ }),
-/* 89 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8667,49 +13457,49 @@ exports.InnerSubscriber = InnerSubscriber;
 //# sourceMappingURL=InnerSubscriber.js.map
 
 /***/ }),
-/* 90 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concat_1 = __webpack_require__(91);
+var concat_1 = __webpack_require__(115);
 Observable_1.Observable.concat = concat_1.concat;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 91 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var concat_1 = __webpack_require__(34);
+var concat_1 = __webpack_require__(36);
 exports.concat = concat_1.concatStatic;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 92 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var defer_1 = __webpack_require__(93);
+var defer_1 = __webpack_require__(117);
 Observable_1.Observable.defer = defer_1.defer;
 //# sourceMappingURL=defer.js.map
 
 /***/ }),
-/* 93 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var DeferObservable_1 = __webpack_require__(94);
+var DeferObservable_1 = __webpack_require__(118);
 exports.defer = DeferObservable_1.DeferObservable.create;
 //# sourceMappingURL=defer.js.map
 
 /***/ }),
-/* 94 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8814,49 +13604,49 @@ var DeferSubscriber = (function (_super) {
 //# sourceMappingURL=DeferObservable.js.map
 
 /***/ }),
-/* 95 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var empty_1 = __webpack_require__(96);
+var empty_1 = __webpack_require__(120);
 Observable_1.Observable.empty = empty_1.empty;
 //# sourceMappingURL=empty.js.map
 
 /***/ }),
-/* 96 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(16);
 exports.empty = EmptyObservable_1.EmptyObservable.create;
 //# sourceMappingURL=empty.js.map
 
 /***/ }),
-/* 97 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var forkJoin_1 = __webpack_require__(98);
+var forkJoin_1 = __webpack_require__(122);
 Observable_1.Observable.forkJoin = forkJoin_1.forkJoin;
 //# sourceMappingURL=forkJoin.js.map
 
 /***/ }),
-/* 98 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ForkJoinObservable_1 = __webpack_require__(99);
+var ForkJoinObservable_1 = __webpack_require__(123);
 exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
 //# sourceMappingURL=forkJoin.js.map
 
 /***/ }),
-/* 99 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8867,8 +13657,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var EmptyObservable_1 = __webpack_require__(13);
-var isArray_1 = __webpack_require__(10);
+var EmptyObservable_1 = __webpack_require__(16);
+var isArray_1 = __webpack_require__(12);
 var subscribeToResult_1 = __webpack_require__(3);
 var OuterSubscriber_1 = __webpack_require__(2);
 /**
@@ -8974,28 +13764,28 @@ var ForkJoinSubscriber = (function (_super) {
 //# sourceMappingURL=ForkJoinObservable.js.map
 
 /***/ }),
-/* 100 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var from_1 = __webpack_require__(101);
+var from_1 = __webpack_require__(125);
 Observable_1.Observable.from = from_1.from;
 //# sourceMappingURL=from.js.map
 
 /***/ }),
-/* 101 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromObservable_1 = __webpack_require__(51);
+var FromObservable_1 = __webpack_require__(57);
 exports.from = FromObservable_1.FromObservable.create;
 //# sourceMappingURL=from.js.map
 
 /***/ }),
-/* 102 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9005,9 +13795,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 var Observable_1 = __webpack_require__(0);
-var iterator_1 = __webpack_require__(16);
+var iterator_1 = __webpack_require__(18);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -9164,7 +13954,7 @@ function sign(value) {
 //# sourceMappingURL=IteratorObservable.js.map
 
 /***/ }),
-/* 103 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9175,8 +13965,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var ScalarObservable_1 = __webpack_require__(32);
-var EmptyObservable_1 = __webpack_require__(13);
+var ScalarObservable_1 = __webpack_require__(34);
+var EmptyObservable_1 = __webpack_require__(16);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -9240,28 +14030,28 @@ exports.ArrayLikeObservable = ArrayLikeObservable;
 //# sourceMappingURL=ArrayLikeObservable.js.map
 
 /***/ }),
-/* 104 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var fromEvent_1 = __webpack_require__(105);
+var fromEvent_1 = __webpack_require__(129);
 Observable_1.Observable.fromEvent = fromEvent_1.fromEvent;
 //# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
-/* 105 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromEventObservable_1 = __webpack_require__(106);
+var FromEventObservable_1 = __webpack_require__(130);
 exports.fromEvent = FromEventObservable_1.FromEventObservable.create;
 //# sourceMappingURL=fromEvent.js.map
 
 /***/ }),
-/* 106 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9272,10 +14062,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var tryCatch_1 = __webpack_require__(8);
-var isFunction_1 = __webpack_require__(22);
-var errorObject_1 = __webpack_require__(6);
-var Subscription_1 = __webpack_require__(4);
+var tryCatch_1 = __webpack_require__(9);
+var isFunction_1 = __webpack_require__(23);
+var errorObject_1 = __webpack_require__(7);
+var Subscription_1 = __webpack_require__(5);
 var toString = Object.prototype.toString;
 function isNodeStyleEventEmitter(sourceObj) {
     return !!sourceObj && typeof sourceObj.addListener === 'function' && typeof sourceObj.removeListener === 'function';
@@ -9407,28 +14197,28 @@ exports.FromEventObservable = FromEventObservable;
 //# sourceMappingURL=FromEventObservable.js.map
 
 /***/ }),
-/* 107 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var fromEventPattern_1 = __webpack_require__(108);
+var fromEventPattern_1 = __webpack_require__(132);
 Observable_1.Observable.fromEventPattern = fromEventPattern_1.fromEventPattern;
 //# sourceMappingURL=fromEventPattern.js.map
 
 /***/ }),
-/* 108 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromEventPatternObservable_1 = __webpack_require__(109);
+var FromEventPatternObservable_1 = __webpack_require__(133);
 exports.fromEventPattern = FromEventPatternObservable_1.FromEventPatternObservable.create;
 //# sourceMappingURL=fromEventPattern.js.map
 
 /***/ }),
-/* 109 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9438,9 +14228,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(22);
+var isFunction_1 = __webpack_require__(23);
 var Observable_1 = __webpack_require__(0);
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -9547,39 +14337,39 @@ exports.FromEventPatternObservable = FromEventPatternObservable;
 //# sourceMappingURL=FromEventPatternObservable.js.map
 
 /***/ }),
-/* 110 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var fromPromise_1 = __webpack_require__(111);
+var fromPromise_1 = __webpack_require__(135);
 Observable_1.Observable.fromPromise = fromPromise_1.fromPromise;
 //# sourceMappingURL=fromPromise.js.map
 
 /***/ }),
-/* 111 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var PromiseObservable_1 = __webpack_require__(52);
+var PromiseObservable_1 = __webpack_require__(58);
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 //# sourceMappingURL=fromPromise.js.map
 
 /***/ }),
-/* 112 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var GenerateObservable_1 = __webpack_require__(113);
+var GenerateObservable_1 = __webpack_require__(137);
 Observable_1.Observable.generate = GenerateObservable_1.GenerateObservable.create;
 //# sourceMappingURL=generate.js.map
 
 /***/ }),
-/* 113 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9590,7 +14380,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var isScheduler_1 = __webpack_require__(11);
+var isScheduler_1 = __webpack_require__(13);
 var selfSelector = function (value) { return value; };
 /**
  * We need this JSDoc comment for affecting ESDoc.
@@ -9720,28 +14510,28 @@ exports.GenerateObservable = GenerateObservable;
 //# sourceMappingURL=GenerateObservable.js.map
 
 /***/ }),
-/* 114 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var if_1 = __webpack_require__(115);
+var if_1 = __webpack_require__(139);
 Observable_1.Observable.if = if_1._if;
 //# sourceMappingURL=if.js.map
 
 /***/ }),
-/* 115 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var IfObservable_1 = __webpack_require__(116);
+var IfObservable_1 = __webpack_require__(140);
 exports._if = IfObservable_1.IfObservable.create;
 //# sourceMappingURL=if.js.map
 
 /***/ }),
-/* 116 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9808,28 +14598,28 @@ var IfSubscriber = (function (_super) {
 //# sourceMappingURL=IfObservable.js.map
 
 /***/ }),
-/* 117 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var interval_1 = __webpack_require__(118);
+var interval_1 = __webpack_require__(142);
 Observable_1.Observable.interval = interval_1.interval;
 //# sourceMappingURL=interval.js.map
 
 /***/ }),
-/* 118 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var IntervalObservable_1 = __webpack_require__(119);
+var IntervalObservable_1 = __webpack_require__(143);
 exports.interval = IntervalObservable_1.IntervalObservable.create;
 //# sourceMappingURL=interval.js.map
 
 /***/ }),
-/* 119 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9839,9 +14629,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isNumeric_1 = __webpack_require__(28);
+var isNumeric_1 = __webpack_require__(29);
 var Observable_1 = __webpack_require__(0);
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -9923,7 +14713,7 @@ exports.IntervalObservable = IntervalObservable;
 //# sourceMappingURL=IntervalObservable.js.map
 
 /***/ }),
-/* 120 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9933,7 +14723,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 /**
  * A unit of work to be executed in a {@link Scheduler}. An action is typically
  * created from within a Scheduler and an RxJS user does not need to concern
@@ -9973,7 +14763,7 @@ exports.Action = Action;
 //# sourceMappingURL=Action.js.map
 
 /***/ }),
-/* 121 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10028,60 +14818,60 @@ exports.Scheduler = Scheduler;
 //# sourceMappingURL=Scheduler.js.map
 
 /***/ }),
-/* 122 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var merge_1 = __webpack_require__(123);
+var merge_1 = __webpack_require__(147);
 Observable_1.Observable.merge = merge_1.merge;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 123 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var merge_1 = __webpack_require__(53);
+var merge_1 = __webpack_require__(59);
 exports.merge = merge_1.mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 124 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var race_1 = __webpack_require__(54);
+var race_1 = __webpack_require__(60);
 Observable_1.Observable.race = race_1.raceStatic;
 //# sourceMappingURL=race.js.map
 
 /***/ }),
-/* 125 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var never_1 = __webpack_require__(126);
+var never_1 = __webpack_require__(150);
 Observable_1.Observable.never = never_1.never;
 //# sourceMappingURL=never.js.map
 
 /***/ }),
-/* 126 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var NeverObservable_1 = __webpack_require__(127);
+var NeverObservable_1 = __webpack_require__(151);
 exports.never = NeverObservable_1.NeverObservable.create;
 //# sourceMappingURL=never.js.map
 
 /***/ }),
-/* 127 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10092,7 +14882,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var noop_1 = __webpack_require__(55);
+var noop_1 = __webpack_require__(61);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -10146,60 +14936,60 @@ exports.NeverObservable = NeverObservable;
 //# sourceMappingURL=NeverObservable.js.map
 
 /***/ }),
-/* 128 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var of_1 = __webpack_require__(129);
+var of_1 = __webpack_require__(153);
 Observable_1.Observable.of = of_1.of;
 //# sourceMappingURL=of.js.map
 
 /***/ }),
-/* 129 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(12);
+var ArrayObservable_1 = __webpack_require__(14);
 exports.of = ArrayObservable_1.ArrayObservable.of;
 //# sourceMappingURL=of.js.map
 
 /***/ }),
-/* 130 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var onErrorResumeNext_1 = __webpack_require__(56);
+var onErrorResumeNext_1 = __webpack_require__(62);
 Observable_1.Observable.onErrorResumeNext = onErrorResumeNext_1.onErrorResumeNextStatic;
 //# sourceMappingURL=onErrorResumeNext.js.map
 
 /***/ }),
-/* 131 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var pairs_1 = __webpack_require__(132);
+var pairs_1 = __webpack_require__(156);
 Observable_1.Observable.pairs = pairs_1.pairs;
 //# sourceMappingURL=pairs.js.map
 
 /***/ }),
-/* 132 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var PairsObservable_1 = __webpack_require__(133);
+var PairsObservable_1 = __webpack_require__(157);
 exports.pairs = PairsObservable_1.PairsObservable.create;
 //# sourceMappingURL=pairs.js.map
 
 /***/ }),
-/* 133 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10290,28 +15080,28 @@ exports.PairsObservable = PairsObservable;
 //# sourceMappingURL=PairsObservable.js.map
 
 /***/ }),
-/* 134 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var range_1 = __webpack_require__(135);
+var range_1 = __webpack_require__(159);
 Observable_1.Observable.range = range_1.range;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 135 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(136);
+var RangeObservable_1 = __webpack_require__(160);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 136 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10413,28 +15203,28 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 137 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var using_1 = __webpack_require__(138);
+var using_1 = __webpack_require__(162);
 Observable_1.Observable.using = using_1.using;
 //# sourceMappingURL=using.js.map
 
 /***/ }),
-/* 138 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var UsingObservable_1 = __webpack_require__(139);
+var UsingObservable_1 = __webpack_require__(163);
 exports.using = UsingObservable_1.UsingObservable.create;
 //# sourceMappingURL=using.js.map
 
 /***/ }),
-/* 139 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10501,28 +15291,28 @@ var UsingSubscriber = (function (_super) {
 //# sourceMappingURL=UsingObservable.js.map
 
 /***/ }),
-/* 140 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var throw_1 = __webpack_require__(141);
+var throw_1 = __webpack_require__(165);
 Observable_1.Observable.throw = throw_1._throw;
 //# sourceMappingURL=throw.js.map
 
 /***/ }),
-/* 141 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ErrorObservable_1 = __webpack_require__(142);
+var ErrorObservable_1 = __webpack_require__(166);
 exports._throw = ErrorObservable_1.ErrorObservable.create;
 //# sourceMappingURL=throw.js.map
 
 /***/ }),
-/* 142 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10611,28 +15401,28 @@ exports.ErrorObservable = ErrorObservable;
 //# sourceMappingURL=ErrorObservable.js.map
 
 /***/ }),
-/* 143 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var timer_1 = __webpack_require__(144);
+var timer_1 = __webpack_require__(168);
 Observable_1.Observable.timer = timer_1.timer;
 //# sourceMappingURL=timer.js.map
 
 /***/ }),
-/* 144 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var TimerObservable_1 = __webpack_require__(145);
+var TimerObservable_1 = __webpack_require__(169);
 exports.timer = TimerObservable_1.TimerObservable.create;
 //# sourceMappingURL=timer.js.map
 
 /***/ }),
-/* 145 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10642,11 +15432,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isNumeric_1 = __webpack_require__(28);
+var isNumeric_1 = __webpack_require__(29);
 var Observable_1 = __webpack_require__(0);
-var async_1 = __webpack_require__(9);
-var isScheduler_1 = __webpack_require__(11);
-var isDate_1 = __webpack_require__(29);
+var async_1 = __webpack_require__(10);
+var isScheduler_1 = __webpack_require__(13);
+var isDate_1 = __webpack_require__(30);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -10745,70 +15535,70 @@ exports.TimerObservable = TimerObservable;
 //# sourceMappingURL=TimerObservable.js.map
 
 /***/ }),
-/* 146 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var zip_1 = __webpack_require__(147);
+var zip_1 = __webpack_require__(171);
 Observable_1.Observable.zip = zip_1.zip;
 //# sourceMappingURL=zip.js.map
 
 /***/ }),
-/* 147 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var zip_1 = __webpack_require__(36);
+var zip_1 = __webpack_require__(38);
 exports.zip = zip_1.zipStatic;
 //# sourceMappingURL=zip.js.map
 
 /***/ }),
-/* 148 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var ajax_1 = __webpack_require__(149);
+var ajax_1 = __webpack_require__(173);
 Observable_1.Observable.ajax = ajax_1.ajax;
 //# sourceMappingURL=ajax.js.map
 
 /***/ }),
-/* 149 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var AjaxObservable_1 = __webpack_require__(57);
+var AjaxObservable_1 = __webpack_require__(63);
 exports.ajax = AjaxObservable_1.AjaxObservable.create;
 //# sourceMappingURL=ajax.js.map
 
 /***/ }),
-/* 150 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var webSocket_1 = __webpack_require__(151);
+var webSocket_1 = __webpack_require__(175);
 Observable_1.Observable.webSocket = webSocket_1.webSocket;
 //# sourceMappingURL=webSocket.js.map
 
 /***/ }),
-/* 151 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var WebSocketSubject_1 = __webpack_require__(152);
+var WebSocketSubject_1 = __webpack_require__(176);
 exports.webSocket = WebSocketSubject_1.WebSocketSubject.create;
 //# sourceMappingURL=webSocket.js.map
 
 /***/ }),
-/* 152 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10818,15 +15608,15 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
+var Subject_1 = __webpack_require__(6);
 var Subscriber_1 = __webpack_require__(1);
 var Observable_1 = __webpack_require__(0);
-var Subscription_1 = __webpack_require__(4);
-var root_1 = __webpack_require__(7);
-var ReplaySubject_1 = __webpack_require__(30);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
-var assign_1 = __webpack_require__(155);
+var Subscription_1 = __webpack_require__(5);
+var root_1 = __webpack_require__(8);
+var ReplaySubject_1 = __webpack_require__(31);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
+var assign_1 = __webpack_require__(179);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -11064,7 +15854,7 @@ exports.WebSocketSubject = WebSocketSubject;
 //# sourceMappingURL=WebSocketSubject.js.map
 
 /***/ }),
-/* 153 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11074,7 +15864,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(18);
+var AsyncAction_1 = __webpack_require__(20);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -11119,7 +15909,7 @@ exports.QueueAction = QueueAction;
 //# sourceMappingURL=QueueAction.js.map
 
 /***/ }),
-/* 154 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11129,7 +15919,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(19);
+var AsyncScheduler_1 = __webpack_require__(21);
 var QueueScheduler = (function (_super) {
     __extends(QueueScheduler, _super);
     function QueueScheduler() {
@@ -11141,12 +15931,12 @@ exports.QueueScheduler = QueueScheduler;
 //# sourceMappingURL=QueueScheduler.js.map
 
 /***/ }),
-/* 155 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 function assignImpl(target) {
     var sources = [];
     for (var _i = 1; _i < arguments.length; _i++) {
@@ -11173,18 +15963,18 @@ exports.assign = getAssign(root_1.root);
 //# sourceMappingURL=assign.js.map
 
 /***/ }),
-/* 156 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var buffer_1 = __webpack_require__(157);
+var buffer_1 = __webpack_require__(181);
 Observable_1.Observable.prototype.buffer = buffer_1.buffer;
 //# sourceMappingURL=buffer.js.map
 
 /***/ }),
-/* 157 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11266,18 +16056,18 @@ var BufferSubscriber = (function (_super) {
 //# sourceMappingURL=buffer.js.map
 
 /***/ }),
-/* 158 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bufferCount_1 = __webpack_require__(159);
+var bufferCount_1 = __webpack_require__(183);
 Observable_1.Observable.prototype.bufferCount = bufferCount_1.bufferCount;
 //# sourceMappingURL=bufferCount.js.map
 
 /***/ }),
-/* 159 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11423,18 +16213,18 @@ var BufferSkipCountSubscriber = (function (_super) {
 //# sourceMappingURL=bufferCount.js.map
 
 /***/ }),
-/* 160 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bufferTime_1 = __webpack_require__(161);
+var bufferTime_1 = __webpack_require__(185);
 Observable_1.Observable.prototype.bufferTime = bufferTime_1.bufferTime;
 //# sourceMappingURL=bufferTime.js.map
 
 /***/ }),
-/* 161 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11444,9 +16234,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 var Subscriber_1 = __webpack_require__(1);
-var isScheduler_1 = __webpack_require__(11);
+var isScheduler_1 = __webpack_require__(13);
 /* tslint:enable:max-line-length */
 /**
  * Buffers the source Observable values for a specific time period.
@@ -11639,18 +16429,18 @@ function dispatchBufferClose(arg) {
 //# sourceMappingURL=bufferTime.js.map
 
 /***/ }),
-/* 162 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bufferToggle_1 = __webpack_require__(163);
+var bufferToggle_1 = __webpack_require__(187);
 Observable_1.Observable.prototype.bufferToggle = bufferToggle_1.bufferToggle;
 //# sourceMappingURL=bufferToggle.js.map
 
 /***/ }),
-/* 163 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11660,7 +16450,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 var subscribeToResult_1 = __webpack_require__(3);
 var OuterSubscriber_1 = __webpack_require__(2);
 /**
@@ -11808,18 +16598,18 @@ var BufferToggleSubscriber = (function (_super) {
 //# sourceMappingURL=bufferToggle.js.map
 
 /***/ }),
-/* 164 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var bufferWhen_1 = __webpack_require__(165);
+var bufferWhen_1 = __webpack_require__(189);
 Observable_1.Observable.prototype.bufferWhen = bufferWhen_1.bufferWhen;
 //# sourceMappingURL=bufferWhen.js.map
 
 /***/ }),
-/* 165 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11829,9 +16619,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(4);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var Subscription_1 = __webpack_require__(5);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -11947,19 +16737,19 @@ var BufferWhenSubscriber = (function (_super) {
 //# sourceMappingURL=bufferWhen.js.map
 
 /***/ }),
-/* 166 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var catch_1 = __webpack_require__(167);
+var catch_1 = __webpack_require__(191);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 167 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12081,23 +16871,23 @@ var CatchSubscriber = (function (_super) {
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 168 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var combineAll_1 = __webpack_require__(169);
+var combineAll_1 = __webpack_require__(193);
 Observable_1.Observable.prototype.combineAll = combineAll_1.combineAll;
 //# sourceMappingURL=combineAll.js.map
 
 /***/ }),
-/* 169 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var combineLatest_1 = __webpack_require__(33);
+var combineLatest_1 = __webpack_require__(35);
 /**
  * Converts a higher-order Observable into a first-order Observable by waiting
  * for the outer Observable to complete, then applying {@link combineLatest}.
@@ -12145,45 +16935,45 @@ exports.combineAll = combineAll;
 //# sourceMappingURL=combineAll.js.map
 
 /***/ }),
-/* 170 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var combineLatest_1 = __webpack_require__(33);
+var combineLatest_1 = __webpack_require__(35);
 Observable_1.Observable.prototype.combineLatest = combineLatest_1.combineLatest;
 //# sourceMappingURL=combineLatest.js.map
 
 /***/ }),
-/* 171 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concat_1 = __webpack_require__(34);
+var concat_1 = __webpack_require__(36);
 Observable_1.Observable.prototype.concat = concat_1.concat;
 //# sourceMappingURL=concat.js.map
 
 /***/ }),
-/* 172 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concatAll_1 = __webpack_require__(173);
+var concatAll_1 = __webpack_require__(197);
 Observable_1.Observable.prototype.concatAll = concatAll_1.concatAll;
 //# sourceMappingURL=concatAll.js.map
 
 /***/ }),
-/* 173 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeAll_1 = __webpack_require__(27);
+var mergeAll_1 = __webpack_require__(28);
 /* tslint:enable:max-line-length */
 /**
  * Converts a higher-order Observable into a first-order Observable by
@@ -12240,23 +17030,23 @@ exports.concatAll = concatAll;
 //# sourceMappingURL=concatAll.js.map
 
 /***/ }),
-/* 174 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concatMap_1 = __webpack_require__(175);
+var concatMap_1 = __webpack_require__(199);
 Observable_1.Observable.prototype.concatMap = concatMap_1.concatMap;
 //# sourceMappingURL=concatMap.js.map
 
 /***/ }),
-/* 175 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(59);
+var mergeMap_1 = __webpack_require__(65);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -12324,23 +17114,23 @@ exports.concatMap = concatMap;
 //# sourceMappingURL=concatMap.js.map
 
 /***/ }),
-/* 176 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var concatMapTo_1 = __webpack_require__(177);
+var concatMapTo_1 = __webpack_require__(201);
 Observable_1.Observable.prototype.concatMapTo = concatMapTo_1.concatMapTo;
 //# sourceMappingURL=concatMapTo.js.map
 
 /***/ }),
-/* 177 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeMapTo_1 = __webpack_require__(60);
+var mergeMapTo_1 = __webpack_require__(66);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to the same Observable which is merged multiple
@@ -12405,18 +17195,18 @@ exports.concatMapTo = concatMapTo;
 //# sourceMappingURL=concatMapTo.js.map
 
 /***/ }),
-/* 178 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var count_1 = __webpack_require__(179);
+var count_1 = __webpack_require__(203);
 Observable_1.Observable.prototype.count = count_1.count;
 //# sourceMappingURL=count.js.map
 
 /***/ }),
-/* 179 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12533,18 +17323,18 @@ var CountSubscriber = (function (_super) {
 //# sourceMappingURL=count.js.map
 
 /***/ }),
-/* 180 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var dematerialize_1 = __webpack_require__(181);
+var dematerialize_1 = __webpack_require__(205);
 Observable_1.Observable.prototype.dematerialize = dematerialize_1.dematerialize;
 //# sourceMappingURL=dematerialize.js.map
 
 /***/ }),
-/* 181 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12625,18 +17415,18 @@ var DeMaterializeSubscriber = (function (_super) {
 //# sourceMappingURL=dematerialize.js.map
 
 /***/ }),
-/* 182 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var debounce_1 = __webpack_require__(183);
+var debounce_1 = __webpack_require__(207);
 Observable_1.Observable.prototype.debounce = debounce_1.debounce;
 //# sourceMappingURL=debounce.js.map
 
 /***/ }),
-/* 183 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12769,18 +17559,18 @@ var DebounceSubscriber = (function (_super) {
 //# sourceMappingURL=debounce.js.map
 
 /***/ }),
-/* 184 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var debounceTime_1 = __webpack_require__(185);
+var debounceTime_1 = __webpack_require__(209);
 Observable_1.Observable.prototype.debounceTime = debounceTime_1.debounceTime;
 //# sourceMappingURL=debounceTime.js.map
 
 /***/ }),
-/* 185 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12791,7 +17581,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 /**
  * Emits a value from the source Observable only after a particular time span
  * has passed without another source emission.
@@ -12902,18 +17692,18 @@ function dispatchNext(subscriber) {
 //# sourceMappingURL=debounceTime.js.map
 
 /***/ }),
-/* 186 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var defaultIfEmpty_1 = __webpack_require__(187);
+var defaultIfEmpty_1 = __webpack_require__(211);
 Observable_1.Observable.prototype.defaultIfEmpty = defaultIfEmpty_1.defaultIfEmpty;
 //# sourceMappingURL=defaultIfEmpty.js.map
 
 /***/ }),
-/* 187 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12996,18 +17786,18 @@ var DefaultIfEmptySubscriber = (function (_super) {
 //# sourceMappingURL=defaultIfEmpty.js.map
 
 /***/ }),
-/* 188 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var delay_1 = __webpack_require__(189);
+var delay_1 = __webpack_require__(213);
 Observable_1.Observable.prototype.delay = delay_1.delay;
 //# sourceMappingURL=delay.js.map
 
 /***/ }),
-/* 189 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13017,10 +17807,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(29);
+var async_1 = __webpack_require__(10);
+var isDate_1 = __webpack_require__(30);
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(17);
+var Notification_1 = __webpack_require__(19);
 /**
  * Delays the emission of items from the source Observable by a given timeout or
  * until a given Date.
@@ -13148,18 +17938,18 @@ var DelayMessage = (function () {
 //# sourceMappingURL=delay.js.map
 
 /***/ }),
-/* 190 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var delayWhen_1 = __webpack_require__(191);
+var delayWhen_1 = __webpack_require__(215);
 Observable_1.Observable.prototype.delayWhen = delayWhen_1.delayWhen;
 //# sourceMappingURL=delayWhen.js.map
 
 /***/ }),
-/* 191 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13357,18 +18147,18 @@ var SubscriptionDelaySubscriber = (function (_super) {
 //# sourceMappingURL=delayWhen.js.map
 
 /***/ }),
-/* 192 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var distinct_1 = __webpack_require__(193);
+var distinct_1 = __webpack_require__(217);
 Observable_1.Observable.prototype.distinct = distinct_1.distinct;
 //# sourceMappingURL=distinct.js.map
 
 /***/ }),
-/* 193 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13380,7 +18170,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
-var Set_1 = __webpack_require__(194);
+var Set_1 = __webpack_require__(218);
 /**
  * Returns an Observable that emits all items emitted by the source Observable that are distinct by comparison from previous items.
  *
@@ -13494,12 +18284,12 @@ exports.DistinctSubscriber = DistinctSubscriber;
 //# sourceMappingURL=distinct.js.map
 
 /***/ }),
-/* 194 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 function minimalSetImpl() {
     // THIS IS NOT a full impl of Set, this is just the minimum
     // bits of functionality we need for this library.
@@ -13533,34 +18323,34 @@ exports.Set = root_1.root.Set || minimalSetImpl();
 //# sourceMappingURL=Set.js.map
 
 /***/ }),
-/* 195 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var distinctUntilChanged_1 = __webpack_require__(61);
+var distinctUntilChanged_1 = __webpack_require__(67);
 Observable_1.Observable.prototype.distinctUntilChanged = distinctUntilChanged_1.distinctUntilChanged;
 //# sourceMappingURL=distinctUntilChanged.js.map
 
 /***/ }),
-/* 196 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var distinctUntilKeyChanged_1 = __webpack_require__(197);
+var distinctUntilKeyChanged_1 = __webpack_require__(221);
 Observable_1.Observable.prototype.distinctUntilKeyChanged = distinctUntilKeyChanged_1.distinctUntilKeyChanged;
 //# sourceMappingURL=distinctUntilKeyChanged.js.map
 
 /***/ }),
-/* 197 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var distinctUntilChanged_1 = __webpack_require__(61);
+var distinctUntilChanged_1 = __webpack_require__(67);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits all items emitted by the source Observable that are distinct by comparison from the previous item,
@@ -13631,19 +18421,19 @@ exports.distinctUntilKeyChanged = distinctUntilKeyChanged;
 //# sourceMappingURL=distinctUntilKeyChanged.js.map
 
 /***/ }),
-/* 198 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var do_1 = __webpack_require__(199);
+var do_1 = __webpack_require__(223);
 Observable_1.Observable.prototype.do = do_1._do;
 Observable_1.Observable.prototype._do = do_1._do;
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 199 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13762,18 +18552,18 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 200 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var exhaust_1 = __webpack_require__(201);
+var exhaust_1 = __webpack_require__(225);
 Observable_1.Observable.prototype.exhaust = exhaust_1.exhaust;
 //# sourceMappingURL=exhaust.js.map
 
 /***/ }),
-/* 201 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13868,18 +18658,18 @@ var SwitchFirstSubscriber = (function (_super) {
 //# sourceMappingURL=exhaust.js.map
 
 /***/ }),
-/* 202 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var exhaustMap_1 = __webpack_require__(203);
+var exhaustMap_1 = __webpack_require__(227);
 Observable_1.Observable.prototype.exhaustMap = exhaustMap_1.exhaustMap;
 //# sourceMappingURL=exhaustMap.js.map
 
 /***/ }),
-/* 203 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14023,18 +18813,18 @@ var SwitchFirstMapSubscriber = (function (_super) {
 //# sourceMappingURL=exhaustMap.js.map
 
 /***/ }),
-/* 204 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var expand_1 = __webpack_require__(205);
+var expand_1 = __webpack_require__(229);
 Observable_1.Observable.prototype.expand = expand_1.expand;
 //# sourceMappingURL=expand.js.map
 
 /***/ }),
-/* 205 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14044,8 +18834,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /* tslint:enable:max-line-length */
@@ -14191,18 +18981,18 @@ exports.ExpandSubscriber = ExpandSubscriber;
 //# sourceMappingURL=expand.js.map
 
 /***/ }),
-/* 206 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var elementAt_1 = __webpack_require__(207);
+var elementAt_1 = __webpack_require__(231);
 Observable_1.Observable.prototype.elementAt = elementAt_1.elementAt;
 //# sourceMappingURL=elementAt.js.map
 
 /***/ }),
-/* 207 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14213,7 +19003,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(20);
+var ArgumentOutOfRangeError_1 = __webpack_require__(22);
 /**
  * Emits the single value at the specified `index` in a sequence of emissions
  * from the source Observable.
@@ -14308,30 +19098,30 @@ var ElementAtSubscriber = (function (_super) {
 //# sourceMappingURL=elementAt.js.map
 
 /***/ }),
-/* 208 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var filter_1 = __webpack_require__(62);
+var filter_1 = __webpack_require__(68);
 Observable_1.Observable.prototype.filter = filter_1.filter;
 //# sourceMappingURL=filter.js.map
 
 /***/ }),
-/* 209 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var finally_1 = __webpack_require__(210);
+var finally_1 = __webpack_require__(234);
 Observable_1.Observable.prototype.finally = finally_1._finally;
 Observable_1.Observable.prototype._finally = finally_1._finally;
 //# sourceMappingURL=finally.js.map
 
 /***/ }),
-/* 210 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14342,7 +19132,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 /**
  * Returns an Observable that mirrors the source Observable, but will call a specified function when
  * the source terminates on complete or error.
@@ -14380,34 +19170,34 @@ var FinallySubscriber = (function (_super) {
 //# sourceMappingURL=finally.js.map
 
 /***/ }),
-/* 211 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var find_1 = __webpack_require__(63);
+var find_1 = __webpack_require__(69);
 Observable_1.Observable.prototype.find = find_1.find;
 //# sourceMappingURL=find.js.map
 
 /***/ }),
-/* 212 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var findIndex_1 = __webpack_require__(213);
+var findIndex_1 = __webpack_require__(237);
 Observable_1.Observable.prototype.findIndex = findIndex_1.findIndex;
 //# sourceMappingURL=findIndex.js.map
 
 /***/ }),
-/* 213 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var find_1 = __webpack_require__(63);
+var find_1 = __webpack_require__(69);
 /**
  * Emits only the index of the first value emitted by the source Observable that
  * meets some condition.
@@ -14449,18 +19239,18 @@ exports.findIndex = findIndex;
 //# sourceMappingURL=findIndex.js.map
 
 /***/ }),
-/* 214 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var first_1 = __webpack_require__(215);
+var first_1 = __webpack_require__(239);
 Observable_1.Observable.prototype.first = first_1.first;
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 215 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14471,7 +19261,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(31);
+var EmptyError_1 = __webpack_require__(32);
 /**
  * Emits only the first value (or the first value that meets some condition)
  * emitted by the source Observable.
@@ -14618,18 +19408,18 @@ var FirstSubscriber = (function (_super) {
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 216 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var groupBy_1 = __webpack_require__(217);
+var groupBy_1 = __webpack_require__(241);
 Observable_1.Observable.prototype.groupBy = groupBy_1.groupBy;
 //# sourceMappingURL=groupBy.js.map
 
 /***/ }),
-/* 217 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14640,11 +19430,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Subscription_1 = __webpack_require__(4);
+var Subscription_1 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(0);
-var Subject_1 = __webpack_require__(5);
-var Map_1 = __webpack_require__(218);
-var FastMap_1 = __webpack_require__(220);
+var Subject_1 = __webpack_require__(6);
+var Map_1 = __webpack_require__(242);
+var FastMap_1 = __webpack_require__(244);
 /* tslint:enable:max-line-length */
 /**
  * Groups the items emitted by an Observable according to a specified criterion,
@@ -14909,18 +19699,18 @@ var InnerRefCountSubscription = (function (_super) {
 //# sourceMappingURL=groupBy.js.map
 
 /***/ }),
-/* 218 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
-var MapPolyfill_1 = __webpack_require__(219);
+var root_1 = __webpack_require__(8);
+var MapPolyfill_1 = __webpack_require__(243);
 exports.Map = root_1.root.Map || (function () { return MapPolyfill_1.MapPolyfill; })();
 //# sourceMappingURL=Map.js.map
 
 /***/ }),
-/* 219 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14973,7 +19763,7 @@ exports.MapPolyfill = MapPolyfill;
 //# sourceMappingURL=MapPolyfill.js.map
 
 /***/ }),
-/* 220 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15010,18 +19800,18 @@ exports.FastMap = FastMap;
 //# sourceMappingURL=FastMap.js.map
 
 /***/ }),
-/* 221 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var ignoreElements_1 = __webpack_require__(222);
+var ignoreElements_1 = __webpack_require__(246);
 Observable_1.Observable.prototype.ignoreElements = ignoreElements_1.ignoreElements;
 //# sourceMappingURL=ignoreElements.js.map
 
 /***/ }),
-/* 222 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15032,7 +19822,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var noop_1 = __webpack_require__(55);
+var noop_1 = __webpack_require__(61);
 /**
  * Ignores all items emitted by the source Observable and only passes calls of `complete` or `error`.
  *
@@ -15074,18 +19864,18 @@ var IgnoreElementsSubscriber = (function (_super) {
 //# sourceMappingURL=ignoreElements.js.map
 
 /***/ }),
-/* 223 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var isEmpty_1 = __webpack_require__(224);
+var isEmpty_1 = __webpack_require__(248);
 Observable_1.Observable.prototype.isEmpty = isEmpty_1.isEmpty;
 //# sourceMappingURL=isEmpty.js.map
 
 /***/ }),
-/* 224 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15143,18 +19933,18 @@ var IsEmptySubscriber = (function (_super) {
 //# sourceMappingURL=isEmpty.js.map
 
 /***/ }),
-/* 225 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var audit_1 = __webpack_require__(226);
+var audit_1 = __webpack_require__(250);
 Observable_1.Observable.prototype.audit = audit_1.audit;
 //# sourceMappingURL=audit.js.map
 
 /***/ }),
-/* 226 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15164,8 +19954,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -15276,18 +20066,18 @@ var AuditSubscriber = (function (_super) {
 //# sourceMappingURL=audit.js.map
 
 /***/ }),
-/* 227 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var auditTime_1 = __webpack_require__(228);
+var auditTime_1 = __webpack_require__(252);
 Observable_1.Observable.prototype.auditTime = auditTime_1.auditTime;
 //# sourceMappingURL=auditTime.js.map
 
 /***/ }),
-/* 228 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15297,7 +20087,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 var Subscriber_1 = __webpack_require__(1);
 /**
  * Ignores source values for `duration` milliseconds, then emits the most recent
@@ -15397,18 +20187,18 @@ function dispatchNext(subscriber) {
 //# sourceMappingURL=auditTime.js.map
 
 /***/ }),
-/* 229 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var last_1 = __webpack_require__(230);
+var last_1 = __webpack_require__(254);
 Observable_1.Observable.prototype.last = last_1.last;
 //# sourceMappingURL=last.js.map
 
 /***/ }),
-/* 230 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15419,7 +20209,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(31);
+var EmptyError_1 = __webpack_require__(32);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits only the last item emitted by the source Observable.
@@ -15533,19 +20323,19 @@ var LastSubscriber = (function (_super) {
 //# sourceMappingURL=last.js.map
 
 /***/ }),
-/* 231 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var let_1 = __webpack_require__(232);
+var let_1 = __webpack_require__(256);
 Observable_1.Observable.prototype.let = let_1.letProto;
 Observable_1.Observable.prototype.letBind = let_1.letProto;
 //# sourceMappingURL=let.js.map
 
 /***/ }),
-/* 232 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15563,18 +20353,18 @@ exports.letProto = letProto;
 //# sourceMappingURL=let.js.map
 
 /***/ }),
-/* 233 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var every_1 = __webpack_require__(234);
+var every_1 = __webpack_require__(258);
 Observable_1.Observable.prototype.every = every_1.every;
 //# sourceMappingURL=every.js.map
 
 /***/ }),
-/* 234 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15654,29 +20444,29 @@ var EverySubscriber = (function (_super) {
 //# sourceMappingURL=every.js.map
 
 /***/ }),
-/* 235 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var map_1 = __webpack_require__(37);
+var map_1 = __webpack_require__(39);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 236 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mapTo_1 = __webpack_require__(237);
+var mapTo_1 = __webpack_require__(261);
 Observable_1.Observable.prototype.mapTo = mapTo_1.mapTo;
 //# sourceMappingURL=mapTo.js.map
 
 /***/ }),
-/* 237 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15745,18 +20535,18 @@ var MapToSubscriber = (function (_super) {
 //# sourceMappingURL=mapTo.js.map
 
 /***/ }),
-/* 238 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var materialize_1 = __webpack_require__(239);
+var materialize_1 = __webpack_require__(263);
 Observable_1.Observable.prototype.materialize = materialize_1.materialize;
 //# sourceMappingURL=materialize.js.map
 
 /***/ }),
-/* 239 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15767,7 +20557,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Notification_1 = __webpack_require__(17);
+var Notification_1 = __webpack_require__(19);
 /**
  * Represents all of the notifications from the source Observable as `next`
  * emissions marked with their original types within {@link Notification}
@@ -15852,23 +20642,23 @@ var MaterializeSubscriber = (function (_super) {
 //# sourceMappingURL=materialize.js.map
 
 /***/ }),
-/* 240 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var max_1 = __webpack_require__(241);
+var max_1 = __webpack_require__(265);
 Observable_1.Observable.prototype.max = max_1.max;
 //# sourceMappingURL=max.js.map
 
 /***/ }),
-/* 241 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var reduce_1 = __webpack_require__(38);
+var reduce_1 = __webpack_require__(40);
 /**
  * The Max operator operates on an Observable that emits numbers (or items that can be compared with a provided function),
  * and when source Observable completes it emits a single item: the item with the largest value.
@@ -15910,64 +20700,64 @@ exports.max = max;
 //# sourceMappingURL=max.js.map
 
 /***/ }),
-/* 242 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var merge_1 = __webpack_require__(53);
+var merge_1 = __webpack_require__(59);
 Observable_1.Observable.prototype.merge = merge_1.merge;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 243 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mergeAll_1 = __webpack_require__(27);
+var mergeAll_1 = __webpack_require__(28);
 Observable_1.Observable.prototype.mergeAll = mergeAll_1.mergeAll;
 //# sourceMappingURL=mergeAll.js.map
 
 /***/ }),
-/* 244 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mergeMap_1 = __webpack_require__(59);
+var mergeMap_1 = __webpack_require__(65);
 Observable_1.Observable.prototype.mergeMap = mergeMap_1.mergeMap;
 Observable_1.Observable.prototype.flatMap = mergeMap_1.mergeMap;
 //# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
-/* 245 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mergeMapTo_1 = __webpack_require__(60);
+var mergeMapTo_1 = __webpack_require__(66);
 Observable_1.Observable.prototype.flatMapTo = mergeMapTo_1.mergeMapTo;
 Observable_1.Observable.prototype.mergeMapTo = mergeMapTo_1.mergeMapTo;
 //# sourceMappingURL=mergeMapTo.js.map
 
 /***/ }),
-/* 246 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var mergeScan_1 = __webpack_require__(247);
+var mergeScan_1 = __webpack_require__(271);
 Observable_1.Observable.prototype.mergeScan = mergeScan_1.mergeScan;
 //# sourceMappingURL=mergeScan.js.map
 
 /***/ }),
-/* 247 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15977,8 +20767,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var subscribeToResult_1 = __webpack_require__(3);
 var OuterSubscriber_1 = __webpack_require__(2);
 /**
@@ -16102,23 +20892,23 @@ exports.MergeScanSubscriber = MergeScanSubscriber;
 //# sourceMappingURL=mergeScan.js.map
 
 /***/ }),
-/* 248 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var min_1 = __webpack_require__(249);
+var min_1 = __webpack_require__(273);
 Observable_1.Observable.prototype.min = min_1.min;
 //# sourceMappingURL=min.js.map
 
 /***/ }),
-/* 249 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var reduce_1 = __webpack_require__(38);
+var reduce_1 = __webpack_require__(40);
 /**
  * The Min operator operates on an Observable that emits numbers (or items that can be compared with a provided function),
  * and when source Observable completes it emits a single item: the item with the smallest value.
@@ -16160,51 +20950,51 @@ exports.min = min;
 //# sourceMappingURL=min.js.map
 
 /***/ }),
-/* 250 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var multicast_1 = __webpack_require__(14);
+var multicast_1 = __webpack_require__(17);
 Observable_1.Observable.prototype.multicast = multicast_1.multicast;
 //# sourceMappingURL=multicast.js.map
 
 /***/ }),
-/* 251 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var observeOn_1 = __webpack_require__(35);
+var observeOn_1 = __webpack_require__(37);
 Observable_1.Observable.prototype.observeOn = observeOn_1.observeOn;
 //# sourceMappingURL=observeOn.js.map
 
 /***/ }),
-/* 252 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var onErrorResumeNext_1 = __webpack_require__(56);
+var onErrorResumeNext_1 = __webpack_require__(62);
 Observable_1.Observable.prototype.onErrorResumeNext = onErrorResumeNext_1.onErrorResumeNext;
 //# sourceMappingURL=onErrorResumeNext.js.map
 
 /***/ }),
-/* 253 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var pairwise_1 = __webpack_require__(254);
+var pairwise_1 = __webpack_require__(278);
 Observable_1.Observable.prototype.pairwise = pairwise_1.pairwise;
 //# sourceMappingURL=pairwise.js.map
 
 /***/ }),
-/* 254 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16287,24 +21077,24 @@ var PairwiseSubscriber = (function (_super) {
 //# sourceMappingURL=pairwise.js.map
 
 /***/ }),
-/* 255 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var partition_1 = __webpack_require__(256);
+var partition_1 = __webpack_require__(280);
 Observable_1.Observable.prototype.partition = partition_1.partition;
 //# sourceMappingURL=partition.js.map
 
 /***/ }),
-/* 256 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var not_1 = __webpack_require__(257);
-var filter_1 = __webpack_require__(62);
+var not_1 = __webpack_require__(281);
+var filter_1 = __webpack_require__(68);
 /**
  * Splits the source Observable into two, one with values that satisfy a
  * predicate, and another with values that don't satisfy the predicate.
@@ -16356,7 +21146,7 @@ exports.partition = partition;
 //# sourceMappingURL=partition.js.map
 
 /***/ }),
-/* 257 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16373,23 +21163,23 @@ exports.not = not;
 //# sourceMappingURL=not.js.map
 
 /***/ }),
-/* 258 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var pluck_1 = __webpack_require__(259);
+var pluck_1 = __webpack_require__(283);
 Observable_1.Observable.prototype.pluck = pluck_1.pluck;
 //# sourceMappingURL=pluck.js.map
 
 /***/ }),
-/* 259 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var map_1 = __webpack_require__(37);
+var map_1 = __webpack_require__(39);
 /**
  * Maps each source value (an object) to its specified nested property.
  *
@@ -16447,24 +21237,24 @@ function plucker(props, length) {
 //# sourceMappingURL=pluck.js.map
 
 /***/ }),
-/* 260 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var publish_1 = __webpack_require__(261);
+var publish_1 = __webpack_require__(285);
 Observable_1.Observable.prototype.publish = publish_1.publish;
 //# sourceMappingURL=publish.js.map
 
 /***/ }),
-/* 261 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Subject_1 = __webpack_require__(5);
-var multicast_1 = __webpack_require__(14);
+var Subject_1 = __webpack_require__(6);
+var multicast_1 = __webpack_require__(17);
 /* tslint:enable:max-line-length */
 /**
  * Returns a ConnectableObservable, which is a variety of Observable that waits until its connect method is called
@@ -16487,24 +21277,24 @@ exports.publish = publish;
 //# sourceMappingURL=publish.js.map
 
 /***/ }),
-/* 262 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var publishBehavior_1 = __webpack_require__(263);
+var publishBehavior_1 = __webpack_require__(287);
 Observable_1.Observable.prototype.publishBehavior = publishBehavior_1.publishBehavior;
 //# sourceMappingURL=publishBehavior.js.map
 
 /***/ }),
-/* 263 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var BehaviorSubject_1 = __webpack_require__(65);
-var multicast_1 = __webpack_require__(14);
+var BehaviorSubject_1 = __webpack_require__(71);
+var multicast_1 = __webpack_require__(17);
 /**
  * @param value
  * @return {ConnectableObservable<T>}
@@ -16518,24 +21308,24 @@ exports.publishBehavior = publishBehavior;
 //# sourceMappingURL=publishBehavior.js.map
 
 /***/ }),
-/* 264 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var publishReplay_1 = __webpack_require__(265);
+var publishReplay_1 = __webpack_require__(289);
 Observable_1.Observable.prototype.publishReplay = publishReplay_1.publishReplay;
 //# sourceMappingURL=publishReplay.js.map
 
 /***/ }),
-/* 265 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ReplaySubject_1 = __webpack_require__(30);
-var multicast_1 = __webpack_require__(14);
+var ReplaySubject_1 = __webpack_require__(31);
+var multicast_1 = __webpack_require__(17);
 /**
  * @param bufferSize
  * @param windowTime
@@ -16553,24 +21343,24 @@ exports.publishReplay = publishReplay;
 //# sourceMappingURL=publishReplay.js.map
 
 /***/ }),
-/* 266 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var publishLast_1 = __webpack_require__(267);
+var publishLast_1 = __webpack_require__(291);
 Observable_1.Observable.prototype.publishLast = publishLast_1.publishLast;
 //# sourceMappingURL=publishLast.js.map
 
 /***/ }),
-/* 267 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var AsyncSubject_1 = __webpack_require__(26);
-var multicast_1 = __webpack_require__(14);
+var AsyncSubject_1 = __webpack_require__(27);
+var multicast_1 = __webpack_require__(17);
 /**
  * @return {ConnectableObservable<T>}
  * @method publishLast
@@ -16583,40 +21373,40 @@ exports.publishLast = publishLast;
 //# sourceMappingURL=publishLast.js.map
 
 /***/ }),
-/* 268 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var race_1 = __webpack_require__(54);
+var race_1 = __webpack_require__(60);
 Observable_1.Observable.prototype.race = race_1.race;
 //# sourceMappingURL=race.js.map
 
 /***/ }),
-/* 269 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var reduce_1 = __webpack_require__(38);
+var reduce_1 = __webpack_require__(40);
 Observable_1.Observable.prototype.reduce = reduce_1.reduce;
 //# sourceMappingURL=reduce.js.map
 
 /***/ }),
-/* 270 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var repeat_1 = __webpack_require__(271);
+var repeat_1 = __webpack_require__(295);
 Observable_1.Observable.prototype.repeat = repeat_1.repeat;
 //# sourceMappingURL=repeat.js.map
 
 /***/ }),
-/* 271 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16627,7 +21417,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyObservable_1 = __webpack_require__(13);
+var EmptyObservable_1 = __webpack_require__(16);
 /**
  * Returns an Observable that repeats the stream of items emitted by the source Observable at most count times.
  *
@@ -16692,18 +21482,18 @@ var RepeatSubscriber = (function (_super) {
 //# sourceMappingURL=repeat.js.map
 
 /***/ }),
-/* 272 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var repeatWhen_1 = __webpack_require__(273);
+var repeatWhen_1 = __webpack_require__(297);
 Observable_1.Observable.prototype.repeatWhen = repeatWhen_1.repeatWhen;
 //# sourceMappingURL=repeatWhen.js.map
 
 /***/ }),
-/* 273 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16713,9 +21503,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var Subject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -16817,18 +21607,18 @@ var RepeatWhenSubscriber = (function (_super) {
 //# sourceMappingURL=repeatWhen.js.map
 
 /***/ }),
-/* 274 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var retry_1 = __webpack_require__(275);
+var retry_1 = __webpack_require__(299);
 Observable_1.Observable.prototype.retry = retry_1.retry;
 //# sourceMappingURL=retry.js.map
 
 /***/ }),
-/* 275 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16899,18 +21689,18 @@ var RetrySubscriber = (function (_super) {
 //# sourceMappingURL=retry.js.map
 
 /***/ }),
-/* 276 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var retryWhen_1 = __webpack_require__(277);
+var retryWhen_1 = __webpack_require__(301);
 Observable_1.Observable.prototype.retryWhen = retryWhen_1.retryWhen;
 //# sourceMappingURL=retryWhen.js.map
 
 /***/ }),
-/* 277 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16920,9 +21710,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var Subject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -17017,18 +21807,18 @@ var RetryWhenSubscriber = (function (_super) {
 //# sourceMappingURL=retryWhen.js.map
 
 /***/ }),
-/* 278 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var sample_1 = __webpack_require__(279);
+var sample_1 = __webpack_require__(303);
 Observable_1.Observable.prototype.sample = sample_1.sample;
 //# sourceMappingURL=sample.js.map
 
 /***/ }),
-/* 279 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17122,18 +21912,18 @@ var SampleSubscriber = (function (_super) {
 //# sourceMappingURL=sample.js.map
 
 /***/ }),
-/* 280 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var sampleTime_1 = __webpack_require__(281);
+var sampleTime_1 = __webpack_require__(305);
 Observable_1.Observable.prototype.sampleTime = sampleTime_1.sampleTime;
 //# sourceMappingURL=sampleTime.js.map
 
 /***/ }),
-/* 281 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17144,7 +21934,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var async_1 = __webpack_require__(9);
+var async_1 = __webpack_require__(10);
 /**
  * Emits the most recently emitted value from the source Observable within
  * periodic time intervals.
@@ -17230,18 +22020,18 @@ function dispatchNotification(state) {
 //# sourceMappingURL=sampleTime.js.map
 
 /***/ }),
-/* 282 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var scan_1 = __webpack_require__(283);
+var scan_1 = __webpack_require__(307);
 Observable_1.Observable.prototype.scan = scan_1.scan;
 //# sourceMappingURL=scan.js.map
 
 /***/ }),
-/* 283 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17366,18 +22156,18 @@ var ScanSubscriber = (function (_super) {
 //# sourceMappingURL=scan.js.map
 
 /***/ }),
-/* 284 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var sequenceEqual_1 = __webpack_require__(285);
+var sequenceEqual_1 = __webpack_require__(309);
 Observable_1.Observable.prototype.sequenceEqual = sequenceEqual_1.sequenceEqual;
 //# sourceMappingURL=sequenceEqual.js.map
 
 /***/ }),
-/* 285 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17388,8 +22178,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 /**
  * Compares all values of two observables in sequence using an optional comparor function
  * and returns an observable of a single boolean value representing whether or not the two sequences
@@ -17547,24 +22337,24 @@ var SequenceEqualCompareToSubscriber = (function (_super) {
 //# sourceMappingURL=sequenceEqual.js.map
 
 /***/ }),
-/* 286 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var share_1 = __webpack_require__(287);
+var share_1 = __webpack_require__(311);
 Observable_1.Observable.prototype.share = share_1.share;
 //# sourceMappingURL=share.js.map
 
 /***/ }),
-/* 287 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(14);
-var Subject_1 = __webpack_require__(5);
+var multicast_1 = __webpack_require__(17);
+var Subject_1 = __webpack_require__(6);
 function shareSubjectFactory() {
     return new Subject_1.Subject();
 }
@@ -17588,24 +22378,24 @@ exports.share = share;
 //# sourceMappingURL=share.js.map
 
 /***/ }),
-/* 288 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var shareReplay_1 = __webpack_require__(289);
+var shareReplay_1 = __webpack_require__(313);
 Observable_1.Observable.prototype.shareReplay = shareReplay_1.shareReplay;
 //# sourceMappingURL=shareReplay.js.map
 
 /***/ }),
-/* 289 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(14);
-var ReplaySubject_1 = __webpack_require__(30);
+var multicast_1 = __webpack_require__(17);
+var ReplaySubject_1 = __webpack_require__(31);
 /**
  * @method shareReplay
  * @owner Observable
@@ -17627,18 +22417,18 @@ exports.shareReplay = shareReplay;
 //# sourceMappingURL=shareReplay.js.map
 
 /***/ }),
-/* 290 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var single_1 = __webpack_require__(291);
+var single_1 = __webpack_require__(315);
 Observable_1.Observable.prototype.single = single_1.single;
 //# sourceMappingURL=single.js.map
 
 /***/ }),
-/* 291 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17649,7 +22439,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var EmptyError_1 = __webpack_require__(31);
+var EmptyError_1 = __webpack_require__(32);
 /**
  * Returns an Observable that emits the single item emitted by the source Observable that matches a specified
  * predicate, if that Observable emits one such item. If the source Observable emits more than one such item or no
@@ -17737,18 +22527,18 @@ var SingleSubscriber = (function (_super) {
 //# sourceMappingURL=single.js.map
 
 /***/ }),
-/* 292 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var skip_1 = __webpack_require__(293);
+var skip_1 = __webpack_require__(317);
 Observable_1.Observable.prototype.skip = skip_1.skip;
 //# sourceMappingURL=skip.js.map
 
 /***/ }),
-/* 293 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17805,18 +22595,18 @@ var SkipSubscriber = (function (_super) {
 //# sourceMappingURL=skip.js.map
 
 /***/ }),
-/* 294 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var skipLast_1 = __webpack_require__(295);
+var skipLast_1 = __webpack_require__(319);
 Observable_1.Observable.prototype.skipLast = skipLast_1.skipLast;
 //# sourceMappingURL=skipLast.js.map
 
 /***/ }),
-/* 295 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17827,7 +22617,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(20);
+var ArgumentOutOfRangeError_1 = __webpack_require__(22);
 /**
  * Skip the last `count` values emitted by the source Observable.
  *
@@ -17915,18 +22705,18 @@ var SkipLastSubscriber = (function (_super) {
 //# sourceMappingURL=skipLast.js.map
 
 /***/ }),
-/* 296 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var skipUntil_1 = __webpack_require__(297);
+var skipUntil_1 = __webpack_require__(321);
 Observable_1.Observable.prototype.skipUntil = skipUntil_1.skipUntil;
 //# sourceMappingURL=skipUntil.js.map
 
 /***/ }),
-/* 297 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18003,18 +22793,18 @@ var SkipUntilSubscriber = (function (_super) {
 //# sourceMappingURL=skipUntil.js.map
 
 /***/ }),
-/* 298 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var skipWhile_1 = __webpack_require__(299);
+var skipWhile_1 = __webpack_require__(323);
 Observable_1.Observable.prototype.skipWhile = skipWhile_1.skipWhile;
 //# sourceMappingURL=skipWhile.js.map
 
 /***/ }),
-/* 299 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18086,27 +22876,27 @@ var SkipWhileSubscriber = (function (_super) {
 //# sourceMappingURL=skipWhile.js.map
 
 /***/ }),
-/* 300 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var startWith_1 = __webpack_require__(301);
+var startWith_1 = __webpack_require__(325);
 Observable_1.Observable.prototype.startWith = startWith_1.startWith;
 //# sourceMappingURL=startWith.js.map
 
 /***/ }),
-/* 301 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(12);
-var ScalarObservable_1 = __webpack_require__(32);
-var EmptyObservable_1 = __webpack_require__(13);
-var concat_1 = __webpack_require__(34);
-var isScheduler_1 = __webpack_require__(11);
+var ArrayObservable_1 = __webpack_require__(14);
+var ScalarObservable_1 = __webpack_require__(34);
+var EmptyObservable_1 = __webpack_require__(16);
+var concat_1 = __webpack_require__(36);
+var isScheduler_1 = __webpack_require__(13);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits the items you specify as arguments before it begins to emit
@@ -18149,23 +22939,23 @@ exports.startWith = startWith;
 //# sourceMappingURL=startWith.js.map
 
 /***/ }),
-/* 302 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var subscribeOn_1 = __webpack_require__(303);
+var subscribeOn_1 = __webpack_require__(327);
 Observable_1.Observable.prototype.subscribeOn = subscribeOn_1.subscribeOn;
 //# sourceMappingURL=subscribeOn.js.map
 
 /***/ }),
-/* 303 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var SubscribeOnObservable_1 = __webpack_require__(304);
+var SubscribeOnObservable_1 = __webpack_require__(328);
 /**
  * Asynchronously subscribes Observers to this Observable on the specified IScheduler.
  *
@@ -18195,7 +22985,7 @@ var SubscribeOnOperator = (function () {
 //# sourceMappingURL=subscribeOn.js.map
 
 /***/ }),
-/* 304 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18206,8 +22996,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var asap_1 = __webpack_require__(66);
-var isNumeric_1 = __webpack_require__(28);
+var asap_1 = __webpack_require__(72);
+var isNumeric_1 = __webpack_require__(29);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -18252,7 +23042,7 @@ exports.SubscribeOnObservable = SubscribeOnObservable;
 //# sourceMappingURL=SubscribeOnObservable.js.map
 
 /***/ }),
-/* 305 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18262,8 +23052,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Immediate_1 = __webpack_require__(306);
-var AsyncAction_1 = __webpack_require__(18);
+var Immediate_1 = __webpack_require__(330);
+var AsyncAction_1 = __webpack_require__(20);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -18313,7 +23103,7 @@ exports.AsapAction = AsapAction;
 //# sourceMappingURL=AsapAction.js.map
 
 /***/ }),
-/* 306 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18321,7 +23111,7 @@ exports.AsapAction = AsapAction;
 Some credit for this helper goes to http://github.com/YuzuJS/setImmediate
 */
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 var ImmediateDefinition = (function () {
     function ImmediateDefinition(root) {
         this.root = root;
@@ -18526,10 +23316,10 @@ var ImmediateDefinition = (function () {
 exports.ImmediateDefinition = ImmediateDefinition;
 exports.Immediate = new ImmediateDefinition(root_1.root);
 //# sourceMappingURL=Immediate.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67).clearImmediate, __webpack_require__(67).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(73).clearImmediate, __webpack_require__(73).setImmediate))
 
 /***/ }),
-/* 307 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -18719,10 +23509,10 @@ exports.Immediate = new ImmediateDefinition(root_1.root);
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(44), __webpack_require__(308)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(50), __webpack_require__(332)))
 
 /***/ }),
-/* 308 */
+/* 332 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -18912,7 +23702,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 309 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18922,7 +23712,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(19);
+var AsyncScheduler_1 = __webpack_require__(21);
 var AsapScheduler = (function (_super) {
     __extends(AsapScheduler, _super);
     function AsapScheduler() {
@@ -18955,19 +23745,19 @@ exports.AsapScheduler = AsapScheduler;
 //# sourceMappingURL=AsapScheduler.js.map
 
 /***/ }),
-/* 310 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var switch_1 = __webpack_require__(311);
+var switch_1 = __webpack_require__(335);
 Observable_1.Observable.prototype.switch = switch_1._switch;
 Observable_1.Observable.prototype._switch = switch_1._switch;
 //# sourceMappingURL=switch.js.map
 
 /***/ }),
-/* 311 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19081,18 +23871,18 @@ var SwitchSubscriber = (function (_super) {
 //# sourceMappingURL=switch.js.map
 
 /***/ }),
-/* 312 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var switchMap_1 = __webpack_require__(313);
+var switchMap_1 = __webpack_require__(337);
 Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 313 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19238,18 +24028,18 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 314 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var switchMapTo_1 = __webpack_require__(315);
+var switchMapTo_1 = __webpack_require__(339);
 Observable_1.Observable.prototype.switchMapTo = switchMapTo_1.switchMapTo;
 //# sourceMappingURL=switchMapTo.js.map
 
 /***/ }),
-/* 315 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19380,18 +24170,18 @@ var SwitchMapToSubscriber = (function (_super) {
 //# sourceMappingURL=switchMapTo.js.map
 
 /***/ }),
-/* 316 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var take_1 = __webpack_require__(317);
+var take_1 = __webpack_require__(341);
 Observable_1.Observable.prototype.take = take_1.take;
 //# sourceMappingURL=take.js.map
 
 /***/ }),
-/* 317 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19402,8 +24192,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(20);
-var EmptyObservable_1 = __webpack_require__(13);
+var ArgumentOutOfRangeError_1 = __webpack_require__(22);
+var EmptyObservable_1 = __webpack_require__(16);
 /**
  * Emits only the first `count` values emitted by the source Observable.
  *
@@ -19486,18 +24276,18 @@ var TakeSubscriber = (function (_super) {
 //# sourceMappingURL=take.js.map
 
 /***/ }),
-/* 318 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var takeLast_1 = __webpack_require__(319);
+var takeLast_1 = __webpack_require__(343);
 Observable_1.Observable.prototype.takeLast = takeLast_1.takeLast;
 //# sourceMappingURL=takeLast.js.map
 
 /***/ }),
-/* 319 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19508,8 +24298,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var ArgumentOutOfRangeError_1 = __webpack_require__(20);
-var EmptyObservable_1 = __webpack_require__(13);
+var ArgumentOutOfRangeError_1 = __webpack_require__(22);
+var EmptyObservable_1 = __webpack_require__(16);
 /**
  * Emits only the last `count` values emitted by the source Observable.
  *
@@ -19610,18 +24400,18 @@ var TakeLastSubscriber = (function (_super) {
 //# sourceMappingURL=takeLast.js.map
 
 /***/ }),
-/* 320 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var takeUntil_1 = __webpack_require__(321);
+var takeUntil_1 = __webpack_require__(345);
 Observable_1.Observable.prototype.takeUntil = takeUntil_1.takeUntil;
 //# sourceMappingURL=takeUntil.js.map
 
 /***/ }),
-/* 321 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19702,18 +24492,18 @@ var TakeUntilSubscriber = (function (_super) {
 //# sourceMappingURL=takeUntil.js.map
 
 /***/ }),
-/* 322 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var takeWhile_1 = __webpack_require__(323);
+var takeWhile_1 = __webpack_require__(347);
 Observable_1.Observable.prototype.takeWhile = takeWhile_1.takeWhile;
 //# sourceMappingURL=takeWhile.js.map
 
 /***/ }),
-/* 323 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19811,29 +24601,29 @@ var TakeWhileSubscriber = (function (_super) {
 //# sourceMappingURL=takeWhile.js.map
 
 /***/ }),
-/* 324 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var throttle_1 = __webpack_require__(68);
+var throttle_1 = __webpack_require__(74);
 Observable_1.Observable.prototype.throttle = throttle_1.throttle;
 //# sourceMappingURL=throttle.js.map
 
 /***/ }),
-/* 325 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var throttleTime_1 = __webpack_require__(326);
+var throttleTime_1 = __webpack_require__(350);
 Observable_1.Observable.prototype.throttleTime = throttleTime_1.throttleTime;
 //# sourceMappingURL=throttleTime.js.map
 
 /***/ }),
-/* 326 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19844,8 +24634,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var async_1 = __webpack_require__(9);
-var throttle_1 = __webpack_require__(68);
+var async_1 = __webpack_require__(10);
+var throttle_1 = __webpack_require__(74);
 /**
  * Emits a value from the source Observable, then ignores subsequent source
  * values for `duration` milliseconds, then repeats this process.
@@ -19955,29 +24745,29 @@ function dispatchNext(arg) {
 //# sourceMappingURL=throttleTime.js.map
 
 /***/ }),
-/* 327 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var timeInterval_1 = __webpack_require__(69);
+var timeInterval_1 = __webpack_require__(75);
 Observable_1.Observable.prototype.timeInterval = timeInterval_1.timeInterval;
 //# sourceMappingURL=timeInterval.js.map
 
 /***/ }),
-/* 328 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var timeout_1 = __webpack_require__(329);
+var timeout_1 = __webpack_require__(353);
 Observable_1.Observable.prototype.timeout = timeout_1.timeout;
 //# sourceMappingURL=timeout.js.map
 
 /***/ }),
-/* 329 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19987,10 +24777,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(29);
+var async_1 = __webpack_require__(10);
+var isDate_1 = __webpack_require__(30);
 var Subscriber_1 = __webpack_require__(1);
-var TimeoutError_1 = __webpack_require__(70);
+var TimeoutError_1 = __webpack_require__(76);
 /**
  * @param {number} due
  * @param {Scheduler} [scheduler]
@@ -20066,18 +24856,18 @@ var TimeoutSubscriber = (function (_super) {
 //# sourceMappingURL=timeout.js.map
 
 /***/ }),
-/* 330 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var timeoutWith_1 = __webpack_require__(331);
+var timeoutWith_1 = __webpack_require__(355);
 Observable_1.Observable.prototype.timeoutWith = timeoutWith_1.timeoutWith;
 //# sourceMappingURL=timeoutWith.js.map
 
 /***/ }),
-/* 331 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20087,8 +24877,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var async_1 = __webpack_require__(9);
-var isDate_1 = __webpack_require__(29);
+var async_1 = __webpack_require__(10);
+var isDate_1 = __webpack_require__(30);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /* tslint:enable:max-line-length */
@@ -20170,29 +24960,29 @@ var TimeoutWithSubscriber = (function (_super) {
 //# sourceMappingURL=timeoutWith.js.map
 
 /***/ }),
-/* 332 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var timestamp_1 = __webpack_require__(71);
+var timestamp_1 = __webpack_require__(77);
 Observable_1.Observable.prototype.timestamp = timestamp_1.timestamp;
 //# sourceMappingURL=timestamp.js.map
 
 /***/ }),
-/* 333 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var toArray_1 = __webpack_require__(334);
+var toArray_1 = __webpack_require__(358);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 334 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20243,23 +25033,23 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 335 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var toPromise_1 = __webpack_require__(336);
+var toPromise_1 = __webpack_require__(360);
 Observable_1.Observable.prototype.toPromise = toPromise_1.toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 336 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -20332,18 +25122,18 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 337 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var window_1 = __webpack_require__(338);
+var window_1 = __webpack_require__(362);
 Observable_1.Observable.prototype.window = window_1.window;
 //# sourceMappingURL=window.js.map
 
 /***/ }),
-/* 338 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20353,7 +25143,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
+var Subject_1 = __webpack_require__(6);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -20459,18 +25249,18 @@ var WindowSubscriber = (function (_super) {
 //# sourceMappingURL=window.js.map
 
 /***/ }),
-/* 339 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var windowCount_1 = __webpack_require__(340);
+var windowCount_1 = __webpack_require__(364);
 Observable_1.Observable.prototype.windowCount = windowCount_1.windowCount;
 //# sourceMappingURL=windowCount.js.map
 
 /***/ }),
-/* 340 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20481,7 +25271,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(1);
-var Subject_1 = __webpack_require__(5);
+var Subject_1 = __webpack_require__(6);
 /**
  * Branch out the source Observable values as a nested Observable with each
  * nested Observable emitting at most `windowSize` values.
@@ -20607,18 +25397,18 @@ var WindowCountSubscriber = (function (_super) {
 //# sourceMappingURL=windowCount.js.map
 
 /***/ }),
-/* 341 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var windowTime_1 = __webpack_require__(342);
+var windowTime_1 = __webpack_require__(366);
 Observable_1.Observable.prototype.windowTime = windowTime_1.windowTime;
 //# sourceMappingURL=windowTime.js.map
 
 /***/ }),
-/* 342 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20628,11 +25418,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var async_1 = __webpack_require__(9);
+var Subject_1 = __webpack_require__(6);
+var async_1 = __webpack_require__(10);
 var Subscriber_1 = __webpack_require__(1);
-var isNumeric_1 = __webpack_require__(28);
-var isScheduler_1 = __webpack_require__(11);
+var isNumeric_1 = __webpack_require__(29);
+var isScheduler_1 = __webpack_require__(13);
 function windowTime(windowTimeSpan) {
     var scheduler = async_1.async;
     var windowCreationInterval = null;
@@ -20785,18 +25575,18 @@ function dispatchWindowClose(state) {
 //# sourceMappingURL=windowTime.js.map
 
 /***/ }),
-/* 343 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var windowToggle_1 = __webpack_require__(344);
+var windowToggle_1 = __webpack_require__(368);
 Observable_1.Observable.prototype.windowToggle = windowToggle_1.windowToggle;
 //# sourceMappingURL=windowToggle.js.map
 
 /***/ }),
-/* 344 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20806,10 +25596,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var Subscription_1 = __webpack_require__(4);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var Subject_1 = __webpack_require__(6);
+var Subscription_1 = __webpack_require__(5);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -20982,18 +25772,18 @@ var WindowToggleSubscriber = (function (_super) {
 //# sourceMappingURL=windowToggle.js.map
 
 /***/ }),
-/* 345 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var windowWhen_1 = __webpack_require__(346);
+var windowWhen_1 = __webpack_require__(370);
 Observable_1.Observable.prototype.windowWhen = windowWhen_1.windowWhen;
 //# sourceMappingURL=windowWhen.js.map
 
 /***/ }),
-/* 346 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21003,9 +25793,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var tryCatch_1 = __webpack_require__(8);
-var errorObject_1 = __webpack_require__(6);
+var Subject_1 = __webpack_require__(6);
+var tryCatch_1 = __webpack_require__(9);
+var errorObject_1 = __webpack_require__(7);
 var OuterSubscriber_1 = __webpack_require__(2);
 var subscribeToResult_1 = __webpack_require__(3);
 /**
@@ -21126,18 +25916,18 @@ var WindowSubscriber = (function (_super) {
 //# sourceMappingURL=windowWhen.js.map
 
 /***/ }),
-/* 347 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var withLatestFrom_1 = __webpack_require__(348);
+var withLatestFrom_1 = __webpack_require__(372);
 Observable_1.Observable.prototype.withLatestFrom = withLatestFrom_1.withLatestFrom;
 //# sourceMappingURL=withLatestFrom.js.map
 
 /***/ }),
-/* 348 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21273,34 +26063,34 @@ var WithLatestFromSubscriber = (function (_super) {
 //# sourceMappingURL=withLatestFrom.js.map
 
 /***/ }),
-/* 349 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var zip_1 = __webpack_require__(36);
+var zip_1 = __webpack_require__(38);
 Observable_1.Observable.prototype.zip = zip_1.zipProto;
 //# sourceMappingURL=zip.js.map
 
 /***/ }),
-/* 350 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(0);
-var zipAll_1 = __webpack_require__(351);
+var zipAll_1 = __webpack_require__(375);
 Observable_1.Observable.prototype.zipAll = zipAll_1.zipAll;
 //# sourceMappingURL=zipAll.js.map
 
 /***/ }),
-/* 351 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var zip_1 = __webpack_require__(36);
+var zip_1 = __webpack_require__(38);
 /**
  * @param project
  * @return {Observable<R>|WebSocketSubject<T>|Observable<T>}
@@ -21314,7 +26104,7 @@ exports.zipAll = zipAll;
 //# sourceMappingURL=zipAll.js.map
 
 /***/ }),
-/* 352 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21325,11 +26115,11 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var Notification_1 = __webpack_require__(17);
-var ColdObservable_1 = __webpack_require__(353);
-var HotObservable_1 = __webpack_require__(354);
-var SubscriptionLog_1 = __webpack_require__(73);
-var VirtualTimeScheduler_1 = __webpack_require__(75);
+var Notification_1 = __webpack_require__(19);
+var ColdObservable_1 = __webpack_require__(377);
+var HotObservable_1 = __webpack_require__(378);
+var SubscriptionLog_1 = __webpack_require__(79);
+var VirtualTimeScheduler_1 = __webpack_require__(81);
 var defaultMaxFrame = 750;
 var TestScheduler = (function (_super) {
     __extends(TestScheduler, _super);
@@ -21543,7 +26333,7 @@ exports.TestScheduler = TestScheduler;
 //# sourceMappingURL=TestScheduler.js.map
 
 /***/ }),
-/* 353 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21554,9 +26344,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(0);
-var Subscription_1 = __webpack_require__(4);
-var SubscriptionLoggable_1 = __webpack_require__(72);
-var applyMixins_1 = __webpack_require__(74);
+var Subscription_1 = __webpack_require__(5);
+var SubscriptionLoggable_1 = __webpack_require__(78);
+var applyMixins_1 = __webpack_require__(80);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -21595,7 +26385,7 @@ applyMixins_1.applyMixins(ColdObservable, [SubscriptionLoggable_1.SubscriptionLo
 //# sourceMappingURL=ColdObservable.js.map
 
 /***/ }),
-/* 354 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21605,10 +26395,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(5);
-var Subscription_1 = __webpack_require__(4);
-var SubscriptionLoggable_1 = __webpack_require__(72);
-var applyMixins_1 = __webpack_require__(74);
+var Subject_1 = __webpack_require__(6);
+var Subscription_1 = __webpack_require__(5);
+var SubscriptionLoggable_1 = __webpack_require__(78);
+var applyMixins_1 = __webpack_require__(80);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -21649,13 +26439,13 @@ applyMixins_1.applyMixins(HotObservable, [SubscriptionLoggable_1.SubscriptionLog
 //# sourceMappingURL=HotObservable.js.map
 
 /***/ }),
-/* 355 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var AnimationFrameAction_1 = __webpack_require__(356);
-var AnimationFrameScheduler_1 = __webpack_require__(358);
+var AnimationFrameAction_1 = __webpack_require__(380);
+var AnimationFrameScheduler_1 = __webpack_require__(382);
 /**
  *
  * Animation Frame Scheduler
@@ -21690,7 +26480,7 @@ exports.animationFrame = new AnimationFrameScheduler_1.AnimationFrameScheduler(A
 //# sourceMappingURL=animationFrame.js.map
 
 /***/ }),
-/* 356 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21700,8 +26490,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncAction_1 = __webpack_require__(18);
-var AnimationFrame_1 = __webpack_require__(357);
+var AsyncAction_1 = __webpack_require__(20);
+var AnimationFrame_1 = __webpack_require__(381);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -21751,12 +26541,12 @@ exports.AnimationFrameAction = AnimationFrameAction;
 //# sourceMappingURL=AnimationFrameAction.js.map
 
 /***/ }),
-/* 357 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(7);
+var root_1 = __webpack_require__(8);
 var RequestAnimationFrameDefinition = (function () {
     function RequestAnimationFrameDefinition(root) {
         if (root.requestAnimationFrame) {
@@ -21791,7 +26581,7 @@ exports.AnimationFrame = new RequestAnimationFrameDefinition(root_1.root);
 //# sourceMappingURL=AnimationFrame.js.map
 
 /***/ }),
-/* 358 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21801,7 +26591,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var AsyncScheduler_1 = __webpack_require__(19);
+var AsyncScheduler_1 = __webpack_require__(21);
 var AnimationFrameScheduler = (function (_super) {
     __extends(AnimationFrameScheduler, _super);
     function AnimationFrameScheduler() {
@@ -21834,568 +26624,870 @@ exports.AnimationFrameScheduler = AnimationFrameScheduler;
 //# sourceMappingURL=AnimationFrameScheduler.js.map
 
 /***/ }),
-/* 359 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(21);
-var task_1 = __webpack_require__(43);
-var entity_1 = __webpack_require__(42);
-var iland_1 = __webpack_require__(15);
-var vnic_1 = __webpack_require__(76);
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var vm_1 = __webpack_require__(33);
+var vapp_1 = __webpack_require__(44);
+var vdc_1 = __webpack_require__(97);
+var edge_1 = __webpack_require__(93);
+var internal_network_1 = __webpack_require__(96);
+var vapp_network_1 = __webpack_require__(45);
 /**
- * Virtual Machine.
+ * IaaS Organization.
  */
-var Vm = (function (_super) {
-    tslib_1.__extends(Vm, _super);
-    function Vm(_apiVm) {
-        var _this = _super.call(this, _apiVm) || this;
-        _this._apiVm = _apiVm;
+var Org = (function (_super) {
+    tslib_1.__extends(Org, _super);
+    function Org(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
         return _this;
     }
     /**
-     * Gets a VM by UUID.
-     * @param uuid VM UUID
-     * @returns {Promise<Vm>} promise that resolves with the VM
+     * Gets an Org by UUID.
+     * @param uuid Org UUID
+     * @returns {Promise<Org>} promise that resolves with the Org
      */
-    Vm.getVm = function (uuid) {
-        return iland_1.Iland.getHttp().get("/vm/" + uuid).then(function (response) {
-            var apiVm = response.data;
-            return new Vm(apiVm);
+    Org.getOrg = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + uuid).then(function (response) {
+                        var json = response.data;
+                        return new Org(json);
+                    })];
+            });
         });
     };
-    /**
-     * Gets the VM's local ID.
-     * @returns {string} the VM's local ID
-     */
-    Vm.prototype.getVmLocalId = function () {
-        return this._apiVm.vm_local_id;
-    };
-    /**
-     * Gets the VM's datastore reference.
-     * @returns {string} datastore reference
-     */
-    Vm.prototype.getVimDatastoreRef = function () {
-        return this._apiVm.vim_datastore_ref;
-    };
-    /**
-     * Gets the UUID of the vDC that the VM belongs to.
-     * @returns {string} vDC UUID
-     */
-    Vm.prototype.getVdcUuid = function () {
-        return this._apiVm.vdc_uuid;
-    };
-    /**
-     * Gets the HREF of the vCloud Director instance that this VM is associated with.
-     * @returns {string} vCloud HREF
-     */
-    Vm.prototype.getVcloudHref = function () {
-        return this._apiVm.vcloud_href;
-    };
-    /**
-     * Gets the name of the vCenter server that the VM is associated with.
-     * @returns {string} vCenter name
-     */
-    Vm.prototype.getVcenterName = function () {
-        return this._apiVm.vcenter_name;
-    };
-    /**
-     * Gets the VM'r vCenter reference.
-     * @returns {string} vCenter reference
-     */
-    Vm.prototype.getVcenterMoRef = function () {
-        return this._apiVm.vcenter_moref;
-    };
-    /**
-     * Gets the UUID of the vCenter instance that the VM is associated with.
-     * @returns {string} vCenter UUID
-     */
-    Vm.prototype.getVcenterInstanceUuid = function () {
-        return this._apiVm.vcenter_instance_uuid;
-    };
-    /**
-     * Gets the HREF of the vCenter instance that the VM is associated with.
-     * @returns {string} vCenter HREF
-     */
-    Vm.prototype.getVcenterHref = function () {
-        return this._apiVm.vcenter_href;
-    };
-    /**
-     * Gets the UUID of the vApp that this VM belongs to.
-     * @returns {string} vApp UUID
-     */
-    Vm.prototype.getVappUuid = function () {
-        return this._apiVm.vapp_uuid;
-    };
-    /**
-     * Gets the list of storage profiles that are available to this VM.
-     * @returns {Array<string>} list of storage profile UUIDs
-     */
-    Vm.prototype.getStorageProfiles = function () {
-        return this._apiVm.storage_profiles;
-    };
-    /**
-     * Gets the power status of the VM.
-     * @returns {string} power status identifier
-     */
-    Vm.prototype.getPowerStatus = function () {
-        return this._apiVm.status;
-    };
-    /**
-     * Gets the VM's operating system.
-     * @returns {string} operating system
-     */
-    Vm.prototype.getOperatingSystem = function () {
-        return this._apiVm.os;
-    };
-    /**
-     * Gets the UUID of the Organization that the VM belongs to.
-     * @returns {string} Org UUID
-     */
-    Vm.prototype.getOrgUuid = function () {
-        return this._apiVm.org_uuid;
-    };
-    /**
-     * Gets the datacenter location identifier for the VM.
-     * @returns {string} datacenter location ID
-     */
-    Vm.prototype.getLocationId = function () {
-        return this._apiVm.location_id;
-    };
-    /**
-     * Gets the name of the media that is currently inserted in the VM.
-     * @returns {string} the name of the inserted media or null if no media is currently inserted
-     */
-    Vm.prototype.getInsertedMediaName = function () {
-        return this._apiVm.inserted_media_name && this._apiVm.inserted_media_name.length > 0 ? this._apiVm.inserted_media_name : null;
-    };
-    /**
-     * Indicates whether there is currently a media inserted in the VM.
-     * @returns {boolean} value
-     */
-    Vm.prototype.isMediaInserted = function () {
-        return this._apiVm.media_inserted;
-    };
-    /**
-     * Gets the VM's hardware version.
-     * @returns {string} hardware version
-     */
-    Vm.prototype.getHardwareVersion = function () {
-        return this._apiVm.hardware_version;
-    };
-    /**
-     * Gets the VM's description.
-     * @returns {string} description
-     */
-    Vm.prototype.getDescription = function () {
-        return this._apiVm.description;
-    };
-    /**
-     * Indicates whether the VM is deployed.
-     * @returns {boolean} value
-     */
-    Vm.prototype.isDeployed = function () {
-        return this._apiVm.deployed;
-    };
-    /**
-     * Gets the date that the VM was created.
-     * @returns {Date} creation date
-     */
-    Vm.prototype.getCreatedDate = function () {
-        return new Date(this._apiVm.created_date);
-    };
-    /**
-     * Gets the number of CPUs for the VM.
-     * @returns {number} number of CPUs
-     */
-    Vm.prototype.getNumberOfCpus = function () {
-        return this._apiVm.cpus_number;
-    };
-    /**
-     * Gets the number of cores per CPU socket.
-     * @returns {number} cores per CPU socket
-     */
-    Vm.prototype.getCoresPerSocket = function () {
-        return this._apiVm.cores_per_socket;
-    };
-    /**
-     * Gets the VM's configured memory in MB.
-     * @returns {number} the VM's configured memory in MB.
-     */
-    Vm.prototype.getMemorySize = function () {
-        return this._apiVm.memory_size;
-    };
+    Object.defineProperty(Org.prototype, "entityType", {
+        get: function () {
+            return 'ORG';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "enabled", {
+        /**
+         * Indicates whether the Org is enabled.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.enabled;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "description", {
+        /**
+         * Gets the description.
+         * @returns {string} description
+         */
+        get: function () {
+            return this._json.description;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vcloudHref", {
+        /**
+         * Gets the vCloud HREF
+         * @returns {string} vCloud HREF
+         */
+        get: function () {
+            return this._json.vcloud_href;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "locationId", {
+        /**
+         * Gets the datacenter location identifier.
+         * @returns {string} location ID
+         */
+        get: function () {
+            return this._json.location_id;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vappMaxRuntimeLease", {
+        /**
+         * Gets the Orgs max vApp runtime lease setting.
+         * @returns {number} vApp max runtime lease
+         */
+        get: function () {
+            return this._json.vapp_max_runtime_lease;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vappMaxStorageLease", {
+        /**
+         * Gets the vApps max storage lease setting.
+         * @returns {number} vApp max storage lease
+         */
+        get: function () {
+            return this._json.vapp_max_storage_lease;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vappTemplateMaxStorageLease", {
+        /**
+         * Gets the Orgs vApp template max storage lease setting.
+         * @returns {number} vApp template max storage lease
+         */
+        get: function () {
+            return this._json.vapp_template_max_storage_lease;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vappDeletedOnStorageLeaseExpiration", {
+        /**
+         * Indicates whether the Org is configured such that vApps are deleted upon storage lease expiration vs. being marked
+         * as an expired item.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.vapp_delete_on_storage_expire;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "vappTemplateDeletedOnStorageLeaseExpiration", {
+        /**
+         * Indicates whether the Org is configured such that vApp templates are deleted upon storage lease expiration vs.
+         * being marked as an expired item.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.vapp_template_delete_on_storage_expire;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "zertoTarget", {
+        /**
+         * Indicates whether the Org is a Zerto continuity target.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.zerto_target;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "fullName", {
+        /**
+         * Gets the full name of the organization.
+         * @returns {string} full name
+         */
+        get: function () {
+            return this._json.fullname;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Org.prototype, "companyId", {
+        /**
+         * Gets the company ID (CRM).
+         * @returns {string} company ID
+         */
+        get: function () {
+            return this._json.crm;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * JSON format.
      * @returns {string}
      */
-    Vm.prototype.toString = function () {
-        return JSON.stringify(this._apiVm, undefined, 2);
+    Org.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
     };
+    Object.defineProperty(Org.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {OrgJson} the API json object
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * Refreshes the VM data by retrieving it from the API again.
-     * @returns {Promise<Vm>}
+     * Refreshes the Org data by retrieving it from the API again.
+     * @returns {Promise<Org>} promise that resolves with this object
      */
-    Vm.prototype.refresh = function () {
-        var self = this;
-        return iland_1.Iland.getHttp().get("/vm/" + self.getUuid).then(function (response) {
-            self._apiVm = response.data;
-            return self;
+    Org.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
         });
     };
     /**
-     * Gets the list of VNICs for this VM.
-     * @returns {Promise<Vnic[]>}
+     * Gets the Orgs child vDCs.
+     * @returns {Promise<Vdc[]>} promise that resolves with an array of child vDCs
      */
-    Vm.prototype.getVnics = function () {
-        var self = this;
-        return iland_1.Iland.getHttp().get("/vm/" + self.getUuid() + "/vnics").then(function (response) {
-            var apiVnics = response.data;
-            return apiVnics.map(function (apiVnic) { return new vnic_1.Vnic(apiVnic); });
+    Org.prototype.getVdcs = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/vdcs").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vdcJson) { return new vdc_1.Vdc(vdcJson); });
+                    })];
+            });
         });
     };
     /**
-     * Updates the VM's description.
-     * @param description the new description
-     * @returns {Promise<Task>} task promise
+     * Gets the Orgs child vApps.
+     * @returns {Promise<Vapp[]>} promise that resolves with an array of child vApps
      */
-    Vm.prototype.updateDescription = function (description) {
-        var self = this;
-        var spec = {
-            description: description
-        };
-        return iland_1.Iland.getHttp().put("/vm/" + self.getUuid() + "/description", spec)
-            .then(function (response) {
-            var apiTask = response.data;
-            return new task_1.Task(apiTask);
+    Org.prototype.getVapps = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/vapps").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vappJson) { return new vapp_1.Vapp(vappJson); });
+                    })];
+            });
         });
     };
     /**
-     * Edit the memory size of the VM.
-     * @param memorySizeMb {number} the new memory size in MB
-     * @returns {Promise<Task>} task promise
+     * Gets the Orgs child VMs.
+     * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
      */
-    Vm.prototype.updateMemorySize = function (memorySizeMb) {
-        var self = this;
-        var spec = {
-            memory_size: String(memorySizeMb)
-        };
-        return iland_1.Iland.getHttp().put("/vm/" + self.getUuid() + "/mem", spec)
-            .then(function (response) {
-            var apiTask = response.data;
-            return new task_1.Task(apiTask);
+    Org.prototype.getVms = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/vms").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (vmJson) { return new vm_1.Vm(vmJson); });
+                    })];
+            });
         });
     };
     /**
-     * Edit the number of CPUs.
-     * @param spec {VmCpuUpdateJson} specifying new number of CPUs
-     * @returns {Promise<Task>} task promise
+     * Gets the Orgs child Edges.
+     * @returns {Promise<Edge[]>} promise that resolves with an array of child Edges
      */
-    Vm.prototype.updateNumberOfCpus = function (spec) {
-        var self = this;
-        return iland_1.Iland.getHttp().put("/vm/" + self.getUuid() + "/cpu", spec)
-            .then(function (response) {
-            var apiTask = response.data;
-            return new task_1.Task(apiTask);
+    Org.prototype.getEdges = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/edges").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (edgeJson) { return new edge_1.Edge(edgeJson); });
+                    })];
+            });
         });
     };
-    return Vm;
+    /**
+     * Gets the Orgs child internal networks.
+     * @returns {Promise<InternalNetwork[]>} promise that resolves with an array of child Internal networks
+     */
+    Org.prototype.getInternalNetworks = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/vdc-networks").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (netJson) { return new internal_network_1.InternalNetwork(netJson); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets the Orgs child vApp networks.
+     * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp networks
+     */
+    Org.prototype.getVappNetworks = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/org/" + self.uuid + "/vapp-networks").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (netJson) { return new vapp_network_1.VappNetwork(netJson); });
+                    })];
+            });
+        });
+    };
+    return Org;
 }(entity_1.Entity));
-exports.Vm = Vm;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidm0uanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvc2RrL21vZGVsL3ZtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUFBLCtCQUE0QjtBQUM1QixtQ0FBZ0M7QUFDaEMsa0NBQStCO0FBQy9CLCtCQUE0QjtBQUs1Qjs7R0FFRztBQUNIO0lBQXdCLDhCQUFNO0lBRTVCLFlBQW9CLE1BQWE7UUFBakMsWUFDRSxrQkFBTSxNQUFNLENBQUMsU0FDZDtRQUZtQixZQUFNLEdBQU4sTUFBTSxDQUFPOztJQUVqQyxDQUFDO0lBRUQ7Ozs7T0FJRztJQUNJLFFBQUssR0FBWixVQUFhLElBQVk7UUFDdkIsTUFBTSxDQUFDLGFBQUssQ0FBQyxPQUFPLEVBQUUsQ0FBQyxHQUFHLENBQUMsU0FBTyxJQUFNLENBQUMsQ0FBQyxJQUFJLENBQUMsVUFBUyxRQUFRO1lBQzlELElBQUksS0FBSyxHQUFHLFFBQVEsQ0FBQyxJQUFhLENBQUM7WUFDbkMsTUFBTSxDQUFDLElBQUksRUFBRSxDQUFDLEtBQUssQ0FBQyxDQUFDO1FBQ3ZCLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFZLEdBQVo7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxXQUFXLENBQUM7SUFDakMsQ0FBQztJQUVEOzs7T0FHRztJQUNILCtCQUFrQixHQUFsQjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLGlCQUFpQixDQUFDO0lBQ3ZDLENBQUM7SUFFRDs7O09BR0c7SUFDSCx1QkFBVSxHQUFWO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDO0lBQzlCLENBQUM7SUFFRDs7O09BR0c7SUFDSCwwQkFBYSxHQUFiO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsV0FBVyxDQUFDO0lBQ2pDLENBQUM7SUFFRDs7O09BR0c7SUFDSCwyQkFBYyxHQUFkO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsWUFBWSxDQUFDO0lBQ2xDLENBQUM7SUFFRDs7O09BR0c7SUFDSCw0QkFBZSxHQUFmO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsYUFBYSxDQUFDO0lBQ25DLENBQUM7SUFFRDs7O09BR0c7SUFDSCxtQ0FBc0IsR0FBdEI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxxQkFBcUIsQ0FBQztJQUMzQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMkJBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFlBQVksQ0FBQztJQUNsQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsd0JBQVcsR0FBWDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFNBQVMsQ0FBQztJQUMvQixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsK0JBQWtCLEdBQWxCO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsZ0JBQWdCLENBQUM7SUFDdEMsQ0FBQztJQUVEOzs7T0FHRztJQUNILDJCQUFjLEdBQWQ7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxNQUFNLENBQUM7SUFDNUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILCtCQUFrQixHQUFsQjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLEVBQUUsQ0FBQztJQUN4QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVUsR0FBVjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQztJQUM5QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMEJBQWEsR0FBYjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFdBQVcsQ0FBQztJQUNqQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsaUNBQW9CLEdBQXBCO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsbUJBQW1CLElBQUksSUFBSSxDQUFDLE1BQU0sQ0FBQyxtQkFBbUIsQ0FBQyxNQUFNLEdBQUcsQ0FBQyxHQUFHLElBQUksQ0FBQyxNQUFNLENBQUMsbUJBQW1CLEdBQUcsSUFBSSxDQUFDO0lBQ2hJLENBQUM7SUFFRDs7O09BR0c7SUFDSCw0QkFBZSxHQUFmO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsY0FBYyxDQUFDO0lBQ3BDLENBQUM7SUFFRDs7O09BR0c7SUFDSCwrQkFBa0IsR0FBbEI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxnQkFBZ0IsQ0FBQztJQUN0QyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMkJBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFdBQVcsQ0FBQztJQUNqQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVUsR0FBVjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQztJQUM5QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMkJBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLElBQUksQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFlBQVksQ0FBQyxDQUFDO0lBQzVDLENBQUM7SUFFRDs7O09BR0c7SUFDSCw0QkFBZSxHQUFmO1FBQ0UsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUMsV0FBVyxDQUFDO0lBQ2pDLENBQUM7SUFFRDs7O09BR0c7SUFDSCw4QkFBaUIsR0FBakI7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxnQkFBZ0IsQ0FBQztJQUN0QyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMEJBQWEsR0FBYjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLFdBQVcsQ0FBQztJQUNqQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gscUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxNQUFNLEVBQUUsU0FBUyxFQUFFLENBQUMsQ0FBQyxDQUFDO0lBQ25ELENBQUM7SUFFRDs7O09BR0c7SUFDSCxvQkFBTyxHQUFQO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxhQUFLLENBQUMsT0FBTyxFQUFFLENBQUMsR0FBRyxDQUN0QixTQUFPLElBQUksQ0FBQyxPQUFTLENBQUMsQ0FBQyxJQUFJLENBQUMsVUFBUyxRQUFRO1lBQy9DLElBQUksQ0FBQyxNQUFNLEdBQUcsUUFBUSxDQUFDLElBQWEsQ0FBQztZQUNyQyxNQUFNLENBQUMsSUFBSSxDQUFDO1FBQ2QsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gscUJBQVEsR0FBUjtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixNQUFNLENBQUMsYUFBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsQ0FDdEIsU0FBTyxJQUFJLENBQUMsT0FBTyxFQUFFLFdBQVEsQ0FBQyxDQUFDLElBQUksQ0FBQyxVQUFTLFFBQVE7WUFDdkQsSUFBSSxRQUFRLEdBQUcsUUFBUSxDQUFDLElBQXNCLENBQUM7WUFDL0MsTUFBTSxDQUFDLFFBQVEsQ0FBQyxHQUFHLENBQUMsVUFBQyxPQUFPLElBQUssT0FBQSxJQUFJLFdBQUksQ0FBQyxPQUFPLENBQUMsRUFBakIsQ0FBaUIsQ0FBQyxDQUFDO1FBQ3RELENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVEOzs7O09BSUc7SUFDSCw4QkFBaUIsR0FBakIsVUFBa0IsV0FBbUI7UUFDbkMsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLElBQUksSUFBSSxHQUE0QjtZQUNsQyxXQUFXLEVBQUUsV0FBVztTQUN6QixDQUFDO1FBQ0YsTUFBTSxDQUFDLGFBQUssQ0FBQyxPQUFPLEVBQUUsQ0FBQyxHQUFHLENBQUMsU0FBTyxJQUFJLENBQUMsT0FBTyxFQUFFLGlCQUFjLEVBQUUsSUFBSSxDQUFDO2FBQ3hELElBQUksQ0FBQyxVQUFTLFFBQVE7WUFDckIsSUFBSSxPQUFPLEdBQUcsUUFBUSxDQUFDLElBQWUsQ0FBQztZQUN2QyxNQUFNLENBQUMsSUFBSSxXQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7UUFDM0IsQ0FBQyxDQUFDLENBQUM7SUFDakIsQ0FBQztJQUVEOzs7O09BSUc7SUFDSCw2QkFBZ0IsR0FBaEIsVUFBaUIsWUFBb0I7UUFDbkMsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLElBQUksSUFBSSxHQUF1QjtZQUM3QixXQUFXLEVBQUUsTUFBTSxDQUFDLFlBQVksQ0FBQztTQUNsQyxDQUFDO1FBQ0YsTUFBTSxDQUFDLGFBQUssQ0FBQyxPQUFPLEVBQUUsQ0FBQyxHQUFHLENBQUMsU0FBTyxJQUFJLENBQUMsT0FBTyxFQUFFLFNBQU0sRUFBRSxJQUFJLENBQUM7YUFDaEQsSUFBSSxDQUFDLFVBQVMsUUFBUTtZQUNqQyxJQUFJLE9BQU8sR0FBRyxRQUFRLENBQUMsSUFBZSxDQUFDO1lBQ3ZDLE1BQU0sQ0FBQyxJQUFJLFdBQUksQ0FBQyxPQUFPLENBQUMsQ0FBQztRQUMzQixDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7SUFFRDs7OztPQUlHO0lBQ0gsK0JBQWtCLEdBQWxCLFVBQW1CLElBQXFCO1FBQ3RDLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixNQUFNLENBQUMsYUFBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsQ0FBQyxTQUFPLElBQUksQ0FBQyxPQUFPLEVBQUUsU0FBTSxFQUFFLElBQUksQ0FBQzthQUNoRCxJQUFJLENBQUMsVUFBUyxRQUFRO1lBQ3JCLElBQUksT0FBTyxHQUFHLFFBQVEsQ0FBQyxJQUFlLENBQUM7WUFDdkMsTUFBTSxDQUFDLElBQUksV0FBSSxDQUFDLE9BQU8sQ0FBQyxDQUFDO1FBQzNCLENBQUMsQ0FBQyxDQUFDO0lBQ2pCLENBQUM7SUFFSCxTQUFDO0FBQUQsQ0FBQyxBQTVSRCxDQUF3QixlQUFNLEdBNFI3QjtBQTVSWSxnQkFBRSJ9
+exports.Org = Org;
+
 
 /***/ }),
-/* 360 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var iland_1 = __webpack_require__(15);
-var inventory_1 = __webpack_require__(361);
 /**
- * User.
+ * VM Cpu Update Request.
  */
-var User = (function () {
-    function User(_apiUser) {
-        this._apiUser = _apiUser;
+var VmCpuUpdateRequest = (function () {
+    /**
+     * Creaets a new VM CPU update request.
+     * @param {number} numberOfCpus the number of CPUs
+     * @param {number} coresPerSocket the number of cores per socket
+     */
+    function VmCpuUpdateRequest(numberOfCpus, coresPerSocket) {
+        this.numberOfCpus = numberOfCpus;
+        this.coresPerSocket = coresPerSocket;
     }
-    /**
-     * Gets a user by username.
-     * @param username the user's username
-     * @returns {Promise<User>}
-     */
-    User.getUser = function (username) {
-        return iland_1.Iland.getHttp().get("/user/" + username).then(function (response) {
-            var apiUser = response.data;
-            return new User(apiUser);
-        });
-    };
-    /**
-     * Gets the currently authenticated user.
-     * @returns {Promise<User>}
-     */
-    User.getCurrentUser = function () {
-        return iland_1.Iland.getAuthProvider().getAuthenticatedUsername().then(function (username) {
-            if (username) {
-                return User.getUser(username);
-            }
-            else {
-                return new Promise(function (undefined, reject) {
-                    reject();
-                });
-            }
-        });
-    };
-    /**
-     * Gets the user's username.
-     * @returns {string} username
-     */
-    User.prototype.getUsername = function () {
-        return this._apiUser.name;
-    };
-    /**
-     * Gets the user's address.
-     * @returns {string} address
-     */
-    User.prototype.getAddress = function () {
-        return this._apiUser.address;
-    };
-    /**
-     * Gets the user's city.
-     * @returns {string} city
-     */
-    User.prototype.getCity = function () {
-        return this._apiUser.city;
-    };
-    /**
-     * Gets the user's company.
-     * @returns {string} company
-     */
-    User.prototype.getCompany = function () {
-        return this._apiUser.company;
-    };
-    /**
-     * Gets the user's country.
-     * @returns {string} country
-     */
-    User.prototype.getCountry = function () {
-        return this._apiUser.country;
-    };
-    /**
-     * Gets the user's created date.
-     * @returns {Date} created date
-     */
-    User.prototype.getCreatedDate = function () {
-        return new Date(this._apiUser.created_date);
-    };
-    /**
-     * Gets the company identifier for the user.
-     * @returns {string} company identifier
-     */
-    User.prototype.getCrm = function () {
-        return this._apiUser.crm;
-    };
-    /**
-     * Indicates whether the user is deleted.
-     * @returns {boolean} value
-     */
-    User.prototype.isDeleted = function () {
-        return this._apiUser.deleted;
-    };
-    /**
-     * Gets the deleted date of the user.
-     * @returns {Date} deleted date or null if the user is not deleted
-     */
-    User.prototype.getDeletedDate = function () {
-        return this._apiUser.deleted_date ? new Date(this._apiUser.deleted_date) :
-            null;
-    };
-    /**
-     * Gets the user's email address.
-     * @returns {string} email address
-     */
-    User.prototype.getEmail = function () {
-        return this._apiUser.email;
-    };
-    /**
-     * Gets the user's full name.
-     * @returns {string} full name
-     */
-    User.prototype.getFullName = function () {
-        return this._apiUser.fullname;
-    };
-    /**
-     * Indicates whether the user is locked out of their account.
-     * @returns {boolean} value
-     */
-    User.prototype.isLocked = function () {
-        return this._apiUser.locked;
-    };
-    /**
-     * Gets the phone number of the user.
-     * @returns {string} phone number
-     */
-    User.prototype.getPhoneNumber = function () {
-        return this._apiUser.phone;
-    };
-    /**
-     * Gets the user's state.
-     * @returns {string} state
-     */
-    User.prototype.getState = function () {
-        return this._apiUser.state;
-    };
-    /**
-     * Gets the user type.
-     * @returns {string} user type
-     */
-    User.prototype.getUserType = function () {
-        return this._apiUser.user_type;
-    };
-    /**
-     * Gets the user's zip code.
-     * @returns {string} zip code.
-     */
-    User.prototype.getZip = function () {
-        return this._apiUser.zip;
-    };
+    Object.defineProperty(VmCpuUpdateRequest.prototype, "json", {
+        /**
+         * Gets JSON API representation.
+         * @returns {VmCpuUpdateRequestJson} the JSON API representation
+         */
+        get: function () {
+            return {
+                cpus_number: this.numberOfCpus,
+                cores_per_socket: this.coresPerSocket
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * JSON format.
      * @returns {string}
      */
-    User.prototype.toString = function () {
-        return JSON.stringify(this._apiUser, undefined, 2);
+    VmCpuUpdateRequest.prototype.toString = function () {
+        return JSON.stringify(this.json, undefined, 2);
     };
-    /**
-     * Retrieves a new representation of the user from the API.
-     * @returns {Promise<User>} promise that resolves with updated user
-     */
-    User.prototype.refresh = function () {
-        var self = this;
-        return iland_1.Iland.getHttp().get("/user/" + self.getUsername()).then(function (response) {
-            self._apiUser = response.data;
-            return self;
-        });
-    };
-    /**
-     * Gets the user's entity inventory.
-     * @returns {Promise<Inventory>} user's entity inventory
-     */
-    User.prototype.getInventory = function () {
-        var self = this;
-        return iland_1.Iland.getHttp().get("/user/" + self.getUsername() + "/inventory").then(function (response) {
-            var inventory = response.data;
-            return new inventory_1.Inventory(inventory);
-        });
-    };
-    return User;
+    return VmCpuUpdateRequest;
 }());
-exports.User = User;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXNlci5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9zZGsvbW9kZWwvdXNlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUNBLGtDQUErQjtBQUUvQix5Q0FBc0M7QUFFdEM7O0dBRUc7QUFDSDtJQUVFLGNBQW9CLFFBQWlCO1FBQWpCLGFBQVEsR0FBUixRQUFRLENBQVM7SUFDckMsQ0FBQztJQUVEOzs7O09BSUc7SUFDSSxZQUFPLEdBQWQsVUFBZSxRQUFnQjtRQUM3QixNQUFNLENBQUMsYUFBSyxDQUFDLE9BQU8sRUFBRSxDQUFDLEdBQUcsQ0FBQyxXQUFTLFFBQVUsQ0FBQyxDQUFDLElBQUksQ0FBQyxVQUFTLFFBQVE7WUFDcEUsSUFBSSxPQUFPLEdBQUcsUUFBUSxDQUFDLElBQWUsQ0FBQztZQUN2QyxNQUFNLENBQUMsSUFBSSxJQUFJLENBQUMsT0FBTyxDQUFDLENBQUM7UUFDM0IsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0ksbUJBQWMsR0FBckI7UUFDRSxNQUFNLENBQUMsYUFBSyxDQUFDLGVBQWUsRUFBRSxDQUFDLHdCQUF3QixFQUFFLENBQUMsSUFBSSxDQUFDLFVBQVMsUUFBZ0I7WUFDdEYsRUFBRSxDQUFDLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQztnQkFDYixNQUFNLENBQUMsSUFBSSxDQUFDLE9BQU8sQ0FBQyxRQUFRLENBQUMsQ0FBQztZQUNoQyxDQUFDO1lBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ04sTUFBTSxDQUFDLElBQUksT0FBTyxDQUFPLFVBQVMsU0FBUyxFQUFFLE1BQU07b0JBQ2pELE1BQU0sRUFBRSxDQUFDO2dCQUNYLENBQUMsQ0FBQyxDQUFDO1lBQ0wsQ0FBQztRQUNILENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVEOzs7T0FHRztJQUNILDBCQUFXLEdBQVg7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUM7SUFDNUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFVLEdBQVY7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUM7SUFDL0IsQ0FBQztJQUVEOzs7T0FHRztJQUNILHNCQUFPLEdBQVA7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUM7SUFDNUIsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFVLEdBQVY7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUM7SUFDL0IsQ0FBQztJQUVEOzs7T0FHRztJQUNILHlCQUFVLEdBQVY7UUFDRSxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxPQUFPLENBQUM7SUFDL0IsQ0FBQztJQUVEOzs7T0FHRztJQUNILDZCQUFjLEdBQWQ7UUFDRSxNQUFNLENBQUMsSUFBSSxJQUFJLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxZQUFZLENBQUMsQ0FBQztJQUM5QyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gscUJBQU0sR0FBTjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEdBQUcsQ0FBQztJQUMzQixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsd0JBQVMsR0FBVDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLE9BQU8sQ0FBQztJQUMvQixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsNkJBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFlBQVksR0FBRyxJQUFJLElBQUksQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFlBQVksQ0FBQztZQUNwRSxJQUFJLENBQUM7SUFDWCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQztJQUM3QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMEJBQVcsR0FBWDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFFBQVEsQ0FBQztJQUNoQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLE1BQU0sQ0FBQztJQUM5QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsNkJBQWMsR0FBZDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQztJQUM3QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEtBQUssQ0FBQztJQUM3QixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMEJBQVcsR0FBWDtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLFNBQVMsQ0FBQztJQUNqQyxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gscUJBQU0sR0FBTjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEdBQUcsQ0FBQztJQUMzQixDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsdUJBQVEsR0FBUjtRQUNFLE1BQU0sQ0FBQyxJQUFJLENBQUMsU0FBUyxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsU0FBUyxFQUFFLENBQUMsQ0FBQyxDQUFDO0lBQ3JELENBQUM7SUFFRDs7O09BR0c7SUFDSCxzQkFBTyxHQUFQO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxhQUFLLENBQUMsT0FBTyxFQUFFLENBQUMsR0FBRyxDQUFDLFdBQVMsSUFBSSxDQUFDLFdBQVcsRUFBSSxDQUFDLENBQUMsSUFBSSxDQUFDLFVBQVMsUUFBUTtZQUM5RSxJQUFJLENBQUMsUUFBUSxHQUFHLFFBQVEsQ0FBQyxJQUFlLENBQUM7WUFDekMsTUFBTSxDQUFDLElBQUksQ0FBQztRQUNkLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVEOzs7T0FHRztJQUNILDJCQUFZLEdBQVo7UUFDRSxJQUFJLElBQUksR0FBRyxJQUFJLENBQUM7UUFDaEIsTUFBTSxDQUFDLGFBQUssQ0FBQyxPQUFPLEVBQUUsQ0FBQyxHQUFHLENBQUMsV0FBUyxJQUFJLENBQUMsV0FBVyxFQUFFLGVBQVksQ0FBQyxDQUFDLElBQUksQ0FBQyxVQUFTLFFBQVE7WUFDeEYsSUFBSSxTQUFTLEdBQUcsUUFBUSxDQUFDLElBQTRCLENBQUM7WUFDdEQsTUFBTSxDQUFDLElBQUkscUJBQVMsQ0FBQyxTQUFTLENBQUMsQ0FBQztRQUNsQyxDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7SUFFSCxXQUFDO0FBQUQsQ0FBQyxBQWxNRCxJQWtNQztBQWxNWSxvQkFBSSJ9
+exports.VmCpuUpdateRequest = VmCpuUpdateRequest;
+
 
 /***/ }),
-/* 361 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 /**
- * User inventory.
+ * VM Create Snapshot Request.
  */
-var Inventory = (function () {
-    function Inventory(_inventory) {
-        this._inventory = _inventory;
-        this._flatMap = new Map();
-        this._typeMap = new Map();
-        Inventory.visitInventoryEntities(_inventory, [Inventory.buildFlatMap(this._flatMap), Inventory.buildTypeMap(this._typeMap)]);
+var VmCreateSnapshotRequest = (function () {
+    /**
+     * Creates a new VM snapshot creation requeset.
+     * @param {string} name the snapshot name
+     * @param {string} description the snapshot description
+     * @param {boolean} memory whether to snapshot the VM's memory
+     * @param {boolean} quiesce whether to quiesce the filesystem before taking the snapshot
+     */
+    function VmCreateSnapshotRequest(name, description, memory, quiesce) {
+        this.name = name;
+        this.description = description;
+        this.memory = memory;
+        this.quiesce = quiesce;
     }
-    Inventory.visitInventoryEntities = function (inventory, visitors) {
-        function visit(entity) {
-            for (var _i = 0, visitors_1 = visitors; _i < visitors_1.length; _i++) {
-                var visitor = visitors_1[_i];
-                visitor(entity);
-            }
-            for (var childType in entity.children) {
-                for (var _a = 0, _b = entity.children[childType]; _a < _b.length; _a++) {
-                    var child = _b[_a];
-                    visit(child);
-                }
-            }
-        }
-        for (var _i = 0, inventory_1 = inventory; _i < inventory_1.length; _i++) {
-            var locationNode = inventory_1[_i];
-            visit(locationNode.tree);
-        }
-    };
+    Object.defineProperty(VmCreateSnapshotRequest.prototype, "json", {
+        /**
+         * Gets JSON API representation.
+         * @returns {VmCreateSnapshotRequestJson} the JSON API representation
+         */
+        get: function () {
+            return {
+                name: this.name,
+                description: this.description,
+                memory: this.memory,
+                quiesce: this.quiesce
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
-     * Populates the map of all entities by uuid.
+     * JSON format.
+     * @returns {string}
      */
-    Inventory.buildFlatMap = function (map) {
-        return function (entity) {
-            map.set(entity.uuid, entity);
-        };
+    VmCreateSnapshotRequest.prototype.toString = function () {
+        return JSON.stringify(this.json, undefined, 2);
     };
-    /**
-     * Populates the map of all entities by type.
-     */
-    Inventory.buildTypeMap = function (map) {
-        return function (entity) {
-            var entityArray = map.get(entity.type);
-            if (entityArray === undefined) {
-                map.set(entity.type, [entity]);
-            }
-            else {
-                entityArray.push(entity);
-            }
-        };
-    };
-    /**
-     * Get an inventory entity by UUID.
-     * @param uuid {string} UUID of the entity
-     * @returns {undefined|InventoryEntity}
-     */
-    Inventory.prototype.getEntityByUuid = function (uuid) {
-        return this._flatMap.get(uuid);
-    };
-    /**
-     * Get an array of inventory entities of the specified type.
-     * @param type {EntityType} the type to retrieve
-     * @returns {undefined|InventoryEntity}
-     */
-    Inventory.prototype.getEntitiesByType = function (type) {
-        return this._typeMap.get(type);
-    };
-    return Inventory;
+    return VmCreateSnapshotRequest;
 }());
-exports.Inventory = Inventory;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW52ZW50b3J5LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL3Nkay9tb2RlbC9pbnZlbnRvcnkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFHQTs7R0FFRztBQUNIO0lBTUUsbUJBQW9CLFVBQWdDO1FBQWhDLGVBQVUsR0FBVixVQUFVLENBQXNCO1FBQ2xELElBQUksQ0FBQyxRQUFRLEdBQUcsSUFBSSxHQUFHLEVBQUUsQ0FBQztRQUMxQixJQUFJLENBQUMsUUFBUSxHQUFHLElBQUksR0FBRyxFQUFFLENBQUM7UUFDMUIsU0FBUyxDQUFDLHNCQUFzQixDQUFDLFVBQVUsRUFBRSxDQUFDLFNBQVMsQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxFQUFFLFNBQVMsQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUMvSCxDQUFDO0lBRWMsZ0NBQXNCLEdBQXJDLFVBQXNDLFNBQStCLEVBQy9CLFFBQXdCO1FBQzVELGVBQWUsTUFBc0I7WUFDbkMsR0FBRyxDQUFDLENBQWdCLFVBQVEsRUFBUixxQkFBUSxFQUFSLHNCQUFRLEVBQVIsSUFBUTtnQkFBdkIsSUFBSSxPQUFPLGlCQUFBO2dCQUNkLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQzthQUNqQjtZQUNELEdBQUcsQ0FBQyxDQUFDLElBQUksU0FBUyxJQUFJLE1BQU0sQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDO2dCQUN0QyxHQUFHLENBQUMsQ0FBYyxVQUEwQixFQUExQixLQUFBLE1BQU0sQ0FBQyxRQUFRLENBQUMsU0FBUyxDQUFDLEVBQTFCLGNBQTBCLEVBQTFCLElBQTBCO29CQUF2QyxJQUFJLEtBQUssU0FBQTtvQkFDWixLQUFLLENBQUMsS0FBSyxDQUFDLENBQUM7aUJBQ2Q7WUFDSCxDQUFDO1FBQ0gsQ0FBQztRQUNELEdBQUcsQ0FBQyxDQUFxQixVQUFTLEVBQVQsdUJBQVMsRUFBVCx1QkFBUyxFQUFULElBQVM7WUFBN0IsSUFBSSxZQUFZLGtCQUFBO1lBQ25CLEtBQUssQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLENBQUM7U0FDMUI7SUFDSCxDQUFDO0lBRUQ7O09BRUc7SUFDWSxzQkFBWSxHQUEzQixVQUE0QixHQUFpQztRQUMzRCxNQUFNLENBQUMsVUFBQyxNQUF1QjtZQUM3QixHQUFHLENBQUMsR0FBRyxDQUFDLE1BQU0sQ0FBQyxJQUFJLEVBQUUsTUFBTSxDQUFDLENBQUM7UUFDL0IsQ0FBQyxDQUFBO0lBQ0gsQ0FBQztJQUVEOztPQUVHO0lBQ1ksc0JBQVksR0FBM0IsVUFBNEIsR0FBNEM7UUFDdEUsTUFBTSxDQUFDLFVBQUMsTUFBdUI7WUFDN0IsSUFBSSxXQUFXLEdBQUcsR0FBRyxDQUFDLEdBQUcsQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDdkMsRUFBRSxDQUFDLENBQUMsV0FBVyxLQUFLLFNBQVMsQ0FBQyxDQUFDLENBQUM7Z0JBQzlCLEdBQUcsQ0FBQyxHQUFHLENBQUMsTUFBTSxDQUFDLElBQUksRUFBRSxDQUFDLE1BQU0sQ0FBQyxDQUFDLENBQUM7WUFDakMsQ0FBQztZQUFDLElBQUksQ0FBQyxDQUFDO2dCQUNOLFdBQVcsQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUM7WUFDM0IsQ0FBQztRQUNILENBQUMsQ0FBQTtJQUNILENBQUM7SUFFRDs7OztPQUlHO0lBQ0gsbUNBQWUsR0FBZixVQUFnQixJQUFZO1FBQzFCLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQztJQUNqQyxDQUFDO0lBRUQ7Ozs7T0FJRztJQUNILHFDQUFpQixHQUFqQixVQUFrQixJQUFnQjtRQUNoQyxNQUFNLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDakMsQ0FBQztJQUNILGdCQUFDO0FBQUQsQ0FBQyxBQXJFRCxJQXFFQztBQXJFWSw4QkFBUyJ9
+exports.VmCreateSnapshotRequest = VmCreateSnapshotRequest;
+
 
 /***/ }),
-/* 362 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = __webpack_require__(21);
-tslib_1.__exportStar(__webpack_require__(39), exports);
-tslib_1.__exportStar(__webpack_require__(363), exports);
-tslib_1.__exportStar(__webpack_require__(365), exports);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvc2RrL2F1dGgvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7O0FBQUEsMERBQWdDO0FBQ2hDLGtFQUF3QztBQUN4Qyx1RUFBNkMifQ==
+var tslib_1 = __webpack_require__(4);
+var entity_1 = __webpack_require__(15);
+var iland_1 = __webpack_require__(11);
+var role_1 = __webpack_require__(98);
+var user_1 = __webpack_require__(91);
+/**
+ * Company.
+ */
+var Company = (function (_super) {
+    tslib_1.__extends(Company, _super);
+    function Company(_json) {
+        var _this = _super.call(this, _json) || this;
+        _this._json = _json;
+        return _this;
+    }
+    /**
+     * Gets an Company by ID.
+     * @param id Company ID
+     * @returns {Promise<Company>} promise that resolves with the Company
+     */
+    Company.getCompany = function (id) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            return tslib_1.__generator(this, function (_a) {
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + id).then(function (response) {
+                        var json = response.data;
+                        return new Company(json);
+                    })];
+            });
+        });
+    };
+    Object.defineProperty(Company.prototype, "entityType", {
+        get: function () {
+            return 'COMPANY';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Company.prototype, "hasIlandCloud", {
+        /**
+         * Indicates whether the company has the iland cloud product.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.has_iaas;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Company.prototype, "hasIlandBackup", {
+        /**
+         * Indicates whether the company has the iland backup product.
+         * @returns {boolean} value
+         */
+        get: function () {
+            return this._json.has_vcc;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    Company.prototype.toString = function () {
+        return JSON.stringify(this._json, undefined, 2);
+    };
+    Object.defineProperty(Company.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {CompanyJson} the JSON representation
+         */
+        get: function () {
+            return Object.assign({}, this._json);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * Refreshes the Company data by retrieving it from the API again.
+     * @returns {Promise<Company>} promise that resolves with this object
+     */
+    Company.prototype.refresh = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid).then(function (response) {
+                        self._json = response.data;
+                        return self;
+                    })];
+            });
+        });
+    };
+    /**
+     * Get company roles.
+     * @returns {Promise<Array<Role>>} task promise
+     */
+    Company.prototype.getRoles = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid + "/roles")
+                        .then(function (response) {
+                        var json = response.data;
+                        return json.map(function (it) { return new role_1.Role(it); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Get a company role.
+     * @returns {Promise<Role>} a promise with the queried role
+     */
+    Company.prototype.getRole = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid + "/roles/" + uuid)
+                        .then(function (response) {
+                        var json = response.data;
+                        return new role_1.Role(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Creates a new company role.
+     * @returns {Promise<Role>} a promise with the newly created role
+     */
+    Company.prototype.createRole = function (request) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/companies/" + self.uuid + "/roles", request.json)
+                        .then(function (response) {
+                        var json = response.data;
+                        return new role_1.Role(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Updates a company role.
+     * @returns {Promise<Role>} a promise with the newly created role that has replaced the original
+     */
+    Company.prototype.updateRole = function (uuid, request) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().put("/companies/" + self.uuid + "/roles/" + uuid, request.json)
+                        .then(function (response) {
+                        var json = response.data;
+                        return new role_1.Role(json);
+                    })];
+            });
+        });
+    };
+    /**
+     * Deletes a new company role.
+     * @returns {Promise<void>} a promise that indicates success or failure
+     */
+    Company.prototype.deleteRole = function (uuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().delete("/companies/" + self.uuid + "/roles/" + uuid).then(function () { return undefined; })];
+            });
+        });
+    };
+    /**
+     * Gets all company users.
+     * @returns {Promise<Array<User>>} a promise with the list of the company users
+     */
+    Company.prototype.getUsers = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid + "/users").then(function (response) {
+                        var json = response.data;
+                        return json.map(function (it) { return new user_1.User(it); });
+                    })];
+            });
+        });
+    };
+    /**
+     * Gets all company users that are assigned to a specified role.
+     * @returns {Promise<Array<User>>} a promise with the list of the company users that are assigned to the role
+     */
+    Company.prototype.getUsersWithRole = function (roleUuid) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid + "/users", {
+                        params: {
+                            role: roleUuid
+                        }
+                    }).then(function (response) {
+                        var json = response.data;
+                        return json.map(function (it) { return new user_1.User(it); });
+                    })];
+            });
+        });
+    };
+    /**
+     * A company may have multiple user domains if they have users that are shared with other companies. This method
+     * returns the identifiers for all domains that are associated with this company.
+     * @returns {Promise<Array<string>>} a promise with the list of the company user domains
+     */
+    Company.prototype.getUserDomains = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().get("/companies/" + self.uuid + "/domains").then(function (response) {
+                        return response.data;
+                    })];
+            });
+        });
+    };
+    /**
+     * Creates a new company user.
+     * @returns {Promise<User>} a promise with the newly created user
+     */
+    Company.prototype.createUser = function (request) {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, iland_1.Iland.getHttp().post("/companies/" + self.uuid + "/users", request.json)
+                        .then(function (response) {
+                        var json = response.data;
+                        return new user_1.User(json);
+                    })];
+            });
+        });
+    };
+    return Company;
+}(entity_1.Entity));
+exports.Company = Company;
+
 
 /***/ }),
-/* 363 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Keycloak = __webpack_require__(364);
-var auth_provider_1 = __webpack_require__(39);
+/**
+ * User Creation Request.
+ */
+var UserCreationRequest = (function () {
+    /**
+     * Creates a new user creation request.
+     * @param {string} domain the users' domain
+     * @param {string} username the user's username
+     * @param {string} fullName the users's full name
+     * @param {string} email the user's email address
+     * @param {string} password the user's initial password
+     */
+    function UserCreationRequest(domain, username, fullName, email, password) {
+        this.domain = domain;
+        this.username = username;
+        this.fullName = fullName;
+        this.email = email;
+        this.password = password;
+    }
+    Object.defineProperty(UserCreationRequest.prototype, "json", {
+        /**
+         * Gets the raw JSON object from the API.
+         * @returns {UserCreationRequestJson} the JSON representation
+         */
+        get: function () {
+            return {
+                password: this.password,
+                domain: this.domain,
+                fullname: this.fullName,
+                email: this.email,
+                name: this.username
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    UserCreationRequest.prototype.toString = function () {
+        return JSON.stringify(this.json, undefined, 2);
+    };
+    return UserCreationRequest;
+}());
+exports.UserCreationRequest = UserCreationRequest;
+
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Role Creation Request Implementation.
+ */
+var RoleCreationRequest = (function () {
+    /**
+     * Creates a new role creation request.
+     * @param {string} companyId the ID of the company that the role will be created in
+     * @param {string} name the name of the role
+     * @param {string} description the description of the role
+     * @param {Array<Policy>} policies the policies that define the role
+     */
+    function RoleCreationRequest(companyId, name, description, policies) {
+        this.companyId = companyId;
+        this.name = name;
+        this.description = description;
+        this.policies = policies;
+    }
+    Object.defineProperty(RoleCreationRequest.prototype, "json", {
+        /**
+         * Gets the raw JSON object for the API.
+         * @returns {RoleCreationRequestJson} JSON representation
+         */
+        get: function () {
+            return {
+                company_id: this.companyId,
+                name: this.name,
+                description: this.description,
+                policies: this.policies.map(function (it) { return it.json; })
+            };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * JSON format.
+     * @returns {string}
+     */
+    RoleCreationRequest.prototype.toString = function () {
+        return JSON.stringify(this.json, undefined, 2);
+    };
+    return RoleCreationRequest;
+}());
+exports.RoleCreationRequest = RoleCreationRequest;
+/**
+ * Role Creation Request Builder.
+ */
+var RoleCreationRequestBuilder = (function () {
+    function RoleCreationRequestBuilder(_companyId, _name, _description) {
+        this._companyId = _companyId;
+        this._name = _name;
+        this._description = _description;
+        this._policies = {};
+    }
+    /**
+     * Sets the name for the role creation request.
+     * @param {string} name
+     * @returns {RoleCreationRequestBuilder} the builder
+     */
+    RoleCreationRequestBuilder.prototype.setName = function (name) {
+        this._name = name;
+        return this;
+    };
+    /**
+     * Sets the description for the role creation request.
+     * @param {string} description
+     * @returns {RoleCreationRequestBuilder} the builder
+     */
+    RoleCreationRequestBuilder.prototype.setDescription = function (description) {
+        this._description = description;
+        return this;
+    };
+    /**
+     * Sets a policy on the role creation request.
+     * @param {Policy} policy
+     * @returns {RoleCreationRequestBuilder} the builder
+     */
+    RoleCreationRequestBuilder.prototype.setPolicy = function (policy) {
+        this._policies[policy.entityUuid] = policy;
+        return this;
+    };
+    /**
+     * Removes a policy for a specified entity.
+     * @param {string} entityUuid the UUID of the entity
+     * @returns {RoleCreationRequestBuilder} the builder
+     */
+    RoleCreationRequestBuilder.prototype.removePolicy = function (entityUuid) {
+        delete this._policies[entityUuid];
+        return this;
+    };
+    /**
+     * Clears all policies.
+     * @returns {RoleCreationRequestBuilder} the builder
+     */
+    RoleCreationRequestBuilder.prototype.clearPolicies = function () {
+        this._policies = {};
+        return this;
+    };
+    /**
+     * Builds the RoleCreationRequest.
+     * @returns {RoleCreationRequest}
+     */
+    RoleCreationRequestBuilder.prototype.build = function () {
+        var _this = this;
+        return new RoleCreationRequest(this._companyId, this._name, this._description, Object.keys(this._policies).map(function (it) { return _this._policies[it]; }));
+    };
+    return RoleCreationRequestBuilder;
+}());
+exports.RoleCreationRequestBuilder = RoleCreationRequestBuilder;
+
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+tslib_1.__exportStar(__webpack_require__(46), exports);
+tslib_1.__exportStar(__webpack_require__(390), exports);
+tslib_1.__exportStar(__webpack_require__(392), exports);
+
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(4);
+var auth_provider_1 = __webpack_require__(46);
+var Keycloak = __webpack_require__(391);
 var IlandBrowserAuthProvider = (function () {
     function IlandBrowserAuthProvider(config) {
         var kcConfig = {
@@ -22408,14 +27500,25 @@ var IlandBrowserAuthProvider = (function () {
         this._keycloak = Keycloak(kcConfig);
     }
     IlandBrowserAuthProvider.prototype.getToken = function () {
-        var self = this;
-        return new Promise(function (resolve) {
-            self._keycloak.updateToken(15).success(function () {
-                resolve(self._keycloak.token);
-            }).error(function () {
-                self._init().then(function () {
-                    resolve('Bearer ' + self._keycloak.token);
-                });
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        self._keycloak.updateToken(15).success(function () {
+                            resolve(self._keycloak.token);
+                        }).error(function () {
+                            return tslib_1.__awaiter(this, void 0, void 0, function () {
+                                return tslib_1.__generator(this, function (_a) {
+                                    return [2 /*return*/, self._init().then(function () {
+                                            resolve(self._keycloak.token);
+                                        }, function (err) {
+                                            reject(err);
+                                        })];
+                                });
+                            });
+                        });
+                    })];
             });
         });
     };
@@ -22424,55 +27527,75 @@ var IlandBrowserAuthProvider = (function () {
      * @returns {string} username
      */
     IlandBrowserAuthProvider.prototype.getAuthenticatedUsername = function () {
-        var self = this;
-        return self.getToken().then(function () {
-            var tokenParsed = self._keycloak.tokenParsed;
-            return tokenParsed.preferred_username;
-        });
-    };
-    IlandBrowserAuthProvider.prototype._init = function () {
-        var self = this;
-        return new Promise(function (resolve, reject) {
-            self._keycloak.init({
-                onLoad: 'login-required'
-            }).success(function (result) {
-                resolve(result);
-            }).error(function (error) {
-                reject(error);
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, self.getToken().then(function () {
+                        var tokenParsed = self._keycloak.tokenParsed;
+                        return tokenParsed.preferred_username;
+                    })];
             });
         });
     };
+    /**
+     * Log out the authenticated user.
+     * @returns {Promise<any>} promise that resolves when logout is complete.
+     */
     IlandBrowserAuthProvider.prototype.logout = function () {
-        var self = this;
-        return new Promise(function (resolve, reject) {
-            self._keycloak.logout().success(function () {
-                resolve(null);
-            }).error(function () {
-                reject(null);
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        self._keycloak.logout().success(function () {
+                            resolve(null);
+                        }).error(function () {
+                            reject(null);
+                        });
+                    })];
+            });
+        });
+    };
+    IlandBrowserAuthProvider.prototype._init = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, new Promise(function (resolve, reject) {
+                        self._keycloak.init({
+                            onLoad: 'login-required'
+                        }).success(function (result) {
+                            resolve(result);
+                        }).error(function (error) {
+                            reject(error);
+                        });
+                    })];
             });
         });
     };
     return IlandBrowserAuthProvider;
 }());
 exports.IlandBrowserAuthProvider = IlandBrowserAuthProvider;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYnJvd3Nlci1hdXRoLXByb3ZpZGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL3Nkay9hdXRoL2Jyb3dzZXItYXV0aC1wcm92aWRlci50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUNBLHNDQUF5QztBQUN6QyxpREFBK0Q7QUFJL0Q7SUFJRSxrQ0FBWSxNQUE4QjtRQUN4QyxJQUFJLFFBQVEsR0FBRztZQUNiLFFBQVEsRUFBRSxNQUFNLENBQUMsUUFBUTtZQUN6QixRQUFRLEVBQUUsTUFBTSxDQUFDLFFBQVE7WUFDekIsR0FBRyxFQUFFLE1BQU0sQ0FBQyxHQUFHLEdBQUcsTUFBTSxDQUFDLEdBQUcsR0FBRyxnQ0FBZ0I7WUFDL0MsZUFBZSxFQUFFLElBQUk7WUFDckIsS0FBSyxFQUFFLFlBQVk7U0FDcEIsQ0FBQztRQUNGLElBQUksQ0FBQyxTQUFTLEdBQUcsUUFBUSxDQUFDLFFBQVEsQ0FBQyxDQUFDO0lBQ3RDLENBQUM7SUFFRCwyQ0FBUSxHQUFSO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBQyxVQUFTLE9BQU87WUFDakMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxXQUFXLENBQUMsRUFBRSxDQUFDLENBQUMsT0FBTyxDQUFDO2dCQUNyQyxPQUFPLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxLQUFLLENBQUMsQ0FBQztZQUNoQyxDQUFDLENBQUMsQ0FBQyxLQUFLLENBQUM7Z0JBQ04sSUFBSSxDQUFDLEtBQUssRUFBRSxDQUFDLElBQUksQ0FBQztvQkFDakIsT0FBTyxDQUFDLFNBQVMsR0FBRyxJQUFJLENBQUMsU0FBUyxDQUFDLEtBQUssQ0FBQyxDQUFDO2dCQUM1QyxDQUFDLENBQUMsQ0FBQztZQUNMLENBQUMsQ0FBQyxDQUFDO1FBQ0wsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQ7OztPQUdHO0lBQ0gsMkRBQXdCLEdBQXhCO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLENBQUMsSUFBSSxDQUFDO1lBQzFCLElBQUksV0FBVyxHQUFHLElBQUksQ0FBQyxTQUFTLENBQUMsV0FBa0IsQ0FBQztZQUNwRCxNQUFNLENBQUMsV0FBVyxDQUFDLGtCQUFrQixDQUFDO1FBQ3hDLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVPLHdDQUFLLEdBQWI7UUFDRSxJQUFJLElBQUksR0FBRyxJQUFJLENBQUM7UUFDaEIsTUFBTSxDQUFDLElBQUksT0FBTyxDQUFDLFVBQVMsT0FBTyxFQUFFLE1BQU07WUFDekMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxJQUFJLENBQUM7Z0JBQ2xCLE1BQU0sRUFBRSxnQkFBZ0I7YUFDekIsQ0FBQyxDQUFDLE9BQU8sQ0FBQyxVQUFTLE1BQWU7Z0JBQ2pDLE9BQU8sQ0FBQyxNQUFNLENBQUMsQ0FBQztZQUNsQixDQUFDLENBQUMsQ0FBQyxLQUFLLENBQUMsVUFBUyxLQUFvQjtnQkFDcEMsTUFBTSxDQUFDLEtBQUssQ0FBQyxDQUFDO1lBQ2hCLENBQUMsQ0FBQyxDQUFDO1FBQ0wsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQseUNBQU0sR0FBTjtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixNQUFNLENBQUMsSUFBSSxPQUFPLENBQUMsVUFBUyxPQUFPLEVBQUUsTUFBTTtZQUN6QyxJQUFJLENBQUMsU0FBUyxDQUFDLE1BQU0sRUFBRSxDQUFDLE9BQU8sQ0FBQztnQkFDOUIsT0FBTyxDQUFDLElBQUksQ0FBQyxDQUFDO1lBQ2hCLENBQUMsQ0FBQyxDQUFDLEtBQUssQ0FBQztnQkFDUCxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDZixDQUFDLENBQUMsQ0FBQztRQUNMLENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVILCtCQUFDO0FBQUQsQ0FBQyxBQWhFRCxJQWdFQztBQWhFWSw0REFBd0IifQ==
+
 
 /***/ }),
-/* 364 */
+/* 391 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_364__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_391__;
 
 /***/ }),
-/* 365 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var auth_provider_1 = __webpack_require__(39);
-var axios_1 = __webpack_require__(41);
-var querystring = __webpack_require__(366);
+var tslib_1 = __webpack_require__(4);
+var auth_provider_1 = __webpack_require__(46);
+var axios_1 = __webpack_require__(48);
+var querystring = __webpack_require__(393);
 var TOKEN_REFRESH_THRESHOLD = 10;
 var IlandDirectGrantAuthProvider = (function () {
     function IlandDirectGrantAuthProvider(_config) {
@@ -22481,109 +27604,144 @@ var IlandDirectGrantAuthProvider = (function () {
     IlandDirectGrantAuthProvider._epochSeconds = function () {
         return new Date().getTime() / 1000;
     };
-    IlandDirectGrantAuthProvider.prototype._login = function () {
-        var self = this;
-        var url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
-        var promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/token", querystring.stringify({
-            client_id: self._config.clientId,
-            client_secret: self._config.clientSecret,
-            username: self._config.username,
-            password: self._config.password,
-            grant_type: 'password'
-        }));
-        return promise.then(function (response) {
-            self._token = response.data;
-            self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
-            return self._token;
-        }).catch(function (reason) {
-            if (reason.response) {
-                throw new Error(reason.response.status + ": " + JSON.stringify(reason.response.data));
-            }
-            else {
-                throw new Error(reason.code);
-            }
-        });
-    };
-    IlandDirectGrantAuthProvider.prototype._refreshToken = function () {
-        var self = this;
-        var url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
-        var promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/token", querystring.stringify({
-            client_id: self._config.clientId,
-            client_secret: self._config.clientSecret,
-            refresh_token: self._token.refresh_token,
-            grant_type: 'refresh_token'
-        }));
-        return promise.then(function (response) {
-            self._token = response.data;
-            self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
-            return self._token;
-        });
-    };
     IlandDirectGrantAuthProvider.prototype.getToken = function () {
-        var self = this;
-        if (self._token === undefined) {
-            // login required
-            return self._login().then(function (token) {
-                return token.access_token;
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, token;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                token = self._token;
+                if (token === undefined) {
+                    // login required
+                    return [2 /*return*/, self._login().then(function (token) {
+                            return token.access_token;
+                        })];
+                }
+                else {
+                    if (IlandDirectGrantAuthProvider._epochSeconds() >= token.expires_at - TOKEN_REFRESH_THRESHOLD) {
+                        // refresh required
+                        return [2 /*return*/, self._refreshToken().catch(function () {
+                                return tslib_1.__awaiter(this, void 0, void 0, function () {
+                                    return tslib_1.__generator(this, function (_a) {
+                                        return [2 /*return*/, self._login()];
+                                    });
+                                });
+                            }).then(function (token) {
+                                return token.access_token;
+                            })];
+                    }
+                    else {
+                        // no refresh necessary
+                        return [2 /*return*/, new Promise(function (resolve) {
+                                resolve(token.access_token);
+                            })];
+                    }
+                }
+                return [2 /*return*/];
             });
-        }
-        else if (IlandDirectGrantAuthProvider._epochSeconds() >= self._token.expires_at - TOKEN_REFRESH_THRESHOLD) {
-            // refresh required
-            return self._refreshToken().catch(function () {
-                return self._login();
-            }).then(function (token) {
-                return token.access_token;
-            });
-        }
-        // no refresh necessary
-        return new Promise(function (resolve) {
-            resolve(self._token.access_token);
         });
     };
     IlandDirectGrantAuthProvider.prototype.logout = function () {
-        var self = this;
-        var url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
-        var promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/logout", querystring.stringify({
-            client_id: self._config.clientId,
-            client_secret: self._config.clientSecret,
-            refresh_token: self._token.refresh_token
-        }));
-        return promise.then(function () {
-            self._token.expires_in = 0;
-            self._token.expires_at = IlandDirectGrantAuthProvider._epochSeconds();
-        }, function (reason) {
-            if (reason.response) {
-                throw new Error(reason.response.status + ": " + JSON.stringify(reason.response.data));
-            }
-            else {
-                throw new Error(reason.code);
-            }
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, url, promise;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
+                promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/logout", querystring.stringify({
+                    client_id: self._config.clientId,
+                    client_secret: self._config.clientSecret,
+                    refresh_token: self._token.refresh_token
+                }));
+                return [2 /*return*/, promise.then(function () {
+                        self._token.expires_in = 0;
+                        self._token.expires_at = IlandDirectGrantAuthProvider._epochSeconds();
+                    }, function (reason) {
+                        if (reason.response) {
+                            throw new Error(reason.response.status + ": " + JSON.stringify(reason.response.data));
+                        }
+                        else {
+                            throw new Error(reason.code);
+                        }
+                    })];
+            });
         });
     };
     IlandDirectGrantAuthProvider.prototype.getAuthenticatedUsername = function () {
-        var self = this;
-        return self.getToken().then(function () {
-            return self._config.username;
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                return [2 /*return*/, self.getToken().then(function () {
+                        return self._config.username;
+                    })];
+            });
+        });
+    };
+    IlandDirectGrantAuthProvider.prototype._refreshToken = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, url, promise;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
+                promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/token", querystring.stringify({
+                    client_id: self._config.clientId,
+                    client_secret: self._config.clientSecret,
+                    refresh_token: self._token.refresh_token,
+                    grant_type: 'refresh_token'
+                }));
+                return [2 /*return*/, promise.then(function (response) {
+                        self._token = response.data;
+                        self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
+                        return self._token;
+                    })];
+            });
+        });
+    };
+    IlandDirectGrantAuthProvider.prototype._login = function () {
+        return tslib_1.__awaiter(this, void 0, void 0, function () {
+            var self, url, promise;
+            return tslib_1.__generator(this, function (_a) {
+                self = this;
+                url = self._config.url || auth_provider_1.DEFAULT_AUTH_URL;
+                promise = axios_1.default.post(url + "/realms/" + auth_provider_1.DEFAULT_REALM + "/protocol/openid-connect/token", querystring.stringify({
+                    client_id: self._config.clientId,
+                    client_secret: self._config.clientSecret,
+                    username: self._config.username,
+                    password: self._config.password,
+                    grant_type: 'password'
+                }));
+                return [2 /*return*/, promise.then(function (response) {
+                        self._token = response.data;
+                        self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
+                        return self._token;
+                    }).catch(function (reason) {
+                        if (reason.response) {
+                            throw new Error(reason.response.status + ": " + JSON.stringify(reason.response.data));
+                        }
+                        else {
+                            throw new Error(reason.code);
+                        }
+                    })];
+            });
         });
     };
     return IlandDirectGrantAuthProvider;
 }());
 exports.IlandDirectGrantAuthProvider = IlandDirectGrantAuthProvider;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGlyZWN0LWdyYW50LWF1dGgtcHJvdmlkZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvc2RrL2F1dGgvZGlyZWN0LWdyYW50LWF1dGgtcHJvdmlkZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxpREFBOEU7QUFDOUUsK0JBQTBCO0FBQzFCLHlDQUE0QztBQUk1QyxJQUFNLHVCQUF1QixHQUFHLEVBQUUsQ0FBQztBQUVuQztJQUlFLHNDQUFvQixPQUFtQztRQUFuQyxZQUFPLEdBQVAsT0FBTyxDQUE0QjtJQUN2RCxDQUFDO0lBRWMsMENBQWEsR0FBNUI7UUFDRSxNQUFNLENBQUMsSUFBSSxJQUFJLEVBQUUsQ0FBQyxPQUFPLEVBQUUsR0FBRyxJQUFJLENBQUM7SUFDckMsQ0FBQztJQUVPLDZDQUFNLEdBQWQ7UUFDRSxJQUFJLElBQUksR0FBRyxJQUFJLENBQUM7UUFDaEIsSUFBSSxHQUFHLEdBQUcsSUFBSSxDQUFDLE9BQU8sQ0FBQyxHQUFHLElBQUksZ0NBQWdCLENBQUM7UUFDL0MsSUFBSSxPQUFPLEdBQUcsZUFBSyxDQUFDLElBQUksQ0FBSSxHQUFHLGdCQUFXLDZCQUFhLG1DQUFnQyxFQUFFLFdBQVcsQ0FBQyxTQUFTLENBQUM7WUFDN0csU0FBUyxFQUFFLElBQUksQ0FBQyxPQUFPLENBQUMsUUFBUTtZQUNoQyxhQUFhLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxZQUFZO1lBQ3hDLFFBQVEsRUFBRSxJQUFJLENBQUMsT0FBTyxDQUFDLFFBQVE7WUFDL0IsUUFBUSxFQUFFLElBQUksQ0FBQyxPQUFPLENBQUMsUUFBUTtZQUMvQixVQUFVLEVBQUUsVUFBVTtTQUN2QixDQUFDLENBQTJCLENBQUM7UUFDOUIsTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsVUFBUyxRQUFRO1lBQ25DLElBQUksQ0FBQyxNQUFNLEdBQUcsUUFBUSxDQUFDLElBQWEsQ0FBQztZQUNyQyxJQUFJLENBQUMsTUFBTSxDQUFDLFVBQVUsR0FBRyxJQUFJLENBQUMsTUFBTSxDQUFDLFVBQVUsR0FBRyw0QkFBNEIsQ0FBQyxhQUFhLEVBQUUsQ0FBQztZQUMvRixNQUFNLENBQUMsSUFBSSxDQUFDLE1BQU0sQ0FBQztRQUNyQixDQUFDLENBQUMsQ0FBQyxLQUFLLENBQUMsVUFBUyxNQUFpQjtZQUNqQyxFQUFFLENBQUMsQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLENBQUMsQ0FBQztnQkFDcEIsTUFBTSxJQUFJLEtBQUssQ0FBSSxNQUFNLENBQUMsUUFBUSxDQUFDLE1BQU0sVUFBSyxJQUFJLENBQUMsU0FBUyxDQUFDLE1BQU0sQ0FBQyxRQUFRLENBQUMsSUFBSSxDQUFHLENBQUMsQ0FBQztZQUN4RixDQUFDO1lBQUMsSUFBSSxDQUFDLENBQUM7Z0JBQ04sTUFBTSxJQUFJLEtBQUssQ0FBQyxNQUFNLENBQUMsSUFBSSxDQUFDLENBQUM7WUFDL0IsQ0FBQztRQUNILENBQUMsQ0FBQyxDQUFDO0lBQ0wsQ0FBQztJQUVELG9EQUFhLEdBQWI7UUFDRSxJQUFJLElBQUksR0FBRyxJQUFJLENBQUM7UUFDaEIsSUFBSSxHQUFHLEdBQUcsSUFBSSxDQUFDLE9BQU8sQ0FBQyxHQUFHLElBQUksZ0NBQWdCLENBQUM7UUFDL0MsSUFBSSxPQUFPLEdBQUcsZUFBSyxDQUFDLElBQUksQ0FBSSxHQUFHLGdCQUFXLDZCQUFhLG1DQUFnQyxFQUFFLFdBQVcsQ0FBQyxTQUFTLENBQUM7WUFDN0csU0FBUyxFQUFFLElBQUksQ0FBQyxPQUFPLENBQUMsUUFBUTtZQUNoQyxhQUFhLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxZQUFZO1lBQ3hDLGFBQWEsRUFBRSxJQUFJLENBQUMsTUFBTSxDQUFDLGFBQWE7WUFDeEMsVUFBVSxFQUFFLGVBQWU7U0FDNUIsQ0FBQyxDQUEyQixDQUFDO1FBQzlCLE1BQU0sQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLFVBQVMsUUFBUTtZQUNuQyxJQUFJLENBQUMsTUFBTSxHQUFHLFFBQVEsQ0FBQyxJQUFhLENBQUM7WUFDckMsSUFBSSxDQUFDLE1BQU0sQ0FBQyxVQUFVLEdBQUcsSUFBSSxDQUFDLE1BQU0sQ0FBQyxVQUFVLEdBQUcsNEJBQTRCLENBQUMsYUFBYSxFQUFFLENBQUM7WUFDL0YsTUFBTSxDQUFDLElBQUksQ0FBQyxNQUFNLENBQUM7UUFDckIsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQsK0NBQVEsR0FBUjtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixFQUFFLENBQUMsQ0FBQyxJQUFJLENBQUMsTUFBTSxLQUFLLFNBQVMsQ0FBQyxDQUFDLENBQUM7WUFDOUIsaUJBQWlCO1lBQ2pCLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUMsSUFBSSxDQUFDLFVBQVMsS0FBSztnQkFDdEMsTUFBTSxDQUFDLEtBQUssQ0FBQyxZQUFZLENBQUM7WUFDNUIsQ0FBQyxDQUFDLENBQUM7UUFDTCxDQUFDO1FBQUMsSUFBSSxDQUFDLEVBQUUsQ0FBQyxDQUFDLDRCQUE0QixDQUFDLGFBQWEsRUFBRSxJQUFJLElBQUksQ0FBQyxNQUFNLENBQUMsVUFBVSxHQUFHLHVCQUF1QixDQUFDLENBQUMsQ0FBQztZQUM1RyxtQkFBbUI7WUFDbkIsTUFBTSxDQUFDLElBQUksQ0FBQyxhQUFhLEVBQUUsQ0FBQyxLQUFLLENBQUM7Z0JBQ2hDLE1BQU0sQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLENBQUE7WUFDdEIsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLFVBQVMsS0FBWTtnQkFDM0IsTUFBTSxDQUFDLEtBQUssQ0FBQyxZQUFZLENBQUM7WUFDNUIsQ0FBQyxDQUFDLENBQUM7UUFDTCxDQUFDO1FBQ0QsdUJBQXVCO1FBQ3ZCLE1BQU0sQ0FBQyxJQUFJLE9BQU8sQ0FBUyxVQUFTLE9BQU87WUFDekMsT0FBTyxDQUFFLElBQUksQ0FBQyxNQUFNLENBQUMsWUFBWSxDQUFDLENBQUM7UUFDckMsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQsNkNBQU0sR0FBTjtRQUNFLElBQUksSUFBSSxHQUFHLElBQUksQ0FBQztRQUNoQixJQUFJLEdBQUcsR0FBRyxJQUFJLENBQUMsT0FBTyxDQUFDLEdBQUcsSUFBSSxnQ0FBZ0IsQ0FBQztRQUMvQyxJQUFJLE9BQU8sR0FBRyxlQUFLLENBQUMsSUFBSSxDQUFJLEdBQUcsZ0JBQVcsNkJBQWEsb0NBQWlDLEVBQUUsV0FBVyxDQUFDLFNBQVMsQ0FBQztZQUM5RyxTQUFTLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxRQUFRO1lBQ2hDLGFBQWEsRUFBRSxJQUFJLENBQUMsT0FBTyxDQUFDLFlBQVk7WUFDeEMsYUFBYSxFQUFFLElBQUksQ0FBQyxNQUFNLENBQUMsYUFBYTtTQUN6QyxDQUFDLENBQTJCLENBQUM7UUFDOUIsTUFBTSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUM7WUFDbEIsSUFBSSxDQUFDLE1BQU0sQ0FBQyxVQUFVLEdBQUcsQ0FBQyxDQUFDO1lBQzNCLElBQUksQ0FBQyxNQUFNLENBQUMsVUFBVSxHQUFHLDRCQUE0QixDQUFDLGFBQWEsRUFBRSxDQUFDO1FBQ3hFLENBQUMsRUFBRSxVQUFTLE1BQWtCO1lBQzVCLEVBQUUsQ0FBQyxDQUFDLE1BQU0sQ0FBQyxRQUFRLENBQUMsQ0FBQyxDQUFDO2dCQUNwQixNQUFNLElBQUksS0FBSyxDQUFJLE1BQU0sQ0FBQyxRQUFRLENBQUMsTUFBTSxVQUFLLElBQUksQ0FBQyxTQUFTLENBQUMsTUFBTSxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUcsQ0FBQyxDQUFDO1lBQ3hGLENBQUM7WUFBQyxJQUFJLENBQUMsQ0FBQztnQkFDTixNQUFNLElBQUksS0FBSyxDQUFDLE1BQU0sQ0FBQyxJQUFJLENBQUMsQ0FBQztZQUMvQixDQUFDO1FBQ0gsQ0FBQyxDQUFDLENBQUM7SUFDTCxDQUFDO0lBRUQsK0RBQXdCLEdBQXhCO1FBQ0UsSUFBSSxJQUFJLEdBQUcsSUFBSSxDQUFDO1FBQ2hCLE1BQU0sQ0FBQyxJQUFJLENBQUMsUUFBUSxFQUFFLENBQUMsSUFBSSxDQUFDO1lBQzFCLE1BQU0sQ0FBQyxJQUFJLENBQUMsT0FBTyxDQUFDLFFBQVEsQ0FBQztRQUMvQixDQUFDLENBQUMsQ0FBQztJQUNMLENBQUM7SUFFSCxtQ0FBQztBQUFELENBQUMsQUFsR0QsSUFrR0M7QUFsR1ksb0VBQTRCIn0=
+
 
 /***/ }),
-/* 366 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(367);
-exports.encode = exports.stringify = __webpack_require__(368);
+exports.decode = exports.parse = __webpack_require__(394);
+exports.encode = exports.stringify = __webpack_require__(395);
 
 
 /***/ }),
-/* 367 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22674,7 +27832,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 368 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

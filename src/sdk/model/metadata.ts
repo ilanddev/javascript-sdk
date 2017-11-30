@@ -12,7 +12,7 @@ export class Metadata<T extends MetadataType> {
    * Gets the metadata key.
    * @returns {string} the key
    */
-  getKey(): string {
+  get key(): string {
     return this._json.key;
   }
 
@@ -20,7 +20,7 @@ export class Metadata<T extends MetadataType> {
    * Gets the metadata's access restriction type.
    * @returns {MetadataAccessMode} the type of access restriction
    */
-  getAccess(): MetadataAccessMode {
+  get access(): MetadataAccessMode {
     return this._json.access;
   }
 
@@ -28,7 +28,7 @@ export class Metadata<T extends MetadataType> {
    * Gets the type of the metadata.
    * @returns {VirtualDiskType} the type
    */
-  getType(): MetadataTypeKey {
+  get type(): MetadataTypeKey {
     return this._json.type;
   }
 
@@ -36,7 +36,7 @@ export class Metadata<T extends MetadataType> {
    * Gets the metadata value.
    * @returns {} the type
    */
-  getValue(): T {
+  get value(): T {
     return this._json.value;
   }
 
@@ -52,7 +52,7 @@ export class Metadata<T extends MetadataType> {
    * Gets the raw JSON object from the API.
    * @returns {MetadataJson} the API JSON representation of the metadata
    */
-  getJson(): MetadataJson<T> {
+  get json(): MetadataJson<T> {
     return Object.assign({}, this._json);
   }
 

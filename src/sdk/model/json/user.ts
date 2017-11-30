@@ -8,7 +8,6 @@ export interface UserJson {
   company: string;
   country: string;
   created_date: number;
-  crm: string;
   deleted: boolean;
   deleted_date: number | null;
   email: string;
@@ -18,6 +17,7 @@ export interface UserJson {
   state: string;
   user_type: UserType;
   zip: string;
+  domain: string;
 }
 
 /**

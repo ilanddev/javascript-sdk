@@ -1,7 +1,7 @@
 import { UserJson, UserType } from './json/user';
 import { Iland } from '../iland';
-import { OrgEntityTreeJson } from './json/org-entity-tree';
-import { Inventory } from './inventory';
+import { UserInventoryJson } from './json/user-inventory';
+import { CompanyInventory } from './company-inventory';
 
 /**
  * User.
@@ -43,7 +43,7 @@ export class User {
    * Gets the user's username.
    * @returns {string} username
    */
-  getUsername(): string {
+  get username(): string {
     return this._apiUser.name;
   }
 
@@ -51,7 +51,7 @@ export class User {
    * Gets the user's address.
    * @returns {string} address
    */
-  getAddress(): string {
+  get address(): string {
     return this._apiUser.address;
   }
 
@@ -59,7 +59,7 @@ export class User {
    * Gets the user's city.
    * @returns {string} city
    */
-  getCity(): string {
+  get city(): string {
     return this._apiUser.city;
   }
 
@@ -67,7 +67,7 @@ export class User {
    * Gets the user's company.
    * @returns {string} company
    */
-  getCompany(): string {
+  get company(): string {
     return this._apiUser.company;
   }
 
@@ -75,7 +75,7 @@ export class User {
    * Gets the user's country.
    * @returns {string} country
    */
-  getCountry(): string {
+  get country(): string {
     return this._apiUser.country;
   }
 
@@ -83,23 +83,23 @@ export class User {
    * Gets the user's created date.
    * @returns {Date} created date
    */
-  getCreatedDate(): Date {
+  get createdDate(): Date {
     return new Date(this._apiUser.created_date);
   }
 
   /**
-   * Gets the company identifier for the user.
-   * @returns {string} company identifier
+   * Gets the user's domain.
+   * @returns {string} user domain
    */
-  getCrm(): string {
-    return this._apiUser.crm;
+  get domain(): string {
+    return this._apiUser.domain;
   }
 
   /**
    * Indicates whether the user is deleted.
    * @returns {boolean} value
    */
-  isDeleted(): boolean {
+  get deleted(): boolean {
     return this._apiUser.deleted;
   }
 
@@ -107,7 +107,7 @@ export class User {
    * Gets the deleted date of the user.
    * @returns {Date} deleted date or null if the user is not deleted
    */
-  getDeletedDate(): Date | null {
+  get deletedDate(): Date | null {
     return this._apiUser.deleted_date ? new Date(this._apiUser.deleted_date) :
         null;
   }
@@ -116,7 +116,7 @@ export class User {
    * Gets the user's email address.
    * @returns {string} email address
    */
-  getEmail(): string {
+  get email(): string {
     return this._apiUser.email;
   }
 
@@ -124,7 +124,7 @@ export class User {
    * Gets the user's full name.
    * @returns {string} full name
    */
-  getFullName(): string {
+  get fullName(): string {
     return this._apiUser.fullname;
   }
 
@@ -132,7 +132,7 @@ export class User {
    * Indicates whether the user is locked out of their account.
    * @returns {boolean} value
    */
-  isLocked(): boolean {
+  get locked(): boolean {
     return this._apiUser.locked;
   }
 
@@ -140,7 +140,7 @@ export class User {
    * Gets the phone number of the user.
    * @returns {string} phone number
    */
-  getPhoneNumber(): string {
+  get phoneNumber(): string {
     return this._apiUser.phone;
   }
 
@@ -148,7 +148,7 @@ export class User {
    * Gets the user's state.
    * @returns {string} state
    */
-  getState(): string {
+  get state(): string {
     return this._apiUser.state;
   }
 
@@ -156,7 +156,7 @@ export class User {
    * Gets the user type.
    * @returns {UserType} user type
    */
-  getUserType(): UserType {
+  get userType(): UserType {
     return this._apiUser.user_type;
   }
 
@@ -164,7 +164,7 @@ export class User {
    * Gets the user's zip code.
    * @returns {string} zip code.
    */
-  getZip(): string {
+  get zip(): string {
     return this._apiUser.zip;
   }
 
@@ -180,7 +180,7 @@ export class User {
    * Gets the raw JSON object from the API.
    * @returns {UserJson} the API User object
    */
-  getJson(): UserJson {
+  get json(): UserJson {
     return Object.assign({}, this._apiUser);
   }
 
@@ -190,21 +190,41 @@ export class User {
    */
   async refresh(): Promise<User> {
     let self = this;
-    return Iland.getHttp().get(`/user/${self.getUsername()}`).then(function(response) {
+    return Iland.getHttp().get(`/user/${self.username}`).then(function(response) {
       self._apiUser = response.data as UserJson;
       return self;
     });
   }
 
   /**
-   * Gets the user's entity inventory.
-   * @returns {Promise<Inventory>} user's entity inventory
+   * Gets the user's inventory within the specified company..
+   * @param {string} companyId the ID of the company to retrieve inventory for
+   * @returns {Promise<CompanyInventory>}  entity inventory
    */
-  async getInventory(): Promise<Inventory> {
+  async getInventoryInCompany(companyId: string): Promise<CompanyInventory> {
     let self = this;
-    return Iland.getHttp().get(`/user/${self.getUsername()}/inventory`).then(function(response) {
-      let inventory = response.data as Array<OrgEntityTreeJson>;
-      return new Inventory(inventory);
+    return Iland.getHttp().get(`/user/${self.username}/inventory`, {
+      params: {
+        company: companyId
+      }
+    }).then(function(response) {
+      let userInventory = response.data as UserInventoryJson;
+      if (!userInventory.inventory || userInventory.inventory.length === 0) {
+        throw new Error(`No inventory found for company with id=${companyId}.`);
+      }
+      return new CompanyInventory(userInventory.inventory[0]);
+    });
+  }
+
+  /**
+   * Gets the user's entity inventory.
+   * @returns {Promise<Array<CompanyInventory>>} user's entity inventory
+   */
+  async getInventory(): Promise<Array<CompanyInventory>> {
+    let self = this;
+    return Iland.getHttp().get(`/user/${self.username}/inventory`).then(function(response) {
+      let userInventory = response.data as UserInventoryJson;
+      return userInventory.inventory.map((it) => new CompanyInventory(it));
     });
   }
 

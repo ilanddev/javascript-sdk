@@ -25,7 +25,7 @@ export class Edge extends Entity {
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'EDGE';
   }
 
@@ -33,7 +33,7 @@ export class Edge extends Entity {
    * Gets the status of the Edge gateway.
    * @returns {string} status
    */
-  getStatus(): EdgeStatus {
+  get status(): EdgeStatus {
     return this._json.status === 1 ? 'UP' : 'DOWN';
   }
 
@@ -41,7 +41,7 @@ export class Edge extends Entity {
    * Gets the UUID of the associated vDC.
    * @returns {string} vDC UUID
    */
-  getVdcUuid(): string {
+  get vdcUuid(): string {
     return this._json.vdc_uuid;
   }
 
@@ -49,7 +49,7 @@ export class Edge extends Entity {
    * Gets the UUID of the associated Org.
    * @returns {string} org UUID
    */
-  getOrgUuid(): string {
+  get orgUuid(): string {
     return this._json.org_uuid;
   }
 
@@ -57,7 +57,7 @@ export class Edge extends Entity {
    * Gets the Edges network interfaces.
    * @returns {[EdgeInterface]} array of interfaces
    */
-  getInterfaces(): Array<EdgeInterface> {
+  get interfaces(): Array<EdgeInterface> {
     return this._json.interfaces.map((interfaceJson) => new EdgeInterface(interfaceJson));
   }
 
@@ -65,7 +65,7 @@ export class Edge extends Entity {
    * Indicates whether the edge is in backwards compatibility mode.
    * @returns {boolean} value
    */
-  isInBackwardCompatibilityMode(): boolean {
+  get backwardCompatibilityMode(): boolean {
     return this._json.backward_compatibility_mode;
   }
 
@@ -73,7 +73,7 @@ export class Edge extends Entity {
    * Gets the type of backing configuration.
    * @returns {EdgeBackingConfigurationType} backing configuration type
    */
-  getBackingConfigurationType(): EdgeBackingConfigurationType {
+  get backingConfigurationType(): EdgeBackingConfigurationType {
     return this._json.gateway_backing_config;
   }
 
@@ -81,7 +81,7 @@ export class Edge extends Entity {
    * Indicates whether high availability mode is enabled.
    * @returns {boolean} value
    */
-  isHighAvailabilityEnabled(): boolean {
+  get highAvailabilityEnabled(): boolean {
     return this._json.high_availability_enabled;
   }
 
@@ -89,7 +89,7 @@ export class Edge extends Entity {
    * Indicates whether this edge is the default DNS relay route.
    * @returns {boolean} value
    */
-  isDefaultDnsRelayRoute(): boolean {
+  get defaultDnsRelayRoute(): boolean {
     return this._json.default_dns_relay_route;
   }
 
@@ -97,7 +97,7 @@ export class Edge extends Entity {
    * Gets the data center location ID that the edge is associated with.
    * @returns {string} location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._json.location_id;
   }
 
@@ -105,7 +105,7 @@ export class Edge extends Entity {
    * Gets the description.
    * @returns {string} description
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -113,7 +113,7 @@ export class Edge extends Entity {
    * Gets the vCloud HREF.
    * @returns {string|null} vCloud HREF
    */
-  getVcloudHref(): string | null {
+  get vcloudHref(): string | null {
     return this._json.vcloud_href;
   }
 
@@ -129,7 +129,7 @@ export class Edge extends Entity {
    * Gets the raw JSON object from the API.
    * @returns {EdgeJson} the JSON representation
    */
-  getJson(): EdgeJson {
+  get json(): EdgeJson {
     return Object.assign({}, this._json);
   }
 
@@ -140,7 +140,7 @@ export class Edge extends Entity {
   async refresh(): Promise<Edge> {
     let self = this;
     return Iland.getHttp().get(
-        `/edge/${self.getUuid()}`).then(function(response) {
+        `/edge/${self.uuid}`).then(function(response) {
           self._json = response.data as EdgeJson;
           return self;
         });

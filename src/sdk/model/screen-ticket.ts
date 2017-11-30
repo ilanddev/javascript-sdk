@@ -12,7 +12,7 @@ export class ScreenTicket {
    * Gets the VM ID attribute.
    * @returns {string} VM ID
    */
-  getVmId(): string {
+  get vmId(): string {
     return this._json.vm_id;
   }
 
@@ -20,7 +20,7 @@ export class ScreenTicket {
    * Gets the ticket.
    * @returns {string}
    */
-  getTicket(): string {
+  get ticket(): string {
     return this._json.ticket;
   }
 
@@ -28,7 +28,7 @@ export class ScreenTicket {
    * Gets the host.
    * @returns {string}
    */
-  getHost(): string {
+  get host(): string {
     return this._json.host;
   }
 
@@ -36,7 +36,7 @@ export class ScreenTicket {
    * Gets the SSL thumbprint.
    * @returns {string}
    */
-  getSslThumbprint(): string {
+  get sslThumbprint(): string {
     return this._json.ssl_thumbprint;
   }
 
@@ -52,7 +52,7 @@ export class ScreenTicket {
    * Gets the raw JSON object from the API.
    * @returns {ScreenTicketJson} the JSON representation
    */
-  getJson(): ScreenTicketJson {
+  get json(): ScreenTicketJson {
     return Object.assign({}, this._json);
   }
 

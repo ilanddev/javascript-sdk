@@ -1,8 +1,10 @@
-import { UserJson } from './user';
-
 /**
  * User Creation Request JSON properties.
  */
-export interface UserCreationRequestJson extends UserJson {
+export interface UserCreationRequestJson {
   password: string;
+  domain: string;
+  email: string;
+  fullname: string;
+  name: string;
 }

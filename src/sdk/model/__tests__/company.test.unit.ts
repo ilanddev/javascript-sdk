@@ -2,6 +2,9 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { Iland } from '../../iland';
 import { Company } from '../company';
 import { MockCompanyJson } from '../../__mocks__/responses/company/company';
+import { RoleCreationRequestBuilder } from '../role-creation-request';
+import { PolicyBuilder } from '../policy';
+import { UserCreationRequest } from '../user-creation-request';
 
 jest.mock('../../http');
 
@@ -18,14 +21,157 @@ test('Properly submits request to get a Company', async() => {
   let id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(function(company) {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
-    expect(company.getEntityType()).toBe('COMPANY');
-    expect(company.hasIlandBackup()).toBe(MockCompanyJson.has_vcc);
-    expect(company.hasIlandCloud()).toBe(MockCompanyJson.has_iaas);
-    expect(company.getUuid()).toBe(MockCompanyJson.uuid);
-    expect(company.getName()).toBe(MockCompanyJson.name);
-    expect(company.isDeleted()).toBe(MockCompanyJson.deleted);
-    expect(company.getDeletedDate()).toBe(MockCompanyJson.deleted_date);
-    expect(company.getUpdatedDate().getTime()).toBe(MockCompanyJson.updated_date);
-    expect(company.getJson()).toEqual(MockCompanyJson);
+    expect(company.entityType).toBe('COMPANY');
+    expect(company.hasIlandBackup).toBe(MockCompanyJson.has_vcc);
+    expect(company.hasIlandCloud).toBe(MockCompanyJson.has_iaas);
+    expect(company.uuid).toBe(MockCompanyJson.uuid);
+    expect(company.name).toBe(MockCompanyJson.name);
+    expect(company.deleted).toBe(MockCompanyJson.deleted);
+    expect(company.deletedDate).toBe(MockCompanyJson.deleted_date);
+    expect(company.updatedDate.getTime()).toBe(MockCompanyJson.updated_date);
+    expect(company.json).toEqual(MockCompanyJson);
+  });
+});
+
+test('PolicyBuilder methods work properly', async() => {
+  const entityUuid = 'entityUuid';
+  const builder = new PolicyBuilder(entityUuid, 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM');
+  let policy = builder.build();
+  expect(policy.permissions).toBeDefined();
+  expect(policy.permissions.length).toBe(1);
+  policy = builder.addPermission('VIEW_ILAND_CLOUD_VM').build();
+  expect(policy.permissions.length).toBe(1);
+  policy = builder.removePermission('VIEW_ILAND_CLOUD_VM_BILLING').build();
+  expect(policy.permissions).toBeDefined();
+  expect(policy.permissions.length).toBe(1);
+  policy = builder.removePermission('VIEW_ILAND_CLOUD_VM').build();
+  expect(policy.permissions).toBeDefined();
+  expect(policy.permissions.length).toBe(0);
+});
+
+test('RoleCreationRequestBuilder methods work properly', async() => {
+  const companyId = 'companyId';
+  const name = 'name';
+  const description = 'description';
+  const builder = new RoleCreationRequestBuilder(companyId, name, description);
+  let req = builder.build();
+  expect(req.policies).toBeDefined();
+  expect(req.policies.length).toBe(0);
+  expect(req.name).toEqual(name);
+  expect(req.description).toEqual(description);
+  expect(req.companyId).toEqual(companyId);
+  // add a policy to the builder
+  const entityUuid = 'entityUuid';
+  const policy = new PolicyBuilder(entityUuid, 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM').build();
+  req = builder.setPolicy(policy).build();
+  expect(req.policies.length).toBe(1);
+  expect(req.policies[0].entityUuid).toBe(policy.entityUuid);
+  expect(req.policies[0].entityDomain).toBe(policy.entityDomain);
+  expect(req.policies[0].type).toBe(policy.type);
+  // clear policies
+  req = builder.clearPolicies().build();
+  expect(req.policies.length).toEqual(0);
+
+  const newName = 'new-name';
+  const newDescription = 'new-description';
+  req = builder.setPolicy(policy).setDescription(newDescription).setName(newName).build();
+  expect(req.policies.length).toBe(1);
+  expect(req.description).toEqual(newDescription);
+  expect(req.name).toEqual(newName);
+
+  // remove policy
+  req = builder.removePolicy(entityUuid).build();
+  expect(req.policies.length).toBe(0);
+  expect(req.toString()).toBeDefined();
+
+});
+
+test('Properly submits request to create a company role', async() => {
+  let id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
+                                                                              .build();
+    const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
+    return company.createRole(request).then(async function(role) {
+      expect(Iland.getHttp().post).lastCalledWith(`/companies/${id}/roles`, request.json);
+      expect(role.uuid).toBeDefined();
+      expect(role.name).toEqual(request.name);
+      expect(role.type).toEqual('CUSTOM');
+      expect(role.description).toEqual(request.description);
+      expect(role.companyId).toEqual(id);
+      expect(role.policies).toBeDefined();
+      expect(role.policies.length).toEqual(request.policies.length);
+      expect(role.toString()).toBeDefined();
+    });
+  });
+});
+
+test('Properly submits request to create a new user', async() => {
+  let id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    const userCreationRequest = new UserCreationRequest('domain', 'username', 'fullName', 'email', 'password');
+    expect(userCreationRequest.toString()).toBeDefined();
+    return company.createUser(userCreationRequest).then((user) => {
+      expect(Iland.getHttp().post).lastCalledWith(`/companies/${id}/users`, userCreationRequest.json);
+      expect(user.email).toBe(userCreationRequest.email);
+      expect(user.username).toBe(userCreationRequest.username);
+      expect(user.domain).toBe(userCreationRequest.domain);
+      expect(user.fullName).toBe(userCreationRequest.fullName);
+    });
+  });
+});
+
+test('Properly submits request to update a company role', async() => {
+  let id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    const fakeRoleUuid = 'fake-role-uuid';
+    const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
+                                                                              .build();
+    const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
+    return company.updateRole(fakeRoleUuid, request).then(async function(role) {
+      expect(Iland.getHttp().put).lastCalledWith(`/companies/${id}/roles/${fakeRoleUuid}`, request.json);
+      expect(role.uuid).toBeDefined();
+      expect(role.name).toEqual(request.name);
+      expect(role.type).toEqual('CUSTOM');
+      expect(role.description).toEqual(request.description);
+      expect(role.companyId).toEqual(id);
+      expect(role.policies).toBeDefined();
+      expect(role.policies.length).toEqual(request.policies.length);
+      expect(role.toString()).toBeDefined();
+    });
+  });
+});
+
+test('Properly submits request to delete a company role', async() => {
+  let id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    const fakeRoleUuid = 'fake-role-uuid';
+    return company.deleteRole(fakeRoleUuid).then(async function() {
+      expect(Iland.getHttp().delete).lastCalledWith(`/companies/${id}/roles/${fakeRoleUuid}`);
+    });
+  });
+});
+
+test('Properly submits request to get users with a specific role', async() => {
+  let id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    const fakeRoleUuid = 'fake-role-uuid';
+    return company.getUsersWithRole(fakeRoleUuid).then(async function() {
+      expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}/users`, {
+        params: {
+          role: fakeRoleUuid
+        }
+      });
+    });
   });
 });

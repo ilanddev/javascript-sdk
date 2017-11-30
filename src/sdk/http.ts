@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { Iland } from './iland';
 import { ApiError, ApiErrorJson } from './api-error';
 
-const DEFAULT_API_VERSION = 0.8;
+const DEFAULT_API_VERSION = 1.0;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
 
 /**
@@ -60,12 +60,12 @@ export class Http {
     if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
       return mime;
     }
-    version = version ? version : DEFAULT_API_VERSION;
+    const versionStr = (version ? version : DEFAULT_API_VERSION).toFixed(1);
     let parts = mime.split('/');
     if (parts.length === 2) {
       let prefix = parts[0];
       let suffix = parts[1];
-      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${version}+${suffix}`;
+      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${versionStr}+${suffix}`;
     }
     return mime;
   }

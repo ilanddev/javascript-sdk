@@ -30,7 +30,7 @@ export class Company extends Entity {
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'COMPANY';
   }
 
@@ -38,7 +38,7 @@ export class Company extends Entity {
    * Indicates whether the company has the iland cloud product.
    * @returns {boolean} value
    */
-  hasIlandCloud(): boolean {
+  get hasIlandCloud(): boolean {
     return this._json.has_iaas;
   }
 
@@ -46,7 +46,7 @@ export class Company extends Entity {
    * Indicates whether the company has the iland backup product.
    * @returns {boolean} value
    */
-  hasIlandBackup(): boolean {
+  get hasIlandBackup(): boolean {
     return this._json.has_vcc;
   }
 
@@ -62,7 +62,7 @@ export class Company extends Entity {
    * Gets the raw JSON object from the API.
    * @returns {CompanyJson} the JSON representation
    */
-  getJson(): CompanyJson {
+  get json(): CompanyJson {
     return Object.assign({}, this._json);
   }
 
@@ -73,10 +73,10 @@ export class Company extends Entity {
   async refresh(): Promise<Company> {
     let self = this;
     return Iland.getHttp().get(
-        `/companies/${self.getUuid()}`).then(function(response) {
-      self._json = response.data as CompanyJson;
-      return self;
-    });
+        `/companies/${self.uuid}`).then(function(response) {
+          self._json = response.data as CompanyJson;
+          return self;
+        });
   }
 
   /**
@@ -85,7 +85,7 @@ export class Company extends Entity {
    */
   async getRoles(): Promise<Array<Role>> {
     let self = this;
-    return Iland.getHttp().get(`/companies/${self.getUuid()}/roles`)
+    return Iland.getHttp().get(`/companies/${self.uuid}/roles`)
                 .then(function(response) {
                   let json = response.data as Array<RoleJson>;
                   return json.map((it) => new Role(it));
@@ -98,7 +98,7 @@ export class Company extends Entity {
    */
   async getRole(uuid: string): Promise<Role> {
     let self = this;
-    return Iland.getHttp().get(`/companies/${self.getUuid()}/roles/${uuid}`)
+    return Iland.getHttp().get(`/companies/${self.uuid}/roles/${uuid}`)
                 .then(function(response) {
                   let json = response.data as RoleJson;
                   return new Role(json);
@@ -111,7 +111,7 @@ export class Company extends Entity {
    */
   async createRole(request: RoleCreationRequest): Promise<Role> {
     let self = this;
-    return Iland.getHttp().post(`/companies/${self.getUuid()}/roles`, request.getJson())
+    return Iland.getHttp().post(`/companies/${self.uuid}/roles`, request.json)
                 .then(function(response) {
                   let json = response.data as RoleJson;
                   return new Role(json);
@@ -124,7 +124,7 @@ export class Company extends Entity {
    */
   async updateRole(uuid: string, request: RoleCreationRequest): Promise<Role> {
     let self = this;
-    return Iland.getHttp().put(`/companies/${self.getUuid()}/roles/${uuid}`, request.getJson())
+    return Iland.getHttp().put(`/companies/${self.uuid}/roles/${uuid}`, request.json)
                 .then(function(response) {
                   let json = response.data as RoleJson;
                   return new Role(json);
@@ -137,7 +137,7 @@ export class Company extends Entity {
    */
   async deleteRole(uuid: string): Promise<void> {
     let self = this;
-    return Iland.getHttp().delete(`/companies/${self.getUuid()}/roles/${uuid}`).then(() => undefined);
+    return Iland.getHttp().delete(`/companies/${self.uuid}/roles/${uuid}`).then(() => undefined);
   }
 
   /**
@@ -146,7 +146,7 @@ export class Company extends Entity {
    */
   async getUsers(): Promise<Array<User>> {
     let self = this;
-    return Iland.getHttp().get(`/companies/${self.getUuid()}/users`).then((response) => {
+    return Iland.getHttp().get(`/companies/${self.uuid}/users`).then((response) => {
       let json = response.data as Array<UserJson>;
       return json.map((it) => new User(it));
     });
@@ -158,7 +158,7 @@ export class Company extends Entity {
    */
   async getUsersWithRole(roleUuid: string): Promise<Array<User>> {
     let self = this;
-    return Iland.getHttp().get(`/companies/${self.getUuid()}/users`, {
+    return Iland.getHttp().get(`/companies/${self.uuid}/users`, {
       params: {
         role: roleUuid
       }
@@ -175,7 +175,7 @@ export class Company extends Entity {
    */
   async getUserDomains(): Promise<Array<string>> {
     let self = this;
-    return Iland.getHttp().get(`/companies/${self.getUuid()}/domains`).then((response) => {
+    return Iland.getHttp().get(`/companies/${self.uuid}/domains`).then((response) => {
       return response.data as Array<string>;
     });
   }
@@ -186,7 +186,7 @@ export class Company extends Entity {
    */
   async createUser(request: UserCreationRequest): Promise<User> {
     let self = this;
-    return Iland.getHttp().post(`/companies/${self.getUuid()}/users`, request.getJson())
+    return Iland.getHttp().post(`/companies/${self.uuid}/users`, request.json)
                 .then(function(response) {
                   let json = response.data as UserJson;
                   return new User(json);

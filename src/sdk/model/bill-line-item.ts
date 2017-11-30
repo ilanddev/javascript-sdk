@@ -12,7 +12,7 @@ export class BillLineItem {
    * Gets the line item name.
    * @returns {string} name
    */
-  getName(): string {
+  get name(): string {
     return this._json.name;
   }
 
@@ -20,7 +20,7 @@ export class BillLineItem {
    * Gets the price.
    * @returns {number} price
    */
-  getPrice(): number {
+  get price(): number {
     return this._json.price;
   }
 
@@ -28,7 +28,7 @@ export class BillLineItem {
    * Gets the quantity.
    * @returns {number} quantity
    */
-  getQuantity(): number {
+  get quantity(): number {
     return this._json.quantity;
   }
 
@@ -36,7 +36,7 @@ export class BillLineItem {
    * Gets the product ID.
    * @returns {string} the product ID
    */
-  getProductId(): string {
+  get productId(): string {
     return this._json.product_id;
   }
 
@@ -52,7 +52,7 @@ export class BillLineItem {
    * Gets the raw JSON object from the API.
    * @returns {BillLineItemJson} the JSON representation
    */
-  getJson(): BillLineItemJson {
+  get json(): BillLineItemJson {
     return Object.assign({}, this._json);
   }
 

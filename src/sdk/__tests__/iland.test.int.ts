@@ -30,7 +30,7 @@ test('Can create Iland sdk client, and retrieve current user', async() => {
   });
   Iland.init(auth);
   return User.getCurrentUser().then(function(user) {
-    expect(user.getUsername()).toEqual(TestConfiguration.getUsername());
+    expect(user.username).toEqual(TestConfiguration.getUsername());
   });
 });
 

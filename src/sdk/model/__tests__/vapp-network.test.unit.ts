@@ -18,40 +18,40 @@ test('Properly submits request to get vApp Network', async() => {
   let uuid = MockVappNetworkJson.uuid;
   return VappNetwork.getVappNetwork(uuid).then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${uuid}`);
-    expect(net.getEntityType()).toBe('VAPP_NETWORK');
-    expect(net.getOrgUuid()).toBe(MockVappNetworkJson.org_uuid);
-    expect(net.getLocationId()).toBe(MockVappNetworkJson.location_id);
-    expect(net.getDescription()).toBe(MockVappNetworkJson.description);
-    expect(net.getVappUuid()).toBe(MockVappNetworkJson.vapp_uuid);
-    expect(net.getFenceMode()).toBe(MockVappNetworkJson.fence_mode);
-    expect(net.getGatewayAddress()).toBe(MockVappNetworkJson.gateway);
-    expect(net.getNetmask()).toBe(MockVappNetworkJson.netmask);
-    expect(net.getIpRanges().length).toBe(MockVappNetworkJson.ip_ranges.length);
+    expect(net.entityType).toBe('VAPP_NETWORK');
+    expect(net.orgUuid).toBe(MockVappNetworkJson.org_uuid);
+    expect(net.locationId).toBe(MockVappNetworkJson.location_id);
+    expect(net.description).toBe(MockVappNetworkJson.description);
+    expect(net.vappUuid).toBe(MockVappNetworkJson.vapp_uuid);
+    expect(net.fenceMode).toBe(MockVappNetworkJson.fence_mode);
+    expect(net.gatewayAddress).toBe(MockVappNetworkJson.gateway);
+    expect(net.netmask).toBe(MockVappNetworkJson.netmask);
+    expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.getIpRanges()) {
-      expect(ipRange.getStartAddress()).toBe(MockVappNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.getEndAddress()).toBe(MockVappNetworkJson.ip_ranges[idx].end);
-      expect(ipRange.getJson()).toEqual(MockVappNetworkJson.ip_ranges[idx]);
+    for (let ipRange of net.ipRanges) {
+      expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;
     }
-    expect(net.getParentNetworkUuid()).toBe(MockVappNetworkJson.parent_network_uuid);
-    expect(net.getPrimaryDns()).toBe(MockVappNetworkJson.primary_dns);
-    expect(net.getSecondaryDns()).toBe(MockVappNetworkJson.secondary_dns);
-    expect(net.getVdcUuid()).toBe(MockVappNetworkJson.vdc_uuid);
-    expect(net.isInherited()).toBe(MockVappNetworkJson.inherited);
-    expect(net.getRouterExternalIp()).toBe(MockVappNetworkJson.router_external_ip);
-    expect(net.getName()).toBe(MockVappNetworkJson.name);
-    expect(net.getUuid()).toBe(MockVappNetworkJson.uuid);
-    if (net.getDeletedDate() === null) {
-      expect(net.getDeletedDate()).toBeNull();
+    expect(net.parentNetworkUuid).toBe(MockVappNetworkJson.parent_network_uuid);
+    expect(net.primaryDns).toBe(MockVappNetworkJson.primary_dns);
+    expect(net.secondaryDns).toBe(MockVappNetworkJson.secondary_dns);
+    expect(net.vdcUuid).toBe(MockVappNetworkJson.vdc_uuid);
+    expect(net.inherited).toBe(MockVappNetworkJson.inherited);
+    expect(net.routerExternalIp).toBe(MockVappNetworkJson.router_external_ip);
+    expect(net.name).toBe(MockVappNetworkJson.name);
+    expect(net.uuid).toBe(MockVappNetworkJson.uuid);
+    if (net.deletedDate === null) {
+      expect(net.deletedDate).toBeNull();
     } else {
-      expect(net.getDeletedDate()!.getTime()).toBe(MockVappNetworkJson.deleted_date);
+      expect(net.deletedDate!.getTime()).toBe(MockVappNetworkJson.deleted_date);
     }
-    expect(net.getUpdatedDate().getTime()).toBe(MockVappNetworkJson.updated_date);
-    expect(net.isDeleted()).toBe(MockVappNetworkJson.deleted);
-    expect(net.getDnsSuffix()).toBe(MockVappNetworkJson.dns_suffix);
-    expect(net.getJson()).toEqual(MockVappNetworkJson);
+    expect(net.updatedDate.getTime()).toBe(MockVappNetworkJson.updated_date);
+    expect(net.deleted).toBe(MockVappNetworkJson.deleted);
+    expect(net.dnsSuffix).toBe(MockVappNetworkJson.dns_suffix);
+    expect(net.json).toEqual(MockVappNetworkJson);
     expect(net.toString().length).toBeGreaterThan(0);
   });
 });
@@ -60,40 +60,40 @@ test('Properly submits request to refresh vApp Network', async() => {
   let net = new VappNetwork(MockVappNetworkJson);
   return net.refresh().then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${MockVappNetworkJson.uuid}`);
-    expect(net.getEntityType()).toBe('VAPP_NETWORK');
-    expect(net.getOrgUuid()).toBe(MockVappNetworkJson.org_uuid);
-    expect(net.getLocationId()).toBe(MockVappNetworkJson.location_id);
-    expect(net.getDescription()).toBe(MockVappNetworkJson.description);
-    expect(net.getVappUuid()).toBe(MockVappNetworkJson.vapp_uuid);
-    expect(net.getFenceMode()).toBe(MockVappNetworkJson.fence_mode);
-    expect(net.getGatewayAddress()).toBe(MockVappNetworkJson.gateway);
-    expect(net.getNetmask()).toBe(MockVappNetworkJson.netmask);
-    expect(net.getIpRanges().length).toBe(MockVappNetworkJson.ip_ranges.length);
+    expect(net.entityType).toBe('VAPP_NETWORK');
+    expect(net.orgUuid).toBe(MockVappNetworkJson.org_uuid);
+    expect(net.locationId).toBe(MockVappNetworkJson.location_id);
+    expect(net.description).toBe(MockVappNetworkJson.description);
+    expect(net.vappUuid).toBe(MockVappNetworkJson.vapp_uuid);
+    expect(net.fenceMode).toBe(MockVappNetworkJson.fence_mode);
+    expect(net.gatewayAddress).toBe(MockVappNetworkJson.gateway);
+    expect(net.netmask).toBe(MockVappNetworkJson.netmask);
+    expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.getIpRanges()) {
-      expect(ipRange.getStartAddress()).toBe(MockVappNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.getEndAddress()).toBe(MockVappNetworkJson.ip_ranges[idx].end);
-      expect(ipRange.getJson()).toEqual(MockVappNetworkJson.ip_ranges[idx]);
+    for (let ipRange of net.ipRanges) {
+      expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;
     }
-    expect(net.getParentNetworkUuid()).toBe(MockVappNetworkJson.parent_network_uuid);
-    expect(net.getPrimaryDns()).toBe(MockVappNetworkJson.primary_dns);
-    expect(net.getSecondaryDns()).toBe(MockVappNetworkJson.secondary_dns);
-    expect(net.getVdcUuid()).toBe(MockVappNetworkJson.vdc_uuid);
-    expect(net.isInherited()).toBe(MockVappNetworkJson.inherited);
-    expect(net.getRouterExternalIp()).toBe(MockVappNetworkJson.router_external_ip);
-    expect(net.getName()).toBe(MockVappNetworkJson.name);
-    expect(net.getUuid()).toBe(MockVappNetworkJson.uuid);
-    if (net.getDeletedDate() === null) {
-      expect(net.getDeletedDate()).toBeNull();
+    expect(net.parentNetworkUuid).toBe(MockVappNetworkJson.parent_network_uuid);
+    expect(net.primaryDns).toBe(MockVappNetworkJson.primary_dns);
+    expect(net.secondaryDns).toBe(MockVappNetworkJson.secondary_dns);
+    expect(net.vdcUuid).toBe(MockVappNetworkJson.vdc_uuid);
+    expect(net.inherited).toBe(MockVappNetworkJson.inherited);
+    expect(net.routerExternalIp).toBe(MockVappNetworkJson.router_external_ip);
+    expect(net.name).toBe(MockVappNetworkJson.name);
+    expect(net.uuid).toBe(MockVappNetworkJson.uuid);
+    if (net.deletedDate === null) {
+      expect(net.deletedDate).toBeNull();
     } else {
-      expect(net.getDeletedDate()!.getTime()).toBe(MockVappNetworkJson.deleted_date);
+      expect(net.deletedDate!.getTime()).toBe(MockVappNetworkJson.deleted_date);
     }
-    expect(net.getUpdatedDate().getTime()).toBe(MockVappNetworkJson.updated_date);
-    expect(net.isDeleted()).toBe(MockVappNetworkJson.deleted);
-    expect(net.getDnsSuffix()).toBe(MockVappNetworkJson.dns_suffix);
-    expect(net.getJson()).toEqual(MockVappNetworkJson);
+    expect(net.updatedDate.getTime()).toBe(MockVappNetworkJson.updated_date);
+    expect(net.deleted).toBe(MockVappNetworkJson.deleted);
+    expect(net.dnsSuffix).toBe(MockVappNetworkJson.dns_suffix);
+    expect(net.json).toEqual(MockVappNetworkJson);
     expect(net.toString().length).toBeGreaterThan(0);
   });
 });

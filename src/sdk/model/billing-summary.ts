@@ -13,7 +13,7 @@ export class BillingSummary {
    * Gets the current month bill.
    * @returns {Bill} the current month bill
    */
-  getCurrentMonth(): Bill {
+  get currentMonth(): Bill {
     return new Bill(this._json.current_month);
   }
 
@@ -21,7 +21,7 @@ export class BillingSummary {
    * Gets the previous month bill.
    * @returns {Bill} the previous month bill
    */
-  getPreviousMonth(): Bill {
+  get previousMonth(): Bill {
     return new Bill(this._json.previous_month);
   }
 
@@ -29,7 +29,7 @@ export class BillingSummary {
    * Gets the current hour bill.
    * @returns {Bill} the current hour bill
    */
-  getCurrentHour(): Bill {
+  get currentHour(): Bill {
     return new Bill(this._json.current_hour);
   }
 
@@ -37,7 +37,7 @@ export class BillingSummary {
    * Gets the previous hour bill.
    * @returns {Bill} the previous hour bill
    */
-  getPreviousHour(): Bill {
+  get previousHour(): Bill {
     return new Bill(this._json.previous_hour);
   }
 
@@ -45,7 +45,7 @@ export class BillingSummary {
    * Indicates whether this is a test drive bill.
    * @returns {boolean} value
    */
-  isTestDrive(): boolean {
+  get testDrive(): boolean {
     return this._json.test_drive;
   }
 
@@ -61,7 +61,7 @@ export class BillingSummary {
    * Gets the raw JSON object from the API.
    * @returns {BillingSummaryJson} the JSON representation
    */
-  getJson(): BillingSummaryJson {
+  get json(): BillingSummaryJson {
     return Object.assign({}, this._json);
   }
 

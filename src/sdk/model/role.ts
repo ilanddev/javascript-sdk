@@ -6,17 +6,17 @@ import { Policy } from './policy';
  */
 export class Role {
 
-  private policies: Array<Policy>;
+  private _policies: Array<Policy>;
 
   constructor(private _json: RoleJson) {
-    this.policies = this._json.policies.map((it) => new Policy(it));
+    this._policies = this._json.policies.map((it) => new Policy(it));
   }
 
   /**
    * Gets the UUID of the role.
    * @returns {string} role UUID
    */
-  getUuid(): string {
+  get uuid(): string {
     return this._json.uuid;
   }
 
@@ -24,7 +24,7 @@ export class Role {
    * Gets the ID of the company that the role is associated with.
    * @returns {string} company ID
    */
-  getCompanyId(): string {
+  get companyId(): string {
     return this._json.company_id;
   }
 
@@ -32,7 +32,7 @@ export class Role {
    * Gets the name of the role.
    * @returns {string} the role name
    */
-  getName(): string {
+  get name(): string {
     return this._json.name;
   }
 
@@ -40,7 +40,7 @@ export class Role {
    * Gets the role description.
    * @returns {string}
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -48,15 +48,15 @@ export class Role {
    * Gets the policies that define the role.
    * @returns {Array<Policy>} the array of role policies
    */
-  getPolicies(): Array<Policy> {
-    return this.policies.slice();
+  get policies(): Array<Policy> {
+    return this._policies.slice();
   }
 
   /**
    * Gets the role type.
    * @returns {RoleType} role type
    */
-  getType(): RoleType {
+  get type(): RoleType {
     return this._json.type;
   }
 
@@ -72,7 +72,7 @@ export class Role {
    * Gets the raw JSON object from the API.
    * @returns {RoleJson} the JSON representation
    */
-  getJson(): RoleJson {
+  get json(): RoleJson {
     return Object.assign({}, this._json);
   }
 
