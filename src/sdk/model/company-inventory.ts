@@ -101,7 +101,7 @@ export class CompanyInventory {
   /**
    * Gets the map of children belonging to an entity.
    * @param {string} uuid the uuid of the entity
-   * @returns {{[p: string]: Array<InventoryEntity>}} the map of children by type
+   * @returns {[type: string]: Array<InventoryEntity>} the map of children by type
    */
   getChildrenForEntity(uuid: string): {[type: string]: Array<InventoryEntity>} | undefined {
     return this._childrenMap[uuid];

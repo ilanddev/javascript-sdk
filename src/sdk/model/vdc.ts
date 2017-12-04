@@ -22,8 +22,8 @@ export class Vdc extends Entity {
    * @returns {Promise<Vdc>} promise that resolves with the vDC
    */
   static async getVdc(uuid: string): Promise<Vdc> {
-    return Iland.getHttp().get(`/vdc/${uuid}`).then(function(response) {
-      let json = response.data as VdcJson;
+    return Iland.getHttp().get(`/vdc/${uuid}`).then((response) => {
+      const json = response.data as VdcJson;
       return new Vdc(json);
     });
   }
@@ -197,12 +197,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vdc>}
    */
   async refresh(): Promise<Vdc> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.uuid}`).then(function(response) {
-          self._json = response.data as VdcJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}`).then((response) => {
+      this._json = response.data as VdcJson;
+      return this;
+    });
   }
 
   /**
@@ -210,12 +208,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vapp[]>} promise that resolves with an array of child vApps
    */
   async getVapps(): Promise<Array<Vapp>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.uuid}/vapps`).then(function(response) {
-          let json = response.data as Array<VappJson>;
-          return json.map((vappJson) => new Vapp(vappJson));
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}/vapps`).then((response) => {
+      const json = response.data as Array<VappJson>;
+      return json.map((vappJson) => new Vapp(vappJson));
+    });
   }
 
   /**
@@ -223,12 +219,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
    */
   async getVms(): Promise<Array<Vm>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.uuid}/vms`).then(function(response) {
-          let json = response.data as Array<VmJson>;
-          return json.map((vmJson) => new Vm(vmJson));
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}/vms`).then((response) => {
+      const json = response.data as Array<VmJson>;
+      return json.map((vmJson) => new Vm(vmJson));
+    });
   }
 
 }

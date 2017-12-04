@@ -17,8 +17,8 @@ export class User {
    * @returns {Promise<User>}
    */
   static async getUser(username: string): Promise<User> {
-    return Iland.getHttp().get(`/user/${username}`).then(function(response) {
-      let apiUser = response.data as UserJson;
+    return Iland.getHttp().get(`/user/${username}`).then((response) => {
+      const apiUser = response.data as UserJson;
       return new User(apiUser);
     });
   }
@@ -28,7 +28,7 @@ export class User {
    * @returns {Promise<User>}
    */
   static async getCurrentUser(): Promise<User> {
-    return Iland.getAuthProvider().getAuthenticatedUsername().then(async function(username: string) {
+    return Iland.getAuthProvider().getAuthenticatedUsername().then(async(username: string) => {
       if (username) {
         return User.getUser(username);
       } else {
@@ -108,8 +108,7 @@ export class User {
    * @returns {Date} deleted date or null if the user is not deleted
    */
   get deletedDate(): Date | null {
-    return this._apiUser.deleted_date ? new Date(this._apiUser.deleted_date) :
-        null;
+    return this._apiUser.deleted_date ? new Date(this._apiUser.deleted_date) : null;
   }
 
   /**
@@ -189,10 +188,9 @@ export class User {
    * @returns {Promise<User>} promise that resolves with updated user
    */
   async refresh(): Promise<User> {
-    let self = this;
-    return Iland.getHttp().get(`/user/${self.username}`).then(function(response) {
-      self._apiUser = response.data as UserJson;
-      return self;
+    return Iland.getHttp().get(`/user/${this.username}`).then((response) => {
+      this._apiUser = response.data as UserJson;
+      return this;
     });
   }
 
@@ -202,13 +200,12 @@ export class User {
    * @returns {Promise<CompanyInventory>}  entity inventory
    */
   async getInventoryInCompany(companyId: string): Promise<CompanyInventory> {
-    let self = this;
-    return Iland.getHttp().get(`/user/${self.username}/inventory`, {
+    return Iland.getHttp().get(`/user/${this.username}/inventory`, {
       params: {
         company: companyId
       }
-    }).then(function(response) {
-      let userInventory = response.data as UserInventoryJson;
+    }).then((response) => {
+      const userInventory = response.data as UserInventoryJson;
       if (!userInventory.inventory || userInventory.inventory.length === 0) {
         throw new Error(`No inventory found for company with id=${companyId}.`);
       }
@@ -221,9 +218,8 @@ export class User {
    * @returns {Promise<Array<CompanyInventory>>} user's entity inventory
    */
   async getInventory(): Promise<Array<CompanyInventory>> {
-    let self = this;
-    return Iland.getHttp().get(`/user/${self.username}/inventory`).then(function(response) {
-      let userInventory = response.data as UserInventoryJson;
+    return Iland.getHttp().get(`/user/${this.username}/inventory`).then((response) => {
+      const userInventory = response.data as UserInventoryJson;
       return userInventory.inventory.map((it) => new CompanyInventory(it));
     });
   }

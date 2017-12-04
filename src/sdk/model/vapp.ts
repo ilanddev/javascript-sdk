@@ -22,8 +22,8 @@ export class Vapp extends Entity {
    * @returns {Promise<Vapp>} promise that resolves with the vApp
    */
   static async getVapp(uuid: string): Promise<Vapp> {
-    return Iland.getHttp().get(`/vapp/${uuid}`).then(function(response) {
-      let json = response.data as VappJson;
+    return Iland.getHttp().get(`/vapp/${uuid}`).then((response) => {
+      const json = response.data as VappJson;
       return new Vapp(json);
     });
   }
@@ -169,12 +169,10 @@ export class Vapp extends Entity {
    * @returns {Promise<Vapp>}
    */
   async refresh(): Promise<Vapp> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.uuid}`).then(function(response) {
-          self._json = response.data as VappJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}`).then((response) => {
+      this._json = response.data as VappJson;
+      return this;
+    });
   }
 
   /**
@@ -182,12 +180,10 @@ export class Vapp extends Entity {
    * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
    */
   async getVms(): Promise<Array<Vm>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.uuid}/vms`).then(function(response) {
-          let json = response.data as Array<VmJson>;
-          return json.map((vmJson) => new Vm(vmJson));
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}/vms`).then((response) => {
+      const json = response.data as Array<VmJson>;
+      return json.map((vmJson) => new Vm(vmJson));
+    });
   }
 
   /**
@@ -195,12 +191,10 @@ export class Vapp extends Entity {
    * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp Networks
    */
   async getVappNetworks(): Promise<Array<VappNetwork>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.uuid}/networks`).then(function(response) {
-          let json = response.data as Array<VappNetworkJson>;
-          return json.map((vappNetJson) => new VappNetwork(vappNetJson));
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}/networks`).then((response) => {
+      const json = response.data as Array<VappNetworkJson>;
+      return json.map((vappNetJson) => new VappNetwork(vappNetJson));
+    });
   }
 
 }

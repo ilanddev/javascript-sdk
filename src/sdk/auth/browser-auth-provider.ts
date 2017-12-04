@@ -8,7 +8,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   private _keycloak: KeycloakInstance;
 
   constructor(config: IlandBrowserAuthConfig) {
-    let kcConfig = {
+    const kcConfig = {
       clientId: config.clientId,
       resource: config.clientId,
       url: config.url ? config.url : DEFAULT_AUTH_URL,
@@ -19,14 +19,13 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   }
 
   async getToken(): Promise<string> {
-    let self = this;
-    return new Promise<string>(function(resolve, reject) {
-      self._keycloak.updateToken(15).success(function() {
-        resolve(self._keycloak.token);
-      }).error(async function() {
-        return self._init().then(function() {
-          resolve(self._keycloak.token);
-        }, function(err) {
+    return new Promise<string>((resolve, reject) => {
+      this._keycloak.updateToken(15).success(() => {
+        resolve(this._keycloak.token);
+      }).error(async() => {
+        return this._init().then(() => {
+          resolve(this._keycloak.token);
+        }, (err) => {
           reject(err);
         });
       });
@@ -38,9 +37,8 @@ export class IlandBrowserAuthProvider implements AuthProvider {
    * @returns {string} username
    */
   async getAuthenticatedUsername(): Promise<string> {
-    let self = this;
-    return self.getToken().then(function() {
-      let tokenParsed = self._keycloak.tokenParsed as any;
+    return this.getToken().then(() => {
+      const tokenParsed = this._keycloak.tokenParsed as any;
       return tokenParsed.preferred_username;
     });
   }
@@ -50,9 +48,8 @@ export class IlandBrowserAuthProvider implements AuthProvider {
    * @returns {Promise<any>} promise that resolves when logout is complete.
    */
   async logout(): Promise<any> {
-    let self = this;
-    return new Promise<any>(function(resolve, reject) {
-      self._keycloak.logout().success(function() {
+    return new Promise<any>((resolve, reject) => {
+      this._keycloak.logout().success(() => {
         resolve(null);
       }).error(function() {
         reject(null);
@@ -61,13 +58,12 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   }
 
   private async _init(): Promise<boolean> {
-    let self = this;
-    return new Promise<boolean>(function(resolve, reject) {
-      self._keycloak.init({
+    return new Promise<boolean>((resolve, reject) => {
+      this._keycloak.init({
         onLoad: 'login-required'
-      }).success(function(result: boolean) {
+      }).success((result: boolean) => {
         resolve(result);
-      }).error(function(error: KeycloakError) {
+      }).error((error: KeycloakError) => {
         reject(error);
       });
     });
