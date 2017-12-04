@@ -22,7 +22,7 @@ beforeAll(async() => {
       if (inventory.length === 0) {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
-      let orgs = inventory[0].getEntitiesByType('ILAND_CLOUD_ORGANIZATION');
+      const orgs = inventory[0].getEntitiesByType('ILAND_CLOUD_ORGANIZATION');
       expect(orgs).toBeDefined();
       if (orgs) {
         expect(orgs.length).toBeGreaterThan(0);
@@ -39,7 +39,7 @@ test('Get a proper error when trying to retrieve non-existent Org', async() => {
     await Org.getOrg('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -51,7 +51,7 @@ test('Get a proper error when trying to retrieve non-existent Org', async() => {
 
 test('Can get Org and verify required properties', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(function(org) {
-    let raw = org.json;
+    const raw = org.json;
     expect(org.name).toBeDefined();
     expect(org.name).toBe(raw.name);
     expect(org.uuid).toBe(inventoryOrg.uuid);

@@ -22,7 +22,7 @@ test('Throws error when trying to get the http client before the sdk is initiali
 });
 
 test('Can create Iland sdk client, and retrieve current user', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),

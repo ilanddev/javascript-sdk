@@ -23,7 +23,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      let vapps = inventory.getEntitiesByType('ILAND_CLOUD_VAPP');
+      const vapps = inventory.getEntitiesByType('ILAND_CLOUD_VAPP');
       expect(vapps).toBeDefined();
       if (vapps) {
         expect(vapps.length).toBeGreaterThan(0);
@@ -40,7 +40,7 @@ test('Get a proper error when trying to retrieve non-existent vApp', async() => 
     await Vapp.getVapp('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -52,7 +52,7 @@ test('Get a proper error when trying to retrieve non-existent vApp', async() => 
 
 test('Can get vApp and verify required properties', async() => {
   return Vapp.getVapp(inventoryVapp.uuid).then(function(vapp) {
-    let raw = vapp.json;
+    const raw = vapp.json;
     expect(vapp.name).toBeDefined();
     expect(vapp.name).toBe(raw.name);
     expect(vapp.uuid).toBe(inventoryVapp.uuid);

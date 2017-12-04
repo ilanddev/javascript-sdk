@@ -32,7 +32,7 @@ beforeAll(() => {
 });
 
 test('Can get VM virtual disks', async() => {
-  let vm = new Vm(MockVmJson);
+  const vm = new Vm(MockVmJson);
   return vm.getVirtualDisks().then(function(disks) {
     expect(disks).toBeDefined();
     expect(disks.length).toBe(2);
@@ -114,7 +114,7 @@ test('Properly submits request for updating VM cpu number', async() => {
 });
 
 test('Properly handles request for retrieving a VMs metadata', async() => {
-  let vm = new Vm(MockVmJson);
+  const vm = new Vm(MockVmJson);
   return vm.getMetadata().then(function(metadata) {
     expect(metadata).toBeDefined();
     expect(metadata.length).toBe(4);
@@ -291,7 +291,7 @@ test('Properly submits request to retrieve a VMs snapshot', async() => {
 
 test('Properly submits request to create a VM snapshot', async() => {
   const vm = new Vm(MockVmJson);
-  let json: VmCreateSnapshotRequestJson = {
+  const json: VmCreateSnapshotRequestJson = {
     memory: true,
     quiesce: true,
     name: 'snapshot name',
@@ -445,7 +445,7 @@ test('Properly submits request to get VM current billing summary ', async() => {
 
 test('Properly submits request to insert media into VM ', async() => {
   const vm = new Vm(MockVmJson);
-  let mediaUuid = 'test-media-uuid';
+  const mediaUuid = 'test-media-uuid';
   return vm.insertMedia(mediaUuid).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vm/${vm.uuid}/media/insert`, {
       media: mediaUuid
@@ -464,7 +464,7 @@ test('Properly submits request to eject media from VM ', async() => {
 
 test('Properly submits request to relocate VM to a different storage profile ', async() => {
   const vm = new Vm(MockVmJson);
-  let storageProfileUuid = 'fake-storage-profile-uuid';
+  const storageProfileUuid = 'fake-storage-profile-uuid';
   return vm.relocate(storageProfileUuid).then(function(task) {
     expect(Iland.getHttp().put).lastCalledWith(`/vm/${vm.uuid}/storage-profile`, {
       storage_profile: storageProfileUuid
@@ -474,7 +474,7 @@ test('Properly submits request to relocate VM to a different storage profile ', 
 });
 
 test('Parses power status correctly', () => {
-  let apiVm = {
+  const apiVm = {
     name: '',
     uuid: '',
     deleted: false,
@@ -504,7 +504,7 @@ test('Parses power status correctly', () => {
     vim_datastore_ref: '',
     vm_local_id: ''
   };
-  let vm = new Vm(apiVm);
+  const vm = new Vm(apiVm);
   expect(vm.powerStatus).toBe('PARTIALLY_POWERED_OFF');
   apiVm.deployed = false;
   expect(vm.powerStatus).toBe('POWERED_OFF');
