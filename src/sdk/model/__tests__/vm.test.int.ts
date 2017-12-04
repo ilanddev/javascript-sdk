@@ -24,7 +24,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      let vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
+      const vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
@@ -41,7 +41,7 @@ test('Get a proper error when trying to retrieve non-existent VM', async() => {
     await Vm.getVm('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -53,7 +53,7 @@ test('Get a proper error when trying to retrieve non-existent VM', async() => {
 
 test('Can get vm and verify required properties', async() => {
   return Vm.getVm(inventoryVm.uuid).then(function(vm) {
-    let raw = vm.json;
+    const raw = vm.json;
     expect(vm.name).toBeDefined();
     expect(vm.name).toBe(raw.name);
     expect(vm.uuid).toBe(inventoryVm.uuid);
@@ -127,8 +127,8 @@ test('Can get vm vnics', async() => {
       expect(vnics).toBeDefined();
       expect(vnics.length).toBeDefined();
       if (vnics.length > 0) {
-        let vnic = vnics[0];
-        let raw = vnic.json;
+        const vnic = vnics[0];
+        const raw = vnic.json;
         expect(vnic.adapterType).toBeDefined();
         expect(vnic.adapterType).toBe(raw.adapter_type);
         expect(vnic.addressMode).toBeDefined();
@@ -157,8 +157,8 @@ test('Can get vm virtual disks', async() => {
     return vm.getVirtualDisks().then(function(disks) {
       expect(disks).toBeDefined();
       if (disks.length > 0) {
-        let disk = disks[0];
-        let raw = disk.json;
+        const disk = disks[0];
+        const raw = disk.json;
         expect(disk.name).toBeDefined();
         expect(disk.name).toBe(raw.name);
         expect(disk.size).toBeDefined();
@@ -175,7 +175,7 @@ test('Can update VM description', async() => {
   const vm = await Vm.getVm(inventoryVm.uuid);
   expect.hasAssertions();
   const task = await vm.updateDescription('test description');
-  let rawTask = task.json;
+  const rawTask = task.json;
   expect(task.complete).toBe(false);
   expect(task.uuid).toBeDefined();
   expect(task.uuid).toBe(rawTask.uuid);
@@ -221,7 +221,7 @@ test('Can update VM description', async() => {
   expect(task.userFullName).toBe(rawTask.user_full_name);
   expect(task.username).toBeDefined();
   expect(task.username).toBe(rawTask.username);
-  let promises = [];
+  const promises = [];
   promises.push(new Promise(function(resolve) {
     task.getObservable().subscribe(function() {
       expect(task.uuid).toBeDefined();

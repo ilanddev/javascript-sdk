@@ -27,8 +27,8 @@ export class Task {
    * @returns {Promise<Task>} promise that resolves with the Task
    */
   static async getTask(locationId: string, taskUuid: string): Promise<Task> {
-    return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`, TASK_CONFIG).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`, TASK_CONFIG).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -222,28 +222,26 @@ export class Task {
    * @returns {Promise<Task>} promise that resolves with updated task
    */
   async refresh(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().get(`/task/${self.locationId}/${self.uuid}`, TASK_CONFIG).then(function(response) {
-      self._apiTask = response.data as TaskJson;
-      return self;
+    return Iland.getHttp().get(`/task/${this.locationId}/${this.uuid}`, TASK_CONFIG).then((response) => {
+      this._apiTask = response.data as TaskJson;
+      return this;
     });
   }
 
   /**
    * Gets a promise that resolves or rejects when the task is complete. An error status will cause rejection.
-   * @returns {Promise<T>} completion promise
+   * @returns {Promise<Task>} completion promise
    */
   async getPromise(): Promise<Task> {
-    let self = this;
-    return new Promise<Task>(function(resolve, reject) {
-      if (self.complete) {
+    return new Promise<Task>((resolve, reject) => {
+      if (this.complete) {
         if (self.status === 'error') {
-          reject(self);
+          reject(this);
         } else {
-          resolve(self);
+          resolve(this);
         }
       } else {
-        self.getObservable().subscribe(function(task) {
+        this.getObservable().subscribe((task: Task) => {
           if (task.complete) {
             if (task.status === 'error') {
               reject(task);
@@ -261,27 +259,25 @@ export class Task {
    * @returns {Observable<Task>} task observable
    */
   getObservable(): Observable<Task> {
-    let self = this;
     // tslint:disable-next-line:no-floating-promises
-    self._updateUntilComplete();
-    return self._subject!.asObservable();
+    this._updateUntilComplete();
+    return this._subject!.asObservable();
   }
 
   private async _updateUntilComplete(): Promise<Task> {
-    let self = this;
-    if (self._subject === undefined) {
-      self._subject = new Subject<Task>();
+    if (this._subject === undefined) {
+      this._subject = new Subject<Task>();
     }
-    let subject = self._subject as Subject<Task>;
-    return self.refresh().then(function(task) {
+    const subject = this._subject as Subject<Task>;
+    return this.refresh().then((task) => {
       subject.next(task);
       if (task.complete) {
         subject.complete();
-        return self;
+        return this;
       } else {
-        return new Promise<Task>(function(resolve) {
-          setTimeout(function() {
-            resolve(self._updateUntilComplete());
+        return new Promise<Task>((resolve) => {
+          setTimeout(() => {
+            resolve(this._updateUntilComplete());
           }, 1000);
         });
       }

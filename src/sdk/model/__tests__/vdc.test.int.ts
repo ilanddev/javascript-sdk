@@ -23,7 +23,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      let vdcs = inventory.getEntitiesByType('ILAND_CLOUD_VDC');
+      const vdcs = inventory.getEntitiesByType('ILAND_CLOUD_VDC');
       expect(vdcs).toBeDefined();
       if (vdcs) {
         expect(vdcs.length).toBeGreaterThan(0);
@@ -40,7 +40,7 @@ test('Get a proper error when trying to retrieve non-existent vDC', async() => {
     await Vdc.getVdc('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -52,7 +52,7 @@ test('Get a proper error when trying to retrieve non-existent vDC', async() => {
 
 test('Can get vDC and verify required properties', async() => {
   return Vdc.getVdc(inventoryVdc.uuid).then(function(vdc) {
-    let raw = vdc.json;
+    const raw = vdc.json;
     expect(vdc.name).toBeDefined();
     expect(vdc.name).toBe(raw.name);
     expect(vdc.uuid).toBe(inventoryVdc.uuid);

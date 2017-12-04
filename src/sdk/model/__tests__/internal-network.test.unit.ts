@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 
 test('Properly submits request to get Internal Network', async() => {
-  let uuid = MockInternalNetworkJson.uuid;
+  const uuid = MockInternalNetworkJson.uuid;
   return InternalNetwork.getInternalNetwork(uuid).then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${uuid}`);
     expect(net.entityType).toBe('ORG_VDC_NETWORK');
@@ -28,7 +28,7 @@ test('Properly submits request to get Internal Network', async() => {
     expect(net.netmask).toBe(MockInternalNetworkJson.netmask);
     expect(net.ipRanges.length).toBe(MockInternalNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.ipRanges) {
+    for (const ipRange of net.ipRanges) {
       expect(ipRange.startAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
       expect(ipRange.endAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockInternalNetworkJson.ip_ranges[idx]);
@@ -57,7 +57,7 @@ test('Properly submits request to get Internal Network', async() => {
 });
 
 test('Properly submits request to refresh Internal Network', async() => {
-  let net = new InternalNetwork(MockInternalNetworkJson);
+  const net = new InternalNetwork(MockInternalNetworkJson);
   return net.refresh().then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${MockInternalNetworkJson.uuid}`);
     expect(net.entityType).toBe('ORG_VDC_NETWORK');
@@ -70,7 +70,7 @@ test('Properly submits request to refresh Internal Network', async() => {
     expect(net.netmask).toBe(MockInternalNetworkJson.netmask);
     expect(net.ipRanges.length).toBe(MockInternalNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.ipRanges) {
+    for (const ipRange of net.ipRanges) {
       expect(ipRange.startAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
       expect(ipRange.endAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockInternalNetworkJson.ip_ranges[idx]);

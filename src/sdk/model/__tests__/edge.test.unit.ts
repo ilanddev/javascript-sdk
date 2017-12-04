@@ -54,7 +54,7 @@ function runEdgeAssertionsAgainsMock(edge: Edge) {
     expect(int.defaultRoute).toBe(MockEdgeJson.interfaces[idx].default_route);
     let spIdx = 0;
     for (const sp of int.subnetParticipation) {
-      let mockSp = MockEdgeJson.interfaces[idx].subnet_participation[spIdx];
+      const mockSp = MockEdgeJson.interfaces[idx].subnet_participation[spIdx];
       expect(sp.netmask).toBe(mockSp.netmask);
       expect(sp.ipAddress).toBe(mockSp.ip_address);
       expect(sp.gatewayAddress).toBe(mockSp.gateway);
@@ -63,7 +63,7 @@ function runEdgeAssertionsAgainsMock(edge: Edge) {
       expect(sp.ipRanges.length).toBe(mockSp.ip_ranges.length);
       let rangeIdx = 0;
       for (const range of sp.ipRanges) {
-        let mockRange = mockSp.ip_ranges[rangeIdx];
+        const mockRange = mockSp.ip_ranges[rangeIdx];
         expect(range.startAddress).toBe(mockRange.start);
         expect(range.endAddress).toBe(mockRange.end);
         expect(range.json).toEqual(mockRange);
@@ -77,7 +77,7 @@ function runEdgeAssertionsAgainsMock(edge: Edge) {
 }
 
 test('Properly submits request to get Edge', async() => {
-  let uuid = MockEdgeJson.uuid;
+  const uuid = MockEdgeJson.uuid;
   return Edge.getEdge(uuid).then(function(edge) {
     expect(Iland.getHttp().get).lastCalledWith(`/edge/${MockEdgeJson.uuid}`);
     runEdgeAssertionsAgainsMock(edge);
@@ -85,7 +85,7 @@ test('Properly submits request to get Edge', async() => {
 });
 
 test('Properly submits request to refresh Edge', async() => {
-  let edge = new Edge(MockEdgeJson);
+  const edge = new Edge(MockEdgeJson);
   return edge.refresh().then(function(edge) {
     expect(Iland.getHttp().get).lastCalledWith(`/edge/${MockEdgeJson.uuid}`);
     runEdgeAssertionsAgainsMock(edge);

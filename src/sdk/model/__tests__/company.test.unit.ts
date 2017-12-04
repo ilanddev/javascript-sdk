@@ -18,7 +18,7 @@ beforeAll(() => {
 });
 
 test('Properly submits request to get a Company', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(function(company) {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
@@ -87,7 +87,7 @@ test('RoleCreationRequestBuilder methods work properly', async() => {
 });
 
 test('Properly submits request to create a company role', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
@@ -109,7 +109,7 @@ test('Properly submits request to create a company role', async() => {
 });
 
 test('Properly submits request to create a new user', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
@@ -126,7 +126,7 @@ test('Properly submits request to create a new user', async() => {
 });
 
 test('Properly submits request to update a company role', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
@@ -149,7 +149,7 @@ test('Properly submits request to update a company role', async() => {
 });
 
 test('Properly submits request to delete a company role', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
@@ -161,7 +161,7 @@ test('Properly submits request to delete a company role', async() => {
 });
 
 test('Properly submits request to get users with a specific role', async() => {
-  let id = MockCompanyJson.uuid;
+  const id = MockCompanyJson.uuid;
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');

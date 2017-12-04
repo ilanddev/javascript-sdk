@@ -24,8 +24,8 @@ export class Company extends Entity {
    * @returns {Promise<Company>} promise that resolves with the Company
    */
   static async getCompany(id: string): Promise<Company> {
-    return Iland.getHttp().get(`/companies/${id}`).then(function(response) {
-      let json = response.data as CompanyJson;
+    return Iland.getHttp().get(`/companies/${id}`).then((response) => {
+      const json = response.data as CompanyJson;
       return new Company(json);
     });
   }
@@ -71,12 +71,10 @@ export class Company extends Entity {
    * @returns {Promise<Company>} promise that resolves with this object
    */
   async refresh(): Promise<Company> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/companies/${self.uuid}`).then(function(response) {
-          self._json = response.data as CompanyJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/companies/${this.uuid}`).then((response) => {
+      this._json = response.data as CompanyJson;
+      return this;
+    });
   }
 
   /**
@@ -84,12 +82,10 @@ export class Company extends Entity {
    * @returns {Promise<Array<Role>>} task promise
    */
   async getRoles(): Promise<Array<Role>> {
-    let self = this;
-    return Iland.getHttp().get(`/companies/${self.uuid}/roles`)
-                .then(function(response) {
-                  let json = response.data as Array<RoleJson>;
-                  return json.map((it) => new Role(it));
-                });
+    return Iland.getHttp().get(`/companies/${this.uuid}/roles`).then((response) => {
+      const json = response.data as Array<RoleJson>;
+      return json.map((it) => new Role(it));
+    });
   }
 
   /**
@@ -97,12 +93,10 @@ export class Company extends Entity {
    * @returns {Promise<Role>} a promise with the queried role
    */
   async getRole(uuid: string): Promise<Role> {
-    let self = this;
-    return Iland.getHttp().get(`/companies/${self.uuid}/roles/${uuid}`)
-                .then(function(response) {
-                  let json = response.data as RoleJson;
-                  return new Role(json);
-                });
+    return Iland.getHttp().get(`/companies/${this.uuid}/roles/${uuid}`).then((response) => {
+      const json = response.data as RoleJson;
+      return new Role(json);
+    });
   }
 
   /**
@@ -110,12 +104,10 @@ export class Company extends Entity {
    * @returns {Promise<Role>} a promise with the newly created role
    */
   async createRole(request: RoleCreationRequest): Promise<Role> {
-    let self = this;
-    return Iland.getHttp().post(`/companies/${self.uuid}/roles`, request.json)
-                .then(function(response) {
-                  let json = response.data as RoleJson;
-                  return new Role(json);
-                });
+    return Iland.getHttp().post(`/companies/${this.uuid}/roles`, request.json).then((response) => {
+      const json = response.data as RoleJson;
+      return new Role(json);
+    });
   }
 
   /**
@@ -123,12 +115,10 @@ export class Company extends Entity {
    * @returns {Promise<Role>} a promise with the newly created role that has replaced the original
    */
   async updateRole(uuid: string, request: RoleCreationRequest): Promise<Role> {
-    let self = this;
-    return Iland.getHttp().put(`/companies/${self.uuid}/roles/${uuid}`, request.json)
-                .then(function(response) {
-                  let json = response.data as RoleJson;
-                  return new Role(json);
-                });
+    return Iland.getHttp().put(`/companies/${this.uuid}/roles/${uuid}`, request.json).then((response) => {
+      const json = response.data as RoleJson;
+      return new Role(json);
+    });
   }
 
   /**
@@ -136,8 +126,7 @@ export class Company extends Entity {
    * @returns {Promise<void>} a promise that indicates success or failure
    */
   async deleteRole(uuid: string): Promise<void> {
-    let self = this;
-    return Iland.getHttp().delete(`/companies/${self.uuid}/roles/${uuid}`).then(() => undefined);
+    return Iland.getHttp().delete(`/companies/${this.uuid}/roles/${uuid}`).then(() => undefined);
   }
 
   /**
@@ -145,9 +134,8 @@ export class Company extends Entity {
    * @returns {Promise<Array<User>>} a promise with the list of the company users
    */
   async getUsers(): Promise<Array<User>> {
-    let self = this;
-    return Iland.getHttp().get(`/companies/${self.uuid}/users`).then((response) => {
-      let json = response.data as Array<UserJson>;
+    return Iland.getHttp().get(`/companies/${this.uuid}/users`).then((response) => {
+      const json = response.data as Array<UserJson>;
       return json.map((it) => new User(it));
     });
   }
@@ -157,13 +145,12 @@ export class Company extends Entity {
    * @returns {Promise<Array<User>>} a promise with the list of the company users that are assigned to the role
    */
   async getUsersWithRole(roleUuid: string): Promise<Array<User>> {
-    let self = this;
-    return Iland.getHttp().get(`/companies/${self.uuid}/users`, {
+    return Iland.getHttp().get(`/companies/${this.uuid}/users`, {
       params: {
         role: roleUuid
       }
     }).then((response) => {
-      let json = response.data as Array<UserJson>;
+      const json = response.data as Array<UserJson>;
       return json.map((it) => new User(it));
     });
   }
@@ -174,8 +161,7 @@ export class Company extends Entity {
    * @returns {Promise<Array<string>>} a promise with the list of the company user domains
    */
   async getUserDomains(): Promise<Array<string>> {
-    let self = this;
-    return Iland.getHttp().get(`/companies/${self.uuid}/domains`).then((response) => {
+    return Iland.getHttp().get(`/companies/${this.uuid}/domains`).then((response) => {
       return response.data as Array<string>;
     });
   }
@@ -185,12 +171,10 @@ export class Company extends Entity {
    * @returns {Promise<User>} a promise with the newly created user
    */
   async createUser(request: UserCreationRequest): Promise<User> {
-    let self = this;
-    return Iland.getHttp().post(`/companies/${self.uuid}/users`, request.json)
-                .then(function(response) {
-                  let json = response.data as UserJson;
-                  return new User(json);
-                });
+    return Iland.getHttp().post(`/companies/${this.uuid}/users`, request.json).then((response) => {
+      const json = response.data as UserJson;
+      return new User(json);
+    });
   }
 
 }

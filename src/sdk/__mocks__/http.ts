@@ -50,7 +50,7 @@ export class Http {
   }
 
   async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    let self = this;
+    const self = this;
     switch (config.method!.toLowerCase()) {
       case 'get':
         return self.get(config.url!, config);

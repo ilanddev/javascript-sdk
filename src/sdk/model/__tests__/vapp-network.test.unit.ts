@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 
 test('Properly submits request to get vApp Network', async() => {
-  let uuid = MockVappNetworkJson.uuid;
+  const uuid = MockVappNetworkJson.uuid;
   return VappNetwork.getVappNetwork(uuid).then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${uuid}`);
     expect(net.entityType).toBe('VAPP_NETWORK');
@@ -28,7 +28,7 @@ test('Properly submits request to get vApp Network', async() => {
     expect(net.netmask).toBe(MockVappNetworkJson.netmask);
     expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.ipRanges) {
+    for (const ipRange of net.ipRanges) {
       expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
       expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);
@@ -57,7 +57,7 @@ test('Properly submits request to get vApp Network', async() => {
 });
 
 test('Properly submits request to refresh vApp Network', async() => {
-  let net = new VappNetwork(MockVappNetworkJson);
+  const net = new VappNetwork(MockVappNetworkJson);
   return net.refresh().then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/network/${MockVappNetworkJson.uuid}`);
     expect(net.entityType).toBe('VAPP_NETWORK');
@@ -70,7 +70,7 @@ test('Properly submits request to refresh vApp Network', async() => {
     expect(net.netmask).toBe(MockVappNetworkJson.netmask);
     expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
-    for (let ipRange of net.ipRanges) {
+    for (const ipRange of net.ipRanges) {
       expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
       expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);

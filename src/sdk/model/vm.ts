@@ -43,8 +43,8 @@ export class Vm extends Entity {
    * @returns {Promise<Vm>} promise that resolves with the VM
    */
   static async getVm(uuid: string): Promise<Vm> {
-    return Iland.getHttp().get(`/vm/${uuid}`).then(function(response) {
-      let apiVm = response.data as VmJson;
+    return Iland.getHttp().get(`/vm/${uuid}`).then((response) => {
+      const apiVm = response.data as VmJson;
       return new Vm(apiVm);
     });
   }
@@ -263,12 +263,10 @@ export class Vm extends Entity {
    * @returns {Promise<Vm>}
    */
   async refresh(): Promise<Vm> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vm/${self.uuid}`).then(function(response) {
-          self._apiVm = response.data as VmJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/vm/${this.uuid}`).then((response) => {
+      this._apiVm = response.data as VmJson;
+      return this;
+    });
   }
 
   /**
@@ -276,12 +274,10 @@ export class Vm extends Entity {
    * @returns {Promise<Vnic[]>}
    */
   async getVnics(): Promise<Array<Vnic>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vm/${self.uuid}/vnics`).then(function(response) {
-          let apiVnics = response.data as Array<VnicJson>;
-          return apiVnics.map((apiVnic) => new Vnic(apiVnic));
-        });
+    return Iland.getHttp().get(`/vm/${this.uuid}/vnics`).then((response) => {
+      const apiVnics = response.data as Array<VnicJson>;
+      return apiVnics.map((apiVnic) => new Vnic(apiVnic));
+    });
   }
 
   /**
@@ -290,15 +286,13 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateDescription(description: string): Promise<Task> {
-    let self = this;
-    let spec: VmUpdateDescriptionRequestJson = {
+    const spec: VmUpdateDescriptionRequestJson = {
       description: description
     };
-    return Iland.getHttp().put(`/vm/${self.uuid}/description`, spec)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/description`, spec).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -307,15 +301,13 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateName(newName: string): Promise<Task> {
-    let self = this;
-    let json: VmUpdateNameRequestJson = {
+    const json: VmUpdateNameRequestJson = {
       name: newName
     };
-    return Iland.getHttp().put(`/vm/${self.uuid}/name`, json)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/name`, json).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -324,15 +316,13 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
-    let self = this;
-    let spec: VmMemoryUpdateRequestJson = {
+    const spec: VmMemoryUpdateRequestJson = {
       memory_size: String(memorySizeMb)
     };
-    return Iland.getHttp().put(`/vm/${self.uuid}/mem`, spec)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/mem`, spec).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -341,12 +331,10 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateNumberOfCpus(request: VmCpuUpdateRequest): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().put(`/vm/${self.uuid}/cpu`, request.json)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/cpu`, request.json).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -354,9 +342,8 @@ export class Vm extends Entity {
    * @returns {Promise<VirtualDisk[]>} array of virtual disks
    */
   async getVirtualDisks(): Promise<Array<VirtualDisk>> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/virtual-disks`).then(function(response) {
-      let apiDisks = response.data as Array<VirtualDiskJson>;
+    return Iland.getHttp().get(`/vm/${this.uuid}/virtual-disks`).then((response) => {
+      const apiDisks = response.data as Array<VirtualDiskJson>;
       return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
     });
   }
@@ -367,12 +354,10 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateVirtualDisks(disksJson: Array<VirtualDiskJson>): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().put(`/vm/${self.uuid}/virtual-disks`, disksJson)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/virtual-disks`, disksJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -381,12 +366,10 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().put(`/vm/${self.uuid}/virtual-disk`, diskJson)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().put(`/vm/${this.uuid}/virtual-disk`, diskJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -395,12 +378,10 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async createVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().post(`/vm/${self.uuid}/virtual-disk`, diskJson)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().post(`/vm/${this.uuid}/virtual-disk`, diskJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -409,12 +390,10 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async deleteVirtualDisk(name: string): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().delete(`/vm/${self.uuid}/disks/${name}`)
-                .then(function(response) {
-                  let apiTask = response.data as TaskJson;
-                  return new Task(apiTask);
-                });
+    return Iland.getHttp().delete(`/vm/${this.uuid}/disks/${name}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -422,9 +401,8 @@ export class Vm extends Entity {
    * @returns {Promise<Metadata<MetadataType>[]>}
    */
   async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/metadata`).then(function(response) {
-      let jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
+    return Iland.getHttp().get(`/vm/${this.uuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
       return jsonMetadata.map<Metadata<MetadataType>>((json) => {
         switch (json.type) {
           case 'number':
@@ -447,9 +425,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateMetadata(metadataJson: Array<MetadataJson<MetadataType>>): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().put(`/vm/${self.uuid}/metadata`, metadataJson).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().put(`/vm/${this.uuid}/metadata`, metadataJson).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -460,9 +437,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async deleteMetadata(metadataKey: string): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().delete(`/vm/${self.uuid}/metadata/${metadataKey}`).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().delete(`/vm/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -472,9 +448,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async delete(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().delete(`/vm/${self.uuid}`).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().delete(`/vm/${this.uuid}`).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -486,7 +461,6 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async performPowerOperation(type: VmPowerOperation, forceGuestCustomization?: boolean): Promise<Task> {
-    let self = this;
     let config = undefined;
     if (type === 'poweron' && forceGuestCustomization) {
       config = {
@@ -495,8 +469,8 @@ export class Vm extends Entity {
         }
       };
     }
-    return Iland.getHttp().post(`/vm/${self.uuid}/${type}`, undefined, config).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/${type}`, undefined, config).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -555,9 +529,8 @@ export class Vm extends Entity {
    * @returns {Promise<BackupRestorePoint[]>} promise that resolves with the list of backup restore points
    */
   async getBackupRestorePoints(): Promise<Array<BackupRestorePoint>> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/backups`).then(function(response) {
-      let restorePointsJson = response.data as Array<BackupRestorePointJson>;
+    return Iland.getHttp().get(`/vm/${this.uuid}/backups`).then((response) => {
+      const restorePointsJson = response.data as Array<BackupRestorePointJson>;
       return restorePointsJson.map((restorePointJson) => new BackupRestorePoint(restorePointJson));
     });
   }
@@ -568,12 +541,11 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async restoreBackup(timestamp: Date): Promise<Task> {
-    let self = this;
     const json: VmRestoreBackupRequestJson = {
       time: timestamp.getTime()
     };
-    return Iland.getHttp().post(`/vm/${self.uuid}/restore`, json).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/restore`, json).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -584,9 +556,8 @@ export class Vm extends Entity {
    * @throws {ApiError} as NotFoundError if the VM doesn't currently have a snapshot
    */
   async getSnapshot(): Promise<Snapshot> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/snapshot`).then(function(response) {
-      let json = response.data as SnapshotJson;
+    return Iland.getHttp().get(`/vm/${this.uuid}/snapshot`).then((response) => {
+      const json = response.data as SnapshotJson;
       return new Snapshot(json);
     });
   }
@@ -597,9 +568,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async createSnapshot(options: VmCreateSnapshotRequest): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().post(`/vm/${self.uuid}/snapshot`, options.json).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/snapshot`, options.json).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -609,9 +579,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async restoreSnapshot(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().post(`/vm/${self.uuid}/snapshot/restore`).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/snapshot/restore`).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -621,9 +590,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async deleteSnapshot(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().delete(`/vm/${self.uuid}/snapshot`).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().delete(`/vm/${this.uuid}/snapshot`).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -633,9 +601,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async updateVirtualHardwareVersion(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().put(`/vm/${self.uuid}/virtual-hardware-version`).then(function(response) {
-      let apiTask = response.data as TaskJson;
+    return Iland.getHttp().put(`/vm/${this.uuid}/virtual-hardware-version`).then((response) => {
+      const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
@@ -645,9 +612,8 @@ export class Vm extends Entity {
    * @returns {Promise<ScreenTicket>} promise that resolves with the screen ticket
    */
   async getScreenTicket(): Promise<ScreenTicket> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/screen-ticket`).then(function(response) {
-      let json = response.data as ScreenTicketJson;
+    return Iland.getHttp().get(`/vm/${this.uuid}/screen-ticket`).then((response) => {
+      const json = response.data as ScreenTicketJson;
       return new ScreenTicket(json);
     });
   }
@@ -657,9 +623,8 @@ export class Vm extends Entity {
    * @returns {Promise<MksScreenTicket>} promise that resolves with the MKS screen ticket
    */
   async getMksScreenTicket(): Promise<MksScreenTicket> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/mks-screen-ticket`).then(function(response) {
-      let json = response.data as MksScreenTicketJson;
+    return Iland.getHttp().get(`/vm/${this.uuid}/mks-screen-ticket`).then((response) => {
+      const json = response.data as MksScreenTicketJson;
       return new MksScreenTicket(json);
     });
   }
@@ -670,14 +635,13 @@ export class Vm extends Entity {
    * @returns {Promise<Bill>} promise that resolves with the Bill
    */
   async getBill(month?: number, year?: number): Promise<Bill> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/bill`, {
+    return Iland.getHttp().get(`/vm/${this.uuid}/bill`, {
       params: {
         month: month,
         year: year
       }
-    }).then(function(response) {
-      let json = response.data as BillJson;
+    }).then((response) => {
+      const json = response.data as BillJson;
       return new Bill(json);
     });
   }
@@ -687,9 +651,8 @@ export class Vm extends Entity {
    * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
    */
   async getCurrentBillingSummary(): Promise<BillingSummary> {
-    let self = this;
-    return Iland.getHttp().get(`/vm/${self.uuid}/billing/current`).then(function(response) {
-      let json = response.data as BillingSummaryJson;
+    return Iland.getHttp().get(`/vm/${this.uuid}/billing/current`).then((response) => {
+      const json = response.data as BillingSummaryJson;
       return new BillingSummary(json);
     });
   }
@@ -700,12 +663,11 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async insertMedia(mediaUuid: string): Promise<Task> {
-    let self = this;
-    let json: VmInsertMediaRequestJson = {
+    const json: VmInsertMediaRequestJson = {
       media: mediaUuid
     };
-    return Iland.getHttp().post(`/vm/${self.uuid}/media/insert`, json).then(function(response) {
-      let json = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/media/insert`, json).then((response) => {
+      const json = response.data as TaskJson;
       return new Task(json);
     });
   }
@@ -715,9 +677,8 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async ejectMedia(): Promise<Task> {
-    let self = this;
-    return Iland.getHttp().post(`/vm/${self.uuid}/media/eject`).then(function(response) {
-      let json = response.data as TaskJson;
+    return Iland.getHttp().post(`/vm/${this.uuid}/media/eject`).then((response) => {
+      const json = response.data as TaskJson;
       return new Task(json);
     });
   }
@@ -727,12 +688,11 @@ export class Vm extends Entity {
    * @returns {Promise<Task>} task promise
    */
   async relocate(storageProfileUuid: string): Promise<Task> {
-    let self = this;
-    let json: VmRelocationRequestJson = {
+    const json: VmRelocationRequestJson = {
       storage_profile: storageProfileUuid
     };
-    return Iland.getHttp().put(`/vm/${self.uuid}/storage-profile`, json).then(function(response) {
-      let json = response.data as TaskJson;
+    return Iland.getHttp().put(`/vm/${this.uuid}/storage-profile`, json).then((response) => {
+      const json = response.data as TaskJson;
       return new Task(json);
     });
   }

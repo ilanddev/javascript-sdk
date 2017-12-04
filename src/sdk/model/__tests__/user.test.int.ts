@@ -17,7 +17,7 @@ beforeAll(() => {
 
 test('Can get current user and verify required properties', async() => {
   return User.getCurrentUser().then(function(user) {
-    let raw = user.json;
+    const raw = user.json;
     expect(user.username).toEqual(TestConfiguration.getUsername());
     expect(user.createdDate).toBeDefined();
     expect(user.createdDate.getTime()).toBe(raw.created_date);
@@ -49,11 +49,11 @@ test('Can get current user and verify required properties', async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      let vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
+      const vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
       expect(vms).toBeDefined();
       if (vms !== undefined) {
         expect(vms.length).toBeGreaterThan(0);
-        for (let vm of vms) {
+        for (const vm of vms) {
           expect(vm.uuid).toBeDefined();
           expect(inventory.getEntityByUuid(vm.uuid)).toBeDefined();
         }
