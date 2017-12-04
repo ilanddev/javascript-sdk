@@ -10,7 +10,7 @@ Full TypeDoc reference is available [here](https://ilanddev.github.io/javascript
 # Developers
 Required:
 
-[x] NodeJS >=6.0.0 & <9.0.0
+[x] NodeJS >=6.2.2 & <9.0.0
 
 Clone repo then execute:
 ``yarn install`` or ``npm install``
