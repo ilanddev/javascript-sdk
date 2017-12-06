@@ -23,7 +23,7 @@ var config = {
       commonjs: "keycloak-js",
       commonjs2: "keycloak-js",
       amd: "keycloak-js",
-      root: "keycloak-js"
+      root: "Keycloak"
     },
     "rxjs-es": {
       commonjs: "rxjs-es",
