@@ -6,9 +6,9 @@ export const MockCompanyJson: CompanyJson = {
   deleted_date: null,
   has_iaas: true,
   has_vcc: false,
-  name: "MyCorp",
+  name: 'MyCorp',
   updated_date: 1494608461964,
-  uuid: "000003"
+  uuid: '000003'
 };
 
 export const MockCompanyResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {

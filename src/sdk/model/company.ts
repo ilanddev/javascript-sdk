@@ -59,10 +59,10 @@ export class Company extends Entity {
   async refresh(): Promise<Company> {
     let self = this;
     return Iland.getHttp().get(
-        `/companies/${self.getUuid()}`).then(function(response) {
-      self._json = response.data as CompanyJson;
-      return self;
-    });
+      `/companies/${self.getUuid()}`).then(function(response) {
+        self._json = response.data as CompanyJson;
+        return self;
+      });
   }
 
 }
