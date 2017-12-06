@@ -2,6 +2,8 @@ import { UserJson, UserType } from './json/user';
 import { Iland } from '../iland';
 import { UserInventoryJson } from './json/user-inventory';
 import { CompanyInventory } from './company-inventory';
+import { Company } from './company';
+import { CompanyJson } from './json/company';
 
 /**
  * User.
@@ -221,6 +223,17 @@ export class User {
     return Iland.getHttp().get(`/user/${this.username}/inventory`).then((response) => {
       const userInventory = response.data as UserInventoryJson;
       return userInventory.inventory.map((it) => new CompanyInventory(it));
+    });
+  }
+
+  /**
+   * Gets the user's list of companies.
+   * @returns {Promise<Array<Company>>} user's list of companies
+   */
+  async getCompanies(): Promise<Array<Company>> {
+    return Iland.getHttp().get(`/user/${this.username}/companies`).then((response) => {
+      const companiesList = response.data as Array<CompanyJson>;
+      return companiesList.map((it) => new Company(it));
     });
   }
 
