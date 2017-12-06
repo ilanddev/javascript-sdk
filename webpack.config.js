@@ -42,12 +42,6 @@ var config = {
       commonjs2: "rxjs",
       amd: "rxjs",
       root: "rxjs"
-    },
-    "tslib": {
-      commonjs: "tslib",
-      commonjs2: "tslib",
-      amd: "tslib",
-      root: "tslib"
     }
   },
   resolve: {
