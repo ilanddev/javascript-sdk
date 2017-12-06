@@ -16,24 +16,23 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
   }
 
   async getToken(): Promise<string> {
-    let self = this;
-    let token = self._token;
+    const token = this._token;
     if (token === undefined) {
       // login required
-      return self._login().then(function(token) {
+      return this._login().then((token) => {
         return token.access_token;
       });
     } else {
       if (IlandDirectGrantAuthProvider._epochSeconds() >= token.expires_at - TOKEN_REFRESH_THRESHOLD) {
         // refresh required
-        return self._refreshToken().catch(async function() {
-          return self._login();
-        }).then(function(token: Token) {
+        return this._refreshToken().catch(async() => {
+          return this._login();
+        }).then((token: Token) => {
           return token.access_token;
         });
       } else {
         // no refresh necessary
-        return new Promise<string>(function(resolve) {
+        return new Promise<string>((resolve) => {
           resolve(token!.access_token);
         });
       }
@@ -41,17 +40,16 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
   }
 
   async logout(): Promise<any> {
-    let self = this;
-    let url = self._config.url || DEFAULT_AUTH_URL;
-    let promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/logout`, querystring.stringify({
-      client_id: self._config.clientId,
-      client_secret: self._config.clientSecret,
-      refresh_token: self._token!.refresh_token
+    const url = this._config.url || DEFAULT_AUTH_URL;
+    const promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/logout`, querystring.stringify({
+      client_id: this._config.clientId,
+      client_secret: this._config.clientSecret,
+      refresh_token: this._token!.refresh_token
     })) as Promise<AxiosResponse>;
-    return promise.then(function() {
-      self._token!.expires_in = 0;
-      self._token!.expires_at = IlandDirectGrantAuthProvider._epochSeconds();
-    }, function(reason: AxiosError) {
+    return promise.then(() => {
+      this._token!.expires_in = 0;
+      this._token!.expires_at = IlandDirectGrantAuthProvider._epochSeconds();
+    }, (reason: AxiosError) => {
       if (reason.response) {
         throw new Error(`${reason.response.status}: ${JSON.stringify(reason.response.data)}`);
       } else {
@@ -61,43 +59,40 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
   }
 
   async getAuthenticatedUsername(): Promise<string> {
-    let self = this;
-    return self.getToken().then(function() {
-      return self._config.username;
+    return this.getToken().then(() => {
+      return this._config.username;
     });
   }
 
   async _refreshToken(): Promise<Token> {
-    let self = this;
-    let url = self._config.url || DEFAULT_AUTH_URL;
-    let promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/token`, querystring.stringify({
-      client_id: self._config.clientId,
-      client_secret: self._config.clientSecret,
-      refresh_token: self._token!.refresh_token,
+    const url = this._config.url || DEFAULT_AUTH_URL;
+    const promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/token`, querystring.stringify({
+      client_id: this._config.clientId,
+      client_secret: this._config.clientSecret,
+      refresh_token: this._token!.refresh_token,
       grant_type: 'refresh_token'
     })) as Promise<AxiosResponse>;
-    return promise.then(function(response) {
-      self._token = response.data as Token;
-      self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
-      return self._token;
+    return promise.then((response) => {
+      this._token = response.data as Token;
+      this._token.expires_at = this._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
+      return this._token;
     });
   }
 
   private async _login(): Promise<Token> {
-    let self = this;
-    let url = self._config.url || DEFAULT_AUTH_URL;
-    let promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/token`, querystring.stringify({
-      client_id: self._config.clientId,
-      client_secret: self._config.clientSecret,
-      username: self._config.username,
-      password: self._config.password,
+    const url = this._config.url || DEFAULT_AUTH_URL;
+    const promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/token`, querystring.stringify({
+      client_id: this._config.clientId,
+      client_secret: this._config.clientSecret,
+      username: this._config.username,
+      password: this._config.password,
       grant_type: 'password'
     })) as Promise<AxiosResponse>;
-    return promise.then(function(response) {
-      self._token = response.data as Token;
-      self._token.expires_at = self._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
-      return self._token;
-    }).catch(function(reason: AxiosError) {
+    return promise.then((response) => {
+      this._token = response.data as Token;
+      this._token.expires_at = this._token.expires_in + IlandDirectGrantAuthProvider._epochSeconds();
+      return this._token;
+    }).catch((reason: AxiosError) => {
       if (reason.response) {
         throw new Error(`${reason.response.status}: ${JSON.stringify(reason.response.data)}`);
       } else {

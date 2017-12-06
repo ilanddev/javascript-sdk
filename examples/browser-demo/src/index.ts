@@ -1,4 +1,4 @@
-import {IlandBrowserAuthProvider, Iland, User} from "iland-sdk";
+import {IlandBrowserAuthProvider, Iland, User} from 'iland-sdk';
 
 const CLIENT_ID = 'YOUR_PUBLIC_CLIENT_ID';
 

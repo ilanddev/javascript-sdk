@@ -2,7 +2,7 @@ import { IlandDirectGrantAuthProvider } from '../direct-grant-auth-provider';
 import { TestConfiguration } from '../../../../__tests__/configuration';
 
 test('IlandDirectGrantAuthProvider can retrieve token', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),
@@ -15,7 +15,7 @@ test('IlandDirectGrantAuthProvider can retrieve token', async() => {
 });
 
 test('IlandDirectGrantAuthProvider has proper error handling when using bad user credentials', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: 'fakeusername',
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),
@@ -28,7 +28,7 @@ test('IlandDirectGrantAuthProvider has proper error handling when using bad user
 });
 
 test('IlandDirectGrantAuthProvider has proper error handling when using bad client credentials', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: 'fake-client-secret',
@@ -41,7 +41,7 @@ test('IlandDirectGrantAuthProvider has proper error handling when using bad clie
 });
 
 test('IlandDirectGrantAuthProvider can logout and subsequently get a new token', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),
@@ -60,7 +60,7 @@ test('IlandDirectGrantAuthProvider can logout and subsequently get a new token',
 });
 
 test('IlandDirectGrantAuthProvider can get authenticated username', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),
@@ -87,7 +87,7 @@ async function getTokens(auth: IlandDirectGrantAuthProvider, times: number): Pro
 }
 
 test('IlandDirectGrantAuthProvider can get token multiple times consecutively', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),
@@ -97,7 +97,7 @@ test('IlandDirectGrantAuthProvider can get token multiple times consecutively', 
 });
 
 test('IlandDirectGrantAuthProvider can refresh token', async() => {
-  let auth = new IlandDirectGrantAuthProvider({
+  const auth = new IlandDirectGrantAuthProvider({
     username: TestConfiguration.getUsername(),
     password: TestConfiguration.getPassword(),
     clientSecret: TestConfiguration.getClientSecret(),

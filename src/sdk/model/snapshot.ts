@@ -12,7 +12,7 @@ export class Snapshot {
    * Gets the date that the snapshot was created.
    * @returns {Date} the creation date
    */
-  getCreationDate(): Date {
+  get creationDate(): Date {
     return new Date(this._json.creation_date);
   }
 
@@ -20,7 +20,7 @@ export class Snapshot {
    * Gets the size of the snapshot.
    * @returns {number} size
    */
-  getSize(): number {
+  get size(): number {
     return this._json.size;
   }
 
@@ -28,7 +28,7 @@ export class Snapshot {
    * Indicates whether the snapshot is powered on.
    * @returns {boolean} value
    */
-  isPoweredOn(): boolean {
+  get poweredOn(): boolean {
     return this._json.is_powered_on;
   }
 
@@ -44,7 +44,7 @@ export class Snapshot {
    * Gets the raw JSON object from the API.
    * @returns {SnapshotJson} the JSON representation
    */
-  getJson(): SnapshotJson {
+  get json(): SnapshotJson {
     return Object.assign({}, this._json);
   }
 

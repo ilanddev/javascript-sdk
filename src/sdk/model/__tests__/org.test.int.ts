@@ -2,9 +2,9 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { TestConfiguration } from '../../../../__tests__/configuration';
 import { Iland } from '../../iland';
 import { User } from '../user';
-import { InventoryEntity } from '../inventory';
 import { ApiError } from '../../api-error';
 import { Org } from '../org';
+import { InventoryEntity } from '../company-inventory';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryOrg: InventoryEntity;
@@ -19,7 +19,10 @@ beforeAll(async() => {
   Iland.init(auth);
   return User.getCurrentUser().then(async function(user) {
     return user.getInventory().then(function(inventory) {
-      let orgs = inventory.getEntitiesByType('ORG');
+      if (inventory.length === 0) {
+        throw Error('no company inventories returned for test user, cant perform test.');
+      }
+      const orgs = inventory[0].getEntitiesByType('ILAND_CLOUD_ORGANIZATION');
       expect(orgs).toBeDefined();
       if (orgs) {
         expect(orgs.length).toBeGreaterThan(0);
@@ -36,7 +39,7 @@ test('Get a proper error when trying to retrieve non-existent Org', async() => {
     await Org.getOrg('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -48,48 +51,48 @@ test('Get a proper error when trying to retrieve non-existent Org', async() => {
 
 test('Can get Org and verify required properties', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(function(org) {
-    let raw = org.getJson();
-    expect(org.getName()).toBeDefined();
-    expect(org.getName()).toBe(raw.name);
-    expect(org.getUuid()).toBe(inventoryOrg.uuid);
-    expect(org.getUuid()).toBe(raw.uuid);
-    expect(org.getLocationId()).toBeDefined();
-    expect(org.getLocationId()).toBe(raw.location_id);
-    expect(org.getVcloudHref()).toBeDefined();
-    expect(org.getVcloudHref()).toBe(raw.vcloud_href);
-    expect(org.getDescription()).toBeDefined();
-    expect(org.getDescription()).toBe(raw.description);
+    const raw = org.json;
+    expect(org.name).toBeDefined();
+    expect(org.name).toBe(raw.name);
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    expect(org.uuid).toBe(raw.uuid);
+    expect(org.locationId).toBeDefined();
+    expect(org.locationId).toBe(raw.location_id);
+    expect(org.vcloudHref).toBeDefined();
+    expect(org.vcloudHref).toBe(raw.vcloud_href);
+    expect(org.description).toBeDefined();
+    expect(org.description).toBe(raw.description);
     expect(org.toString().length).toBeGreaterThan(0);
-    expect(org.isDeleted()).toBe(false);
-    expect(org.getUpdatedDate()).toBeDefined();
-    expect(org.getDeletedDate()).toBeNull();
-    expect(org.getEntityType()).toBe('ORG');
-    expect(org.isEnabled()).toBeDefined();
-    expect(org.isEnabled()).toBe(raw.enabled);
-    expect(org.getVappMaxRuntimeLease()).toBeDefined();
-    expect(org.getVappMaxRuntimeLease()).toBe(raw.vapp_max_runtime_lease);
-    expect(org.getVappMaxStorageLease()).toBeDefined();
-    expect(org.getVappMaxStorageLease()).toBe(raw.vapp_max_storage_lease);
-    expect(org.getVappTemplateMaxStorageLease()).toBeDefined();
-    expect(org.getVappTemplateMaxStorageLease()).toBe(raw.vapp_template_max_storage_lease);
-    expect(org.isVappDeletedOnStorageLeaseExpiration()).toBeDefined();
-    expect(org.isVappDeletedOnStorageLeaseExpiration()).toBe(raw.vapp_delete_on_storage_expire);
-    expect(org.isVappTemplateDeletedOnStorageLeaseExpiration()).toBeDefined();
-    expect(org.isVappTemplateDeletedOnStorageLeaseExpiration()).toBe(raw.vapp_template_delete_on_storage_expire);
-    expect(org.isZertoTarget()).toBeDefined();
-    expect(org.isZertoTarget()).toBe(raw.zerto_target);
-    expect(org.getFullName()).toBeDefined();
-    expect(org.getFullName()).toBe(raw.fullname);
-    expect(org.getCompanyId()).toBeDefined();
-    expect(org.getCompanyId()).toBe(raw.crm);
+    expect(org.deleted).toBe(false);
+    expect(org.updatedDate).toBeDefined();
+    expect(org.deletedDate).toBeNull();
+    expect(org.entityType).toBe('ORG');
+    expect(org.enabled).toBeDefined();
+    expect(org.enabled).toBe(raw.enabled);
+    expect(org.vappMaxRuntimeLease).toBeDefined();
+    expect(org.vappMaxRuntimeLease).toBe(raw.vapp_max_runtime_lease);
+    expect(org.vappMaxStorageLease).toBeDefined();
+    expect(org.vappMaxStorageLease).toBe(raw.vapp_max_storage_lease);
+    expect(org.vappTemplateMaxStorageLease).toBeDefined();
+    expect(org.vappTemplateMaxStorageLease).toBe(raw.vapp_template_max_storage_lease);
+    expect(org.vappDeletedOnStorageLeaseExpiration).toBeDefined();
+    expect(org.vappDeletedOnStorageLeaseExpiration).toBe(raw.vapp_delete_on_storage_expire);
+    expect(org.vappTemplateDeletedOnStorageLeaseExpiration).toBeDefined();
+    expect(org.vappTemplateDeletedOnStorageLeaseExpiration).toBe(raw.vapp_template_delete_on_storage_expire);
+    expect(org.zertoTarget).toBeDefined();
+    expect(org.zertoTarget).toBe(raw.zerto_target);
+    expect(org.fullName).toBeDefined();
+    expect(org.fullName).toBe(raw.fullname);
+    expect(org.companyId).toBeDefined();
+    expect(org.companyId).toBe(raw.crm);
   });
 });
 
 test('Can refresh Org', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
-    expect(org.getUuid()).toBe(inventoryOrg.uuid);
+    expect(org.uuid).toBe(inventoryOrg.uuid);
     return org.refresh().then(function(refreshed) {
-      expect(refreshed.getUuid()).toBe(inventoryOrg.uuid);
+      expect(refreshed.uuid).toBe(inventoryOrg.uuid);
     });
   });
 });

@@ -12,7 +12,7 @@ export class IpRange {
    * Gets the IP address at the start of the range.
    * @returns {string} start IP
    */
-  getStartAddress(): string {
+  get startAddress(): string {
     return this._json.start;
   }
 
@@ -20,7 +20,7 @@ export class IpRange {
    * Gets the IP address at the end of the range.
    * @returns {string} end IP
    */
-  getEndAddress(): string {
+  get endAddress(): string {
     return this._json.end;
   }
 
@@ -36,7 +36,7 @@ export class IpRange {
    * Gets the raw JSON object from the API.
    * @returns {IpRangeJson} the JSON representation
    */
-  getJson(): IpRangeJson {
+  get json(): IpRangeJson {
     return Object.assign({}, this._json);
   }
 

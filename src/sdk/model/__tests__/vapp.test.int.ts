@@ -2,9 +2,9 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { TestConfiguration } from '../../../../__tests__/configuration';
 import { Iland } from '../../iland';
 import { User } from '../user';
-import { InventoryEntity } from '../inventory';
 import { ApiError } from '../../api-error';
 import { Vapp } from '../vapp';
+import { InventoryEntity } from '../company-inventory';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVapp: InventoryEntity;
@@ -18,8 +18,12 @@ beforeAll(async() => {
   });
   Iland.init(auth);
   return User.getCurrentUser().then(async function(user) {
-    return user.getInventory().then(function(inventory) {
-      let vapps = inventory.getEntitiesByType('VAPP');
+    return user.getInventory().then(function(inventories) {
+      if (inventories.length === 0) {
+        throw Error('no company inventories returned for test user, cant perform test.');
+      }
+      const inventory = inventories[0];
+      const vapps = inventory.getEntitiesByType('ILAND_CLOUD_VAPP');
       expect(vapps).toBeDefined();
       if (vapps) {
         expect(vapps.length).toBeGreaterThan(0);
@@ -36,7 +40,7 @@ test('Get a proper error when trying to retrieve non-existent vApp', async() => 
     await Vapp.getVapp('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -48,59 +52,59 @@ test('Get a proper error when trying to retrieve non-existent vApp', async() => 
 
 test('Can get vApp and verify required properties', async() => {
   return Vapp.getVapp(inventoryVapp.uuid).then(function(vapp) {
-    let raw = vapp.getJson();
-    expect(vapp.getName()).toBeDefined();
-    expect(vapp.getName()).toBe(raw.name);
-    expect(vapp.getUuid()).toBe(inventoryVapp.uuid);
-    expect(vapp.getUuid()).toBe(raw.uuid);
-    expect(vapp.getLocationId()).toBeDefined();
-    expect(vapp.getLocationId()).toBe(raw.location_id);
-    expect(vapp.getVdcUuid()).toBeDefined();
-    expect(vapp.getVdcUuid()).toBe(raw.vdc_uuid);
-    expect(vapp.getVcloudHref()).toBeDefined();
-    expect(vapp.getVcloudHref()).toBe(raw.vcloud_href);
-    expect(vapp.getStorageProfiles()).toBeDefined();
-    expect(vapp.getStorageProfiles()).toBeDefined();
-    expect(vapp.getStorageProfiles()).toBe(raw.storage_profiles);
-    expect(vapp.getPowerStatus()).toBeDefined();
-    expect(vapp.getOrgUuid()).toBeDefined();
-    expect(vapp.getOrgUuid()).toBe(raw.org_uuid);
-    expect(vapp.getDescription()).toBeDefined();
-    expect(vapp.getDescription()).toBe(raw.description);
-    expect(vapp.isDeployed()).toBeDefined();
-    expect(vapp.isDeployed()).toBe(raw.deployed);
+    const raw = vapp.json;
+    expect(vapp.name).toBeDefined();
+    expect(vapp.name).toBe(raw.name);
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
+    expect(vapp.uuid).toBe(raw.uuid);
+    expect(vapp.locationId).toBeDefined();
+    expect(vapp.locationId).toBe(raw.location_id);
+    expect(vapp.vdcUuid).toBeDefined();
+    expect(vapp.vdcUuid).toBe(raw.vdc_uuid);
+    expect(vapp.vcloudHref).toBeDefined();
+    expect(vapp.vcloudHref).toBe(raw.vcloud_href);
+    expect(vapp.storageProfiles).toBeDefined();
+    expect(vapp.storageProfiles).toBeDefined();
+    expect(vapp.storageProfiles).toBe(raw.storage_profiles);
+    expect(vapp.powerStatus).toBeDefined();
+    expect(vapp.orgUuid).toBeDefined();
+    expect(vapp.orgUuid).toBe(raw.org_uuid);
+    expect(vapp.description).toBeDefined();
+    expect(vapp.description).toBe(raw.description);
+    expect(vapp.deployed).toBeDefined();
+    expect(vapp.deployed).toBe(raw.deployed);
     expect(vapp.toString().length).toBeGreaterThan(0);
-    expect(vapp.isDeleted()).toBe(false);
-    expect(vapp.getUpdatedDate()).toBeDefined();
-    expect(vapp.getUpdatedDate().getTime()).toBeLessThan(new Date().getTime());
-    expect(vapp.getDeletedDate()).toBeNull();
-    expect(vapp.getEntityType()).toBe('VAPP');
-    expect(vapp.getRuntimeLease()).toBeDefined();
-    expect(vapp.getRuntimeLease()).toBe(raw.runtime_lease);
-    expect(vapp.getStorageLease()).toBeDefined();
-    expect(vapp.getStorageLease()).toBe(raw.storage_lease);
-    if (vapp.getStorageLeaseExpirationDate() === null) {
-      expect(vapp.getStorageLeaseExpirationDate()).toBeNull();
+    expect(vapp.deleted).toBe(false);
+    expect(vapp.updatedDate).toBeDefined();
+    expect(vapp.updatedDate.getTime()).toBeLessThan(new Date().getTime());
+    expect(vapp.deletedDate).toBeNull();
+    expect(vapp.entityType).toBe('VAPP');
+    expect(vapp.runtimeLease).toBeDefined();
+    expect(vapp.runtimeLease).toBe(raw.runtime_lease);
+    expect(vapp.storageLease).toBeDefined();
+    expect(vapp.storageLease).toBe(raw.storage_lease);
+    if (vapp.storageLeaseExpirationDate === null) {
+      expect(vapp.storageLeaseExpirationDate).toBeNull();
     } else {
-      expect(vapp.getStorageLeaseExpirationDate()!.getTime()).toBe(raw.storage_expire);
+      expect(vapp.storageLeaseExpirationDate!.getTime()).toBe(raw.storage_expire);
     }
-    if (vapp.getRuntimeLeaseExpirationDate() === null) {
-      expect(vapp.getRuntimeLeaseExpirationDate()).toBeNull();
+    if (vapp.runtimeLeaseExpirationDate === null) {
+      expect(vapp.runtimeLeaseExpirationDate).toBeNull();
     } else {
-      expect(vapp.getRuntimeLeaseExpirationDate()!.getTime()).toBe(raw.runtime_expire);
+      expect(vapp.runtimeLeaseExpirationDate!.getTime()).toBe(raw.runtime_expire);
     }
-    expect(vapp.getCreationDate()).toBeDefined();
-    expect(vapp.getCreationDate().getTime()).toBe(raw.created_date);
-    expect(vapp.isExpired()).toBe(raw.is_expired);
+    expect(vapp.creationDate).toBeDefined();
+    expect(vapp.creationDate.getTime()).toBe(raw.created_date);
+    expect(vapp.expired).toBe(raw.is_expired);
     return vapp;
   });
 });
 
 test('Can refresh vApp', async() => {
   return Vapp.getVapp(inventoryVapp.uuid).then(async function(vapp) {
-    expect(vapp.getUuid()).toBe(inventoryVapp.uuid);
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
     return vapp.refresh().then(function(refreshed) {
-      expect(refreshed.getUuid()).toBe(inventoryVapp.uuid);
+      expect(refreshed.uuid).toBe(inventoryVapp.uuid);
     });
   });
 });

@@ -13,7 +13,7 @@ export class EdgeInterface {
    * Gets the interface name.
    * @returns {string} interface name
    */
-  getName(): string {
+  get name(): string {
     return this._json.name;
   }
 
@@ -21,7 +21,7 @@ export class EdgeInterface {
    * Gets the display name.
    * @returns {string} display name
    */
-  getDisplayName(): string {
+  get displayName(): string {
     return this._json.display_name;
   }
 
@@ -29,7 +29,7 @@ export class EdgeInterface {
    * Gets the incoming rate limit setting.
    * @returns {number} incoming rate limit
    */
-  getInRateLimit(): number {
+  get inRateLimit(): number {
     return this._json.in_rate_limit;
   }
 
@@ -37,7 +37,7 @@ export class EdgeInterface {
    * Gets the outgoing rate limit setting.
    * @returns {number} outgoing rate limit
    */
-  getOutRateLimit(): number {
+  get outRateLimit(): number {
     return this._json.out_rate_limit;
   }
 
@@ -45,7 +45,7 @@ export class EdgeInterface {
    * Gets the interface type.
    * @returns {EdgeInterfaceType} interface type
    */
-  getType(): EdgeInterfaceType {
+  get type(): EdgeInterfaceType {
     return this._json.type;
   }
 
@@ -53,7 +53,7 @@ export class EdgeInterface {
    * Indicates whether rate limiting is enabled on this edge.
    * @returns {boolean} value
    */
-  isRateLimitEnabled(): boolean {
+  get rateLimitEnabled(): boolean {
     return this._json.apply_rate_limit;
   }
 
@@ -61,7 +61,7 @@ export class EdgeInterface {
    * Indicates whether this edge is used as the default DNS relay route.
    * @returns {boolean} value
    */
-  isDefaultRoute(): boolean {
+  get defaultRoute(): boolean {
     return this._json.default_route;
   }
 
@@ -69,7 +69,7 @@ export class EdgeInterface {
    * Gets the name of the network that is attached to this interface.
    * @returns {string} network name
    */
-  getNetworkName(): string {
+  get networkName(): string {
     return this._json.network;
   }
 
@@ -77,7 +77,7 @@ export class EdgeInterface {
    * Gets the UUID of the network that is attached to this interface.
    * @returns {string} network UUID
    */
-  getNetworkUuid(): string {
+  get networkUuid(): string {
     return this._json.network_uuid;
   }
 
@@ -85,7 +85,7 @@ export class EdgeInterface {
    * Gets the subnet participation information.
    * @returns {[EdgeSubnetParticipation]} subnet participation array
    */
-  getSubnetParticipation(): Array<EdgeSubnetParticipation> {
+  get subnetParticipation(): Array<EdgeSubnetParticipation> {
     return this._json.subnet_participation.map((spJson) => new EdgeSubnetParticipation(spJson));
   }
 
@@ -101,7 +101,7 @@ export class EdgeInterface {
    * Gets the raw JSON object from the API.
    * @returns {EdgeInterfaceJson} the JSON representation
    */
-  getJson(): EdgeInterfaceJson {
+  get json(): EdgeInterfaceJson {
     return Object.assign({}, this._json);
   }
 

@@ -13,7 +13,7 @@ export class EdgeSubnetParticipation {
    * Gets the gateway address on the network.
    * @returns {string} gateway address
    */
-  getGatewayAddress(): string {
+  get gatewayAddress(): string {
     return this._json.gateway;
   }
 
@@ -21,7 +21,7 @@ export class EdgeSubnetParticipation {
    * Gets the networks netmask.
    * @returns {string} netmask
    */
-  getNetmask(): string {
+  get netmask(): string {
     return this._json.netmask;
   }
 
@@ -29,7 +29,7 @@ export class EdgeSubnetParticipation {
    * Gets the IP address.
    * @returns {string} IP address
    */
-  getIpAddress(): string {
+  get ipAddress(): string {
     return this._json.ip_address;
   }
 
@@ -37,7 +37,7 @@ export class EdgeSubnetParticipation {
    * Gets the assigned IP ranges.
    * @returns {[IpRange]} IP address ranges
    */
-  getIpRanges(): Array<IpRange> {
+  get ipRanges(): Array<IpRange> {
     return this._json.ip_ranges.map((rangeJson) => new IpRange(rangeJson));
   }
 
@@ -53,7 +53,7 @@ export class EdgeSubnetParticipation {
    * Gets the raw JSON object from the API.
    * @returns {EdgeSubnetParticipationJson} the JSON representation
    */
-  getJson(): EdgeSubnetParticipationJson {
+  get json(): EdgeSubnetParticipationJson {
     return Object.assign({}, this._json);
   }
 

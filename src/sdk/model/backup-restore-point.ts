@@ -12,7 +12,7 @@ export class BackupRestorePoint {
    * Gets the name of the restore point.
    * @returns {string} the name
    */
-  getName(): string {
+  get name(): string {
     return this._json.name;
   }
 
@@ -20,7 +20,7 @@ export class BackupRestorePoint {
    * Gets the timestamp of the backup restore point.
    * @returns {Date} date of the restore point
    */
-  getTimestamp(): Date {
+  get timestamp(): Date {
     return new Date(this._json.timestamp);
   }
 
@@ -28,7 +28,7 @@ export class BackupRestorePoint {
    * Gets the name of the backup server that the restore point is stored on.
    * @returns {string} the name of the backup server
    */
-  getBackupServerName(): string {
+  get backupServerName(): string {
     return this._json.backup_server_name;
   }
 
@@ -44,7 +44,7 @@ export class BackupRestorePoint {
    * Gets the raw JSON object from the API.
    * @returns {BackupRestorePointJson} the JSON representation
    */
-  getJson(): BackupRestorePointJson {
+  get json(): BackupRestorePointJson {
     return Object.assign({}, this._json);
   }
 

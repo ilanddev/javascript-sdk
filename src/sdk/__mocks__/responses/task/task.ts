@@ -7,8 +7,8 @@ export class MockTaskService {
   private static taskMap: Map<string, TaskJson> = new Map();
 
   static async getNewMockTaskResponse(op: TaskOperation): Promise<AxiosResponse> {
-    let uuid = 'task-uuid:' + Math.floor((Math.random() * 10000));
-    let mockTask: TaskJson = {
+    const uuid = 'task-uuid:' + Math.floor((Math.random() * 10000));
+    const mockTask: TaskJson = {
       active: true,
       synchronized: false,
       uuid: uuid,
@@ -45,7 +45,7 @@ export class MockTaskService {
   }
 
   static async getExistingMockTaskResponse(uuid: string): Promise<AxiosResponse> {
-    let mockTask = MockTaskService.taskMap.get(uuid);
+    const mockTask = MockTaskService.taskMap.get(uuid);
     if (mockTask === undefined) {
       return MockNotFoundResponse;
     } else {

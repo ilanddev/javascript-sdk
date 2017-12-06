@@ -25,7 +25,10 @@ import { MockOrgEdgesResponse } from './responses/org/edges';
 import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
 import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
 import { MockOrgVappNetworksResponse } from './responses/org/vapp-networks';
-import { MockCompanyResponse } from './responses/company/company';
+import { MockCompanyResponse, MockCompanyService, MockCompanyUsersResponse } from './responses/company/company';
+import { RoleCreationRequestJson } from '../model/json/role-creation-request';
+import { MockService } from './responses/util';
+import { UserCreationRequestJson } from '../model/json/user-creation-request';
 
 jest.unmock('../http');
 
@@ -47,7 +50,7 @@ export class Http {
   }
 
   async request(config: AxiosRequestConfig): Promise<AxiosResponse> {
-    let self = this;
+    const self = this;
     switch (config.method!.toLowerCase()) {
       case 'get':
         return self.get(config.url!, config);
@@ -147,6 +150,9 @@ export class Http {
       case /\/companies\/[^\/]+?$/.test(url):
         // get a company
         return MockCompanyResponse;
+      case /\/companies\/[^\/]+\/users?$/.test(url):
+        // get users for a company
+        return MockCompanyUsersResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -166,6 +172,9 @@ export class Http {
       case /\/vm\/[^\/]+?\/snapshot$/.test(url):
         // delete vm snapshot
         return MockTaskService.getNewMockTaskResponse('remove snapshot');
+      case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        // delete a role
+        return MockService.getMockNoContentResponse();
       default:
         return MockNotFoundResponse;
     }
@@ -209,6 +218,15 @@ export class Http {
       case /\/vm\/[^\/]+?\/media\/eject$/.test(url):
         // eject media from vm
         return MockTaskService.getNewMockTaskResponse('eject media');
+      case /\/companies\/[^\/]+?\/roles$/.test(url):
+        // create new role
+        const request = data as RoleCreationRequestJson;
+        return MockCompanyService.createRole(request);
+      case /\/companies\/[^\/]+?\/users$/.test(url): {
+        // create new user
+        const request = data as UserCreationRequestJson;
+        return MockCompanyService.createUser(request);
+      }
       default:
         return MockNotFoundResponse;
     }
@@ -240,6 +258,10 @@ export class Http {
       case /\/vm\/[^\/]+?\/storage-profile$/.test(url):
         // move VM to a different storage profile
         return MockTaskService.getNewMockTaskResponse('relocate vm');
+      case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        // update a role
+        const request = data as RoleCreationRequestJson;
+        return MockCompanyService.createRole(request);
       default:
         return MockNotFoundResponse;
     }

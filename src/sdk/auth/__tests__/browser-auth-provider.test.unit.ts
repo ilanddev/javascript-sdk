@@ -29,7 +29,7 @@ class MockKeycloakPromise implements KeycloakPromise<any, string> {
 
   resolve(value: any) {
     if (!this.resolved && !this.rejected) {
-      for (let handler of this.resolveHandlers) {
+      for (const handler of this.resolveHandlers) {
         handler(value);
       }
       this.resolved = true;
@@ -38,7 +38,7 @@ class MockKeycloakPromise implements KeycloakPromise<any, string> {
 
   reject(value: string) {
     if (!this.resolved && !this.rejected) {
-      for (let handler of this.rejectHandlers) {
+      for (const handler of this.rejectHandlers) {
         handler(value);
       }
       this.rejected = true;
@@ -53,7 +53,7 @@ class MockKeycloak {
   private initialized: boolean = false;
 
   updateToken() {
-    let promise = new MockKeycloakPromise();
+    const promise = new MockKeycloakPromise();
     if (this.initialized) {
       this.token = 'fake-auth-token-2';
       this.tokenParsed = {
@@ -67,7 +67,7 @@ class MockKeycloak {
   }
 
   init() {
-    let promise = new MockKeycloakPromise();
+    const promise = new MockKeycloakPromise();
     this.initialized = true;
     this.token = 'fake-auth-token-1';
     this.tokenParsed = {
@@ -78,7 +78,7 @@ class MockKeycloak {
   }
 
   logout() {
-    let promise = new MockKeycloakPromise();
+    const promise = new MockKeycloakPromise();
     this.initialized = false;
     promise.resolve(true);
     return promise;
@@ -94,7 +94,7 @@ jest.mock('keycloak-js', () => {
 });
 
 test('IlandBrowserAuthProvider can retrieve token', async() => {
-  let auth = new IlandBrowserAuthProvider({
+  const auth = new IlandBrowserAuthProvider({
     clientId: TestConfiguration.getClientId()
   });
   return auth.getToken().then(async function(token) {

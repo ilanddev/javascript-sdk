@@ -22,13 +22,13 @@ export class Vdc extends Entity {
    * @returns {Promise<Vdc>} promise that resolves with the vDC
    */
   static async getVdc(uuid: string): Promise<Vdc> {
-    return Iland.getHttp().get(`/vdc/${uuid}`).then(function(response) {
-      let json = response.data as VdcJson;
+    return Iland.getHttp().get(`/vdc/${uuid}`).then((response) => {
+      const json = response.data as VdcJson;
       return new Vdc(json);
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'VDC';
   }
 
@@ -36,7 +36,7 @@ export class Vdc extends Entity {
    * Indicates whether the vDC is enabled.
    * @returns {boolean} value
    */
-  isEnabled(): boolean {
+  get enabled(): boolean {
     return this._json.enabled;
   }
 
@@ -44,7 +44,7 @@ export class Vdc extends Entity {
    * Gets the vCenter HREF.
    * @returns {string} vCenter HREF
    */
-  getVcenterMoref(): string {
+  get vcenterMoref(): string {
     return this._json.vcenter_moref;
   }
 
@@ -52,7 +52,7 @@ export class Vdc extends Entity {
    * Gets the vCenter name.
    * @returns {string} vCenter name
    */
-  getVcenterName(): string {
+  get vcenterName(): string {
     return this._json.vcenter_name;
   }
 
@@ -60,7 +60,7 @@ export class Vdc extends Entity {
    * Gets the description.
    * @returns {string} description
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -68,7 +68,7 @@ export class Vdc extends Entity {
    * Gets the vCloud HREF
    * @returns {string} vCloud HREF
    */
-  getVcloudHref(): string {
+  get vcloudHref(): string {
     return this._json.vcloud_href;
   }
 
@@ -76,7 +76,7 @@ export class Vdc extends Entity {
    * Gets the vCenter instance UUID.
    * @returns {string} vCenter instance UUID
    */
-  getVcenterInstanceUuid(): string {
+  get vcenterInstanceUuid(): string {
     return this._json.vcenter_instance_uuid;
   }
 
@@ -84,7 +84,7 @@ export class Vdc extends Entity {
    * Gets the vCenter HREF
    * @returns {string} vCenter HREF
    */
-  getVcenterHref(): string {
+  get vcenterHref(): string {
     return this._json.vcenter_href;
   }
 
@@ -92,7 +92,7 @@ export class Vdc extends Entity {
    * Gets the vDC allocation model
    * @returns {VdcAllocationModel} allocation model identifier
    */
-  getAllocationModel(): VdcAllocationModel {
+  get allocationModel(): VdcAllocationModel {
     return this._json.allocation_model;
   }
 
@@ -100,7 +100,7 @@ export class Vdc extends Entity {
    * Gets the amount of reserved CPU
    * @returns {number} reserved cpu
    */
-  getReservedCpu(): number {
+  get reservedCpu(): number {
     return this._json.reserved_cpu;
   }
 
@@ -108,7 +108,7 @@ export class Vdc extends Entity {
    * Gets the amount of reserved memory.
    * @returns {number} reserved memory
    */
-  getReservedMemory(): number {
+  get reservedMemory(): number {
     return this._json.reserved_mem;
   }
 
@@ -116,7 +116,7 @@ export class Vdc extends Entity {
    * Gets the disk limit within the vDc.
    * @returns {number} disk limit
    */
-  getDiskLimit(): number {
+  get diskLimit(): number {
     return this._json.disk_limit;
   }
 
@@ -124,7 +124,7 @@ export class Vdc extends Entity {
    * Gets the amount of CPU allocated
    * @returns {number} allocated CPU
    */
-  getAllocatedCpu(): number {
+  get allocatedCpu(): number {
     return this._json.alloc_cpu;
   }
 
@@ -132,7 +132,7 @@ export class Vdc extends Entity {
    * Gets the amount of memory allocated
    * @returns {number} allocated memory
    */
-  getAllocatedMemory(): number {
+  get allocatedMemory(): number {
     return this._json.alloc_mem;
   }
 
@@ -140,7 +140,7 @@ export class Vdc extends Entity {
    * Gets the maximum hardware version of the vDC.
    * @returns {string} max hardware version
    */
-  getMaxHardwareVersion(): string {
+  get maxHardwareVersion(): string {
     return this._json.max_hdw_version;
   }
 
@@ -148,7 +148,7 @@ export class Vdc extends Entity {
    * Gets the network quota.
    * @returns {number} network quota
    */
-  getNetworkQuota(): number {
+  get networkQuota(): number {
     return this._json.network_quota;
   }
 
@@ -156,7 +156,7 @@ export class Vdc extends Entity {
    * Gets the number of networks that exist within this vDC.
    * @returns {number} used network count
    */
-  getUsedNetworkCount(): number {
+  get usedNetworkCount(): number {
     return this._json.used_network_count;
   }
 
@@ -164,7 +164,7 @@ export class Vdc extends Entity {
    * Gets the datacenter location identifier.
    * @returns {string} location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._json.location_id;
   }
 
@@ -172,7 +172,7 @@ export class Vdc extends Entity {
    * Gets the UUID of the organization that the vDC is associated with.
    * @returns {string} Org UUID
    */
-  getOrgUuid(): string {
+  get orgUuid(): string {
     return this._json.org_uuid;
   }
 
@@ -188,7 +188,7 @@ export class Vdc extends Entity {
    * Gets the raw JSON object from the API.
    * @returns {VdcJson} the API json object
    */
-  getJson(): VdcJson {
+  get json(): VdcJson {
     return Object.assign({}, this._json);
   }
 
@@ -197,12 +197,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vdc>}
    */
   async refresh(): Promise<Vdc> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.getUuid()}`).then(function(response) {
-          self._json = response.data as VdcJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}`).then((response) => {
+      this._json = response.data as VdcJson;
+      return this;
+    });
   }
 
   /**
@@ -210,12 +208,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vapp[]>} promise that resolves with an array of child vApps
    */
   async getVapps(): Promise<Array<Vapp>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.getUuid()}/vapps`).then(function(response) {
-          let json = response.data as Array<VappJson>;
-          return json.map((vappJson) => new Vapp(vappJson));
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}/vapps`).then((response) => {
+      const json = response.data as Array<VappJson>;
+      return json.map((vappJson) => new Vapp(vappJson));
+    });
   }
 
   /**
@@ -223,12 +219,10 @@ export class Vdc extends Entity {
    * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
    */
   async getVms(): Promise<Array<Vm>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vdc/${self.getUuid()}/vms`).then(function(response) {
-          let json = response.data as Array<VmJson>;
-          return json.map((vmJson) => new Vm(vmJson));
-        });
+    return Iland.getHttp().get(`/vdc/${this.uuid}/vms`).then((response) => {
+      const json = response.data as Array<VmJson>;
+      return json.map((vmJson) => new Vm(vmJson));
+    });
   }
 
 }

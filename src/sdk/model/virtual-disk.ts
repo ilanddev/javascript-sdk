@@ -12,7 +12,7 @@ export class VirtualDisk {
    * Gets the name of the virtual disk.
    * @returns {string} the name
    */
-  getName(): string {
+  get name(): string {
     return this._apiDisk.name;
   }
 
@@ -20,7 +20,7 @@ export class VirtualDisk {
    * Gets the size of the virtual disk in MB.
    * @returns {number} size in MB
    */
-  getSize(): number {
+  get size(): number {
     return this._apiDisk.size;
   }
 
@@ -28,7 +28,7 @@ export class VirtualDisk {
    * Gets the Virtual Hard Disk type.
    * @returns {VirtualDiskType} the type
    */
-  getType(): VirtualDiskType {
+  get type(): VirtualDiskType {
     return this._apiDisk.type;
   }
 
@@ -44,7 +44,7 @@ export class VirtualDisk {
    * Gets the raw JSON object from the API.
    * @returns {VirtualDiskJson} the API virtual disk object
    */
-  getJson(): VirtualDiskJson {
+  get json(): VirtualDiskJson {
     return Object.assign({}, this._apiDisk);
   }
 

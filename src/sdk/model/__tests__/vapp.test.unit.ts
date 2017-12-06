@@ -18,7 +18,7 @@ beforeAll(() => {
 });
 
 test('Parses power status correctly', () => {
-  let apiVapp: VappJson = {
+  const apiVapp: VappJson = {
     deployed: true,
     status: 'POWERED_OFF',
     storage_profiles: ['dev-vcd01.iland.dev:urn:vcloud:vdcstorageProfile:a3ee2076-2060-46e8-bde6-337b6da166be'],
@@ -39,49 +39,49 @@ test('Parses power status correctly', () => {
     deleted_date: null,
     updated_date: 1493992836044
   };
-  let vapp = new Vapp(apiVapp);
-  expect(vapp.getPowerStatus()).toBe('PARTIALLY_POWERED_OFF');
+  const vapp = new Vapp(apiVapp);
+  expect(vapp.powerStatus).toBe('PARTIALLY_POWERED_OFF');
   apiVapp.deployed = false;
-  expect(vapp.getPowerStatus()).toBe('POWERED_OFF');
+  expect(vapp.powerStatus).toBe('POWERED_OFF');
   apiVapp.status = 'POWERED_ON';
-  expect(vapp.getPowerStatus()).toBe('POWERED_ON');
+  expect(vapp.powerStatus).toBe('POWERED_ON');
   apiVapp.status = 'WAITING_FOR_INPUT';
-  expect(vapp.getPowerStatus()).toBe('WAITING_FOR_INPUT');
+  expect(vapp.powerStatus).toBe('WAITING_FOR_INPUT');
   apiVapp.status = 'UNRESOLVED';
-  expect(vapp.getPowerStatus()).toBe('UNRESOLVED');
+  expect(vapp.powerStatus).toBe('UNRESOLVED');
   apiVapp.status = 'UNRECOGNIZED';
-  expect(vapp.getPowerStatus()).toBe('UNRECOGNIZED');
+  expect(vapp.powerStatus).toBe('UNRECOGNIZED');
   apiVapp.status = 'FAILED_CREATION';
-  expect(vapp.getPowerStatus()).toBe('FAILED_CREATION');
+  expect(vapp.powerStatus).toBe('FAILED_CREATION');
   apiVapp.status = 'UNKNOWN';
-  expect(vapp.getPowerStatus()).toBe('UNKNOWN');
+  expect(vapp.powerStatus).toBe('UNKNOWN');
   apiVapp.status = 'MIXED';
-  expect(vapp.getPowerStatus()).toBe('MIXED');
+  expect(vapp.powerStatus).toBe('MIXED');
   apiVapp.status = 'SUSPENDED';
-  expect(vapp.getPowerStatus()).toBe('SUSPENDED');
+  expect(vapp.powerStatus).toBe('SUSPENDED');
 });
 
 test('Properly submits request to get vApps child VMs', async() => {
-  let vapp = new Vapp(MockVappJson);
+  const vapp = new Vapp(MockVappJson);
   return vapp.getVms().then(function(vms) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.getUuid()}/vms`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.uuid}/vms`);
     expect(vms.length).toBe(MockVappVmsJson.length);
     let idx = 0;
-    for (let vm of vms) {
-      expect(vm.getJson()).toEqual(MockVappVmsJson[idx]);
+    for (const vm of vms) {
+      expect(vm.json).toEqual(MockVappVmsJson[idx]);
       idx++;
     }
   });
 });
 
 test('Properly submits request to get vApps child vApp Networks', async() => {
-  let vapp = new Vapp(MockVappJson);
+  const vapp = new Vapp(MockVappJson);
   return vapp.getVappNetworks().then(function(networks) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.getUuid()}/networks`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.uuid}/networks`);
     expect(networks.length).toBe(MockVappVmsJson.length);
     let idx = 0;
-    for (let net of networks) {
-      expect(net.getJson()).toEqual(MockVappNetworksJson[idx]);
+    for (const net of networks) {
+      expect(net.json).toEqual(MockVappNetworksJson[idx]);
       idx++;
     }
   });

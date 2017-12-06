@@ -22,13 +22,13 @@ export class Vapp extends Entity {
    * @returns {Promise<Vapp>} promise that resolves with the vApp
    */
   static async getVapp(uuid: string): Promise<Vapp> {
-    return Iland.getHttp().get(`/vapp/${uuid}`).then(function(response) {
-      let json = response.data as VappJson;
+    return Iland.getHttp().get(`/vapp/${uuid}`).then((response) => {
+      const json = response.data as VappJson;
       return new Vapp(json);
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'VAPP';
   }
 
@@ -36,7 +36,7 @@ export class Vapp extends Entity {
    * Indicates whether this vApp is currently deployed.
    * @returns {boolean} value
    */
-  isDeployed(): boolean {
+  get deployed(): boolean {
     return this._json.deployed;
   }
 
@@ -44,7 +44,7 @@ export class Vapp extends Entity {
    * Gets the vApps current power status.
    * @returns {VappPowerStatus} power status
    */
-  getPowerStatus(): VappPowerStatus {
+  get powerStatus(): VappPowerStatus {
     if (this._json.deployed && this._json.status === 'POWERED_OFF') {
       return 'PARTIALLY_POWERED_OFF';
     } else {
@@ -56,7 +56,7 @@ export class Vapp extends Entity {
    * Gets the storage profiles that are associated with this VM
    * @returns {Array<string>} array of storage profile UUIDs
    */
-  getStorageProfiles(): Array<string> {
+  get storageProfiles(): Array<string> {
     return this._json.storage_profiles;
   }
 
@@ -64,7 +64,7 @@ export class Vapp extends Entity {
    * Gets the runtime lease setting, in seconds.
    * @returns {number} runtime lease
    */
-  getRuntimeLease(): number {
+  get runtimeLease(): number {
     return this._json.runtime_lease;
   }
 
@@ -72,7 +72,7 @@ export class Vapp extends Entity {
    * Gets the storage lease setting, in seconds.
    * @returns {number} storage lease
    */
-  getStorageLease(): number {
+  get storageLease(): number {
     return this._json.storage_lease;
   }
 
@@ -80,7 +80,7 @@ export class Vapp extends Entity {
    * Gets the expiration date of the runtime lease, if one is currently active.
    * @returns {Date} runtime lease expiration date
    */
-  getRuntimeLeaseExpirationDate(): Date | null {
+  get runtimeLeaseExpirationDate(): Date | null {
     return this._json.runtime_expire === null ? null : new Date(this._json.runtime_expire);
   }
 
@@ -88,7 +88,7 @@ export class Vapp extends Entity {
    * Gets the expiration date of the storage lease, if one is currently active.
    * @returns {Date} storage lease expiration date
    */
-  getStorageLeaseExpirationDate(): Date | null {
+  get storageLeaseExpirationDate(): Date | null {
     return this._json.storage_expire === null ? null : new Date(this._json.storage_expire);
   }
 
@@ -96,7 +96,7 @@ export class Vapp extends Entity {
    * Gets the UUID of the vDC that this vApp is associated with.
    * @returns {string} vDC UUID
    */
-  getVdcUuid(): string {
+  get vdcUuid(): string {
     return this._json.vdc_uuid;
   }
 
@@ -104,7 +104,7 @@ export class Vapp extends Entity {
    * Gets the UUID of the Org that this vApp is associated with.
    * @returns {string} org UUID
    */
-  getOrgUuid(): string {
+  get orgUuid(): string {
     return this._json.org_uuid;
   }
 
@@ -112,7 +112,7 @@ export class Vapp extends Entity {
    * Gets the datacenter location identifier for the vApp.
    * @returns {string} datacenter location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._json.location_id;
   }
 
@@ -120,7 +120,7 @@ export class Vapp extends Entity {
    * Gets the vApps description.
    * @returns {string} description
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -128,7 +128,7 @@ export class Vapp extends Entity {
    * Gets the vCloud HREF of the vApp.
    * @returns {string} vCloud HREF
    */
-  getVcloudHref(): string {
+  get vcloudHref(): string {
     return this._json.vcloud_href;
   }
 
@@ -136,7 +136,7 @@ export class Vapp extends Entity {
    * Gets the date that this vApp was created.
    * @returns {Date} creation date
    */
-  getCreationDate(): Date {
+  get creationDate(): Date {
     return new Date(this._json.created_date);
   }
 
@@ -144,7 +144,7 @@ export class Vapp extends Entity {
    * Indicates whether this vApp is currently in the expired items bin.
    * @returns {boolean} value
    */
-  isExpired(): boolean {
+  get expired(): boolean {
     return this._json.is_expired;
   }
 
@@ -160,7 +160,7 @@ export class Vapp extends Entity {
    * Gets the raw JSON object from the API.
    * @returns {VappJson} the API json object
    */
-  getJson(): VappJson {
+  get json(): VappJson {
     return Object.assign({}, this._json);
   }
 
@@ -169,12 +169,10 @@ export class Vapp extends Entity {
    * @returns {Promise<Vapp>}
    */
   async refresh(): Promise<Vapp> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.getUuid()}`).then(function(response) {
-          self._json = response.data as VappJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}`).then((response) => {
+      this._json = response.data as VappJson;
+      return this;
+    });
   }
 
   /**
@@ -182,12 +180,10 @@ export class Vapp extends Entity {
    * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
    */
   async getVms(): Promise<Array<Vm>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.getUuid()}/vms`).then(function(response) {
-          let json = response.data as Array<VmJson>;
-          return json.map((vmJson) => new Vm(vmJson));
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}/vms`).then((response) => {
+      const json = response.data as Array<VmJson>;
+      return json.map((vmJson) => new Vm(vmJson));
+    });
   }
 
   /**
@@ -195,12 +191,10 @@ export class Vapp extends Entity {
    * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp Networks
    */
   async getVappNetworks(): Promise<Array<VappNetwork>> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/vapp/${self.getUuid()}/networks`).then(function(response) {
-          let json = response.data as Array<VappNetworkJson>;
-          return json.map((vappNetJson) => new VappNetwork(vappNetJson));
-        });
+    return Iland.getHttp().get(`/vapp/${this.uuid}/networks`).then((response) => {
+      const json = response.data as Array<VappNetworkJson>;
+      return json.map((vappNetJson) => new VappNetwork(vappNetJson));
+    });
   }
 
 }

@@ -13,7 +13,7 @@ export abstract class Entity {
    * Gets the name.
    * @returns {string} name
    */
-  getName(): string {
+  get name(): string {
     return this._apiEntity.name;
   }
 
@@ -21,7 +21,7 @@ export abstract class Entity {
    * Gets the UUID.
    * @returns {string} UUID
    */
-  getUuid(): string {
+  get uuid(): string {
     return this._apiEntity.uuid;
   }
 
@@ -29,7 +29,7 @@ export abstract class Entity {
    * Indicates whether the entity is deleted.
    * @returns {boolean} value
    */
-  isDeleted(): boolean {
+  get deleted(): boolean {
     return this._apiEntity.deleted;
   }
 
@@ -37,7 +37,7 @@ export abstract class Entity {
    * Gets the last date that the entity was updated.
    * @returns {Date} last updated date
    */
-  getUpdatedDate(): Date {
+  get updatedDate(): Date {
     return new Date(this._apiEntity.updated_date);
   }
 
@@ -45,7 +45,7 @@ export abstract class Entity {
    * Gets the date that the entity was deleted, or null if it is not deleted.
    * @returns {Date} deleted date or null if not applicable
    */
-  getDeletedDate(): Date | null {
+  get deletedDate(): Date | null {
     return this._apiEntity.deleted_date ? new Date(this._apiEntity.deleted_date) : null;
   }
 
@@ -53,6 +53,6 @@ export abstract class Entity {
    * Gets the type of the entity.
    * @returns {EntityType} the type of the entity
    */
-  abstract getEntityType(): EntityType;
+  abstract get entityType(): EntityType;
 
 }

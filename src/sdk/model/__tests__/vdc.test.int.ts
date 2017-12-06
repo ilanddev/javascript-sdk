@@ -2,9 +2,9 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { TestConfiguration } from '../../../../__tests__/configuration';
 import { Iland } from '../../iland';
 import { User } from '../user';
-import { InventoryEntity } from '../inventory';
 import { ApiError } from '../../api-error';
 import { Vdc } from '../vdc';
+import { InventoryEntity } from '../company-inventory';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVdc: InventoryEntity;
@@ -18,8 +18,12 @@ beforeAll(async() => {
   });
   Iland.init(auth);
   return User.getCurrentUser().then(async function(user) {
-    return user.getInventory().then(function(inventory) {
-      let vdcs = inventory.getEntitiesByType('VDC');
+    return user.getInventory().then(function(inventories) {
+      if (inventories.length === 0) {
+        throw Error('no company inventories returned for test user, cant perform test.');
+      }
+      const inventory = inventories[0];
+      const vdcs = inventory.getEntitiesByType('ILAND_CLOUD_VDC');
       expect(vdcs).toBeDefined();
       if (vdcs) {
         expect(vdcs.length).toBeGreaterThan(0);
@@ -36,7 +40,7 @@ test('Get a proper error when trying to retrieve non-existent vDC', async() => {
     await Vdc.getVdc('fake-uuid');
   } catch (err) {
     const apiError = err as ApiError;
-    let raw = apiError.getJson();
+    const raw = apiError.getJson();
     expect(apiError.getType()).toBe('UnauthorizedError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
@@ -48,62 +52,62 @@ test('Get a proper error when trying to retrieve non-existent vDC', async() => {
 
 test('Can get vDC and verify required properties', async() => {
   return Vdc.getVdc(inventoryVdc.uuid).then(function(vdc) {
-    let raw = vdc.getJson();
-    expect(vdc.getName()).toBeDefined();
-    expect(vdc.getName()).toBe(raw.name);
-    expect(vdc.getUuid()).toBe(inventoryVdc.uuid);
-    expect(vdc.getUuid()).toBe(raw.uuid);
-    expect(vdc.getLocationId()).toBeDefined();
-    expect(vdc.getLocationId()).toBe(raw.location_id);
-    expect(vdc.getVcloudHref()).toBeDefined();
-    expect(vdc.getVcloudHref()).toBe(raw.vcloud_href);
-    expect(vdc.getOrgUuid()).toBeDefined();
-    expect(vdc.getOrgUuid()).toBe(raw.org_uuid);
-    expect(vdc.getDescription()).toBeDefined();
-    expect(vdc.getDescription()).toBe(raw.description);
+    const raw = vdc.json;
+    expect(vdc.name).toBeDefined();
+    expect(vdc.name).toBe(raw.name);
+    expect(vdc.uuid).toBe(inventoryVdc.uuid);
+    expect(vdc.uuid).toBe(raw.uuid);
+    expect(vdc.locationId).toBeDefined();
+    expect(vdc.locationId).toBe(raw.location_id);
+    expect(vdc.vcloudHref).toBeDefined();
+    expect(vdc.vcloudHref).toBe(raw.vcloud_href);
+    expect(vdc.orgUuid).toBeDefined();
+    expect(vdc.orgUuid).toBe(raw.org_uuid);
+    expect(vdc.description).toBeDefined();
+    expect(vdc.description).toBe(raw.description);
     expect(vdc.toString().length).toBeGreaterThan(0);
-    expect(vdc.isDeleted()).toBe(false);
-    expect(vdc.getUpdatedDate()).toBeDefined();
-    expect(vdc.getUpdatedDate().getTime()).toBeLessThan(new Date().getTime());
-    expect(vdc.getDeletedDate()).toBeNull();
-    expect(vdc.getEntityType()).toBe('VDC');
-    expect(vdc.isEnabled()).toBeDefined();
-    expect(vdc.isEnabled()).toBe(raw.enabled);
-    expect(vdc.getVcenterMoref()).toBeDefined();
-    expect(vdc.getVcenterMoref()).toBe(raw.vcenter_moref);
-    expect(vdc.getVcenterName()).toBeDefined();
-    expect(vdc.getVcenterName()).toBe(raw.vcenter_name);
-    expect(vdc.getVcenterInstanceUuid()).toBeDefined();
-    expect(vdc.getVcenterInstanceUuid()).toBe(raw.vcenter_instance_uuid);
-    expect(vdc.getVcenterHref()).toBeDefined();
-    expect(vdc.getVcenterHref()).toBe(raw.vcenter_href);
-    expect(vdc.getAllocationModel()).toBeDefined();
-    expect(vdc.getAllocationModel()).toBe(raw.allocation_model);
-    expect(vdc.getReservedCpu()).toBeDefined();
-    expect(vdc.getReservedCpu()).toBe(raw.reserved_cpu);
-    expect(vdc.getReservedMemory()).toBeDefined();
-    expect(vdc.getReservedMemory()).toBe(raw.reserved_mem);
-    expect(vdc.getDiskLimit()).toBeDefined();
-    expect(vdc.getDiskLimit()).toBe(raw.disk_limit);
-    expect(vdc.getAllocatedCpu()).toBeDefined();
-    expect(vdc.getAllocatedCpu()).toBe(raw.alloc_cpu);
-    expect(vdc.getAllocatedMemory()).toBeDefined();
-    expect(vdc.getAllocatedMemory()).toBe(raw.alloc_mem);
-    expect(vdc.getMaxHardwareVersion()).toBeDefined();
-    expect(vdc.getMaxHardwareVersion()).toBe(raw.max_hdw_version);
-    expect(vdc.getNetworkQuota()).toBeDefined();
-    expect(vdc.getNetworkQuota()).toBe(raw.network_quota);
-    expect(vdc.getUsedNetworkCount()).toBeDefined();
-    expect(vdc.getUsedNetworkCount()).toBe(raw.used_network_count);
+    expect(vdc.deleted).toBe(false);
+    expect(vdc.updatedDate).toBeDefined();
+    expect(vdc.updatedDate.getTime()).toBeLessThan(new Date().getTime());
+    expect(vdc.deletedDate).toBeNull();
+    expect(vdc.entityType).toBe('VDC');
+    expect(vdc.enabled).toBeDefined();
+    expect(vdc.enabled).toBe(raw.enabled);
+    expect(vdc.vcenterMoref).toBeDefined();
+    expect(vdc.vcenterMoref).toBe(raw.vcenter_moref);
+    expect(vdc.vcenterName).toBeDefined();
+    expect(vdc.vcenterName).toBe(raw.vcenter_name);
+    expect(vdc.vcenterInstanceUuid).toBeDefined();
+    expect(vdc.vcenterInstanceUuid).toBe(raw.vcenter_instance_uuid);
+    expect(vdc.vcenterHref).toBeDefined();
+    expect(vdc.vcenterHref).toBe(raw.vcenter_href);
+    expect(vdc.allocationModel).toBeDefined();
+    expect(vdc.allocationModel).toBe(raw.allocation_model);
+    expect(vdc.reservedCpu).toBeDefined();
+    expect(vdc.reservedCpu).toBe(raw.reserved_cpu);
+    expect(vdc.reservedMemory).toBeDefined();
+    expect(vdc.reservedMemory).toBe(raw.reserved_mem);
+    expect(vdc.diskLimit).toBeDefined();
+    expect(vdc.diskLimit).toBe(raw.disk_limit);
+    expect(vdc.allocatedCpu).toBeDefined();
+    expect(vdc.allocatedCpu).toBe(raw.alloc_cpu);
+    expect(vdc.allocatedMemory).toBeDefined();
+    expect(vdc.allocatedMemory).toBe(raw.alloc_mem);
+    expect(vdc.maxHardwareVersion).toBeDefined();
+    expect(vdc.maxHardwareVersion).toBe(raw.max_hdw_version);
+    expect(vdc.networkQuota).toBeDefined();
+    expect(vdc.networkQuota).toBe(raw.network_quota);
+    expect(vdc.usedNetworkCount).toBeDefined();
+    expect(vdc.usedNetworkCount).toBe(raw.used_network_count);
     return vdc;
   });
 });
 
 test('Can refresh vDC', async() => {
   return Vdc.getVdc(inventoryVdc.uuid).then(async function(vdc) {
-    expect(vdc.getUuid()).toBe(inventoryVdc.uuid);
+    expect(vdc.uuid).toBe(inventoryVdc.uuid);
     return vdc.refresh().then(function(refreshed) {
-      expect(refreshed.getUuid()).toBe(inventoryVdc.uuid);
+      expect(refreshed.uuid).toBe(inventoryVdc.uuid);
     });
   });
 });

@@ -15,7 +15,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the description.
    * @returns {string} description
    */
-  getDescription(): string {
+  get description(): string {
     return this._json.description;
   }
 
@@ -23,7 +23,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the datacenter location identifier.
    * @returns {string} location ID
    */
-  getLocationId(): string {
+  get locationId(): string {
     return this._json.location_id;
   }
 
@@ -31,7 +31,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the UUID of the Org that the network is associated with.
    * @returns {string} Org UUID
    */
-  getOrgUuid(): string {
+  get orgUuid(): string {
     return this._json.org_uuid;
   }
 
@@ -39,7 +39,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the UUID of the vDC that the network is associated with.
    * @returns {string} vDC UUID
    */
-  getVdcUuid(): string {
+  get vdcUuid(): string {
     return this._json.vdc_uuid;
   }
 
@@ -47,7 +47,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the primary DNS host.
    * @returns {string} primary DNS host
    */
-  getPrimaryDns(): string {
+  get primaryDns(): string {
     return this._json.primary_dns;
   }
 
@@ -55,7 +55,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the secondary DSN host.
    * @returns {string} secondary DNS host
    */
-  getSecondaryDns(): string {
+  get secondaryDns(): string {
     return this._json.secondary_dns;
   }
 
@@ -63,7 +63,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the DNS suffix.
    * @returns {string} DNS suffix
    */
-  getDnsSuffix(): string {
+  get dnsSuffix(): string {
     return this._json.dns_suffix;
   }
 
@@ -71,7 +71,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the networks fence mode.
    * @returns {NetworkFenceMode} fence mode
    */
-  getFenceMode(): NetworkFenceMode {
+  get fenceMode(): NetworkFenceMode {
     return this._json.fence_mode;
   }
 
@@ -79,7 +79,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the gateway address of the network.
    * @returns {string} gateway address
    */
-  getGatewayAddress(): string {
+  get gatewayAddress(): string {
     return this._json.gateway;
   }
 
@@ -87,7 +87,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the netmask of the network.
    * @returns {string} netmask
    */
-  getNetmask(): string {
+  get netmask(): string {
     return this._json.netmask;
   }
 
@@ -95,7 +95,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the static IP Ranges for the newtork.
    * @returns {[IpRange]} static IP ranges
    */
-  getIpRanges(): Array<IpRange> {
+  get ipRanges(): Array<IpRange> {
     return this._json.ip_ranges.map((ipRangeJson) => new IpRange(ipRangeJson));
   }
 
@@ -103,7 +103,7 @@ export abstract class AbstractNetwork extends Entity {
    * Indicates whether this network is inherited.
    * @returns {boolean} value
    */
-  isInherited(): boolean {
+  get inherited(): boolean {
     return this._json.inherited;
   }
 
@@ -111,7 +111,7 @@ export abstract class AbstractNetwork extends Entity {
    * Gets the UUID of the parent external network if this is a bridged network, otherwise null.
    * @returns {string|null} parent external network UUID
    */
-  getParentNetworkUuid(): string | null {
+  get parentNetworkUuid(): string | null {
     return this._json.parent_network_uuid;
   }
 

@@ -14,7 +14,7 @@ export class Bill {
    * Gets the UUID of the entity that the bill is associated with.
    * @returns {string} entity UUID
    */
-  getEntityUuid(): string {
+  get entityUuid(): string {
     return this._json.entity_uuid;
   }
 
@@ -22,7 +22,7 @@ export class Bill {
    * Gets the total cost.
    * @returns {number} total
    */
-  getTotalCost(): number {
+  get totalCost(): number {
     return this._json.total;
   }
 
@@ -30,7 +30,7 @@ export class Bill {
    * Gets the cost of CPU.
    * @returns {number} cpu cost
    */
-  getCpuCost(): number {
+  get cpuCost(): number {
     return this._json.cpu;
   }
 
@@ -38,7 +38,7 @@ export class Bill {
    * Gets the cost of bandwidth.
    * @returns {number} bandwidth cost
    */
-  getBandwidthCost(): number {
+  get bandwidthCost(): number {
     return this._json.bandwidth;
   }
 
@@ -46,7 +46,7 @@ export class Bill {
    * Gets the cost of memory.
    * @returns {number} memory cost
    */
-  getMemoryCost(): number {
+  get memoryCost(): number {
     return this._json.mem;
   }
 
@@ -54,7 +54,7 @@ export class Bill {
    * Gets an estimate of what the cost could be at the end of the billing period.
    * @returns {number} estimated cost
    */
-  getEstimatedCost(): number {
+  get estimatedCost(): number {
     return this._json.estimate;
   }
 
@@ -62,7 +62,7 @@ export class Bill {
    * Gets the CPU usage.
    * @returns {number} cpu usage
    */
-  getCpuUsage(): number {
+  get cpuUsage(): number {
     return this._json.cpu_usage;
   }
 
@@ -70,7 +70,7 @@ export class Bill {
    * Gets the CPU burst usage.
    * @returns {number} cpu burst usage
    */
-  getCpuBurstUsage(): number {
+  get cpuBurstUsage(): number {
     return this._json.cpu_burst_usage;
   }
 
@@ -78,7 +78,7 @@ export class Bill {
    * Gets the CPU reserved usage.
    * @returns {number} cpu reserved usage
    */
-  getCpuReservedUsage(): number {
+  get cpuReservedUsage(): number {
     return this._json.cpu_res_usage;
   }
 
@@ -86,7 +86,7 @@ export class Bill {
    * Gets the memory usage.
    * @returns {number} memory usage
    */
-  getMemoryUsage(): number {
+  get memoryUsage(): number {
     return this._json.mem_usage;
   }
 
@@ -94,7 +94,7 @@ export class Bill {
    * Gets the reserved memory usage.
    * @returns {number} reserved memory usage
    */
-  getMemoryReservedUsage(): number {
+  get memoryReservedUsage(): number {
     return this._json.mem_res_usage;
   }
 
@@ -102,7 +102,7 @@ export class Bill {
    * Gets the burst memory usage.
    * @returns {number} burst memory usage
    */
-  getMemoryBurstUsage(): number {
+  get memoryBurstUsage(): number {
     return this._json.mem_burst_usage;
   }
 
@@ -110,7 +110,7 @@ export class Bill {
    * Gets the bandwidth usage.
    * @returns {number} bandwidth usage
    */
-  getBandwidthUsage(): number {
+  get bandwidthUsage(): number {
     return this._json.bandwidth_usage;
   }
 
@@ -118,7 +118,7 @@ export class Bill {
    * Gets the burst CPU cost.
    * @returns {number} burst cpu cost
    */
-  getCpuBurstCost(): number {
+  get cpuBurstCost(): number {
     return this._json.cpu_burst;
   }
 
@@ -126,7 +126,7 @@ export class Bill {
    * Gets the burst memory cost.
    * @returns {number} burst memory cost
    */
-  getMemoryBurstCost(): number {
+  get memoryBurstCost(): number {
     return this._json.mem_burst;
   }
 
@@ -134,7 +134,7 @@ export class Bill {
    * Gets the burst bandwidth cost.
    * @returns {number} burst bandwidth cost
    */
-  getBandwidthBurstCost(): number {
+  get bandwidthBurstCost(): number {
     return this._json.bandwidth_burst;
   }
 
@@ -142,7 +142,7 @@ export class Bill {
    * Gets the currency code.
    * @returns {CurrencyCode} the currency code
    */
-  getCurrencyCode(): CurrencyCode {
+  get currencyCode(): CurrencyCode {
     return this._json.currency_code;
   }
 
@@ -150,7 +150,7 @@ export class Bill {
    * Gets the timestamp of the bill.
    * @returns {Date} the bill timestamp
    */
-  getTimestamp(): Date {
+  get timestamp(): Date {
     return new Date(this._json.time);
   }
 
@@ -158,7 +158,7 @@ export class Bill {
    * Indicates whether this is a test drive.
    * @returns {boolean} value
    */
-  isTestDrive(): boolean {
+  get testDrive(): boolean {
     return this._json.test_drive;
   }
 
@@ -166,7 +166,7 @@ export class Bill {
    * Gets the line items.
    * @returns {Array<BillLineItem>} line items
    */
-  getLineItems(): Array<BillLineItem> {
+  get lineItems(): Array<BillLineItem> {
     return this._json.line_items.map(json => new BillLineItem(json));
   }
 
@@ -174,7 +174,7 @@ export class Bill {
    * Gets the discount factor.
    * @returns {number} discount
    */
-  getDiscount(): number {
+  get discount(): number {
     return this._json.discount;
   }
 
@@ -182,7 +182,7 @@ export class Bill {
    * Gets the disk usage for the billing period.
    * @returns {number} disk usage
    */
-  getDiskUsage(): number {
+  get diskUsage(): number {
     return this._json.disk_usage;
   }
 
@@ -190,7 +190,7 @@ export class Bill {
    * Gets the disk cost for the billing period.
    * @returns {number} disk cost
    */
-  getDiskCost(): number {
+  get diskCost(): number {
     return this._json.disk;
   }
 
@@ -198,7 +198,7 @@ export class Bill {
    * Gets the disk burst usage for the billing period.
    * @returns {number} disk burst usage
    */
-  getDiskBurstUsage(): number {
+  get diskBurstUsage(): number {
     return this._json.disk_burst_usage;
   }
 
@@ -206,7 +206,7 @@ export class Bill {
    * Gets the disk burst cost for the billing period.
    * @returns {number} disk burst cost
    */
-  getDiskBurstCost(): number {
+  get diskBurstCost(): number {
     return this._json.disk_burst;
   }
 
@@ -214,7 +214,7 @@ export class Bill {
    * Gets the hard drive storage usage for the billing period.
    * @returns {number} hard drive storage usage
    */
-  getHddStorageUsage(): number {
+  get hddStorageUsage(): number {
     return this._json.hdd_usage;
   }
 
@@ -222,7 +222,7 @@ export class Bill {
    * Gets the hard drive storage usage for the billing period.
    * @returns {number} hard drive storage usage
    */
-  getHddStorageCost(): number {
+  get hddStorageCost(): number {
     return this._json.hdd_cost;
   }
 
@@ -230,7 +230,7 @@ export class Bill {
    * Gets the hard drive storage burst cost for the billing period.
    * @returns {number} hard drive storage burst cost.
    */
-  getHddStorageBurstCost(): number {
+  get hddStorageBurstCost(): number {
     return this._json.hdd_burst_cost;
   }
 
@@ -238,7 +238,7 @@ export class Bill {
    * Gets the hard drive storage reserved cost for the billing period.
    * @returns {number} hard drive storage reserved cost.
    */
-  getHddStorageReservedCost(): number {
+  get hddStorageReservedCost(): number {
     return this._json.hdd_reserved_cost;
   }
 
@@ -246,7 +246,7 @@ export class Bill {
    * Gets the hard drive storage reserved usage.
    * @returns {number} hard drive storage reserved usage.
    */
-  getHddStorageReservedUsage(): number {
+  get hddStorageReservedUsage(): number {
     return this._json.hdd_reserved_usage;
   }
 
@@ -254,7 +254,7 @@ export class Bill {
    * Gets the solid state storage reserved usage.
    * @returns {number} solid state storage reserved usage.
    */
-  getSsdStorageReservedUsage(): number {
+  get ssdStorageReservedUsage(): number {
     return this._json.ssd_reserved_usage;
   }
 
@@ -262,7 +262,7 @@ export class Bill {
    * Gets the solid state storage reserved cost.
    * @returns {number} solid state storage reserved cost.
    */
-  getSsdStorageReservedCost(): number {
+  get ssdStorageReservedCost(): number {
     return this._json.ssd_reserved_cost;
   }
 
@@ -270,7 +270,7 @@ export class Bill {
    * Gets the solid state storage usage.
    * @returns {number} solid state storage usage.
    */
-  getSsdStorageUsage(): number {
+  get ssdStorageUsage(): number {
     return this._json.ssd_usage;
   }
 
@@ -278,7 +278,7 @@ export class Bill {
    * Gets the solid state storage cost.
    * @returns {number} solid state storage cost
    */
-  getSsdStorageCost(): number {
+  get ssdStorageCost(): number {
     return this._json.ssd_cost;
   }
 
@@ -286,7 +286,7 @@ export class Bill {
    * Gets the solid state storage burst usage.
    * @returns {number} solid state storge burst usage
    */
-  getSsdStorageBurstUsage(): number {
+  get ssdStorageBurstUsage(): number {
     return this._json.ssd_burst_usage;
   }
 
@@ -294,7 +294,7 @@ export class Bill {
    * Gets the solid state storage burst cost.
    * @returns {number} solid state storage burst cost
    */
-  getSsdStorageBurstCost(): number {
+  get ssdStorageBurstCost(): number {
     return this._json.ssd_burst_cost;
   }
 
@@ -302,7 +302,7 @@ export class Bill {
    * Gets the archive storage usage.
    * @returns {number} archive storage usage
    */
-  getArchiveStorageUsage(): number {
+  get archiveStorageUsage(): number {
     return this._json.archive_usage;
   }
 
@@ -310,7 +310,7 @@ export class Bill {
    * Gets the archive storage cost.
    * @returns {number} archive storage cost
    */
-  getArchiveStorageCost(): number {
+  get archiveStorageCost(): number {
     return this._json.archive_cost;
   }
 
@@ -318,7 +318,7 @@ export class Bill {
    * Gets the archive storage burst usage.
    * @returns {number} archive storage burst usage
    */
-  getArchiveStorageBurstUsage(): number {
+  get archiveStorageBurstUsage(): number {
     return this._json.archive_burst_usage;
   }
 
@@ -326,7 +326,7 @@ export class Bill {
    * Gets the archive storage burst cost.
    * @returns {number} archive storage burst cost
    */
-  getArchiveStorageBurstCost(): number {
+  get archiveStorageBurstCost(): number {
     return this._json.archive_burst_cost;
   }
 
@@ -334,7 +334,7 @@ export class Bill {
    * Gets the archive storage reserved cost.
    * @returns {number} archive storage reserved cost
    */
-  getArchiveStorageReservedCost(): number {
+  get archiveStorageReservedCost(): number {
     return this._json.archive_reserved_cost;
   }
 
@@ -342,7 +342,7 @@ export class Bill {
    * Gets the archive storage reserved usage.
    * @returns {number} archive storage reserved usage
    */
-  getArchiveStorageReservedUsage(): number {
+  get archiveStorageReservedUsage(): number {
     return this._json.archive_reserved_usage;
   }
 
@@ -350,7 +350,7 @@ export class Bill {
    * Gets the zerto archive storage usage.
    * @returns {number} zerto archive storage usage
    */
-  getZertoArchiveStorageUsage(): number {
+  get zertoArchiveStorageUsage(): number {
     return this._json.zerto_archive_usage;
   }
 
@@ -358,7 +358,7 @@ export class Bill {
    * Gets the zerto archive storage cost.
    * @returns {number} zerto archive storage cost
    */
-  getZertoArchiveStorageCost(): number {
+  get zertoArchiveStorageCost(): number {
     return this._json.zerto_archive_cost;
   }
 
@@ -366,7 +366,7 @@ export class Bill {
    * Gets the zerto advanced storage cost.
    * @returns {number} zerto advanced storage cost
    */
-  getZertoAdvancedStorageCost(): number {
+  get zertoAdvancedStorageCost(): number {
     return this._json.zerto_advanced_cost;
   }
 
@@ -374,7 +374,7 @@ export class Bill {
    * Gets the zerto advanced storage usage.
    * @returns {number} zerto advanced storage usage
    */
-  getZertoAdvancedStorageUsage(): number {
+  get zertoAdvancedStorageUsage(): number {
     return this._json.zerto_advanced_usage;
   }
 
@@ -382,7 +382,7 @@ export class Bill {
    * Gets the entity type that the bill is associated with.
    * @returns {EntityType} entity type
    */
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return this._json.entity_type;
   }
 
@@ -390,7 +390,7 @@ export class Bill {
    * Gets the name of the entity that the bill is associated with.
    * @returns {string} entity name
    */
-  getEntityName(): string {
+  get entityName(): string {
     return this._json.entity_name;
   }
 
@@ -398,7 +398,7 @@ export class Bill {
    * Gets the bandwidth reserved usage.
    * @returns {number} bandwidth reserved usage
    */
-  getBandwidthReservedUsage(): number {
+  get bandwidthReservedUsage(): number {
     return this._json.bandwidth_reserved_usage;
   }
 
@@ -406,7 +406,7 @@ export class Bill {
    * Gets the bandwidth reserved cost.
    * @returns {number} bandwidth reserved cost
    */
-  getBandwidthReservedCost(): number {
+  get bandwidthReservedCost(): number {
     return this._json.bandwidth_reserved_cost;
   }
 
@@ -414,7 +414,7 @@ export class Bill {
    * Gets the bandwidth burst usage.
    * @returns {number} bandwidth burst usage
    */
-  getBandwidthBurstUsage(): number {
+  get bandwidthBurstUsage(): number {
     return this._json.bandwidth_burst_usage;
   }
 
@@ -430,7 +430,7 @@ export class Bill {
    * Gets the raw JSON object from the API.
    * @returns {BillJson} the JSON representation
    */
-  getJson(): BillJson {
+  get json(): BillJson {
     return Object.assign({}, this._json);
   }
 

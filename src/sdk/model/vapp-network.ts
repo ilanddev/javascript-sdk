@@ -18,8 +18,8 @@ export class VappNetwork extends AbstractNetwork {
    * @returns {Promise<VappNetwork>} promise that resolves with the vApp network
    */
   static async getVappNetwork(uuid: string): Promise<VappNetwork> {
-    return Iland.getHttp().get(`/network/${uuid}`).then(function(response) {
-      let json = response.data as VappNetworkJson;
+    return Iland.getHttp().get(`/network/${uuid}`).then((response) => {
+      const json = response.data as VappNetworkJson;
       return new VappNetwork(json);
     });
   }
@@ -28,7 +28,7 @@ export class VappNetwork extends AbstractNetwork {
    * Gets the entity type.
    * @returns {EntityType}
    */
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'VAPP_NETWORK';
   }
 
@@ -36,7 +36,7 @@ export class VappNetwork extends AbstractNetwork {
    * Gets the UUID of the vApp that the network is associated with.
    * @returns {string} vApp UUID
    */
-  getVappUuid(): string | null {
+  get vappUuid(): string | null {
     return (this._json as VappNetworkJson).vapp_uuid;
   }
 
@@ -44,7 +44,7 @@ export class VappNetwork extends AbstractNetwork {
    * If this is a NAT Routed network, gets the external IP of the router for the vApp Network edge gateway.
    * @returns {string} IP address
    */
-  getRouterExternalIp(): string {
+  get routerExternalIp(): string {
     return (this._json as VappNetworkJson).router_external_ip;
   }
 
@@ -52,7 +52,7 @@ export class VappNetwork extends AbstractNetwork {
    * Gets the raw JSON object from the API.
    * @returns {VappNetworkJson} the API json object
    */
-  getJson(): VappNetworkJson {
+  get json(): VappNetworkJson {
     return Object.assign({}, this._json as VappNetworkJson);
   }
 
@@ -61,12 +61,10 @@ export class VappNetwork extends AbstractNetwork {
    * @returns {Promise<VappNetwork>} promise that resolves with this object
    */
   async refresh(): Promise<VappNetwork> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/network/${self.getUuid()}`).then(function(response) {
-          self._json = response.data as VappNetworkJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/network/${this.uuid}`).then((response) => {
+      this._json = response.data as VappNetworkJson;
+      return this;
+    });
   }
 
 }

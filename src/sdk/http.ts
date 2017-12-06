@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { Iland } from './iland';
 import { ApiError, ApiErrorJson } from './api-error';
 
-const DEFAULT_API_VERSION = 0.8;
+const DEFAULT_API_VERSION = 1.0;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
 
 /**
@@ -17,7 +17,7 @@ export class Http {
    * @param {string} baseUrl the base URL of the iland Cloud API
    */
   constructor(baseUrl: string) {
-    let defaultMime = Http.versionMime('application/json');
+    const defaultMime = Http.versionMime('application/json');
     this._ilandAxios = axios.create({
       baseURL: baseUrl,
       headers: {
@@ -25,14 +25,14 @@ export class Http {
         'Content-Type': defaultMime
       }
     });
-    this._ilandAxios.interceptors.request.use(async function(config: AxiosRequestConfig) {
-      return Iland.getAuthProvider().getToken().then(function(token) {
+    this._ilandAxios.interceptors.request.use(async(config: AxiosRequestConfig) => {
+      return Iland.getAuthProvider().getToken().then((token) => {
         config.headers['Authorization'] = 'Bearer ' + token;
         return config;
       });
     });
     this._ilandAxios.interceptors.response.use(async(response: AxiosResponse) => {
-      let str = response.data as string;
+      const str = response.data as string;
       if (str.indexOf(")]}'\n") === 0) {
         response.data = JSON.parse(str.substring(5));
       }
@@ -60,12 +60,12 @@ export class Http {
     if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
       return mime;
     }
-    version = version ? version : DEFAULT_API_VERSION;
-    let parts = mime.split('/');
+    const versionStr = (version ? version : DEFAULT_API_VERSION).toFixed(1);
+    const parts = mime.split('/');
     if (parts.length === 2) {
-      let prefix = parts[0];
-      let suffix = parts[1];
-      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${version}+${suffix}`;
+      const prefix = parts[0];
+      const suffix = parts[1];
+      return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${versionStr}+${suffix}`;
     }
     return mime;
   }

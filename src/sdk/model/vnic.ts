@@ -12,7 +12,7 @@ export class Vnic {
    * Gets the type of the adapter.
    * @returns {string} adapter type
    */
-  getAdapterType(): string {
+  get adapterType(): string {
     return this._apiVnic.adapter_type;
   }
 
@@ -20,7 +20,7 @@ export class Vnic {
    * Gets the address mode of the adapter.
    * @returns {string} address mode
    */
-  getAddressMode(): VnicAddressMode {
+  get addressMode(): VnicAddressMode {
     return this._apiVnic.address_mode;
   }
 
@@ -28,7 +28,7 @@ export class Vnic {
    * Indicates whether the VNIC is currently connected.
    * @returns {boolean} value
    */
-  isConnected(): boolean {
+  get connected(): boolean {
     return this._apiVnic.connected;
   }
 
@@ -36,7 +36,7 @@ export class Vnic {
    * Indicates whether the VNIC is deleted.
    * @returns {boolean} value
    */
-  isDeleted(): boolean {
+  get deleted(): boolean {
     return this._apiVnic.deleted;
   }
 
@@ -44,7 +44,7 @@ export class Vnic {
    * Gets the IP address that is assigned to the VNIC.
    * @returns {string} IP Address
    */
-  getIpAddress(): string {
+  get ipAddress(): string {
     return this._apiVnic.ip_addr;
   }
 
@@ -52,7 +52,7 @@ export class Vnic {
    * Gets the MAC address that is assigned to the VNIC.
    * @returns {string} MAC address
    */
-  getMacAddress(): string {
+  get macAddress(): string {
     return this._apiVnic.mac_addr;
   }
 
@@ -60,7 +60,7 @@ export class Vnic {
    * Gets the name of the network that the VNIC is connected to.
    * @returns {string} vApp network name
    */
-  getConnectedNetworkName(): string {
+  get connectedNetworkName(): string {
     return this._apiVnic.net_name;
   }
 
@@ -68,7 +68,7 @@ export class Vnic {
    * Indicates whether this is the VM's primary VNIC.
    * @returns {boolean} value
    */
-  isPrimaryConnection(): boolean {
+  get primaryConnection(): boolean {
     return this._apiVnic.primary_cnx;
   }
 
@@ -76,7 +76,7 @@ export class Vnic {
    * Gets the ID of the VNIC among other VNICs connected to the VM.
    * @returns {number} VNIC ID
    */
-  getVnicId(): number {
+  get vnicId(): number {
     return this._apiVnic.vnic_id;
   }
 
@@ -92,7 +92,7 @@ export class Vnic {
    * Gets the raw JSON object from the API.
    * @returns {VnicJson} the API VNIC object
    */
-  getJson(): VnicJson {
+  get json(): VnicJson {
     return Object.assign({}, this._apiVnic);
   }
 

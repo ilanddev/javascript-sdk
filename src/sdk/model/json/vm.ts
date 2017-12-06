@@ -178,3 +178,68 @@ export type OperatingSystem =
     'winXPHomeGuest' |
     'winXPPro64Guest' |
     'winXPProGuest';
+
+/**
+ * Specification for VM snapshot creation request.
+ */
+export interface VmCreateSnapshotRequestJson {
+  memory: boolean;
+  quiesce: boolean;
+  name: string;
+  description: string;
+}
+
+/**
+ * Specification for VM memory configuration update request.
+ */
+export interface VmMemoryUpdateRequestJson {
+  memory_size: string;
+}
+
+/**
+ * Specification for VM description update request.
+ */
+export interface VmUpdateDescriptionRequestJson {
+  description: string;
+}
+
+/**
+ * Specification for VM name update request.
+ */
+export interface VmUpdateNameRequestJson {
+  name: string;
+}
+
+/**
+ * Specification for VM CPU configuration update request.
+ */
+export interface VmCpuUpdateRequestJson {
+  cpus_number: number;
+  cores_per_socket?: number;
+}
+
+/**
+ * Specification for VM backup restore request.
+ */
+export interface VmRestoreBackupRequestJson {
+  time: number;
+}
+
+/**
+ * Specification for VM media insertion request.
+ */
+export interface VmInsertMediaRequestJson {
+  media: string;
+}
+
+/**
+ * Specification for VM storage profile relocation request.
+ */
+export interface VmRelocationRequestJson {
+  storage_profile: string;
+}
+
+/**
+ * Enumeration of the available power operations for a VM.
+ */
+export type VmPowerOperation = 'poweron' | 'poweroff' | 'suspend' | 'shutdown' | 'reset' | 'reboot';

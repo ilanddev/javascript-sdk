@@ -4,6 +4,8 @@
     "space-before-function-paren": [true, "never"],
     "semicolon": [true, "always"],
     "max-line-length": [true, 120],
-    "promise-function-async": true
+    "promise-function-async": true,
+    "prefer-const": true,
+    "indent": [true, "spaces"]
   }
 }

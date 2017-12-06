@@ -18,13 +18,13 @@ export class InternalNetwork extends AbstractNetwork {
    * @returns {Promise<InternalNetwork>} promise that resolves with the internal network
    */
   static async getInternalNetwork(uuid: string): Promise<InternalNetwork> {
-    return Iland.getHttp().get(`/network/${uuid}`).then(function(response) {
-      let json = response.data as InternalNetworkJson;
+    return Iland.getHttp().get(`/network/${uuid}`).then((response) => {
+      const json = response.data as InternalNetworkJson;
       return new InternalNetwork(json);
     });
   }
 
-  getEntityType(): EntityType {
+  get entityType(): EntityType {
     return 'ORG_VDC_NETWORK';
   }
 
@@ -32,7 +32,7 @@ export class InternalNetwork extends AbstractNetwork {
    * Gets the UUID of the edge gateway that the network is connected to, if its a NAT routed network or null otherwise.
    * @returns {string|null} edge gateway UUID or null
    */
-  getEdgeUuid(): string | null {
+  get edgeUuid(): string | null {
     return (this._json as InternalNetworkJson).edge_uuid;
   }
 
@@ -40,7 +40,7 @@ export class InternalNetwork extends AbstractNetwork {
    * Indicates whether this network is shared with other vDCs within the same organization.
    * @returns {boolean} value
    */
-  isShared(): boolean {
+  get shared(): boolean {
     return (this._json as InternalNetworkJson).shared;
   }
 
@@ -48,7 +48,7 @@ export class InternalNetwork extends AbstractNetwork {
    * Gets the raw JSON object from the API.
    * @returns {InternalNetworkJson} the API json object
    */
-  getJson(): InternalNetworkJson {
+  get json(): InternalNetworkJson {
     return Object.assign({}, this._json as InternalNetworkJson);
   }
 
@@ -57,12 +57,10 @@ export class InternalNetwork extends AbstractNetwork {
    * @returns {Promise<InternalNetwork>} promise that resolves with this object
    */
   async refresh(): Promise<InternalNetwork> {
-    let self = this;
-    return Iland.getHttp().get(
-        `/network/${self.getUuid()}`).then(function(response) {
-          self._json = response.data as InternalNetworkJson;
-          return self;
-        });
+    return Iland.getHttp().get(`/network/${this.uuid}`).then((response) => {
+      this._json = response.data as InternalNetworkJson;
+      return this;
+    });
   }
 
 }
