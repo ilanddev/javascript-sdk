@@ -29,6 +29,7 @@ import { MockCompanyResponse, MockCompanyService, MockCompanyUsersResponse } fro
 import { RoleCreationRequestJson } from '../model/json/role-creation-request';
 import { MockService } from './responses/util';
 import { UserCreationRequestJson } from '../model/json/user-creation-request';
+import { MockUserCompaniesResponse } from './responses/user/user';
 
 jest.unmock('../http');
 
@@ -153,6 +154,9 @@ export class Http {
       case /\/companies\/[^\/]+\/users?$/.test(url):
         // get users for a company
         return MockCompanyUsersResponse;
+      case /\/user\/[^\/]+\/companies?$/.test(url):
+        // get companies for a user
+        return MockUserCompaniesResponse;
       default:
         return MockNotFoundResponse;
     }
