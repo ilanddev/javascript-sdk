@@ -28,3 +28,6 @@ export * from './role';
 export * from './role-creation-request';
 export * from './user-creation-request';
 export * from './user-inventory';
+export * from './catalog';
+export * from './vapp-template';
+export * from './media';

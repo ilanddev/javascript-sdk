@@ -1,9 +1,10 @@
 import { Observable, Subject } from 'rxjs';
 import { Iland } from '../iland';
 import { TaskJson, TaskOperation, TaskStatus, TaskType } from './json/task';
+import { BasicConfiguration } from '../basic-configuration';
 
 const TASK_CONFIG = {
-  baseURL: 'https://api.ilandcloud.com/ecs',
+  baseURL: `${BasicConfiguration.getApiUrl()}/ecs`,
   headers: {
     'Accept': 'application/vnd.ilandcloud.api.v0.9+json',
     'Content-Type': 'application/vnd.ilandcloud.api.v0.9+json'

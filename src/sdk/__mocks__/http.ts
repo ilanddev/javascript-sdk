@@ -30,6 +30,9 @@ import { RoleCreationRequestJson } from '../model/json/role-creation-request';
 import { MockService } from './responses/util';
 import { UserCreationRequestJson } from '../model/json/user-creation-request';
 import { MockUserCompaniesResponse } from './responses/user/user';
+import { MockCatalogResponse } from './responses/catalog/catalog';
+import { MockMediaResponse } from './responses/media/media';
+import { MockVappTemplateResponse } from './responses/vapp-template/vapp-template';
 
 jest.unmock('../http');
 
@@ -157,6 +160,15 @@ export class Http {
       case /\/user\/[^\/]+\/companies?$/.test(url):
         // get companies for a user
         return MockUserCompaniesResponse;
+      case /\/catalog\/[^\/]+?$/.test(url):
+        // get a catalog
+        return MockCatalogResponse;
+      case /\/media\/[^\/]+?$/.test(url):
+        // get a media
+        return MockMediaResponse;
+      case /\/vapp-template\/[^\/]+?$/.test(url):
+        // get a vapp template
+        return MockVappTemplateResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -270,5 +282,4 @@ export class Http {
         return MockNotFoundResponse;
     }
   }
-
 }

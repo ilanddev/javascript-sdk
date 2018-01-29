@@ -1,3 +1,5 @@
+import { BasicConfiguration } from '../basic-configuration';
+
 /**
  * Authorization Provider interface.
  */
@@ -21,6 +23,6 @@ export interface AuthProvider {
 
 }
 
-export const DEFAULT_AUTH_URL = 'https://console.ilandcloud.com/auth';
+export const DEFAULT_AUTH_URL = `${BasicConfiguration.getAuthorizationUrl()}/auth`;
 
 export const DEFAULT_REALM = 'iland-core';
