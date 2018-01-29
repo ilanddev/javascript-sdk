@@ -31,3 +31,6 @@ export * from './role-creation-request';
 export * from './role';
 export * from './policy';
 export * from './company-inventory';
+export * from './media';
+export * from './vapp-template';
+export * from './catalog';

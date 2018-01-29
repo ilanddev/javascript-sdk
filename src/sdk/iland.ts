@@ -1,7 +1,8 @@
 import { AuthProvider } from './auth/auth-provider';
 import { Http } from './http';
+import { BasicConfiguration } from './basic-configuration';
 
-const DEFAULT_API_URL = 'https://api.ilandcloud.com/v1';
+const DEFAULT_API_URL = `${BasicConfiguration.getApiUrl()}/v1`;
 
 export abstract class Iland {
 
