@@ -21,6 +21,7 @@ export class Http {
     this._ilandAxios = axios.create({
       baseURL: baseUrl,
       headers: {
+        'x-enable-json-security-chars': 'true',
         'Accept': defaultMime,
         'Content-Type': defaultMime
       }
@@ -32,18 +33,27 @@ export class Http {
       });
     });
     this._ilandAxios.interceptors.response.use(async(response: AxiosResponse) => {
-      const str = response.data as string;
-      if (str.indexOf(")]}'\n") === 0) {
-        response.data = JSON.parse(str.substring(5));
+      if (response.data instanceof Object || response.data instanceof Array) {
+        return response;
+      } else {
+        const str = response.data as string;
+        if (str.indexOf(')]}\'\n') === 0) {
+          response.data = JSON.parse(str.substring(5));
+        }
+        return response;
       }
-      return response;
     }, async(reason: AxiosError) => {
       if (reason.response) {
-        let str = reason.response.data as string;
-        if (str.indexOf(")]}'\n") === 0) {
-          str = str.substring(5);
+        let error: ApiErrorJson;
+        if (reason.response.data instanceof Object || reason.response.data instanceof Array) {
+          error = reason.response.data as ApiErrorJson;
+        } else {
+          let str = reason.response.data as string;
+          if (str.indexOf(')]}\'\n') === 0) {
+            str = str.substring(5);
+          }
+          error = JSON.parse(str) as ApiErrorJson;
         }
-        const error = JSON.parse(str) as ApiErrorJson;
         throw new ApiError(error);
       }
       throw new Error(reason.message);

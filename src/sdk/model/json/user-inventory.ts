@@ -1,4 +1,4 @@
-import { EntityDomain } from './role';
+import { EntityDomainType } from './entity-domain';
 
 /**
  * User Inventory JSON interface.
@@ -22,8 +22,8 @@ export interface UserCompanyInventoryJson {
  */
 export interface UserInventoryEntityJson {
   uuid: string;
-  type: EntityDomain;
+  type: EntityDomainType;
   name: string;
   parent_uuid: string | null;
-  parent_type: EntityDomain | null;
+  parent_type: EntityDomainType | null;
 }

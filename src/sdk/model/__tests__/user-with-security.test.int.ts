@@ -1,8 +1,8 @@
-import { Iland } from '../../iland';
-import { User } from '../user';
+import { IlandDirectGrantAuthProvider } from '../../auth';
 import { TestConfiguration } from '../../../../__tests__/configuration';
-import { IlandDirectGrantAuthProvider } from '../../auth/';
+import { Iland } from '../../iland';
 import { CompanyInventory } from '../company-inventory';
+import { UserWithSecurity } from '../user-with-security';
 
 let auth;
 
@@ -17,7 +17,7 @@ beforeAll(() => {
 });
 
 test('Can get current user and verify required properties', async() => {
-  return User.getCurrentUser().then(function(user) {
+  return UserWithSecurity.getCurrentUser().then(function(user) {
     const raw = user.json;
     expect(user.username).toEqual(TestConfiguration.getUsername());
     expect(user.createdDate).toBeDefined();
@@ -44,7 +44,7 @@ test('Can get current user and verify required properties', async() => {
 });
 
 test('Can get current user and verify required properties', async() => {
-  return User.getCurrentUser().then(async function(user) {
+  return UserWithSecurity.getCurrentUser().then(async function(user) {
     return user.getInventory().then(inventories => {
       if (inventories.length === 0) {
         throw Error('no company inventories returned for test user, cant perform test.');
@@ -65,25 +65,8 @@ test('Can get current user and verify required properties', async() => {
   });
 });
 
-test('Test user refresh', async() => {
-  return User.getCurrentUser().then(async function(user) {
-    return user.refresh().then(function(user) {
-      expect(user.username).toEqual(TestConfiguration.getUsername());
-      expect(user.createdDate).toBeDefined();
-      expect(user.email).toBeDefined();
-      expect(user.deletedDate).toBeNull();
-      expect(user.fullName).toBeDefined();
-      expect(user.fullName.length).toBeGreaterThan(1);
-      expect(user.deleted).toBe(false);
-      expect(user.locked).toBe(false);
-      expect(user.userType).toEqual('CUSTOMER');
-      expect(user.toString()).toContain(user.username);
-    });
-  });
-});
-
 test('Properly get user inventory for company', async() => {
-  return User.getCurrentUser().then(async(user) => {
+  return UserWithSecurity.getCurrentUser().then(async(user) => {
     return user.getCompanies().then(async(companies) => {
       return user.getInventoryInCompany(companies[0].uuid).then((companyInventory) => {
         expect(companyInventory.companyId).toBe(companies[0].uuid);
@@ -93,7 +76,7 @@ test('Properly get user inventory for company', async() => {
 });
 
 test('Properly throw an error if we try to get user inventory for an unknown company', async() => {
-  return User.getCurrentUser().then(async(user) => {
+  return UserWithSecurity.getCurrentUser().then(async(user) => {
     return user.getInventoryInCompany('fake').then((inventoryCompany) => {
       expect(inventoryCompany).toBeInstanceOf(CompanyInventory);
     }, (e) => {

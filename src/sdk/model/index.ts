@@ -34,3 +34,8 @@ export * from './company-inventory';
 export * from './media';
 export * from './vapp-template';
 export * from './catalog';
+export * from './permission';
+export * from './permission-map';
+export * from './domain-permission-map';
+export * from './entity-domain';
+export * from './user-with-security';

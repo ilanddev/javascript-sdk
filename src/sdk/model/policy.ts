@@ -1,6 +1,4 @@
-import { PolicyJson, PolicyType } from './json/policy';
-import { EntityDomain } from './json/role';
-import { Permission } from './json/permission';
+import { PolicyJson, PolicyType, EntityDomainType, PermissionType } from './json';
 
 /**
  * Policy.
@@ -20,9 +18,9 @@ export class Policy {
 
   /**
    * Gets the entity domain of the policy.
-   * @returns {EntityDomain} the entity domain
+   * @returns {EntityDomainType} the entity domain
    */
-  get entityDomain(): EntityDomain {
+  get entityDomain(): EntityDomainType {
     return this._json.domain;
   }
 
@@ -36,9 +34,9 @@ export class Policy {
 
   /**
    * Gets the permissions assigned to the policy.
-   * @returns {Array<Permission>} the policy permissions
+   * @returns {Array<PermissionType>} the policy permissions
    */
-  get permissions(): Array<Permission> {
+  get permissions(): Array<PermissionType> {
     return this._json.permissions.slice();
   }
 
@@ -65,23 +63,23 @@ export class Policy {
  */
 export class PolicyBuilder {
 
-  private _permissions: Array<Permission> = [];
+  private _permissions: Array<PermissionType> = [];
 
   /**
    * Creates a new PolicyBuilder.
    * @param {string} _entityUuid the UUID of the entity that the policy will apply to
-   * @param {EntityDomain} _entityDomain the EntityDomain of the entity that the policy will apply to
+   * @param {EntityDomainType} _entityDomain the EntityDomain of the entity that the policy will apply to
    * @param {PolicyType} _type the policy type
    */
-  constructor(private _entityUuid: string, private _entityDomain: EntityDomain, private _type: PolicyType) {
+  constructor(private _entityUuid: string, private _entityDomain: EntityDomainType, private _type: PolicyType) {
   }
 
   /**
    * Adds a permission.
-   * @param {Permission} permission the permission to add
+   * @param {PermissionType} permission the permission to add
    * @returns {PolicyBuilder} the builder
    */
-  addPermission(permission: Permission): PolicyBuilder {
+  addPermission(permission: PermissionType): PolicyBuilder {
     if (!this._permissions.some((it) => it === permission)) {
       this._permissions.push(permission);
     }
@@ -90,10 +88,10 @@ export class PolicyBuilder {
 
   /**
    * Removes a permission.
-   * @param {Permission} permission the permission to remove
+   * @param {PermissionType} permission the permission to remove
    * @returns {PolicyBuilder} the builder
    */
-  removePermission(permission: Permission): PolicyBuilder {
+  removePermission(permission: PermissionType): PolicyBuilder {
     const idx = this._permissions.findIndex((it) => it === permission);
     if (idx >= 0) {
       this._permissions.splice(idx, 1);

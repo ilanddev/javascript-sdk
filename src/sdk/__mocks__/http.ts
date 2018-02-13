@@ -29,10 +29,16 @@ import { MockCompanyResponse, MockCompanyService, MockCompanyUsersResponse } fro
 import { RoleCreationRequestJson } from '../model/json/role-creation-request';
 import { MockService } from './responses/util';
 import { UserCreationRequestJson } from '../model/json/user-creation-request';
-import { MockUserCompaniesResponse } from './responses/user/user';
-import { MockCatalogResponse } from './responses/catalog/catalog';
+import {
+  MockUserCompaniesResponse,
+  MockUserCompanyInventoryResponse,
+  MockUserRoleForCompanyResponse1,
+  MockUserRoleForCompanyResponse2,
+  MockUserRoleForCompanyResponse3
+} from './responses/user/user';
+import { MockCatalogResponse, MockPublicCatalogResponse } from './responses/catalog/catalog';
 import { MockMediaResponse } from './responses/media/media';
-import { MockVappTemplateResponse } from './responses/vapp-template/vapp-template';
+import { MockPublicVappTemplateResponse, MockVappTemplateResponse } from './responses/vapp-template/vapp-template';
 
 jest.unmock('../http');
 
@@ -160,12 +166,27 @@ export class Http {
       case /\/user\/[^\/]+\/companies?$/.test(url):
         // get companies for a user
         return MockUserCompaniesResponse;
+      case /\/user\/[^\/]+\/inventory$/.test(url):
+        return MockUserCompanyInventoryResponse;
+      case /\/user\/[^\/]+\/roles\/000002$/.test(url):
+        return MockUserRoleForCompanyResponse1;
+      case /\/user\/[^\/]+\/roles\/000003$/.test(url):
+        return MockUserRoleForCompanyResponse2;
+      case /\/user\/[^\/]+\/roles\/12345$/.test(url):
+        return MockUserRoleForCompanyResponse3;
+      case /\/catalog\/dev-vcd01.iland.dev:urn:vcloud:catalog:0c73d242-101d-43b3-a856-7eb4b4688534$/.test(url):
+        // get a public catalog
+        return MockPublicCatalogResponse;
       case /\/catalog\/[^\/]+?$/.test(url):
         // get a catalog
         return MockCatalogResponse;
       case /\/media\/[^\/]+?$/.test(url):
         // get a media
         return MockMediaResponse;
+      case /\/vapp-template\/dev-vcd01.iland.dev:urn:vcloud:vapptemplate:b1ffb935-f32c-4886-a7a6-2e4d3d7b1de8$/
+        .test(url):
+        // get a public vapp template
+        return MockPublicVappTemplateResponse;
       case /\/vapp-template\/[^\/]+?$/.test(url):
         // get a vapp template
         return MockVappTemplateResponse;

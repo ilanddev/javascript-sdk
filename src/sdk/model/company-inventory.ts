@@ -1,8 +1,8 @@
 /**
  * User inventory.
  */
-import { UserCompanyInventoryJson, UserInventoryEntityJson } from './json/user-inventory';
-import { EntityDomain } from './json/role';
+import { UserCompanyInventoryJson, UserInventoryEntityJson } from './json';
+import { EntityDomainType } from './json/entity-domain';
 
 /**
  * Inventory entity properties.
@@ -22,9 +22,9 @@ export class InventoryEntity {
 
   /**
    * Gets the type of the entity.
-   * @returns {EntityDomain} entity type
+   * @returns {EntityDomainType} entity type
    */
-  get type(): EntityDomain {
+  get type(): EntityDomainType {
     return this._json.type;
   }
 
@@ -46,20 +46,21 @@ export class InventoryEntity {
 
   /**
    * Gets the type of the parent entity.
-   * @returns {EntityDomain} the parent entity type
+   * @returns {EntityDomainType} the parent entity type
    */
-  get parentType(): EntityDomain | null {
+  get parentType(): EntityDomainType | null {
     return this._json.parent_type;
   }
-
 }
 
 export class CompanyInventory {
 
-  private _uuidMap: {[uuid: string]: InventoryEntity} = {};
-  private _childrenMap: {[uuid: string]: {[type: string]: Array<InventoryEntity>}} = {};
+  private _uuidMap: { [uuid: string]: InventoryEntity } = {};
+  private _childrenMap: { [uuid: string]: { [type: string]: Array<InventoryEntity> } } = {};
+  private _companyId: string;
 
   constructor(private _inventory: UserCompanyInventoryJson) {
+    this._companyId = _inventory.company_id;
     for (const type in this._inventory.entities) {
       for (const entity of this._inventory.entities[type]) {
         const inventoryEntity = new InventoryEntity(entity);
@@ -79,31 +80,50 @@ export class CompanyInventory {
     }
   }
 
+  get companyId(): string {
+    return this._companyId;
+  }
+
   /**
    * Get an inventory entity by UUID.
    * @param uuid {string} UUID of the entity
-   * @returns {undefined|InventoryEntity}
+   * @returns {InventoryEntity|undefined}
    */
   getEntityByUuid(uuid: string): InventoryEntity | undefined {
     return this._uuidMap[uuid];
   }
 
   /**
-   * Get an array of inventory entities of the specified type.
-   * @param type {EntityType} the type to retrieve
-   * @returns {undefined|InventoryEntity}
+   * Get all entities mapped by their types.
+   * @returns {{[p: string]: Array<InventoryEntity>}}
    */
-  getEntitiesByType(type: EntityDomain): Array<InventoryEntity> | undefined {
+  getAllEntitiesByType(): { [type: string]: Array<InventoryEntity> } {
+    const entities: { [type: string]: Array<InventoryEntity> } = {};
+    for (const type in this._inventory.entities) {
+      entities[type] = [];
+      for (const entity of this._inventory.entities[type]) {
+        entities[type].push(new InventoryEntity(entity));
+      }
+    }
+    return entities;
+  }
+
+  /**
+   * Get an array of inventory entities of the specified type.
+   * @param {EntityDomainType} type
+   * @returns {Array<InventoryEntity> | undefined}
+   */
+  getEntitiesByType(type: EntityDomainType): Array<InventoryEntity> | undefined {
     const result = this._inventory.entities[type];
     return result ? result.map((it) => new InventoryEntity(it)) : undefined;
   }
 
   /**
    * Gets the map of children belonging to an entity.
-   * @param {string} uuid the uuid of the entity
-   * @returns {[type: string]: Array<InventoryEntity>} the map of children by type
+   * @param {string} uuid
+   * @returns {{[type: string]: Array<InventoryEntity>} | undefined}
    */
-  getChildrenForEntity(uuid: string): {[type: string]: Array<InventoryEntity>} | undefined {
+  getChildrenForEntity(uuid: string): { [type: string]: Array<InventoryEntity> } | undefined {
     return this._childrenMap[uuid];
   }
 
