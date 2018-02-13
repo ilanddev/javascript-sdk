@@ -1,4 +1,4 @@
-import { AuthProvider } from './auth/auth-provider';
+import { AuthProvider } from './auth/';
 import { Http } from './http';
 import { BasicConfiguration } from './basic-configuration';
 

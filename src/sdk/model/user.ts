@@ -1,9 +1,7 @@
-import { UserJson, UserType } from './json/user';
 import { Iland } from '../iland';
-import { UserInventoryJson } from './json/user-inventory';
 import { CompanyInventory } from './company-inventory';
 import { Company } from './company';
-import { CompanyJson } from './json/company';
+import { CompanyJson, UserInventoryJson, UserJson, UserType } from './json';
 
 /**
  * User.
@@ -200,6 +198,7 @@ export class User {
    * Gets the user's inventory within the specified company..
    * @param {string} companyId the ID of the company to retrieve inventory for
    * @returns {Promise<CompanyInventory>}  entity inventory
+   * @throws Error
    */
   async getInventoryInCompany(companyId: string): Promise<CompanyInventory> {
     return Iland.getHttp().get(`/user/${this.username}/inventory`, {
@@ -208,10 +207,9 @@ export class User {
       }
     }).then((response) => {
       const userInventory = response.data as UserInventoryJson;
-      if (!userInventory.inventory || userInventory.inventory.length === 0) {
-        throw new Error(`No inventory found for company with id=${companyId}.`);
-      }
       return new CompanyInventory(userInventory.inventory[0]);
+    }, () => {
+      throw new Error(`No inventory found for company with id=${companyId}.`);
     });
   }
 

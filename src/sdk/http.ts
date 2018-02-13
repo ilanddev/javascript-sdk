@@ -21,32 +21,46 @@ export class Http {
     this._ilandAxios = axios.create({
       baseURL: baseUrl,
       headers: {
+        'x-enable-json-security-chars': 'true',
         'Accept': defaultMime,
         'Content-Type': defaultMime
       }
     });
+
     this._ilandAxios.interceptors.request.use(async(config: AxiosRequestConfig) => {
       return Iland.getAuthProvider().getToken().then((token) => {
+        if (config.headers['x-enable-json-security-chars'] === false ||
+          config.headers['x-enable-json-security-chars'] === 'false') {
+          delete config.headers['x-enable-json-security-chars'];
+        }
         config.headers['Authorization'] = 'Bearer ' + token;
         return config;
       });
     });
+
     this._ilandAxios.interceptors.response.use(async(response: AxiosResponse) => {
-      const str = response.data as string;
-      if (str.indexOf(")]}'\n") === 0) {
-        response.data = JSON.parse(str.substring(5));
+      if (response.data instanceof Object || response.data instanceof Array) {
+        return response;
+      } else {
+        const str = response.data as string;
+        if (str.indexOf(')]}\'\n') === 0) {
+          response.data = JSON.parse(str.substring(5));
+        }
+        return response;
       }
-      return response;
     }, async(reason: AxiosError) => {
-      if (reason.response) {
-        let str = reason.response.data as string;
-        if (str.indexOf(")]}'\n") === 0) {
+      let error: ApiErrorJson;
+      const response = reason.response!!;
+      if (response.data instanceof Object || response.data instanceof Array) {
+        error = response.data as ApiErrorJson;
+      } else {
+        let str = response.data as string;
+        if (str.indexOf(')]}\'\n') === 0) {
           str = str.substring(5);
         }
-        const error = JSON.parse(str) as ApiErrorJson;
-        throw new ApiError(error);
+        error = JSON.parse(str) as ApiErrorJson;
       }
-      throw new Error(reason.message);
+      throw new ApiError(error);
     });
   }
 
@@ -62,7 +76,7 @@ export class Http {
     }
     const versionStr = (version ? version : DEFAULT_API_VERSION).toFixed(1);
     const parts = mime.split('/');
-    if (parts.length === 2) {
+    if (parts.length === 2 && parts[1].includes('json')) {
       const prefix = parts[0];
       const suffix = parts[1];
       return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${versionStr}+${suffix}`;

@@ -1,5 +1,5 @@
 import { KeycloakInstance } from 'keycloak-js';
-import { AuthProvider, DEFAULT_AUTH_URL } from './auth-provider';
+import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;
 
@@ -13,7 +13,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       resource: config.clientId,
       url: config.url ? config.url : DEFAULT_AUTH_URL,
       'public-client': true,
-      realm: 'iland-core'
+      realm: DEFAULT_REALM
     };
     this._keycloak = Keycloak(kcConfig);
   }
