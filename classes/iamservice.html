@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>VmRestoreBackupJson | iland-sdk</title>
+	<title>IamService | iland-sdk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -909,11 +909,23 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class="current tsd-kind-interface">
-			<a href="vmrestorebackupjson.html" class="tsd-kind-icon">Vm<wbr>Restore<wbr>Backup<wbr>Json</a>
+		<li class="current tsd-kind-class">
+			<a href="iamservice.html" class="tsd-kind-icon">Iam<wbr>Service</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="vmrestorebackupjson.html#time" class="tsd-kind-icon">time</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="iamservice.html#deriveeffectivepolicyfromancestor" class="tsd-kind-icon">derive<wbr>Effective<wbr>Policy<wbr>From<wbr>Ancestor</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="iamservice.html#findfirstrelevantpolicy" class="tsd-kind-icon">find<wbr>First<wbr>Relevant<wbr>Policy</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="iamservice.html#geteffectivepolicy" class="tsd-kind-icon">get<wbr>Effective<wbr>Policy</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="iamservice.html#ispubliclyaccessible" class="tsd-kind-icon">is<wbr>Publicly<wbr>Accessible</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="iamservice.html#isuserpermitted" class="tsd-kind-icon">is<wbr>User<wbr>Permitted</a>
 				</li>
 			</ul>
 		</li>
@@ -924,7 +936,7 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Specification for VM backup restore request.</p>
+					<p>IamService</p>
 				</div>
 			</div>
 		</section>
@@ -932,7 +944,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">VmRestoreBackupJson</span>
+					<span class="target">IamService</span>
 				</li>
 			</ul>
 		</section>
@@ -941,25 +953,195 @@ img { max-width: 100%; }
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Properties</h3>
+						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="vmrestorebackupjson.html#time" class="tsd-kind-icon">time</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="iamservice.html#deriveeffectivepolicyfromancestor" class="tsd-kind-icon">derive<wbr>Effective<wbr>Policy<wbr>From<wbr>Ancestor</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="iamservice.html#findfirstrelevantpolicy" class="tsd-kind-icon">find<wbr>First<wbr>Relevant<wbr>Policy</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="iamservice.html#geteffectivepolicy" class="tsd-kind-icon">get<wbr>Effective<wbr>Policy</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="iamservice.html#ispubliclyaccessible" class="tsd-kind-icon">is<wbr>Publicly<wbr>Accessible</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="iamservice.html#isuserpermitted" class="tsd-kind-icon">is<wbr>User<wbr>Permitted</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="time" class="tsd-anchor"></a>
-				<h3>time</h3>
-				<div class="tsd-signature tsd-kind-icon">time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/vm.ts#L780">sdk/model/vm.ts:780</a></li>
-					</ul>
-				</aside>
+			<h2>Methods</h2>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="deriveeffectivepolicyfromancestor" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> derive<wbr>Effective<wbr>Policy<wbr>From<wbr>Ancestor</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">derive<wbr>Effective<wbr>Policy<wbr>From<wbr>Ancestor<span class="tsd-signature-symbol">(</span>companyInventory<span class="tsd-signature-symbol">: </span><a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a>, ancestorPolicy<span class="tsd-signature-symbol">: </span><a href="policy.html" class="tsd-signature-type">Policy</a>, target<span class="tsd-signature-symbol">: </span><a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="policy.html" class="tsd-signature-type">Policy</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/service/iam-service.ts#L95">sdk/service/iam-service.ts:95</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Derive effective policy from an ancestor.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>companyInventory: <a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a></h5>
+							</li>
+							<li>
+								<h5>ancestorPolicy: <a href="policy.html" class="tsd-signature-type">Policy</a></h5>
+							</li>
+							<li>
+								<h5>target: <a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="policy.html" class="tsd-signature-type">Policy</a>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">null</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="findfirstrelevantpolicy" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> find<wbr>First<wbr>Relevant<wbr>Policy</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">find<wbr>First<wbr>Relevant<wbr>Policy<span class="tsd-signature-symbol">(</span>companyInventory<span class="tsd-signature-symbol">: </span><a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a>, entity<span class="tsd-signature-symbol">: </span><a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, role<span class="tsd-signature-symbol">: </span><a href="role.html" class="tsd-signature-type">Role</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="policy.html" class="tsd-signature-type">Policy</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/service/iam-service.ts#L72">sdk/service/iam-service.ts:72</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Find the relevant policy depending on company inventory and an entity.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>companyInventory: <a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a></h5>
+							</li>
+							<li>
+								<h5>entity: <a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h5>
+							</li>
+							<li>
+								<h5>role: <a href="role.html" class="tsd-signature-type">Role</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="policy.html" class="tsd-signature-type">Policy</a>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">null</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="geteffectivepolicy" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Effective<wbr>Policy</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Effective<wbr>Policy<span class="tsd-signature-symbol">(</span>companyInventory<span class="tsd-signature-symbol">: </span><a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a>, entity<span class="tsd-signature-symbol">: </span><a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a>, role<span class="tsd-signature-symbol">: </span><a href="role.html" class="tsd-signature-type">Role</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="policy.html" class="tsd-signature-type">Policy</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/service/iam-service.ts#L16">sdk/service/iam-service.ts:16</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Get the effective policy.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>companyInventory: <a href="companyinventory.html" class="tsd-signature-type">CompanyInventory</a></h5>
+							</li>
+							<li>
+								<h5>entity: <a href="inventoryentity.html" class="tsd-signature-type">InventoryEntity</a></h5>
+							</li>
+							<li>
+								<h5>role: <a href="role.html" class="tsd-signature-type">Role</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="policy.html" class="tsd-signature-type">Policy</a>
+							<span class="tsd-signature-symbol"> | </span>
+							<span class="tsd-signature-type">null</span>
+						</h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="ispubliclyaccessible" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>Publicly<wbr>Accessible</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>Publicly<wbr>Accessible<span class="tsd-signature-symbol">(</span>entityUuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, permission<span class="tsd-signature-symbol">: </span><a href="../globals.html#permissiontype" class="tsd-signature-type">PermissionType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/service/iam-service.ts#L139">sdk/service/iam-service.ts:139</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Check whether or not an entity is accessible publicly.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>entityUuid: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>permission: <a href="../globals.html#permissiontype" class="tsd-signature-type">PermissionType</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="isuserpermitted" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> is<wbr>User<wbr>Permitted</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">is<wbr>User<wbr>Permitted<span class="tsd-signature-symbol">(</span>user<span class="tsd-signature-symbol">: </span><a href="userwithsecurity.html" class="tsd-signature-type">UserWithSecurity</a>, entityUuid<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, permissionType<span class="tsd-signature-symbol">: </span><a href="../globals.html#permissiontype" class="tsd-signature-type">PermissionType</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/service/iam-service.ts#L36">sdk/service/iam-service.ts:36</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Check whether or not a user is allowed to perform an action or not.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>user: <a href="userwithsecurity.html" class="tsd-signature-type">UserWithSecurity</a></h5>
+							</li>
+							<li>
+								<h5>entityUuid: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>permissionType: <a href="../globals.html#permissiontype" class="tsd-signature-type">PermissionType</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
 			</section>
 		</section>
 		<footer class="with-border-bottom">

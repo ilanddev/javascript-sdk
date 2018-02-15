@@ -915,17 +915,17 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-constructor tsd-parent-kind-class">
 					<a href="snapshot.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="snapshot.html#getcreationdate" class="tsd-kind-icon">get<wbr>Creation<wbr>Date</a>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="snapshot.html#creationdate" class="tsd-kind-icon">creation<wbr>Date</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="snapshot.html#getjson" class="tsd-kind-icon">get<wbr>Json</a>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="snapshot.html#json" class="tsd-kind-icon">json</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="snapshot.html#getsize" class="tsd-kind-icon">get<wbr>Size</a>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="snapshot.html#poweredon" class="tsd-kind-icon">powered<wbr>On</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="snapshot.html#ispoweredon" class="tsd-kind-icon">is<wbr>Powered<wbr>On</a>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="snapshot.html#size" class="tsd-kind-icon">size</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="snapshot.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
@@ -962,12 +962,17 @@ img { max-width: 100%; }
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
+						<h3>Accessors</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="snapshot.html#creationdate" class="tsd-kind-icon">creation<wbr>Date</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="snapshot.html#json" class="tsd-kind-icon">json</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="snapshot.html#poweredon" class="tsd-kind-icon">powered<wbr>On</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="snapshot.html#size" class="tsd-kind-icon">size</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getcreationdate" class="tsd-kind-icon">get<wbr>Creation<wbr>Date</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getjson" class="tsd-kind-icon">get<wbr>Json</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#getsize" class="tsd-kind-icon">get<wbr>Size</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#ispoweredon" class="tsd-kind-icon">is<wbr>Powered<wbr>On</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class"><a href="snapshot.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 						</ul>
 					</section>
@@ -986,7 +991,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L6">sdk/model/snapshot.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L6">sdk/model/snapshot.ts:6</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1001,99 +1006,70 @@ img { max-width: 100%; }
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Accessors</h2>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="creationdate" class="tsd-anchor"></a>
+				<h3>creation<wbr>Date</h3>
+				<div class="tsd-signature tsd-kind-icon">creation<wbr>Date<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L15">sdk/model/snapshot.ts:15</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Gets the date that the snapshot was created.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="json" class="tsd-anchor"></a>
+				<h3>json</h3>
+				<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L47">sdk/model/snapshot.ts:47</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Gets the raw JSON object from the API.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="poweredon" class="tsd-anchor"></a>
+				<h3>powered<wbr>On</h3>
+				<div class="tsd-signature tsd-kind-icon">powered<wbr>On<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L31">sdk/model/snapshot.ts:31</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Indicates whether the snapshot is powered on.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="size" class="tsd-anchor"></a>
+				<h3>size</h3>
+				<div class="tsd-signature tsd-kind-icon">size<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L23">sdk/model/snapshot.ts:23</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Gets the size of the snapshot.</p>
+					</div>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getcreationdate" class="tsd-anchor"></a>
-				<h3>get<wbr>Creation<wbr>Date</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Creation<wbr>Date<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Date</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L15">sdk/model/snapshot.ts:15</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets the date that the snapshot was created.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Date</span></h4>
-						<p>the creation date</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getjson" class="tsd-anchor"></a>
-				<h3>get<wbr>Json</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Json<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L47">sdk/model/snapshot.ts:47</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets the raw JSON object from the API.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <a href="../interfaces/snapshotjson.html" class="tsd-signature-type">SnapshotJson</a></h4>
-						<p>the JSON representation</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getsize" class="tsd-anchor"></a>
-				<h3>get<wbr>Size</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L23">sdk/model/snapshot.ts:23</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets the size of the snapshot.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						<p>size</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="ispoweredon" class="tsd-anchor"></a>
-				<h3>is<wbr>Powered<wbr>On</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">is<wbr>Powered<wbr>On<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L31">sdk/model/snapshot.ts:31</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Indicates whether the snapshot is powered on.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						<p>value</p>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 				<a name="tostring" class="tsd-anchor"></a>
 				<h3>to<wbr>String</h3>
@@ -1104,7 +1080,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e40d7d4/src/sdk/model/snapshot.ts#L39">sdk/model/snapshot.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/6c60185/src/sdk/model/snapshot.ts#L39">sdk/model/snapshot.ts:39</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
