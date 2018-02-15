@@ -1,7 +1,7 @@
 /**
  * Enumeration of iland Permission keys.
  */
-export type Permission =
+export type PermissionType =
   // ILAND_BACKUP TENANT level permissions
   'VIEW_ILAND_BACKUP_TENANT' |
   'MANAGE_ILAND_BACKUP_TENANT_STORAGE' |

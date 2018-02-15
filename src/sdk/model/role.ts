@@ -69,6 +69,20 @@ export class Role {
   }
 
   /**
+   * Return the policy for the specified uuid.
+   * @param {string} entityUuid
+   * @returns {Policy | null}
+   */
+  getPolicy(entityUuid: string): Policy | null {
+    for (const p of this._policies) {
+      if (p.entityUuid === entityUuid) {
+        return p;
+      }
+    }
+    return null;
+  }
+
+  /**
    * Gets the raw JSON object from the API.
    * @returns {RoleJson} the JSON representation
    */

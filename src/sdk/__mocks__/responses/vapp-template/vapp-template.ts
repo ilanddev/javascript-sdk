@@ -24,9 +24,43 @@ export const MockVappTemplateJson: VappTemplateJson = {
   updated_date: 1513794430024
 };
 
+export const MockPublicVappTemplateJson: VappTemplateJson = {
+  'description': 'Size: 64MB RAM/SCSI HD (LSI Logic) 1GB (Thinly Provisioned)\nRoot Account Password: root' +
+  '\nSSH account: VMware1!\nSSH password: VMware1!',
+  'vcloud_href': 'https://dev-vcd02.iland.dev/api/vAppTemplate/vappTemplate-b1ffb935-f32c-4886-a7a6-2e4d3d7b1de8',
+  'status': 8,
+  'size': 1,
+  'customizable': true,
+  'customization_required': false,
+  'gold_master': false,
+  'storage_profile_uuid': 'dev-vcd01.iland.dev:urn:vcloud:vdcstorageProfile:43d95d73-3e75-497d-a621-f5297f9afe21',
+  'public': true,
+  'vdc_uuid': 'dev-vcd01.iland.dev:urn:vcloud:vdc:bb581047-9cfa-4ec1-a291-b3243736f52a',
+  'location_id': 'dev-vcd01.iland.dev',
+  'org_uuid': 'dev-vcd01.iland.dev:urn:vcloud:org:1df9a1c6-9c77-44b5-9758-0e7920d8ca05',
+  'catalog_uuid': 'dev-vcd01.iland.dev:urn:vcloud:catalog:0c73d242-101d-43b3-a856-7eb4b4688534',
+  'created_date': 1511906970427,
+  'is_expired': false,
+  'uuid': 'dev-vcd01.iland.dev:urn:vcloud:vapptemplate:b1ffb935-f32c-4886-a7a6-2e4d3d7b1de8',
+  'name': 'Microcore Linux',
+  'deleted': false,
+  'deleted_date': null,
+  'updated_date': 1511906999851
+};
+
 export const MockVappTemplateResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>((resolve) => {
   resolve({
     data: MockVappTemplateJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockPublicVappTemplateResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>((resolve) => {
+  resolve({
+    data: MockPublicVappTemplateJson,
     status: 200,
     statusText: '',
     headers: {},
