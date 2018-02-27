@@ -94,18 +94,24 @@ export class UserWithSecurity extends User {
    * @returns {Promise<UserWithSecurity>}
    */
   static async setup(userWithSecurity: UserWithSecurity): Promise<UserWithSecurity> {
-    const promises: [Promise<Array<CompanyInventory>>, Promise<Array<Role>>] =
-      [userWithSecurity.getInventory(), userWithSecurity.getRoles()];
-    return Promise.all(promises).then(async(results: any[]) => {
-      userWithSecurity.inventory = results[0] as Array<CompanyInventory>;
-      const roles = results[1] as Array<Role>;
-      const rolesCompanyMap: Map<string, Role> = new Map<string, Role>();
-      for (const role of roles) {
-        rolesCompanyMap.set(role.companyId, role);
-      }
-      userWithSecurity.rolesCompanyMap = rolesCompanyMap;
-      return userWithSecurity;
-    });
+    if (userWithSecurity.userType === 'CUSTOMER') {
+      const promises: [Promise<Array<CompanyInventory>>, Promise<Array<Role>>] =
+        [userWithSecurity.getInventory(), userWithSecurity.getRoles()];
+      return Promise.all(promises).then(async(results: any[]) => {
+        userWithSecurity.inventory = results[0] as Array<CompanyInventory>;
+        const roles = results[1] as Array<Role>;
+        const rolesCompanyMap: Map<string, Role> = new Map<string, Role>();
+        for (const role of roles) {
+          rolesCompanyMap.set(role.companyId, role);
+        }
+        userWithSecurity.rolesCompanyMap = rolesCompanyMap;
+        return userWithSecurity;
+      });
+    } else {
+      return new Promise<UserWithSecurity>((resolve) => {
+        return resolve(userWithSecurity);
+      });
+    }
   }
 
   /**
