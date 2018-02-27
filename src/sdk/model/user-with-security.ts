@@ -123,7 +123,7 @@ export class UserWithSecurity extends User {
     return this.getCompanies().then(async(companies) => {
       const roles: Array<Promise<Role>> = [];
       for (const company of companies) {
-        roles.push(self.getRoleFor(company.uuid));
+        roles.push(self.getRole(company.uuid));
       }
       return Promise.all(roles);
     });

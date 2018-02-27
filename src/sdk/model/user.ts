@@ -230,7 +230,7 @@ export class User {
    * @param {string} companyUuid
    * @returns {Promise<Role>}
    */
-  async getRoleFor(companyUuid: string): Promise<Role> {
+  async getRole(companyUuid: string): Promise<Role> {
     return Iland.getHttp().get(`/user/${this.username}/roles/${companyUuid}`).then((response) => {
       const role = response.data as RoleJson;
       return new Role(role);
