@@ -66,7 +66,7 @@ test('Properly get roles for UserWithSecurity', async() => {
 
 test('Properly get role from company uuid for UserWithSecurity', async() => {
   const userWithSecurity = new UserWithSecurity(MockUserJson);
-  return userWithSecurity.getRoleFor('000003').then((role) => {
+  return userWithSecurity.getRole('000003').then((role) => {
     expect(role).toBeInstanceOf(Role);
     expect(role.policies.length).toBeGreaterThan(0);
   });

@@ -1,7 +1,6 @@
 import { IlandDirectGrantAuthProvider } from '../../auth';
 import { TestConfiguration } from '../../../../__tests__/configuration';
 import { Iland } from '../../iland';
-import { CompanyInventory } from '../company-inventory';
 import { UserWithSecurity } from '../user-with-security';
 
 let auth;
