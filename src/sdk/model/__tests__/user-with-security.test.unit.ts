@@ -1,6 +1,5 @@
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
-import { User } from '../user';
 import { UserWithSecurity } from '../user-with-security';
 import { MockUserCustomerJson, MockUserJson } from '../../__mocks__/responses/user/user';
 import { Role } from '../role';
