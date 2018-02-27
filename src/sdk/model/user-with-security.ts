@@ -1,7 +1,7 @@
 import { User } from './user';
 import { Role } from './role';
 import { CompanyInventory } from './company-inventory';
-import { PermissionType, RoleJson, UserJson } from './json';
+import { PermissionType, UserJson } from './json';
 import { Iland } from '../iland';
 import { IamService } from '../service';
 
@@ -112,18 +112,6 @@ export class UserWithSecurity extends User {
         return resolve(userWithSecurity);
       });
     }
-  }
-
-  /**
-   * Gets the user's role for a company
-   * @param {string} companyUuid
-   * @returns {Promise<Role>}
-   */
-  async getRoleFor(companyUuid: string): Promise<Role> {
-    return Iland.getHttp().get(`/user/${this.username}/roles/${companyUuid}`).then((response) => {
-      const role = response.data as RoleJson;
-      return new Role(role);
-    });
   }
 
   /**
