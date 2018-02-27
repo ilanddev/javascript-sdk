@@ -2,7 +2,7 @@ import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provi
 import { Iland } from '../../iland';
 import { User } from '../user';
 import { UserWithSecurity } from '../user-with-security';
-import { MockUserJson } from '../../__mocks__/responses/user/user';
+import { MockUserCustomerJson, MockUserJson } from '../../__mocks__/responses/user/user';
 import { Role } from '../role';
 
 jest.mock('../../http');
@@ -44,11 +44,18 @@ test('Can properly instantiate a UserWithSecurity class', () => {
 });
 
 test('Properly setup a user with security class', async() => {
-  const userWithSecurity = new UserWithSecurity(MockUserJson);
-  return UserWithSecurity.setup(userWithSecurity).then((user) => {
-    expect(user.rolesCompanyMap.size).toBeGreaterThan(0);
-    expect(user.inventory.length).toBeGreaterThan(0);
+  const adminUser = new UserWithSecurity(MockUserJson);
+  const customerUser = new UserWithSecurity(MockUserCustomerJson);
+  const adminUserPromise = UserWithSecurity.setup(adminUser).then((userWithSecurity) => {
+    expect(userWithSecurity.rolesCompanyMap.size).toEqual(0);
+    expect(userWithSecurity.inventory.length).toEqual(0);
   });
+  const customerUserPromise = UserWithSecurity.setup(customerUser).then((userWithSecurity) => {
+    expect(userWithSecurity.rolesCompanyMap.size).toBeGreaterThan(0);
+    expect(userWithSecurity.inventory.length).toBeGreaterThan(0);
+  });
+  const promises = [adminUserPromise, customerUserPromise];
+  return Promise.all(promises);
 });
 
 test('Properly get roles for UserWithSecurity', async() => {
@@ -63,13 +70,5 @@ test('Properly get role from company uuid for UserWithSecurity', async() => {
   return userWithSecurity.getRoleFor('000003').then((role) => {
     expect(role).toBeInstanceOf(Role);
     expect(role.policies.length).toBeGreaterThan(0);
-  });
-});
-
-test('Can get current user with security', async() => {
-  const user = new User(MockUserJson);
-  return UserWithSecurity.getUserWithSecurity(user).then((userWithSecurity) => {
-    expect(userWithSecurity.rolesCompanyMap.size).toBeGreaterThan(0);
-    expect(userWithSecurity.inventory.length).toBeGreaterThan(0);
   });
 });

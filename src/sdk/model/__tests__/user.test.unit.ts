@@ -1,7 +1,7 @@
 import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Iland } from '../../iland';
 import { User } from '../user';
-import { MockUserCompaniesJson, MockUserJson } from '../../__mocks__/responses/user/user';
+import { MockUserCompaniesJson, MockUserCustomerJson, MockUserJson } from '../../__mocks__/responses/user/user';
 import { UserWithSecurity } from '../user-with-security';
 
 jest.mock('../../http');
@@ -54,9 +54,16 @@ test('Can get current user companies', async() => {
 });
 
 test('Can get current user with security', async() => {
-  const user = new User(MockUserJson);
-  return UserWithSecurity.getUserWithSecurity(user).then((userWithSecurity) => {
+  const adminUser = new User(MockUserJson);
+  const customerUser = new User(MockUserCustomerJson);
+  const adminUserPromise = UserWithSecurity.getUserWithSecurity(adminUser).then((userWithSecurity) => {
+    expect(userWithSecurity.rolesCompanyMap.size).toEqual(0);
+    expect(userWithSecurity.inventory.length).toEqual(0);
+  });
+  const customerUserPromise = UserWithSecurity.getUserWithSecurity(customerUser).then((userWithSecurity) => {
     expect(userWithSecurity.rolesCompanyMap.size).toBeGreaterThan(0);
     expect(userWithSecurity.inventory.length).toBeGreaterThan(0);
   });
+  const promises = [adminUserPromise, customerUserPromise];
+  return Promise.all(promises);
 });
