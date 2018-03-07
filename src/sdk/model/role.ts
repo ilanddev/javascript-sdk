@@ -1,10 +1,10 @@
-import { RoleJson, RoleType } from './json/role';
+import { RoleInterface, RoleJson, RoleType } from './json/';
 import { Policy } from './policy';
 
 /**
  * Role.
  */
-export class Role {
+export class Role implements RoleInterface {
 
   private _policies: Array<Policy>;
 

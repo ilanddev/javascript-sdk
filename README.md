@@ -10,9 +10,9 @@ Full TypeDoc reference is available [here](https://ilanddev.github.io/javascript
 # Developers
 Required:
 
-[x] NodeJS >=6.2.2 & <9.0.0
+[x] NodeJS >=6.2.2
 
-Clone repo then execute:
+[Fork](https://github.com/ilanddev/javascript-sdk#fork-destination-box) the repo then execute:
 ``yarn install`` or ``npm install``
 
 ## Tests
@@ -30,3 +30,7 @@ bash_rc ou bash_profile file:
 To run tests:
 
 ``yarn test`` or ``npm run test``
+
+To build the project:
+
+``yarn build``

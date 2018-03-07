@@ -5,16 +5,17 @@ import { DomainPermissionsMap, Permission, PermissionsMap } from '../model';
  * PermissionService
  */
 export class PermissionService {
+
   private static instance: PermissionService;
 
   /**
    * Map of all permission listed by their PermissionType.
    */
-  public permissions: Map<PermissionType, Permission>;
+  permissions: Map<PermissionType, Permission>;
   /**
    * Map of all permissions listed by their EntityDomainType.
    */
-  public domainPermissions: Map<EntityDomainType, Array<Permission>>;
+  domainPermissions: Map<EntityDomainType, Array<Permission>>;
 
   private constructor() {
     this.permissions = PermissionsMap.getInstance().permissions;
@@ -30,6 +31,15 @@ export class PermissionService {
       PermissionService.instance = new PermissionService();
     }
     return PermissionService.instance;
+  }
+
+  /**
+   * Get the decorated permission for the specified permission type.
+   * @param {PermissionType} permission
+   * @returns {Permission | undefined}
+   */
+  static getPermission(permission: PermissionType): Permission | undefined {
+    return PermissionsMap.getInstance().permissions.get(permission);
   }
 
   /**
