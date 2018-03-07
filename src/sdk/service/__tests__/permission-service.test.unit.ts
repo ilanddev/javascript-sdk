@@ -1,7 +1,7 @@
 import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Iland } from '../../iland';
-import { PermissionService } from '../../service';
-import { Permission } from '../../model';
+import { PermissionService } from '../../service/permission-service';
+import { Permission } from '../../model/permission';
 import { PermissionType } from '../../model/json';
 
 jest.mock('../../http');

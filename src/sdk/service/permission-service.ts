@@ -1,5 +1,8 @@
-import { EntityDomainType, PermissionType } from '../model/json';
-import { DomainPermissionsMap, Permission, PermissionsMap } from '../model';
+import { PermissionType } from '../model/json/permission-type';
+import { Permission } from '../model/permission';
+import { EntityDomainType } from '../model/json/entity-domain';
+import { PermissionsMap } from '../model/permission-map';
+import { DomainPermissionsMap } from '../model/domain-permission-map';
 
 /**
  * PermissionService
@@ -30,6 +33,15 @@ export class PermissionService {
       PermissionService.instance = new PermissionService();
     }
     return PermissionService.instance;
+  }
+
+  /**
+   * Get the decorated permission for the specified permission type.
+   * @param {PermissionType} permission
+   * @returns {Permission | undefined}
+   */
+  static getPermission(permission: PermissionType): Permission | undefined {
+    return PermissionsMap.getInstance().permissions.get(permission);
   }
 
   /**

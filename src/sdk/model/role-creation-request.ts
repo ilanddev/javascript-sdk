@@ -38,6 +38,19 @@ export class RoleCreationRequest {
     return JSON.stringify(this.json, undefined, 2);
   }
 
+  /**
+   * Return the policy for the specified uuid.
+   * @param {string} entityUuid
+   * @returns {Policy | null}
+   */
+  getPolicy(entityUuid: string): Policy | null {
+    for (const p of this.policies) {
+      if (p.entityUuid === entityUuid) {
+        return p;
+      }
+    }
+    return null;
+  }
 }
 
 /**

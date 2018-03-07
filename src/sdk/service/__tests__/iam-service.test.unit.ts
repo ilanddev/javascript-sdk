@@ -1,10 +1,16 @@
-import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Iland } from '../../iland';
-import { PermissionService } from '../index';
+import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
+import { UserWithSecurity } from '../../model/user-with-security';
+import { InventoryEntity } from '../../model/company-inventory';
+import { Permission } from '../../model/permission';
+import { PermissionService } from '../permission-service';
+import { EntityDomainType } from '../../model/json/entity-domain';
+import { Role } from '../../model/role';
+import { Policy, PolicyBuilder } from '../../model/policy';
 import { IamService } from '../iam-service';
-import { InventoryEntity, Permission, Policy, Role, UserWithSecurity } from '../../model';
+import { PermissionType } from '../../model/json/permission-type';
 import { MockUserCustomerJson, MockUserJson } from '../../__mocks__/responses/user/user';
-import { EntityDomainType, PermissionType } from '../../model/json';
+import { RoleCreationRequestBuilder } from '../../model/role-creation-request';
 
 jest.mock('../../http');
 
@@ -181,5 +187,63 @@ test('Properly validate public entities', async() => {
         }
       }
     }
+  });
+});
+
+test('Properly validate role', async() => {
+  const user = new UserWithSecurity(MockUserCustomerJson);
+  const entityuuid: string = 'dev-vcd01.iland.dev:urn:vcloud:vm:92fdeb63-ecf6-4258-90fc-930bbc03b511';
+  return UserWithSecurity.setup(user).then((u) => {
+    const creationRequestBuilder = new RoleCreationRequestBuilder('000003', 'testRole', 'Test description');
+    let errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('A role must have at least one policy.'));
+    //////////////////
+    const customPolicyBuilder = new PolicyBuilder(
+      entityuuid,
+      'ILAND_CLOUD_VM', 'CUSTOM');
+    customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
+    customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM_BILLING');
+    customPolicyBuilder.addPermission('COPY_MOVE_RESTORE_ILAND_CLOUD_VM');
+    customPolicyBuilder.addPermission('DELETE_ILAND_CLOUD_VM');
+    creationRequestBuilder.setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors.length).toEqual(0);
+    //////////////////
+    customPolicyBuilder.setEntityUuid('fake-uuid');
+    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('Entity not found in this company.'));
+    //////////////////
+    customPolicyBuilder.setEntityUuid(entityuuid);
+    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VAPP');
+    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('The entity is assigned in policy but not for the good domain.'));
+    //////////////////
+    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VM');
+    customPolicyBuilder.setPermissions([]);
+    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('Custom policies must contain at least one permission.'));
+    //////////////////
+    customPolicyBuilder.setPermissions(['VIEW_ILAND_CLOUD_VM_BILLING', 'COPY_MOVE_RESTORE_ILAND_CLOUD_VM']);
+    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('Custom policy doesn\'t have the required permission.'));
+    //////////////////
+    try {
+      customPolicyBuilder.setPermissions(['VIEW_ILAND_CLOUD_VM', 'MANAGE_COMPANY_IAM']);
+    } catch (err) {
+      expect(err).toEqual(new Error('Attempted to add permission=MANAGE_COMPANY_IAM in domain=COMPANY to ' +
+        'policy in domain=ILAND_CLOUD_VM.'));
+    }
+    //////////////////
+    customPolicyBuilder.setEntityUuid('000003')
+      .setEntityDomainType('COMPANY')
+      .setPermissions(['VIEW_COMPANY', 'MANAGE_COMPANY_SUPPORT_TICKETS']);
+    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
+    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
+    expect(errors[0]).toEqual(new Error('Policy must contain permission=VIEW_COMPANY_SUPPORT_TICKETS' +
+      ' since it has permission=MANAGE_COMPANY_SUPPORT_TICKETS.'));
   });
 });

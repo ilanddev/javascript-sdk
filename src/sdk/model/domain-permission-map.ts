@@ -1,5 +1,7 @@
-import { Permission, PermissionsMap } from './index';
-import { EntityDomainType, PermissionType } from './json';
+import { EntityDomainType } from './json/entity-domain';
+import { Permission } from './permission';
+import { PermissionType } from './json/permission-type';
+import { PermissionsMap } from './permission-map';
 
 /**
  * DomainPermissionsMap

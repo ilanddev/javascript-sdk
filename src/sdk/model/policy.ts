@@ -1,4 +1,6 @@
-import { PolicyJson, PolicyType, EntityDomainType, PermissionType } from './json';
+import { EntityDomainType, PermissionType, PolicyJson, PolicyType } from './json';
+import { PermissionService } from '../service/permission-service';
+import { Permission } from './permission';
 
 /**
  * Policy.
@@ -56,6 +58,15 @@ export class Policy {
     return Object.assign({}, this._json);
   }
 
+  /**
+   * Indicate whether the policy has the specified permission.
+   * @param {PermissionType} permissionType
+   * @returns {boolean}
+   */
+  hasPermission(permissionType: PermissionType): boolean {
+    return this.permissions.indexOf(permissionType) > -1;
+  }
+
 }
 
 /**
@@ -75,13 +86,76 @@ export class PolicyBuilder {
   }
 
   /**
+   * Set entity uuid.
+   * @param {string} uuid
+   * @returns {PolicyBuilder}
+   */
+  setEntityUuid(uuid: string): PolicyBuilder {
+    this._entityUuid = uuid;
+    return this;
+  }
+
+  /**
+   * Set entity domain type.
+   * @param {EntityDomainType} entityDomainType
+   * @returns {PolicyBuilder}
+   */
+  setEntityDomainType(entityDomainType: EntityDomainType): PolicyBuilder {
+    this._entityDomain = entityDomainType;
+    return this;
+  }
+
+  /**
+   * Set policy type.
+   * @param {PolicyType} type
+   * @returns {PolicyBuilder}
+   */
+  setPolicyType(type: PolicyType): PolicyBuilder {
+    this._type = type;
+    return this;
+  }
+
+  /**
+   * Set an array of permissions.
+   * @param {Array<PermissionType>} array
+   * @throws Error
+   */
+  setPermissions(array: Array<PermissionType>): PolicyBuilder {
+    this._permissions = [];
+    if (array.length > 0) {
+      for (const permission of array) {
+        this.addPermission(permission);
+      }
+    }
+    return this;
+  }
+
+  /**
    * Adds a permission.
    * @param {PermissionType} permission the permission to add
    * @returns {PolicyBuilder} the builder
+   * @throws Error
    */
   addPermission(permission: PermissionType): PolicyBuilder {
-    if (!this._permissions.some((it) => it === permission)) {
-      this._permissions.push(permission);
+    const perm: Permission | undefined = PermissionService.getPermission(permission);
+    if (perm) {
+      const domain = perm.domain;
+      if (domain !== this._entityDomain) {
+        throw new Error('Attempted to add permission=' + permission + ' in domain=' + domain +
+          ' to policy in domain=' + this._entityDomain + '.');
+      }
+      if (this._type !== 'CUSTOM') {
+        throw new Error('Attempted to add permission to policy of type=' + this._type +
+          '. Permissions may only be explicitly added to policies with type=CUSTOM');
+      }
+      if (perm && !perm.availableToCustomPolicy) {
+        throw new Error('Permission=' + permission + ' cannot be assigned to a custom policy.');
+      }
+      if (!this._permissions.some((it) => it === permission)) {
+        this._permissions.push(permission);
+      }
+    } else {
+      throw new Error('Permission=' + permission + ' doesn\'t exist.');
     }
     return this;
   }
