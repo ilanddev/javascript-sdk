@@ -1,4 +1,4 @@
-import { RoleJson, RoleType } from './json/role';
+import { RoleJson, RoleType } from './json/';
 import { Policy } from './policy';
 
 /**
