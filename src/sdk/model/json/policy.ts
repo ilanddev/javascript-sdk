@@ -1,5 +1,4 @@
-import { EntityDomainType } from './entity-domain';
-import { PermissionType } from './permission-type';
+import { PermissionType, EntityDomainType } from './';
 
 /**
  * Interface for Policy JSON properties.

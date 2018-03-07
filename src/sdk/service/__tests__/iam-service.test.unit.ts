@@ -2,15 +2,7 @@ import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Iland } from '../../iland';
 import { PermissionService } from '../index';
 import { IamService } from '../iam-service';
-import {
-  InventoryEntity,
-  Permission,
-  Policy,
-  PolicyBuilder,
-  Role,
-  RoleCreationRequestBuilder,
-  UserWithSecurity
-} from '../../model';
+import { InventoryEntity, Permission, Policy, Role, UserWithSecurity } from '../../model';
 import { MockUserCustomerJson, MockUserJson } from '../../__mocks__/responses/user/user';
 import { EntityDomainType, PermissionType } from '../../model/json';
 
@@ -189,66 +181,5 @@ test('Properly validate public entities', async() => {
         }
       }
     }
-  });
-});
-
-test('Properly validate role', async() => {
-  const user = new UserWithSecurity(MockUserCustomerJson);
-  const entityuuid: string = 'dev-vcd01.iland.dev:urn:vcloud:vm:92fdeb63-ecf6-4258-90fc-930bbc03b511';
-  return UserWithSecurity.setup(user).then((u) => {
-    const creationRequestBuilder = new RoleCreationRequestBuilder('000003', 'testRole', 'Test description');
-    let errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('A role must have at least one policy.'));
-    //////////////////
-    const customPolicyBuilder = new PolicyBuilder(
-      entityuuid,
-      'ILAND_CLOUD_VM', 'CUSTOM');
-    customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
-    customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM_BILLING');
-    customPolicyBuilder.addPermission('COPY_MOVE_RESTORE_ILAND_CLOUD_VM');
-    customPolicyBuilder.addPermission('DELETE_ILAND_CLOUD_VM');
-    creationRequestBuilder.setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors.length).toEqual(0);
-    //////////////////
-    customPolicyBuilder.setEntityUuid('fake-uuid');
-    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('Entity not found in this company.'));
-    //////////////////
-    customPolicyBuilder.setEntityUuid(entityuuid);
-    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VAPP');
-    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('The entity is assigned in policy but not for the good domain.'));
-    //////////////////
-    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VM');
-    customPolicyBuilder.setPermissions([]);
-    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('Custom policies must contain at least one permission.'));
-    //////////////////
-    customPolicyBuilder.setPermissions(['VIEW_ILAND_CLOUD_VM_BILLING', 'COPY_MOVE_RESTORE_ILAND_CLOUD_VM']);
-    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('Custom policy doesn\'t have the required permission.'));
-    //////////////////
-    try {
-      customPolicyBuilder.setPermissions(['VIEW_ILAND_CLOUD_VM', 'MANAGE_COMPANY_IAM']);
-    } catch (err) {
-      expect(err).toEqual(new Error('Attempted to add permission=MANAGE_COMPANY_IAM in domain=COMPANY to ' +
-        'policy in domain=ILAND_CLOUD_VM.'));
-    }
-    //////////////////
-    customPolicyBuilder.setEntityUuid('000003')
-      .setEntityDomainType('COMPANY')
-      .setPermissions(['VIEW_COMPANY', 'MANAGE_COMPANY_SUPPORT_TICKETS']);
-    creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
-    errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('Policy must contain permission=VIEW_COMPANY_SUPPORT_TICKETS' +
-      ' since it has permission=MANAGE_COMPANY_SUPPORT_TICKETS.'));
-    //////////////////
-    // new Error('Policy must contain permission=' + impliedPermission +
-    //   ' since it is implied by a higher level permission.')
   });
 });
