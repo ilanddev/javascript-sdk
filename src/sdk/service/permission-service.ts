@@ -1,5 +1,8 @@
-import { EntityDomainType, PermissionType } from '../model/json';
-import { DomainPermissionsMap, Permission, PermissionsMap } from '../model';
+import { PermissionType } from '../model/json/permission-type';
+import { Permission } from '../model/permission';
+import { EntityDomainType } from '../model/json/entity-domain';
+import { PermissionsMap } from '../model/permission-map';
+import { DomainPermissionsMap } from '../model/domain-permission-map';
 
 /**
  * PermissionService

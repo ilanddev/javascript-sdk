@@ -1,11 +1,10 @@
 import { Policy } from './policy';
 import { RoleCreationRequestJson } from './json/role-creation-request';
-import { RoleInterface } from './json/role';
 
 /**
  * Role Creation Request Implementation.
  */
-export class RoleCreationRequest implements RoleInterface {
+export class RoleCreationRequest {
 
   /**
    * Creates a new role creation request.

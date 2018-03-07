@@ -1,5 +1,5 @@
 import { EntityDomainType, PermissionType, PolicyJson, PolicyType } from './json';
-import { PermissionService } from '../service';
+import { PermissionService } from '../service/permission-service';
 import { Permission } from './permission';
 
 /**

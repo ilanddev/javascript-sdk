@@ -1,15 +1,10 @@
-import {
-  CompanyInventory,
-  InventoryEntity,
-  Permission,
-  Policy,
-  PolicyBuilder,
-  Role,
-  RoleCreationRequest,
-  UserWithSecurity
-} from '../model';
 import { PermissionService } from './permission-service';
 import { PermissionType } from '../model/json';
+import { CompanyInventory } from '../model/company-inventory';
+import { Policy } from '../model/policy';
+import { RoleCreationRequest } from '../model/role-creation-request';
+import { Role } from '../model/role';
+import { PolicyBuilder } from '../model/policy';
 
 /**
  * IamService

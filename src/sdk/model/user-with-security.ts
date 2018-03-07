@@ -3,7 +3,7 @@ import { Role } from './role';
 import { CompanyInventory } from './company-inventory';
 import { PermissionType, UserJson } from './json';
 import { Iland } from '../iland';
-import { IamService } from '../service';
+import { IamService } from '../service/iam-service';
 
 /**
  * UserWithSecurity
