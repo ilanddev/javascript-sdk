@@ -38,19 +38,6 @@ export class RoleCreationRequest {
     return JSON.stringify(this.json, undefined, 2);
   }
 
-  /**
-   * Return the policy for the specified uuid.
-   * @param {string} entityUuid
-   * @returns {Policy | null}
-   */
-  getPolicy(entityUuid: string): Policy | null {
-    for (const p of this.policies) {
-      if (p.entityUuid === entityUuid) {
-        return p;
-      }
-    }
-    return null;
-  }
 }
 
 /**
@@ -58,7 +45,7 @@ export class RoleCreationRequest {
  */
 export class RoleCreationRequestBuilder {
 
-  private _policies: { [entityUuid: string]: Policy } = {};
+  private _policies: {[entityUuid: string]: Policy} = {};
 
   constructor(private _companyId: string, private _name: string, private _description: string) {
   }
@@ -118,7 +105,7 @@ export class RoleCreationRequestBuilder {
    */
   build(): RoleCreationRequest {
     return new RoleCreationRequest(this._companyId, this._name, this._description,
-      Object.keys(this._policies).map((it) => this._policies[it]));
+        Object.keys(this._policies).map((it) => this._policies[it]));
   }
 
 }

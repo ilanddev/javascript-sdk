@@ -1,12 +1,9 @@
+import { Permission, PermissionsMap } from './index';
+import { EntityDomainType, PermissionType } from './json';
+
 /**
  * DomainPermissionsMap
  */
-
-import { EntityDomainType } from './json/entity-domain';
-import { Permission } from '../../../build/iland';
-import { PermissionType } from './json/permission-type';
-import { PermissionsMap } from './permission-map';
-
 export class DomainPermissionsMap {
   private static instance: DomainPermissionsMap;
   private _domainPermissions: Map<EntityDomainType, Permission[]> = new Map<EntityDomainType, Permission[]>();

@@ -2,7 +2,7 @@ import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Iland } from '../../iland';
 import { PermissionService } from '../../service';
 import { Permission } from '../../model';
-import { EntityDomainType, PermissionType } from '../../model/json';
+import { PermissionType } from '../../model/json';
 
 jest.mock('../../http');
 
@@ -115,8 +115,6 @@ test('Properly get the required permissions for domain', () => {
   runPermissionServiceAssertions(requiredPermissions, 1);
   requiredPermissions = permissionService.getRequiredPermissionsForDomain(undefined);
   runPermissionServiceAssertions(requiredPermissions, undefined);
-  requiredPermissions = permissionService.getRequiredPermissionsForDomain('FAKE_DOMAIN' as EntityDomainType);
-  runPermissionServiceAssertions(requiredPermissions, undefined);
 });
 
 test('Properly get the view permissions for domain', () => {
@@ -157,8 +155,6 @@ test('Properly get the view permissions for domain', () => {
   runPermissionServiceViewPermissionAssertions(viewPermission, 'VIEW_ILAND_BACKUP_TENANT');
   viewPermission = permissionService.getViewPermissionForDomain(undefined);
   runPermissionServiceViewPermissionAssertions(viewPermission, undefined);
-  viewPermission = permissionService.getViewPermissionForDomain('FAKE_DOMAIN' as EntityDomainType);
-  runPermissionServiceViewPermissionAssertions(viewPermission, undefined);
 });
 
 test('Properly get implied permissions', () => {
@@ -176,15 +172,4 @@ test('Properly get implied permissions', () => {
   }
   impliedPermissions = permissionService.getImpliedPermissions(undefined);
   expect(impliedPermissions).toBeNull();
-});
-
-test('Properly get a Permission object from permissionType.', () => {
-  const permissionType: PermissionType = 'VIEW_ILAND_CLOUD_VDC';
-  const permission = PermissionService.getPermission(permissionType);
-  if (!permission) {
-    expect(permission).toBe(undefined);
-  } else {
-    expect(permission).toBeInstanceOf(Permission);
-    expect(permission.permissionType).toEqual(permissionType);
-  }
 });
