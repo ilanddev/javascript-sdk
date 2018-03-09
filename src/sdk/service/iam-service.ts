@@ -12,27 +12,6 @@ import { Permission } from '../model/permission';
  */
 export class IamService {
   /**
-   * Get the effective policy.
-   * @param {CompanyInventory} companyInventory
-   * @param {InventoryEntity} entity
-   * @param {Role} role
-   * @returns {Policy | null}
-   */
-  static getEffectivePolicy(companyInventory: CompanyInventory, entity: InventoryEntity,
-                            role: Role | RoleCreationRequest): Policy | null {
-    const policyOptional: Policy | null = IamService.findFirstRelevantPolicy(companyInventory, entity, role);
-
-    let derivePolicy: Policy | null = null;
-    if (policyOptional) {
-      derivePolicy = IamService.deriveEffectivePolicyFromAncestor(companyInventory, policyOptional, entity);
-      if (!derivePolicy) {
-        derivePolicy = new PolicyBuilder(entity.uuid, entity.type, 'CUSTOM').build();
-      }
-    }
-    return derivePolicy;
-  }
-
-  /**
    * Check whether or not a user is allowed to perform an action or not.
    * @param {UserWithSecurity} user
    * @param {string} entityUuid
@@ -66,29 +45,6 @@ export class IamService {
       }
     }
     return false;
-  }
-
-  /**
-   * Find the relevant policy depending on company inventory and an entity.
-   * @param {CompanyInventory} companyInventory
-   * @param {InventoryEntity | undefined} entity
-   * @param {Role} role
-   * @returns {Policy | null}
-   */
-  static findFirstRelevantPolicy(companyInventory: CompanyInventory, entity: InventoryEntity | undefined,
-                                 role: Role | RoleCreationRequest): Policy | null {
-    if (entity === undefined) {
-      return null;
-    }
-    const policyOptional = role.getPolicy(entity.uuid);
-    if (policyOptional !== null) {
-      return policyOptional;
-    } else if (entity.parentUuid !== null) {
-      return IamService.findFirstRelevantPolicy(companyInventory,
-        companyInventory.getEntityByUuid(entity.parentUuid), role);
-    } else {
-      return null;
-    }
   }
 
   /**
@@ -172,10 +128,11 @@ export class IamService {
     for (const policy of roleCreationRequest.policies) {
       const entityOptional: InventoryEntity | undefined = companyInventory.getEntityByUuid(policy.entityUuid);
       if (entityOptional === undefined) {
-        errors.push((new Error('Entity not found in this company.')));
+        errors.push((new Error('Entity ' + policy.entityUuid + ' not found in this company.')));
       } else {
         if (policy.entityDomain !== entityOptional.type) {
-          errors.push((new Error('The entity is assigned in policy but not for the good domain.')));
+          errors.push((new Error('Policy for entity ' + entityOptional.name + ' has domain type ' +
+            policy.entityDomain + ' but entity is actually of type ' + entityOptional.type)));
         }
         if (policy.type === 'CUSTOM') {
           if (policy.permissions.length === 0) {
@@ -240,5 +197,49 @@ export class IamService {
       }
     }
     return errors;
+  }
+
+  /**
+   * Get the effective policy.
+   * @param {CompanyInventory} companyInventory
+   * @param {InventoryEntity} entity
+   * @param {Role} role
+   * @returns {Policy | null}
+   */
+  private static getEffectivePolicy(companyInventory: CompanyInventory, entity: InventoryEntity,
+                                    role: Role | RoleCreationRequest): Policy | null {
+    const policyOptional: Policy | null = IamService.findFirstRelevantPolicy(companyInventory, entity, role);
+
+    let derivePolicy: Policy | null = null;
+    if (policyOptional) {
+      derivePolicy = IamService.deriveEffectivePolicyFromAncestor(companyInventory, policyOptional, entity);
+      if (!derivePolicy) {
+        derivePolicy = new PolicyBuilder(entity.uuid, entity.type, 'CUSTOM').build();
+      }
+    }
+    return derivePolicy;
+  }
+
+  /**
+   * Find the relevant policy depending on company inventory and an entity.
+   * @param {CompanyInventory} companyInventory
+   * @param {InventoryEntity | undefined} entity
+   * @param {Role} role
+   * @returns {Policy | null}
+   */
+  private static findFirstRelevantPolicy(companyInventory: CompanyInventory, entity: InventoryEntity | undefined,
+                                         role: Role | RoleCreationRequest): Policy | null {
+    if (entity === undefined) {
+      return null;
+    }
+    const policyOptional = role.getPolicy(entity.uuid);
+    if (policyOptional !== null) {
+      return policyOptional;
+    } else if (entity.parentUuid !== null) {
+      return IamService.findFirstRelevantPolicy(companyInventory,
+        companyInventory.getEntityByUuid(entity.parentUuid), role);
+    } else {
+      return null;
+    }
   }
 }

@@ -86,36 +86,6 @@ export class PolicyBuilder {
   }
 
   /**
-   * Set entity uuid.
-   * @param {string} uuid
-   * @returns {PolicyBuilder}
-   */
-  setEntityUuid(uuid: string): PolicyBuilder {
-    this._entityUuid = uuid;
-    return this;
-  }
-
-  /**
-   * Set entity domain type.
-   * @param {EntityDomainType} entityDomainType
-   * @returns {PolicyBuilder}
-   */
-  setEntityDomainType(entityDomainType: EntityDomainType): PolicyBuilder {
-    this._entityDomain = entityDomainType;
-    return this;
-  }
-
-  /**
-   * Set policy type.
-   * @param {PolicyType} type
-   * @returns {PolicyBuilder}
-   */
-  setPolicyType(type: PolicyType): PolicyBuilder {
-    this._type = type;
-    return this;
-  }
-
-  /**
    * Set an array of permissions.
    * @param {Array<PermissionType>} array
    * @throws Error
@@ -124,7 +94,11 @@ export class PolicyBuilder {
     this._permissions = [];
     if (array.length > 0) {
       for (const permission of array) {
-        this.addPermission(permission);
+        try {
+          this.addPermission(permission);
+        } catch (err) {
+          throw err;
+        }
       }
     }
     return this;

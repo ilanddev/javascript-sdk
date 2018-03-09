@@ -64,7 +64,7 @@ function runCustomerUserAssertions(user: UserWithSecurity) {
         permissions = PermissionService.getInstance().getAvailablePermissionsForDomain(domainType as EntityDomainType);
         for (const entity of entities) {
           if (userRole) {
-            policy = IamService.getEffectivePolicy(companyInventory, entity, userRole);
+            policy = (IamService as any).getEffectivePolicy(companyInventory, entity, userRole);
           }
           // We actually test all permissions upon each user entities.
           if (permissions) {
@@ -198,7 +198,7 @@ test('Properly validate role', async() => {
     let errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
     expect(errors[0]).toEqual(new Error('A role must have at least one policy.'));
     //////////////////
-    const customPolicyBuilder = new PolicyBuilder(
+    let customPolicyBuilder = new PolicyBuilder(
       entityuuid,
       'ILAND_CLOUD_VM', 'CUSTOM');
     customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
@@ -209,18 +209,24 @@ test('Properly validate role', async() => {
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
     expect(errors.length).toEqual(0);
     //////////////////
-    customPolicyBuilder.setEntityUuid('fake-uuid');
+    customPolicyBuilder = new PolicyBuilder(
+      'fake-uuid',
+      'ILAND_CLOUD_VM', 'CUSTOM');
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('Entity not found in this company.'));
+    expect(errors[0]).toEqual(new Error('Entity fake-uuid not found in this company.'));
     //////////////////
-    customPolicyBuilder.setEntityUuid(entityuuid);
-    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VAPP');
+    customPolicyBuilder = new PolicyBuilder(
+      entityuuid,
+      'ILAND_CLOUD_VAPP', 'CUSTOM');
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
-    expect(errors[0]).toEqual(new Error('The entity is assigned in policy but not for the good domain.'));
+    expect(errors[0]).toEqual(new Error('Policy for entity Portal Resource Non-Regression has domain type ' +
+      'ILAND_CLOUD_VAPP but entity is actually of type ILAND_CLOUD_VM'));
     //////////////////
-    customPolicyBuilder.setEntityDomainType('ILAND_CLOUD_VM');
+    customPolicyBuilder = new PolicyBuilder(
+      entityuuid,
+      'ILAND_CLOUD_VM', 'CUSTOM');
     customPolicyBuilder.setPermissions([]);
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
@@ -238,9 +244,10 @@ test('Properly validate role', async() => {
         'policy in domain=ILAND_CLOUD_VM.'));
     }
     //////////////////
-    customPolicyBuilder.setEntityUuid('000003')
-      .setEntityDomainType('COMPANY')
-      .setPermissions(['VIEW_COMPANY', 'MANAGE_COMPANY_SUPPORT_TICKETS']);
+    customPolicyBuilder = new PolicyBuilder(
+      '000003',
+      'COMPANY', 'CUSTOM');
+    customPolicyBuilder.setPermissions(['VIEW_COMPANY', 'MANAGE_COMPANY_SUPPORT_TICKETS']);
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
     expect(errors[0]).toEqual(new Error('Policy must contain permission=VIEW_COMPANY_SUPPORT_TICKETS' +

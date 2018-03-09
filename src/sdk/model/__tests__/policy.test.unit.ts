@@ -22,8 +22,9 @@ test('Properly create a policy using the builder', async() => {
     const customPolicyBuilder = new PolicyBuilder(
       entityuuid,
       'ILAND_CLOUD_VM', 'CUSTOM');
-    customPolicyBuilder.setPolicyType('ADMIN');
-    expect(customPolicyBuilder.build().type).toEqual('ADMIN');
+    expect(customPolicyBuilder.build().type).toEqual('CUSTOM');
+    expect(customPolicyBuilder.build().entityDomain).toEqual('ILAND_CLOUD_VM');
+    expect(customPolicyBuilder.build().entityUuid).toEqual(entityuuid);
   });
 });
 
@@ -50,14 +51,18 @@ test('Properly throw error when adding permission that are wrong', async() => {
     } catch (err) {
       expect(err).toEqual(new Error('Permission=FAKE_PERMISSION doesn\'t exist.'));
     }
-    customPolicyBuilder.setPolicyType('ADMIN');
+
+    const adminPolicyBuilder = new PolicyBuilder(
+      entityuuid,
+      'COMPANY', 'ADMIN');
     try {
-      customPolicyBuilder.addPermission('VIEW_COMPANY');
+      adminPolicyBuilder.addPermission('VIEW_COMPANY');
     } catch (err) {
       expect(err).toEqual(new Error('Attempted to add permission to policy of type=ADMIN. ' +
         'Permissions may only be explicitly added to policies with type=CUSTOM'));
     }
     // Be sure that all cases where handled. The policy shouldn't have any permissions.
+    expect(adminPolicyBuilder.build().permissions.length).toEqual(0);
     expect(customPolicyBuilder.build().permissions.length).toEqual(0);
   });
 });
