@@ -202,7 +202,7 @@ export class User {
    * @throws Error
    */
   async getInventoryInCompany(companyId: string): Promise<CompanyInventory> {
-    return Iland.getHttp().get(`/user/${this.username}/inventory`, {
+    return Iland.getHttp().get(`/user/${this.username}/iaas-inventory`, {
       params: {
         company: companyId
       }
@@ -219,7 +219,7 @@ export class User {
    * @returns {Promise<Array<CompanyInventory>>} user's entity inventory
    */
   async getInventory(): Promise<Array<CompanyInventory>> {
-    return Iland.getHttp().get(`/user/${this.username}/inventory`).then((response) => {
+    return Iland.getHttp().get(`/user/${this.username}/iaas-inventory`).then((response) => {
       const userInventory = response.data as UserInventoryJson;
       return userInventory.inventory.map((it) => new CompanyInventory(it));
     });
