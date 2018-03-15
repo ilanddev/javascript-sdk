@@ -17,7 +17,7 @@ export class VappTemplate extends Entity {
    * @returns {Promise<VappTemplate>} promise that resolves with the VappTemplate.
    */
   static async getVappTemplate(uuid: string): Promise<VappTemplate> {
-    return Iland.getHttp().get(`/vapp-template/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/vapp-templates/${uuid}`).then((response) => {
       const json = response.data as VappTemplateJson;
       return new VappTemplate(json);
     });
@@ -172,7 +172,7 @@ export class VappTemplate extends Entity {
    * @returns {Promise<VappTemplate>} promise that resolves with this object
    */
   async refresh(): Promise<VappTemplate> {
-    return Iland.getHttp().get(`/vapp-template/${this.uuid}`).then((response) => {
+    return Iland.getHttp().get(`/vapp-templates/${this.uuid}`).then((response) => {
       this._json = response.data as VappTemplateJson;
       return this;
     });

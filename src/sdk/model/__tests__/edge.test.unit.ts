@@ -79,7 +79,7 @@ function runEdgeAssertionsAgainsMock(edge: Edge) {
 test('Properly submits request to get Edge', async() => {
   const uuid = MockEdgeJson.uuid;
   return Edge.getEdge(uuid).then(function(edge) {
-    expect(Iland.getHttp().get).lastCalledWith(`/edge/${MockEdgeJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}`);
     runEdgeAssertionsAgainsMock(edge);
   });
 });
@@ -87,7 +87,7 @@ test('Properly submits request to get Edge', async() => {
 test('Properly submits request to refresh Edge', async() => {
   const edge = new Edge(MockEdgeJson);
   return edge.refresh().then(function(edge) {
-    expect(Iland.getHttp().get).lastCalledWith(`/edge/${MockEdgeJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}`);
     runEdgeAssertionsAgainsMock(edge);
   });
 });

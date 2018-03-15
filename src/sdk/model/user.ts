@@ -18,7 +18,7 @@ export class User {
    * @returns {Promise<User>}
    */
   static async getUser(username: string): Promise<User> {
-    return Iland.getHttp().get(`/user/${username}`).then((response) => {
+    return Iland.getHttp().get(`/users/${username}`).then((response) => {
       const apiUser = response.data as UserJson;
       return new User(apiUser);
     });
@@ -189,7 +189,7 @@ export class User {
    * @returns {Promise<User>} promise that resolves with updated user
    */
   async refresh(): Promise<User> {
-    return Iland.getHttp().get(`/user/${this.username}`).then((response) => {
+    return Iland.getHttp().get(`/users/${this.username}`).then((response) => {
       this._apiUser = response.data as UserJson;
       return this;
     });
@@ -202,7 +202,7 @@ export class User {
    * @throws Error
    */
   async getInventoryInCompany(companyId: string): Promise<CompanyInventory> {
-    return Iland.getHttp().get(`/user/${this.username}/iaas-inventory`, {
+    return Iland.getHttp().get(`/users/${this.username}/iaas-inventory`, {
       params: {
         company: companyId
       }
@@ -219,7 +219,7 @@ export class User {
    * @returns {Promise<Array<CompanyInventory>>} user's entity inventory
    */
   async getInventory(): Promise<Array<CompanyInventory>> {
-    return Iland.getHttp().get(`/user/${this.username}/iaas-inventory`).then((response) => {
+    return Iland.getHttp().get(`/users/${this.username}/iaas-inventory`).then((response) => {
       const userInventory = response.data as UserInventoryJson;
       return userInventory.inventory.map((it) => new CompanyInventory(it));
     });
@@ -231,7 +231,7 @@ export class User {
    * @returns {Promise<Role>}
    */
   async getRole(companyUuid: string): Promise<Role> {
-    return Iland.getHttp().get(`/user/${this.username}/roles/${companyUuid}`).then((response) => {
+    return Iland.getHttp().get(`/users/${this.username}/roles/${companyUuid}`).then((response) => {
       const role = response.data as RoleJson;
       return new Role(role);
     });
@@ -242,7 +242,7 @@ export class User {
    * @returns {Promise<Array<Company>>} user's list of companies
    */
   async getCompanies(): Promise<Array<Company>> {
-    return Iland.getHttp().get(`/user/${this.username}/companies`).then((response) => {
+    return Iland.getHttp().get(`/users/${this.username}/companies`).then((response) => {
       const companiesList = response.data as Array<CompanyJson>;
       return companiesList.map((it) => new Company(it));
     });

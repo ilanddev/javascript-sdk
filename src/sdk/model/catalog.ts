@@ -20,7 +20,7 @@ export class Catalog extends Entity {
     // TODO: Once the API implement the public keyword in uuid, we should remove this.
     // We make sure that we are using the original uuid not the overridden one...
     uuid = uuid.replace('public:', '');
-    return Iland.getHttp().get(`/catalog/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/catalogs/${uuid}`).then((response) => {
       const json = response.data as CatalogJson;
       return new Catalog(json);
     });
@@ -127,7 +127,7 @@ export class Catalog extends Entity {
    * @returns {Promise<Catalog>} promise that resolves with the Catalog
    */
   async refresh(): Promise<Catalog> {
-    return Iland.getHttp().get(`/catalog/${this.originalUuid}`).then((response) => {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}`).then((response) => {
       this._json = response.data as CatalogJson;
       return this;
     });

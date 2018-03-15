@@ -30,7 +30,7 @@ export class Org extends Entity {
    * @returns {Promise<Org>} promise that resolves with the Org
    */
   static async getOrg(uuid: string): Promise<Org> {
-    return Iland.getHttp().get(`/org/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${uuid}`).then((response) => {
       const json = response.data as OrgJson;
       return new Org(json);
     });
@@ -159,7 +159,7 @@ export class Org extends Entity {
    * @returns {Promise<Org>} promise that resolves with this object
    */
   async refresh(): Promise<Org> {
-    return Iland.getHttp().get(`/org/${this.uuid}`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}`).then((response) => {
       this._json = response.data as OrgJson;
       return this;
     });
@@ -170,7 +170,7 @@ export class Org extends Entity {
    * @returns {Promise<Vdc[]>} promise that resolves with an array of child vDCs
    */
   async getVdcs(): Promise<Array<Vdc>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/vdcs`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vdcs`).then((response) => {
       const json = response.data as Array<VdcJson>;
       return json.map((vdcJson) => new Vdc(vdcJson));
     });
@@ -181,7 +181,7 @@ export class Org extends Entity {
    * @returns {Promise<Vapp[]>} promise that resolves with an array of child vApps
    */
   async getVapps(): Promise<Array<Vapp>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/vapps`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vapps`).then((response) => {
       const json = response.data as Array<VappJson>;
       return json.map((vappJson) => new Vapp(vappJson));
     });
@@ -192,7 +192,7 @@ export class Org extends Entity {
    * @returns {Promise<Vm[]>} promise that resolves with an array of child VMs
    */
   async getVms(): Promise<Array<Vm>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/vms`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vms`).then((response) => {
       const json = response.data as Array<VmJson>;
       return json.map((vmJson) => new Vm(vmJson));
     });
@@ -203,7 +203,7 @@ export class Org extends Entity {
    * @returns {Promise<Edge[]>} promise that resolves with an array of child Edges
    */
   async getEdges(): Promise<Array<Edge>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/edges`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/edges`).then((response) => {
       const json = response.data as Array<EdgeJson>;
       return json.map((edgeJson) => new Edge(edgeJson));
     });
@@ -214,7 +214,7 @@ export class Org extends Entity {
    * @returns {Promise<InternalNetwork[]>} promise that resolves with an array of child Internal networks
    */
   async getInternalNetworks(): Promise<Array<InternalNetwork>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/vdc-networks`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vdc-networks`).then((response) => {
       const json = response.data as Array<InternalNetworkJson>;
       return json.map((netJson) => new InternalNetwork(netJson));
     });
@@ -225,7 +225,7 @@ export class Org extends Entity {
    * @returns {Promise<VappNetwork[]>} promise that resolves with an array of child vApp networks
    */
   async getVappNetworks(): Promise<Array<VappNetwork>> {
-    return Iland.getHttp().get(`/org/${this.uuid}/vapp-networks`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vapp-networks`).then((response) => {
       const json = response.data as Array<VappNetworkJson>;
       return json.map((netJson) => new VappNetwork(netJson));
     });

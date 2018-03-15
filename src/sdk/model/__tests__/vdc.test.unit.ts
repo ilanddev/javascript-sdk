@@ -19,7 +19,7 @@ beforeAll(() => {
 test('Properly submits request to get vDC', async() => {
   const uuid = 'test-vdc-uuid';
   return Vdc.getVdc(uuid).then(function(vdc) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vdc/${uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vdcs/${uuid}`);
     expect(vdc.entityType).toBe('VDC');
   });
 });
@@ -27,7 +27,7 @@ test('Properly submits request to get vDC', async() => {
 test('Properly submits request to get vDCs child vApps', async() => {
   const vdc = new Vdc(MockVdcJson);
   return vdc.getVapps().then(function(vapps) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vdc/${vdc.uuid}/vapps`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vdcs/${vdc.uuid}/vapps`);
     expect(vapps.length).toBe(MockVdcVappsJson.length);
     let idx = 0;
     for (const vapp of vapps) {
@@ -40,7 +40,7 @@ test('Properly submits request to get vDCs child vApps', async() => {
 test('Properly submits request to get vDCs child VMs', async() => {
   const vdc = new Vdc(MockVdcJson);
   return vdc.getVms().then(function(vms) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vdc/${vdc.uuid}/vms`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vdcs/${vdc.uuid}/vms`);
     expect(vms.length).toBe(MockVdcVmsJson.length);
     let idx = 0;
     for (const vm of vms) {

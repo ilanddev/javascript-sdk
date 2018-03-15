@@ -19,7 +19,7 @@ export class Edge extends Entity {
    * @returns {Promise<Edge>} promise that resolves with the Edge
    */
   static async getEdge(uuid: string): Promise<Edge> {
-    return Iland.getHttp().get(`/edge/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/edges/${uuid}`).then((response) => {
       const json = response.data as EdgeJson;
       return new Edge(json);
     });
@@ -138,7 +138,7 @@ export class Edge extends Entity {
    * @returns {Promise<Edge>} promise that resolves with this object
    */
   async refresh(): Promise<Edge> {
-    return Iland.getHttp().get(`/edge/${this.uuid}`).then((response) => {
+    return Iland.getHttp().get(`/edges/${this.uuid}`).then((response) => {
       this._json = response.data as EdgeJson;
       return this;
     });

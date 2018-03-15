@@ -64,7 +64,7 @@ test('Parses power status correctly', () => {
 test('Properly submits request to get vApps child VMs', async() => {
   const vapp = new Vapp(MockVappJson);
   return vapp.getVms().then(function(vms) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.uuid}/vms`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapps/${vapp.uuid}/vms`);
     expect(vms.length).toBe(MockVappVmsJson.length);
     let idx = 0;
     for (const vm of vms) {
@@ -77,7 +77,7 @@ test('Properly submits request to get vApps child VMs', async() => {
 test('Properly submits request to get vApps child vApp Networks', async() => {
   const vapp = new Vapp(MockVappJson);
   return vapp.getVappNetworks().then(function(networks) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp/${vapp.uuid}/networks`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapps/${vapp.uuid}/networks`);
     expect(networks.length).toBe(MockVappVmsJson.length);
     let idx = 0;
     for (const net of networks) {

@@ -47,7 +47,7 @@ function runVappTemplateAssertionsAgainsMock(vappTemplate: VappTemplate) {
 test('Properly submits request to get vapp template', async() => {
   const uuid: string = MockVappTemplateJson.uuid;
   return VappTemplate.getVappTemplate(uuid).then(function(vappTemplate) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp-template/${MockVappTemplateJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp-templates/${MockVappTemplateJson.uuid}`);
     runVappTemplateAssertionsAgainsMock(vappTemplate);
   });
 });
@@ -55,7 +55,7 @@ test('Properly submits request to get vapp template', async() => {
 test('Properly submits request to refresh vapp template', async() => {
   const vappTemplate = new VappTemplate(MockVappTemplateJson);
   return vappTemplate.refresh().then(function(vappTemplate) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vapp-template/${MockVappTemplateJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp-templates/${MockVappTemplateJson.uuid}`);
     runVappTemplateAssertionsAgainsMock(vappTemplate);
   });
 });

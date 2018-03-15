@@ -54,7 +54,7 @@ export class UserWithSecurity extends User {
    * @returns {Promise<User>}
    */
   static async getUser(username: string): Promise<UserWithSecurity> {
-    return Iland.getHttp().get(`/user/${username}`).then((response) => {
+    return Iland.getHttp().get(`/users/${username}`).then((response) => {
       const apiUser = response.data as UserJson;
       return new UserWithSecurity(apiUser);
     });

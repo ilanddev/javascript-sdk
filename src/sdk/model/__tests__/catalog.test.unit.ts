@@ -40,7 +40,7 @@ function runCatalogAssertionsAgainsMock(catalog: Catalog) {
 test('Properly submits request to get catalog', async() => {
   const uuid: string = MockCatalogJson.uuid;
   return Catalog.getCatalog(uuid).then(function(catalog) {
-    expect(Iland.getHttp().get).lastCalledWith(`/catalog/${MockCatalogJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/catalogs/${MockCatalogJson.uuid}`);
     runCatalogAssertionsAgainsMock(catalog);
   });
 });
@@ -48,7 +48,7 @@ test('Properly submits request to get catalog', async() => {
 test('Properly submits request to refresh catalog', async() => {
   const catalog = new Catalog(MockCatalogJson);
   return catalog.refresh().then(function(catalog) {
-    expect(Iland.getHttp().get).lastCalledWith(`/catalog/${MockCatalogJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/catalogs/${MockCatalogJson.uuid}`);
     runCatalogAssertionsAgainsMock(catalog);
   });
 });
