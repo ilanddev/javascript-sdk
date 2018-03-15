@@ -40,7 +40,8 @@
     "tslint-config-standard": "6.0.1",
     "typedoc": "0.7.1",
     "typescript": "2.4.0",
-    "webpack": "3.0.0"
+    "webpack": "3.0.0",
+    "yarn": "^1.5.1"
   },
   "keywords": [
     "iland",
