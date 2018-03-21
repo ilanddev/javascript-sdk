@@ -18,7 +18,7 @@ export class InternalNetwork extends AbstractNetwork {
    * @returns {Promise<InternalNetwork>} promise that resolves with the internal network
    */
   static async getInternalNetwork(uuid: string): Promise<InternalNetwork> {
-    return Iland.getHttp().get(`/network/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/internal-networks/${uuid}`).then((response) => {
       const json = response.data as InternalNetworkJson;
       return new InternalNetwork(json);
     });
@@ -57,7 +57,7 @@ export class InternalNetwork extends AbstractNetwork {
    * @returns {Promise<InternalNetwork>} promise that resolves with this object
    */
   async refresh(): Promise<InternalNetwork> {
-    return Iland.getHttp().get(`/network/${this.uuid}`).then((response) => {
+    return Iland.getHttp().get(`/internal-networks/${this.uuid}`).then((response) => {
       this._json = response.data as InternalNetworkJson;
       return this;
     });

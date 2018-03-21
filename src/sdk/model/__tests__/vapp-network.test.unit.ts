@@ -17,7 +17,7 @@ beforeAll(() => {
 test('Properly submits request to get vApp Network', async() => {
   const uuid = MockVappNetworkJson.uuid;
   return VappNetwork.getVappNetwork(uuid).then(function(net) {
-    expect(Iland.getHttp().get).lastCalledWith(`/network/${uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp-networks/${uuid}`);
     expect(net.entityType).toBe('VAPP_NETWORK');
     expect(net.orgUuid).toBe(MockVappNetworkJson.org_uuid);
     expect(net.locationId).toBe(MockVappNetworkJson.location_id);
@@ -59,7 +59,7 @@ test('Properly submits request to get vApp Network', async() => {
 test('Properly submits request to refresh vApp Network', async() => {
   const net = new VappNetwork(MockVappNetworkJson);
   return net.refresh().then(function(net) {
-    expect(Iland.getHttp().get).lastCalledWith(`/network/${MockVappNetworkJson.uuid}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vapp-networks/${MockVappNetworkJson.uuid}`);
     expect(net.entityType).toBe('VAPP_NETWORK');
     expect(net.orgUuid).toBe(MockVappNetworkJson.org_uuid);
     expect(net.locationId).toBe(MockVappNetworkJson.location_id);

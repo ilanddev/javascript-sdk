@@ -18,7 +18,7 @@ export class VappNetwork extends AbstractNetwork {
    * @returns {Promise<VappNetwork>} promise that resolves with the vApp network
    */
   static async getVappNetwork(uuid: string): Promise<VappNetwork> {
-    return Iland.getHttp().get(`/network/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/vapp-networks/${uuid}`).then((response) => {
       const json = response.data as VappNetworkJson;
       return new VappNetwork(json);
     });
@@ -61,7 +61,7 @@ export class VappNetwork extends AbstractNetwork {
    * @returns {Promise<VappNetwork>} promise that resolves with this object
    */
   async refresh(): Promise<VappNetwork> {
-    return Iland.getHttp().get(`/network/${this.uuid}`).then((response) => {
+    return Iland.getHttp().get(`/vapp-networks/${this.uuid}`).then((response) => {
       this._json = response.data as VappNetworkJson;
       return this;
     });

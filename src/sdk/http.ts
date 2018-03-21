@@ -23,7 +23,7 @@ export class Http {
       headers: {
         'x-enable-json-security-chars': 'true',
         'Accept': defaultMime,
-        'Content-Type': defaultMime
+        'Content-Type': 'application/json'
       }
     });
 
