@@ -39,7 +39,11 @@ export class Policy {
    * @returns {Array<PermissionType>} the policy permissions
    */
   get permissions(): Array<PermissionType> {
-    return this._json.permissions.slice();
+    if (this._json.permissions && this._json.permissions.length > 0) {
+      return this._json.permissions.slice();
+    } else {
+      return [];
+    }
   }
 
   /**
@@ -64,9 +68,15 @@ export class Policy {
    * @returns {boolean}
    */
   hasPermission(permissionType: PermissionType): boolean {
-    return this.permissions.indexOf(permissionType) > -1;
+    const permission = PermissionService.getPermission(permissionType);
+    if (this.permissions.length > 0) {
+      return this.permissions.indexOf(permissionType) > -1;
+    } else {
+      return ((permission !== undefined && permission.domain === this.entityDomain && this.type === 'ADMIN') ||
+        (permission !== undefined && permission.domain === this.entityDomain &&
+          permission.accessType === 'READ' && this.type === 'READ_ONLY'));
+    }
   }
-
 }
 
 /**
