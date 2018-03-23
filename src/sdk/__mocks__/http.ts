@@ -145,13 +145,13 @@ export class Http {
       case /\/edges\/[^\/]+?$/.test(url):
         // get an edge
         return MockEdgeResponse;
-      case /\/orgs\/[^\/]+?\/vdc-networks$/.test(url):
+      case /\/organizations\/[^\/]+?\/vdc-networks$/.test(url):
         // get an orgs internal networks
         return MockOrgInternalNetworksResponse;
-      case /\/orgs\/[^\/]+?\/vapp-networks$/.test(url):
+      case /\/organizations\/[^\/]+?\/vapp-networks$/.test(url):
         // get an orgs vapp networks
         return MockOrgVappNetworksResponse;
-      case /\/orgs\/[^\/]+?\/edges$/.test(url):
+      case /\/organizations\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
       case /\/companies\/[^\/]+?$/.test(url):
