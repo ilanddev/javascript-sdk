@@ -47,8 +47,6 @@ export const MockCompanyLogoResponse: Promise<AxiosResponse> = new Promise<Axios
   })
 });
 
-//{"headers": {"Accept": "image/vnd.ilandcloud.api.v1.0+jpeg"}, "responseType": "arraybuffer"}
-
 export class MockCompanyService {
 
   static async createRole(request: RoleCreationRequestJson): Promise<AxiosResponse> {
