@@ -58,14 +58,7 @@ export class Http {
         if (str.indexOf(')]}\'\n') === 0) {
           str = str.substring(5);
         }
-        try {
-          error = JSON.parse(str) as ApiErrorJson;
-        } catch(e) {
-          error = {
-            message: reason.response!!.status + " " + reason.response!!.statusText
-          } as ApiErrorJson;
-        }
-
+        error = JSON.parse(str) as ApiErrorJson;
       }
       throw new ApiError(error);
     });
