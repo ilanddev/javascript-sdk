@@ -175,3 +175,50 @@ test('Properly submits request to get users with a specific role', async() => {
     });
   });
 });
+
+test('Properly submits request to get company logo', async() => {
+  const id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    return company.getLogo().then(async (logo) => {
+      expect(Iland.getHttp().get).lastCalledWith(
+        `/companies/${id}/logo`,
+        {
+          'headers': {'Accept': 'image/vnd.ilandcloud.api.v1.0+jpeg'},
+          'responseType': 'arraybuffer'
+        }
+      );
+      expect(logo).toBeDefined();
+      expect(logo).toEqual(new Uint8Array([0xFF, 0xD8, 0xFF, 0xE0]));
+    });
+  });
+});
+
+test('Properly submits request to set company logo', async() => {
+  const id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    return company.setLogo(new Uint8Array([0xFF, 0xD8, 0xFF, 0xE0])).then(async (response) => {
+      expect(Iland.getHttp().post).lastCalledWith(
+        `/companies/${id}/logo`,
+        new Uint8Array([255, 216, 255, 224]),
+        {'headers': {'Content-Type': 'image/jpeg'}}
+      );
+      expect(response).toBeTruthy();
+    });
+  });
+});
+
+test('Properly submits request to delete company logo', async() => {
+  const id = MockCompanyJson.uuid;
+  return Company.getCompany(id).then(async(company) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
+    expect(company.entityType).toBe('COMPANY');
+    return company.deleteLogo().then(async (response) => {
+      expect(Iland.getHttp().delete).lastCalledWith(`/companies/${id}/logo`);
+      expect(response).toBeTruthy();
+    });
+  });
+});

@@ -177,4 +177,32 @@ export class Company extends Entity {
     });
   }
 
+  async setLogo(logo: Uint8Array): Promise<boolean> {
+    return Iland.getHttp().post(`/companies/${this.uuid}/logo`, logo,{
+        headers: {
+            'Content-Type': 'image/jpeg'
+        }
+    }).then(() => {
+        return true;
+    });
+  }
+
+  async getLogo(): Promise<Uint8Array|undefined> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/logo`, {
+      headers: {
+        'Accept': 'image/vnd.ilandcloud.api.v1.0+jpeg'
+      },
+      responseType: 'arraybuffer'
+    }).then((response) => {
+      return new Uint8Array(response.data);
+    }, () => {
+      return undefined;
+    });
+  }
+
+  async deleteLogo(): Promise<boolean> {
+    return Iland.getHttp().delete(`/companies/${this.uuid}/logo`).then(() => {
+        return true
+    });
+  }
 }
