@@ -177,20 +177,18 @@ export class Company extends Entity {
     });
   }
 
-  async setLogo(logo: Uint8Array): Promise<boolean> {
+  async setLogo(logo: Uint8Array): Promise<any> {
     return Iland.getHttp().post(`/companies/${this.uuid}/logo`, logo,{
         headers: {
             'Content-Type': 'image/jpeg'
         }
-    }).then(() => {
-        return true;
     });
   }
 
   async getLogo(): Promise<Uint8Array|undefined> {
     return Iland.getHttp().get(`/companies/${this.uuid}/logo`, {
       headers: {
-        'Accept': 'image/vnd.ilandcloud.api.v1.0+jpeg'
+        'Accept': 'image/jpeg'
       },
       responseType: 'arraybuffer'
     }).then((response) => {
@@ -200,9 +198,7 @@ export class Company extends Entity {
     });
   }
 
-  async deleteLogo(): Promise<boolean> {
-    return Iland.getHttp().delete(`/companies/${this.uuid}/logo`).then(() => {
-        return true
-    });
+  async deleteLogo(): Promise<any> {
+    return Iland.getHttp().delete(`/companies/${this.uuid}/logo`);
   }
 }

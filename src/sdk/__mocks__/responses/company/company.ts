@@ -41,7 +41,7 @@ export const MockCompanyLogoResponse: Promise<AxiosResponse> = new Promise<Axios
     status: 200,
     statusText: '',
     headers: {
-      'content-type': 'image/vnd.ilandcloud.api.v1.0+jpeg'
+      'content-type': 'image/jpeg'
     },
     config: {}
   })

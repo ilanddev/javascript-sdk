@@ -185,7 +185,7 @@ test('Properly submits request to get company logo', async() => {
       expect(Iland.getHttp().get).lastCalledWith(
         `/companies/${id}/logo`,
         {
-          'headers': {'Accept': 'image/vnd.ilandcloud.api.v1.0+jpeg'},
+          'headers': {'Accept': 'image/jpeg'},
           'responseType': 'arraybuffer'
         }
       );

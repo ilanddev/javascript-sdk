@@ -114,31 +114,13 @@ test('Can refresh company', async() => {
   });
 });
 
-test('Can set logo', async() => {
-  const jpegMagic = new Uint8Array([0xFF, 0xD8, 0xFF, 0xE0]);
-  return Company.getCompany(companyEntity.uuid).then(async function(company) {
-    return company.setLogo(jpegMagic).then((response) => {
-      expect(response).toBeTruthy();
-    });
-  });
-});
-
 test('Can get logo', async() => {
   return Company.getCompany(companyEntity.uuid).then(async function(company) {
-    return company.getLogo().then((logo) => {
-      expect(logo).toBeDefined();
-      expect(logo!!.length).toEqual(4);
-    });
-  });
-});
-
-test('Can delete logo', async() => {
-  return Company.getCompany(companyEntity.uuid).then(async function(company) {
-    return company.deleteLogo().then((response) => {
-      expect(response).toBeTruthy();
-      company.getLogo().then((logo) => {
-        expect(logo).toBeUndefined();
-      });
+    const success = jest.fn();
+    const error = jest.fn();
+    company.getLogo().then(success, error).then(function() {
+      expect(success).toBeCalled();
+      expect(error).not.toBeCalled();
     });
   });
 });
