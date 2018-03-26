@@ -25,7 +25,10 @@ import { MockOrgEdgesResponse } from './responses/org/edges';
 import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
 import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
 import { MockOrgVappNetworksResponse } from './responses/org/vapp-networks';
-import { MockCompanyResponse, MockCompanyService, MockCompanyUsersResponse } from './responses/company/company';
+import {
+    MockCompanyLogoResponse, MockCompanyResponse, MockCompanyService,
+    MockCompanyUsersResponse
+} from './responses/company/company';
 import { MockService } from './responses/util';
 import { RoleCreationRequestJson, UserCreationRequestJson } from '../model/json/';
 import {
@@ -160,6 +163,9 @@ export class Http {
       case /\/companies\/[^\/]+\/users?$/.test(url):
         // get users for a company
         return MockCompanyUsersResponse;
+      case /\/companies\/[^\/]+\/logo?$/.test(url):
+        // get company logo
+        return MockCompanyLogoResponse;
       case /\/users\/[^\/]+\/companies?$/.test(url):
         // get companies for a user
         return MockUserCompaniesResponse;

@@ -35,6 +35,18 @@ export const MockCompanyUsersResponse: Promise<AxiosResponse> = new Promise<Axio
   });
 });
 
+export const MockCompanyLogoResponse: Promise<AxiosResponse> = new Promise<AxiosResponse> ((resolve) => {
+  resolve({
+    data: [0xFF, 0xD8, 0xFF, 0xE0],
+    status: 200,
+    statusText: '',
+    headers: {
+      'content-type': 'image/jpeg'
+    },
+    config: {}
+  })
+});
+
 export class MockCompanyService {
 
   static async createRole(request: RoleCreationRequestJson): Promise<AxiosResponse> {
@@ -87,5 +99,4 @@ export class MockCompanyService {
       });
     });
   }
-
 }
