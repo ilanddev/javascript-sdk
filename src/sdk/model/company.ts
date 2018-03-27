@@ -8,6 +8,16 @@ import { RoleCreationRequest } from './role-creation-request';
 import { User } from './user';
 import { UserJson } from './json/user';
 import { UserCreationRequest } from './user-creation-request';
+import { SupportTicket } from './support-ticket';
+import { SupportTicketJson } from './json/support-ticket';
+import { Org } from './org';
+import { OrgJson } from './json/org';
+import { Vapp } from './vapp';
+import { VappJson } from './json/vapp';
+import { VmJson } from './json/vm';
+import { Vm } from './vm';
+import { Vdc } from './vdc';
+import { VdcJson } from './json/vdc';
 
 /**
  * Company.
@@ -51,19 +61,19 @@ export class Company extends Entity {
   }
 
   /**
-   * JSON format.
-   * @returns {string}
-   */
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
    * Gets the raw JSON object from the API.
    * @returns {CompanyJson} the JSON representation
    */
   get json(): CompanyJson {
     return Object.assign({}, this._json);
+  }
+
+  /**
+   * JSON format.
+   * @returns {string}
+   */
+  toString(): string {
+    return JSON.stringify(this._json, undefined, 2);
   }
 
   /**
@@ -177,15 +187,104 @@ export class Company extends Entity {
     });
   }
 
-  async setLogo(logo: Uint8Array): Promise<any> {
-    return Iland.getHttp().post(`/companies/${this.uuid}/logo`, logo,{
-        headers: {
-            'Content-Type': 'image/jpeg'
-        }
+  /**
+   * Get all support tickets
+   * @param {number} offset
+   * @param {number} limit
+   * @param {string} search
+   * @returns {Promise<Array<SupportTicket>>}
+   */
+  async getSupportTickets(offset?: number, limit?: number, search?: string): Promise<Array<SupportTicket>> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/support-tickets`, {
+      params: {
+        offset: offset || 0,
+        limit: limit || 10,
+        search: search || ''
+      }
+    }).then((response) => {
+      const supportTickets = response.data as Array<SupportTicketJson>;
+      return supportTickets.map(it => new SupportTicket(it));
     });
   }
 
-  async getLogo(): Promise<Uint8Array|undefined> {
+  /**
+   * Get a specified support ticket.
+   * @param {number} ticketId
+   * @returns {Promise<SupportTicket>}
+   */
+  async getSupportTicket(ticketId: number): Promise<SupportTicket> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/support-tickets/${ticketId}`).then((response) => {
+      const supportTicket = response.data as SupportTicketJson;
+      return new SupportTicket(supportTicket);
+    });
+  }
+
+  /**
+   * Get all organizations in the company location
+   * @param {string} locationId
+   * @returns {Promise<Array<Org>>}
+   */
+  async getOrganizations(locationId: string): Promise<Array<Org>> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/orgs`).then((response) => {
+      const orgs = response.data as Array<OrgJson>;
+      return orgs.map(it => new Org(it));
+    });
+  }
+
+  /**
+   * Get all vApps in the company location
+   * @param {string} locationId
+   * @returns {Promise<Array<Vapp>>}
+   */
+  async getVapps(locationId: string): Promise<Array<Vapp>> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vapps`).then((response) => {
+      const vapps = response.data as Array<VappJson>;
+      return vapps.map(it => new Vapp(it));
+    });
+  }
+
+  /**
+   * Get all vDCs in the company location
+   * @param {string} locationId
+   * @returns {Promise<Array<Vdc>>}
+   */
+  async getVdcs(locationId: string): Promise<Array<Vdc>> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vdcs`).then((response) => {
+      const vdcs = response.data as Array<VdcJson>;
+      return vdcs.map(it => new Vdc(it));
+    });
+  }
+
+  /**
+   * Get all VMs in the company location
+   * @param {string} locationId
+   * @returns {Promise<Array<Vm>>}
+   */
+  async getVms(locationId: string): Promise<Array<Vm>> {
+    return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vms`).then((response) => {
+      const vms = response.data as Array<VmJson>;
+      return vms.map(it => new Vm(it));
+    });
+  }
+
+  /**
+   * Change the company logo
+   * @param {Uint8Array} logo
+   * @returns {Promise<any>}
+   */
+  async setLogo(logo: Uint8Array): Promise<any> {
+    return Iland.getHttp().post(`/companies/${this.uuid}/logo`, logo, {
+      headers: {
+        'Content-Type': 'image/jpeg'
+      }
+    });
+  }
+
+  /**
+   * Get a company logo
+   * @returns {Promise<Uint8Array | null>}
+   */
+  async getLogo(): Promise<Uint8Array | null> {
     return Iland.getHttp().get(`/companies/${this.uuid}/logo`, {
       headers: {
         'Accept': 'image/jpeg'
@@ -194,10 +293,14 @@ export class Company extends Entity {
     }).then((response) => {
       return new Uint8Array(response.data);
     }, () => {
-      return undefined;
+      return null;
     });
   }
 
+  /**
+   * Delete a company logo
+   * @returns {Promise<any>}
+   */
   async deleteLogo(): Promise<any> {
     return Iland.getHttp().delete(`/companies/${this.uuid}/logo`);
   }

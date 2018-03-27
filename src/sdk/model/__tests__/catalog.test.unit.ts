@@ -1,7 +1,19 @@
 import { Iland } from '../../iland';
 import { IlandDirectGrantAuthProvider } from '../../auth/';
 import { Catalog } from '../catalog';
-import { MockCatalogJson } from '../../__mocks__/responses/catalog/catalog';
+import {
+  CatalogItemDownloadTemplateMock,
+  MockAnotherCatalogJson,
+  MockCatalogJson
+} from '../../__mocks__/responses/catalog/catalog';
+import { MockMediaJson } from '../../__mocks__/responses/media/media';
+import { MockVappTemplateJson } from '../../__mocks__/responses/vapp-template/vapp-template';
+import {
+  MockBooleanMetadataJson,
+  MockDatetimeMetadataJson,
+  MockNumberMetadataJson,
+  MockStringMetadataJson
+} from '../../__mocks__/responses/metadata/metadata';
 
 jest.mock('../../http');
 
@@ -14,7 +26,7 @@ beforeAll(() => {
   }));
 });
 
-function runCatalogAssertionsAgainsMock(catalog: Catalog) {
+function runCatalogAssertionsAgainstMock(catalog: Catalog) {
   expect(catalog.json).toEqual(MockCatalogJson);
   expect(catalog.toString().length).toBeGreaterThan(0);
   expect(catalog.entityType).toBe('CATALOG');
@@ -41,7 +53,7 @@ test('Properly submits request to get catalog', async() => {
   const uuid: string = MockCatalogJson.uuid;
   return Catalog.getCatalog(uuid).then(function(catalog) {
     expect(Iland.getHttp().get).lastCalledWith(`/catalogs/${MockCatalogJson.uuid}`);
-    runCatalogAssertionsAgainsMock(catalog);
+    runCatalogAssertionsAgainstMock(catalog);
   });
 });
 
@@ -49,6 +61,48 @@ test('Properly submits request to refresh catalog', async() => {
   const catalog = new Catalog(MockCatalogJson);
   return catalog.refresh().then(function(catalog) {
     expect(Iland.getHttp().get).lastCalledWith(`/catalogs/${MockCatalogJson.uuid}`);
-    runCatalogAssertionsAgainsMock(catalog);
+    runCatalogAssertionsAgainstMock(catalog);
+  });
+});
+
+test('Properly get item downloads', async() => {
+  const catalog = new Catalog(MockCatalogJson);
+  return catalog.getItemDownloads().then(itemDownloads => {
+    expect(itemDownloads.length).toEqual(1);
+    expect(itemDownloads[0]).toEqual(CatalogItemDownloadTemplateMock);
+  });
+});
+
+test('Properly get catalog medias', async() => {
+  const catalog = new Catalog(MockCatalogJson);
+  return catalog.getMedias().then(medias => {
+    expect(medias.length).toEqual(1);
+    expect(medias[0].json).toEqual(Object.assign({}, MockMediaJson));
+  });
+});
+
+test('Properly get catalog vapp templates', async() => {
+  const catalog = new Catalog(MockCatalogJson);
+  return catalog.getVappTemplates().then(templates => {
+    expect(templates.length).toEqual(1);
+    expect(templates[0].json).toEqual(Object.assign({}, MockVappTemplateJson));
+  });
+});
+
+test('Properly get catalog metadata', async() => {
+  const catalog = new Catalog(MockCatalogJson);
+  return catalog.getMetadata().then(metadata => {
+    expect(metadata.length).toEqual(4);
+    expect(metadata[0].json).toEqual(Object.assign({}, MockStringMetadataJson));
+    expect(metadata[1].json).toEqual(Object.assign({}, MockNumberMetadataJson));
+    expect(metadata[2].json).toEqual(Object.assign({}, MockBooleanMetadataJson));
+    expect(metadata[3].json).toEqual(Object.assign({}, MockDatetimeMetadataJson));
+  });
+});
+
+test('Properly throw error if metadata type is not assignable', async() => {
+  const catalog = new Catalog(MockAnotherCatalogJson);
+  return catalog.getMetadata().catch(error => {
+    expect(error).toEqual(new Error(`Metadata with type fake is unknown.`));
   });
 });

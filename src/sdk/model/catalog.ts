@@ -1,6 +1,13 @@
 import { Entity } from './entity';
 import { CatalogJson, EntityType } from './json';
 import { Iland } from '../iland';
+import { Metadata } from './metadata';
+import { MetadataJson, MetadataType } from './json/metadata';
+import { MediaJson } from './json/media';
+import { Media } from './media';
+import { VappTemplate } from './vapp-template';
+import { VappTemplateJson } from './json/vapp-template';
+import { ItemDownloadJson } from './json/item-downloads';
 
 /**
  * Catalog.
@@ -130,6 +137,66 @@ export class Catalog extends Entity {
     return Iland.getHttp().get(`/catalogs/${this.originalUuid}`).then((response) => {
       this._json = response.data as CatalogJson;
       return this;
+    });
+  }
+
+  /**
+   * Gets Catalog's item downloads.
+   * @description There are two types of catalog items that will show up: 'media' or 'template'.
+   * The item type field will report 'media' or 'vapp_template'.If the item is a media,
+   * the 'template' field will be null and vice-versa. (null 'media' field if item is a vapp_template).
+   * Only private catalogs will have a list of catalog item downloads returned.
+   * @returns {Promise<Array<ItemDownloadJson>>}
+   */
+  async getItemDownloads(): Promise<Array<ItemDownloadJson>> {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/item-downloads`).then((response) => {
+      return response.data as Array<ItemDownloadJson>;
+    });
+  }
+
+  /**
+   * Gets the Catalog's Medias
+   * @returns {Promise<Array<Media>>}
+   */
+  async getMedias(): Promise<Array<Media>> {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/medias`).then((response) => {
+      const medias = response.data as Array<MediaJson>;
+      return medias.map(media => new Media(media));
+    });
+  }
+
+  /**
+   * Gets the Catalog's vApp-Templates
+   * @returns {Promise<Array<VappTemplate>>}
+   */
+  async getVappTemplates(): Promise<Array<VappTemplate>> {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/vapp-templates`).then((response) => {
+      const vappTemplates = response.data as Array<VappTemplateJson>;
+      return vappTemplates.map(vappTemplate => new VappTemplate(vappTemplate));
+    });
+  }
+
+  /**
+   * Gets the Catalog's metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   * @throws Error Throw an error if the type is unrecognized.
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
     });
   }
 }

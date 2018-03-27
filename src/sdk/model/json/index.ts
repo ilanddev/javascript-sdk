@@ -33,3 +33,4 @@ export * from './vapp-template';
 export * from './media';
 export * from './access-type';
 export * from './entity-domain';
+export * from './item-downloads';

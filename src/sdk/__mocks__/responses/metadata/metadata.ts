@@ -41,6 +41,13 @@ export const MockDatetimeMetadataJson: MetadataJson<Date> = {
   value: new Date()
 };
 
+export const MockFakeMetadataJson = {
+  key: 'fake',
+  type: 'fake',
+  access: 'READ_WRITE',
+  value: 'fake'
+};
+
 /**
  * Mock metadata array.
  */
@@ -53,6 +60,16 @@ export const MockMetadataJson: Array<MetadataJson<MetadataType>> = [MockStringMe
 export const MockMetadataResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
     data: MockMetadataJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockFakeMetadataResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [MockFakeMetadataJson],
     status: 200,
     statusText: '',
     headers: {},
