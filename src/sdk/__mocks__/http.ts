@@ -4,7 +4,7 @@ import { MockVmResponse } from './responses/vm/vm';
 import { MockNotFoundResponse } from './responses/errors';
 import { MockVmVirtualDisksResponse } from './responses/vm/virtual-disk';
 import { MockTaskService } from './responses/task/task';
-import { MockMetadataResponse } from './responses/metadata/metadata';
+import { MockFakeMetadataResponse, MockMetadataResponse } from './responses/metadata/metadata';
 import { MockVmBackupRestorePointsResponse } from './responses/vm/backup-restore-point';
 import { MockVmSnapshotResponse } from './responses/vm/snapshot';
 import { MockVmScreenTicketResponse } from './responses/vm/screen-ticket';
@@ -26,8 +26,15 @@ import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
 import { MockVappVappNetworksResponse } from './responses/vapp/vapp-networks';
 import { MockOrgVappNetworksResponse } from './responses/org/vapp-networks';
 import {
-    MockCompanyLogoResponse, MockCompanyResponse, MockCompanyService,
-    MockCompanyUsersResponse
+  MockCompanyLogoResponse,
+  MockCompanyOrgsResponse,
+  MockCompanyResponse,
+  MockCompanyService,
+  MockCompanySupportTicketsResponse,
+  MockCompanyUsersResponse,
+  MockCompanyVappsResponse,
+  MockCompanyVdcsResponse,
+  MockCompanyVmsResponse
 } from './responses/company/company';
 import { MockService } from './responses/util';
 import { RoleCreationRequestJson, UserCreationRequestJson } from '../model/json/';
@@ -38,9 +45,22 @@ import {
   MockUserRoleForCompanyResponse2,
   MockUserRoleForCompanyResponse3
 } from './responses/user/user';
-import { MockCatalogResponse, MockPublicCatalogResponse } from './responses/catalog/catalog';
+import {
+  CatalogItemDownloadsTemplateMockResponse,
+  CatalogMediasMockResponse,
+  CatalogVappTemplateMockResponse,
+  MockCatalogResponse,
+  MockPublicCatalogResponse
+} from './responses/catalog/catalog';
 import { MockMediaResponse } from './responses/media/media';
 import { MockPublicVappTemplateResponse, MockVappTemplateResponse } from './responses/vapp-template/vapp-template';
+import {
+  SupportTicketAttachmentDownloadableMockResponse,
+  SupportTicketAttachmentMockResponse,
+  SupportTicketAttachmentsMockResponse,
+  SupportTicketCommentsMockResponse,
+  SupportTicketMockResponse
+} from './responses/support-ticket/support-ticket';
 
 jest.unmock('../http');
 
@@ -163,6 +183,26 @@ export class Http {
       case /\/companies\/[^\/]+\/users?$/.test(url):
         // get users for a company
         return MockCompanyUsersResponse;
+      case /\/companies\/[^\/]+\/support-tickets$/.test(url):
+        return MockCompanySupportTicketsResponse;
+      case /\/companies\/[^\/]+\/support-tickets\/[^\/]+$/.test(url):
+        return SupportTicketMockResponse;
+      case /\/companies\/[^\/]+\/support-tickets\/[^\/]+\/attachments$/.test(url):
+        return SupportTicketAttachmentsMockResponse;
+      case /\/companies\/[^\/]+\/support-tickets\/[^\/]+\/attachments\/[^\/]+$/.test(url):
+        return SupportTicketAttachmentMockResponse;
+      case /\/companies\/[^\/]+\/support-tickets\/[^\/]+\/attachments\/[^\/]+\/is-downloadable$/.test(url):
+        return SupportTicketAttachmentDownloadableMockResponse;
+      case /\/companies\/[^\/]+\/support-tickets\/[^\/]+\/comments$/.test(url):
+        return SupportTicketCommentsMockResponse;
+      case /\/companies\/[^\/]+\/location\/[^\/]+\/orgs$/.test(url):
+        return MockCompanyOrgsResponse;
+      case /\/companies\/[^\/]+\/location\/[^\/]+\/vdcs/.test(url):
+        return MockCompanyVdcsResponse;
+      case /\/companies\/[^\/]+\/location\/[^\/]+\/vapps/.test(url):
+        return MockCompanyVappsResponse;
+      case /\/companies\/[^\/]+\/location\/[^\/]+\/vms/.test(url):
+        return MockCompanyVmsResponse;
       case /\/companies\/[^\/]+\/logo?$/.test(url):
         // get company logo
         return MockCompanyLogoResponse;
@@ -183,6 +223,22 @@ export class Http {
       case /\/catalogs\/[^\/]+?$/.test(url):
         // get a catalog
         return MockCatalogResponse;
+      case /\/catalogs\/[^\/]+\/item-downloads$/.test(url):
+        // get catalog item downloads
+        return CatalogItemDownloadsTemplateMockResponse;
+      case /\/catalogs\/[^\/]+\/medias$/.test(url):
+        // get catalog medias
+        return CatalogMediasMockResponse;
+      case /\/catalogs\/[^\/]+\/vapp-templates$/.test(url):
+        // get catalog metadata
+        return CatalogVappTemplateMockResponse;
+      case /\/catalogs\/dev-vcd01.iland.dev:urn:vcloud:catalog:d576ce89-0599-42f5-812c-592e0e98964f\/metadata$/
+        .test(url):
+        // get catalog fake metadata
+        return MockFakeMetadataResponse;
+      case /\/catalogs\/[^\/]+\/metadata$/.test(url):
+        // get catalog metadata
+        return MockMetadataResponse;
       case /\/media\/[^\/]+?$/.test(url):
         // get a media
         return MockMediaResponse;

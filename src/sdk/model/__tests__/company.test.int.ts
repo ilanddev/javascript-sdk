@@ -115,10 +115,10 @@ test('Can refresh company', async() => {
 });
 
 test('Can get logo', async() => {
-  return Company.getCompany(companyEntity.uuid).then(async function(company) {
+  return Company.getCompany(companyEntity.uuid).then(async(company) => {
     const success = jest.fn();
     const error = jest.fn();
-    company.getLogo().then(success, error).then(function() {
+    return company.getLogo().then(success, error).then(function() {
       expect(success).toBeCalled();
       expect(error).not.toBeCalled();
     });

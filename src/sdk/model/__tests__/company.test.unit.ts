@@ -5,6 +5,11 @@ import { MockCompanyJson } from '../../__mocks__/responses/company/company';
 import { RoleCreationRequestBuilder } from '../role-creation-request';
 import { PolicyBuilder } from '../policy';
 import { UserCreationRequest } from '../user-creation-request';
+import { MockOrgJson } from '../../__mocks__/responses/org/org';
+import { MockVdcJson } from '../../__mocks__/responses/vdc/vdc';
+import { MockVappJson } from '../../__mocks__/responses/vapp/vapp';
+import { MockVmJson } from '../../__mocks__/responses/vm/vm';
+import { SupportTicketMock } from '../../__mocks__/responses/support-ticket/support-ticket';
 
 jest.mock('../../http');
 
@@ -92,7 +97,7 @@ test('Properly submits request to create a company role', async() => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
     const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
-                                                                              .build();
+      .build();
     const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
     return company.createRole(request).then(async function(role) {
       expect(Iland.getHttp().post).lastCalledWith(`/companies/${id}/roles`, request.json);
@@ -132,7 +137,7 @@ test('Properly submits request to update a company role', async() => {
     expect(company.entityType).toBe('COMPANY');
     const fakeRoleUuid = 'fake-role-uuid';
     const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
-                                                                              .build();
+      .build();
     const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
     return company.updateRole(fakeRoleUuid, request).then(async function(role) {
       expect(Iland.getHttp().put).lastCalledWith(`/companies/${id}/roles/${fakeRoleUuid}`, request.json);
@@ -181,9 +186,8 @@ test('Properly submits request to get company logo', async() => {
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
-    return company.getLogo().then(async (logo) => {
-      expect(Iland.getHttp().get).lastCalledWith(
-        `/companies/${id}/logo`,
+    return company.getLogo().then(async(logo) => {
+      expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}/logo`,
         {
           'headers': {'Accept': 'image/jpeg'},
           'responseType': 'arraybuffer'
@@ -200,7 +204,7 @@ test('Properly submits request to set company logo', async() => {
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
-    return company.setLogo(new Uint8Array([0xFF, 0xD8, 0xFF, 0xE0])).then(async (response) => {
+    return company.setLogo(new Uint8Array([0xFF, 0xD8, 0xFF, 0xE0])).then(async(response) => {
       expect(Iland.getHttp().post).lastCalledWith(
         `/companies/${id}/logo`,
         new Uint8Array([255, 216, 255, 224]),
@@ -216,9 +220,49 @@ test('Properly submits request to delete company logo', async() => {
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
-    return company.deleteLogo().then(async (response) => {
+    return company.deleteLogo().then(async(response) => {
       expect(Iland.getHttp().delete).lastCalledWith(`/companies/${id}/logo`);
       expect(response).toBeTruthy();
     });
+  });
+});
+
+test('Properly get all organizations in company', async() => {
+  const company = new Company(MockCompanyJson);
+  return company.getOrganizations('urn:iland:location:000003:iland-cloud:dev-vcd01.iland.dev').then(orgs => {
+    expect(orgs.length).toEqual(1);
+    expect(orgs[0].json).toEqual(MockOrgJson);
+  });
+});
+
+test('Properly get all vdcs in company', async() => {
+  const company = new Company(MockCompanyJson);
+  return company.getVdcs('urn:iland:location:000003:iland-cloud:dev-vcd01.iland.dev').then(vdcs => {
+    expect(vdcs.length).toEqual(1);
+    expect(vdcs[0].json).toEqual(MockVdcJson);
+  });
+});
+
+test('Properly get all vapps in company', async() => {
+  const company = new Company(MockCompanyJson);
+  return company.getVapps('urn:iland:location:000003:iland-cloud:dev-vcd01.iland.dev').then(vapps => {
+    expect(vapps.length).toEqual(1);
+    expect(vapps[0].json).toEqual(MockVappJson);
+  });
+});
+
+test('Properly get all vms in company', async() => {
+  const company = new Company(MockCompanyJson);
+  return company.getVms('urn:iland:location:000003:iland-cloud:dev-vcd01.iland.dev').then(vms => {
+    expect(vms.length).toEqual(1);
+    expect(vms[0].json).toEqual(MockVmJson);
+  });
+});
+
+test('Properly get support tickets in company', async() => {
+  const company = new Company(MockCompanyJson);
+  return company.getSupportTickets().then(tickets => {
+    expect(tickets.length).toEqual(1);
+    expect(tickets[0].json).toEqual(SupportTicketMock);
   });
 });

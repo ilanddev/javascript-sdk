@@ -4,6 +4,11 @@ import { RoleCreationRequestJson } from '../../../model/json/role-creation-reque
 import { RoleJson } from '../../../model/json/role';
 import { UserCreationRequestJson } from '../../../model/json/user-creation-request';
 import { UserJson } from '../../../model/json/user';
+import { MockOrgJson } from '../org/org';
+import { MockVdcJson } from '../vdc/vdc';
+import { MockVappJson } from '../vapp/vapp';
+import { MockVmJson } from '../vm/vm';
+import { SupportTicketMock } from '../support-ticket/support-ticket';
 
 export const MockCompanyJson: CompanyJson = {
   deleted: false,
@@ -44,7 +49,57 @@ export const MockCompanyLogoResponse: Promise<AxiosResponse> = new Promise<Axios
       'content-type': 'image/jpeg'
     },
     config: {}
-  })
+  });
+});
+
+export const MockCompanyOrgsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [MockOrgJson],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockCompanyVdcsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [MockVdcJson],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockCompanyVappsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [MockVappJson],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockCompanyVmsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [MockVmJson],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockCompanySupportTicketsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: [SupportTicketMock],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
 });
 
 export class MockCompanyService {
