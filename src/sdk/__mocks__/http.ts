@@ -147,16 +147,16 @@ export class Http {
       case /\/vdcs\/[^\/]+?\/vms$/.test(url):
         // get a vdcs child vms
         return MockVdcVmsResponse;
-      case /\/organizations\/[^\/]+?$/.test(url):
+      case /\/orgs\/[^\/]+?$/.test(url):
         // get a org
         return MockOrgResponse;
-      case /\/organizations\/[^\/]+?\/vdcs$/.test(url):
+      case /\/orgs\/[^\/]+?\/vdcs$/.test(url):
         // get a orgs child vdcs
         return MockOrgVdcsResponse;
-      case /\/organizations\/[^\/]+?\/vapps$/.test(url):
+      case /\/orgs\/[^\/]+?\/vapps$/.test(url):
         // get a orgs child vapps
         return MockOrgVappsResponse;
-      case /\/organizations\/[^\/]+?\/vms$/.test(url):
+      case /\/orgs\/[^\/]+?\/vms$/.test(url):
         // get a orgs child vms
         return MockOrgVmsResponse;
       case /\/vapp-networks\/[^\/]+?$/.test(url):
@@ -168,13 +168,13 @@ export class Http {
       case /\/edges\/[^\/]+?$/.test(url):
         // get an edge
         return MockEdgeResponse;
-      case /\/organizations\/[^\/]+?\/vdc-networks$/.test(url):
+      case /\/orgs\/[^\/]+?\/vdc-networks$/.test(url):
         // get an orgs internal networks
         return MockOrgInternalNetworksResponse;
-      case /\/organizations\/[^\/]+?\/vapp-networks$/.test(url):
+      case /\/orgs\/[^\/]+?\/vapp-networks$/.test(url):
         // get an orgs vapp networks
         return MockOrgVappNetworksResponse;
-      case /\/organizations\/[^\/]+?\/edges$/.test(url):
+      case /\/orgs\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
       case /\/companies\/[^\/]+?$/.test(url):
