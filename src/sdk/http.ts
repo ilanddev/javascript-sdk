@@ -50,15 +50,22 @@ export class Http {
       }
     }, async(reason: AxiosError) => {
       let error: ApiErrorJson;
-      const response = reason.response!!;
-      if (response.data instanceof Object || response.data instanceof Array) {
-        error = response.data as ApiErrorJson;
+      const response = reason.response;
+      if (!response) {
+        error = {
+          type: 'ConnectionError',
+          message: `failed to connect to ${reason.config.url}`
+        };
       } else {
-        let str = response.data as string;
-        if (str.indexOf(')]}\'\n') === 0) {
-          str = str.substring(5);
+        if (response.data instanceof Object || response.data instanceof Array) {
+          error = response.data as ApiErrorJson;
+        } else {
+          let str = response.data as string;
+          if (str.indexOf(')]}\'\n') === 0) {
+            str = str.substring(5);
+          }
+          error = JSON.parse(str) as ApiErrorJson;
         }
-        error = JSON.parse(str) as ApiErrorJson;
       }
       throw new ApiError(error);
     });

@@ -71,4 +71,5 @@ export type ApiErrorType = 'BadRequestError' |
     'VCloudDirectorError' |
     'VShieldManagerError' |
     'UnauthorizedError' |
-    'UnknownError';
+    'UnknownError' |
+    'ConnectionError';
