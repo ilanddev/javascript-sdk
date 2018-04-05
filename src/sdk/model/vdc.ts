@@ -1,11 +1,13 @@
 import { Entity } from './entity';
-import { VappJson } from './json/vapp';
+import { VappJson, BuildVappRequestJson } from './json/vapp';
 import { Iland } from '../iland';
 import { EntityType } from './json/entity-type';
 import { VmJson } from './json/vm';
 import { Vm } from './vm';
 import { VdcAllocationModel, VdcJson } from './json/vdc';
 import { Vapp } from './vapp';
+import { Task } from './task';
+import { TaskJson } from './json/task';
 
 /**
  * Virtual Data Center.
@@ -222,6 +224,18 @@ export class Vdc extends Entity {
     return Iland.getHttp().get(`/vdcs/${this.uuid}/vms`).then((response) => {
       const json = response.data as Array<VmJson>;
       return json.map((vmJson) => new Vm(vmJson));
+    });
+  }
+
+  /**
+   * Create a scratch vApp into the vDC.
+   * @param {BuildVappRequestJson} buildVappRequest
+   * @returns {Promise<Task>} task promise
+   */
+  async buildVapp(buildVappRequest: BuildVappRequestJson): Promise<Task> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/build-vapp`, buildVappRequest).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
     });
   }
 

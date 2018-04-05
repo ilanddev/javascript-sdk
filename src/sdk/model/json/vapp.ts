@@ -1,4 +1,5 @@
 import { EntityJson } from './entity';
+import { BuildVmRequestJson } from './vm';
 
 /**
  * Interface for vApp properties.
@@ -35,3 +36,12 @@ export type VappStatus =
     | 'UNRESOLVED'
     | 'WAITING_FOR_INPUT'
     | 'MIXED';
+
+/**
+ * Specification for a Build Vapp request.
+ */
+export interface BuildVappRequestJson {
+  name: string;
+  description: string;
+  vms: Array<BuildVmRequestJson>;
+}

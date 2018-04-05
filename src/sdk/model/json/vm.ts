@@ -243,3 +243,60 @@ export interface VmRelocationRequestJson {
  * Enumeration of the available power operations for a VM.
  */
 export type VmPowerOperation = 'poweron' | 'poweroff' | 'suspend' | 'shutdown' | 'reset' | 'reboot';
+
+/**
+ * Enumaration of the available disk types for a VM.
+ */
+export type DiskType = 'LSI_LOGIC' | 'LSI_LOGIC_SAS' | 'PARA_VIRTUAL' | 'BUS_LOGIC' | 'SATA' | 'IDE';
+
+/**
+ * Specification for a VM disk request.
+ */
+export interface VmDiskRequestJson {
+  name: string;
+  disk_type: DiskType;
+  size: number;
+}
+
+/**
+ * Enumeration of the available ip addressing modes for a VM.
+ */
+export type IpAddressingMode = 'DHCP' | 'MANUAL' | 'POOL' | 'NONE';
+
+/**
+ * Enumeration of the available adapter types for a VM.
+ */
+export type AdapterType = 'E100E' | 'E1000' | 'VLANCE' | 'VMXNET' | 'FLEXIBLE' | 'VMXNET2' | 'VMXNET3';
+
+/**
+ * Specification for a VM vnic request.
+ */
+export interface VmVnicRequestJson {
+  primary_vnic: boolean;
+  ip_address: string;
+  ip_assignment: IpAddressingMode;
+  network_uuid: string;
+  network_adapter_type: AdapterType;
+}
+
+/**
+ * Specification for a Build VM request.
+ */
+export interface BuildVmRequestJson {
+  name: string;
+  description: string;
+  vm_template_uuid: string | null;
+  vapp_template_uuid: string | null;
+  disks: Array<VmDiskRequestJson> | null;
+  ram: number | null;
+  number_of_cpus: number | null;
+  cpu_cores_per_socket: number | null;
+  hardware_version: number | null;
+  operating_system_version: string | null;
+  boot_delay: number | null;
+  expose_cpu_virtualization: boolean;
+  media_uuid: string | null;
+  computer_name: string;
+  storage_profile_uuid: string;
+  vnics: Array<VmVnicRequestJson>;
+}

@@ -84,6 +84,8 @@ export type TaskOperation = 'power on' |
     'update runtime lease' |
     'add vapp' |
     'add vms' |
+    'build vapp' |
+    'build VMs' |
     'update description' |
     'update static routing' |
     'update dhcp service' |

@@ -4,6 +4,8 @@ import { Vdc } from '../vdc';
 import { MockVdcJson } from '../../__mocks__/responses/vdc/vdc';
 import { MockVdcVmsJson } from '../../__mocks__/responses/vdc/vms';
 import { MockVdcVappsJson } from '../../__mocks__/responses/vdc/vapps';
+import { BuildVappRequestJson } from '../json/vapp';
+import { BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../json/vm';
 
 jest.mock('../../http');
 
@@ -47,5 +49,48 @@ test('Properly submits request to get vDCs child VMs', async() => {
       expect(vm.json).toEqual(MockVdcVmsJson[idx]);
       idx++;
     }
+  });
+});
+
+test('Build vApp in vDC', async() => {
+  const vnic: VmVnicRequestJson = {
+    primary_vnic: true,
+    ip_address: '',
+    ip_assignment: 'POOL',
+    network_uuid: 'dev-vcd01.iland.dev:urn:vcloud:network:332a2980-ee2c-4962-b782-d93ec2b8cc7e',
+    network_adapter_type: 'E1000'
+  };
+  const disk: VmDiskRequestJson = {
+    name: 'Hard disk 1',
+    disk_type: 'LSI_LOGIC',
+    size: 8
+  };
+  const vmJson: BuildVmRequestJson = {
+    name: 'vm name',
+    description: 'vm desc',
+    vm_template_uuid: null,
+    vapp_template_uuid: null,
+    disks: [disk],
+    ram: 2000,
+    number_of_cpus: 1,
+    cpu_cores_per_socket: 1,
+    hardware_version: 11,
+    operating_system_version: 'sles10_64Guest',
+    boot_delay: 0,
+    expose_cpu_virtualization: false,
+    media_uuid: null,
+    computer_name: 'computerName',
+    storage_profile_uuid: 'dev-vcd01.iland.dev:urn:vcloud:vdcstorageProfile:72de9291-5a68-40db-8324-f90495a0088f',
+    vnics: [vnic]
+  };
+  const json: BuildVappRequestJson = {
+    name: 'name',
+    description: '',
+    vms: [vmJson]
+  };
+  const vdc = new Vdc(MockVdcJson);
+  return vdc.buildVapp(json).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/build-vapp`, json);
+    expect(task.operation).toBe('build vapp');
   });
 });
