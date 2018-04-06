@@ -94,7 +94,7 @@ test('Can get vDC and verify required properties', async() => {
     expect(vdc.allocatedMemory).toBeDefined();
     expect(vdc.allocatedMemory).toBe(raw.alloc_mem);
     expect(vdc.maxHardwareVersion).toBeDefined();
-    expect(vdc.maxHardwareVersion).toBe(raw.max_hdw_version);
+    expect(vdc.maxHardwareVersion).toBe(raw.max_hardware_version);
     expect(vdc.networkQuota).toBeDefined();
     expect(vdc.networkQuota).toBe(raw.network_quota);
     expect(vdc.usedNetworkCount).toBeDefined();

@@ -15,7 +15,7 @@ export const MockVdcJson: VdcJson = {
   disk_limit: 2810675,
   alloc_cpu: 0,
   alloc_mem: 0,
-  max_hdw_version: 'vmx-11',
+  max_hardware_version: 'vmx-11',
   network_quota: 1024,
   used_network_count: 8,
   location_id: 'dev-vcd01.iland.dev',
