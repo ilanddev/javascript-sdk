@@ -34,6 +34,10 @@ export class Vapp extends Entity {
     return 'VAPP';
   }
 
+  get apiPrefix(): string {
+    return '/vapps';
+  }
+
   /**
    * Indicates whether this vApp is currently deployed.
    * @returns {boolean} value

@@ -34,6 +34,10 @@ export class Vdc extends Entity {
     return 'VDC';
   }
 
+  get apiPrefix(): string {
+    return '/vdcs';
+  }
+
   /**
    * Indicates whether the vDC is enabled.
    * @returns {boolean} value

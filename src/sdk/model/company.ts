@@ -44,6 +44,10 @@ export class Company extends Entity {
     return 'COMPANY';
   }
 
+  get apiPrefix(): string {
+    return '/companies';
+  }
+
   /**
    * Indicates whether the company has the iland cloud product.
    * @returns {boolean} value

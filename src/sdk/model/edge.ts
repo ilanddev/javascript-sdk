@@ -29,6 +29,10 @@ export class Edge extends Entity {
     return 'EDGE';
   }
 
+  get apiPrefix(): string {
+    return '/edges';
+  }
+
   /**
    * Gets the status of the Edge gateway.
    * @returns {string} status

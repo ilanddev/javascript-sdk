@@ -53,6 +53,10 @@ export class Vm extends Entity {
     return 'VM';
   }
 
+  get apiPrefix(): string {
+    return '/vms';
+  }
+
   /**
    * Gets the VM's local ID.
    * @returns {string} the VM's local ID

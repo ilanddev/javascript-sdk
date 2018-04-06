@@ -5,6 +5,9 @@ import { User } from '../user';
 import { ApiError } from '../../api-error';
 import { Vapp } from '../vapp';
 import { InventoryEntity } from '../company-inventory';
+import {PerfSamplesRequestJson} from "../json/perf-samples-request";
+import {Vdc} from "../vdc";
+import {PerfCounter} from "../json/perf-samples";
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVapp: InventoryEntity;
@@ -105,6 +108,30 @@ test('Can refresh vApp', async() => {
     expect(vapp.uuid).toBe(inventoryVapp.uuid);
     return vapp.refresh().then(function(refreshed) {
       expect(refreshed.uuid).toBe(inventoryVapp.uuid);
+    });
+  });
+});
+
+test('Can get perf counters', async() => {
+  return Vapp.getVapp(inventoryVapp.uuid).then(async (vapp) => {
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
+    return vapp.getPerfCounters().then((response) => {
+      expect(response).toBeDefined();
+      expect(response.length).toBeGreaterThan(0);
+    });
+  });
+});
+
+test('Can get perf samples', async() => {
+  return Vapp.getVapp(inventoryVapp.uuid).then(async (vapp) => {
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
+    return vapp.getPerfCounters().then((counters) => {
+      expect(counters).toBeDefined();
+      expect(counters.length).toBeGreaterThan(0);
+      const request = { counter: counters[0] } as PerfSamplesRequestJson;
+      return vapp.getPerfSamples(request).then((perfSamplesSerie) => {
+        expect(perfSamplesSerie).toBeDefined();
+      })
     });
   });
 });

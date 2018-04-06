@@ -19,6 +19,9 @@ import {
 } from '../json/vm';
 import { VmCpuUpdateRequest } from '../vm-cpu-update-request';
 import { VmCreateSnapshotRequest } from '../vm-create-snapshot-request';
+import {PerfSamplesRequestJson} from "../json/perf-samples-request";
+import {Vdc} from "../vdc";
+import {MockVdcJson} from "../../__mocks__/responses/vdc/vdc";
 
 jest.mock('../../http');
 
@@ -524,4 +527,21 @@ test('Parses power status correctly', () => {
   expect(vm.powerStatus).toBe('MIXED');
   apiVm.status = 'SUSPENDED';
   expect(vm.powerStatus).toBe('SUSPENDED');
+});
+
+test('Properly submits request to get vDC perf samples', async() => {
+  const vm = new Vm(MockVmJson);
+  const request = {
+    counter: {group: 'cpu', name:'usagemhz', type:'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson;
+  return vm.getPerfSamples(request).then(function(perfSamplesSerie) {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vm.apiPrefix}/${vm.uuid}/performance/${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
+  });
 });
