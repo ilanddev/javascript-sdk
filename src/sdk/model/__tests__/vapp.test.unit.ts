@@ -5,7 +5,7 @@ import { VappJson } from '../json/vapp';
 import { MockVappJson } from '../../__mocks__/responses/vapp/vapp';
 import { MockVappVmsJson } from '../../__mocks__/responses/vapp/vms';
 import { MockVappNetworksJson } from '../../__mocks__/responses/vapp/vapp-networks';
-import {PerfSamplesRequestJson} from "../json/perf-samples-request";
+import { PerfSamplesRequestJson } from '../json/perf-samples-request';
 
 jest.mock('../../http');
 
@@ -91,7 +91,7 @@ test('Properly submits request to get vApps child vApp Networks', async() => {
 test('Properly submits request to get vApps perf samples', async() => {
   const vapp = new Vapp(MockVappJson);
   const request = {
-    counter: {group: 'cpu', name:'usagemhz', type:'average'},
+    counter: {group: 'cpu', name: 'usagemhz', type: 'average'},
     start: 1,
     end: 2,
     interval: 3,
@@ -99,7 +99,8 @@ test('Properly submits request to get vApps perf samples', async() => {
   } as PerfSamplesRequestJson;
   return vapp.getPerfSamples(request).then(function(perfSamplesSerie) {
     expect(Iland.getHttp().get).lastCalledWith(
-        `${vapp.apiPrefix}/${vapp.uuid}/performance/${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        `${vapp.apiPrefix}/${vapp.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
         {params: {start: 1, end: 2, interval: 3, limit: 4}}
     );
   });

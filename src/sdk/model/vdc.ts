@@ -8,10 +8,10 @@ import { VdcAllocationModel, VdcJson } from './json/vdc';
 import { Vapp } from './vapp';
 import { Task } from './task';
 import { TaskJson } from './json/task';
-import {PerfSamplesRequestJson} from "./json/perf-samples-request";
-import {PerfCounterJson, PerfSampleSerieJson} from "./json/perf-samples";
-import {EntityWithPerfSamples} from "./mixins/entity-with-perf-samples";
-import {applyMixins} from "rxjs/util/applyMixins";
+import { PerfSamplesRequestJson } from './json/perf-samples-request';
+import { PerfCounterJson, PerfSampleSerieJson } from './json/perf-samples';
+import { EntityWithPerfSamples } from './mixins/entity-with-perf-samples';
+import { applyMixins } from 'rxjs/util/applyMixins';
 
 /**
  * Virtual Data Center.
@@ -20,8 +20,8 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
 
   // EntityWithPerfSamples mixin properties and methods
   apiPrefix = '/vdcs';
-  getPerfCounters:() => Promise<Array<PerfCounterJson>>;
-  getPerfSamples:(request: PerfSamplesRequestJson) => Promise<PerfSampleSerieJson>;
+  getPerfCounters: () => Promise<Array<PerfCounterJson>>;
+  getPerfSamples: (request: PerfSamplesRequestJson) => Promise<PerfSampleSerieJson>;
 
   constructor(private _json: VdcJson) {
     super(_json);

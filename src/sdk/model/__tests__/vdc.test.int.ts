@@ -5,8 +5,7 @@ import { User } from '../user';
 import { ApiError } from '../../api-error';
 import { Vdc } from '../vdc';
 import { InventoryEntity } from '../company-inventory';
-import {PerfSamplesRequestJson} from "../json/perf-samples-request";
-import {PerfCounter} from "../json/perf-samples";
+import { PerfSamplesRequestJson } from '../json/perf-samples-request';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVdc: InventoryEntity;
@@ -115,7 +114,7 @@ test('Can refresh vDC', async() => {
 });
 
 test('Can get perf counters', async() => {
-  return Vdc.getVdc(inventoryVdc.uuid).then(async (vdc) => {
+  return Vdc.getVdc(inventoryVdc.uuid).then(async(vdc) => {
     expect(vdc.uuid).toBe(inventoryVdc.uuid);
     return vdc.getPerfCounters().then((response) => {
       expect(response).toBeDefined();
@@ -125,15 +124,15 @@ test('Can get perf counters', async() => {
 });
 
 test('Can get perf samples', async() => {
-  return Vdc.getVdc(inventoryVdc.uuid).then(async (vdc) => {
+  return Vdc.getVdc(inventoryVdc.uuid).then(async(vdc) => {
     expect(vdc.uuid).toBe(inventoryVdc.uuid);
-    return vdc.getPerfCounters().then((counters) => {
+    return vdc.getPerfCounters().then(async(counters) => {
       expect(counters).toBeDefined();
       expect(counters.length).toBeGreaterThan(0);
-      const request = { counter: counters[0] } as PerfSamplesRequestJson;
-      return vdc.getPerfSamples(request).then((perfSamplesSerie) => {
+      const request = {counter: counters[0]} as PerfSamplesRequestJson;
+      return vdc.getPerfSamples(request).then(async(perfSamplesSerie) => {
         expect(perfSamplesSerie).toBeDefined();
-      })
+      });
     });
   });
 });

@@ -8,10 +8,10 @@ import { VappNetwork } from './vapp-network';
 import { VappNetworkJson } from './json/vapp-network';
 import { Task } from './task';
 import { TaskJson } from './json/task';
-import {PerfSamplesRequestJson} from "./json/perf-samples-request";
-import {PerfCounterJson, PerfSampleSerieJson} from "./json/perf-samples";
-import {EntityWithPerfSamples} from "./mixins/entity-with-perf-samples";
-import {applyMixins} from "rxjs/util/applyMixins";
+import { PerfSamplesRequestJson } from './json/perf-samples-request';
+import { PerfCounterJson, PerfSampleSerieJson } from './json/perf-samples';
+import { EntityWithPerfSamples } from './mixins/entity-with-perf-samples';
+import { applyMixins } from 'rxjs/util/applyMixins';
 
 /**
  * Virtual Application.
@@ -20,8 +20,8 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
 
   // EntityWithPerfSamples mixin properties and methods
   apiPrefix = '/vapps';
-  getPerfCounters:() => Promise<Array<PerfCounterJson>>;
-  getPerfSamples:(request: PerfSamplesRequestJson) => Promise<PerfSampleSerieJson>;
+  getPerfCounters: () => Promise<Array<PerfCounterJson>>;
+  getPerfSamples: (request: PerfSamplesRequestJson) => Promise<PerfSampleSerieJson>;
 
   constructor(private _json: VappJson) {
     super(_json);
