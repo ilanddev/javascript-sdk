@@ -27,11 +27,20 @@ import { BillingSummaryJson } from './json/billing-summary';
 import { BillingSummary } from './billing-summary';
 import { VmCreateSnapshotRequest } from './vm-create-snapshot-request';
 import { VmCpuUpdateRequest } from './vm-cpu-update-request';
+import {PerfSamplesRequestJson} from "./json/perf-samples-request";
+import {PerfCounterJson, PerfSampleSerieJson} from "./json/perf-samples";
+import {EntityWithPerfSamples} from "./mixins/entity-with-perf-samples";
+import {applyMixins} from "rxjs/util/applyMixins";
 
 /**
  * Virtual Machine.
  */
-export class Vm extends Entity {
+export class Vm extends Entity implements EntityWithPerfSamples {
+
+  // EntityWithPerfSamples mixin properties and methods
+  apiPrefix = '/vms';
+  getPerfCounters:() => Promise<Array<PerfCounterJson>>;
+  getPerfSamples:(request: PerfSamplesRequestJson) => Promise<PerfSampleSerieJson>;
 
   constructor(private _apiVm: VmJson) {
     super(_apiVm);
@@ -51,10 +60,6 @@ export class Vm extends Entity {
 
   get entityType(): EntityType {
     return 'VM';
-  }
-
-  get apiPrefix(): string {
-    return '/vms';
   }
 
   /**
@@ -702,6 +707,8 @@ export class Vm extends Entity {
   }
 
 }
+
+applyMixins(Vm, [EntityWithPerfSamples]);
 
 /**
  * Enumeration of possible VM power statuses.

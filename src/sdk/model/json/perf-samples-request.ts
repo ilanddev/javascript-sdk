@@ -1,10 +1,10 @@
 /**
  * Role Creation Request JSON properties.
  */
-import {PerfCounter} from "./perf-samples";
+import {PerfCounterJson} from "./perf-samples";
 
 export interface PerfSamplesRequestJson {
-    counter: PerfCounter
+    counter: PerfCounterJson
     start: number;
     end: number;
     interval: number;

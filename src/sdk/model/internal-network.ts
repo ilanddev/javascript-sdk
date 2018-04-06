@@ -28,10 +28,6 @@ export class InternalNetwork extends AbstractNetwork {
     return 'ORG_VDC_NETWORK';
   }
 
-  get apiPrefix(): string {
-    return '/internal-networks';
-  }
-
   /**
    * Gets the UUID of the edge gateway that the network is connected to, if its a NAT routed network or null otherwise.
    * @returns {string|null} edge gateway UUID or null

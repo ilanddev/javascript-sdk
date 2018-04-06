@@ -1,8 +1,5 @@
 import { EntityJson } from './json/entity';
 import { EntityType } from './json/entity-type';
-import {Iland} from "../iland";
-import {PerfSamplesRequestJson} from "./json/perf-samples-request";
-import {PerfCounter, PerfSampleSerie} from "./json/perf-samples";
 
 /**
  * Entity.
@@ -57,41 +54,5 @@ export abstract class Entity {
    * @returns {EntityType} the type of the entity
    */
   abstract get entityType(): EntityType;
-
-  /**
-   * Returns the api prefix for current entity or null if not defined
-   * @returns {string} the api prefix or null
-   */
-  get apiPrefix(): string | null {
-    return null;
-  }
-
-  async getPerfCounters(): Promise<Array<PerfCounter>> {
-    if (!this.apiPrefix) {
-      return Promise.reject('The specified resource does not exist for current entity');
-    }
-    return Iland.getHttp().get(`${this.apiPrefix}/${this.uuid}/performance-counters`).then(async (response) => {
-      return response.data as Array<PerfCounter>
-    });
-  }
-
-  async getPerfSamples(request: PerfSamplesRequestJson): Promise<PerfSampleSerie> {
-    if (!this.apiPrefix) {
-      return Promise.reject('The specified resource does not exist for current entity');
-    }
-    return Iland.getHttp().get(
-      `${this.apiPrefix}/${this.uuid}/performance/${request.counter.group}::${request.counter.name}::${request.counter.type}`,
-      {
-        params: {
-          start: request.start,
-          end: request.end,
-          limit: request.limit,
-          interval: request.interval
-        }
-      }
-    ).then((response) => {
-      return response.data as PerfSampleSerie;
-    });
-  }
 
 }

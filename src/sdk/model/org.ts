@@ -40,10 +40,6 @@ export class Org extends Entity {
     return 'ORG';
   }
 
-  get apiPrefix(): string {
-    return '/orgs';
-  }
-
   /**
    * Indicates whether the Org is enabled.
    * @returns {boolean} value

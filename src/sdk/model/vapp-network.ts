@@ -32,10 +32,6 @@ export class VappNetwork extends AbstractNetwork {
     return 'VAPP_NETWORK';
   }
 
-  get apiPrefix(): string {
-    return '/vapp-networks';
-  }
-
   /**
    * Gets the UUID of the vApp that the network is associated with.
    * @returns {string} vApp UUID

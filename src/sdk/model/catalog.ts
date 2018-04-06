@@ -49,10 +49,6 @@ export class Catalog extends Entity {
     return 'CATALOG';
   }
 
-  get apiPrefix(): string {
-    return '/catalogs';
-  }
-
   /**
    * Get location ID
    * @returns {string}

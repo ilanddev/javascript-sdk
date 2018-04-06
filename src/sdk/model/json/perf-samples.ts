@@ -1,7 +1,7 @@
 /**
  * API PerfSampleSerie JSON Representation.
  */
-export interface PerfSampleSerie {
+export interface PerfSampleSerieJson {
     uuid: string;
     summary: string;
     group: string;
@@ -9,14 +9,14 @@ export interface PerfSampleSerie {
     type: string;
     interval: number;
     unit: string;
-    samples: Array<PerfSample>;
-    perfSamples: Array<PerfSample>;
+    samples: Array<PerfSampleJson>;
+    perfSamples: Array<PerfSampleJson>;
 }
 
 /**
  * API PerfSample JSON Representation.
  */
-export interface PerfSample {
+export interface PerfSampleJson {
     time: Date;
     value: number;
 }
@@ -24,7 +24,7 @@ export interface PerfSample {
 /**
  * API PerfCounter JSON Representation.
  */
-export interface PerfCounter {
+export interface PerfCounterJson {
     group: string,
     name: string,
     type: string
