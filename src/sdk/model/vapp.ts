@@ -2,10 +2,12 @@ import { Entity } from './entity';
 import { VappJson, VappStatus } from './json/vapp';
 import { Iland } from '../iland';
 import { EntityType } from './json/entity-type';
-import { VmJson } from './json/vm';
+import { BuildVmRequestJson, VmJson } from './json/vm';
 import { Vm } from './vm';
 import { VappNetwork } from './vapp-network';
 import { VappNetworkJson } from './json/vapp-network';
+import { Task } from './task';
+import { TaskJson } from './json/task';
 
 /**
  * Virtual Application.
@@ -194,6 +196,18 @@ export class Vapp extends Entity {
     return Iland.getHttp().get(`/vapps/${this.uuid}/networks`).then((response) => {
       const json = response.data as Array<VappNetworkJson>;
       return json.map((vappNetJson) => new VappNetwork(vappNetJson));
+    });
+  }
+
+  /**
+   * Creates VMs in vApp.
+   * @param {Array} buildVmRequestList
+   * @returns {Promise<Task>} task response
+   */
+  async buildVms(buildVmRequestList: Array<BuildVmRequestJson>): Promise<Task> {
+    return Iland.getHttp().post(`/vapps/${this.uuid}/actions/add-vms`, buildVmRequestList).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
     });
   }
 
