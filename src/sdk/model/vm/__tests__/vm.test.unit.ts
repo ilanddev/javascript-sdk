@@ -1,5 +1,5 @@
 import { Vm } from '../vm';
-import { MockVmJson } from '../__mocks__/vm';
+import { MockVmJson, MockVmPerfCountersJson, MockVmPerfSamplesSeriesJson } from '../__mocks__/vm';
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../virtual-disk/__mocks__/virtual-disk';
@@ -24,6 +24,11 @@ import {
 } from '../__json__/vm-json';
 import { OperatingSystem } from '../__json__/operating-system-type';
 import { VmStatus } from '../__json__/vm-status-type';
+import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
+import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
+import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 
 jest.mock('../../../service/http/http');
 
@@ -529,4 +534,63 @@ test('Parses power status correctly', () => {
   expect(vm.powerStatus).toBe('MIXED');
   apiVm.status = 'SUSPENDED';
   expect(vm.powerStatus).toBe('SUSPENDED');
+});
+
+test('Properly submits request to get VM perf counters', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getPerfCounters().then(async(perfCounters) => {
+    expect(Iland.getHttp().get).lastCalledWith(`${vm.apiPrefix}/${vm.uuid}/performance-counters`);
+
+    expect(perfCounters).toBeDefined();
+    expect(perfCounters.length).toBeGreaterThan(0);
+    expect(perfCounters[0] instanceof PerfCounter).toBeTruthy();
+    expect(perfCounters[0].name).toBe(MockVmPerfCountersJson[0].name);
+    expect(perfCounters[0].group).toBe(MockVmPerfCountersJson[0].group);
+    expect(perfCounters[0].type).toBe(MockVmPerfCountersJson[0].type);
+    expect(perfCounters[0].json).toEqual(MockVmPerfCountersJson[0]);
+    expect(perfCounters[0].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get VM perf samples', async() => {
+  const vm = new Vm(MockVmJson);
+  const request = new PerfSamplesRequest({
+    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson);
+
+  return vm.getPerfSamples(request).then(async(perfSamples) => {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vm.apiPrefix}/${vm.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
+
+    expect(perfSamples).toBeDefined();
+    expect(perfSamples instanceof PerfSamplesSeries).toBeTruthy();
+    expect(perfSamples.uuid).toBe(MockVmPerfSamplesSeriesJson.uuid);
+    expect(perfSamples.summary).toBe(MockVmPerfSamplesSeriesJson.summary);
+    expect(perfSamples.interval).toBe(MockVmPerfSamplesSeriesJson.interval);
+    expect(perfSamples.group).toBe(MockVmPerfSamplesSeriesJson.group);
+    expect(perfSamples.name).toBe(MockVmPerfSamplesSeriesJson.name);
+    expect(perfSamples.type).toBe(MockVmPerfSamplesSeriesJson.type);
+    expect(perfSamples.unit).toBe(MockVmPerfSamplesSeriesJson.unit);
+    expect(perfSamples.counter).toBeDefined();
+    expect(perfSamples.counter instanceof PerfCounter).toBeTruthy();
+    expect(perfSamples.samples).toBeDefined();
+    expect(perfSamples.samples.length).toBeGreaterThan(0);
+    expect(perfSamples.json).toEqual(MockVmPerfSamplesSeriesJson);
+    expect(perfSamples.toString().length).toBeGreaterThan(0);
+
+    const perfSample = perfSamples.samples[0];
+    expect(perfSample instanceof PerfSample).toBeTruthy();
+    expect(perfSample.date instanceof Date).toBeTruthy();
+    expect(perfSample.timestamp).toBe(MockVmPerfSamplesSeriesJson.samples[0].timestamp);
+    expect(perfSample.value).toBe(MockVmPerfSamplesSeriesJson.samples[0].value);
+    expect(perfSample.json).toEqual(MockVmPerfSamplesSeriesJson.samples[0]);
+    expect(perfSample.toString().length).toBeGreaterThan(0);
+  });
 });

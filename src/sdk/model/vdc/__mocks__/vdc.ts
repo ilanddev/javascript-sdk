@@ -1,5 +1,7 @@
 import { AxiosResponse } from 'axios';
-import { VdcJson } from '../__json__/vdc-json';
+import { VdcJson } from '../__json__';
+import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/_json_/perf-samples';
+import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 
 export const MockVdcJson: VdcJson = {
   enabled: true,
@@ -56,6 +58,71 @@ export const MockSecondVdcJson: VdcJson = {
 export const MockVdcResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
     data: MockVdcJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockVdcPerfSamplesSeriesJson: PerfSamplesSeriesJson = {
+  uuid: 'dev-vcd01.iland.dev:urn:vcloud:vdc:f83bb52c-271d-411f-9d0d-1307cb192cb2',
+  summary: '',
+  interval: 20,
+  group: 'cpu',
+  name: 'usage',
+  type: 'average',
+  unit: '',
+  samples: [
+    { timestamp: 1525259560000, value: 0 },
+    { timestamp: 1525259580000, value: 0 },
+    { timestamp: 1525259600000, value: 0 },
+    { timestamp: 1525259620000, value: 0 },
+    { timestamp: 1525259640000, value: 0 },
+    { timestamp: 1525259660000, value: 0 },
+    { timestamp: 1525259680000, value: 0 },
+    { timestamp: 1525259700000, value: 0 },
+    { timestamp: 1525259720000, value: 0 }
+  ]
+};
+
+export const MockVdcPerfSamplesSeriesResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockVdcPerfSamplesSeriesJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockVdcPerfCountersJson: Array<PerfCounterJson> = [
+  { group: 'cpu', name: 'usage', type: 'average' },
+  { group: 'cpu', name: 'usagemhz', type: 'average' },
+  { group: 'cpu', name: 'ready', type: 'summation' },
+  { group: 'mem', name: 'active', type: 'average' },
+  { group: 'mem', name: 'consumed', type: 'average' },
+  { group: 'mem', name: 'vmmemctl', type: 'average' },
+  { group: 'mem', name: 'swapped', type: 'average' },
+  { group: 'mem', name: 'overhead', type: 'average' },
+  { group: 'net', name: 'received', type: 'average' },
+  { group: 'net', name: 'transmitted', type: 'average' },
+  { group: 'net', name: 'usage', type: 'average' },
+  { group: 'disk', name: 'read', type: 'average' },
+  { group: 'disk', name: 'write', type: 'average' },
+  { group: 'disk', name: 'maxTotalLatency', type: 'latest' },
+  { group: 'disk', name: 'usage', type: 'average' },
+  { group: 'disk', name: 'provisioned', type: 'latest' },
+  { group: 'disk', name: 'used', type: 'latest' },
+  { group: 'disk', name: 'numberWriteAveraged', type: 'average' },
+  { group: 'disk', name: 'numberReadAveraged', type: 'average' },
+  { group: 'disk', name: 'numberIOPsAveraged', type: 'average' },
+  { group: 'cpu', name: 'readyPercent', type: 'average' }
+];
+
+export const MockVdcPerfCountersResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockVdcPerfCountersJson.map((json) => new PerfCounter(json)),
     status: 200,
     statusText: '',
     headers: {},

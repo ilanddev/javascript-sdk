@@ -1,7 +1,7 @@
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { Vdc } from '../vdc';
-import { MockSecondVdcJson, MockVdcJson } from '../__mocks__/vdc';
+import { MockSecondVdcJson, MockVdcJson, MockVdcPerfSamplesSeriesJson } from '../__mocks__/vdc';
 import { MockVdcVmsJson } from '../__mocks__/vdc-vms';
 import { MockVdcVappsJson } from '../__mocks__/vdc-vapps';
 import {
@@ -24,6 +24,12 @@ import {
 } from '../../common/metadata/__mocks__/metadata';
 import { Metadata } from '../../common/metadata/metadata';
 import { MetadataType } from '../../common/metadata/__json__/metadata-type';
+import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
+import { MockVappPerfCountersJson } from '../../vapp/__mocks__/vapp';
+import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
+import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 
 jest.mock('../../../service/http/http');
 
@@ -187,5 +193,63 @@ test('Throw error if metadata type is not assignable for vDC', async() => {
   const vdc = new Vdc(MockSecondVdcJson);
   return vdc.getMetadata().catch(error => {
     expect(error).toEqual(new Error(`Metadata with type fake is unknown.`));
+  });
+});
+
+test('Properly submits request to get vDC perf counters', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  return vdc.getPerfCounters().then(async(perfCounters) => {
+    expect(Iland.getHttp().get).lastCalledWith(`${vdc.apiPrefix}/${vdc.uuid}/performance-counters`);
+
+    expect(perfCounters).toBeDefined();
+    expect(perfCounters.length).toBeGreaterThan(0);
+    expect(perfCounters[0] instanceof PerfCounter).toBeTruthy();
+    expect(perfCounters[0].name).toBe(MockVappPerfCountersJson[0].name);
+    expect(perfCounters[0].group).toBe(MockVappPerfCountersJson[0].group);
+    expect(perfCounters[0].type).toBe(MockVappPerfCountersJson[0].type);
+    expect(perfCounters[0].json).toEqual(MockVappPerfCountersJson[0]);
+    expect(perfCounters[0].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get vDC perf samples', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  const request = new PerfSamplesRequest({
+    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson);
+  return vdc.getPerfSamples(request).then(async(perfSamples) => {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vdc.apiPrefix}/${vdc.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
+
+    expect(perfSamples).toBeDefined();
+    expect(perfSamples instanceof PerfSamplesSeries).toBeTruthy();
+    expect(perfSamples.uuid).toBe(MockVdcPerfSamplesSeriesJson.uuid);
+    expect(perfSamples.summary).toBe(MockVdcPerfSamplesSeriesJson.summary);
+    expect(perfSamples.interval).toBe(MockVdcPerfSamplesSeriesJson.interval);
+    expect(perfSamples.group).toBe(MockVdcPerfSamplesSeriesJson.group);
+    expect(perfSamples.name).toBe(MockVdcPerfSamplesSeriesJson.name);
+    expect(perfSamples.type).toBe(MockVdcPerfSamplesSeriesJson.type);
+    expect(perfSamples.unit).toBe(MockVdcPerfSamplesSeriesJson.unit);
+    expect(perfSamples.counter).toBeDefined();
+    expect(perfSamples.counter instanceof PerfCounter).toBeTruthy();
+    expect(perfSamples.samples).toBeDefined();
+    expect(perfSamples.samples.length).toBeGreaterThan(0);
+    expect(perfSamples.json).toEqual(MockVdcPerfSamplesSeriesJson);
+    expect(perfSamples.toString().length).toBeGreaterThan(0);
+
+    const perfSample = perfSamples.samples[0];
+    expect(perfSample instanceof PerfSample).toBeTruthy();
+    expect(perfSample.date instanceof Date).toBeTruthy();
+    expect(perfSample.timestamp).toBe(MockVdcPerfSamplesSeriesJson.samples[0].timestamp);
+    expect(perfSample.value).toBe(MockVdcPerfSamplesSeriesJson.samples[0].value);
+    expect(perfSample.json).toEqual(MockVdcPerfSamplesSeriesJson.samples[0]);
+    expect(perfSample.toString().length).toBeGreaterThan(0);
   });
 });
