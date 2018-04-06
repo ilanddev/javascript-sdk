@@ -4,10 +4,11 @@ import { Iland } from '../iland';
 import { EntityType } from './json/entity-type';
 import { VmJson } from './json/vm';
 import { Vm } from './vm';
-import { VdcAllocationModel, VdcJson } from './json/vdc';
+import { VdcAllocationModel, VdcJson, VdcSummaryJson } from './json/vdc';
 import { Vapp } from './vapp';
 import { Task } from './task';
 import { TaskJson } from './json/task';
+import { VdcSummary } from './vdc-summary';
 
 /**
  * Virtual Data Center.
@@ -236,6 +237,17 @@ export class Vdc extends Entity {
     return Iland.getHttp().post(`/vdcs/${this.uuid}/build-vapp`, buildVappRequest).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
+    });
+  }
+
+  /**
+   * Gets the vDCs Summary.
+   * @returns {Promise<VdcSummary>} promise that resolved with a vDC summary
+   */
+  async getSummary(): Promise<VdcSummary> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/summary`).then((response) => {
+      const json = response.data as VdcSummaryJson;
+      return new VdcSummary(json);
     });
   }
 
