@@ -2,7 +2,10 @@ import { Vm } from '../vm';
 import { MockVmJson } from '../../__mocks__/responses/vm/vm';
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
-import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../../__mocks__/responses/vm/virtual-disk';
+import {
+  MockVirtualDisk1Json,
+  MockVirtualDisksJson
+} from '../../__mocks__/responses/vm/virtual-disk';
 import { VirtualDiskJson } from '../json/virtual-disk';
 import { MockMetadataJson } from '../../__mocks__/responses/metadata/metadata';
 import {
@@ -11,14 +14,22 @@ import {
 import { MockSnapshotJson } from '../../__mocks__/responses/vm/snapshot';
 import { MockScreenTicketJson } from '../../__mocks__/responses/vm/screen-ticket';
 import { MockMksScreenTicketJson } from '../../__mocks__/responses/vm/mks-screen-ticket';
-import { MockVmBillingSummaryJson, MockVmBillJson } from '../../__mocks__/responses/vm/bill';
 import {
-  OperatingSystem, VmCpuUpdateRequestJson, VmCreateSnapshotRequestJson, VmMemoryUpdateRequestJson,
-  VmRestoreBackupRequestJson, VmStatus,
+  MockVmBillingSummaryJson,
+  MockVmBillJson
+} from '../../__mocks__/responses/vm/bill';
+import {
+  OperatingSystem,
+  VmCpuUpdateRequestJson,
+  VmCreateSnapshotRequestJson,
+  VmMemoryUpdateRequestJson,
+  VmRestoreBackupRequestJson,
+  VmStatus,
   VmUpdateNameRequestJson
 } from '../json/vm';
 import { VmCpuUpdateRequest } from '../vm-cpu-update-request';
 import { VmCreateSnapshotRequest } from '../vm-create-snapshot-request';
+import { PerfSamplesRequestJson } from '../json/perf-samples-request';
 
 jest.mock('../../http');
 
@@ -298,10 +309,10 @@ test('Properly submits request to create a VM snapshot', async() => {
     description: 'snapshot description'
   };
   return vm.createSnapshot(new VmCreateSnapshotRequest(json.name, json.description, json.memory, json.quiesce))
-           .then(function(task) {
-             expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/snapshot`, json);
-             expect(task.operation).toBe('create snapshot');
-           });
+      .then(function(task) {
+        expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/snapshot`, json);
+        expect(task.operation).toBe('create snapshot');
+      });
 });
 
 test('Properly submits request to restore a VM snapshot', async() => {
@@ -524,4 +535,22 @@ test('Parses power status correctly', () => {
   expect(vm.powerStatus).toBe('MIXED');
   apiVm.status = 'SUSPENDED';
   expect(vm.powerStatus).toBe('SUSPENDED');
+});
+
+test('Properly submits request to get vDC perf samples', async() => {
+  const vm = new Vm(MockVmJson);
+  const request = {
+    counter: {group: 'cpu', name: 'usagemhz', type: 'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson;
+  return vm.getPerfSamples(request).then(async(perfSamplesSerie) => {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vm.apiPrefix}/${vm.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
+  });
 });
