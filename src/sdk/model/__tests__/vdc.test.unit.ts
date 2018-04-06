@@ -6,6 +6,7 @@ import { MockVdcVmsJson } from '../../__mocks__/responses/vdc/vms';
 import { MockVdcVappsJson } from '../../__mocks__/responses/vdc/vapps';
 import { BuildVappRequestJson } from '../json/vapp';
 import { BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../json/vm';
+import { PerfSamplesRequestJson } from '../json/perf-samples-request';
 
 jest.mock('../../http');
 
@@ -92,5 +93,24 @@ test('Build vApp in vDC', async() => {
   return vdc.buildVapp(json).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/build-vapp`, json);
     expect(task.operation).toBe('build vapp');
+  })
+});
+
+
+test('Properly submits request to get vDC perf samples', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  const request = {
+    counter: {group: 'cpu', name: 'usagemhz', type: 'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson;
+  return vdc.getPerfSamples(request).then(async(perfSamplesSerie) => {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vdc.apiPrefix}/${vdc.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
   });
 });
