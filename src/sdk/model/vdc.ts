@@ -141,7 +141,7 @@ export class Vdc extends Entity {
    * @returns {string} max hardware version
    */
   get maxHardwareVersion(): string {
-    return this._json.max_hdw_version;
+    return this._json.max_hardware_version;
   }
 
   /**

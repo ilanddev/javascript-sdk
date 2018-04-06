@@ -17,7 +17,7 @@ export interface VdcJson extends EntityJson {
   disk_limit: number;
   alloc_cpu: number;
   alloc_mem: number;
-  max_hdw_version: string;
+  max_hardware_version: string;
   network_quota: number;
   used_network_count: number;
   location_id: string;
