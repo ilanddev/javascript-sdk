@@ -2,10 +2,13 @@ import { KeycloakInstance } from 'keycloak-js';
 import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;
+import { Observable } from 'rxjs/Observable';
+import { Subscriber } from 'rxjs/Subscriber';
 
 export class IlandBrowserAuthProvider implements AuthProvider {
 
   private _keycloak: KeycloakInstance;
+  private _tokenObservable: Observable<string>;
 
   constructor(config: IlandBrowserAuthConfig) {
     const kcConfig = {
@@ -16,6 +19,19 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       realm: DEFAULT_REALM
     };
     this._keycloak = Keycloak(kcConfig);
+    this._tokenObservable = Observable.create((observable: Subscriber<string>) => {
+      this.getToken().then(token => {
+        observable.next(token);
+      }).catch(reason => {
+        observable.error(reason);
+      });
+      this._keycloak.onAuthRefreshSuccess = () => {
+        observable.next(this._keycloak.token);
+      };
+      this._keycloak.onAuthRefreshError = () => {
+        observable.error('[keycloak][onAuthRefreshError] Can\'t refresh the access token.');
+      };
+    });
   }
 
   async getToken(): Promise<string> {
@@ -30,6 +46,14 @@ export class IlandBrowserAuthProvider implements AuthProvider {
         });
       });
     });
+  }
+
+  /**
+   * Return an Observable to get an up to date token over time.
+   * @returns {Observable<string>}
+   */
+  getTokenObservable(): Observable<string> {
+    return this._tokenObservable;
   }
 
   /**
@@ -68,7 +92,6 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       });
     });
   }
-
 }
 
 export interface IlandBrowserAuthConfig {

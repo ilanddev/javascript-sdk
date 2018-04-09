@@ -1,35 +1,36 @@
 import { EdgeSubnetParticipationJson } from './json/edge';
-import { IpRange } from './ip-range';
+import { IpRange } from '../ip-range';
+import { IpRangeJson } from '../json/ip-range';
 
 /**
  * Edge Gateway Subnet Participation.
  */
-export class EdgeSubnetParticipation {
+export class SubnetParticipation {
 
   constructor(private _json: EdgeSubnetParticipationJson) {
   }
 
   /**
    * Gets the gateway address on the network.
-   * @returns {string} gateway address
+   * @returns {string | null} gateway address
    */
-  get gatewayAddress(): string {
+  get gatewayAddress(): string | null {
     return this._json.gateway;
   }
 
   /**
    * Gets the networks netmask.
-   * @returns {string} netmask
+   * @returns {string | null} netmask
    */
-  get netmask(): string {
+  get netmask(): string | null {
     return this._json.netmask;
   }
 
   /**
    * Gets the IP address.
-   * @returns {string} IP address
+   * @returns {string | null} IP address
    */
-  get ipAddress(): string {
+  get ipAddress(): string | null {
     return this._json.ip_address;
   }
 
@@ -38,7 +39,8 @@ export class EdgeSubnetParticipation {
    * @returns {[IpRange]} IP address ranges
    */
   get ipRanges(): Array<IpRange> {
-    return this._json.ip_ranges.map((rangeJson) => new IpRange(rangeJson));
+    const ipRanges = (this._json.ip_ranges || []) as Array<IpRangeJson>;
+    return ipRanges.map((rangeJson) => new IpRange(rangeJson));
   }
 
   /**

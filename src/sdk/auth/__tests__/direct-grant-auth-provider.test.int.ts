@@ -111,3 +111,21 @@ test('IlandDirectGrantAuthProvider can refresh token', async() => {
     });
   });
 });
+
+test('IlandDirectGrantAuthProvider can get token observer', (done) => {
+  expect.assertions(2);
+  const auth = new IlandDirectGrantAuthProvider({
+    username: TestConfiguration.getUsername(),
+    password: TestConfiguration.getPassword(),
+    clientSecret: TestConfiguration.getClientSecret(),
+    clientId: TestConfiguration.getClientId()
+  });
+  auth.getTokenObservable().subscribe(token => {
+    expect(token).toBeDefined();
+    expect(token.length).toBeGreaterThan(1);
+    done();
+  }, (error) => {
+    console.log(error);
+    done();
+  });
+});

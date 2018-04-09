@@ -47,9 +47,10 @@ class MockKeycloakPromise implements KeycloakPromise<any, string> {
 }
 
 class MockKeycloak {
-
   token: string;
   tokenParsed: any;
+  onAuthRefreshSuccess?: () => void;
+
   private initialized: boolean = false;
 
   updateToken() {
@@ -59,6 +60,7 @@ class MockKeycloak {
       this.tokenParsed = {
         preferred_username: 'csnyder'
       };
+      this.onAuthRefreshSuccess && this.onAuthRefreshSuccess();
       promise.resolve('');
     } else {
       promise.reject('');
@@ -104,4 +106,29 @@ test('IlandBrowserAuthProvider can retrieve token', async() => {
       return auth.logout();
     });
   });
+});
+
+test('IlandBrowserAuthProvider can retrieve a token observable', (done) => {
+  expect.assertions(3);
+  const auth = new IlandBrowserAuthProvider({
+    clientId: TestConfiguration.getClientId()
+  });
+  let tokenUpdated = false;
+  auth.getTokenObservable().subscribe(token => {
+    if (!tokenUpdated) {
+      expect(token).toEqual('fake-auth-token-1');
+    } else {
+      expect(token).toEqual('fake-auth-token-2');
+      done();
+    }
+  });
+  // Faking a token update.
+  setTimeout(() => {
+    tokenUpdated = true;
+    auth.getToken().then(token => {
+      expect(token).toEqual('fake-auth-token-2');
+    }).catch(() => {
+      done();
+    });
+  }, 1000);
 });

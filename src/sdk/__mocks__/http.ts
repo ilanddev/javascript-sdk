@@ -19,7 +19,13 @@ import { MockOrgVappsResponse } from './responses/org/vapps';
 import { MockOrgResponse } from './responses/org/org';
 import { MockOrgVdcsResponse } from './responses/org/vdcs';
 import { MockInternalNetworkResponse } from './responses/internal-network/internal-network';
-import { MockEdgeResponse } from './responses/edge/edge';
+import {
+  MockEdgeDhcpResponse,
+  MockEdgeNatCheckpointResponse,
+  MockEdgeNatCheckpointsResponse,
+  MockEdgeNatJsonResponse,
+  MockEdgeResponse, MockEdgeStaticRoutingServiceResponse, MockEdgeStatsResponse
+} from './responses/edge/edge';
 import { MockOrgInternalNetworksResponse } from './responses/org/internal-networks';
 import { MockOrgEdgesResponse } from './responses/org/edges';
 import { MockVappNetworkResponse } from './responses/vapp-network/vapp-network';
@@ -61,6 +67,15 @@ import {
   SupportTicketCommentsMockResponse,
   SupportTicketMockResponse
 } from './responses/support-ticket/support-ticket';
+import {
+  MockEdgeFirewallCheckpointResponse,
+  MockEdgeFirewallCheckpointsResponse,
+  MockEdgeFirewallLogsResponse,
+  MockEdgeFirewallResponse
+} from './responses/edge/edge-firewall';
+import { MockEdgeIpsecVpnResponse } from './responses/edge/edge-ipsec-vpn';
+import { MockEdgeLoadbalancerResponse } from './responses/edge/edge-load-balancer';
+import { MockEdgeSslVpnResponse } from './responses/edge/edge-ssl-vpn';
 
 jest.unmock('../http');
 
@@ -168,6 +183,45 @@ export class Http {
       case /\/edges\/[^\/]+?$/.test(url):
         // get an edge
         return MockEdgeResponse;
+      case /\/edges\/[^\/]+\/dhcp$/.test(url):
+        // get an edge DHCP
+        return MockEdgeDhcpResponse;
+      case /\/edges\/[^\/]+\/firewall$/.test(url):
+        // get an edge Firewall
+        return MockEdgeFirewallResponse;
+      case /\/edges\/[^\/]+\/firewall-logs/.test(url):
+        // get an edge Firewall logs
+        return MockEdgeFirewallLogsResponse;
+      case /\/edges\/[^\/]+\/firewall\/checkpoints$/.test(url):
+        // get an edge Firewall checkpoints
+        return MockEdgeFirewallCheckpointsResponse;
+      case /\/edges\/[^\/]+\/firewall\/checkpoints\/[^\/]+$/.test(url):
+        // get an edge Firewall checkpoints
+        return MockEdgeFirewallCheckpointResponse;
+      case /\/edges\/[^\/]+\/ipsec-vpn$/.test(url):
+        // get an edge ipsec-vpn service.
+        return MockEdgeIpsecVpnResponse;
+      case /\/edges\/[^\/]+\/load-balancer$/.test(url):
+        // get an edge load balancer service.
+        return MockEdgeLoadbalancerResponse;
+      case /\/edges\/[^\/]+\/nat$/.test(url):
+        // get an edge nat service.
+        return MockEdgeNatJsonResponse;
+      case /\/edges\/[^\/]+\/nat\/checkpoints$/.test(url):
+        // get an edge nat checkpoints.
+        return MockEdgeNatCheckpointsResponse;
+      case /\/edges\/[^\/]+\/nat\/checkpoints\/[^\/]+$/.test(url):
+        // get an edge nat checkpoint.
+        return MockEdgeNatCheckpointResponse;
+      case /\/edges\/[^\/]+\/sslvpn$/.test(url):
+        // get an edge ssl vpn service.
+        return MockEdgeSslVpnResponse;
+      case /\/edges\/[^\/]+\/static-routing$/.test(url):
+        // get an edge static routing.
+        return MockEdgeStaticRoutingServiceResponse;
+      case /\/edges\/[^\/]+\/stats$/.test(url):
+        // get an edge stats.
+        return MockEdgeStatsResponse;
       case /\/orgs\/[^\/]+?\/vdc-networks$/.test(url):
         // get an orgs internal networks
         return MockOrgInternalNetworksResponse;

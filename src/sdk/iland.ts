@@ -6,14 +6,16 @@ const DEFAULT_API_URL = `${BasicConfiguration.getApiUrl()}/v1`;
 
 export abstract class Iland {
 
-  private static _authProvider: AuthProvider|undefined;
+  public static baseUrl: string;
 
-  private static _http: Http|undefined;
+  private static _authProvider: AuthProvider | undefined;
+
+  private static _http: Http | undefined;
 
   static init(_authProvider: AuthProvider, _config?: IlandSdkConfig) {
     this._authProvider = _authProvider;
-    const baseUrl = _config !== undefined && _config.baseUrl ? _config.baseUrl : DEFAULT_API_URL;
-    this._http = new Http(baseUrl);
+    this.baseUrl = _config !== undefined && _config.baseUrl ? _config.baseUrl : DEFAULT_API_URL;
+    this._http = new Http(this.baseUrl);
   }
 
   static getAuthProvider(): AuthProvider {

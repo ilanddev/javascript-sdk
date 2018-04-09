@@ -38,7 +38,7 @@
     "ts-loader": "2.2.2",
     "tslint": "5.5.0",
     "tslint-config-standard": "6.0.1",
-    "typedoc": "0.7.1",
+    "typedoc": "0.11.1",
     "typescript": "2.4.0",
     "webpack": "3.0.0",
     "yarn": "^1.5.1"
@@ -69,7 +69,7 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/index.ts",
-      "!src/sdk/model/json/*.ts"
+      "!src/sdk/**/json/*.ts"
     ],
     "mapCoverage": true,
     "coveragePathIgnorePatterns": [
