@@ -103,6 +103,42 @@ test('Can get vDC and verify required properties', async() => {
   });
 });
 
+test('Can get vDC summary', async() => {
+  return Vdc.getVdc(inventoryVdc.uuid).then( async function(vdc) {
+    return vdc.getSummary().then(function(vdcSummary) {
+      const rawData = vdcSummary.json;
+      expect(vdcSummary).toBeDefined();
+      expect(vdcSummary.allocationCpu).toBeDefined();
+      expect(vdcSummary.allocationCpu).toBe(rawData.alloc_cpu);
+      expect(vdcSummary.allocationMemory).toBeDefined();
+      expect(vdcSummary.allocationMemory).toBe(rawData.alloc_mem);
+      expect(vdcSummary.configuredCpu).toBeDefined();
+      expect(vdcSummary.configuredCpu).toBe(rawData.configured_cpu);
+      expect(vdcSummary.configuredMemory).toBeDefined();
+      expect(vdcSummary.configuredMemory).toBe(rawData.configured_mem);
+      expect(vdcSummary.configuredDisk).toBeDefined();
+      expect(vdcSummary.configuredDisk).toBe(rawData.configured_disk);
+      expect(vdcSummary.numberOfVapps).toBeDefined();
+      expect(vdcSummary.numberOfVapps).toBe(rawData.numberOfVapps);
+      expect(vdcSummary.numberOfVms).toBeDefined();
+      expect(vdcSummary.numberOfVms).toBe(rawData.numberOfVms);
+      expect(vdcSummary.reservedCpu).toBeDefined();
+      expect(vdcSummary.reservedCpu).toBe(rawData.reservedCpu);
+      expect(vdcSummary.reservedMem).toBeDefined();
+      expect(vdcSummary.reservedMem).toBe(rawData.reservedMem);
+      expect(vdcSummary.consumedCpu).toBeDefined();
+      expect(vdcSummary.consumedCpu).toBe(rawData.consumedCpu);
+      expect(vdcSummary.consumedMem).toBeDefined();
+      expect(vdcSummary.consumedMem).toBe(rawData.consumedMem);
+      expect(vdcSummary.consumedDisk).toBeDefined();
+      expect(vdcSummary.consumedDisk).toBe(rawData.consumedDisk);
+      expect(vdcSummary.provisionedDisk).toBeDefined();
+      expect(vdcSummary.provisionedDisk).toBe(rawData.provisionedDisk);
+      expect(vdcSummary.toString().length).toBeGreaterThan(0);
+    });
+  });
+});
+
 test('Can refresh vDC', async() => {
   return Vdc.getVdc(inventoryVdc.uuid).then(async function(vdc) {
     expect(vdc.uuid).toBe(inventoryVdc.uuid);

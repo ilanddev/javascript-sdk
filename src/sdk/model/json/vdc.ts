@@ -28,3 +28,22 @@ export interface VdcJson extends EntityJson {
  * Enumerates the possible vDC allocation model options.
  */
 export type VdcAllocationModel = 'paygo' | 'allocation_pool' | 'reservation_pool';
+
+/**
+ * Interface for a vDC JSON Summary properties.
+ */
+export interface VdcSummaryJson {
+  reservedCpu: number;
+  reservedMem: number;
+  consumedCpu: number;
+  consumedMem: number;
+  consumedDisk: number;
+  provisionedDisk: number;
+  numberOfVms: number;
+  numberOfVapps: number;
+  alloc_cpu: number;
+  alloc_mem: number;
+  configured_mem: number;
+  configured_disk: number;
+  configured_cpu: number;
+}
