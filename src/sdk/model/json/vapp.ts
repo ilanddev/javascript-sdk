@@ -1,5 +1,7 @@
 import { EntityJson } from './entity';
-import { BuildVmRequestJson } from './vm';
+import { AddVappVmRequestJson, BuildVmRequestJson } from './vm';
+import { NetworkFenceMode } from './abstract-network';
+import { IpRangeJson } from './ip-range';
 
 /**
  * Interface for vApp properties.
@@ -44,4 +46,34 @@ export interface BuildVappRequestJson {
   name: string;
   description: string;
   vms: Array<BuildVmRequestJson>;
+}
+
+/**
+ * Specification for an Add Vapp request.
+ */
+export interface AddVappRequestJson {
+  vapp_template_uuid: string;
+  name: string;
+  description: string;
+  vms: Array<AddVappVmRequestJson>;
+  fence_mode: NetworkFenceMode;
+  vapp_network: AddVappNetworkInitializationParamsJson;
+}
+
+/**
+ * Specification for an Add Vapp Network Initialization Params request.
+ */
+export interface AddVappNetworkInitializationParamsJson {
+  name: string;
+  description: string;
+  deployed: boolean;
+  backward_compatibility_mode: boolean;
+  retain_net_info_across_deployments: boolean;
+  parent_network_uuid: string;
+  gateway_address: string;
+  network_mask: string;
+  primary_dns: string;
+  secondary_dns: string;
+  dns_suffix: string;
+  ip_ranges: Array<IpRangeJson>;
 }

@@ -4,8 +4,8 @@ import { Vdc } from '../vdc';
 import { MockVdcJson } from '../../__mocks__/responses/vdc/vdc';
 import { MockVdcVmsJson } from '../../__mocks__/responses/vdc/vms';
 import { MockVdcVappsJson } from '../../__mocks__/responses/vdc/vapps';
-import { BuildVappRequestJson } from '../json/vapp';
-import { BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../json/vm';
+import { AddVappNetworkInitializationParamsJson, AddVappRequestJson, BuildVappRequestJson } from '../json/vapp';
+import { AddVappVmRequestJson, BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../json/vm';
 
 jest.mock('../../http');
 
@@ -92,5 +92,45 @@ test('Build vApp in vDC', async() => {
   return vdc.buildVapp(json).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/build-vapp`, json);
     expect(task.operation).toBe('build vapp');
+  });
+});
+
+test('Add vApp in vDC', async() => {
+  const vm: AddVappVmRequestJson = {
+    name: 'test vm',
+    description: '',
+    ip_addressing_mode: 'POOL',
+    network_uuid: 'network-uuid909',
+    vapp_template_uuid: 'vappTemplateUuid909',
+    vm_template_uuid: 'vmTemplateUuid909',
+    ip_address: '',
+    storage_profile_uuid: 'storageProfileUuid909'
+  };
+  const vappNetwork: AddVappNetworkInitializationParamsJson = {
+    name: 'test network',
+    description: '',
+    deployed: true,
+    backward_compatibility_mode: true,
+    retain_net_info_across_deployments: true,
+    parent_network_uuid: '',
+    gateway_address: '',
+    network_mask: '255.255.255.255',
+    primary_dns: '',
+    secondary_dns: '',
+    dns_suffix: '',
+    ip_ranges: []
+  };
+  const vapp: AddVappRequestJson = {
+    name: 'test vapp',
+    description: 'test desc',
+    vapp_template_uuid: 'vappTemplateUuid',
+    vms: [vm],
+    fence_mode: 'ISOLATED',
+    vapp_network: vappNetwork
+  };
+  const vdc = new Vdc(MockVdcJson);
+  return vdc.addVapp(vapp).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/vapp`, vapp);
+    expect(task.operation).toBe('add vapp');
   });
 });
