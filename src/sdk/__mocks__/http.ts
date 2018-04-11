@@ -278,6 +278,9 @@ export class Http {
 
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
+      case /\/cloud-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
+          // update cloud tenant contract
+        return MockService.getMockVoidResponse();
       case /\/vms\/[^\/]+?\/virtual-disk$/.test(url):
         // update single virtual disk
         return MockTaskService.getNewMockTaskResponse('add virtual disk');

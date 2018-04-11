@@ -14,4 +14,16 @@ export class MockService {
     });
   }
 
+  static async getMockVoidResponse(): Promise<AxiosResponse> {
+    return new Promise<AxiosResponse>(function(resolve) {
+      resolve({
+        data: {},
+        status: 200,
+        statusText: '',
+        headers: {},
+        config: {}
+      });
+    });
+  }
+
 }
