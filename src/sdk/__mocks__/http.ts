@@ -317,6 +317,9 @@ export class Http {
       case /\/vdcs\/[^\/]+?\/build-vapp$/.test(url):
         // build vapp task
         return MockTaskService.getNewMockTaskResponse('build vapp');
+      case /\/vdcs\/[^\/]+?\/vapp$/.test(url):
+        // add vapp
+        return MockTaskService.getNewMockTaskResponse('add vapp');
       case /\/companies\/[^\/]+?\/roles$/.test(url):
         // create new role
         const request = data as RoleCreationRequestJson;

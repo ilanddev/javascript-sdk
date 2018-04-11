@@ -300,3 +300,17 @@ export interface BuildVmRequestJson {
   storage_profile_uuid: string;
   vnics: Array<VmVnicRequestJson>;
 }
+
+/**
+ * Specification for an addVapp VM request.
+ */
+export interface AddVappVmRequestJson {
+  name: string;
+  description: string;
+  ip_addressing_mode: IpAddressingMode;
+  network_uuid: string;
+  vapp_template_uuid: string;
+  vm_template_uuid: string;
+  ip_address: string;
+  storage_profile_uuid: string;
+}

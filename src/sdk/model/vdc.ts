@@ -1,5 +1,5 @@
 import { Entity } from './entity';
-import { VappJson, BuildVappRequestJson } from './json/vapp';
+import { VappJson, BuildVappRequestJson, AddVappRequestJson } from './json/vapp';
 import { Iland } from '../iland';
 import { EntityType } from './json/entity-type';
 import { VmJson } from './json/vm';
@@ -248,6 +248,18 @@ export class Vdc extends Entity {
     return Iland.getHttp().get(`/vdcs/${this.uuid}/summary`).then((response) => {
       const json = response.data as VdcSummaryJson;
       return new VdcSummary(json);
+    });
+  }
+
+  /**
+   * Add a vApp from template to the vDC.
+   * @param {AddVappRequestJson} addVappRequest
+   * @returns {Promise<Task>} task promise
+   */
+  async addVapp(addVappRequest: AddVappRequestJson): Promise<Task> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/vapp`, addVappRequest).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
     });
   }
 
