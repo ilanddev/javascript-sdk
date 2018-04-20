@@ -17,7 +17,9 @@ export const MockVirtualDisksJson: Array<VirtualDiskJson> = [MockVirtualDisk1Jso
 
 export const MockVmVirtualDisksResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockVirtualDisksJson,
+    data: {
+      data: MockVirtualDisksJson
+    },
     status: 200,
     statusText: '',
     headers: {},

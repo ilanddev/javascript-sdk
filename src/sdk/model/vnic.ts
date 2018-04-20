@@ -21,15 +21,15 @@ export class Vnic {
    * @returns {string} address mode
    */
   get addressMode(): VnicAddressMode {
-    return this._apiVnic.address_mode;
+    return this._apiVnic.ip_addressing_mode;
   }
 
   /**
    * Indicates whether the VNIC is currently connected.
    * @returns {boolean} value
    */
-  get connected(): boolean {
-    return this._apiVnic.connected;
+  get isConnected(): boolean {
+    return this._apiVnic.is_connected;
   }
 
   /**
@@ -45,7 +45,7 @@ export class Vnic {
    * @returns {string} IP Address
    */
   get ipAddress(): string {
-    return this._apiVnic.ip_addr;
+    return this._apiVnic.ip_address;
   }
 
   /**
@@ -53,7 +53,7 @@ export class Vnic {
    * @returns {string} MAC address
    */
   get macAddress(): string {
-    return this._apiVnic.mac_addr;
+    return this._apiVnic.mac_address;
   }
 
   /**
@@ -61,7 +61,7 @@ export class Vnic {
    * @returns {string} vApp network name
    */
   get connectedNetworkName(): string {
-    return this._apiVnic.net_name;
+    return this._apiVnic.network_name;
   }
 
   /**
@@ -69,7 +69,7 @@ export class Vnic {
    * @returns {boolean} value
    */
   get primaryConnection(): boolean {
-    return this._apiVnic.primary_cnx;
+    return this._apiVnic.is_primary;
   }
 
   /**

@@ -18,7 +18,7 @@ export const MockBackupRestorePointsJson: Array<BackupRestorePointJson> = [MockB
 
 export const MockVmBackupRestorePointsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockBackupRestorePointsJson,
+    data: {data: MockBackupRestorePointsJson},
     status: 200,
     statusText: '',
     headers: {},

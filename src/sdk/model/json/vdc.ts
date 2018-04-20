@@ -33,17 +33,17 @@ export type VdcAllocationModel = 'paygo' | 'allocation_pool' | 'reservation_pool
  * Interface for a vDC JSON Summary properties.
  */
 export interface VdcSummaryJson {
-  reservedCpu: number;
-  reservedMem: number;
-  consumedCpu: number;
-  consumedMem: number;
-  consumedDisk: number;
-  provisionedDisk: number;
-  numberOfVms: number;
-  numberOfVapps: number;
-  alloc_cpu: number;
-  alloc_mem: number;
-  configured_mem: number;
+  reserved_cpu: number;
+  reserved_mem: number;
+  consumed_cpu: number;
+  consumed_mem: number;
+  consumed_disk: number;
+  provisioned_disk: number;
+  number_of_vms: number;
+  number_of_vapps: number;
+  allocation_cpu: number;
+  allocation_memory: number;
+  configured_memory: number;
   configured_disk: number;
   configured_cpu: number;
 }

@@ -183,7 +183,7 @@ export class Catalog extends Entity {
    */
   async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
     return Iland.getHttp().get(`/catalogs/${this.originalUuid}/metadata`).then((response) => {
-      const jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
       return jsonMetadata.map<Metadata<MetadataType>>((json) => {
         switch (json.type) {
           case 'number':
