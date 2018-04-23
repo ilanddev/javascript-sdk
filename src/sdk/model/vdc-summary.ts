@@ -13,7 +13,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get numberOfVapps(): number {
-    return this._json.numberOfVapps;
+    return this._json.number_of_vapps;
   }
 
   /**
@@ -21,7 +21,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get numberOfVms(): number {
-    return this._json.numberOfVms;
+    return this._json.number_of_vms;
   }
 
   /**
@@ -29,7 +29,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get allocationCpu(): number {
-    return this._json.alloc_cpu;
+    return this._json.allocation_cpu;
   }
 
   /**
@@ -37,7 +37,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get allocationMemory(): number {
-    return this._json.alloc_mem;
+    return this._json.allocation_memory;
   }
 
   /**
@@ -53,7 +53,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get configuredMemory(): number {
-    return this._json.configured_mem;
+    return this._json.configured_memory;
   }
 
   /**
@@ -69,7 +69,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get reservedCpu(): number {
-    return this._json.reservedCpu;
+    return this._json.reserved_cpu;
   }
 
   /**
@@ -77,7 +77,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get reservedMem(): number {
-    return this._json.reservedMem;
+    return this._json.reserved_mem;
   }
 
   /**
@@ -85,7 +85,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get consumedCpu(): number {
-    return this._json.consumedCpu;
+    return this._json.consumed_cpu;
   }
 
   /**
@@ -93,7 +93,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get consumedMem(): number {
-    return this._json.consumedMem;
+    return this._json.consumed_mem;
   }
 
   /**
@@ -101,7 +101,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get consumedDisk(): number {
-    return this._json.consumedDisk;
+    return this._json.consumed_disk;
   }
 
   /**
@@ -109,7 +109,7 @@ export class VdcSummary {
    * @returns {number}
    */
   get provisionedDisk(): number {
-    return this._json.provisionedDisk;
+    return this._json.provisioned_disk;
   }
 
   /**

@@ -3,13 +3,13 @@
  */
 export interface VnicJson {
   adapter_type: string;
-  address_mode: VnicAddressMode;
-  connected: boolean;
+  ip_addressing_mode: VnicAddressMode;
+  is_connected: boolean;
   deleted: boolean;
-  ip_addr: string;
-  mac_addr: string;
-  net_name: string;
-  primary_cnx: boolean;
+  ip_address: string;
+  mac_address: string;
+  network_name: string;
+  is_primary: boolean;
   vnic_id: number;
 }
 

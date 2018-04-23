@@ -275,7 +275,7 @@ export class Vm extends Entity {
    */
   async getVnics(): Promise<Array<Vnic>> {
     return Iland.getHttp().get(`/vms/${this.uuid}/vnics`).then((response) => {
-      const apiVnics = response.data as Array<VnicJson>;
+      const apiVnics = response.data.data as Array<VnicJson>;
       return apiVnics.map((apiVnic) => new Vnic(apiVnic));
     });
   }
@@ -289,7 +289,7 @@ export class Vm extends Entity {
     const spec: VmUpdateDescriptionRequestJson = {
       description: description
     };
-    return Iland.getHttp().put(`/vms/${this.uuid}/description`, spec).then((response) => {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-description`, spec).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -343,7 +343,7 @@ export class Vm extends Entity {
    */
   async getVirtualDisks(): Promise<Array<VirtualDisk>> {
     return Iland.getHttp().get(`/vms/${this.uuid}/virtual-disks`).then((response) => {
-      const apiDisks = response.data as Array<VirtualDiskJson>;
+      const apiDisks = response.data.data as Array<VirtualDiskJson>;
       return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
     });
   }
@@ -402,7 +402,7 @@ export class Vm extends Entity {
    */
   async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
     return Iland.getHttp().get(`/vms/${this.uuid}/metadata`).then((response) => {
-      const jsonMetadata = response.data as Array<MetadataJson<MetadataType>>;
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
       return jsonMetadata.map<Metadata<MetadataType>>((json) => {
         switch (json.type) {
           case 'number':
@@ -530,7 +530,7 @@ export class Vm extends Entity {
    */
   async getBackupRestorePoints(): Promise<Array<BackupRestorePoint>> {
     return Iland.getHttp().get(`/vms/${this.uuid}/backups`).then((response) => {
-      const restorePointsJson = response.data as Array<BackupRestorePointJson>;
+      const restorePointsJson = response.data.data as Array<BackupRestorePointJson>;
       return restorePointsJson.map((restorePointJson) => new BackupRestorePoint(restorePointJson));
     });
   }
