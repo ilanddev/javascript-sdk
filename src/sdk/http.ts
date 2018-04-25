@@ -106,7 +106,7 @@ export class Http {
    * @param {string} url the URL path
    * @param {AxiosRequestConfig} config request configuration
    * @returns {Promise<AxiosResponse>} promise that resolves with server response
-   * @throws {ApiError} if the server responds with an erroro some maintenance on the core right now?
+   * @throws {ApiError} if the server responds with an error
    */
   async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.get(url, config) as Promise<AxiosResponse>;
