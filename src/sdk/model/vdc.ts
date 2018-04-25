@@ -9,6 +9,9 @@ import { Vapp } from './vapp';
 import { Task } from './task';
 import { TaskJson } from './json/task';
 import { VdcSummary } from './vdc-summary';
+import { Metadata } from './metadata';
+import { MetadataType } from 'src';
+import { MetadataJson } from './json/metadata';
 
 /**
  * Virtual Data Center.
@@ -263,4 +266,50 @@ export class Vdc extends Entity {
     });
   }
 
+  /**
+   * Gets the vDC metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
+    });
+  }
+
+  /**
+   * Updates the vDC metadata.
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    return Iland.getHttp().put(`/vdcs/${this.uuid}/metadata`, metadata).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry for vDC.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    return Iland.getHttp().delete(`/vdcs/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
 }

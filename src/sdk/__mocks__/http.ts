@@ -288,7 +288,8 @@ export class Http {
         return CatalogVappTemplateMockResponse;
       case /\/catalogs\/dev-vcd01.iland.dev:urn:vcloud:catalog:d576ce89-0599-42f5-812c-592e0e98964f\/metadata$/
         .test(url):
-        // get catalog fake metadata
+      case /\/vdcs\/dev-vcd01.iland.dev:urn:vcloud:vdc:e51cc45c-8890-r331-7e7e-2934lk235ie5\/metadata$/.test(url):
+        // get fake metadata
         return MockFakeMetadataResponse;
       case /\/catalogs\/[^\/]+\/metadata$/.test(url):
         // get catalog metadata
@@ -314,6 +315,7 @@ export class Http {
         // delete single virtual disk
         return MockTaskService.getNewMockTaskResponse('delete virtual disk');
       case /\/vms\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
+      case /\/vdcs\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
         // delete single metadata entry
         return MockTaskService.getNewMockTaskResponse('delete metadata');
       case /\/vms\/[^\/]+?$/.test(url):
@@ -406,7 +408,8 @@ export class Http {
         // update VMs CPUs
         return MockTaskService.getNewMockTaskResponse('update cpu count');
       case /\/vms\/[^\/]+?\/metadata$/.test(url):
-        // update VMs metadata
+      case /\/vdcs\/[^\/]+?\/metadata$/.test(url):
+        // update metadata
         return MockTaskService.getNewMockTaskResponse('update metadata');
       case /\/vms\/[^\/]+?\/name$/.test(url):
         // rename VM
