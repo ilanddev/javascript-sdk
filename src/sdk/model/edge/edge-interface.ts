@@ -1,5 +1,5 @@
-import { EdgeInterfaceJson, EdgeInterfaceType } from './json/edge';
-import { EdgeSubnetParticipation } from './edge-subnet-participation';
+import { EdgeInterfaceJson, EdgeInterfaceType, EdgeSubnetParticipationJson } from './json/edge';
+import { SubnetParticipation } from './subnet-participation';
 
 /**
  * Edge Gateway Interface.
@@ -19,9 +19,9 @@ export class EdgeInterface {
 
   /**
    * Gets the display name.
-   * @returns {string} display name
+   * @returns {string | null} display name
    */
-  get displayName(): string {
+  get displayName(): string | null {
     return this._json.display_name;
   }
 
@@ -43,9 +43,9 @@ export class EdgeInterface {
 
   /**
    * Gets the interface type.
-   * @returns {EdgeInterfaceType} interface type
+   * @returns {EdgeInterfaceType | null} interface type
    */
-  get type(): EdgeInterfaceType {
+  get type(): EdgeInterfaceType | null {
     return this._json.type;
   }
 
@@ -59,34 +59,35 @@ export class EdgeInterface {
 
   /**
    * Indicates whether this edge is used as the default DNS relay route.
-   * @returns {boolean} value
+   * @returns {boolean | null} value
    */
-  get defaultRoute(): boolean {
+  get defaultRoute(): boolean | null {
     return this._json.default_route;
   }
 
   /**
    * Gets the name of the network that is attached to this interface.
-   * @returns {string} network name
+   * @returns {string | null} network name
    */
-  get networkName(): string {
+  get networkName(): string | null {
     return this._json.network;
   }
 
   /**
    * Gets the UUID of the network that is attached to this interface.
-   * @returns {string} network UUID
+   * @returns {string | null} network UUID
    */
-  get networkUuid(): string {
+  get networkUuid(): string | null {
     return this._json.network_uuid;
   }
 
   /**
    * Gets the subnet participation information.
-   * @returns {[EdgeSubnetParticipation]} subnet participation array
+   * @returns {[SubnetParticipation]} subnet participation array
    */
-  get subnetParticipation(): Array<EdgeSubnetParticipation> {
-    return this._json.subnet_participation.map((spJson) => new EdgeSubnetParticipation(spJson));
+  get subnetParticipation(): Array<SubnetParticipation> {
+    const subnetParticipation = (this._json.subnet_participation || []) as Array<EdgeSubnetParticipationJson>;
+    return subnetParticipation.map((spJson) => new SubnetParticipation(spJson));
   }
 
   /**

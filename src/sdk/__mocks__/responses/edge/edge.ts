@@ -1,5 +1,9 @@
 import { AxiosResponse } from 'axios';
-import { EdgeJson } from '../../../model/json/edge';
+import { EdgeJson, NatServiceJson } from '../../../model/edge/json/edge';
+import { CheckpointJson } from '../../../model/edge/json/checkpoint';
+import { EdgeDhcpJson } from '../../../model/edge/dhcp/json/dhcp';
+import { StaticRoutingServiceJson } from '../../../model/edge/static-routing/json/static-routing';
+import { NetworkPerfSampleSerieJson } from '../../../model/edge/network-perf-sample/json/network-perf-sample';
 
 export const MockEdgeJson: EdgeJson = {
   'status': 1,
@@ -71,9 +75,152 @@ export const MockEdgeJson: EdgeJson = {
   'updated_date': 1499829466442
 };
 
+export const MockEdgeDhcpJson: EdgeDhcpJson = {
+  'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:65e01e61-a15c-4787-bcf5-7e50225382ed',
+  'enabled': false,
+  'dhcp_pools': [
+    {
+      'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:65e01e61-a15c-4787-bcf5-7e50225382ed',
+      'enabled': true,
+      'network': 'network test network',
+      'max_lease_time': 450000,
+      'default_lease_time': 450000,
+      'low_ip': '10.200.100.101',
+      'high_ip': '10.200.100.150'
+    }
+  ]
+};
+
+export const MockEdgeNatJson: NatServiceJson = {
+  'external_ip': null,
+  'type': null,
+  'policy': null,
+  'rules': [
+    {
+      'icmp_sub_type': null,
+      'original_ip': '10.1.22.0/24',
+      'original_port': null,
+      'protocol': null,
+      'translated_ip': '209.143.151.73',
+      'translated_port': null,
+      'interface': 'External - 209.143.151.64/26',
+      'idx': 1,
+      'description': 'Outbound traffic',
+      'id': 196646,
+      'type': 'SNAT',
+      'enabled': true
+    }
+  ],
+  'enabled': true
+};
+
+export const MockEdgeNatCheckpointsJson: Array<CheckpointJson> = [
+  {
+    'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:af286787-9cb3-4c9d-b86e-c42dc5dfabc5',
+    'uuid': '0ea3ac90-d471-11e7-b86f-79bbfaab00e8',
+    'time': 1511896770009,
+    'export': null
+  }, {
+    'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:af286787-9cb3-4c9d-b86e-c42dc5dfabc5',
+    'uuid': '5dd80a80-caf4-11e7-8127-550561d80949',
+    'time': 1510853655336,
+    'export': null
+  }
+];
+
+export const MockEdgeStaticRoutingServiceJson: StaticRoutingServiceJson = {
+  'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:af286787-9cb3-4c9d-b86e-c42dc5dfabc5',
+  'enabled': true,
+  'routes': [{
+    edge_uuid: 'test',
+    idx: 0,
+    name: 'test',
+    network: 'network test',
+    next_hop_ip: '111.222.333.444',
+    interface_type: 'test',
+    interface: 'test'
+  }]
+};
+
+export const MockEdgeStats: NetworkPerfSampleSerieJson = {
+  'summary': 'test',
+  'interval': 300,
+  'group': 'mem',
+  'name': 'test',
+  'type': 'absolute',
+  'unit': 'test',
+  'samples': [
+    {
+      'time': 1524470908,
+      'value': 0
+    }
+  ]
+};
+
+export const MockEdgeStatsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockEdgeStats,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockEdgeStaticRoutingServiceResponse: Promise<AxiosResponse> =
+  new Promise<AxiosResponse>(function(resolve) {
+    resolve({
+      data: MockEdgeStaticRoutingServiceJson,
+      status: 200,
+      statusText: '',
+      headers: {},
+      config: {}
+    });
+  });
+
+export const MockEdgeNatCheckpointsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockEdgeNatCheckpointsJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockEdgeNatCheckpointResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockEdgeNatCheckpointsJson[0],
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockEdgeNatJsonResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockEdgeNatJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
 export const MockEdgeResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
     data: MockEdgeJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
+
+export const MockEdgeDhcpResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockEdgeDhcpJson,
     status: 200,
     statusText: '',
     headers: {},

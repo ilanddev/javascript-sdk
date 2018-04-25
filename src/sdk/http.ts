@@ -78,12 +78,12 @@ export class Http {
    * @returns {string} the formatted MIME type
    */
   static versionMime(mime: string, version?: number): string {
-    if (mime.indexOf(ILAND_MIME_VND_PREFIX) > 0) {
+    if (mime.indexOf(ILAND_MIME_VND_PREFIX) >= 0) {
       return mime;
     }
     const versionStr = (version ? version : DEFAULT_API_VERSION).toFixed(1);
     const parts = mime.split('/');
-    if (parts.length === 2 && parts[1].includes('json')) {
+    if (parts.length === 2) {
       const prefix = parts[0];
       const suffix = parts[1];
       return `${prefix}/${ILAND_MIME_VND_PREFIX}.v${versionStr}+${suffix}`;
@@ -146,5 +146,4 @@ export class Http {
   async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     return this._ilandAxios.put(url, data, config) as Promise<AxiosResponse>;
   }
-
 }

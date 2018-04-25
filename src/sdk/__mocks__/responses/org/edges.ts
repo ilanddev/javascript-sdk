@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { MockEdgeJson } from '../edge/edge';
-import { EdgeJson } from '../../../model/json/edge';
+import { EdgeJson } from '../../../model/edge/json/edge';
 
 export const MockOrgEdgesJson: Array<EdgeJson> = [MockEdgeJson];
 
