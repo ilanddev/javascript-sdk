@@ -109,6 +109,7 @@ export type TaskOperation = 'power on' |
   'generate protection summary report' |
   'generate billing report' |
   'create catalog' |
+  'sync catalog item' |
   'managed vapp shutdown' |
   'generate failover test report' |
   'update cloud tenant repository size';
