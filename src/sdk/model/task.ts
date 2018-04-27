@@ -1,7 +1,8 @@
-import { Observable, Subject } from 'rxjs';
 import { Iland } from '../iland';
 import { TaskJson, TaskOperation, TaskStatus, TaskType } from './json/task';
 import { BasicConfiguration } from '../basic-configuration';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 const TASK_CONFIG = {
   baseURL: `${BasicConfiguration.getApiUrl()}/ecs`,
