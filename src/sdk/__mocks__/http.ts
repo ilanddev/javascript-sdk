@@ -76,6 +76,7 @@ import {
 import { MockEdgeIpsecVpnResponse } from './responses/edge/edge-ipsec-vpn';
 import { MockEdgeLoadbalancerResponse } from './responses/edge/edge-load-balancer';
 import { MockEdgeSslVpnResponse } from './responses/edge/edge-ssl-vpn';
+import { MockVpgAlertResponse, MockVpgReportDetailsResponse } from './responses/vpg/vpg';
 
 jest.unmock('../http');
 
@@ -303,6 +304,12 @@ export class Http {
       case /\/vapp-templates\/[^\/]+?$/.test(url):
         // get a vapp template
         return MockVappTemplateResponse;
+      case /\/vpgs\/[^\/]+?\/failover-report\/[^\/]+?$/.test(url):
+            // remove vpg failover test alert
+        return MockVpgReportDetailsResponse;
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
+            // remove vpg failover test alert
+        return MockVpgAlertResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -325,6 +332,9 @@ export class Http {
       case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
         // delete a role
         return MockService.getMockNoContentResponse();
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts\/[^\/]+?$/.test(url):
+        // remove vpg failover test alert
+        return MockService.getMockVoidResponse();
       default:
         return MockNotFoundResponse;
     }
@@ -333,8 +343,26 @@ export class Http {
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
       case /\/cloud-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
-          // update cloud tenant contract
+        // update cloud tenant contract
         return MockService.getMockVoidResponse();
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
+        // add a vpg failover test alert
+        return MockVpgAlertResponse;
+      case /\/vpgs\/[^\/]+?\/failover-test$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover test initiation');
+      case /\/vpgs\/[^\/]+?\/failover-test-stop$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover test stop');
+      case /\/vpgs\/[^\/]+?\/failover$/.test(url):
+            // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto live failover initiation');
+      case /\/vpgs\/[^\/]+?\/failover-commit$/.test(url):
+            // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover commit');
+      case /\/vpgs\/[^\/]+?\/failover-rollback$/.test(url):
+            // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover rollback');
       case /\/vms\/[^\/]+?\/virtual-disk$/.test(url):
         // update single virtual disk
         return MockTaskService.getNewMockTaskResponse('add virtual disk');
