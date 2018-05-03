@@ -1,4 +1,4 @@
-import { FirewallRuleJson } from './json/edge-firewall';
+import { FirewallRuleJson } from './__json__/edge-firewall-json';
 
 /**
  * FirewallRule class
@@ -137,7 +137,7 @@ export class FirewallRule {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {FirewallRuleJson}
    */
   get json(): FirewallRuleJson {

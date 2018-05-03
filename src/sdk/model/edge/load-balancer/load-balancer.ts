@@ -1,4 +1,8 @@
-import { LoadBalancerPoolJson, LoadBalancerServiceJson, LoadBalancerVirtualServerJson } from './json/load-balancer';
+import {
+  LoadBalancerPoolJson,
+  LoadBalancerServiceJson,
+  LoadBalancerVirtualServerJson
+} from './__json__/load-balancer-json';
 import { LoadBalancerPool } from './load-balancer-pool';
 import { LoadBalancerVirtualServer } from './load-balancer-virtual-server';
 
@@ -44,7 +48,7 @@ export class LoadBalancer {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LoadBalancerServiceJson}
    */
   get json(): LoadBalancerServiceJson {

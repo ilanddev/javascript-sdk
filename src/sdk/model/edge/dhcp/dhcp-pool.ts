@@ -1,4 +1,4 @@
-import { DhcpJson } from './json/dhcp';
+import { DhcpJson } from './__json__/dhcp-json';
 
 /**
  * DhcpPool class
@@ -65,7 +65,7 @@ export class DhcpPool {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {DhcpJson}
    */
   get json(): DhcpJson {

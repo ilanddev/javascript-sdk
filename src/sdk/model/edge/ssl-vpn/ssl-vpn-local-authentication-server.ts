@@ -1,4 +1,4 @@
-import { EdgeSslVpnLocalAuthenticationServerJson } from './json/edge-ssl-vpn';
+import { EdgeSslVpnLocalAuthenticationServerJson } from './__json__/edge-ssl-vpn-json';
 import { SslVpnAuthenticationServer } from './ssl-vpn-authentication-server';
 
 /**
@@ -107,7 +107,7 @@ export class SslVpnLocalAuthenticationServer extends SslVpnAuthenticationServer 
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LbPersistenceJson}
    */
   get json(): EdgeSslVpnLocalAuthenticationServerJson {

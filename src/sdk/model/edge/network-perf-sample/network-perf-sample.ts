@@ -1,4 +1,4 @@
-import { NetworkPerfSampleJson } from './json/network-perf-sample';
+import { NetworkPerfSampleJson } from './__json__/network-perf-sample-json';
 
 /**
  * NetworkPerfSample class
@@ -25,7 +25,7 @@ export class NetworkPerfSample {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {NetworkPerfSampleJson}
    */
   get json(): NetworkPerfSampleJson {

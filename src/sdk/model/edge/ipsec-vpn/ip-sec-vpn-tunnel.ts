@@ -1,4 +1,4 @@
-import { EdgeIpSecVpnSubnetJson, EdgeIpSecVpnTunnelJson } from './json/edge-ipsec-vpn';
+import { EdgeIpSecVpnSubnetJson, EdgeIpSecVpnTunnelJson } from './__json__/edge-ipsec-vpn-json';
 import { IpSecVpnSubnet } from './ip-sec-vpn-subnet';
 import { IpSecVpnPeer } from './ip-sec-vpn-peer';
 
@@ -139,7 +139,7 @@ export class IpSecVpnTunnel {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeIpSecVpnTunnelJson}
    */
   get json(): EdgeIpSecVpnTunnelJson {

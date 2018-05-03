@@ -1,0 +1,151 @@
+import { EntityJson } from '../../common/__json__/entity-json';
+import { OperatingSystem } from './operating-system-type';
+import { VmStatus } from './vm-status-type';
+import { DiskType } from '../virtual-disk/__json__/disk-type';
+import { IpAddressingMode } from './ip-adressing-mode-type';
+import { AdapterType } from './adapter-type';
+
+/**
+ * Interface for VM properties.
+ */
+export interface VmJson extends EntityJson {
+  cores_per_socket: number;
+  cpus_number: number;
+  created_date: number | null;
+  deployed: boolean;
+  description: string;
+  hardware_version: string;
+  inserted_media_name: string;
+  location_id: string;
+  media_inserted: boolean;
+  memory_size: number;
+  org_uuid: string;
+  os: OperatingSystem;
+  status: VmStatus;
+  storage_profiles: Array<string>;
+  vapp_uuid: string;
+  vcenter_href: string;
+  vcenter_instance_uuid: string;
+  vcenter_moref: string;
+  vcenter_name: string;
+  vcloud_href: string;
+  vdc_uuid: string;
+  vim_datastore_ref: string;
+  vm_local_id: string;
+}
+
+/**
+ * Specification for VM snapshot creation request.
+ */
+export interface VmCreateSnapshotRequestJson {
+  memory: boolean;
+  quiesce: boolean;
+  name: string;
+  description: string;
+}
+
+/**
+ * Specification for VM memory configuration update request.
+ */
+export interface VmMemoryUpdateRequestJson {
+  memory_size: string;
+}
+
+/**
+ * Specification for VM description update request.
+ */
+export interface VmUpdateDescriptionRequestJson {
+  description: string;
+}
+
+/**
+ * Specification for VM name update request.
+ */
+export interface VmUpdateNameRequestJson {
+  name: string;
+}
+
+/**
+ * Specification for VM CPU configuration update request.
+ */
+export interface VmCpuUpdateRequestJson {
+  cpus_number: number;
+  cores_per_socket?: number;
+}
+
+/**
+ * Specification for VM backup restore request.
+ */
+export interface VmRestoreBackupRequestJson {
+  time: number;
+}
+
+/**
+ * Specification for VM media insertion request.
+ */
+export interface VmInsertMediaRequestJson {
+  media: string;
+}
+
+/**
+ * Specification for VM storage profile relocation request.
+ */
+export interface VmRelocationRequestJson {
+  storage_profile: string;
+}
+
+/**
+ * Specification for a VM disk request.
+ */
+export interface VmDiskRequestJson {
+  name: string;
+  disk_type: DiskType;
+  size: number;
+}
+
+/**
+ * Specification for a VM vnic request.
+ */
+export interface VmVnicRequestJson {
+  primary_vnic: boolean;
+  ip_address: string;
+  ip_assignment: IpAddressingMode;
+  network_uuid: string;
+  network_adapter_type: AdapterType;
+}
+
+/**
+ * Specification for a Build VM request.
+ */
+export interface BuildVmRequestJson {
+  name: string;
+  description: string;
+  vm_template_uuid: string | null;
+  vapp_template_uuid: string | null;
+  disks: Array<VmDiskRequestJson> | null;
+  ram: number | null;
+  number_of_cpus: number | null;
+  cpu_cores_per_socket: number | null;
+  hardware_version: number | null;
+  operating_system_version: string | null;
+  boot_delay: number | null;
+  expose_cpu_virtualization: boolean;
+  media_uuid: string | null;
+  computer_name: string;
+  storage_profile_uuid: string;
+  vnics: Array<VmVnicRequestJson>;
+}
+
+/**
+ * Specification for an addVapp VM request.
+ */
+export interface AddVappVmRequestJson {
+  name: string;
+  description: string;
+  ip_addressing_mode: IpAddressingMode;
+  network_uuid: string;
+  vapp_template_uuid: string;
+  vm_template_uuid: string;
+  ip_address: string;
+  storage_profile_uuid: string;
+}

@@ -1,4 +1,4 @@
-import { LbPoolHealthCheckJson } from './json/load-balancer';
+import { LbPoolHealthCheckJson } from './__json__/load-balancer-json';
 
 /**
  * LbPoolHealthCheck class
@@ -57,7 +57,7 @@ export class LbPoolHealthCheck {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LbPoolHealthCheckJson}
    */
   get json(): LbPoolHealthCheckJson {
