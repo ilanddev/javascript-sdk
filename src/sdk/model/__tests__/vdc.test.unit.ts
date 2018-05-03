@@ -1,11 +1,18 @@
 import { IlandDirectGrantAuthProvider } from '../../auth/direct-grant-auth-provider';
 import { Iland } from '../../iland';
 import { Vdc } from '../vdc';
-import { MockVdcJson } from '../../__mocks__/responses/vdc/vdc';
+import { MockVdcJson, MockSecondVdcJson } from '../../__mocks__/responses/vdc/vdc';
 import { MockVdcVmsJson } from '../../__mocks__/responses/vdc/vms';
 import { MockVdcVappsJson } from '../../__mocks__/responses/vdc/vapps';
 import { AddVappNetworkInitializationParamsJson, AddVappRequestJson, BuildVappRequestJson } from '../json/vapp';
 import { AddVappVmRequestJson, BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../json/vm';
+import {
+    MockBooleanMetadataJson, MockDatetimeMetadataJson,
+    MockMetadataJson, MockNumberMetadataJson,
+    MockStringMetadataJson
+} from '../../__mocks__/responses/metadata/metadata';
+import { Metadata } from '../metadata';
+import { MetadataType } from '../json/metadata';
 
 jest.mock('../../http');
 
@@ -132,5 +139,42 @@ test('Add vApp in vDC', async() => {
   return vdc.addVapp(vapp).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/vapp`, vapp);
     expect(task.operation).toBe('add vapp');
+  });
+});
+
+test('Update vDC metadata', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  const metaData = MockMetadataJson as Array<Metadata<MetadataType>>;
+  return vdc.updateMetadata(metaData).then(function(task) {
+    expect(Iland.getHttp().put).lastCalledWith(`/vdcs/${vdc.uuid}/metadata`, metaData);
+    expect(task.operation).toBe('update metadata');
+  });
+});
+
+test('Delete vDC metadata', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  const metadataKey = 'metadata-key';
+  return vdc.deleteMetadata(metadataKey).then(function(task) {
+    expect(Iland.getHttp().delete).lastCalledWith(`/vdcs/${vdc.uuid}/metadata/${metadataKey}`);
+    expect(task.operation).toBe('delete metadata');
+  });
+});
+
+test('Get vDC metadata', async() => {
+  const vdc = new Vdc(MockVdcJson);
+  return vdc.getMetadata().then(metadata => {
+    expect(Iland.getHttp().get).lastCalledWith(`/vdcs/${vdc.uuid}/metadata`);
+    expect(metadata.length).toEqual(4);
+    expect(metadata[0].json).toEqual(Object.assign({}, MockStringMetadataJson));
+    expect(metadata[1].json).toEqual(Object.assign({}, MockNumberMetadataJson));
+    expect(metadata[2].json).toEqual(Object.assign({}, MockBooleanMetadataJson));
+    expect(metadata[3].json).toEqual(Object.assign({}, MockDatetimeMetadataJson));
+  });
+});
+
+test('Throw error if metadata type is not assignable for vDC', async() => {
+  const vdc = new Vdc(MockSecondVdcJson);
+  return vdc.getMetadata().catch(error => {
+    expect(error).toEqual(new Error(`Metadata with type fake is unknown.`));
   });
 });
