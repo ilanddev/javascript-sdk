@@ -997,6 +997,12 @@ img { max-width: 100%; }
 					<a href="vdc.html#buildvapp" class="tsd-kind-icon">build<wbr>Vapp</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="vdc.html#deletemetadata" class="tsd-kind-icon">delete<wbr>Metadata</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="vdc.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="vdc.html#getsummary" class="tsd-kind-icon">get<wbr>Summary</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
@@ -1010,6 +1016,9 @@ img { max-width: 100%; }
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="vdc.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a href="vdc.html#updatemetadata" class="tsd-kind-icon">update<wbr>Metadata</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external">
 					<a href="vdc.html#getvdc" class="tsd-kind-icon">get<wbr>Vdc</a>
@@ -1085,11 +1094,14 @@ img { max-width: 100%; }
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#addvapp" class="tsd-kind-icon">add<wbr>Vapp</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#buildvapp" class="tsd-kind-icon">build<wbr>Vapp</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#deletemetadata" class="tsd-kind-icon">delete<wbr>Metadata</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#getsummary" class="tsd-kind-icon">get<wbr>Summary</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#getvapps" class="tsd-kind-icon">get<wbr>Vapps</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#getvms" class="tsd-kind-icon">get<wbr>Vms</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#refresh" class="tsd-kind-icon">refresh</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="vdc.html#updatemetadata" class="tsd-kind-icon">update<wbr>Metadata</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="vdc.html#getvdc" class="tsd-kind-icon">get<wbr>Vdc</a></li>
 						</ul>
 					</section>
@@ -1109,7 +1121,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Overrides <a href="entity.html">Entity</a>.<a href="entity.html#constructor">constructor</a></p>
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L16">sdk/model/vdc.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L20">sdk/model/vdc/vdc.ts:20</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1131,7 +1143,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">allocated<wbr>Cpu<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L130">sdk/model/vdc.ts:130</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L134">sdk/model/vdc/vdc.ts:134</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1146,7 +1158,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">allocated<wbr>Memory<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L138">sdk/model/vdc.ts:138</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L142">sdk/model/vdc/vdc.ts:142</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1161,12 +1173,12 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">allocation<wbr>Model<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L98">sdk/model/vdc.ts:98</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L102">sdk/model/vdc/vdc.ts:102</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Gets the vDC allocation model</p>
+						<p>Gets the vDC allocation <strong>json</strong></p>
 					</div>
 				</div>
 			</section>
@@ -1177,7 +1189,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#deleted">deleted</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/entity.ts#L32">sdk/model/entity.ts:32</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/common/entity.ts#L32">sdk/model/common/entity.ts:32</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1193,7 +1205,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#deleteddate">deletedDate</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/entity.ts#L48">sdk/model/entity.ts:48</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/common/entity.ts#L48">sdk/model/common/entity.ts:48</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1208,7 +1220,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L66">sdk/model/vdc.ts:66</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L70">sdk/model/vdc/vdc.ts:70</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1223,7 +1235,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">disk<wbr>Limit<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L122">sdk/model/vdc.ts:122</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L126">sdk/model/vdc/vdc.ts:126</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1238,7 +1250,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L42">sdk/model/vdc.ts:42</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L46">sdk/model/vdc/vdc.ts:46</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1254,7 +1266,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Overrides <a href="entity.html">Entity</a>.<a href="entity.html#entitytype">entityType</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L34">sdk/model/vdc.ts:34</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L38">sdk/model/vdc/vdc.ts:38</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1264,7 +1276,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L194">sdk/model/vdc.ts:194</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L198">sdk/model/vdc/vdc.ts:198</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1279,7 +1291,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">location<wbr>Id<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L170">sdk/model/vdc.ts:170</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L174">sdk/model/vdc/vdc.ts:174</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1294,7 +1306,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">max<wbr>Hardware<wbr>Version<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L146">sdk/model/vdc.ts:146</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L150">sdk/model/vdc/vdc.ts:150</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1310,7 +1322,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#name">name</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/entity.ts#L16">sdk/model/entity.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/common/entity.ts#L16">sdk/model/common/entity.ts:16</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1325,7 +1337,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">network<wbr>Quota<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L154">sdk/model/vdc.ts:154</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L158">sdk/model/vdc/vdc.ts:158</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1340,7 +1352,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">org<wbr>Uuid<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L178">sdk/model/vdc.ts:178</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L182">sdk/model/vdc/vdc.ts:182</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1355,7 +1367,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">reserved<wbr>Cpu<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L106">sdk/model/vdc.ts:106</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L110">sdk/model/vdc/vdc.ts:110</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1370,7 +1382,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">reserved<wbr>Memory<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L114">sdk/model/vdc.ts:114</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L118">sdk/model/vdc/vdc.ts:118</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1386,7 +1398,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#updateddate">updatedDate</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/entity.ts#L40">sdk/model/entity.ts:40</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/common/entity.ts#L40">sdk/model/common/entity.ts:40</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1401,7 +1413,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">used<wbr>Network<wbr>Count<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L162">sdk/model/vdc.ts:162</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L166">sdk/model/vdc/vdc.ts:166</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1417,7 +1429,7 @@ img { max-width: 100%; }
 				<aside class="tsd-sources">
 					<p>Inherited from <a href="entity.html">Entity</a>.<a href="entity.html#uuid">uuid</a></p>
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/entity.ts#L24">sdk/model/entity.ts:24</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/common/entity.ts#L24">sdk/model/common/entity.ts:24</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1432,7 +1444,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">vcenter<wbr>Href<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L90">sdk/model/vdc.ts:90</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L94">sdk/model/vdc/vdc.ts:94</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1447,7 +1459,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">vcenter<wbr>Instance<wbr>Uuid<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L82">sdk/model/vdc.ts:82</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L86">sdk/model/vdc/vdc.ts:86</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1462,7 +1474,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">vcenter<wbr>Moref<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L50">sdk/model/vdc.ts:50</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L54">sdk/model/vdc/vdc.ts:54</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1477,7 +1489,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">vcenter<wbr>Name<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L58">sdk/model/vdc.ts:58</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L62">sdk/model/vdc/vdc.ts:62</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1492,7 +1504,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">vcloud<wbr>Href<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L74">sdk/model/vdc.ts:74</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L78">sdk/model/vdc/vdc.ts:78</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -1514,7 +1526,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L259">sdk/model/vdc.ts:259</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L263">sdk/model/vdc/vdc.ts:263</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1543,7 +1555,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L236">sdk/model/vdc.ts:236</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L240">sdk/model/vdc/vdc.ts:240</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1563,6 +1575,60 @@ img { max-width: 100%; }
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="deletemetadata" class="tsd-anchor"></a>
+				<h3>delete<wbr>Metadata</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">delete<wbr>Metadata<span class="tsd-signature-symbol">(</span>metadataKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L310">sdk/model/vdc/vdc.ts:310</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Deletes a metadata entry for vDC.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>metadataKey: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>the key of the metadata entry to delete</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>task promise</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="getmetadata" class="tsd-anchor"></a>
+				<h3>get<wbr>Metadata</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="metadata.html" class="tsd-signature-type">Metadata</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#metadatatype" class="tsd-signature-type">MetadataType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L274">sdk/model/vdc/vdc.ts:274</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Gets the vDC metadata.</p>
+							</div>
+						</div>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="metadata.html" class="tsd-signature-type">Metadata</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#metadatatype" class="tsd-signature-type">MetadataType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
 				<a name="getsummary" class="tsd-anchor"></a>
 				<h3>get<wbr>Summary</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
@@ -1572,7 +1638,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L247">sdk/model/vdc.ts:247</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L251">sdk/model/vdc/vdc.ts:251</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1595,7 +1661,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L213">sdk/model/vdc.ts:213</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L217">sdk/model/vdc/vdc.ts:217</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1618,7 +1684,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L224">sdk/model/vdc.ts:224</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L228">sdk/model/vdc/vdc.ts:228</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1641,7 +1707,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L202">sdk/model/vdc.ts:202</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L206">sdk/model/vdc/vdc.ts:206</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1663,7 +1729,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L186">sdk/model/vdc.ts:186</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L190">sdk/model/vdc/vdc.ts:190</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1672,6 +1738,38 @@ img { max-width: 100%; }
 							</div>
 						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+				<a name="updatemetadata" class="tsd-anchor"></a>
+				<h3>update<wbr>Metadata</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">update<wbr>Metadata<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="metadata.html" class="tsd-signature-type">Metadata</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#metadatatype" class="tsd-signature-type">MetadataType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L298">sdk/model/vdc/vdc.ts:298</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Updates the vDC metadata.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>metadata: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="metadata.html" class="tsd-signature-type">Metadata</a><span class="tsd-signature-symbol">&lt;</span><a href="../globals.html#metadatatype" class="tsd-signature-type">MetadataType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>the new array of metadata</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="task.html" class="tsd-signature-type">Task</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>task promise</p>
 					</li>
 				</ul>
 			</section>
@@ -1685,7 +1783,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/5646d26/src/sdk/model/vdc.ts#L27">sdk/model/vdc.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/0f0a43b/src/sdk/model/vdc/vdc.ts#L31">sdk/model/vdc/vdc.ts:31</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
