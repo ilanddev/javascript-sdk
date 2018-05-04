@@ -1,9 +1,9 @@
-import { Iland } from '../../../../iland';
-import { IlandDirectGrantAuthProvider } from '../../../../auth/index';
+import { Iland } from '../../../iland';
+import { IlandDirectGrantAuthProvider } from '../../../auth/index';
 import { Media } from '../media';
 import { MockMediaJson } from '../__mocks__/media';
 
-jest.mock('../../../../service/http/http');
+jest.mock('../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new IlandDirectGrantAuthProvider({

@@ -52,11 +52,11 @@ import {
   MockCatalogResponse,
   MockPublicCatalogResponse
 } from '../../../model/catalog/__mocks__/catalog';
-import { MockMediaResponse } from '../../../model/catalog/media/__mocks__/media';
+import { MockMediaResponse } from '../../../model/media/__mocks__/media';
 import {
   MockPublicVappTemplateResponse,
   MockVappTemplateResponse
-} from '../../../model/catalog/vapp-template/__mocks__/vapp-template';
+} from '../../../model/vapp-template/__mocks__/vapp-template';
 import {
   SupportTicketAttachmentDownloadableMockResponse,
   SupportTicketAttachmentMockResponse,

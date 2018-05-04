@@ -1,7 +1,7 @@
-import { Entity } from '../../common/entity';
-import { Iland } from '../../../iland';
+import { Entity } from '../common/entity';
+import { Iland } from '../../iland';
 import { MediaJson } from './__json__/media-json';
-import { EntityType } from '../../common/__json__/entity-type';
+import { EntityType } from '../common/__json__/entity-type';
 
 /**
  * Media.

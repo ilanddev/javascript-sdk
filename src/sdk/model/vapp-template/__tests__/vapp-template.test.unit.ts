@@ -1,9 +1,9 @@
-import { Iland } from '../../../../iland';
-import { IlandDirectGrantAuthProvider } from '../../../../auth/index';
+import { Iland } from '../../../iland';
+import { IlandDirectGrantAuthProvider } from '../../../auth/index';
 import { VappTemplate } from '../vapp-template';
 import { MockVappTemplateJson } from '../__mocks__/vapp-template';
 
-jest.mock('../../../../service/http/http');
+jest.mock('../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new IlandDirectGrantAuthProvider({

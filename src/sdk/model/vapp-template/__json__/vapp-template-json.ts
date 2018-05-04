@@ -1,4 +1,4 @@
-import { EntityJson } from '../../../common/__json__/entity-json';
+import { EntityJson } from '../../common/__json__/entity-json';
 
 /**
  * Interface for VappTemplate JSON representation.

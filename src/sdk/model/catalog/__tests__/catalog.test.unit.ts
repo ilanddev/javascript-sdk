@@ -6,8 +6,8 @@ import {
   MockAnotherCatalogJson,
   MockCatalogJson
 } from '../__mocks__/catalog';
-import { MockMediaJson } from '../media/__mocks__/media';
-import { MockVappTemplateJson } from '../vapp-template/__mocks__/vapp-template';
+import { MockMediaJson } from '../../media/__mocks__/media';
+import { MockVappTemplateJson } from '../../vapp-template/__mocks__/vapp-template';
 import {
   MockBooleanMetadataJson,
   MockDatetimeMetadataJson,

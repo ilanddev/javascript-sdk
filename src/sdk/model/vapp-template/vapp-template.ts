@@ -1,7 +1,7 @@
-import { Entity } from '../../index';
-import { Iland } from '../../../iland';
+import { Iland } from '../../iland';
 import { VappTemplateJson } from './__json__/vapp-template-json';
-import { EntityType } from '../../common/__json__/entity-type';
+import { EntityType } from '../common/__json__/entity-type';
+import { Entity } from '../common/entity';
 
 /**
  * VappTemplate

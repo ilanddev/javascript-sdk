@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { MockMediaJson } from '../media/__mocks__/media';
-import { MockVappTemplateJson } from '../vapp-template/__mocks__/vapp-template';
+import { MockMediaJson } from '../../media/__mocks__/media';
+import { MockVappTemplateJson } from '../../vapp-template/__mocks__/vapp-template';
 import { CatalogJson } from '../__json__/catalog-json';
 import { ItemDownloadJson } from '../__json__/item-downloads-json';
 

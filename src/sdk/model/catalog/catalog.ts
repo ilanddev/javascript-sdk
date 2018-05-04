@@ -1,13 +1,13 @@
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
 import { Metadata } from '../common/metadata/metadata';
-import { Media } from './media/media';
-import { VappTemplate } from './vapp-template/vapp-template';
+import { Media } from '../media/media';
+import { VappTemplate } from '../vapp-template/vapp-template';
 import { CatalogJson } from './__json__/catalog-json';
 import { EntityType } from '../common/__json__/entity-type';
 import { ItemDownloadJson } from './__json__/item-downloads-json';
-import { MediaJson } from './media/__json__/media-json';
-import { VappTemplateJson } from './vapp-template/__json__/vapp-template-json';
+import { MediaJson } from '../media/__json__/media-json';
+import { VappTemplateJson } from '../vapp-template/__json__/vapp-template-json';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 import { MetadataType } from '../common/metadata/__json__/metadata-type';
 
