@@ -147,10 +147,7 @@ export class CloudRepository {
    * @returns {WanAccelerator} wan accelerator
    */
   get wanAccelerator(): WanAccelerator | null {
-    if (this._json.wan_accelerator === null) {
-      return null;
-    }
-    return new WanAccelerator(this._json.wan_accelerator);
+    return (this._json.wan_accelerator ? new WanAccelerator(this._json.wan_accelerator) : null);
   }
 
   /**

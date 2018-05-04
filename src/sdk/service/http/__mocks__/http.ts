@@ -84,6 +84,7 @@ import { MockEdgeStaticRoutingServiceResponse } from '../../../model/edge/static
 import { MockEdgeStatsResponse } from '../../../model/edge/network-perf-sample/__mocks__/network-perf-sample';
 import { RoleCreationRequestJson } from '../../../model/iam/role/__json__/role-creation-request-json';
 import { UserCreationRequestJson } from '../../../model/user/__json__/user-creation-request-json';
+import { MockVpgAlertResponse, MockVpgReportDetailsResponse } from '../../../model/vpg/__mocks__/vpg';
 
 jest.unmock('../http');
 
@@ -296,7 +297,8 @@ export class Http {
         return CatalogVappTemplateMockResponse;
       case /\/catalogs\/dev-vcd01.iland.dev:urn:vcloud:catalog:d576ce89-0599-42f5-812c-592e0e98964f\/metadata$/
         .test(url):
-        // get catalog fake metadata
+      case /\/vdcs\/dev-vcd01.iland.dev:urn:vcloud:vdc:e51cc45c-8890-r331-7e7e-2934lk235ie5\/metadata$/.test(url):
+        // get fake metadata
         return MockFakeMetadataResponse;
       case /\/catalogs\/[^\/]+\/metadata$/.test(url):
         // get catalog metadata
@@ -311,6 +313,12 @@ export class Http {
       case /\/vapp-templates\/[^\/]+?$/.test(url):
         // get a vapp template
         return MockVappTemplateResponse;
+      case /\/vpgs\/[^\/]+?\/failover-report\/[^\/]+?$/.test(url):
+        // remove vpg failover test alert
+        return MockVpgReportDetailsResponse;
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
+        // remove vpg failover test alert
+        return MockVpgAlertResponse;
       default:
         return MockNotFoundResponse;
     }
@@ -322,6 +330,7 @@ export class Http {
         // delete single virtual disk
         return MockTaskService.getNewMockTaskResponse('delete virtual disk');
       case /\/vms\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
+      case /\/vdcs\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
         // delete single metadata entry
         return MockTaskService.getNewMockTaskResponse('delete metadata');
       case /\/vms\/[^\/]+?$/.test(url):
@@ -333,6 +342,9 @@ export class Http {
       case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
         // delete a role
         return MockService.getMockNoContentResponse();
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts\/[^\/]+?$/.test(url):
+        // remove vpg failover test alert
+        return MockService.getMockVoidResponse();
       default:
         return MockNotFoundResponse;
     }
@@ -343,6 +355,24 @@ export class Http {
       case /\/cloud-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
         // update cloud tenant contract
         return MockService.getMockVoidResponse();
+      case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
+        // add a vpg failover test alert
+        return MockVpgAlertResponse;
+      case /\/vpgs\/[^\/]+?\/failover-test$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover test initiation');
+      case /\/vpgs\/[^\/]+?\/failover-test-stop$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover test stop');
+      case /\/vpgs\/[^\/]+?\/failover$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto live failover initiation');
+      case /\/vpgs\/[^\/]+?\/failover-commit$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover commit');
+      case /\/vpgs\/[^\/]+?\/failover-rollback$/.test(url):
+        // add a vpg failover test alert
+        return MockTaskService.getNewMockTaskResponse('zerto failover rollback');
       case /\/vms\/[^\/]+?\/virtual-disk$/.test(url):
         // update single virtual disk
         return MockTaskService.getNewMockTaskResponse('add virtual disk');
@@ -414,7 +444,8 @@ export class Http {
         // update VMs CPUs
         return MockTaskService.getNewMockTaskResponse('update cpu count');
       case /\/vms\/[^\/]+?\/metadata$/.test(url):
-        // update VMs metadata
+      case /\/vdcs\/[^\/]+?\/metadata$/.test(url):
+        // update metadata
         return MockTaskService.getNewMockTaskResponse('update metadata');
       case /\/vms\/[^\/]+?\/name$/.test(url):
         // rename VM

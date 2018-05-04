@@ -10,6 +10,9 @@ import { VdcAllocationModel } from './__json__/vdc-allocation-model-type';
 import { AddVappRequestJson, BuildVappRequestJson, VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { TaskJson } from '../task/__json__/task-json';
+import { Metadata } from '../common/metadata/metadata';
+import { MetadataType } from '../common/metadata/__json__/metadata-type';
+import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 
 /**
  * Virtual Data Center.
@@ -261,6 +264,53 @@ export class Vdc extends Entity {
     return Iland.getHttp().post(`/vdcs/${this.uuid}/vapp`, addVappRequest).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
+    });
+  }
+
+  /**
+   * Gets the vDC metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
+    });
+  }
+
+  /**
+   * Updates the vDC metadata.
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    return Iland.getHttp().put(`/vdcs/${this.uuid}/metadata`, metadata).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry for vDC.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    return Iland.getHttp().delete(`/vdcs/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
