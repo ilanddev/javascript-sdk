@@ -1,4 +1,4 @@
-import { EdgeSslVpnIpPoolJson } from './json/edge-ssl-vpn';
+import { EdgeSslVpnIpPoolJson } from './__json__/edge-ssl-vpn-json';
 
 /**
  * SslVpnIpPool class
@@ -81,7 +81,7 @@ export class SslVpnIpPool {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeSslVpnIpPoolJson}
    */
   get json(): EdgeSslVpnIpPoolJson {

@@ -3,12 +3,12 @@ import {
   MockEdgeFirewall,
   MockEdgeFirewallCheckpoints,
   MockEdgeFirewallLogs
-} from '../../../../__mocks__/responses/edge/edge-firewall';
+} from '../__mocks__/edge-firewall';
 import { Edge } from '../../edge';
-import { MockEdgeJson } from '../../../../__mocks__/responses/edge/edge';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
+import { MockEdgeJson } from '../../__mocks__/edge';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

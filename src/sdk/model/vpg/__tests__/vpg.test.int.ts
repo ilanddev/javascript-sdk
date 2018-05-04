@@ -2,11 +2,11 @@ import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-pr
 import { TestConfiguration } from '../../../../../__tests__/configuration';
 import { Iland } from '../../../iland';
 import { User } from '../../user';
-import { InventoryEntity } from '../../company-inventory';
 import { Vpg } from '../vpg';
-import { VpgSubEntityRequest } from '../json/vpg-sub-entity-request';
-import { PerfSampleSerie } from '../perf-sample-serie';
+import { VpgSubEntityRequest } from '../__json__/vpg-sub-entity-request';
+import { PerfSampleSerie } from '../perf-sample/perf-sample-serie';
 import { VpgVm } from '../vpg-vm';
+import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVpg: InventoryEntity;

@@ -1,13 +1,13 @@
 import { Iland } from '../../../../iland';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
-import { MockEdgeIpsecVpn } from '../../../../__mocks__/responses/edge/edge-ipsec-vpn';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
+import { MockEdgeIpsecVpn } from '../__mocks__/edge-ipsec-vpn';
 import { Edge } from '../../edge';
-import { MockEdgeJson } from '../../../../__mocks__/responses/edge/edge';
+import { MockEdgeJson } from '../../__mocks__/edge';
 import { IpSecVpnTunnel } from '../ip-sec-vpn-tunnel';
 import { IpSecVpnSubnet } from '../ip-sec-vpn-subnet';
-import { Http } from '../../../../http';
+import { Http } from '../../../../service/http/http';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

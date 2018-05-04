@@ -1,33 +1,35 @@
-import { EdgeBackingConfigurationType, EdgeInterfaceJson, EdgeJson, NatServiceJson } from './json/edge';
-import { Entity } from '../entity';
-import { EntityType } from '../json/entity-type';
+import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
-import { EdgeInterface } from './edge-interface';
-import { EdgeIpsecVpnServiceJson } from './ipsec-vpn/json/edge-ipsec-vpn';
-import { EdgeFirewallJson, EdgeFirewallLogJson, EdgeFirewallLogType } from './firewall/json/edge-firewall';
-import { LoadBalancerServiceJson } from './load-balancer/json/load-balancer';
-import { CheckpointJson } from './json/checkpoint';
-import { EdgeSslVpnServiceJson } from './ssl-vpn/json/edge-ssl-vpn';
+import { EdgeInterface } from './edge-interface/edge-interface';
+import { EdgeIpsecVpnServiceJson } from './ipsec-vpn/__json__/edge-ipsec-vpn-json';
+import { EdgeFirewallJson, EdgeFirewallLogJson } from './firewall/__json__/edge-firewall-json';
+import { LoadBalancerServiceJson } from './load-balancer/__json__/load-balancer-json';
+import { CheckpointJson } from './checkpoint/__json__/checkpoint-json';
+import { EdgeSslVpnServiceJson } from './ssl-vpn/__json__/edge-ssl-vpn-json';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { NatService } from './nat-service';
+import { NatService } from './nat/nat-service';
 import { Dhcp } from './dhcp/dhcp';
 import { Firewall } from './firewall/firewall';
 import { FirewallLog } from './firewall/firewall-log';
-import { Http } from '../../http';
-import { Checkpoint } from './checkpoint';
+import { Http } from '../../service/http/http';
+import { Checkpoint } from './checkpoint/checkpoint';
 import { SslVpn } from './ssl-vpn/ssl-vpn';
 import { IpsecVpn } from './ipsec-vpn/ipsec-vpn';
 import { StaticRouting } from './static-routing/static-routing';
-import { StaticRoutingServiceJson } from './static-routing/json/static-routing';
-import { EdgeDhcpJson } from './dhcp/json/dhcp';
+import { EdgeDhcpJson } from './dhcp/__json__/dhcp-json';
 import { NetworkPerfSampleSerie } from './network-perf-sample/network-perf-sample-serie';
-import {
-  NetworkPerfSampleSerieJson,
-  PerfGroupType,
-  PerfStatsType
-} from './network-perf-sample/json/network-perf-sample';
+import { NetworkPerfSampleSerieJson } from './network-perf-sample/__json__/network-perf-sample-json';
 import { LoadBalancer } from './load-balancer/load-balancer';
+import { NatServiceJson } from './nat/__json__/nat-service-json';
+import { StaticRoutingServiceJson } from './static-routing/__json__/static-routing-json';
+import { PerfGroupType } from './network-perf-sample/__json__/perf-group-type';
+import { PerfStatsType } from './network-perf-sample/__json__/perf-stats-type';
+import { EdgeJson } from './__json__/edge-json';
+import { EdgeFirewallLogType } from './firewall/__json__/edge-firewall-log-type';
+import { EdgeBackingConfigurationType } from './__json__/edge-backing-configuration-type';
+import { EdgeInterfaceJson } from './edge-interface/__json__/edge-interface-json';
+import { EntityType } from '../common/__json__/entity-type';
 
 /**
  * Edge Gateway.

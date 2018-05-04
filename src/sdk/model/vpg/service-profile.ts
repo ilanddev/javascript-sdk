@@ -1,4 +1,4 @@
-import { ServiceProfileJson } from './json/vpg';
+import { ServiceProfileJson } from './__json__/vpg';
 
 /**
  * Service Profile

@@ -1,5 +1,5 @@
 import { DhcpPool } from './dhcp-pool';
-import { DhcpJson, EdgeDhcpJson } from './json/dhcp';
+import { DhcpJson, EdgeDhcpJson } from './__json__/dhcp-json';
 
 /**
  * Dhcp class
@@ -35,7 +35,7 @@ export class Dhcp {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeDhcpJson}
    */
   get json(): EdgeDhcpJson {

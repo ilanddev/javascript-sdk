@@ -1,11 +1,12 @@
 import { Iland } from '../../../../iland';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
-import { MockEdgeJson, MockEdgeStats } from '../../../../__mocks__/responses/edge/edge';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
 import { Edge } from '../../edge';
 import { NetworkPerfSampleSerie } from '../network-perf-sample-serie';
 import { NetworkPerfSample } from '../network-perf-sample';
+import { MockEdgeJson } from '../../__mocks__/edge';
+import { MockEdgeStats } from '../__mocks__/network-perf-sample';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

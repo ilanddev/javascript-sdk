@@ -1,4 +1,4 @@
-import { EdgeIpSecVpnPeerJson } from './json/edge-ipsec-vpn';
+import { EdgeIpSecVpnPeerJson } from './__json__/edge-ipsec-vpn-json';
 
 /**
  * IpSecVpnPeer class
@@ -57,7 +57,7 @@ export class IpSecVpnPeer {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeIpSecVpnPeerJson}
    */
   get json(): EdgeIpSecVpnPeerJson {

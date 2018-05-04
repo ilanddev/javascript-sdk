@@ -1,4 +1,4 @@
-import { BasicConfiguration } from '../basic-configuration';
+import { BasicConfiguration } from '../config/basic-configuration';
 import { Observable } from 'rxjs/Observable';
 
 /**

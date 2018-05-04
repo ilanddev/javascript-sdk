@@ -1,10 +1,11 @@
 import { Iland } from '../../../../iland';
-import { MockEdgeDhcpJson, MockEdgeJson } from '../../../../__mocks__/responses/edge/edge';
 import { Edge } from '../../edge';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
 import { DhcpPool } from '../dhcp-pool';
+import { MockEdgeJson } from '../../__mocks__/edge';
+import { MockEdgeDhcpJson } from '../__mocks__/dhcp';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

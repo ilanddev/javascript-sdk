@@ -1,8 +1,8 @@
 import { Iland } from '../../../../iland';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
-import { MockEdgeLoadbalancer } from '../../../../__mocks__/responses/edge/edge-load-balancer';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
+import { MockEdgeLoadbalancer } from '../__mocks__/edge-load-balancer';
 import { Edge } from '../../edge';
-import { MockEdgeJson } from '../../../../__mocks__/responses/edge/edge';
+import { MockEdgeJson } from '../../__mocks__/edge';
 import { LoadBalancerPool } from '../load-balancer-pool';
 import { LoadBalancerVirtualServer } from '../load-balancer-virtual-server';
 import { LbPoolServicePort } from '../lb-pool-service-port';
@@ -13,10 +13,10 @@ import {
   LbVirtualServerServiceProfileJson,
   LoadBalancerPoolJson,
   LoadBalancerVirtualServerJson
-} from '../json/load-balancer';
+} from '../__json__/load-balancer-json';
 import { LbPoolMember } from '../lb-pool-member';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

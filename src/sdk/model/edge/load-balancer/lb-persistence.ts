@@ -1,4 +1,4 @@
-import { LbPersistenceJson } from './json/load-balancer';
+import { LbPersistenceJson } from './__json__/load-balancer-json';
 
 /**
  * LbPersistence class
@@ -33,7 +33,7 @@ export class LbPersistence {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LbPersistenceJson}
    */
   get json(): LbPersistenceJson {

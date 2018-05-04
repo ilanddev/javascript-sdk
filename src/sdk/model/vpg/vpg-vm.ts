@@ -1,5 +1,8 @@
-import { VpgPriority, VpgStatus, VpgSubStatus, VpgVmJson } from './json/vpg';
+import { VpgVmJson } from './__json__/vpg';
 import { VpgEntities } from './vpg-entities';
+import { VpgStatus } from './__json__/vpg-status-type';
+import { VpgSubStatus } from './__json__/vpg-sub-status-type';
+import { VpgPriority } from './__json__/vpg-priority-type';
 
 /**
  * Vpg VM.

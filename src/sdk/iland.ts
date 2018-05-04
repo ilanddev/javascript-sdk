@@ -1,6 +1,6 @@
 import { AuthProvider } from './auth/';
-import { Http } from './http';
-import { BasicConfiguration } from './basic-configuration';
+import { Http } from './service/http/http';
+import { BasicConfiguration } from './config/basic-configuration';
 
 const DEFAULT_API_URL = `${BasicConfiguration.getApiUrl()}/v1`;
 

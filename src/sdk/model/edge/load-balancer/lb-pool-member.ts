@@ -1,4 +1,4 @@
-import { LbPoolMemberJson, LbPoolServicePortJson } from './json/load-balancer';
+import { LbPoolMemberJson, LbPoolServicePortJson } from './__json__/load-balancer-json';
 import { LbPoolServicePort } from './lb-pool-service-port';
 
 /**
@@ -34,7 +34,7 @@ export class LbPoolMember {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LbPoolMemberJson}
    */
   get json(): LbPoolMemberJson {

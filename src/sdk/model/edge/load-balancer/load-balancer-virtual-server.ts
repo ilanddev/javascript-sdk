@@ -1,4 +1,4 @@
-import { LbVirtualServerServiceProfileJson, LoadBalancerVirtualServerJson } from './json/load-balancer';
+import { LbVirtualServerServiceProfileJson, LoadBalancerVirtualServerJson } from './__json__/load-balancer-json';
 import { LbVirtualServerServiceProfile } from './lb-virtual-server-service-profile';
 
 /**
@@ -75,7 +75,7 @@ export class LoadBalancerVirtualServer {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {LoadBalancerVirtualServerJson}
    */
   get json(): LoadBalancerVirtualServerJson {

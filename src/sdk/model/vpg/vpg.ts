@@ -1,34 +1,31 @@
 import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs/Observable';
-import { Http } from '../../http';
+import 'rxjs/add/operator/map';
 import { Iland } from '../../iland';
-import { Entity } from '../entity';
-import {
-    ActiveProcessStage,
-    ServiceProfileJson,
-    VpgJson,
-    VpgPriority,
-    VpgStatus,
-    VpgSubStatus,
-    VpgVmJson
-} from './json/vpg';
-import { VpgSubEntityRequest } from './json/vpg-sub-entity-request';
-import { EntityType } from '../json/entity-type';
-import { VpgFailoverTestAlertJson } from './json/vpg-failover-test-alert';
-import { VpgFailoverTestAlert } from './vpg-failover-test-alert';
-import { VpgFailoverTestAlertRequest } from './vpg-failover-test-alert-request';
-import { PerfSampleSerieJson } from './json/perf-sample-serie';
-import { PerfSampleSerie } from './perf-sample-serie';
-import { TaskJson } from '../json/task';
-import { Task } from '../task';
-import { VpgFailoverCreateRequest } from './vpg-failover-create-request';
-import { VpgCheckpoint } from './vpg-checkpoint';
-import { VpgCheckpointJson } from './json/vpg-checkpoint';
-import { VpgFailoverReportDetailsJson } from './json/vpg-failover-report-detail';
-import { VpgFailoverReportDetails } from './vpg-failover-report-details';
+import { ServiceProfileJson, VpgJson, VpgVmJson } from './__json__/vpg';
+import { VpgSubEntityRequest } from './__json__/vpg-sub-entity-request';
+import { VpgFailoverTestAlertJson } from './vpg-failover/__json__/vpg-failover-test-alert';
+import { VpgFailoverTestAlert } from './vpg-failover/vpg-failover-test-alert';
+import { VpgFailoverTestAlertRequest } from './vpg-failover/vpg-failover-test-alert-request';
+import { PerfSampleSerieJson } from './perf-sample/__json__/perf-sample-serie';
+import { PerfSampleSerie } from './perf-sample/perf-sample-serie';
+import { Task } from '../task/task';
+import { VpgFailoverCreateRequest } from './vpg-failover/vpg-failover-create-request';
+import { VpgCheckpoint } from './vpg-checkpoint/vpg-checkpoint';
+import { VpgCheckpointJson } from './vpg-checkpoint/__json__/vpg-checkpoint';
+import { VpgFailoverReportDetailsJson } from './vpg-failover/__json__/vpg-failover-report-detail';
+import { VpgFailoverReportDetails } from './vpg-failover/vpg-failover-report-details';
 import { ServiceProfile } from './service-profile';
 import { VpgVm } from './vpg-vm';
 import { VpgEntities } from './vpg-entities';
+import { Entity } from '../common/entity';
+import { EntityType } from '../common/__json__/entity-type';
+import { TaskJson } from '../task/__json__/task-json';
+import { Http } from '../../service/http/http';
+import { VpgStatus } from './__json__/vpg-status-type';
+import { VpgSubStatus } from './__json__/vpg-sub-status-type';
+import { VpgPriority } from './__json__/vpg-priority-type';
+import { ActiveProcessStage } from './__json__/vpg-active-process-stage';
 
 /**
  * Virtual Protection Group
@@ -320,7 +317,7 @@ export class Vpg extends Entity {
    * @returns {Promise<AxiosResponse>}
    */
   async removeVpgFailoverTestAlert(): Promise<AxiosResponse> {
-    return Iland.getHttp().delete(`/vpgs/${this.uuid}/failover-test-alerts`,{});
+    return Iland.getHttp().delete(`/vpgs/${this.uuid}/failover-test-alerts`, {});
   }
 
   /**
@@ -467,10 +464,11 @@ export class Vpg extends Entity {
    */
   getFailoverReport(taskUuid: string, fileName?: string): Observable<String> {
     let href = `${Iland.baseUrl}/vpgs/${this.uuid}/failover-report/${taskUuid}/download?accept=` +
-        encodeURIComponent(Http.versionMime('application/octet-stream'));
-    if (fileName) href = href + '&filename' + encodeURIComponent(fileName);
+      encodeURIComponent(Http.versionMime('application/octet-stream'));
+    if (fileName) {
+      href = href + '&filename=' + encodeURIComponent(fileName);
+    }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oath_token=${token}`);
+    return observable.map(token => `${href}&oauth_token=${token}`);
   }
-
 }

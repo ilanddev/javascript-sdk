@@ -1,10 +1,7 @@
-import {
-  NetworkPerfSampleJson,
-  NetworkPerfSampleSerieJson,
-  PerfGroupType,
-  PerfStatsType
-} from './json/network-perf-sample';
+import { NetworkPerfSampleJson, NetworkPerfSampleSerieJson } from './__json__/network-perf-sample-json';
 import { NetworkPerfSample } from './network-perf-sample';
+import { PerfGroupType } from './__json__/perf-group-type';
+import { PerfStatsType } from './__json__/perf-stats-type';
 
 /**
  * NetworkPerfSampleSerie class
@@ -71,7 +68,7 @@ export class NetworkPerfSampleSerie {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {NetworkPerfSampleSerieJson}
    */
   get json(): NetworkPerfSampleSerieJson {

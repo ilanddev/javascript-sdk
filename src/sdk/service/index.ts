@@ -1,2 +1,3 @@
-export * from './iam-service';
-export * from './permission-service';
+export * from './http/index';
+export * from './iam-service/index';
+export * from './permission-service/index';

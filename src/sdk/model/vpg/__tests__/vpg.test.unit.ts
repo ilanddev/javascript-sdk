@@ -1,15 +1,15 @@
-import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { Vpg } from '../vpg';
-import { MockVpgJson } from '../../../__mocks__/responses/vpg/vpg';
-import { VpgFailoverCreateRequest } from '../vpg-failover-create-request';
-import { Http } from '../../../http';
-import { VpgFailoverTestAlertRequest } from '../vpg-failover-test-alert-request';
+import { MockVpgJson } from '../__mocks__/vpg';
+import { VpgFailoverCreateRequest } from '../vpg-failover/vpg-failover-create-request';
+import { VpgFailoverTestAlertRequest } from '../vpg-failover/vpg-failover-test-alert-request';
+import { Http } from '../../../service/http/http';
+import { MockIlandDirectGrantAuthProvider } from '../../../auth/__mocks__/iland-direct-grant-auth-privider';
 
-jest.mock('../../../http');
+jest.mock('../../../service/http/http');
 
 beforeAll(() => {
-  Iland.init(new IlandDirectGrantAuthProvider({
+  Iland.init(new MockIlandDirectGrantAuthProvider({
     username: '',
     password: '',
     clientSecret: '',
@@ -147,7 +147,7 @@ test('Get a failover report details for a failover task', async() => {
     expect(networkMapping.failoverMoveTargetNetwork).toBe(networkMappingJson.failover_move_target_network);
     expect(networkMapping.failoverTestTargetNetwork).toBe(networkMappingJson.failover_test_target_network);
     expect(networkMapping.reverseConfigFailoverTestNetwork)
-        .toBe(networkMappingJson.reverse_configuration_failover_test_network);
+      .toBe(networkMappingJson.reverse_configuration_failover_test_network);
     expect(networkMapping.toString().length).toBeGreaterThan(0);
     expect(bootOrderSettings.name).toBe(bootOrderSettingsJson.name);
     expect(bootOrderSettings.vmsInGroup).toBe(bootOrderSettingsJson.vms_in_group);
@@ -171,12 +171,13 @@ test('Get a failover report details for a failover task', async() => {
 
 test('Get download report href from Vpg failover report', (done) => {
   const mockTaskUuid = 'mock-task-uuid';
+  expect.assertions(1);
   vpg.getFailoverReport(mockTaskUuid, 'downloadFileName').subscribe(url => {
-    expect(url).toBe(Iland.baseUrl + '/vpgs/' + vpg.uuid + '/failover-report/'
-        + mockTaskUuid + '/download?accept='
-        + encodeURIComponent(Http.versionMime('application/octet-stream'))
-        + '&filename' + encodeURIComponent('downloadFileName')
-        + '&oauth_token=fake-auth-token-2');
+    expect(url).toEqual(Iland.baseUrl + '/vpgs/' + vpg.uuid + '/failover-report/'
+      + mockTaskUuid + '/download?accept='
+      + encodeURIComponent(Http.versionMime('application/octet-stream'))
+      + '&filename=' + encodeURIComponent('downloadFileName')
+      + '&oauth_token=fake-auth-token-2');
     done();
   }, (error) => {
     console.log(error);

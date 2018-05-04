@@ -1,9 +1,11 @@
 import {
-  EdgeSslVpnAdAuthenticationServerJson, EdgeSslVpnLdapAuthenticationServerJson, EdgeSslVpnLocalAuthenticationServerJson,
+  EdgeSslVpnAdAuthenticationServerJson,
+  EdgeSslVpnLdapAuthenticationServerJson,
+  EdgeSslVpnLocalAuthenticationServerJson,
   EdgeSslVpnRadiusAuthenticationServerJson,
-  EdgeSslVpnRsaAuthenticationServerJson,
-  VpnLocalAuthenticationServerType
-} from './json/edge-ssl-vpn';
+  EdgeSslVpnRsaAuthenticationServerJson
+} from './__json__/edge-ssl-vpn-json';
+import { VpnLocalAuthenticationServerType } from './__json__/vpn-local-authentication-server-type';
 
 /**
  * SslVpnAuthenticationServer class

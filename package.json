@@ -69,7 +69,7 @@
     "collectCoverageFrom": [
       "src/**/*.ts",
       "!src/**/index.ts",
-      "!src/sdk/**/json/*.ts"
+      "!src/sdk/**/__json__/*.ts"
     ],
     "mapCoverage": true,
     "coveragePathIgnorePatterns": [

@@ -1,4 +1,4 @@
-import { EdgeFirewallLogJson } from './json/edge-firewall';
+import { EdgeFirewallLogJson } from './__json__/edge-firewall-json';
 
 /**
  * FirewallLog class
@@ -73,7 +73,7 @@ export class FirewallLog {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeFirewallLogJson}
    */
   get json(): EdgeFirewallLogJson {

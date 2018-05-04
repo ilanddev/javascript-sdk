@@ -5,7 +5,7 @@ import {
   EdgeSslVpnPrivateNetworkJson,
   EdgeSslVpnServiceJson,
   EdgeSslVpnUserJson
-} from './json/edge-ssl-vpn';
+} from './__json__/edge-ssl-vpn-json';
 import { SslVpnPrivateNetwork } from './ssl-vpn-private-network';
 import { SslVpnUser } from './ssl-vpn-user';
 import { SslVpnIpPool } from './ssl-vpn-ip-pool';
@@ -136,7 +136,7 @@ export class SslVpn {
   }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeSslVpnServiceJson}
    */
   get json(): EdgeSslVpnServiceJson {

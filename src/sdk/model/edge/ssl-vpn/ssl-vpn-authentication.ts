@@ -5,7 +5,7 @@ import {
   EdgeSslVpnLocalAuthenticationServerJson,
   EdgeSslVpnRadiusAuthenticationServerJson,
   EdgeSslVpnRsaAuthenticationServerJson
-} from './json/edge-ssl-vpn';
+} from './__json__/edge-ssl-vpn-json';
 import { SslVpnAuthenticationServer } from './ssl-vpn-authentication-server';
 import { SslVpnLocalAuthenticationServer } from './ssl-vpn-local-authentication-server';
 import { SslVpnLdapAuthenticationServer } from './ssl-vpn-ldap-authentication-server';
@@ -79,7 +79,7 @@ export class SslVpnAuthentication {
     }
 
   /**
-   * Get the json representation of this class.
+   * Get the __json__ representation of this class.
    * @returns {EdgeSslVpnAuthenticationJson}
    */
   get json(): EdgeSslVpnAuthenticationJson {

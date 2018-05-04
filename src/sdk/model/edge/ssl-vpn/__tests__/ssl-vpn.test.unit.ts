@@ -1,5 +1,5 @@
 import { Iland } from '../../../../iland';
-import { MockIlandDirectGrantAuthProvider } from '../../../../__mocks__/responses/iland-direct-grant-auth-privider';
+import { MockIlandDirectGrantAuthProvider } from '../../../../auth/__mocks__/iland-direct-grant-auth-privider';
 import {
   MockAdAuthenticationServer,
   MockEdgeSslVpn,
@@ -8,9 +8,9 @@ import {
   MockRadiusAuthenticationServer,
   MockRsaAuthenticationServer,
   MockSslVpnServiceUsers
-} from '../../../../__mocks__/responses/edge/edge-ssl-vpn';
+} from '../__mocks__/edge-ssl-vpn';
 import { Edge } from '../../edge';
-import { MockEdgeJson } from '../../../../__mocks__/responses/edge/edge';
+import { MockEdgeJson } from '../../__mocks__/edge';
 import { SslVpn } from '../ssl-vpn';
 import { SslVpnAuthenticationServer } from '../ssl-vpn-authentication-server';
 import {
@@ -23,7 +23,7 @@ import {
   EdgeSslVpnPrivateNetworkJson,
   EdgeSslVpnRadiusAuthenticationServerJson,
   EdgeSslVpnRsaAuthenticationServerJson
-} from '../json/edge-ssl-vpn';
+} from '../__json__/edge-ssl-vpn-json';
 import { SslVpnLocalAuthenticationServer } from '../ssl-vpn-local-authentication-server';
 import { SslVpnLdapAuthenticationServer } from '../ssl-vpn-ldap-authentication-server';
 import { SslVpnAdAuthenticationServer } from '../ssl-vpn-ad-authentication-server';
@@ -36,7 +36,7 @@ import { SslVpnIpPool } from '../ssl-vpn-ip-pool';
 import { SslVpnPrivateNetwork } from '../ssl-vpn-private-network';
 import { SslVpnUser } from '../ssl-vpn-user';
 
-jest.mock('../../../../http');
+jest.mock('../../../../service/http/http');
 
 beforeAll(() => {
   Iland.init(new MockIlandDirectGrantAuthProvider({

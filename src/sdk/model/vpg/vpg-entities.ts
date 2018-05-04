@@ -1,11 +1,13 @@
-import { EnvironmentType, VpgEntitiesJson } from './json/vpg';
+import { VpgEntitiesJson } from './__json__/vpg';
+import { EnvironmentType } from './__json__/vpg-environment-type';
 
 /**
  * Vpg Entities.
  */
 export class VpgEntities {
 
-  constructor(private _json: VpgEntitiesJson) {}
+  constructor(private _json: VpgEntitiesJson) {
+  }
 
   /**
    * Get source for Vpg Entities
