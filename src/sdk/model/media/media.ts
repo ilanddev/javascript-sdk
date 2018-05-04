@@ -2,6 +2,15 @@ import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
 import { MediaJson } from './__json__/media-json';
 import { EntityType } from '../common/__json__/entity-type';
+import { Task } from '../task';
+import { TaskJson } from '../task/__json__';
+import { MediaUpdateRequest } from './media-update-request';
+import { MediaCloneRequest } from './media-clone-request';
+import { Observable } from 'rxjs/Observable';
+import { Http } from '../../service/http';
+import { Metadata } from '../common/metadata';
+import { MetadataJson, MetadataType } from '../common/metadata/__json__';
+import 'rxjs/add/operator/map';
 
 /**
  * Media.
@@ -25,22 +34,49 @@ export class Media extends Entity {
   }
 
   /**
+   * Delete the Media from API.
+   * @param {string} uuid
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  static async deleteMedia(uuid: string): Promise<Task> {
+    return Iland.getHttp().delete(`/media/${uuid}`).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Update the Media.
+   * @param {string} uuid
+   * @param {MediaUpdateRequest} request
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  static async updateMedia(uuid: string, request: MediaUpdateRequest): Promise<Task> {
+    return Iland.getHttp().put(`/media/${uuid}`, request.json).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Clone the Media.
+   * @param {string} uuid
+   * @param {MediaCloneRequest} request
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  static async cloneMedia(uuid: string, request: MediaCloneRequest): Promise<Task> {
+    return Iland.getHttp().post(`/media/${uuid}/actions/clone`, request.json).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
    * Get entity type for Media
    * @returns {EntityType}
    */
   get entityType(): EntityType {
     return 'MEDIA';
-  }
-
-  /**
-   * Refreshes the Media data by retrieving it from the API again.
-   * @returns {Promise<Media>} promise that resolves with the Media
-   */
-  async refresh(): Promise<Media> {
-    return Iland.getHttp().get(`/media/${this.uuid}`).then((response) => {
-      this._json = response.data as MediaJson;
-      return this;
-    });
   }
 
   /**
@@ -129,6 +165,116 @@ export class Media extends Entity {
    */
   get createdDate(): Date {
     return new Date(this._json.created_date);
+  }
+
+  /**
+   * Refreshes the Media data by retrieving it from the API again.
+   * @returns {Promise<Media>} promise that resolves with the Media
+   */
+  async refresh(): Promise<Media> {
+    return Iland.getHttp().get(`/media/${this.uuid}`).then((response) => {
+      this._json = response.data as MediaJson;
+      return this;
+    });
+  }
+
+  /**
+   * Deletes current Media
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  async delete(): Promise<Task> {
+    return Media.deleteMedia(this.uuid);
+  }
+
+  /**
+   * Updates media name, description and storage profile
+   * @param {MediaUpdateRequest} request
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  async update(request: MediaUpdateRequest): Promise<Task> {
+    return Media.updateMedia(this.uuid, request);
+  }
+
+  /**
+   * Clones current Media.
+   * @param {MediaUpdateRequest} request
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  async clone(request: MediaCloneRequest): Promise<Task> {
+    return Media.cloneMedia(this.uuid, request);
+  }
+
+  /**
+   * Synchronize current Media.
+   * @returns {Promise<Task>} promise that resolves with a Task
+   */
+  async sync(): Promise<Task> {
+    return Iland.getHttp().post(`/media/${this.uuid}/actions/sync`).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Get a link to download the Media.
+   * @param {string} filename
+   * @returns {Observable<string>}
+   */
+  getDownloadLink(filename?: string): Observable<string> {
+    let href = `${Iland.baseUrl}/media/${this.uuid}/download?accept=` +
+        encodeURIComponent(Http.versionMime('application/octet-stream'));
+    if (filename) {
+      href = href + '&filename=' + encodeURIComponent(filename);
+    }
+    const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
+    return observable.map(token => `${href}&oauth_token=${token}`);
+  }
+
+  /**
+   * Gets the Media's metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    return Iland.getHttp().get(`/media/${this.uuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
+    });
+  }
+
+  /**
+   * Updates the Media's metadata.
+   * @param {Array<MetadataJson<MetadataType>>} metadataJson the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadataJson: Array<MetadataJson<MetadataType>>): Promise<Task> {
+    return Iland.getHttp().put(`/media/${this.uuid}/metadata`, metadataJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    return Iland.getHttp().delete(`/media/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
