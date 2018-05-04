@@ -6,6 +6,9 @@ import { Vm } from '../vm';
 import { Task } from '../../task/task';
 import { ApiError } from '../../../config/api-error';
 import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
+import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
+import { PerfCounterJson } from '../../mixins/perf-samples/_json_/perf-samples';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;
@@ -248,6 +251,30 @@ test('Can refresh VM', async() => {
     expect(vm.uuid).toBe(inventoryVm.uuid);
     return vm.refresh().then(function(refreshed) {
       expect(refreshed.uuid).toBe(inventoryVm.uuid);
+    });
+  });
+});
+
+test('Can get perf counters', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getPerfCounters().then((counters) => {
+      expect(counters).toBeDefined();
+      expect(counters.length).toBeGreaterThan(0);
+    });
+  });
+});
+
+test('Can get perf samples', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(vm.uuid);
+    return vm.getPerfCounters().then(async(counters) => {
+      expect(counters).toBeDefined();
+      expect(counters.length).toBeGreaterThan(0);
+      const request = new PerfSamplesRequest({counter: counters[0] as PerfCounterJson} as PerfSamplesRequestJson);
+      return vm.getPerfSamples(request).then(async(perfSamplesSerie) => {
+        expect(perfSamplesSerie).toBeDefined();
+      });
     });
   });
 });

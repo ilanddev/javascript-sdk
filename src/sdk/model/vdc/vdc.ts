@@ -13,11 +13,21 @@ import { TaskJson } from '../task/__json__/task-json';
 import { Metadata } from '../common/metadata/metadata';
 import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
+import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-samples';
+import { PerfCounter } from '../mixins/perf-samples/perf-counter';
+import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
+import { applyMixins } from 'rxjs/util/applyMixins';
 
 /**
  * Virtual Data Center.
  */
-export class Vdc extends Entity {
+export class Vdc extends Entity implements EntityWithPerfSamples {
+
+  // EntityWithPerfSamples mixin properties and methods
+  apiPrefix = '/vdcs';
+  getPerfCounters: () => Promise<Array<PerfCounter>>;
+  getPerfSamples: (request: PerfSamplesRequest) => Promise<PerfSamplesSeries>;
 
   constructor(private _json: VdcJson) {
     super(_json);
@@ -313,5 +323,6 @@ export class Vdc extends Entity {
       return new Task(apiTask);
     });
   }
-
 }
+
+applyMixins(Vdc, [EntityWithPerfSamples]);

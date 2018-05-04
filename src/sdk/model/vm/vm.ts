@@ -37,11 +37,21 @@ import { MksScreenTicketJson } from './screen-ticket/__json__/mks-screen-ticket-
 import { BillJson } from '../common/billing/__json__/bill-json';
 import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
 import { VmStatus } from './__json__/vm-status-type';
+import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-samples';
+import { PerfCounter } from '../mixins/perf-samples/perf-counter';
+import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
+import { applyMixins } from 'rxjs/util/applyMixins';
 
 /**
  * Virtual Machine.
  */
-export class Vm extends Entity {
+export class Vm extends Entity implements EntityWithPerfSamples {
+
+  // EntityWithPerfSamples mixin properties and methods
+  apiPrefix = '/vms';
+  getPerfCounters: () => Promise<Array<PerfCounter>>;
+  getPerfSamples: (request: PerfSamplesRequest) => Promise<PerfSamplesSeries>;
 
   constructor(private _apiVm: VmJson) {
     super(_apiVm);
@@ -708,6 +718,8 @@ export class Vm extends Entity {
   }
 
 }
+
+applyMixins(Vm, [EntityWithPerfSamples]);
 
 /**
  * Enumeration of possible VM power statuses.

@@ -1,10 +1,15 @@
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { Vapp } from '../vapp';
-import { MockVappJson } from '../__mocks__/vapp';
+import { VappJson } from '../__json__';
+import { MockVappJson, MockVappPerfCountersJson, MockVappPerfSamplesSeriesJson } from '../__mocks__/vapp';
 import { MockVappVmsJson } from '../__mocks__/vapp-vms';
 import { MockVappNetworksJson } from '../__mocks__/vapp-networks';
-import { VappJson } from '../__json__/vapp-json';
+import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
+import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
+import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 
 jest.mock('../../../service/http/http');
 
@@ -84,5 +89,63 @@ test('Properly submits request to get vApps child vApp Networks', async() => {
       expect(net.json).toEqual(MockVappNetworksJson[idx]);
       idx++;
     }
+  });
+});
+
+test('Properly submits request to get vApp perf counters', async() => {
+  const vapp = new Vapp(MockVappJson);
+  return vapp.getPerfCounters().then(async(perfCounters) => {
+    expect(Iland.getHttp().get).lastCalledWith(`${vapp.apiPrefix}/${vapp.uuid}/performance-counters`);
+
+    expect(perfCounters).toBeDefined();
+    expect(perfCounters.length).toBeGreaterThan(0);
+    expect(perfCounters[0] instanceof PerfCounter).toBeTruthy();
+    expect(perfCounters[0].name).toBe(MockVappPerfCountersJson[0].name);
+    expect(perfCounters[0].group).toBe(MockVappPerfCountersJson[0].group);
+    expect(perfCounters[0].type).toBe(MockVappPerfCountersJson[0].type);
+    expect(perfCounters[0].json).toEqual(MockVappPerfCountersJson[0]);
+    expect(perfCounters[0].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get vApps perf samples', async() => {
+  const vapp = new Vapp(MockVappJson);
+  const request = new PerfSamplesRequest({
+    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    start: 1,
+    end: 2,
+    interval: 3,
+    limit: 4
+  } as PerfSamplesRequestJson);
+  return vapp.getPerfSamples(request).then(async(perfSamples) => {
+    expect(Iland.getHttp().get).lastCalledWith(
+        `${vapp.apiPrefix}/${vapp.uuid}/performance/` +
+        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+    );
+
+    expect(perfSamples).toBeDefined();
+    expect(perfSamples instanceof PerfSamplesSeries).toBeTruthy();
+    expect(perfSamples.uuid).toBe(MockVappPerfSamplesSeriesJson.uuid);
+    expect(perfSamples.summary).toBe(MockVappPerfSamplesSeriesJson.summary);
+    expect(perfSamples.interval).toBe(MockVappPerfSamplesSeriesJson.interval);
+    expect(perfSamples.group).toBe(MockVappPerfSamplesSeriesJson.group);
+    expect(perfSamples.name).toBe(MockVappPerfSamplesSeriesJson.name);
+    expect(perfSamples.type).toBe(MockVappPerfSamplesSeriesJson.type);
+    expect(perfSamples.unit).toBe(MockVappPerfSamplesSeriesJson.unit);
+    expect(perfSamples.counter).toBeDefined();
+    expect(perfSamples.counter instanceof PerfCounter).toBeTruthy();
+    expect(perfSamples.samples).toBeDefined();
+    expect(perfSamples.samples.length).toBeGreaterThan(0);
+    expect(perfSamples.json).toEqual(MockVappPerfSamplesSeriesJson);
+    expect(perfSamples.toString().length).toBeGreaterThan(0);
+
+    const perfSample = perfSamples.samples[0];
+    expect(perfSample instanceof PerfSample).toBeTruthy();
+    expect(perfSample.date instanceof Date).toBeTruthy();
+    expect(perfSample.timestamp).toBe(MockVappPerfSamplesSeriesJson.samples[0].timestamp);
+    expect(perfSample.value).toBe(MockVappPerfSamplesSeriesJson.samples[0].value);
+    expect(perfSample.json).toEqual(MockVappPerfSamplesSeriesJson.samples[0]);
+    expect(perfSample.toString().length).toBeGreaterThan(0);
   });
 });

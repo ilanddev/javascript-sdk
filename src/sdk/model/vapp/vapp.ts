@@ -1,3 +1,4 @@
+import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-samples';
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
 import { Vm } from '../vm/vm';
@@ -9,11 +10,20 @@ import { BuildVmRequestJson, VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
 import { TaskJson } from '../task/__json__/task-json';
 import { VappStatus } from './__json__/vapp-status-type';
+import { PerfCounter } from '../mixins/perf-samples/perf-counter';
+import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
+import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
+import { applyMixins } from 'rxjs/util/applyMixins';
 
 /**
  * Virtual Application.
  */
-export class Vapp extends Entity {
+export class Vapp extends Entity implements EntityWithPerfSamples {
+
+  // EntityWithPerfSamples mixin properties and methods
+  apiPrefix = '/vapps';
+  getPerfCounters: () => Promise<Array<PerfCounter>>;
+  getPerfSamples: (request: PerfSamplesRequest) => Promise<PerfSamplesSeries>;
 
   constructor(private _json: VappJson) {
     super(_json);
@@ -213,6 +223,8 @@ export class Vapp extends Entity {
   }
 
 }
+
+applyMixins(Vapp, [EntityWithPerfSamples]);
 
 /**
  * Enumeration of possible vApp power statuses.

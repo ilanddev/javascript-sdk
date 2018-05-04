@@ -1,6 +1,9 @@
 import { Http as RealHttp } from '../http';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { MockVmResponse } from '../../../model/vm/__mocks__/vm';
+import {
+  MockVmPerfCountersResponse, MockVmPerfSamplesSeriesResponse,
+  MockVmResponse
+} from '../../../model/vm/__mocks__/vm';
 import { MockNotFoundResponse } from '../../../config/__mocks__/errors';
 import { MockVmVirtualDisksResponse } from '../../../model/vm/virtual-disk/__mocks__/virtual-disk';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
@@ -15,7 +18,10 @@ import { MockVmBillResponse, MockVmCurrentBillingSummaryResponse } from '../../.
 import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVdcVappsResponse } from '../../../model/vdc/__mocks__/vdc-vapps';
 import { MockVdcVmsResponse } from '../../../model/vdc/__mocks__/vdc-vms';
-import { MockVdcResponse } from '../../../model/vdc/__mocks__/vdc';
+import {
+  MockVdcPerfCountersResponse, MockVdcPerfSamplesSeriesResponse,
+  MockVdcResponse
+} from '../../../model/vdc/__mocks__/vdc';
 import { MockOrgVmsResponse } from '../../../model/org/__mocks__/org-vms';
 import { MockOrgVappsResponse } from '../../../model/org/__mocks__/org-vapps';
 import { MockOrgResponse } from '../../../model/org/__mocks__/org';
@@ -85,6 +91,7 @@ import { MockEdgeStatsResponse } from '../../../model/edge/network-perf-sample/_
 import { RoleCreationRequestJson } from '../../../model/iam/role/__json__/role-creation-request-json';
 import { UserCreationRequestJson } from '../../../model/user/__json__/user-creation-request-json';
 import { MockVpgAlertResponse, MockVpgReportDetailsResponse } from '../../../model/vpg/__mocks__/vpg';
+import { MockVappPerfSamplesSeriesResponse } from '../../../model/vapp/__mocks__/vapp';
 
 jest.unmock('../http');
 
@@ -156,12 +163,24 @@ export class Http {
       case /\/vms\/[^\/]+?\/billing\/current$/.test(url):
         // get vm current billing summary
         return MockVmCurrentBillingSummaryResponse;
+      case /\/vms\/[^\/]+?\/performance-counters/.test(url):
+        // get vm perf counters
+        return MockVmPerfCountersResponse;
+      case /\/vms\/[^\/]+?\/performance/.test(url):
+        // get vm perf samples
+        return MockVmPerfSamplesSeriesResponse;
       case /\/vapps\/[^\/]+?\/vms$/.test(url):
         // get a vapps child vms
         return MockVappVmsResponse;
       case /\/vapps\/[^\/]+?\/networks$/.test(url):
         // get a vapps child vapp networks
         return MockVappVappNetworksResponse;
+      case /\/vapps\/[^\/]+?\/performance-counters/.test(url):
+        // get vapp perf counters
+        return MockVmPerfCountersResponse;
+      case /\/vapps\/[^\/]+?\/performance/.test(url):
+        // get vapp perf samples
+        return MockVappPerfSamplesSeriesResponse;
       case /\/vdcs\/[^\/]+?$/.test(url):
         // get a vdc
         return MockVdcResponse;
@@ -171,6 +190,12 @@ export class Http {
       case /\/vdcs\/[^\/]+?\/vms$/.test(url):
         // get a vdcs child vms
         return MockVdcVmsResponse;
+      case /\/vdcs\/[^\/]+?\/performance-counters/.test(url):
+        // get vdcs perf counters
+        return MockVdcPerfCountersResponse;
+      case /\/vdcs\/[^\/]+?\/performance/.test(url):
+        // get vdcs perf samples
+        return MockVdcPerfSamplesSeriesResponse;
       case /\/orgs\/[^\/]+?$/.test(url):
         // get a org
         return MockOrgResponse;
