@@ -3926,7 +3926,7 @@ var Vm = (function (_super) {
     };
     /**
      * Edit the number of CPUs.
-     * @param request {VmCpuUpdateRequest} specifying new number of CPUs
+     * @param request {VmCpuCountUpdateRequest} specifying new number of CPUs
      * @returns {Promise<Task>} task promise
      */
     Vm.prototype.updateNumberOfCpus = function (request) {
@@ -26983,7 +26983,7 @@ var VmCpuUpdateRequest = (function () {
     };
     return VmCpuUpdateRequest;
 }());
-exports.VmCpuUpdateRequest = VmCpuUpdateRequest;
+exports.VmCpuCountUpdateRequest = VmCpuUpdateRequest;
 
 
 /***/ }),
