@@ -1,4 +1,4 @@
-import { PerfSamplesSeriesJson, PerfCounterJson } from './_json_/perf-samples';
+import { PerfSamplesSeriesJson, PerfCounterJson } from './__json__/perf-samples';
 import { PerfCounter } from './perf-counter';
 import { PerfSample } from './perf-sample';
 

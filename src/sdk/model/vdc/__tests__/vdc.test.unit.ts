@@ -27,7 +27,7 @@ import { MetadataType } from '../../common/metadata/__json__/metadata-type';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 import { MockVappPerfCountersJson } from '../../vapp/__mocks__/vapp';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
-import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 

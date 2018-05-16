@@ -32,7 +32,7 @@ export const MockCompanyResponse: Promise<AxiosResponse> = new Promise<AxiosResp
 
 export const MockCompanyUsersResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [],
+    data: {data: []},
     status: 200,
     statusText: '',
     headers: {},

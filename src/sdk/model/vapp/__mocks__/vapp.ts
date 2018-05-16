@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { VappJson } from '../__json__/vapp-json';
-import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/_json_/perf-samples';
+import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/__json__/perf-samples';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 
 export const MockVappJson: VappJson = {

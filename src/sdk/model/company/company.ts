@@ -145,7 +145,7 @@ export class Company extends Entity {
    */
   async getUsers(): Promise<Array<User>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/users`).then((response) => {
-      const json = response.data as Array<UserJson>;
+      const json = response.data.data as Array<UserJson>;
       return json.map((it) => new User(it));
     });
   }
@@ -160,7 +160,7 @@ export class Company extends Entity {
         role: roleUuid
       }
     }).then((response) => {
-      const json = response.data as Array<UserJson>;
+      const json = response.data.data as Array<UserJson>;
       return json.map((it) => new User(it));
     });
   }

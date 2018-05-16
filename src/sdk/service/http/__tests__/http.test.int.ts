@@ -32,12 +32,14 @@ test('Properly get object response data', async() => {
 });
 
 test('Properly handle errors with object response data', async() => {
+  expect.assertions(1);
   return Iland.getHttp().get('/users/fake').catch((reason) => {
     expect(reason).toBeInstanceOf(ApiError);
   });
 });
 
 test('Properly handle errors without response data', async() => {
+  expect.assertions(1);
   const config: AxiosRequestConfig = {headers: {'x-enable-json-security-chars': false}};
   return Iland.getHttp().get('/users/fake', config).catch((reason) => {
     expect(reason).toBeInstanceOf(ApiError);

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
 import { VdcJson } from '../__json__';
-import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/_json_/perf-samples';
+import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/__json__/perf-samples';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 
 export const MockVdcJson: VdcJson = {

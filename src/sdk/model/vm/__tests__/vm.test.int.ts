@@ -7,8 +7,8 @@ import { Task } from '../../task/task';
 import { ApiError } from '../../../config/api-error';
 import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
-import { PerfCounterJson } from '../../mixins/perf-samples/_json_/perf-samples';
-import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfCounterJson } from '../../mixins/perf-samples/__json__/perf-samples';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVm: InventoryEntity;

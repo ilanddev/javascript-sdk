@@ -6,8 +6,8 @@ import { ApiError } from '../../../config/api-error';
 import { Vdc } from '../vdc';
 import { InventoryEntity } from '../../user/inventory-entity';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
-import { PerfCounterJson } from '../../mixins/perf-samples/_json_/perf-samples';
-import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfCounterJson } from '../../mixins/perf-samples/__json__/perf-samples';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVdc: InventoryEntity;
@@ -107,7 +107,7 @@ test('Can get vDC and verify required properties', async() => {
 });
 
 test('Can get vDC summary', async() => {
-  return Vdc.getVdc(inventoryVdc.uuid).then( async function(vdc) {
+  return Vdc.getVdc(inventoryVdc.uuid).then(async function(vdc) {
     return vdc.getSummary().then(function(vdcSummary) {
       const rawData = vdcSummary.json;
       expect(vdcSummary).toBeDefined();
