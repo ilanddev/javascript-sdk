@@ -1,4 +1,4 @@
-import { PerfSampleJson } from './_json_/perf-samples';
+import { PerfSampleJson } from './__json__/perf-samples';
 
 /**
  * Perf Sample class.

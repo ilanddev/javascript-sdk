@@ -24,7 +24,7 @@ export class ApiError extends Error {
    * Gets the error detail message.
    * @returns {string|any} detailed message or null if none exists
    */
-  getDetailMessage(): string|null {
+  getDetailMessage(): string | null {
     return this._json.detail_message || null;
   }
 

@@ -6,7 +6,7 @@ import { MockVappJson, MockVappPerfCountersJson, MockVappPerfSamplesSeriesJson }
 import { MockVappVmsJson } from '../__mocks__/vapp-vms';
 import { MockVappNetworksJson } from '../__mocks__/vapp-networks';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
-import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';

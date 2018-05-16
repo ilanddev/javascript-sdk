@@ -26,7 +26,7 @@ import { OperatingSystem } from '../__json__/operating-system-type';
 import { VmStatus } from '../__json__/vm-status-type';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
-import { PerfSamplesRequestJson } from '../../mixins/perf-samples/_json_/perf-samples-request';
+import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 

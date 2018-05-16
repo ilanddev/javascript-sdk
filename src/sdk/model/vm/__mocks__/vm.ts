@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios';
 import { VmJson } from '../__json__/vm-json';
 import { OperatingSystem } from '../__json__/operating-system-type';
 import { VmStatus } from '../__json__/vm-status-type';
-import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/_json_/perf-samples';
+import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/__json__/perf-samples';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 
 export const MockVmJson: VmJson = {

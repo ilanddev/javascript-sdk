@@ -1,7 +1,7 @@
 import { Iland } from '../../../iland';
 import { PerfCounter } from './perf-counter';
 import { PerfSamplesSeries } from './perf-samples-series';
-import { PerfSamplesSeriesJson } from './_json_/perf-samples';
+import { PerfSamplesSeriesJson } from './__json__/perf-samples';
 import { PerfSamplesRequest } from './perf-samples-request';
 
 export class EntityWithPerfSamples {

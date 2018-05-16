@@ -1,4 +1,4 @@
-import { PerfCounterJson } from './_json_/perf-samples';
+import { PerfCounterJson } from './__json__/perf-samples';
 
 export class PerfCounter {
 
