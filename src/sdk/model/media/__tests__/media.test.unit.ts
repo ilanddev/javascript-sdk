@@ -22,7 +22,7 @@ beforeAll(() => {
 function runMediaAssertionsAgainsMock(media: Media) {
   expect(media.json).toEqual(MockMediaJson);
   expect(media.toString().length).toBeGreaterThan(0);
-  expect(media.entityType).toBe('MEDIA');
+  expect(media.entityType).toBe('IAAS_MEDIA');
   expect(media.deleted).toBe(MockMediaJson.deleted);
   expect(media.uuid).toBe(MockMediaJson.uuid);
   expect(media.name).toBe(MockMediaJson.name);

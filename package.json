@@ -11,7 +11,6 @@
     "prepare": "yarn build",
     "info": "npm-scripts-info",
     "lint": "tslint --project tsconfig.json --type-check",
-    "prepublish": "yarn build",
     "build": "yarn lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
     "test": "jest --coverage --maxWorkers 2",
     "docs": "typedoc src/index.ts --excludePrivate --exclude **/__*__/**/* --mode file --theme minimal --out build/docs",
@@ -33,14 +32,15 @@
     "@types/node": "7.0.12",
     "dts-bundle": "^0.7.3",
     "gh-pages": "1.0.0",
-    "jest": "20.0.4",
-    "ts-jest": "20.0.6",
+    "jest": "22.4.4",
+    "ts-jest": "22.4.6",
     "ts-loader": "2.2.2",
     "tslint": "5.5.0",
     "tslint-config-standard": "6.0.1",
     "typedoc": "0.11.1",
     "typescript": "2.4.0",
     "webpack": "3.0.0",
+    "yargs": "^11.0.0",
     "yarn": "^1.5.1"
   },
   "keywords": [
@@ -59,7 +59,7 @@
     },
     "testRegex": "/.*.test.+(unit|int).ts$",
     "clearMocks": true,
-    "bail": true,
+    "bail": false,
     "testPathIgnorePatterns": [
       "/build/",
       "/node_modules/",
@@ -71,12 +71,12 @@
       "!src/**/index.ts",
       "!src/sdk/**/__json__/*.ts"
     ],
-    "mapCoverage": true,
     "coveragePathIgnorePatterns": [
       "/node_modules/",
       "/test-setup.js",
       "/__test__/.*\\.js$",
-      "/build/.*\\.(ts|js)$"
+      "/build/.*\\.(ts|js)$",
+      "/src/sdk/logger.*"
     ]
   },
   "dependencies": {

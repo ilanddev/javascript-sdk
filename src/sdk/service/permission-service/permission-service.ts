@@ -2,7 +2,7 @@ import { Permission } from '../../model/iam/permission/permission';
 import { PermissionsMap } from '../../model/iam/permission/permission-map';
 import { DomainPermissionsMap } from '../../model/iam/permission/domain-permission-map';
 import { PermissionType } from '../../model/iam/permission/__json__/permission-type';
-import { EntityDomainType } from '../../model/common/__json__/entity-domain-type';
+import { IamEntityType } from '../../model/common/__json__/iam-entity-type';
 
 /**
  * PermissionService
@@ -15,9 +15,9 @@ export class PermissionService {
    */
   public permissions: Map<PermissionType, Permission>;
   /**
-   * Map of all permissions listed by their EntityDomainType.
+   * Map of all permissions listed by their IamEntityType.
    */
-  public domainPermissions: Map<EntityDomainType, Array<Permission>>;
+  public domainPermissions: Map<IamEntityType, Array<Permission>>;
 
   private constructor() {
     this.permissions = PermissionsMap.getInstance().permissions;
@@ -67,20 +67,20 @@ export class PermissionService {
   }
 
   /**
-   * Get all available permissions for an EntityDomainType.
-   * @param {EntityDomainType} domain
+   * Get all available permissions for an IamEntityType.
+   * @param {IamEntityType} domain
    * @returns {Array<Permission> | undefined}
    */
-  getAvailablePermissionsForDomain(domain: EntityDomainType): Array<Permission> | undefined {
+  getAvailablePermissionsForDomain(domain: IamEntityType): Array<Permission> | undefined {
     return this.domainPermissions.get(domain);
   }
 
   /**
-   * Get all required permissions for an EntityDomainType.
-   * @param {EntityDomainType | undefined} domain
+   * Get all required permissions for an IamEntityType.
+   * @param {IamEntityType | undefined} domain
    * @returns {Array<Permission> | undefined}
    */
-  getRequiredPermissionsForDomain(domain: EntityDomainType | undefined): Array<Permission> | undefined {
+  getRequiredPermissionsForDomain(domain: IamEntityType | undefined): Array<Permission> | undefined {
     if (domain !== undefined) {
       const permissionMap = this.domainPermissions.get(domain);
       if (permissionMap) {
@@ -93,11 +93,11 @@ export class PermissionService {
   }
 
   /**
-   * Get all view permissions for an EntityDomainType.
-   * @param {EntityDomainType | undefined} domain
+   * Get all view permissions for an IamEntityType.
+   * @param {IamEntityType | undefined} domain
    * @returns {Permission | undefined}
    */
-  getViewPermissionForDomain(domain: EntityDomainType | undefined): Permission | undefined {
+  getViewPermissionForDomain(domain: IamEntityType | undefined): Permission | undefined {
     if (domain !== undefined) {
       const domainPermissions = this.getAvailablePermissionsForDomain(domain);
       let permissions: Array<Permission> | undefined;

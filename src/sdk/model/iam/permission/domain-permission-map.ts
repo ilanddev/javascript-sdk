@@ -1,5 +1,5 @@
 import { PermissionsMap } from './permission-map';
-import { EntityDomainType } from '../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../common/__json__/iam-entity-type';
 import { PermissionType } from './__json__/permission-type';
 import { Permission } from './permission';
 
@@ -8,7 +8,7 @@ import { Permission } from './permission';
  */
 export class DomainPermissionsMap {
   private static instance: DomainPermissionsMap;
-  private _domainPermissions: Map<EntityDomainType, Permission[]> = new Map<EntityDomainType, Permission[]>();
+  private _domainPermissions: Map<IamEntityType, Permission[]> = new Map<IamEntityType, Permission[]>();
 
   private constructor() {
     const permissionMap: Map<PermissionType, Permission> = PermissionsMap.getInstance().permissions;
@@ -39,9 +39,9 @@ export class DomainPermissionsMap {
 
   /**
    * Get the domains permissions map.
-   * @returns {Map<EntityDomainType, Array<Permission>>}
+   * @returns {Map<IamEntityType, Array<Permission>>}
    */
-  get domainPermissions(): Map<EntityDomainType, Array<Permission>> {
+  get domainPermissions(): Map<IamEntityType, Array<Permission>> {
     return this._domainPermissions;
   }
 }

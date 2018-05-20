@@ -37,7 +37,7 @@ export class Org extends Entity {
   }
 
   get entityType(): EntityType {
-    return 'ORG';
+    return 'IAAS_ORGANIZATION';
   }
 
   /**

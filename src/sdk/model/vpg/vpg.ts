@@ -54,7 +54,7 @@ export class Vpg extends Entity {
   }
 
   get entityType(): EntityType {
-    return 'VPG';
+    return 'IAAS_VPG';
   }
 
   /**

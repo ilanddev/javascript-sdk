@@ -70,7 +70,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   get entityType(): EntityType {
-    return 'VM';
+    return 'IAAS_VM';
   }
 
   /**

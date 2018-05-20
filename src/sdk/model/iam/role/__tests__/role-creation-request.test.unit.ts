@@ -23,7 +23,7 @@ test('Properly instantiate a RoleCreationRequest', async() => {
     const creationRequestBuilder = new RoleCreationRequestBuilder('000003', 'testRole', 'Test description');
     const customPolicyBuilder = new PolicyBuilder(
       entityuuid,
-      'ILAND_CLOUD_VM', 'CUSTOM');
+      'IAAS_VM', 'CUSTOM');
     customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
     creationRequestBuilder.setPolicy(customPolicyBuilder.build());
     expect(creationRequestBuilder.build().getPolicy(entityuuid)).toEqual(customPolicyBuilder.build());

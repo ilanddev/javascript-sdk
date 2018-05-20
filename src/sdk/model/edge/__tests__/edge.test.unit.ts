@@ -15,7 +15,7 @@ beforeAll(() => {
 });
 
 function runEdgeAssertionsAgainsMock(edge: Edge) {
-  expect(edge.entityType).toBe('EDGE');
+  expect(edge.entityType).toBe('IAAS_EDGE');
   expect(edge.orgUuid).toBe(MockEdgeJson.org_uuid);
   expect(edge.json).toEqual(MockEdgeJson);
   expect(edge.toString().length).toBeGreaterThan(0);

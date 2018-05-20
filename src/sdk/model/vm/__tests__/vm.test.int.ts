@@ -27,7 +27,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
+      const vms = inventory.getEntitiesByType('IAAS_VM');
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
@@ -119,7 +119,7 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.updatedDate).toBeDefined();
     expect(vm.updatedDate.getTime()).toBeLessThan(new Date().getTime());
     expect(vm.deletedDate).toBeNull();
-    expect(vm.entityType).toBe('VM');
+    expect(vm.entityType).toBe('IAAS_VM');
     return vm;
   });
 });

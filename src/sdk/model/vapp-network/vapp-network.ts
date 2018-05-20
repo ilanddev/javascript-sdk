@@ -29,7 +29,7 @@ export class VappNetwork extends AbstractNetwork {
    * @returns {EntityType}
    */
   get entityType(): EntityType {
-    return 'VAPP_NETWORK';
+    return 'IAAS_VAPP_NETWORK';
   }
 
   /**

@@ -42,7 +42,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
   }
 
   get entityType(): EntityType {
-    return 'VAPP';
+    return 'IAAS_VAPP';
   }
 
   /**

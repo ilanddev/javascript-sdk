@@ -26,7 +26,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vapps = inventory.getEntitiesByType('ILAND_CLOUD_VAPP');
+      const vapps = inventory.getEntitiesByType('IAAS_VAPP');
       expect(vapps).toBeDefined();
       if (vapps) {
         expect(vapps.length).toBeGreaterThan(0);
@@ -81,7 +81,7 @@ test('Can get vApp and verify required properties', async() => {
     expect(vapp.updatedDate).toBeDefined();
     expect(vapp.updatedDate.getTime()).toBeLessThan(new Date().getTime());
     expect(vapp.deletedDate).toBeNull();
-    expect(vapp.entityType).toBe('VAPP');
+    expect(vapp.entityType).toBe('IAAS_VAPP');
     expect(vapp.runtimeLease).toBeDefined();
     expect(vapp.runtimeLease).toBe(raw.runtime_lease);
     expect(vapp.storageLease).toBeDefined();

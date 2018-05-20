@@ -25,7 +25,7 @@ export class InternalNetwork extends AbstractNetwork {
   }
 
   get entityType(): EntityType {
-    return 'ORG_VDC_NETWORK';
+    return 'IAAS_INTERNAL_NETWORK';
   }
 
   /**

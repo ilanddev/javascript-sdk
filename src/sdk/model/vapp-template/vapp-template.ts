@@ -29,7 +29,7 @@ export class VappTemplate extends Entity {
    * @returns {EntityType}
    */
   get entityType(): EntityType {
-    return 'VAPP_TEMPLATE';
+    return 'IAAS_VAPP_TEMPLATE';
   }
 
   /**

@@ -2,6 +2,7 @@ export * from './catalog/index';
 export * from './common/index';
 export * from './company/index';
 export * from './edge/index';
+export * from './event/index';
 export * from './iam/index';
 export * from './internal-network/index';
 export * from './location/index';

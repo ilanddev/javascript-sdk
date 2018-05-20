@@ -40,7 +40,7 @@ test('Properly submits request to get a Company', async() => {
 
 test('PolicyBuilder methods work properly', async() => {
   const entityUuid = 'entityUuid';
-  const builder = new PolicyBuilder(entityUuid, 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM');
+  const builder = new PolicyBuilder(entityUuid, 'IAAS_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM');
   let policy = builder.build();
   expect(policy.permissions).toBeDefined();
   expect(policy.permissions.length).toBe(1);
@@ -67,7 +67,7 @@ test('RoleCreationRequestBuilder methods work properly', async() => {
   expect(req.companyId).toEqual(companyId);
   // add a policy to the builder
   const entityUuid = 'entityUuid';
-  const policy = new PolicyBuilder(entityUuid, 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM').build();
+  const policy = new PolicyBuilder(entityUuid, 'IAAS_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM').build();
   req = builder.setPolicy(policy).build();
   expect(req.policies.length).toBe(1);
   expect(req.policies[0].entityUuid).toBe(policy.entityUuid);
@@ -96,7 +96,7 @@ test('Properly submits request to create a company role', async() => {
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
-    const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
+    const policy = new PolicyBuilder('entityUuid', 'IAAS_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
       .build();
     const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
     return company.createRole(request).then(async function(role) {
@@ -136,7 +136,7 @@ test('Properly submits request to update a company role', async() => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
     const fakeRoleUuid = 'fake-role-uuid';
-    const policy = new PolicyBuilder('entityUuid', 'ILAND_CLOUD_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
+    const policy = new PolicyBuilder('entityUuid', 'IAAS_VM', 'CUSTOM').addPermission('VIEW_ILAND_CLOUD_VM')
       .build();
     const request = new RoleCreationRequestBuilder(id, 'name', 'description').setPolicy(policy).build();
     return company.updateRole(fakeRoleUuid, request).then(async function(role) {

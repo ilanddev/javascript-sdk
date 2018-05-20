@@ -22,9 +22,9 @@ test('Properly create a policy using the builder', async() => {
   return UserWithSecurity.setup(user).then(() => {
     const customPolicyBuilder = new PolicyBuilder(
       entityuuid,
-      'ILAND_CLOUD_VM', 'CUSTOM');
+      'IAAS_VM', 'CUSTOM');
     expect(customPolicyBuilder.build().type).toEqual('CUSTOM');
-    expect(customPolicyBuilder.build().entityDomain).toEqual('ILAND_CLOUD_VM');
+    expect(customPolicyBuilder.build().entityDomain).toEqual('IAAS_VM');
     expect(customPolicyBuilder.build().entityUuid).toEqual(entityuuid);
   });
 });
@@ -40,7 +40,7 @@ test('Properly throw error when adding permission that are wrong', async() => {
       customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
     } catch (err) {
       expect(err).toEqual(new Error('Attempted to add permission=VIEW_ILAND_CLOUD_VM in ' +
-        'domain=ILAND_CLOUD_VM to policy in domain=COMPANY.'));
+        'domain=IAAS_VM to policy in domain=COMPANY.'));
     }
     try {
       customPolicyBuilder.addPermission('MANAGE_COMPANY_IAM');

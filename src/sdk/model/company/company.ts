@@ -172,7 +172,7 @@ export class Company extends Entity {
    */
   async getUserDomains(): Promise<Array<string>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/domains`).then((response) => {
-      return response.data as Array<string>;
+      return response.data.data as Array<string>;
     });
   }
 

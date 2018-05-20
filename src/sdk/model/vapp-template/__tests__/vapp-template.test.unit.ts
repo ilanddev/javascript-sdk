@@ -17,7 +17,7 @@ beforeAll(() => {
 function runVappTemplateAssertionsAgainsMock(vappTemplate: VappTemplate) {
   expect(vappTemplate.json).toEqual(MockVappTemplateJson);
   expect(vappTemplate.toString().length).toBeGreaterThan(0);
-  expect(vappTemplate.entityType).toBe('VAPP_TEMPLATE');
+  expect(vappTemplate.entityType).toBe('IAAS_VAPP_TEMPLATE');
   expect(vappTemplate.deleted).toBe(MockVappTemplateJson.deleted);
   expect(vappTemplate.uuid).toBe(MockVappTemplateJson.uuid);
   expect(vappTemplate.name).toBe(MockVappTemplateJson.name);

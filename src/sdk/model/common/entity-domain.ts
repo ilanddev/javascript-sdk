@@ -1,71 +1,71 @@
-import { EntityDomainType } from './__json__/entity-domain-type';
+import { IamEntityType } from './__json__/iam-entity-type';
 
 /**
  * EntityDomain
  */
 export class EntityDomain {
-  private _parent: EntityDomainType | null;
-  private _entityDomainType: EntityDomainType;
+  private _parent: IamEntityType | null;
+  private _entityDomainType: IamEntityType;
 
-  constructor(entityDomainType: EntityDomainType) {
+  constructor(entityDomainType: IamEntityType) {
     this._entityDomainType = entityDomainType;
     switch (entityDomainType) {
       case 'COMPANY':
         this._parent = null;
         break;
-      case 'ILAND_CLOUD_PRODUCT':
+      case 'IAAS_PRODUCT':
         this._parent = 'COMPANY';
         break;
-      case 'ILAND_BACKUP_PRODUCT':
+      case 'VCC_BACKUP_PRODUCT':
         this._parent = 'COMPANY';
         break;
-      case 'ILAND_CLOUD_LOCATION':
-        this._parent = 'ILAND_BACKUP_PRODUCT';
+      case 'IAAS_LOCATION':
+        this._parent = 'VCC_BACKUP_PRODUCT';
         break;
-      case 'ILAND_CLOUD_ORGANIZATION':
-        this._parent = 'ILAND_CLOUD_LOCATION';
+      case 'IAAS_ORGANIZATION':
+        this._parent = 'IAAS_LOCATION';
         break;
-      case 'ILAND_CLOUD_VPG':
-        this._parent = 'ILAND_CLOUD_ORGANIZATION';
+      case 'IAAS_VPG':
+        this._parent = 'IAAS_ORGANIZATION';
         break;
-      case 'ILAND_CLOUD_CATALOG':
-        this._parent = 'ILAND_CLOUD_ORGANIZATION';
+      case 'IAAS_CATALOG':
+        this._parent = 'IAAS_ORGANIZATION';
         break;
-      case 'ILAND_CLOUD_MEDIA':
-        this._parent = 'ILAND_CLOUD_CATALOG';
+      case 'IAAS_MEDIA':
+        this._parent = 'IAAS_CATALOG';
         break;
-      case 'ILAND_CLOUD_VAPP_TEMPLATE':
-        this._parent = 'ILAND_CLOUD_CATALOG';
+      case 'IAAS_VAPP_TEMPLATE':
+        this._parent = 'IAAS_CATALOG';
         break;
-      case 'ILAND_CLOUD_VDC':
-        this._parent = 'ILAND_CLOUD_ORGANIZATION';
+      case 'IAAS_VDC':
+        this._parent = 'IAAS_ORGANIZATION';
         break;
-      case 'ILAND_CLOUD_EDGE':
-        this._parent = 'ILAND_CLOUD_VDC';
+      case 'IAAS_EDGE':
+        this._parent = 'IAAS_VDC';
         break;
-      case 'ILAND_CLOUD_INTERNAL_NETWORK':
-        this._parent = 'ILAND_CLOUD_VDC';
+      case 'IAAS_INTERNAL_NETWORK':
+        this._parent = 'IAAS_VDC';
         break;
-      case 'ILAND_CLOUD_VAPP':
-        this._parent = 'ILAND_CLOUD_VDC';
+      case 'IAAS_VAPP':
+        this._parent = 'IAAS_VDC';
         break;
-      case 'ILAND_CLOUD_VAPP_NETWORK':
-        this._parent = 'ILAND_CLOUD_VAPP';
+      case 'IAAS_VAPP_NETWORK':
+        this._parent = 'IAAS_VAPP';
         break;
-      case 'ILAND_CLOUD_VM':
-        this._parent = 'ILAND_CLOUD_VAPP';
+      case 'IAAS_VM':
+        this._parent = 'IAAS_VAPP';
         break;
-      case 'ILAND_BACKUP_LOCATION':
-        this._parent = 'ILAND_BACKUP_PRODUCT';
+      case 'VCC_BACKUP_LOCATION':
+        this._parent = 'VCC_BACKUP_PRODUCT';
         break;
-      case 'ILAND_BACKUP_TENANT':
-        this._parent = 'ILAND_BACKUP_LOCATION';
+      case 'VCC_BACKUP_TENANT':
+        this._parent = 'VCC_BACKUP_LOCATION';
         break;
     }
   }
 
   /**
-   * Return the string representation of this class. Which is an EntityDomainType
+   * Return the string representation of this class. Which is an IamEntityType
    * @returns {string}
    */
   toString(): string {

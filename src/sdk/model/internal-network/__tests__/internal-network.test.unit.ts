@@ -18,7 +18,7 @@ test('Properly submits request to get Internal Network', async() => {
   const uuid = MockInternalNetworkJson.uuid;
   return InternalNetwork.getInternalNetwork(uuid).then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/internal-networks/${uuid}`);
-    expect(net.entityType).toBe('ORG_VDC_NETWORK');
+    expect(net.entityType).toBe('IAAS_INTERNAL_NETWORK');
     expect(net.orgUuid).toBe(MockInternalNetworkJson.org_uuid);
     expect(net.locationId).toBe(MockInternalNetworkJson.location_id);
     expect(net.description).toBe(MockInternalNetworkJson.description);
@@ -60,7 +60,7 @@ test('Properly submits request to refresh Internal Network', async() => {
   const net = new InternalNetwork(MockInternalNetworkJson);
   return net.refresh().then(function(net) {
     expect(Iland.getHttp().get).lastCalledWith(`/internal-networks/${MockInternalNetworkJson.uuid}`);
-    expect(net.entityType).toBe('ORG_VDC_NETWORK');
+    expect(net.entityType).toBe('IAAS_INTERNAL_NETWORK');
     expect(net.orgUuid).toBe(MockInternalNetworkJson.org_uuid);
     expect(net.locationId).toBe(MockInternalNetworkJson.location_id);
     expect(net.description).toBe(MockInternalNetworkJson.description);

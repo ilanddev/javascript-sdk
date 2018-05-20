@@ -46,7 +46,7 @@ test('Properly submits request to get vDC', async() => {
   const uuid = 'test-vdc-uuid';
   return Vdc.getVdc(uuid).then(function(vdc) {
     expect(Iland.getHttp().get).lastCalledWith(`/vdcs/${uuid}`);
-    expect(vdc.entityType).toBe('VDC');
+    expect(vdc.entityType).toBe('IAAS_VDC');
   });
 });
 

@@ -247,7 +247,7 @@ export class CloudTenant extends Entity {
   }
 
   get entityType(): EntityType {
-    return 'VCC_TENANT';
+    return 'VCC_BACKUP_TENANT';
   }
 
   /**
