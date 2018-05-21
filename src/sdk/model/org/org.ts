@@ -14,6 +14,7 @@ import { VdcJson } from '../vdc/__json__/vdc-json';
 import { VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
+import { BillingSummary, BillingSummaryJson } from '../common/billing';
 
 /**
  * IaaS Organization.
@@ -162,6 +163,17 @@ export class Org extends Entity {
     return Iland.getHttp().get(`/orgs/${this.uuid}`).then((response) => {
       this._json = response.data as OrgJson;
       return this;
+    });
+  }
+
+  /**
+   * Gets the organization's current billing summary.
+   * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
+   */
+  async getBillingSummary(): Promise<BillingSummary> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/billing-summary`).then((response) => {
+      const json = response.data as BillingSummaryJson;
+      return new BillingSummary(json);
     });
   }
 
