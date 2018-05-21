@@ -6,7 +6,9 @@ export const MockOrgInternalNetworksJson: Array<InternalNetworkJson> = [MockInte
 
 export const MockOrgInternalNetworksResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockOrgInternalNetworksJson,
+    data: {
+      data: MockOrgInternalNetworksJson
+    },
     status: 200,
     statusText: '',
     headers: {},

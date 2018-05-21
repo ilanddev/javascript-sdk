@@ -6,7 +6,9 @@ export const MockOrgEdgesJson: Array<EdgeJson> = [MockEdgeJson];
 
 export const MockOrgEdgesResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockOrgEdgesJson,
+    data: {
+      data: MockOrgEdgesJson
+    },
     status: 200,
     statusText: '',
     headers: {},
