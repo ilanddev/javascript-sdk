@@ -29,7 +29,7 @@ beforeAll(() => {
 function runCatalogAssertionsAgainstMock(catalog: Catalog) {
   expect(catalog.json).toEqual(MockCatalogJson);
   expect(catalog.toString().length).toBeGreaterThan(0);
-  expect(catalog.entityType).toBe('CATALOG');
+  expect(catalog.entityType).toBe('IAAS_CATALOG');
   expect(catalog.deleted).toBe(MockCatalogJson.deleted);
   expect(catalog.uuid).toBe(MockCatalogJson.uuid);
   expect(catalog.name).toBe(MockCatalogJson.name);

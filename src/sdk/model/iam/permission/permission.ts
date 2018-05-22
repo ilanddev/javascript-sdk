@@ -1,7 +1,7 @@
 import { EntityDomain } from '../../common/entity-domain';
 import { PermissionType } from './__json__/permission-type';
 import { AccessType } from '../__json__/access-type';
-import { EntityDomainType } from '../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../common/__json__/iam-entity-type';
 
 /**
  * Permission
@@ -9,7 +9,7 @@ import { EntityDomainType } from '../../common/__json__/entity-domain-type';
 export class Permission {
   private _entityDomain: EntityDomain;
 
-  constructor(private _permissionType: PermissionType, private _domain: EntityDomainType,
+  constructor(private _permissionType: PermissionType, private _domain: IamEntityType,
               private _accessType: AccessType, private _availableToCustomPolicy: boolean,
               private _requiredForCustomPolicy: boolean,
               private _impliedPermissions: Array<PermissionType> | null) {
@@ -17,10 +17,10 @@ export class Permission {
   }
 
   /**
-   * Get the EntityDomainType for a permission.
-   * @returns {EntityDomainType}
+   * Get the IamEntityType for a permission.
+   * @returns {IamEntityType}
    */
-  get domain(): EntityDomainType {
+  get domain(): IamEntityType {
     return this._domain;
   }
 

@@ -49,9 +49,9 @@ test('Can get current user and verify required properties', async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vms = inventory.getEntitiesByType('ILAND_CLOUD_VM');
+      const vms = inventory.getEntitiesByType('IAAS_VM');
       expect(vms).toBeDefined();
-      if (vms !== undefined) {
+      if (vms.length > 0) {
         expect(vms.length).toBeGreaterThan(0);
         for (const vm of vms) {
           expect(vm.uuid).toBeDefined();

@@ -26,7 +26,7 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vdcs = inventory.getEntitiesByType('ILAND_CLOUD_VDC');
+      const vdcs = inventory.getEntitiesByType('IAAS_VDC');
       expect(vdcs).toBeDefined();
       if (vdcs) {
         expect(vdcs.length).toBeGreaterThan(0);
@@ -73,7 +73,7 @@ test('Can get vDC and verify required properties', async() => {
     expect(vdc.updatedDate).toBeDefined();
     expect(vdc.updatedDate.getTime()).toBeLessThan(new Date().getTime());
     expect(vdc.deletedDate).toBeNull();
-    expect(vdc.entityType).toBe('VDC');
+    expect(vdc.entityType).toBe('IAAS_VDC');
     expect(vdc.enabled).toBeDefined();
     expect(vdc.enabled).toBe(raw.enabled);
     expect(vdc.vcenterMoref).toBeDefined();

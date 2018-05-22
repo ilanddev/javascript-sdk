@@ -22,7 +22,7 @@ beforeAll(async() => {
       if (inventory.length === 0) {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
-      const orgs = inventory[0].getEntitiesByType('ILAND_CLOUD_ORGANIZATION');
+      const orgs = inventory[0].getEntitiesByType('IAAS_ORGANIZATION');
       expect(orgs).toBeDefined();
       if (orgs) {
         expect(orgs.length).toBeGreaterThan(0);
@@ -66,7 +66,7 @@ test('Can get Org and verify required properties', async() => {
     expect(org.deleted).toBe(false);
     expect(org.updatedDate).toBeDefined();
     expect(org.deletedDate).toBeNull();
-    expect(org.entityType).toBe('ORG');
+    expect(org.entityType).toBe('IAAS_ORGANIZATION');
     expect(org.enabled).toBeDefined();
     expect(org.enabled).toBe(raw.enabled);
     expect(org.vappMaxRuntimeLease).toBeDefined();

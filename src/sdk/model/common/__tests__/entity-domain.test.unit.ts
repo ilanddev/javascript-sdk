@@ -1,7 +1,7 @@
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { EntityDomain } from '../entity-domain';
-import { EntityDomainType } from '../__json__/entity-domain-type';
+import { IamEntityType } from '../__json__/iam-entity-type';
 
 jest.mock('../../../service/http/http');
 
@@ -15,8 +15,8 @@ beforeAll(() => {
 });
 
 function runAssertionsForEntityDomain(entityDomain: EntityDomain,
-                                      domainType: EntityDomainType,
-                                      parentType: EntityDomainType | null) {
+                                      domainType: IamEntityType,
+                                      parentType: IamEntityType | null) {
   expect(entityDomain.toString()).toBe(domainType);
   const parent: EntityDomain | null = entityDomain.parent;
   if (parent !== null) {
@@ -30,36 +30,36 @@ function runAssertionsForEntityDomain(entityDomain: EntityDomain,
 test('Properly instantiate an EntityDomain class', () => {
   let entityDomain: EntityDomain = new EntityDomain('COMPANY');
   runAssertionsForEntityDomain(entityDomain, 'COMPANY', null);
-  entityDomain = new EntityDomain('ILAND_CLOUD_PRODUCT');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_PRODUCT', 'COMPANY');
-  entityDomain = new EntityDomain('ILAND_BACKUP_PRODUCT');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_BACKUP_PRODUCT', 'COMPANY');
-  entityDomain = new EntityDomain('ILAND_CLOUD_LOCATION');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_LOCATION', 'ILAND_BACKUP_PRODUCT');
-  entityDomain = new EntityDomain('ILAND_CLOUD_ORGANIZATION');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_ORGANIZATION', 'ILAND_CLOUD_LOCATION');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VPG');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VPG', 'ILAND_CLOUD_ORGANIZATION');
-  entityDomain = new EntityDomain('ILAND_CLOUD_CATALOG');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_CATALOG', 'ILAND_CLOUD_ORGANIZATION');
-  entityDomain = new EntityDomain('ILAND_CLOUD_MEDIA');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_MEDIA', 'ILAND_CLOUD_CATALOG');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VAPP_TEMPLATE');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VAPP_TEMPLATE', 'ILAND_CLOUD_CATALOG');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VDC');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VDC', 'ILAND_CLOUD_ORGANIZATION');
-  entityDomain = new EntityDomain('ILAND_CLOUD_EDGE');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_EDGE', 'ILAND_CLOUD_VDC');
-  entityDomain = new EntityDomain('ILAND_CLOUD_INTERNAL_NETWORK');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_INTERNAL_NETWORK', 'ILAND_CLOUD_VDC');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VAPP');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VAPP', 'ILAND_CLOUD_VDC');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VAPP_NETWORK');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VAPP_NETWORK', 'ILAND_CLOUD_VAPP');
-  entityDomain = new EntityDomain('ILAND_CLOUD_VM');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_CLOUD_VM', 'ILAND_CLOUD_VAPP');
-  entityDomain = new EntityDomain('ILAND_BACKUP_LOCATION');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_BACKUP_LOCATION', 'ILAND_BACKUP_PRODUCT');
-  entityDomain = new EntityDomain('ILAND_BACKUP_TENANT');
-  runAssertionsForEntityDomain(entityDomain, 'ILAND_BACKUP_TENANT', 'ILAND_BACKUP_LOCATION');
+  entityDomain = new EntityDomain('IAAS_PRODUCT');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_PRODUCT', 'COMPANY');
+  entityDomain = new EntityDomain('VCC_BACKUP_PRODUCT');
+  runAssertionsForEntityDomain(entityDomain, 'VCC_BACKUP_PRODUCT', 'COMPANY');
+  entityDomain = new EntityDomain('IAAS_LOCATION');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_LOCATION', 'VCC_BACKUP_PRODUCT');
+  entityDomain = new EntityDomain('IAAS_ORGANIZATION');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_ORGANIZATION', 'IAAS_LOCATION');
+  entityDomain = new EntityDomain('IAAS_VPG');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VPG', 'IAAS_ORGANIZATION');
+  entityDomain = new EntityDomain('IAAS_CATALOG');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_CATALOG', 'IAAS_ORGANIZATION');
+  entityDomain = new EntityDomain('IAAS_MEDIA');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_MEDIA', 'IAAS_CATALOG');
+  entityDomain = new EntityDomain('IAAS_VAPP_TEMPLATE');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VAPP_TEMPLATE', 'IAAS_CATALOG');
+  entityDomain = new EntityDomain('IAAS_VDC');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VDC', 'IAAS_ORGANIZATION');
+  entityDomain = new EntityDomain('IAAS_EDGE');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_EDGE', 'IAAS_VDC');
+  entityDomain = new EntityDomain('IAAS_INTERNAL_NETWORK');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_INTERNAL_NETWORK', 'IAAS_VDC');
+  entityDomain = new EntityDomain('IAAS_VAPP');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VAPP', 'IAAS_VDC');
+  entityDomain = new EntityDomain('IAAS_VAPP_NETWORK');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VAPP_NETWORK', 'IAAS_VAPP');
+  entityDomain = new EntityDomain('IAAS_VM');
+  runAssertionsForEntityDomain(entityDomain, 'IAAS_VM', 'IAAS_VAPP');
+  entityDomain = new EntityDomain('VCC_BACKUP_LOCATION');
+  runAssertionsForEntityDomain(entityDomain, 'VCC_BACKUP_LOCATION', 'VCC_BACKUP_PRODUCT');
+  entityDomain = new EntityDomain('VCC_BACKUP_TENANT');
+  runAssertionsForEntityDomain(entityDomain, 'VCC_BACKUP_TENANT', 'VCC_BACKUP_LOCATION');
 });

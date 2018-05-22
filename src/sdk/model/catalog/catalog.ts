@@ -48,7 +48,7 @@ export class Catalog extends Entity {
    * @returns {EntityType}
    */
   get entityType(): EntityType {
-    return 'CATALOG';
+    return 'IAAS_CATALOG';
   }
 
   /**

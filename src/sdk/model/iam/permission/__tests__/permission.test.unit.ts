@@ -15,10 +15,10 @@ beforeAll(() => {
 });
 
 test('Properly instantiate a Permission class', () => {
-  const permission: Permission = new Permission('VIEW_ILAND_BACKUP_TENANT', 'ILAND_BACKUP_TENANT', 'READ',
+  const permission: Permission = new Permission('VIEW_ILAND_BACKUP_TENANT', 'VCC_BACKUP_TENANT', 'READ',
     true, true, null);
   expect(permission.permissionType).toBe('VIEW_ILAND_BACKUP_TENANT');
-  expect(permission.domain).toBe('ILAND_BACKUP_TENANT');
+  expect(permission.domain).toBe('VCC_BACKUP_TENANT');
   expect(permission.accessType).toBe('READ');
   expect(permission.availableToCustomPolicy).toBeTruthy();
   expect(permission.requiredForCustomPolicy).toBeTruthy();
@@ -26,9 +26,9 @@ test('Properly instantiate a Permission class', () => {
   expect(permission.toString()).toBe('VIEW_ILAND_BACKUP_TENANT');
   const domain = permission.getDomain();
   expect(domain).toBeInstanceOf(EntityDomain);
-  expect(domain.toString()).toBe('ILAND_BACKUP_TENANT');
+  expect(domain.toString()).toBe('VCC_BACKUP_TENANT');
   if (domain.parent) {
-    const mockExpectedDomain = new EntityDomain('ILAND_BACKUP_TENANT');
+    const mockExpectedDomain = new EntityDomain('VCC_BACKUP_TENANT');
     expect(domain.parent).toEqual(mockExpectedDomain.parent);
   }
 });

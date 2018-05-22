@@ -1,5 +1,5 @@
 import { UserCompanyInventoryJson, UserInventoryEntityJson } from './__json__/user-inventory-json';
-import { EntityDomainType } from '../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../common/__json__/iam-entity-type';
 
 /**
  * User inventory.
@@ -19,9 +19,9 @@ export class InventoryEntity {
 
   /**
    * Gets the type of the entity.
-   * @returns {EntityDomainType} entity type
+   * @returns {IamEntityType} entity type
    */
-  get type(): EntityDomainType {
+  get type(): IamEntityType {
     return this._json.type;
   }
 
@@ -43,9 +43,9 @@ export class InventoryEntity {
 
   /**
    * Gets the type of the parent entity.
-   * @returns {EntityDomainType} the parent entity type
+   * @returns {IamEntityType} the parent entity type
    */
-  get parentType(): EntityDomainType | null {
+  get parentType(): IamEntityType | null {
     return this._json.parent_type;
   }
 }
@@ -107,12 +107,12 @@ export class CompanyInventory {
 
   /**
    * Get an array of inventory entities of the specified type.
-   * @param {EntityDomainType} type
-   * @returns {Array<InventoryEntity> | undefined}
+   * @param {IamEntityType} type
+   * @returns {Array<InventoryEntity>}
    */
-  getEntitiesByType(type: EntityDomainType): Array<InventoryEntity> | undefined {
+  getEntitiesByType(type: IamEntityType): Array<InventoryEntity> {
     const result = this._inventory.entities[type];
-    return result ? result.map((it) => new InventoryEntity(it)) : undefined;
+    return result ? result.map((it) => new InventoryEntity(it)) : [];
   }
 
   /**

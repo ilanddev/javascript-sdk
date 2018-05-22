@@ -26,24 +26,27 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vpgs = inventory.getEntitiesByType('ILAND_CLOUD_VPG');
+      const vpgs = inventory.getEntitiesByType('IAAS_VPG');
       expect(vpgs).toBeDefined();
-      if (vpgs) {
+      if (vpgs && vpgs.length > 0) {
         expect(vpgs.length).toBeGreaterThan(0);
         inventoryVpg = vpgs[0];
       } else {
-        fail('failed to get inventory vDCs for vDC integration tests');
+        fail('failed to get any inventory VPGs for VPG integration tests');
       }
     });
   });
 });
 
 test('Can get Vpg by uuid', async() => {
+  if (!inventoryVpg) {
+    return;
+  }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(function(vpg) {
     expect(vpg).toBeDefined();
     expect(vpg.toString().length).toBeGreaterThan(0);
     const rawData = vpg.json;
-    expect(vpg.entityType).toBe('VPG');
+    expect(vpg.entityType).toBe('IAAS_VPG');
     expect(vpg.serviceProfile).toBeDefined();
     expect(vpg.vms).toBeDefined();
     expect(vpg.orgUuid).toBeDefined();
@@ -99,6 +102,9 @@ test('Can get Vpg by uuid', async() => {
 });
 
 test('Can get Vpg VMs', async() => {
+  if (!inventoryVpg) {
+    return;
+  }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(async function(vpg) {
     return vpg.getVmsForVpg().then((vms: Array<VpgVm>) => {
       expect(vms).toBeDefined();
@@ -154,6 +160,9 @@ test('Can get Vpg VMs', async() => {
 });
 
 test('Can get Vpg Service Profile', async() => {
+  if (!inventoryVpg) {
+    return;
+  }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(async function(vpg) {
     return vpg.getServiceProfile().then((serviceProfile) => {
       expect(serviceProfile).toBeDefined();
@@ -182,6 +191,9 @@ test('Can get Vpg Service Profile', async() => {
 });
 
 test('Can get checkpoints for Vpg', async() => {
+  if (!inventoryVpg) {
+    return;
+  }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(async function(vpg) {
     return vpg.getCheckpoints().then((checkpoints) => {
       expect(checkpoints).toBeDefined();
@@ -199,6 +211,9 @@ test('Can get checkpoints for Vpg', async() => {
 });
 
 test('Can get Vpg performance samples given a performance series info', async() => {
+  if (!inventoryVpg) {
+    return;
+  }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(async function(vpg) {
     return vpg.getVpgPerfFor('vpg', 'ThroughputInMB', 'latest')
         .then((perfSample: PerfSampleSerie) => {

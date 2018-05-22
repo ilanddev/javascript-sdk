@@ -1,4 +1,4 @@
-import { EntityDomainType } from '../../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../../common/__json__/iam-entity-type';
 
 /**
  * User Inventory JSON interface.
@@ -22,8 +22,8 @@ export interface UserCompanyInventoryJson {
  */
 export interface UserInventoryEntityJson {
   uuid: string;
-  type: EntityDomainType;
+  type: IamEntityType;
   name: string;
   parent_uuid: string | null;
-  parent_type: EntityDomainType | null;
+  parent_type: IamEntityType | null;
 }

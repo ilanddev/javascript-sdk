@@ -1,7 +1,7 @@
 import { PermissionService } from '../../../service/permission-service/permission-service';
 import { Permission } from '../permission/permission';
 import { PolicyJson } from './__json__/policy-json';
-import { EntityDomainType } from '../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../common/__json__/iam-entity-type';
 import { PolicyType } from './__json__/policy-type';
 import { PermissionType } from '../permission/__json__/permission-type';
 
@@ -23,9 +23,9 @@ export class Policy {
 
   /**
    * Gets the entity domain of the policy.
-   * @returns {EntityDomainType} the entity domain
+   * @returns {IamEntityType} the entity domain
    */
-  get entityDomain(): EntityDomainType {
+  get entityDomain(): IamEntityType {
     return this._json.domain;
   }
 
@@ -92,10 +92,10 @@ export class PolicyBuilder {
   /**
    * Creates a new PolicyBuilder.
    * @param {string} _entityUuid the UUID of the entity that the policy will apply to
-   * @param {EntityDomainType} _entityDomain the EntityDomain of the entity that the policy will apply to
+   * @param {IamEntityType} _entityDomain the EntityDomain of the entity that the policy will apply to
    * @param {PolicyType} _type the policy type
    */
-  constructor(private _entityUuid: string, private _entityDomain: EntityDomainType, private _type: PolicyType) {
+  constructor(private _entityUuid: string, private _entityDomain: IamEntityType, private _type: PolicyType) {
   }
 
   /**

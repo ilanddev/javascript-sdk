@@ -55,7 +55,7 @@ export const MockVmBillJson: BillJson = {
   zerto_advanced_usage: 0.0,
   zerto_advanced_cost: 0.0,
   entity_uuid: 'dev-vcd01.iland.dev:urn:vcloud:vm:f83bb52c-271d-411f-9d0d-1307cb192cb2',
-  entity_type: 'VM',
+  entity_type: 'IAAS_VM',
   entity_name: 'PAYG',
   bandwidth_reserved_usage: 0.0,
   bandwidth_reserved_cost: 0.0,

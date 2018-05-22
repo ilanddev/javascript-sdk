@@ -46,7 +46,7 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
   }
 
   get entityType(): EntityType {
-    return 'VDC';
+    return 'IAAS_VDC';
   }
 
   /**

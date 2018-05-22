@@ -76,7 +76,7 @@ export class Media extends Entity {
    * @returns {EntityType}
    */
   get entityType(): EntityType {
-    return 'MEDIA';
+    return 'IAAS_MEDIA';
   }
 
   /**

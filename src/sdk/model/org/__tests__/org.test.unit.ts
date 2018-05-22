@@ -24,7 +24,7 @@ test('Properly submits request to get Org', async() => {
   const uuid = 'test-org-uuid';
   return Org.getOrg(uuid).then(function(org) {
     expect(Iland.getHttp().get).lastCalledWith(`/orgs/${uuid}`);
-    expect(org.entityType).toBe('ORG');
+    expect(org.entityType).toBe('IAAS_ORGANIZATION');
   });
 });
 

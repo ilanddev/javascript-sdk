@@ -9,7 +9,7 @@ import { Policy, PolicyBuilder } from '../../../model/iam/policy/policy';
 import { IamService } from '../iam-service';
 import { MockUserCustomerJson, MockUserJson } from '../../../model/user/__mocks__/user';
 import { RoleCreationRequestBuilder } from '../../../model/iam/role/role-creation-request';
-import { EntityDomainType } from '../../../model/common/__json__/entity-domain-type';
+import { IamEntityType } from '../../../model/common/__json__/iam-entity-type';
 import { PermissionType } from '../../../model/iam/permission/__json__/permission-type';
 
 jest.mock('../../../service/http/http');
@@ -35,7 +35,7 @@ function runSystemAdminUserAssertions(user: UserWithSecurity) {
         entities = entityList[domainType];
         for (const entity of entities) {
           permissions = PermissionService.getInstance()
-            .getAvailablePermissionsForDomain(domainType as EntityDomainType);
+            .getAvailablePermissionsForDomain(domainType as IamEntityType);
           if (permissions) {
             for (const permission of permissions) {
               isUserPermitted = user.isPermittedTo(permission.permissionType, entity.uuid);
@@ -61,7 +61,7 @@ function runCustomerUserAssertions(user: UserWithSecurity) {
       userRole = user.rolesCompanyMap.get(companyInventory.companyId);
       for (const domainType in entityList) {
         entities = entityList[domainType];
-        permissions = PermissionService.getInstance().getAvailablePermissionsForDomain(domainType as EntityDomainType);
+        permissions = PermissionService.getInstance().getAvailablePermissionsForDomain(domainType as IamEntityType);
         for (const entity of entities) {
           if (userRole) {
             policy = (IamService as any).getEffectivePolicy(companyInventory, entity, userRole);
@@ -151,7 +151,7 @@ test('Properly validate public entities', async() => {
   const user = new UserWithSecurity(MockUserCustomerJson);
   return UserWithSecurity.setup(user).then((u) => {
     const vappTemplatePermissions = PermissionService.getInstance()
-      .getAvailablePermissionsForDomain('ILAND_CLOUD_VAPP_TEMPLATE');
+      .getAvailablePermissionsForDomain('IAAS_VAPP_TEMPLATE');
     if (vappTemplatePermissions) {
       for (const permission of vappTemplatePermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
@@ -163,7 +163,7 @@ test('Properly validate public entities', async() => {
         }
       }
     }
-    const catalogPermissions = PermissionService.getInstance().getAvailablePermissionsForDomain('ILAND_CLOUD_CATALOG');
+    const catalogPermissions = PermissionService.getInstance().getAvailablePermissionsForDomain('IAAS_CATALOG');
     if (catalogPermissions) {
       for (const permission of catalogPermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
@@ -175,7 +175,7 @@ test('Properly validate public entities', async() => {
         }
       }
     }
-    const mediaPermissions = PermissionService.getInstance().getAvailablePermissionsForDomain('ILAND_CLOUD_MEDIA');
+    const mediaPermissions = PermissionService.getInstance().getAvailablePermissionsForDomain('IAAS_MEDIA');
     if (mediaPermissions) {
       for (const permission of mediaPermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
@@ -200,7 +200,7 @@ test('Properly validate role', async() => {
     //////////////////
     let customPolicyBuilder = new PolicyBuilder(
       entityuuid,
-      'ILAND_CLOUD_VM', 'CUSTOM');
+      'IAAS_VM', 'CUSTOM');
     customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM');
     customPolicyBuilder.addPermission('VIEW_ILAND_CLOUD_VM_BILLING');
     customPolicyBuilder.addPermission('COPY_MOVE_RESTORE_ILAND_CLOUD_VM');
@@ -211,22 +211,22 @@ test('Properly validate role', async() => {
     //////////////////
     customPolicyBuilder = new PolicyBuilder(
       'fake-uuid',
-      'ILAND_CLOUD_VM', 'CUSTOM');
+      'IAAS_VM', 'CUSTOM');
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
     expect(errors[0]).toEqual(new Error('Entity fake-uuid not found in this company.'));
     //////////////////
     customPolicyBuilder = new PolicyBuilder(
       entityuuid,
-      'ILAND_CLOUD_VAPP', 'CUSTOM');
+      'IAAS_VAPP', 'CUSTOM');
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
     expect(errors[0]).toEqual(new Error('Policy for entity Portal Resource Non-Regression has domain type ' +
-      'ILAND_CLOUD_VAPP but entity is actually of type ILAND_CLOUD_VM'));
+      'IAAS_VAPP but entity is actually of type IAAS_VM'));
     //////////////////
     customPolicyBuilder = new PolicyBuilder(
       entityuuid,
-      'ILAND_CLOUD_VM', 'CUSTOM');
+      'IAAS_VM', 'CUSTOM');
     customPolicyBuilder.setPermissions([]);
     creationRequestBuilder.clearPolicies().setPolicy(customPolicyBuilder.build());
     errors = IamService.validateRole(creationRequestBuilder.build(), u.inventory[1]);
@@ -241,7 +241,7 @@ test('Properly validate role', async() => {
       customPolicyBuilder.setPermissions(['VIEW_ILAND_CLOUD_VM', 'MANAGE_COMPANY_IAM']);
     } catch (err) {
       expect(err).toEqual(new Error('Attempted to add permission=MANAGE_COMPANY_IAM in domain=COMPANY to ' +
-        'policy in domain=ILAND_CLOUD_VM.'));
+        'policy in domain=IAAS_VM.'));
     }
     //////////////////
     customPolicyBuilder = new PolicyBuilder(

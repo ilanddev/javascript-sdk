@@ -1,5 +1,5 @@
 import { PolicyType } from './policy-type';
-import { EntityDomainType } from '../../../common/__json__/entity-domain-type';
+import { IamEntityType } from '../../../common/__json__/iam-entity-type';
 import { PermissionType } from '../../permission/__json__/permission-type';
 
 /**
@@ -7,7 +7,7 @@ import { PermissionType } from '../../permission/__json__/permission-type';
  */
 export interface PolicyJson {
   entity_uuid: string;
-  domain: EntityDomainType;
+  domain: IamEntityType;
   type: PolicyType;
   permissions: Array<PermissionType>;
 }

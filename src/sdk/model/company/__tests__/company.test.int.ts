@@ -24,7 +24,7 @@ beforeAll(async() => {
     } else {
       const inventory = inventories[0];
       const companies = inventory.getEntitiesByType('COMPANY');
-      if (companies === undefined || companies.length === 0) {
+      if (companies.length === 0) {
         fail('no companies found in user inventory, couldn\'t perform integration tests');
       } else {
         companyEntity = companies[0];

@@ -24,9 +24,9 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const tenants = inventory.getEntitiesByType('ILAND_BACKUP_TENANT');
+      const tenants = inventory.getEntitiesByType('VCC_BACKUP_TENANT');
       expect(tenants).toBeDefined();
-      if (tenants) {
+      if (tenants && tenants.length > 0) {
         expect(tenants.length).toBeGreaterThan(0);
         tenant = tenants[0];
       } else {
@@ -37,11 +37,15 @@ beforeAll(async() => {
 });
 
 test('Can get Cloud Tenant and verify properties', async() => {
+  if (!tenant) {
+    fail('failed to get inventory tenants for tenant integration tests');
+    return;
+  }
   return CloudTenant.getCloudTenant(tenant.uuid).then(function(cloudTenant) {
     const rawData = cloudTenant.json;
     expect(cloudTenant).toBeDefined();
     expect(cloudTenant.entityType).toBeDefined();
-    expect(cloudTenant.entityType).toEqual('VCC_TENANT');
+    expect(cloudTenant.entityType).toEqual('VCC_BACKUP_TENANT');
     expect(cloudTenant.uid).toBeDefined();
     expect(cloudTenant.uid).toBe(rawData.uid);
     expect(cloudTenant.enabled).toBeDefined();
@@ -127,6 +131,10 @@ test('Can get Cloud Tenant and verify properties', async() => {
 });
 
 test('Can get hourly storage usage for Cloud Tenant', async() => {
+  if (!tenant) {
+    fail('failed to get inventory tenants for tenant integration tests');
+    return undefined;
+  }
   const date = new Date();
   const endTime = date.getTime();
   const startTime = new Date(date.setDate(date.getDate() - 1)).getTime();
@@ -150,6 +158,10 @@ test('Can get hourly storage usage for Cloud Tenant', async() => {
 });
 
 test('Can get backup history for Cloud Tenant', async() => {
+  if (!tenant) {
+    fail('failed to get inventory tenants for tenant integration tests');
+    return undefined;
+  }
   return CloudTenant.getCloudTenant(tenant.uuid).then(async function(cloudTenant) {
     return cloudTenant.getBackupHistoryFor(null, null)
         .then(function(backupHistoryList: Array<CloudTenantBackupHistory>) {

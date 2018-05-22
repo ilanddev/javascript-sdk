@@ -53,7 +53,7 @@ export class Edge extends Entity {
   }
 
   get entityType(): EntityType {
-    return 'EDGE';
+    return 'IAAS_EDGE';
   }
 
   /**
