@@ -108,3 +108,64 @@ test('Can get org historical billing', async() => {
     });
   });
 });
+
+test('Can get org billing summary', async() => {
+  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    return org.getBillingSummary().then((billingSummary) => {
+      expect(billingSummary.currentHour).toBeDefined();
+      expect(billingSummary.previousHour).toBeDefined();
+      expect(billingSummary.currentMonth).toBeDefined();
+      expect(billingSummary.previousMonth).toBeDefined();
+      expect(billingSummary.testDrive).toBeDefined();
+    });
+  });
+});
+
+test('Can get org edges', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const edges = await org.getEdges();
+  expect(edges).toBeDefined();
+  expect(edges instanceof Array).toBeTruthy();
+});
+
+test('Can get org vdcs', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const vdcs = await org.getVdcs();
+  expect(vdcs).toBeDefined();
+  expect(vdcs instanceof Array).toBeTruthy();
+});
+
+test('Can get org vapps', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const vapps = await org.getVapps();
+  expect(vapps).toBeDefined();
+  expect(vapps instanceof Array).toBeTruthy();
+});
+
+test('Can get org vms', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const vms = await org.getVms();
+  expect(vms).toBeDefined();
+  expect(vms instanceof Array).toBeTruthy();
+});
+
+test('Can get org internal networks', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const nets = await org.getInternalNetworks();
+  expect(nets).toBeDefined();
+  expect(nets instanceof Array).toBeTruthy();
+});
+
+test('Can get org vapp networks', async() => {
+  const org = await Org.getOrg(inventoryOrg.uuid);
+  expect(org.uuid).toBe(inventoryOrg.uuid);
+  const nets = await org.getVappNetworks();
+  expect(nets).toBeDefined();
+  expect(nets instanceof Array).toBeTruthy();
+});

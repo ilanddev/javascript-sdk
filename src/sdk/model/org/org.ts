@@ -14,7 +14,7 @@ import { VdcJson } from '../vdc/__json__/vdc-json';
 import { VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
-import { Bill, BillJson } from '../common/billing';
+import { Bill, BillJson, BillingSummary, BillingSummaryJson } from '../common/billing';
 
 /**
  * IaaS Organization.
@@ -186,12 +186,23 @@ export class Org extends Entity {
   }
 
   /**
+   * Gets the organization's current billing summary.
+   * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
+   */
+  async getBillingSummary(): Promise<BillingSummary> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/billing-summary`).then((response) => {
+      const json = response.data as BillingSummaryJson;
+      return new BillingSummary(json);
+    });
+  }
+
+  /**
    * Gets the Orgs child vDCs.
    * @returns {Promise<Vdc[]>} promise that resolves with an array of child vDCs
    */
   async getVdcs(): Promise<Array<Vdc>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vdcs`).then((response) => {
-      const json = response.data as Array<VdcJson>;
+      const json = response.data.data as Array<VdcJson>;
       return json.map((vdcJson) => new Vdc(vdcJson));
     });
   }
@@ -202,7 +213,7 @@ export class Org extends Entity {
    */
   async getVapps(): Promise<Array<Vapp>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vapps`).then((response) => {
-      const json = response.data as Array<VappJson>;
+      const json = response.data.data as Array<VappJson>;
       return json.map((vappJson) => new Vapp(vappJson));
     });
   }
@@ -213,7 +224,7 @@ export class Org extends Entity {
    */
   async getVms(): Promise<Array<Vm>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vms`).then((response) => {
-      const json = response.data as Array<VmJson>;
+      const json = response.data.data as Array<VmJson>;
       return json.map((vmJson) => new Vm(vmJson));
     });
   }
@@ -224,7 +235,7 @@ export class Org extends Entity {
    */
   async getEdges(): Promise<Array<Edge>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/edges`).then((response) => {
-      const json = response.data as Array<EdgeJson>;
+      const json = response.data.data as Array<EdgeJson>;
       return json.map((edgeJson) => new Edge(edgeJson));
     });
   }
@@ -235,7 +246,7 @@ export class Org extends Entity {
    */
   async getInternalNetworks(): Promise<Array<InternalNetwork>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vdc-networks`).then((response) => {
-      const json = response.data as Array<InternalNetworkJson>;
+      const json = response.data.data as Array<InternalNetworkJson>;
       return json.map((netJson) => new InternalNetwork(netJson));
     });
   }
@@ -246,7 +257,7 @@ export class Org extends Entity {
    */
   async getVappNetworks(): Promise<Array<VappNetwork>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vapp-networks`).then((response) => {
-      const json = response.data as Array<VappNetworkJson>;
+      const json = response.data.data as Array<VappNetworkJson>;
       return json.map((netJson) => new VappNetwork(netJson));
     });
   }
