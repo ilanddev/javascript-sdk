@@ -6,7 +6,9 @@ export const MockOrgVmsJson: Array<VmJson> = [MockVmJson];
 
 export const MockOrgVmsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockOrgVmsJson,
+    data: {
+      data: MockOrgVmsJson
+    },
     status: 200,
     statusText: '',
     headers: {},
