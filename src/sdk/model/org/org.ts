@@ -14,7 +14,7 @@ import { VdcJson } from '../vdc/__json__/vdc-json';
 import { VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
-import { BillingSummary, BillingSummaryJson } from '../common/billing';
+import { Bill, BillJson, BillingSummary, BillingSummaryJson } from '../common/billing';
 
 /**
  * IaaS Organization.
@@ -163,6 +163,25 @@ export class Org extends Entity {
     return Iland.getHttp().get(`/orgs/${this.uuid}`).then((response) => {
       this._json = response.data as OrgJson;
       return this;
+    });
+  }
+
+  /**
+   * Gets a list of historical bills for the organization. All bills with timestamps between the start and end
+   * parameters are returned.
+   * @param {Date} start the begin timestamp of the query range
+   * @param {Date} end the end timestamp of the query range
+   * @returns {Promise<Array<Bill>>} promise that resolves with the list of historical bills
+   */
+  async getHistoricalBilling(start: Date, end: Date): Promise<Array<Bill>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/historical-billing`, {
+      params: {
+        start: start.valueOf(),
+        end: end.valueOf()
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<BillJson>;
+      return json.map((it) => new Bill(it));
     });
   }
 
