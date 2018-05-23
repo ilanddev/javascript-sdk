@@ -97,6 +97,18 @@ test('Can refresh Org', async() => {
   });
 });
 
+test('Can get org billing summary', async() => {
+  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    return org.getBillingSummary().then((billingSummary) => {
+      expect(billingSummary.currentHour).toBeDefined();
+      expect(billingSummary.previousHour).toBeDefined();
+      expect(billingSummary.currentMonth).toBeDefined();
+      expect(billingSummary.previousMonth).toBeDefined();
+      expect(billingSummary.testDrive).toBeDefined();
+    });
+  });
+
 test('Can get org edges', async() => {
   const org = await Org.getOrg(inventoryOrg.uuid);
   expect(org.uuid).toBe(inventoryOrg.uuid);
