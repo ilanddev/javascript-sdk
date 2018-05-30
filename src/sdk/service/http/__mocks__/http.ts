@@ -1,16 +1,16 @@
 import { Http as RealHttp } from '../http';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import {
-  MockVmPerfCountersResponse, MockVmPerfSamplesSeriesResponse,
+  MockVmPerfCountersResponse,
+  MockVmPerfSamplesSeriesResponse,
   MockVmResponse
 } from '../../../model/vm/__mocks__/vm';
 import { MockNotFoundResponse } from '../../../config/__mocks__/errors';
 import { MockVmVirtualDisksResponse } from '../../../model/vm/virtual-disk/__mocks__/virtual-disk';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
 import { MockFakeMetadataResponse, MockMetadataResponse } from '../../../model/common/metadata/__mocks__/metadata';
-import {
-  MockVmBackupRestorePointsResponse
-} from '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
+import { MockVmBackupRestorePointsResponse }
+  from '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
 import { MockVmSnapshotResponse } from '../../../model/vm/snapshot/__mocks__/snapshot';
 import { MockVmScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/screen-ticket';
 import { MockVmMksScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/mks-screen-ticket';
@@ -19,7 +19,8 @@ import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVdcVappsResponse } from '../../../model/vdc/__mocks__/vdc-vapps';
 import { MockVdcVmsResponse } from '../../../model/vdc/__mocks__/vdc-vms';
 import {
-  MockVdcPerfCountersResponse, MockVdcPerfSamplesSeriesResponse,
+  MockVdcPerfCountersResponse,
+  MockVdcPerfSamplesSeriesResponse,
   MockVdcResponse
 } from '../../../model/vdc/__mocks__/vdc';
 import { MockOrgVmsResponse } from '../../../model/org/__mocks__/org-vms';
@@ -92,6 +93,10 @@ import { RoleCreationRequestJson } from '../../../model/iam/role/__json__/role-c
 import { UserCreationRequestJson } from '../../../model/user/__json__/user-creation-request-json';
 import { MockVpgAlertResponse, MockVpgReportDetailsResponse } from '../../../model/vpg/__mocks__/vpg';
 import { MockVappPerfSamplesSeriesResponse } from '../../../model/vapp/__mocks__/vapp';
+import { MockIpAddressSetResponse, MockOrgDnsRecordsResponse } from '../../../model/org/__mocks__/org-dns-records';
+import { DnsRecordCreateRequestJson, DnsRecordUpdateRequestJson, DnsZoneCreateRequestJson } from '../../../model/org';
+import { MockOrgResource } from '../../../model/org/__mocks__/org-resource';
+import { MockCheckDnsZoneResponse, MockOrgDnsZonesResponse } from '../../../model/org/__mocks__/org-dns-zones';
 
 jest.unmock('../http');
 
@@ -266,6 +271,18 @@ export class Http {
       case /\/orgs\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
+      case /\/orgs\/[^\/]+?\/dns$/.test(url):
+        // get an orgs dns records
+        return MockOrgDnsRecordsResponse;
+      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url):
+        // get an orgs dns zones
+        return MockOrgDnsZonesResponse;
+      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?\/is-valid$/.test(url):
+        // get an orgs dns zones check
+        return MockCheckDnsZoneResponse;
+      case /\/orgs\/[^\/]+?\/dns\/unmapped-ptr-ip-addresses$/.test(url):
+        // get an orgs unmapped ptr ips
+        return MockIpAddressSetResponse;
       case /\/companies\/[^\/]+?$/.test(url):
         // get a company
         return MockCompanyResponse;
@@ -375,6 +392,14 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Delete media
         return MockTaskService.getNewMockTaskResponse('delete entity');
+      case /\/orgs\/[^\/]+?\/dns\/[^\/]+?$/.test(url): {
+        // delete dns record
+        return MockOrgResource.deleteDnsRecord();
+      }
+      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?$/.test(url): {
+        // delete dns zone
+        return MockOrgResource.deleteDnsZone();
+      }
       default:
         return MockNotFoundResponse;
     }
@@ -460,6 +485,16 @@ export class Http {
         const request = data as UserCreationRequestJson;
         return MockCompanyService.createUser(request);
       }
+      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+        // create new org dns record
+        const request = data as DnsRecordCreateRequestJson;
+        return MockOrgResource.addDnsRecord(request);
+      }
+      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url): {
+        // create new org dns zone
+        const request = data as DnsZoneCreateRequestJson;
+        return MockOrgResource.addDnsZone(request);
+      }
       default:
         return MockNotFoundResponse;
     }
@@ -500,6 +535,11 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Update media
         return MockTaskService.getNewMockTaskResponse('update media');
+      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+        // update org dns record
+        const request = data as DnsRecordUpdateRequestJson;
+        return MockOrgResource.updateDnsRecord(request);
+      }
       default:
         return MockNotFoundResponse;
     }
