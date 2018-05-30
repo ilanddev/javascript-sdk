@@ -1,8 +1,14 @@
 import { IlandDirectGrantAuthProvider } from '../../../auth/index';
 import { Iland } from '../../../iland';
 import { User } from '../user';
-import { MockUserCompaniesJson, MockUserCustomerJson, MockUserJson } from '../__mocks__/user';
+import {
+  MockUserCompaniesJson,
+  MockUserCustomerJson,
+  MockUserJson,
+  MockUserRoleForCompanyJson2
+} from '../__mocks__/user';
 import { UserWithSecurity } from '../user-with-security';
+import { Role } from '../../iam/role/role';
 
 jest.mock('../../../service/http/http');
 
@@ -66,4 +72,30 @@ test('Can get current user with security', async() => {
   });
   const promises = [adminUserPromise, customerUserPromise];
   return Promise.all(promises);
+});
+
+test('Properly get role from company uuid for User', async() => {
+  const user = new User(MockUserJson);
+  return user.getRole('000003').then((role) => {
+    expect(role).toBeInstanceOf(Role);
+    expect(role.policies.length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly assign role to User', async() => {
+  const user = new User(MockUserJson);
+  const role = new Role(MockUserRoleForCompanyJson2);
+  return user.assignRole(role.companyId, role.uuid).then(() => {
+    expect(Iland.getHttp().put).lastCalledWith(`/users/${user.username}/roles/${role.companyId}`, {
+      role_uuid: role.uuid
+    });
+  });
+});
+
+test('Properly delete role to User', async() => {
+  const user = new User(MockUserJson);
+  const role = new Role(MockUserRoleForCompanyJson2);
+  return user.unassignRole(role.companyId).then(() => {
+    expect(Iland.getHttp().delete).lastCalledWith(`/users/${user.username}/roles/${role.companyId}`);
+  });
 });
