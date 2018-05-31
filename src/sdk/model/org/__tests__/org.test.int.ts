@@ -122,6 +122,62 @@ test('Can get org billing summary', async() => {
   });
 });
 
+test('Can get org billing by vdc in range', async() => {
+  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    const now = new Date();
+    const thisMonth = now.getMonth() + 1;
+    const lastMonth = ((now.getMonth() + 11) % 12) + 1;
+    const thisYear = now.getFullYear();
+    const lastMonthYear = lastMonth < thisMonth ? thisYear : thisYear - 1;
+    return org.getBillingByVdcInRange(lastMonth, lastMonthYear, thisMonth, thisYear).then((orgVdcBills) => {
+      expect(orgVdcBills).toBeDefined();
+      expect(orgVdcBills.length).toBeGreaterThan(0);
+      const orgVdcBill = orgVdcBills[0];
+      expect(orgVdcBill.orgUuid).toBe(org.uuid);
+      expect(orgVdcBill.bills).toBeDefined();
+      expect(orgVdcBill.bills.length).toBeGreaterThan(0);
+      expect(orgVdcBill.month).toBeDefined();
+      expect(orgVdcBill.year).toBeDefined();
+      expect(orgVdcBill.toString()).toBeDefined();
+      expect(orgVdcBill.json).toBeDefined();
+    });
+  });
+});
+
+test('Can get org billing by vdc', async() => {
+  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    const now = new Date();
+    const thisMonth = now.getMonth() + 1;
+    const thisYear = now.getFullYear();
+    return org.getBillingByVdc(thisMonth, thisYear).then((orgVdcBill) => {
+      expect(orgVdcBill).toBeDefined();
+      if (orgVdcBill) {
+        expect(orgVdcBill.orgUuid).toBe(org.uuid);
+        expect(orgVdcBill.bills).toBeDefined();
+        expect(orgVdcBill.bills.length).toBeGreaterThan(0);
+        expect(orgVdcBill.month).toBeDefined();
+        expect(orgVdcBill.year).toBeDefined();
+        expect(orgVdcBill.toString()).toBeDefined();
+        expect(orgVdcBill.json).toBeDefined();
+      }
+    });
+  });
+});
+
+test('Can get org bill', async() => {
+  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
+    expect(org.uuid).toBe(inventoryOrg.uuid);
+    const now = new Date();
+    const thisMonth = now.getMonth() + 1;
+    const thisYear = now.getFullYear();
+    return org.getBill(thisMonth, thisYear).then((bill) => {
+      expect(bill).toBeDefined();
+    });
+  });
+});
+
 test('Can get org edges', async() => {
   const org = await Org.getOrg(inventoryOrg.uuid);
   expect(org.uuid).toBe(inventoryOrg.uuid);

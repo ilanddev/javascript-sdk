@@ -2,7 +2,6 @@ import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-pr
 import { Iland } from '../../../iland';
 import { UserWithSecurity } from '../user-with-security';
 import { MockUserCustomerJson, MockUserJson } from '../__mocks__/user';
-import { Role } from '../../iam/role/role';
 
 jest.mock('../../../service/http/http');
 
@@ -61,13 +60,5 @@ test('Properly get roles for UserWithSecurity', async() => {
   const userWithSecurity = new UserWithSecurity(MockUserJson);
   return userWithSecurity.getRoles().then((roles) => {
     expect(roles.length).toBeGreaterThan(0);
-  });
-});
-
-test('Properly get role from company uuid for UserWithSecurity', async() => {
-  const userWithSecurity = new UserWithSecurity(MockUserJson);
-  return userWithSecurity.getRole('000003').then((role) => {
-    expect(role).toBeInstanceOf(Role);
-    expect(role.policies.length).toBeGreaterThan(0);
   });
 });
