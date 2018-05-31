@@ -15,6 +15,8 @@ import { VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
 import { Bill, BillingSummary, BillingSummaryJson, BillJson } from '../common/billing';
+import { OrgVdcBillsJson } from '../common/billing/__json__/org-vdc-bills-json';
+import { OrgVdcBills } from '../common/billing/org-vdc-bills';
 import { DnsRecordJson } from './__json__/dns-record-json';
 import { DnsRecord } from './dns-record';
 import { DnsZone } from './dns-zone';
@@ -204,6 +206,60 @@ export class Org extends Entity {
     return Iland.getHttp().get(`/orgs/${this.uuid}/billing-summary`).then((response) => {
       const json = response.data as BillingSummaryJson;
       return new BillingSummary(json);
+    });
+  }
+
+  /**
+   * Gets the list of bills for each vDC within the org, for the specified range of billing periods.
+   * @param {number} startMonth the begin range month specified as an integer in the range 1-12
+   * @param {number} startYear the begin range year
+   * @param {number} endMonth the end range month specified as an integer in the range 1-12
+   * @param {number} endYear the end range month
+   * @returns {Promise<Array<OrgVdcBills>>} a promise that resolves with the list of org vdc bill objects
+   */
+  async getBillingByVdcInRange(startMonth?: number, startYear?: number, endMonth?: number, endYear?: number):
+      Promise<Array<OrgVdcBills>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/historical-billing-by-vdc`, {
+      params: {
+        startMonth: startMonth,
+        startYear: startYear,
+        endMonth: endMonth,
+        endYear: endYear
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<OrgVdcBillsJson>;
+      return json.map(it => new OrgVdcBills(it));
+    });
+  }
+
+  /**
+   * Gets the list of bills for each vDC within the org, for the specified billing month/year.
+   * @param {number} month the month to get vDC bills for in the range 1-12
+   * @param {number} year the year to get vDC bills for
+   * @returns {Promise<Array<OrgVdcBills|null>>} a promise that resolves with the org vdc bill object or null if none
+   * exists for the specified month
+   */
+  async getBillingByVdc(month?: number, year?: number): Promise<OrgVdcBills|null> {
+    return this.getBillingByVdcInRange(month, year, month, year).then((bills) => {
+      return bills.length === 1 ? bills[0] : null;
+    });
+  }
+
+  /**
+   * Gets the organization's bill for the specified month/year.
+   * @param {number} month a month specified as an integer in the range 1-12
+   * @param {number} year a year
+   * @returns {Promise<Bill>} a promise that resolves with the bill
+   */
+  async getBill(month?: number, year?: number): Promise<Bill> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/billing`, {
+      params: {
+        month: month,
+        year: year
+      }
+    }).then((response) => {
+      const json = response.data as BillJson;
+      return new Bill(json);
     });
   }
 
