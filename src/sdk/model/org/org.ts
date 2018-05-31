@@ -364,7 +364,7 @@ export class Org extends Entity {
    * @returns {Promise<Array<DnsRecord>>} a promise that resolves with a list of DNS records.
    */
   async getDnsRecords(): Promise<Array<DnsRecord>> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-records`).then((response) => {
       const json = response.data.data as Array<DnsRecordJson>;
       return json.map((it) => new DnsRecord(it));
     });
@@ -376,7 +376,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsRecord>} a promise that resolves with the new record
    */
   async addDnsRecord(record: DnsRecordCreateRequest): Promise<DnsRecord> {
-    return Iland.getHttp().post(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-records`, record.json).then((response) => {
       const json = response.data as DnsRecordJson;
       return new DnsRecord(json);
     });
@@ -388,7 +388,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsRecord>} a promise that resolves with the updated record
    */
   async updateDnsRecord(record: DnsRecordUpdateRequest): Promise<DnsRecord> {
-    return Iland.getHttp().put(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+    return Iland.getHttp().put(`/orgs/${this.uuid}/dns-records`, record.json).then((response) => {
       const json = response.data as DnsRecordJson;
       return new DnsRecord(json);
     });
@@ -400,7 +400,7 @@ export class Org extends Entity {
    * @returns {Promise<any>} a promise that resolves when the operation completes
    */
   async deleteDnsRecord(recordId: number): Promise<any> {
-    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns/${recordId}`);
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-records/${recordId}`);
   }
 
   /**
@@ -408,7 +408,7 @@ export class Org extends Entity {
    * @returns {Promise<Array<DnsZone>>} a promise that resolves with the list of DNS zones
    */
   async getDnsZones(): Promise<Array<DnsZone>> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zones`).then((response) => {
       const json = response.data.data as Array<DnsZoneJson>;
       return json.map((it) => new DnsZone(it));
     });
@@ -420,7 +420,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsZone>} a promise that resolves with the newly created DNS zone
    */
   async addDnsZone(zoneSpec: DnsZoneCreateRequest): Promise<DnsZone> {
-    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-zone`, zoneSpec.json).then((response) => {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-zones`, zoneSpec.json).then((response) => {
       const json = response.data as DnsZoneJson;
       return new DnsZone(json);
     });
@@ -432,7 +432,7 @@ export class Org extends Entity {
    * @returns {Promise<any>} a promise that resolves when the operation completes
    */
   async deleteDnsZone(zoneId: number): Promise<any> {
-    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-zone/${zoneId}`);
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-zones/${zoneId}`);
   }
 
   /**
@@ -441,7 +441,7 @@ export class Org extends Entity {
    * @returns {Promise<CheckDnsZone>} a promise that resolves with the zone check results
    */
   async checkDnsZone(zoneId: number): Promise<CheckDnsZone> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone/${zoneId}/is-valid`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zones/${zoneId}/is-valid`).then((response) => {
       const json = response.data as CheckDnsZoneJson;
       return new CheckDnsZone(json);
     });
@@ -452,7 +452,7 @@ export class Org extends Entity {
    * @returns {Promise<IpAddressSet>} a promise that resolves with the set of available IP addresses
    */
   async getAvailableIpsForPtrRecords(): Promise<IpAddressSet> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns/unmapped-ptr-ip-addresses`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/unmapped-dns-ptr-ip-addresses`).then((response) => {
       const json = response.data as IpAddressSetJson;
       return new IpAddressSet(json);
     });

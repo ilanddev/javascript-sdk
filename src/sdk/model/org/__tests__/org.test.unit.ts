@@ -114,7 +114,7 @@ test('Properly submits request to get Orgs child vapp networks', async() => {
 test('Properly submits request to get orgs dns records', async() => {
   const org = new Org(MockOrgJson);
   return org.getDnsRecords().then(function(records) {
-    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns`);
+    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-records`);
     expect(records.length).toBe(MockOrgDnsRecordsJson.length);
     let idx = 0;
     for (const record of records) {
@@ -143,7 +143,7 @@ test('Properly submits request to add orgs dns record', async() => {
       'value', '1.1.1.1', 0, 'description', 5);
   expect(request.toString()).toBeDefined();
   return org.addDnsRecord(request).then(function(record) {
-    expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns`, request.json);
+    expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns-records`, request.json);
     expect(record.description).toBe(request.description);
     expect(record.host).toBe(request.host);
     expect(record.recordType).toBe(request.type);
@@ -161,7 +161,7 @@ test('Properly submits request to update org dns record', async() => {
       'value', '1.1.1.1', 0, 'description', 5);
   expect(request.toString()).toBeDefined();
   return org.updateDnsRecord(request).then(function(record) {
-    expect(Iland.getHttp().put).lastCalledWith(`/orgs/${org.uuid}/dns`, request.json);
+    expect(Iland.getHttp().put).lastCalledWith(`/orgs/${org.uuid}/dns-records`, request.json);
     expect(record.id).toBe(request.id);
     expect(record.description).toBe(request.description);
     expect(record.host).toBe(request.host);
@@ -178,14 +178,14 @@ test('Properly submits request to delete org dns record', async() => {
   const org = new Org(MockOrgJson);
   const id = 5;
   return org.deleteDnsRecord(id).then(function() {
-    expect(Iland.getHttp().delete).lastCalledWith(`/orgs/${org.uuid}/dns/${id}`);
+    expect(Iland.getHttp().delete).lastCalledWith(`/orgs/${org.uuid}/dns-records/${id}`);
   });
 });
 
 test('Properly submits request to get org dns zones', async() => {
   const org = new Org(MockOrgJson);
   return org.getDnsZones().then(function(zones) {
-    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-zone`);
+    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-zones`);
     expect(zones.length).toBe(MockOrgDnsZonesJson.length);
     let idx = 0;
     for (const zone of zones) {
@@ -226,7 +226,7 @@ test('Properly submits request to add dns zone', async() => {
   const request = new DnsZoneCreateRequest('name');
   expect(request.toString()).toBeDefined();
   return org.addDnsZone(request).then(function(zone) {
-    expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns-zone`, request.json);
+    expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns-zones`, request.json);
     expect(zone.name).toBe(request.name);
   });
 });
@@ -235,7 +235,7 @@ test('Properly submits request to delete org dns zone', async() => {
   const org = new Org(MockOrgJson);
   const id = 5;
   return org.deleteDnsZone(id).then(function() {
-    expect(Iland.getHttp().delete).lastCalledWith(`/orgs/${org.uuid}/dns-zone/${id}`);
+    expect(Iland.getHttp().delete).lastCalledWith(`/orgs/${org.uuid}/dns-zones/${id}`);
   });
 });
 
@@ -243,7 +243,7 @@ test('Properly submits request to check org dns zone', async() => {
   const org = new Org(MockOrgJson);
   const zoneId = 5;
   return org.checkDnsZone(zoneId).then(function(check) {
-    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-zone/${zoneId}/is-valid`);
+    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-zones/${zoneId}/is-valid`);
     expect(check).toBeDefined();
     expect(check.json).toEqual(MockCheckDnsZoneJson);
     expect(check.message).toBe(MockCheckDnsZoneJson.message);
@@ -255,7 +255,7 @@ test('Properly submits request to check org dns zone', async() => {
 test('Properly submits request to get org available IPs for ptr records', async() => {
   const org = new Org(MockOrgJson);
   return org.getAvailableIpsForPtrRecords().then(function(ips) {
-    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns/unmapped-ptr-ip-addresses`);
+    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/unmapped-dns-ptr-ip-addresses`);
     expect(ips).toBeDefined();
     expect(ips.toString()).toBeDefined();
     expect(ips.json).toEqual(MockIpAddressSetJson);
