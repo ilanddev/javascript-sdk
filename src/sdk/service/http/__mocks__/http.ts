@@ -1,16 +1,16 @@
 import { Http as RealHttp } from '../http';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import {
-  MockVmPerfCountersResponse, MockVmPerfSamplesSeriesResponse,
+  MockVmPerfCountersResponse,
+  MockVmPerfSamplesSeriesResponse,
   MockVmResponse
 } from '../../../model/vm/__mocks__/vm';
 import { MockNotFoundResponse } from '../../../config/__mocks__/errors';
 import { MockVmVirtualDisksResponse } from '../../../model/vm/virtual-disk/__mocks__/virtual-disk';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
 import { MockFakeMetadataResponse, MockMetadataResponse } from '../../../model/common/metadata/__mocks__/metadata';
-import {
-  MockVmBackupRestorePointsResponse
-} from '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
+import { MockVmBackupRestorePointsResponse } from
+    '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
 import { MockVmSnapshotResponse } from '../../../model/vm/snapshot/__mocks__/snapshot';
 import { MockVmScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/screen-ticket';
 import { MockVmMksScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/mks-screen-ticket';
@@ -19,7 +19,8 @@ import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVdcVappsResponse } from '../../../model/vdc/__mocks__/vdc-vapps';
 import { MockVdcVmsResponse } from '../../../model/vdc/__mocks__/vdc-vms';
 import {
-  MockVdcPerfCountersResponse, MockVdcPerfSamplesSeriesResponse,
+  MockVdcPerfCountersResponse,
+  MockVdcPerfSamplesSeriesResponse,
   MockVdcResponse
 } from '../../../model/vdc/__mocks__/vdc';
 import { MockOrgVmsResponse } from '../../../model/org/__mocks__/org-vms';
@@ -375,6 +376,8 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Delete media
         return MockTaskService.getNewMockTaskResponse('delete entity');
+      case /\/users\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        return MockService.getMockVoidResponse();
       default:
         return MockNotFoundResponse;
     }
@@ -497,6 +500,8 @@ export class Http {
         // update a role
         const request = data as RoleCreationRequestJson;
         return MockCompanyService.createRole(request);
+      case /\/users\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        return MockService.getMockVoidResponse();
       case /\/media\/[^\/]+?$/.test(url):
         // Update media
         return MockTaskService.getNewMockTaskResponse('update media');
