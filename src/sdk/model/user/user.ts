@@ -230,6 +230,17 @@ export class User {
   }
 
   /**
+   * Gets the user's list of companies.
+   * @returns {Promise<Array<Company>>} user's list of companies
+   */
+  async getCompanies(): Promise<Array<Company>> {
+    return Iland.getHttp().get(`/users/${this.username}/companies`).then((response) => {
+      const companiesList = response.data.data as Array<CompanyJson>;
+      return companiesList.map((it) => new Company(it));
+    });
+  }
+
+  /**
    * Gets the user's role for a company
    * @param {string} companyUuid
    * @returns {Promise<Role>}
@@ -242,14 +253,24 @@ export class User {
   }
 
   /**
-   * Gets the user's list of companies.
-   * @returns {Promise<Array<Company>>} user's list of companies
+   * Assign a role to a user.
+   * @param {string} companyUuid
+   * @param {string} roleUuid
+   * @returns {Promise<any>}
    */
-  async getCompanies(): Promise<Array<Company>> {
-    return Iland.getHttp().get(`/users/${this.username}/companies`).then((response) => {
-      const companiesList = response.data as Array<CompanyJson>;
-      return companiesList.map((it) => new Company(it));
+  async assignRole(companyUuid: string, roleUuid: string): Promise<any> {
+    return Iland.getHttp().put(`/users/${this.username}/roles/${companyUuid}`, {
+      role_uuid: roleUuid
     });
+  }
+
+  /**
+   * Un-assign a role from a user.
+   * @param {string} companyUuid
+   * @returns {Promise<any>}
+   */
+  async unassignRole(companyUuid: string): Promise<any> {
+    return Iland.getHttp().delete(`/users/${this.username}/roles/${companyUuid}`);
   }
 
 }

@@ -400,6 +400,8 @@ export class Http {
         // delete dns zone
         return MockOrgResource.deleteDnsZone();
       }
+      case /\/users\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        return MockService.getMockVoidResponse();
       default:
         return MockNotFoundResponse;
     }
@@ -532,6 +534,8 @@ export class Http {
         // update a role
         const request = data as RoleCreationRequestJson;
         return MockCompanyService.createRole(request);
+      case /\/users\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
+        return MockService.getMockVoidResponse();
       case /\/media\/[^\/]+?$/.test(url):
         // Update media
         return MockTaskService.getNewMockTaskResponse('update media');
