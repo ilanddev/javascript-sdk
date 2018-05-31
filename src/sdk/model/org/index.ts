@@ -1,5 +1,7 @@
 export * from './__json__/index';
 export * from './org';
+export * from './org-vapp-lease-update-request';
+export * from './org-vapp-template-lease-update-request';
 export * from './check-dns-zone';
 export * from './dns-record';
 export * from './dns-record-create-request';
