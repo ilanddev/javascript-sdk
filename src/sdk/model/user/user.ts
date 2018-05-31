@@ -247,7 +247,7 @@ export class User {
    */
   async getCompanies(): Promise<Array<Company>> {
     return Iland.getHttp().get(`/users/${this.username}/companies`).then((response) => {
-      const companiesList = response.data as Array<CompanyJson>;
+      const companiesList = response.data.data as Array<CompanyJson>;
       return companiesList.map((it) => new Company(it));
     });
   }
