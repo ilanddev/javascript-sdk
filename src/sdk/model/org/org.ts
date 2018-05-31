@@ -17,6 +17,17 @@ import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
 import { Bill, BillingSummary, BillingSummaryJson, BillJson } from '../common/billing';
 import { OrgVdcBillsJson } from '../common/billing/__json__/org-vdc-bills-json';
 import { OrgVdcBills } from '../common/billing/org-vdc-bills';
+import { DnsRecordJson } from './__json__/dns-record-json';
+import { DnsRecord } from './dns-record';
+import { DnsZone } from './dns-zone';
+import { DnsZoneJson } from './__json__/dns-zone-json';
+import { DnsRecordCreateRequest } from './dns-record-create-request';
+import { DnsRecordUpdateRequest } from './dns-record-update-request';
+import { DnsZoneCreateRequest } from './dns-zone-create-request';
+import { CheckDnsZone } from './check-dns-zone';
+import { CheckDnsZoneJson } from './__json__/check-dns-zone-json';
+import { IpAddressSetJson } from './__json__/ip-address-set-json';
+import { IpAddressSet } from './ip-address-set';
 
 /**
  * IaaS Organization.
@@ -315,6 +326,105 @@ export class Org extends Entity {
     return Iland.getHttp().get(`/orgs/${this.uuid}/vapp-networks`).then((response) => {
       const json = response.data.data as Array<VappNetworkJson>;
       return json.map((netJson) => new VappNetwork(netJson));
+    });
+  }
+
+  /**
+   * Gets all DNS records for the organization.
+   * @returns {Promise<Array<DnsRecord>>} a promise that resolves with a list of DNS records.
+   */
+  async getDnsRecords(): Promise<Array<DnsRecord>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns`).then((response) => {
+      const json = response.data.data as Array<DnsRecordJson>;
+      return json.map((it) => new DnsRecord(it));
+    });
+  }
+
+  /**
+   * Adds a new DNS record for the org.
+   * @param {DnsRecordCreateRequest} record the new record
+   * @returns {Promise<DnsRecord>} a promise that resolves with the new record
+   */
+  async addDnsRecord(record: DnsRecordCreateRequest): Promise<DnsRecord> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+      const json = response.data as DnsRecordJson;
+      return new DnsRecord(json);
+    });
+  }
+
+  /**
+   * Updates a DNS record within the org.
+   * @param {DnsRecordUpdateRequest} record the updated record
+   * @returns {Promise<DnsRecord>} a promise that resolves with the updated record
+   */
+  async updateDnsRecord(record: DnsRecordUpdateRequest): Promise<DnsRecord> {
+    return Iland.getHttp().put(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+      const json = response.data as DnsRecordJson;
+      return new DnsRecord(json);
+    });
+  }
+
+  /**
+   * Deletes a DNS record within the org.
+   * @param {number} recordId the record ID
+   * @returns {Promise<any>} a promise that resolves when the operation completes
+   */
+  async deleteDnsRecord(recordId: number): Promise<any> {
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns/${recordId}`);
+  }
+
+  /**
+   * Gets all DNS zones that exist within the org.
+   * @returns {Promise<Array<DnsZone>>} a promise that resolves with the list of DNS zones
+   */
+  async getDnsZones(): Promise<Array<DnsZone>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone`).then((response) => {
+      const json = response.data.data as Array<DnsZoneJson>;
+      return json.map((it) => new DnsZone(it));
+    });
+  }
+
+  /**
+   * Adds a new DNS zone within the org.
+   * @param {DnsZoneCreateRequest} zoneSpec the new DNS zone details
+   * @returns {Promise<DnsZone>} a promise that resolves with the newly created DNS zone
+   */
+  async addDnsZone(zoneSpec: DnsZoneCreateRequest): Promise<DnsZone> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-zone`, zoneSpec.json).then((response) => {
+      const json = response.data as DnsZoneJson;
+      return new DnsZone(json);
+    });
+  }
+
+  /**
+   * Deletes a DNS zone from the org.
+   * @param {number} zoneId the ID of the zone
+   * @returns {Promise<any>} a promise that resolves when the operation completes
+   */
+  async deleteDnsZone(zoneId: number): Promise<any> {
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-zone/${zoneId}`);
+  }
+
+  /**
+   * Checks the status of a DNS zone within the org.
+   * @param {number} zoneId the ID of the zone
+   * @returns {Promise<CheckDnsZone>} a promise that resolves with the zone check results
+   */
+  async checkDnsZone(zoneId: number): Promise<CheckDnsZone> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone/${zoneId}/is-valid`).then((response) => {
+      const json = response.data as CheckDnsZoneJson;
+      return new CheckDnsZone(json);
+    });
+  }
+
+  /**
+   * Gets all IP addresses available for assignment in PTR records.
+   * @returns {Promise<IpAddressSet>} a promise that resolves with the set of available IP addresses
+   */
+  async getAvailableIpsForPtrRecords(): Promise<IpAddressSet> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns/unmapped-ptr-ip-addresses`).then((response) => {
+      const json = response.data as IpAddressSetJson;
+      return new IpAddressSet(json);
     });
   }
 
