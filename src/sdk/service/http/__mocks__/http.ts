@@ -271,16 +271,16 @@ export class Http {
       case /\/orgs\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
-      case /\/orgs\/[^\/]+?\/dns$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url):
         // get an orgs dns records
         return MockOrgDnsRecordsResponse;
-      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-zones$/.test(url):
         // get an orgs dns zones
         return MockOrgDnsZonesResponse;
-      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?\/is-valid$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-zones\/[^\/]+?\/is-valid$/.test(url):
         // get an orgs dns zones check
         return MockCheckDnsZoneResponse;
-      case /\/orgs\/[^\/]+?\/dns\/unmapped-ptr-ip-addresses$/.test(url):
+      case /\/orgs\/[^\/]+?\/unmapped-dns-ptr-ip-addresses$/.test(url):
         // get an orgs unmapped ptr ips
         return MockIpAddressSetResponse;
       case /\/companies\/[^\/]+?$/.test(url):
@@ -392,11 +392,11 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Delete media
         return MockTaskService.getNewMockTaskResponse('delete entity');
-      case /\/orgs\/[^\/]+?\/dns\/[^\/]+?$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records\/[^\/]+?$/.test(url): {
         // delete dns record
         return MockOrgResource.deleteDnsRecord();
       }
-      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-zones\/[^\/]+?$/.test(url): {
         // delete dns zone
         return MockOrgResource.deleteDnsZone();
       }
@@ -487,12 +487,12 @@ export class Http {
         const request = data as UserCreationRequestJson;
         return MockCompanyService.createUser(request);
       }
-      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url): {
         // create new org dns record
         const request = data as DnsRecordCreateRequestJson;
         return MockOrgResource.addDnsRecord(request);
       }
-      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-zones$/.test(url): {
         // create new org dns zone
         const request = data as DnsZoneCreateRequestJson;
         return MockOrgResource.addDnsZone(request);
@@ -539,7 +539,7 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Update media
         return MockTaskService.getNewMockTaskResponse('update media');
-      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url): {
         // update org dns record
         const request = data as DnsRecordUpdateRequestJson;
         return MockOrgResource.updateDnsRecord(request);
