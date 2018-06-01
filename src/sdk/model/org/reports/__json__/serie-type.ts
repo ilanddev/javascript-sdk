@@ -1,0 +1,1 @@
+export type SerieType = 'VULNERABILITY' | 'ANTI_MALWARE' | 'LOG_INSPECTION' | 'FIREWALL';
