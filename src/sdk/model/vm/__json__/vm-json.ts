@@ -4,6 +4,9 @@ import { VmStatus } from './vm-status-type';
 import { DiskType } from '../virtual-disk/__json__/disk-type';
 import { IpAddressingMode } from './ip-adressing-mode-type';
 import { AdapterType } from './adapter-type';
+import {
+  GuestCustomizationUpdateRequestJson
+} from '../guest-customization/__json__/guest-customization-update-request-json';
 
 /**
  * Interface for VM properties.
@@ -45,13 +48,6 @@ export interface VmCreateSnapshotRequestJson {
 }
 
 /**
- * Specification for VM memory configuration update request.
- */
-export interface VmMemoryUpdateRequestJson {
-  memory_size: string;
-}
-
-/**
  * Specification for VM description update request.
  */
 export interface VmUpdateDescriptionRequestJson {
@@ -63,14 +59,6 @@ export interface VmUpdateDescriptionRequestJson {
  */
 export interface VmUpdateNameRequestJson {
   name: string;
-}
-
-/**
- * Specification for VM CPU configuration update request.
- */
-export interface VmCpuUpdateRequestJson {
-  cpus_number: number;
-  cores_per_socket?: number;
 }
 
 /**
@@ -148,4 +136,40 @@ export interface AddVappVmRequestJson {
   vm_template_uuid: string;
   ip_address: string;
   storage_profile_uuid: string;
+}
+
+/**
+ * Specification for VM backup restore into vApp request.
+ */
+export interface VmRestoreBackupIntoVAppRequestJson {
+  time: number;
+  vapp_uuid: string;
+}
+
+/**
+ * VM cpu count update request JSON
+ */
+export interface VmCpuCountUpdateRequestJson {
+  number_of_cpus: number;
+  cores_per_socket?: number;
+}
+
+/**
+ * VM memory size update request JSON
+ */
+export interface VmMemorySizeUpdateRequestJson {
+  memory_size: string;
+}
+
+/**
+ * VM reconfigure request JSON
+ */
+export interface VmReconfigureRequestJson {
+  name?: string;
+  description?: string;
+  cpu_spec?: VmCpuCountUpdateRequestJson;
+  memory_spec?: VmMemorySizeUpdateRequestJson;
+  disk_spec?: Array<VmDiskRequestJson>;
+  guest_customization_section?: GuestCustomizationUpdateRequestJson;
+  nested_hypervisor_enabled?: boolean;
 }

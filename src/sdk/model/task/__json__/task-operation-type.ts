@@ -112,4 +112,6 @@ export type TaskOperation = 'power on' |
   'sync catalog item' |
   'managed vapp shutdown' |
   'generate failover test report' |
-  'update cloud tenant repository size';
+  'update cloud tenant repository size' |
+  'enable nested hypervisor' |
+  'disable nested hypervisor';

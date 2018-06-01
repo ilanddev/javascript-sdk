@@ -10,14 +10,11 @@ import { Snapshot } from './snapshot/snapshot';
 import { ScreenTicket } from './screen-ticket/screen-ticket';
 import { MksScreenTicket } from './screen-ticket/mks-screen-ticket';
 import { Bill } from '../common/billing/bill';
-import { BillingSummary } from '../common/billing/billing-summary';
 import { VmCreateSnapshotRequest } from './snapshot/vm-create-snapshot-request';
-import { VmCpuUpdateRequest } from './vm-cpu-update-request';
 import {
   VmInsertMediaRequestJson,
   VmJson,
-  VmMemoryUpdateRequestJson,
-  VmRelocationRequestJson,
+  VmRelocationRequestJson, VmRestoreBackupIntoVAppRequestJson,
   VmRestoreBackupRequestJson,
   VmUpdateDescriptionRequestJson,
   VmUpdateNameRequestJson
@@ -35,13 +32,30 @@ import { SnapshotJson } from './snapshot/__json__/snapshot-json';
 import { ScreenTicketJson } from './screen-ticket/__json__/screen-ticket-json';
 import { MksScreenTicketJson } from './screen-ticket/__json__/mks-screen-ticket-json';
 import { BillJson } from '../common/billing/__json__/bill-json';
-import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
 import { VmStatus } from './__json__/vm-status-type';
 import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-samples';
 import { PerfCounter } from '../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
+import { BootOptions } from './boot-options/boot-options';
+import { BootOptionsJson } from './boot-options/__json__';
+import { Capabilities } from './capabilities';
+import { CapabilitiesJson } from './capabilities/__json__';
+import { DiskType } from './virtual-disk/__json__';
+import { GuestCustomization } from './guest-customization';
+import { GuestCustomizationJson } from './guest-customization/__json__';
+import { GuestTools } from './guest-tools/guest-tools';
+import { GuestToolsJson } from './guest-tools/__json__';
+import { VmSummary } from './summary';
+import { VmSummaryJson } from './summary/__json__';
+import { ToolsUpgradePolicy } from './__json__/tools-upgrade-policy';
+import { GuestCustomizationUpdateRequest } from './guest-customization/guest-customization-update-request';
+import { VmNetwork, VmNetworkJson } from './vm-network';
+import { VmCapabilityUpdateRequest } from './capabilities/capabilities-update-request';
+import { VmMemorySizeUpdateRequest } from './vm-memory-size-update-request';
+import { VmCpuCountUpdateRequest } from './vm-cpu-count-update-request';
+import { VmReconfigureRequest } from './vm-reconfigure-request';
 
 /**
  * Virtual Machine.
@@ -279,24 +293,285 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Refreshes the VM data by retrieving it from the API again.
-   * @returns {Promise<Vm>}
+   * Deletes this VM.
+   * @returns {Promise<Task>} task promise
    */
-  async refresh(): Promise<Vm> {
-    return Iland.getHttp().get(`/vms/${this.uuid}`).then((response) => {
-      this._apiVm = response.data as VmJson;
-      return this;
+  async delete(): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
   /**
-   * Gets the list of VNICs for this VM.
-   * @returns {Promise<Vnic[]>}
+   * Create a new virtual disk for this VM.
+   * @param {VirtualDiskJson} diskJson spec for the new disk
+   * @returns {Promise<Task>} task promise
    */
-  async getVnics(): Promise<Array<Vnic>> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/vnics`).then((response) => {
-      const apiVnics = response.data.data as Array<VnicJson>;
-      return apiVnics.map((apiVnic) => new Vnic(apiVnic));
+  async createVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/add-virtual-disk`, diskJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Creates a new Vm in the Vapp based on an existing Vm.
+   * @param {VmJson} vmJson Vm properties
+   * @returns {Promise<Task>} task promise
+   */
+  async copy(vmJson: VmJson): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/copy`, vmJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Creates a snapshot of the VM.
+   * @param {VmCreateSnapshotRequest} options the snapshot creation options
+   * @returns {Promise<Task>} task promise
+   */
+  async createSnapshot(options: VmCreateSnapshotRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/create-snapshot`, options.json).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Disable Nested Hypervisor
+   * @returns {Promise<Task>}
+   */
+  async disableNestedHypervisor(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/disable-nested-hypervisor`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Ejects any media from the VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async ejectMedia(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/eject-media`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Retrieve a CSV report email with all event history for a given Vm.
+   * @returns {Promise<Task>} task promise
+   */
+  async emailEventHistory(email: string): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/email-event-history`, {email: email}).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Enable Nested Hypervisor
+   * @returns {Promise<Task>}
+   */
+  async enableNestedHypervisor(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/enable-nested-hypervisor`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Inserts a specified media into the VM.
+   * @param {string} mediaUuid the UUID of the media to insert
+   * @returns {Promise<Task>} task promise
+   */
+  async insertMedia(mediaUuid: string): Promise<Task> {
+    const json: VmInsertMediaRequestJson = {
+      media: mediaUuid
+    };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/insert-media`, json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Install VmWare Tools.
+   * @returns {Promise<Task>} task promise
+   */
+  async installVmWareTools(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/install-vmware-tools`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Powers off the VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async powerOff(): Promise<Task> {
+    return this.performPowerOperation('poweroff');
+  }
+
+  /**
+   * Powers on the VM.
+   * @param {boolean} forceGuestCustomization whether to force guest customization
+   * @returns {Promise<Task>} task promise
+   */
+  async powerOn(forceGuestCustomization?: boolean): Promise<Task> {
+    return this.performPowerOperation('poweron', forceGuestCustomization);
+  }
+
+  /**
+   * Requests that the guest OS restart.
+   * @returns {Promise<Task>} task promise
+   */
+  async rebootGuestOs(): Promise<Task> {
+    return this.performPowerOperation('reboot');
+  }
+
+  /**
+   * Update the name and description of the VM as well as the guest customization section, the cpu, memory,
+   * and disk specifications. Any sections left out of the VmReconfigureRequest will be left unchanged.
+   * @param {VmReconfigureRequest} request
+   * @returns {Promise<Task>}
+   */
+  async reconfigure(request: VmReconfigureRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/reconfigure`, request.json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Move the VM to a different storage profile.
+   * @returns {Promise<Task>} task promise
+   */
+  async relocate(storageProfileUuid: string): Promise<Task> {
+    const json: VmRelocationRequestJson = {
+      storage_profile: storageProfileUuid
+    };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/relocate`, json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Performs a hard reset power operation.
+   * @returns {Promise<Task>} task promise
+   */
+  async reset(): Promise<Task> {
+    return this.performPowerOperation('reset');
+  }
+
+  /**
+   * Reset MAC Addresses
+   * @returns {Promise<Task>}
+   */
+  async resetMacAddresses(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/reset-mac-addresses`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Restores a backup of the VM.
+   * @param {Date} timestamp the timestamp of the restore point to be restored
+   * @returns {Promise<Task>} task promise
+   */
+  async restoreBackup(timestamp: Date): Promise<Task> {
+    const json: VmRestoreBackupRequestJson = {
+      time: timestamp.getTime()
+    };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/restore`, json).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Restore a backup of the VM into another vApp.
+   * @param {Date} timestamp the timestamp of the restore point to be restored
+   * @param {string} vappUuid the uuid of the vApp in which VM will be restored
+   * @returns {Promise<Task>}
+   */
+  async restoreBackupIntoVapp(timestamp: Date, vappUuid: string): Promise<Task> {
+    const json: VmRestoreBackupIntoVAppRequestJson = {
+      time: timestamp.getTime(),
+      vapp_uuid: vappUuid
+    };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/restore-into-vapp`, json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Restore the VMs snapshot.
+   * @returns {Promise<Task>} task promise
+   */
+  async restoreSnapshot(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/restore-snapshot`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Shuts down the VMs guest operating system.
+   * @returns {Promise<Task>} task promise
+   */
+  async shutdownGuestOs(): Promise<Task> {
+    return this.performPowerOperation('shutdown');
+  }
+
+  /**
+   * Suspends VM.
+   * @returns {Promise<Task>} task promise
+   */
+  async suspend(): Promise<Task> {
+    return this.performPowerOperation('suspend');
+  }
+
+  /**
+   * Update VM boot options
+   * @returns {Promise<Task>}
+   */
+  async updateBootOptions(bootDelay: number, enterBios: boolean): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-boot-options`).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Update VM capabilities
+   * @param {CapabilitiesUpdateRequest} request VM capabilities update request
+   * @returns {Promise<Task>}
+   */
+  async updateCapabilities(request: VmCapabilityUpdateRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-capabilities`,request.json)
+      .then((response) => {
+        const json = response.data as TaskJson;
+        return new Task(json);
+      });
+  }
+
+  /**
+   * Edit the number of CPUs.
+   * @param request {VmCpuCountUpdateRequest} specifying new number of CPUs
+   * @returns {Promise<Task>} task promise
+   */
+  async updateCpuCount(request: VmCpuCountUpdateRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-cpu-count`, request.json).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
@@ -316,18 +591,16 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Updates the VM's name.
-   * @param newName the new name
-   * @returns {Promise<Task>} task promise
+   * Updates the VM's guest customization.
+   * @param {GuestCustomizationUpdateRequest} request
+   * @returns {Promise<Task>}
    */
-  async updateName(newName: string): Promise<Task> {
-    const json: VmUpdateNameRequestJson = {
-      name: newName
-    };
-    return Iland.getHttp().put(`/vms/${this.uuid}/name`, json).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
+  async updateGuestCustomization(request: GuestCustomizationUpdateRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-guest-customization`, request.json)
+      .then((response) => {
+        const apiTask = response.data as TaskJson;
+        return new Task(apiTask);
+      });
   }
 
   /**
@@ -336,35 +609,52 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
-    const spec: VmMemoryUpdateRequestJson = {
-      memory_size: String(memorySizeMb)
-    };
-    return Iland.getHttp().put(`/vms/${this.uuid}/mem`, spec).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
+    const request = new VmMemorySizeUpdateRequest({memory_size: String(memorySizeMb)});
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-memory-size`, request.json)
+      .then((response) => {
+        const apiTask = response.data as TaskJson;
+        return new Task(apiTask);
+      });
   }
 
   /**
-   * Edit the number of CPUs.
-   * @param request {VmCpuUpdateRequest} specifying new number of CPUs
+   * Updates the VM's name.
+   * @param newName the new name
    * @returns {Promise<Task>} task promise
    */
-  async updateNumberOfCpus(request: VmCpuUpdateRequest): Promise<Task> {
-    return Iland.getHttp().put(`/vms/${this.uuid}/cpu`, request.json).then((response) => {
+  async updateName(newName: string): Promise<Task> {
+    const json: VmUpdateNameRequestJson = {
+      name: newName
+    };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-name`, json).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
 
   /**
-   * Gets the VM's virtual disks.
-   * @returns {Promise<VirtualDisk[]>} array of virtual disks
+   * Updates the VM's tools upgrade policy.
+   * @param {ToolsUpgradePolicy} policy The new policy
+   * @returns {Promise<Task>} task promise
    */
-  async getVirtualDisks(): Promise<Array<VirtualDisk>> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/virtual-disks`).then((response) => {
-      const apiDisks = response.data.data as Array<VirtualDiskJson>;
-      return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
+  async updateToolsUpgradePolicy(policy: ToolsUpgradePolicy): Promise<Task> {
+    const json = { upgrade_policy: policy };
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-tools-upgrade-policy`, json)
+      .then((response) => {
+        const apiTask = response.data as TaskJson;
+        return new Task(apiTask);
+      });
+  }
+
+  /**
+   * Update a virtual disk that is attached to this VM.
+   * @param {VirtualDiskJson} diskJson updated specification for the disk
+   * @returns {Promise<Task>} task promise
+   */
+  async updateVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-virtual-disk`, diskJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
@@ -374,33 +664,149 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateVirtualDisks(disksJson: Array<VirtualDiskJson>): Promise<Task> {
-    return Iland.getHttp().put(`/vms/${this.uuid}/virtual-disks`, disksJson).then((response) => {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-virtual-disks`, disksJson).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
 
   /**
-   * Update a virtual disk that is attached to this VM.
-   * @param {VirtualDiskJson} diskJson updated specification for the disk
-   * @returns {Promise<Task>} task promise
+   * Update virtual network cards for a VM.
+   * @param {Array<Vnic>} vnics
+   * @returns {Promise<Task>}
    */
-  async updateVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
-    return Iland.getHttp().put(`/vms/${this.uuid}/virtual-disk`, diskJson).then((response) => {
+  async updateVnics(vnics: Array<Vnic>): Promise<Task> {
+    const spec: Array<VnicJson> = vnics.map((vnic) => {
+      return vnic.json;
+    });
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-vnics`, spec).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
   }
 
   /**
-   * Create a new virtual disk for this VM.
-   * @param {VirtualDiskJson} diskJson spec for the new disk
+   * Upgrade the VM's guest tools.
    * @returns {Promise<Task>} task promise
    */
-  async createVirtualDisk(diskJson: VirtualDiskJson): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/virtual-disk`, diskJson).then((response) => {
+  async upgradeGuestTools(): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/upgrade-guest-tools`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Gets the VMs available backup restore points.
+   * @returns {Promise<BackupRestorePoint[]>} promise that resolves with the list of backup restore points
+   */
+  async getBackupRestorePoints(): Promise<Array<BackupRestorePoint>> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/backups`).then((response) => {
+      const restorePointsJson = response.data.data as Array<BackupRestorePointJson>;
+      return restorePointsJson.map((restorePointJson) => new BackupRestorePoint(restorePointJson));
+    });
+  }
+
+  /**
+   * Gets the bill for the VM for the specified month and year. Month and year default to current month and year if left
+   * unspecified.
+   * @returns {Promise<Bill>} promise that resolves with the Bill
+   */
+  async getBill(month?: number, year?: number): Promise<Bill> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/billing`, {
+      params: {
+        month: month,
+        year: year
+      }
+    }).then((response) => {
+      const json = response.data as BillJson;
+      return new Bill(json);
+    });
+  }
+
+  /**
+   * Gets the VMs boot options
+   * @returns {Promise<BootOptions>} promise that resolves with the vm boot options
+   */
+  async getBootOptions(): Promise<BootOptions> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/boot-options`).then((response) => {
+      const bootOptionsJson = response.data as BootOptionsJson;
+      return new BootOptions(bootOptionsJson);
+    });
+  }
+
+  /**
+   * Gets the VM capabilities
+   * @returns {Promise<Capabilities>} promise that resolves with the vm capabilities
+   */
+  async getCapabilities(): Promise<Capabilities> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/capabilities`).then((response) => {
+      const capabilitiesJson = response.data as CapabilitiesJson;
+      return new Capabilities(capabilitiesJson);
+    });
+  }
+
+  /**
+   * Gets the VM recommended disk bus type
+   * @returns {Promise<DiskType>} promise that resolves with the vm recommended disk bus type
+   */
+  async getRecommendedDiskBusType(): Promise<DiskType> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/disks/recommended-disk-bus-type`).then((response) => {
+      return response.data.bus_type as DiskType;
+    });
+  }
+
+  /**
+   * Gets the VM guest customization section includes properties of the guest operating system that can be modified
+   * such as passwords, and domain names.
+   * @returns {Promise<GuestCustomization>} promise that resolves with the vm guest customization object
+   */
+  async getGuestCustomization(): Promise<GuestCustomization> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/guest-customization`).then((response) => {
+      const guestCustomizationJson = response.data as GuestCustomizationJson;
+      return new GuestCustomization(guestCustomizationJson);
+    });
+  }
+
+  /**
+   * Gets the VM guest tools information
+   * @returns {Promise<GuestCustomization>} promise that resolves with the vm guest tools
+   */
+  async getGuestToolsInfo(): Promise<GuestTools> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/guest-tools`).then((response) => {
+      const guestToolsJson = response.data as GuestToolsJson;
+      return new GuestTools(guestToolsJson);
+    });
+  }
+
+  /**
+   * Returns true if VM has a snapshot
+   * @returns {Promise<boolean>} promise that resolves with a boolean that indicates if VM has a snapshot
+   */
+  async hasSnapshot(): Promise<boolean> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/has-snapshot`).then((response) => {
+      return response.data.has_snapshot;
+    });
+  }
+
+  /**
+   * Gets the VM summary
+   * @returns {Promise<VmSummary>} promise that resolves with the vm guest tools
+   */
+  async getSummary(): Promise<VmSummary> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/summary`).then((response) => {
+      const summary = response.data as VmSummaryJson;
+      return new VmSummary(summary);
+    });
+  }
+
+  /**
+   * Gets the VM tools upgrade policy
+   * @returns {Promise<ToolsUpgradePolicy>} promise that resolves with tools upgrade policy string
+   */
+  async getToolUpgradePolicy(): Promise<ToolsUpgradePolicy> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/tools-upgrade-policy`).then((response) => {
+      return response.data.upgrade_policy as ToolsUpgradePolicy;
     });
   }
 
@@ -464,107 +870,45 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Deletes this VM.
-   * @returns {Promise<Task>} task promise
+   * Gets the VMs MKS screen ticket for a remote console connection.
+   * @returns {Promise<MksScreenTicket>} promise that resolves with the MKS screen ticket
    */
-  async delete(): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}`).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
+  async getMksScreenTicket(): Promise<MksScreenTicket> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/mks-screen-ticket`).then((response) => {
+      const json = response.data as MksScreenTicketJson;
+      return new MksScreenTicket(json);
     });
   }
 
   /**
-   * Performs a power operation on the VM.
-   * @param {VmPowerOperation} type the type of power operation to perform
-   * @param {boolean} forceGuestCustomization whether to force guest customization (only applicable when powering on)
-   * @returns {Promise<Task>} task promise
+   * Get the networks for current VM.
+   * @returns {Promise<Array<VmNetwork>>}
    */
-  async performPowerOperation(type: VmPowerOperation, forceGuestCustomization?: boolean): Promise<Task> {
-    let config = undefined;
-    if (type === 'poweron' && forceGuestCustomization) {
-      config = {
-        params: {
-          forceGuestCustomization: forceGuestCustomization
-        }
-      };
-    }
-    return Iland.getHttp().post(`/vms/${this.uuid}/${type}`, undefined, config).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
+  async getNetworks(): Promise<Array<VmNetwork>> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/networks`).then((response) => {
+      return response.data.data.map((data: VmNetworkJson) => {
+        return new VmNetwork(data);
+      });
     });
   }
 
   /**
-   * Powers on the VM.
-   * @param {boolean} forceGuestCustomization whether to force guest customization
-   * @returns {Promise<Task>} task promise
+   * Gets the VMs screen ticket for a remote console connection.
+   * @returns {Promise<ScreenTicket>} promise that resolves with the screen ticket
    */
-  async powerOn(forceGuestCustomization?: boolean): Promise<Task> {
-    return this.performPowerOperation('poweron', forceGuestCustomization);
-  }
-
-  /**
-   * Powers off the VM.
-   * @returns {Promise<Task>} task promise
-   */
-  async powerOff(): Promise<Task> {
-    return this.performPowerOperation('poweroff');
-  }
-
-  /**
-   * Suspends VM.
-   * @returns {Promise<Task>} task promise
-   */
-  async suspend(): Promise<Task> {
-    return this.performPowerOperation('suspend');
-  }
-
-  /**
-   * Shuts down the VMs guest operating system.
-   * @returns {Promise<Task>} task promise
-   */
-  async shutdownGuestOs(): Promise<Task> {
-    return this.performPowerOperation('shutdown');
-  }
-
-  /**
-   * Performs a hard reset power operation.
-   * @returns {Promise<Task>} task promise
-   */
-  async reset(): Promise<Task> {
-    return this.performPowerOperation('reset');
-  }
-
-  /**
-   * Requests that the guest OS restart.
-   * @returns {Promise<Task>} task promise
-   */
-  async rebootGuestOs(): Promise<Task> {
-    return this.performPowerOperation('reboot');
-  }
-
-  /**
-   * Gets the VMs available backup restore points.
-   * @returns {Promise<BackupRestorePoint[]>} promise that resolves with the list of backup restore points
-   */
-  async getBackupRestorePoints(): Promise<Array<BackupRestorePoint>> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/backups`).then((response) => {
-      const restorePointsJson = response.data.data as Array<BackupRestorePointJson>;
-      return restorePointsJson.map((restorePointJson) => new BackupRestorePoint(restorePointJson));
+  async getScreenTicket(): Promise<ScreenTicket> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/screen-ticket`).then((response) => {
+      const json = response.data as ScreenTicketJson;
+      return new ScreenTicket(json);
     });
   }
 
   /**
-   * Restores a backup of the VM.
-   * @param {Date} timestamp the timestamp of the restore point to be restored
+   * Deletes the VMs snapshot.
    * @returns {Promise<Task>} task promise
    */
-  async restoreBackup(timestamp: Date): Promise<Task> {
-    const json: VmRestoreBackupRequestJson = {
-      time: timestamp.getTime()
-    };
-    return Iland.getHttp().post(`/vms/${this.uuid}/restore`, json).then((response) => {
+  async deleteSnapshot(): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}/snapshot`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -583,36 +927,13 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Creates a snapshot of the VM.
-   * @param {VmCreateSnapshotRequest} options the snapshot creation options
-   * @returns {Promise<Task>} task promise
+   * Gets the VM's virtual disks.
+   * @returns {Promise<VirtualDisk[]>} array of virtual disks
    */
-  async createSnapshot(options: VmCreateSnapshotRequest): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/snapshot`, options.json).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
-  }
-
-  /**
-   * Restore the VMs snapshot.
-   * @returns {Promise<Task>} task promise
-   */
-  async restoreSnapshot(): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/snapshot/restore`).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
-  }
-
-  /**
-   * Deletes the VMs snapshot.
-   * @returns {Promise<Task>} task promise
-   */
-  async deleteSnapshot(): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}/snapshot`).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
+  async getVirtualDisks(): Promise<Array<VirtualDisk>> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/virtual-disks`).then((response) => {
+      const apiDisks = response.data.data as Array<VirtualDiskJson>;
+      return apiDisks.map((apiDisk) => new VirtualDisk(apiDisk));
     });
   }
 
@@ -628,95 +949,58 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Gets the VMs screen ticket for a remote console connection.
-   * @returns {Promise<ScreenTicket>} promise that resolves with the screen ticket
+   * Gets the list of VNICs for this VM.
+   * @returns {Promise<Vnic[]>}
    */
-  async getScreenTicket(): Promise<ScreenTicket> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/screen-ticket`).then((response) => {
-      const json = response.data as ScreenTicketJson;
-      return new ScreenTicket(json);
+  async getVnics(): Promise<Array<Vnic>> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/vnics`).then((response) => {
+      const apiVnics = response.data.data as Array<VnicJson>;
+      return apiVnics.map((apiVnic) => new Vnic(apiVnic));
     });
   }
 
   /**
-   * Gets the VMs MKS screen ticket for a remote console connection.
-   * @returns {Promise<MksScreenTicket>} promise that resolves with the MKS screen ticket
+   * Gets the list of VNICs for this VM.
+   * @returns {Promise<Vnic[]>}
    */
-  async getMksScreenTicket(): Promise<MksScreenTicket> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/mks-screen-ticket`).then((response) => {
-      const json = response.data as MksScreenTicketJson;
-      return new MksScreenTicket(json);
+  async deleteVnics(vnicUuid: string): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicUuid}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
   /**
-   * Gets the bill for the VM for the specified month and year. Month and year default to current month and year if left
-   * unspecified.
-   * @returns {Promise<Bill>} promise that resolves with the Bill
+   * Refreshes the VM data by retrieving it from the API again.
+   * @returns {Promise<Vm>}
    */
-  async getBill(month?: number, year?: number): Promise<Bill> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/bill`, {
-      params: {
-        month: month,
-        year: year
-      }
-    }).then((response) => {
-      const json = response.data as BillJson;
-      return new Bill(json);
+  async refresh(): Promise<Vm> {
+    return Iland.getHttp().get(`/vms/${this.uuid}`).then((response) => {
+      this._apiVm = response.data as VmJson;
+      return this;
     });
   }
 
   /**
-   * Gets the current billing summary for the VM.
-   * @returns {Promise<BillingSummary>} promise that resolves with the current billing summary
-   */
-  async getCurrentBillingSummary(): Promise<BillingSummary> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/billing/current`).then((response) => {
-      const json = response.data as BillingSummaryJson;
-      return new BillingSummary(json);
-    });
-  }
-
-  /**
-   * Inserts a specified media into the VM.
-   * @param {string} mediaUuid the UUID of the media to insert
+   * Performs a power operation on the VM.
+   * @param {VmPowerOperation} type the type of power operation to perform
+   * @param {boolean} forceGuestCustomization whether to force guest customization (only applicable when powering on)
    * @returns {Promise<Task>} task promise
    */
-  async insertMedia(mediaUuid: string): Promise<Task> {
-    const json: VmInsertMediaRequestJson = {
-      media: mediaUuid
-    };
-    return Iland.getHttp().post(`/vms/${this.uuid}/media/insert`, json).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
+  async performPowerOperation(type: VmPowerOperation, forceGuestCustomization?: boolean): Promise<Task> {
+    let config = undefined;
+    if (type === 'poweron' && forceGuestCustomization) {
+      config = {
+        params: {
+          forceGuestCustomization: forceGuestCustomization
+        }
+      };
+    }
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/${type}`, undefined, config).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
-
-  /**
-   * Ejects any media from the VM.
-   * @returns {Promise<Task>} task promise
-   */
-  async ejectMedia(): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/media/eject`).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
-    });
-  }
-
-  /**
-   * Move the VM to a different storage profile.
-   * @returns {Promise<Task>} task promise
-   */
-  async relocate(storageProfileUuid: string): Promise<Task> {
-    const json: VmRelocationRequestJson = {
-      storage_profile: storageProfileUuid
-    };
-    return Iland.getHttp().put(`/vms/${this.uuid}/storage-profile`, json).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
-    });
-  }
-
 }
 
 applyMixins(Vm, [EntityWithPerfSamples]);

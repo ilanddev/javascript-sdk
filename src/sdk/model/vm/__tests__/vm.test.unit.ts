@@ -1,5 +1,8 @@
 import { Vm } from '../vm';
-import { MockVmJson, MockVmPerfCountersJson, MockVmPerfSamplesSeriesJson } from '../__mocks__/vm';
+import {
+  MockVmJson, MockVmPerfCountersJson, MockVmPerfSamplesSeriesJson,
+  MockVmRecommendedDiskBusTypeJson, MockVmToolUpgradePolicyJson
+} from '../__mocks__/vm';
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { MockVirtualDisk1Json, MockVirtualDisksJson } from '../virtual-disk/__mocks__/virtual-disk';
@@ -11,14 +14,12 @@ import {
 import { MockSnapshotJson } from '../snapshot/__mocks__/snapshot';
 import { MockScreenTicketJson } from '../screen-ticket/__mocks__/screen-ticket';
 import { MockMksScreenTicketJson } from '../screen-ticket/__mocks__/mks-screen-ticket';
-import { MockVmBillingSummaryJson, MockVmBillJson } from '../../common/billing/__mocks__/bill';
-import { VmCpuUpdateRequest } from '../vm-cpu-update-request';
 import { VmCreateSnapshotRequest } from '../snapshot/vm-create-snapshot-request';
 import { VirtualDiskJson } from '../virtual-disk/__json__/virtual-disk-json';
 import {
-  VmCpuUpdateRequestJson,
-  VmCreateSnapshotRequestJson,
-  VmMemoryUpdateRequestJson,
+  VmCpuCountUpdateRequestJson,
+  VmCreateSnapshotRequestJson, VmMemorySizeUpdateRequestJson,
+  VmReconfigureRequestJson,
   VmRestoreBackupRequestJson,
   VmUpdateNameRequestJson
 } from '../__json__/vm-json';
@@ -29,6 +30,24 @@ import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-reque
 import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
+import { MockBootOptionsJson } from '../boot-options/__mocks__/boot-options';
+import { MockVmCapabilitiesJson } from '../capabilities/__mocks__/capabilities';
+import { MockVmBillJson } from '../../common/billing/__mocks__/bill';
+import { MockVmGuestCustomizationJson } from '../guest-customization/__mocks__/guest-customization';
+import { MockVmGuestToolsJson } from '../guest-tools/__mocks__/guest-tools';
+import { MockVmSummaryJson } from '../summary/__mocks__/vm-summary';
+import { ToolsUpgradePolicy } from '../__json__/tools-upgrade-policy';
+import { GuestCustomizationUpdateRequest } from '../guest-customization/guest-customization-update-request';
+import { GuestCustomizationJson } from '../guest-customization/__json__';
+import { MockVmNetworkJson } from '../vm-network/__mocks__/vm-networks';
+import { VmCapabilityUpdateRequest } from '../capabilities/capabilities-update-request';
+import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__';
+import { VmReconfigureRequest } from '../vm-reconfigure-request';
+import { VmCpuCountUpdateRequest } from '../vm-cpu-count-update-request';
+import { VmMemorySizeUpdateRequest } from '../vm-memory-size-update-request';
+import {
+  GuestCustomizationUpdateRequestJson
+} from '../guest-customization/__json__/guest-customization-update-request-json';
 
 jest.mock('../../../service/http/http');
 
@@ -63,7 +82,7 @@ test('Properly submits request for updating VM virtual disks', async() => {
     size: 100
   }];
   return vm.updateVirtualDisks(updatedDisks).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/virtual-disks`, updatedDisks);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-virtual-disks`, updatedDisks);
     expect(task.operation).toBe('update vm disks');
   });
 });
@@ -72,8 +91,8 @@ test('Properly submits request for updating single VM virtual disk', async() => 
   const vm = new Vm(MockVmJson);
   const updatedDisk: VirtualDiskJson = Object.assign({}, MockVirtualDisk1Json);
   return vm.updateVirtualDisk(updatedDisk).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/virtual-disk`, updatedDisk);
-    expect(task.operation).toBe('update vm disks');
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-virtual-disk`, updatedDisk);
+    expect(task.operation).toBe('update disk size');
   });
 });
 
@@ -85,7 +104,7 @@ test('Properly submits request for creating new VM virtual disk', async() => {
     type: 'BUS_LOGIC'
   };
   return vm.createVirtualDisk(newDisk).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/virtual-disk`, newDisk);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/add-virtual-disk`, newDisk);
     expect(task.operation).toBe('add virtual disk');
   });
 });
@@ -102,23 +121,43 @@ test('Properly submits request for deleting VM virtual disk', async() => {
 test('Properly submits request for updating VM memory size', async() => {
   const vm = new Vm(MockVmJson);
   const newMemSize = 10000;
-  const expectedSpec: VmMemoryUpdateRequestJson = {
+  const expectedSpec: VmMemorySizeUpdateRequestJson = {
     memory_size: newMemSize.toString()
   };
+
+  const request = new VmMemorySizeUpdateRequest({memory_size: String(200)});
+  expect(request.memorySize).toBe(200);
+  request.memorySize = newMemSize;
+  expect(request.memorySize).toBe(newMemSize);
+  expect(request.json).toEqual(expectedSpec);
+  expect(request.toString().length).toBeGreaterThan(0);
+
   return vm.updateMemorySize(newMemSize).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/mem`, expectedSpec);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-memory-size`, expectedSpec);
     expect(task.operation).toBe('update memory size');
   });
 });
 
 test('Properly submits request for updating VM cpu number', async() => {
   const vm = new Vm(MockVmJson);
-  const spec: VmCpuUpdateRequestJson = {
-    cpus_number: 8,
+  const spec: VmCpuCountUpdateRequestJson = {
+    number_of_cpus: 8,
     cores_per_socket: 2
   };
-  return vm.updateNumberOfCpus(new VmCpuUpdateRequest(8, 2)).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/cpu`, spec);
+
+  const request = new VmCpuCountUpdateRequest({number_of_cpus: 6, cores_per_socket: 1});
+  expect(request.numberOfCpus).toBe(6);
+  expect(request.coresPerSocket).toBe(1);
+
+  request.numberOfCpus = spec.number_of_cpus;
+  request.coresPerSocket = spec.cores_per_socket;
+  expect(request.numberOfCpus).toBe(spec.number_of_cpus);
+  expect(request.coresPerSocket).toBe(spec.cores_per_socket);
+  expect(request.json).toEqual(spec);
+  expect(request.toString().length).toBeGreaterThan(0);
+
+  return vm.updateCpuCount(request).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-cpu-count`, spec);
     expect(task.operation).toBe('update cpu count');
   });
 });
@@ -186,7 +225,7 @@ test('Properly submits request for deleting a VM', async() => {
 test('Properly submits request to power on a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.powerOn().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/poweron`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/poweron`, undefined, undefined);
     expect(task.operation).toBe('power on');
   });
 });
@@ -194,7 +233,7 @@ test('Properly submits request to power on a VM', async() => {
 test('Properly submits request to power on a VM and force guest customization', async() => {
   const vm = new Vm(MockVmJson);
   return vm.powerOn(true).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/poweron`, undefined, {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/poweron`, undefined, {
       params: {
         forceGuestCustomization: true
       }
@@ -206,7 +245,7 @@ test('Properly submits request to power on a VM and force guest customization', 
 test('Properly submits request to power off a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.powerOff().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/poweroff`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/poweroff`, undefined, undefined);
     expect(task.operation).toBe('power off');
   });
 });
@@ -214,7 +253,7 @@ test('Properly submits request to power off a VM', async() => {
 test('Properly submits request to reboot a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.rebootGuestOs().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/reboot`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/reboot`, undefined, undefined);
     expect(task.operation).toBe('reboot');
   });
 });
@@ -222,7 +261,7 @@ test('Properly submits request to reboot a VM', async() => {
 test('Properly submits request to reset a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.reset().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/reset`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/reset`, undefined, undefined);
     expect(task.operation).toBe('reset');
   });
 });
@@ -230,7 +269,7 @@ test('Properly submits request to reset a VM', async() => {
 test('Properly submits request to suspend a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.suspend().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/suspend`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/suspend`, undefined, undefined);
     expect(task.operation).toBe('suspend');
   });
 });
@@ -238,8 +277,112 @@ test('Properly submits request to suspend a VM', async() => {
 test('Properly submits request to shutdown a VM', async() => {
   const vm = new Vm(MockVmJson);
   return vm.shutdownGuestOs().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/shutdown`, undefined, undefined);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/shutdown`, undefined, undefined);
     expect(task.operation).toBe('shutdown');
+  });
+});
+
+test('Properly submits request to reconfigure a VM', async() => {
+  const vm = new Vm(MockVmJson);
+  const json = {
+    name: 'test name',
+    description: 'test description',
+    cpu_spec: {number_of_cpus: 2, cores_per_socket: 1},
+    memory_spec: {memory_size: '1000'},
+    guest_customization_section: MockVmGuestCustomizationJson,
+    disk_spec: undefined,
+    nested_hypervisor_enabled: false
+  } as VmReconfigureRequestJson;
+  const request = new VmReconfigureRequest({} as VmReconfigureRequestJson);
+  request.name = json.name;
+  request.description = json.description;
+  request.cpuSpec = new VmCpuCountUpdateRequest(json.cpu_spec as VmCpuCountUpdateRequestJson);
+  request.memorySpec = new VmMemorySizeUpdateRequest(json.memory_spec as VmMemorySizeUpdateRequestJson);
+  request.guestCustomizationSection =
+    new GuestCustomizationUpdateRequest(json.guest_customization_section as GuestCustomizationUpdateRequestJson);
+  request.diskSpec = json.disk_spec;
+  request.nestedHypervisorEnabled = json.nested_hypervisor_enabled;
+
+  expect(request.name).toBe(json.name);
+  expect(request.description).toBe(json.description);
+  expect(request.cpuSpec ? request.cpuSpec.json : request.cpuSpec).toEqual(json.cpu_spec);
+  expect(request.memorySpec ? request.memorySpec.json : request.memorySpec).toEqual(json.memory_spec);
+  expect(request.guestCustomizationSection ?
+    request.guestCustomizationSection.json :
+    request.guestCustomizationSection).toEqual(json.guest_customization_section);
+  expect(request.diskSpec).toBe(json.disk_spec);
+  expect(request.nestedHypervisorEnabled).toBe(json.nested_hypervisor_enabled);
+
+  return vm.reconfigure(request).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/reconfigure`, json);
+    expect(task.operation).toBe('reconfigure vm');
+  });
+});
+
+test('Properly submits request to update VM guest customization', async() => {
+  const vm = new Vm(MockVmJson);
+  const raw: GuestCustomizationJson = {
+    enabled: true,
+    change_sid: true,
+    virtual_machine_id: 'fake-vm-id',
+    join_domain: true,
+    use_org_settings: true,
+    domain_name: 'fake-domain-name',
+    domain_user_name: 'fake-domain-user-name',
+    domain_user_password: 'fake-domain-user-pwd',
+    machine_object_ou: 'fake-machine-obj',
+    admin_password_enabled: true,
+    admin_password_auto: true,
+    admin_password: 'fake-admin-pwd',
+    admin_auto_logon_enabled: true,
+    admin_auto_logon_count: 0,
+    reset_password_required: true,
+    computer_name: 'fake-computer-name',
+    required: true
+  };
+  const json: GuestCustomizationJson = {} as GuestCustomizationJson;
+  const request = new GuestCustomizationUpdateRequest(json);
+  request.enabled = raw.enabled;
+  request.changeSid = raw.change_sid;
+  request.virtualMachineId = raw.virtual_machine_id;
+  request.joinDomain = raw.join_domain;
+  request.useOrgSettings = raw.use_org_settings;
+  request.domainName = raw.domain_name;
+  request.domainUserName = raw.domain_user_name;
+  request.domainUserPassword = raw.domain_user_password;
+  request.machineObjectOu = raw.machine_object_ou;
+  request.adminPasswordEnabled = raw.admin_password_enabled;
+  request.adminPasswordAuto = raw.admin_password_auto;
+  request.adminPassword = raw.admin_password;
+  request.adminAutoLogonEnabled = raw.admin_auto_logon_enabled;
+  request.adminAutoLogonCount = raw.admin_auto_logon_count;
+  request.resetPasswordRequired = raw.reset_password_required;
+  request.computerName = raw.computer_name;
+  request.required = raw.required;
+
+  expect(request.enabled).toBe(raw.enabled);
+  expect(request.changeSid).toBe(raw.change_sid);
+  expect(request.virtualMachineId).toBe(raw.virtual_machine_id);
+  expect(request.joinDomain).toBe(raw.join_domain);
+  expect(request.useOrgSettings).toBe(raw.use_org_settings);
+  expect(request.domainName).toBe(raw.domain_name);
+  expect(request.domainUserName).toBe(raw.domain_user_name);
+  expect(request.domainUserPassword).toBe(raw.domain_user_password);
+  expect(request.machineObjectOu).toBe(raw.machine_object_ou);
+  expect(request.adminPasswordEnabled).toBe(raw.admin_password_enabled);
+  expect(request.adminPasswordAuto).toBe(raw.admin_password_auto);
+  expect(request.adminPassword).toBe(raw.admin_password);
+  expect(request.adminAutoLogonEnabled).toBe(raw.admin_auto_logon_enabled);
+  expect(request.adminAutoLogonCount).toBe(raw.admin_auto_logon_count);
+  expect(request.resetPasswordRequired).toBe(raw.reset_password_required);
+  expect(request.computerName).toBe(raw.computer_name);
+  expect(request.required).toBe(raw.required);
+  expect(request.json).toBeDefined();
+  expect(request.toString().length).toBeGreaterThan(0);
+
+  return vm.updateGuestCustomization(request).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-guest-customization`, json);
+    expect(task.operation).toBe('update guest customization section');
   });
 });
 
@@ -250,8 +393,20 @@ test('Properly submits request to rename a VM', async() => {
     name: newName
   };
   return vm.updateName(newName).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/name`, json);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-name`, json);
     expect(task.operation).toBe('rename vm');
+  });
+});
+
+test('Properly submits request to update VM tools upgrade policy', async() => {
+  const vm = new Vm(MockVmJson);
+  const newPolicy: ToolsUpgradePolicy = 'MANUAL';
+  const json = {
+    upgrade_policy: newPolicy
+  };
+  return vm.updateToolsUpgradePolicy(newPolicy).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-tools-upgrade-policy`, json);
+    expect(task.operation).toBe('update vm tools upgrade policy');
   });
 });
 
@@ -281,7 +436,7 @@ test('Properly submits request to restore a VM backup', async() => {
     time: timestamp.getTime()
   };
   return vm.restoreBackup(timestamp).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/restore`, json);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/restore`, json);
     expect(task.operation).toBe('restore backup');
   });
 });
@@ -309,7 +464,7 @@ test('Properly submits request to create a VM snapshot', async() => {
   };
   return vm.createSnapshot(new VmCreateSnapshotRequest(json.name, json.description, json.memory, json.quiesce))
     .then(function(task) {
-      expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/snapshot`, json);
+      expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/create-snapshot`, json);
       expect(task.operation).toBe('create snapshot');
     });
 });
@@ -317,7 +472,7 @@ test('Properly submits request to create a VM snapshot', async() => {
 test('Properly submits request to restore a VM snapshot', async() => {
   const vm = new Vm(MockVmJson);
   return vm.restoreSnapshot().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/snapshot/restore`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/restore-snapshot`);
     expect(task.operation).toBe('restore snapshot');
   });
 });
@@ -364,10 +519,46 @@ test('Properly submits request to get a VM MKS screen ticket', async() => {
   });
 });
 
+test('Properly submits request to get VM networks', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getNetworks().then(function(networks) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/networks`);
+    expect(networks.length).toBeGreaterThan(0);
+    const network = networks[0];
+    expect(network.uuid).toBe(MockVmNetworkJson.uuid);
+    expect(network.name).toBe(MockVmNetworkJson.name);
+    expect(network.description).toBe(MockVmNetworkJson.description);
+    expect(network.vappNetwork).toBe(MockVmNetworkJson.vapp_network);
+    expect(network.fenceMode).toBe(MockVmNetworkJson.fence_mode);
+    expect(network.deleted).toBe(MockVmNetworkJson.deleted);
+    expect(network.gateway).toBe(MockVmNetworkJson.gateway);
+    expect(network.netmask).toBe(MockVmNetworkJson.netmask);
+    expect(network.dns1).toBe(MockVmNetworkJson.dns1);
+    expect(network.dns2).toBe(MockVmNetworkJson.dns2);
+    expect(network.dnsSuffix).toBe(MockVmNetworkJson.dns_suffix);
+    expect(network.enabled).toBe(MockVmNetworkJson.enabled);
+    expect(network.inherited).toBe(MockVmNetworkJson.inherited);
+    expect(network.parentNetworkName).toBe(MockVmNetworkJson.parent_network_name);
+    expect(network.parentNetworkUuid).toBe(MockVmNetworkJson.parent_network_uuid);
+    expect(network.parentEntityUuid).toBe(MockVmNetworkJson.parent_entity_uuid);
+    expect(network.shared).toBe(MockVmNetworkJson.shared);
+    expect(network.edgeUuid).toBe(MockVmNetworkJson.edge_uuid);
+    expect(network.routerExternalIp).toBe(MockVmNetworkJson.router_external_ip);
+    expect(network.ipRanges).toBeDefined();
+    expect(network.ipRanges.length).toBeGreaterThan(0);
+    expect(network.json).toEqual(MockVmNetworkJson);
+    expect(network.toString().length).toBeGreaterThan(0);
+
+    const ipRange = network.ipRanges[0];
+    expect(ipRange.startAddress).toBe(MockVmNetworkJson.ip_ranges[0].start);
+    expect(ipRange.endAddress).toBe(MockVmNetworkJson.ip_ranges[0].end);
+  });
+});
+
 test('Properly submits request to get a VM bill', async() => {
   const vm = new Vm(MockVmJson);
   return vm.getBill(5, 2017).then(function(bill) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/bill`, {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/billing`, {
       params: {
         month: 5,
         year: 2017
@@ -439,17 +630,137 @@ test('Properly submits request to get a VM bill', async() => {
   });
 });
 
-test('Properly submits request to get VM current billing summary ', async() => {
+test('Properly submits request to get VM boot options', async() => {
   const vm = new Vm(MockVmJson);
-  return vm.getCurrentBillingSummary().then(function(summary) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/billing/current`);
-    expect(summary.currentHour.json).toEqual(MockVmBillingSummaryJson.current_hour);
-    expect(summary.currentMonth.json).toEqual(MockVmBillingSummaryJson.current_month);
-    expect(summary.previousMonth.json).toEqual(MockVmBillingSummaryJson.previous_month);
-    expect(summary.previousHour.json).toEqual(MockVmBillingSummaryJson.previous_hour);
-    expect(summary.testDrive).toBe(MockVmBillingSummaryJson.test_drive);
-    expect(summary.json).toEqual(MockVmBillingSummaryJson);
+  return vm.getBootOptions().then(function(bootOptions) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/boot-options`);
+    expect(bootOptions.bootDelay).toBe(MockBootOptionsJson.boot_delay);
+    expect(bootOptions.isEnterBios).toBe(MockBootOptionsJson.is_enter_bios);
+    expect(bootOptions.json).toBeDefined();
+    expect(bootOptions.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get VM capabilities', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getCapabilities().then(function(capabilities) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/capabilities`);
+    expect(capabilities.cpuHotAddEnabled).toBe(MockVmCapabilitiesJson.cpu_hot_add_enabled);
+    expect(capabilities.memoryHotAddEnabled).toBe(MockVmCapabilitiesJson.memory_hot_add_enabled);
+    expect(capabilities.json).toBeDefined();
+    expect(capabilities.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to update VM capabilities', async() => {
+  const vm = new Vm(MockVmJson);
+  const request = new VmCapabilityUpdateRequest({
+    cpu_hot_add_enabled: false,
+    memory_hot_add_enabled: false
+  } as VmCapabilityUpdateRequestJson);
+  expect(request).toBeDefined();
+  expect(request.cpuHotAddEnabled).toBeFalsy();
+  expect(request.memoryHotAddEnabled).toBeFalsy();
+  expect(request.json).toBeDefined();
+  expect(request.toString().length).toBeGreaterThan(0);
+  request.cpuHotAddEnabled = true;
+  request.memoryHotAddEnabled = true;
+  expect(request.memoryHotAddEnabled).toBeTruthy();
+  expect(request.cpuHotAddEnabled).toBeTruthy();
+
+  return vm.updateCapabilities(request).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-capabilities`, request.json);
+    expect(task.operation).toBe('update vm capabilities');
+  });
+});
+
+test('Properly submits request to get the VM recommended disk bus type', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getRecommendedDiskBusType().then(function(diskBusType) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/disks/recommended-disk-bus-type`);
+    expect(diskBusType).toBeDefined();
+    expect(diskBusType).toBe(MockVmRecommendedDiskBusTypeJson.bus_type);
+  });
+});
+
+test('Properly submits request to get the VM guest customization', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getGuestCustomization().then(function(guestCustomization) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/guest-customization`);
+    expect(guestCustomization).toBeDefined();
+    expect(guestCustomization.enabled).toBe(MockVmGuestCustomizationJson.enabled);
+    expect(guestCustomization.changeSid).toBe(MockVmGuestCustomizationJson.change_sid);
+    expect(guestCustomization.virtualMachineId).toBe(MockVmGuestCustomizationJson.virtual_machine_id);
+    expect(guestCustomization.joinDomain).toBe(MockVmGuestCustomizationJson.join_domain);
+    expect(guestCustomization.useOrgSettings).toBe(MockVmGuestCustomizationJson.use_org_settings);
+    expect(guestCustomization.domainName).toBe(MockVmGuestCustomizationJson.domain_name);
+    expect(guestCustomization.domainUserName).toBe(MockVmGuestCustomizationJson.domain_user_name);
+    expect(guestCustomization.domainUserPassword).toBe(MockVmGuestCustomizationJson.domain_user_password);
+    expect(guestCustomization.machineObjectOU).toBe(MockVmGuestCustomizationJson.machine_object_ou);
+    expect(guestCustomization.adminPasswordEnabled).toBe(MockVmGuestCustomizationJson.admin_password_enabled);
+    expect(guestCustomization.adminPasswordAuto).toBe(MockVmGuestCustomizationJson.admin_password_auto);
+    expect(guestCustomization.adminPassword).toBe(MockVmGuestCustomizationJson.admin_password);
+    expect(guestCustomization.adminAutoLogonEnabled).toBe(MockVmGuestCustomizationJson.admin_auto_logon_enabled);
+    expect(guestCustomization.adminAutoLogonCount).toBe(MockVmGuestCustomizationJson.admin_auto_logon_count);
+    expect(guestCustomization.resetPasswordRequired).toBe(MockVmGuestCustomizationJson.reset_password_required);
+    expect(guestCustomization.computerName).toBe(MockVmGuestCustomizationJson.computer_name);
+    expect(guestCustomization.required).toBe(MockVmGuestCustomizationJson.required);
+    expect(guestCustomization.json).toBeDefined();
+    expect(guestCustomization.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get the VM guest tools information', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getGuestToolsInfo().then(function(guestTools) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/guest-tools`);
+    expect(guestTools).toBeDefined();
+    expect(guestTools.status).toBe(MockVmGuestToolsJson.status);
+    expect(guestTools.runningStatus).toBe(MockVmGuestToolsJson.running_status);
+    expect(guestTools.version).toBe(MockVmGuestToolsJson.version);
+    expect(guestTools.json).toBeDefined();
+    expect(guestTools.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to check if VM has a snapshot', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.hasSnapshot().then(function(hasSnapshot) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/has-snapshot`);
+    expect(hasSnapshot).toBeTruthy();
+  });
+});
+
+test('Properly submits request to get the VM summary', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getSummary().then(function(summary) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/summary`);
+    expect(summary).toBeDefined();
+    expect(summary.reservedCpu).toBe(MockVmSummaryJson.reserved_cpu);
+    expect(summary.reservedMemory).toBe(MockVmSummaryJson.reserved_mem);
+    expect(summary.consumedCpu).toBe(MockVmSummaryJson.consumed_cpu);
+    expect(summary.consumedMemory).toBe(MockVmSummaryJson.consumed_mem);
+    expect(summary.consumedDisk).toBe(MockVmSummaryJson.consumed_disk);
+    expect(summary.provisionedDisk).toBe(MockVmSummaryJson.provisioned_disk);
+    expect(summary.configuredDisk).toBe(MockVmSummaryJson.configured_disk);
+    expect(summary.json).toBeDefined();
     expect(summary.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request to get VM tools upgrade policy', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.getToolUpgradePolicy().then(function(policy) {
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/tools-upgrade-policy`);
+    expect(policy).toBe(MockVmToolUpgradePolicyJson.upgrade_policy);
+  });
+});
+
+test('Properly submits request to upgrade VM guest tools', async() => {
+  const vm = new Vm(MockVmJson);
+  return vm.upgradeGuestTools().then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/upgrade-guest-tools`);
+    expect(task.operation).toBe('vmware tools upgrade');
   });
 });
 
@@ -457,7 +768,7 @@ test('Properly submits request to insert media into VM ', async() => {
   const vm = new Vm(MockVmJson);
   const mediaUuid = 'test-media-uuid';
   return vm.insertMedia(mediaUuid).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/media/insert`, {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/insert-media`, {
       media: mediaUuid
     });
     expect(task.operation).toBe('insert media');
@@ -467,7 +778,7 @@ test('Properly submits request to insert media into VM ', async() => {
 test('Properly submits request to eject media from VM ', async() => {
   const vm = new Vm(MockVmJson);
   return vm.ejectMedia().then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/media/eject`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/eject-media`);
     expect(task.operation).toBe('eject media');
   });
 });
@@ -476,7 +787,7 @@ test('Properly submits request to relocate VM to a different storage profile ', 
   const vm = new Vm(MockVmJson);
   const storageProfileUuid = 'fake-storage-profile-uuid';
   return vm.relocate(storageProfileUuid).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/storage-profile`, {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/relocate`, {
       storage_profile: storageProfileUuid
     });
     expect(task.operation).toBe('relocate vm');
