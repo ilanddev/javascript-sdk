@@ -93,7 +93,7 @@ export class Company extends Entity {
    */
   async getRoles(): Promise<Array<Role>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/roles`).then((response) => {
-      const json = response.data as Array<RoleJson>;
+      const json = response.data.data as Array<RoleJson>;
       return json.map((it) => new Role(it));
     });
   }
