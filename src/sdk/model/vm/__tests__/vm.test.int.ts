@@ -300,7 +300,7 @@ test('Can get guest customization', async() => {
       expect(guestCustomization.domainName).toBe(raw.domain_name);
       expect(guestCustomization.domainUserName).toBe(raw.domain_user_name);
       expect(guestCustomization.domainUserPassword).toBe(raw.domain_user_password);
-      expect(guestCustomization.machineObjectOU).toBe(raw.machine_object_ou);
+      expect(guestCustomization.machineObjectOu).toBe(raw.machine_object_ou);
       expect(guestCustomization.adminPasswordEnabled).toBe(raw.admin_password_enabled);
       expect(guestCustomization.adminPasswordAuto).toBe(raw.admin_password_auto);
       expect(guestCustomization.adminPassword).toBe(raw.admin_password);
