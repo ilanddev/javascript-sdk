@@ -75,7 +75,7 @@ test('Properly get item downloads', async() => {
 
 test('Properly get catalog medias', async() => {
   const catalog = new Catalog(MockCatalogJson);
-  return catalog.getMedias().then(medias => {
+  return catalog.getMedia().then(medias => {
     expect(medias.length).toEqual(1);
     expect(medias[0].json).toEqual(Object.assign({}, MockMediaJson));
   });

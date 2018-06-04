@@ -160,8 +160,8 @@ export class Catalog extends Entity {
    * Gets the Catalog's Medias
    * @returns {Promise<Array<Media>>}
    */
-  async getMedias(): Promise<Array<Media>> {
-    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/medias`).then((response) => {
+  async getMedia(): Promise<Array<Media>> {
+    return Iland.getHttp().get(`/catalogs/${this.originalUuid}/media`).then((response) => {
       const medias = response.data as Array<MediaJson>;
       return medias.map(media => new Media(media));
     });

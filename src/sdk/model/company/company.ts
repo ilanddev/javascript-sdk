@@ -171,7 +171,7 @@ export class Company extends Entity {
    * @returns {Promise<Array<string>>} a promise with the list of the company user domains
    */
   async getUserDomains(): Promise<Array<string>> {
-    return Iland.getHttp().get(`/companies/${this.uuid}/domains`).then((response) => {
+    return Iland.getHttp().get(`/companies/${this.uuid}/user-domains`).then((response) => {
       return response.data.data as Array<string>;
     });
   }
