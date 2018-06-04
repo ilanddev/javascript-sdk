@@ -22,6 +22,6 @@ test('Upgrade Cloud Tenant contract', async() => {
   const cloudTenant = new CloudTenant(MockCloudTenantJson);
   return cloudTenant.upgradeTenantContract(contractRequest).then(function() {
     expect(Iland.getHttp().post)
-        .lastCalledWith(`/cloud-tenants/${cloudTenant.uuid}/actions/upgrade-contract`, contractRequest);
+        .lastCalledWith(`/vcc-backup-tenants/${cloudTenant.uuid}/actions/upgrade-contract`, contractRequest);
   });
 });

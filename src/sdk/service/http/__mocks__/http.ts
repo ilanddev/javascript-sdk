@@ -217,7 +217,7 @@ export class Http {
       case /\/vapp-networks\/[^\/]+?$/.test(url):
         // get a vapp network
         return MockVappNetworkResponse;
-      case /\/internal-networks\/[^\/]+?$/.test(url):
+      case /\/org-vdc-networks\/[^\/]+?$/.test(url):
         // get a internal network
         return MockInternalNetworkResponse;
       case /\/edges\/[^\/]+?$/.test(url):
@@ -409,7 +409,7 @@ export class Http {
 
   async post(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
-      case /\/cloud-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
+      case /\/vcc-backup-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
         // update cloud tenant contract
         return MockService.getMockVoidResponse();
       case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):

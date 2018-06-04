@@ -240,7 +240,7 @@ export class CloudTenant extends Entity {
    * @returns {Promise<CloudTenant>} promise that resolves with the Cloud Tenant
    */
   static async getCloudTenant(uuid: string): Promise<any> {
-    return Iland.getHttp().get(`/cloud-tenants/${uuid}`).then((response) => {
+    return Iland.getHttp().get(`/vcc-backup-tenants/${uuid}`).then((response) => {
       const json = response.data as CloudTenantJson;
       return new CloudTenant(json);
     });
@@ -396,7 +396,7 @@ export class CloudTenant extends Entity {
    */
   async getStorageUsageFor(start: number, end: number, limit: number,
                            interval: PerfIntervalType): Promise<Array<VccPerfSample>> {
-    return Iland.getHttp().get(`/cloud-tenants/${this.uuid}/storage-usage`, {
+    return Iland.getHttp().get(`/vcc-backup-tenants/${this.uuid}/storage-usage`, {
       params: {
         start: start,
         end: end,
@@ -415,7 +415,7 @@ export class CloudTenant extends Entity {
    * @returns {Promise<any>}
    */
   async upgradeTenantContract(contract: UpgradeTenantContractRequestJson): Promise<any> {
-    return Iland.getHttp().post(`/cloud-tenants/${this.uuid}/actions/upgrade-contract`, contract);
+    return Iland.getHttp().post(`/vcc-backup-tenants/${this.uuid}/actions/upgrade-contract`, contract);
   }
 
   /**
@@ -425,7 +425,7 @@ export class CloudTenant extends Entity {
    * @returns {Promise<CloudTenantBackupHistory[]>} array of Cloud Tenant Backup History objects
    */
   async getBackupHistoryFor(offset?: number, limit?: number): Promise<Array<CloudTenantBackupHistory>> {
-    return Iland.getHttp().get(`/cloud-tenants/${this.uuid}/backup-history`, {
+    return Iland.getHttp().get(`/vcc-backup-tenants/${this.uuid}/backup-history`, {
       params: {
         offset: offset,
         limit: limit
