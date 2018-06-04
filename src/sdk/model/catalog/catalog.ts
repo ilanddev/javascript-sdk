@@ -152,7 +152,7 @@ export class Catalog extends Entity {
    */
   async getItemDownloads(): Promise<Array<ItemDownloadJson>> {
     return Iland.getHttp().get(`/catalogs/${this.originalUuid}/item-downloads`).then((response) => {
-      return response.data as Array<ItemDownloadJson>;
+      return response.data.data as Array<ItemDownloadJson>;
     });
   }
 
@@ -162,7 +162,7 @@ export class Catalog extends Entity {
    */
   async getMedia(): Promise<Array<Media>> {
     return Iland.getHttp().get(`/catalogs/${this.originalUuid}/media`).then((response) => {
-      const medias = response.data as Array<MediaJson>;
+      const medias = response.data.data as Array<MediaJson>;
       return medias.map(media => new Media(media));
     });
   }
@@ -173,7 +173,7 @@ export class Catalog extends Entity {
    */
   async getVappTemplates(): Promise<Array<VappTemplate>> {
     return Iland.getHttp().get(`/catalogs/${this.originalUuid}/vapp-templates`).then((response) => {
-      const vappTemplates = response.data as Array<VappTemplateJson>;
+      const vappTemplates = response.data.data as Array<VappTemplateJson>;
       return vappTemplates.map(vappTemplate => new VappTemplate(vappTemplate));
     });
   }

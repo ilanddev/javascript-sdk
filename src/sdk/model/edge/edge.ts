@@ -370,7 +370,6 @@ export class Edge extends Entity {
    */
   async getPerformance(group: PerfGroupType, name: string,
                  type: PerfStatsType, start?: number, end?: number): Promise<NetworkPerfSampleSerie> {
-    // TODO query to path params
     return Iland.getHttp().get(`/edges/${this.uuid}/performance/${group}:${name}:${type}`, {
       params: {
         start: start,

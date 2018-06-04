@@ -73,7 +73,6 @@ test('Can get company roles', async() => {
         expect(roleByUuid.companyId).toBe(companyEntity.uuid);
         expect(roleByUuid.name).toBe(role.name);
         expect(roleByUuid.type).toBe(role.type);
-        expect(roleByUuid.policies).toEqual(role.policies);
       });
     });
   });
