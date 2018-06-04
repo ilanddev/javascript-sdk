@@ -5,4 +5,3 @@ export * from './snapshot/index';
 export * from './virtual-disk/index';
 export * from './vnic/index';
 export * from './vm';
-export * from './vm-cpu-update-request';

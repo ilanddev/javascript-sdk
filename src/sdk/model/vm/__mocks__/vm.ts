@@ -46,6 +46,42 @@ export const MockVmResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>
   });
 });
 
+export const MockVmRecommendedDiskBusTypeJson = { bus_type: 'LSI_LOGIC' };
+export const MockVmRecommendedDiskBusTypeResponse: Promise<AxiosResponse> =
+  new Promise<AxiosResponse>(function(resolve) {
+    resolve({
+      data: MockVmRecommendedDiskBusTypeJson,
+      status: 200,
+      statusText: '',
+      headers: {},
+      config: {}
+    });
+  });
+
+export const MockVmHasSnapshotJson = { has_snapshot: true };
+export const MockVmHasSnapshotResponse: Promise<AxiosResponse> =
+    new Promise<AxiosResponse>(function(resolve) {
+      resolve({
+        data: MockVmHasSnapshotJson,
+        status: 200,
+        statusText: '',
+        headers: {},
+        config: {}
+      });
+    });
+
+export const MockVmToolUpgradePolicyJson = { upgrade_policy: 'MANUAL' };
+export const MockVmToolUpgradePolicyResponse: Promise<AxiosResponse> =
+    new Promise<AxiosResponse>(function(resolve) {
+      resolve({
+        data: MockVmToolUpgradePolicyJson,
+        status: 200,
+        statusText: '',
+        headers: {},
+        config: {}
+      });
+    });
+
 export const MockVmPerfSamplesSeriesJson: PerfSamplesSeriesJson = {
   uuid: 'dev-vcd01.iland.dev:urn:vcloud:vm:9a32f0b4-bc1f-4d73-b497-fa70411b0ec6:cpu:usage:average',
   summary: '',

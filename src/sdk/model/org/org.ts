@@ -14,7 +14,6 @@ import { VdcJson } from '../vdc/__json__/vdc-json';
 import { VappJson } from '../vapp/__json__/vapp-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
-import { Bill, BillingSummary, BillingSummaryJson, BillJson } from '../common/billing';
 import { OrgVappTemplateLeaseUpdateRequest } from './org-vapp-template-lease-update-request';
 import { OrgVappLeaseUpdateRequest } from './org-vapp-lease-update-request';
 import { OrgVdcBillsJson } from '../common/billing/__json__/org-vdc-bills-json';
@@ -30,6 +29,25 @@ import { CheckDnsZone } from './check-dns-zone';
 import { CheckDnsZoneJson } from './__json__/check-dns-zone-json';
 import { IpAddressSetJson } from './__json__/ip-address-set-json';
 import { IpAddressSet } from './ip-address-set';
+import { CatalogJson } from '../catalog/__json__';
+import { Catalog } from '../catalog';
+import { Task, TaskJson } from '../task';
+import { Bill, BillJson, BillingSummary, BillingSummaryJson } from '../common/billing';
+import { BillingReportRequest } from './reports/billing-report-request';
+import { ComplianceReport } from './reports/compliance-report';
+import {
+  AntimalwareOverTimeJson,
+  ComplianceOverTimeJson,
+  ComplianceReportJson, FirewallOverTimeJson,
+  SerieType,
+  VulnerabilityOverTimeJson
+} from './reports/__json__';
+import { ComplianceOverTime } from './reports/compliance-over-time';
+import { VulnerabilityOverTime } from './reports/vulnerability-over-time';
+import { AntimalwareOverTime } from './reports/anti-malware-over-time';
+import { LogInspectionOverTime } from './reports/log-inspection-over-time';
+import { LogInspectionOverTimeJson } from './reports/__json__/log-inspection-over-time-json';
+import { FirewallOverTime } from './reports/firewall-over-time';
 
 /**
  * IaaS Organization.
@@ -364,7 +382,7 @@ export class Org extends Entity {
    * @returns {Promise<Array<DnsRecord>>} a promise that resolves with a list of DNS records.
    */
   async getDnsRecords(): Promise<Array<DnsRecord>> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-records`).then((response) => {
       const json = response.data.data as Array<DnsRecordJson>;
       return json.map((it) => new DnsRecord(it));
     });
@@ -376,7 +394,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsRecord>} a promise that resolves with the new record
    */
   async addDnsRecord(record: DnsRecordCreateRequest): Promise<DnsRecord> {
-    return Iland.getHttp().post(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-records`, record.json).then((response) => {
       const json = response.data as DnsRecordJson;
       return new DnsRecord(json);
     });
@@ -388,7 +406,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsRecord>} a promise that resolves with the updated record
    */
   async updateDnsRecord(record: DnsRecordUpdateRequest): Promise<DnsRecord> {
-    return Iland.getHttp().put(`/orgs/${this.uuid}/dns`, record.json).then((response) => {
+    return Iland.getHttp().put(`/orgs/${this.uuid}/dns-records`, record.json).then((response) => {
       const json = response.data as DnsRecordJson;
       return new DnsRecord(json);
     });
@@ -400,7 +418,7 @@ export class Org extends Entity {
    * @returns {Promise<any>} a promise that resolves when the operation completes
    */
   async deleteDnsRecord(recordId: number): Promise<any> {
-    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns/${recordId}`);
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-records/${recordId}`);
   }
 
   /**
@@ -408,7 +426,7 @@ export class Org extends Entity {
    * @returns {Promise<Array<DnsZone>>} a promise that resolves with the list of DNS zones
    */
   async getDnsZones(): Promise<Array<DnsZone>> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zones`).then((response) => {
       const json = response.data.data as Array<DnsZoneJson>;
       return json.map((it) => new DnsZone(it));
     });
@@ -420,7 +438,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsZone>} a promise that resolves with the newly created DNS zone
    */
   async addDnsZone(zoneSpec: DnsZoneCreateRequest): Promise<DnsZone> {
-    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-zone`, zoneSpec.json).then((response) => {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/dns-zones`, zoneSpec.json).then((response) => {
       const json = response.data as DnsZoneJson;
       return new DnsZone(json);
     });
@@ -432,7 +450,7 @@ export class Org extends Entity {
    * @returns {Promise<any>} a promise that resolves when the operation completes
    */
   async deleteDnsZone(zoneId: number): Promise<any> {
-    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-zone/${zoneId}`);
+    return Iland.getHttp().delete(`/orgs/${this.uuid}/dns-zones/${zoneId}`);
   }
 
   /**
@@ -441,7 +459,7 @@ export class Org extends Entity {
    * @returns {Promise<CheckDnsZone>} a promise that resolves with the zone check results
    */
   async checkDnsZone(zoneId: number): Promise<CheckDnsZone> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zone/${zoneId}/is-valid`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zones/${zoneId}/is-valid`).then((response) => {
       const json = response.data as CheckDnsZoneJson;
       return new CheckDnsZone(json);
     });
@@ -452,9 +470,615 @@ export class Org extends Entity {
    * @returns {Promise<IpAddressSet>} a promise that resolves with the set of available IP addresses
    */
   async getAvailableIpsForPtrRecords(): Promise<IpAddressSet> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/dns/unmapped-ptr-ip-addresses`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/unmapped-dns-ptr-ip-addresses`).then((response) => {
       const json = response.data as IpAddressSetJson;
       return new IpAddressSet(json);
+    });
+  }
+
+  /**
+   * Gets all catalogs within the organization.
+   * @returns {Promise<Array<Catalog>>} returns a promise that resolves with the list of organization catalogs
+   */
+  /* istanbul ignore next: autogenerated */
+  async getOrgCatalogs(): Promise<Array<Catalog>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/catalogs`).then((response) => {
+      const json = response.data.data as Array<CatalogJson>;
+      return json.map((it) => new Catalog(it));
+    });
+  }
+
+  /**
+   * Get the reports available for download for the given organization.
+   * @param {string} type Type of report to filter on
+   * @param {string} format
+   * @returns {Promise<Array<ComplianceReport>>} promise Promise that resolves with a list of ComplianceReport
+   */
+  /* istanbul ignore next: autogenerated */
+  async getAvailableReports(type?: string, format?: string): Promise<Array<ComplianceReport>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/available-reports`, {
+      params: {
+        type: type,
+        format: format
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<ComplianceReportJson>;
+      return json.map((it) => new ComplianceReport(it));
+    });
+  }
+
+  /**
+   * Get the antimalware over time serie for the given organization and date range.
+   * @param {number} start Start date (defaults to one month prior to end param)
+   * @param {number} end End date (defaults to current time if not provided)
+   * @param {number} limit Limit on number of samples to return (defaults to 730)
+   * @returns {Promise<AntimalwareOverTime>} promise Promise that resolves with a AntimalwareOverTime serie
+   */
+  /* istanbul ignore next: autogenerated */
+  async getAntimalwareOverTimeSerie(start?: number, end?: number, limit?: number): Promise<AntimalwareOverTime> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/anti-malware-over-time`, {
+      params: {
+        start: start,
+        end: end,
+        limit: limit
+      }
+    }).then((response) => {
+      const json = response.data as AntimalwareOverTimeJson;
+      return new AntimalwareOverTime(json);
+    });
+  }
+
+  /**
+   * Get the compliance over time serie for the given organization and serie name.
+   * @param {SerieType} type Type of the series (ANTI_MALWARE, VULNERABILITY, LOG_INSPECTION, FIREWALL)
+   * @param {number} start Start date (defaults to one month prior to end param)
+   * @param {number} end End date (defaults to current time if not provided)
+   * @param {number} limit Limit on number of samples to return (defaults to 60)
+   * @returns {Promise<ComplianceOverTime>} promise Promise that resolves with a ComplianceOverTime serie
+   */
+  /* istanbul ignore next: autogenerated */
+  async getComplianceOverTimeSerie(type?: SerieType, start?: number, end?: number,
+                                   limit?: number): Promise<ComplianceOverTime> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/compliance-over-time`, {
+      params: {
+        type: type,
+        start: start,
+        end: end,
+        limit: limit
+      }
+    }).then((response) => {
+      const json = response.data as ComplianceOverTimeJson;
+      return new ComplianceOverTime(json);
+    });
+  }
+
+  /**
+   * Get the firewall over time serie for the given organization and date range.
+   * @param {number} start Start date (defaults to Jan 1, 1970)
+   * @param {number} end End date (defaults to current time if not provided)
+   * @param {number} limit Limit on number of samples to return (defaults to 730)
+   * @returns {Promise<FirewallOverTime>} promise Promise that resolves with a FirewallOverTime serie
+   */
+  /* istanbul ignore next: autogenerated */
+  async getFirewallOverTimeSerie(start?: number, end?: number, limit?: number): Promise<FirewallOverTime> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/firewall-over-time`, {
+      params: {
+        start: start,
+        end: end,
+        limit: limit
+      }
+    }).then((response) => {
+      const json = response.data as FirewallOverTimeJson;
+      return new FirewallOverTime(json);
+    });
+  }
+
+  /**
+   * Get the log inspection over time serie for the given organization and date range.
+   * @param {number} start Start date (defaults to Jan 1, 1970)
+   * @param {number} end End date (defaults to current time if not provided)
+   * @param {number} limit Limit on number of samples to return (defaults to 730)
+   * @returns {Promise<LogInspectionOverTime>} promise Promise that resolves with a LogInspectionOverTime serie
+   */
+  /* istanbul ignore next: autogenerated */
+  async getLogInspectionOverTimeSerie(start?: number, end?: number, limit?: number): Promise<LogInspectionOverTime> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/log-inspection-over-time`, {
+      params: {
+        start: start,
+        end: end,
+        limit: limit
+      }
+    }).then((response) => {
+      const json = response.data as LogInspectionOverTimeJson;
+      return new LogInspectionOverTime(json);
+    });
+  }
+
+  /**
+   * Get the vulnerability over time serie for the given organization and date range.
+   * @param {number} start Start date (defaults to Jan 1, 1970)
+   * @param {number} end End date (defaults to current time if not provided)
+   * @param {number} limit Limit on number of samples to return (defaults to 730)
+   * @returns {Promise<VulnerabilityOverTime>} promise Promise that resolves with a ComplianceOverTime serie
+   */
+  /* istanbul ignore next: autogenerated */
+  async getVulnerabilityOverTimeSerie(start?: number, end?: number, limit?: number): Promise<VulnerabilityOverTime> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/vulnerability-over-time`, {
+      params: {
+        start: start,
+        end: end,
+        limit: limit
+      }
+    }).then((response) => {
+      const json = response.data as VulnerabilityOverTimeJson;
+      return new VulnerabilityOverTime(json);
+    });
+  }
+
+  /**
+   * Get the latest available (newest) reports for download for the given organization.
+   * @param {string} type Type of report to filter on ( vulnerability, anti_malware...)
+   * @param {string} format Report formats available to filter on include (pdf, html, csv)
+   * @returns {Promise<Array<ComplianceReport>>} promise Promise that resolves with a list of ComplianceReport
+   */
+  /* istanbul ignore next: autogenerated */
+  async getLatestReportsFor(type?: string, format?: string): Promise<Array<ComplianceReport>> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/latest-reports`, {
+      params: {
+        type: type,
+        format: format
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<ComplianceReportJson>;
+      return json.map((it) => new ComplianceReport(it));
+    });
+  }
+
+  /**
+   * Get a compliance report by its uuid including its JSON content.
+   * @param {string} reportUuid Report UUID
+   * @returns {Promise<ComplianceReport>} promise Promise that resolves with a ComplianceReport
+   */
+  /* istanbul ignore next: autogenerated */
+  async getComplianceReportWithContent(reportUuid: string): Promise<ComplianceReport> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/reports/${reportUuid}`).then((response) => {
+      const json = response.data as ComplianceReportJson;
+      return new ComplianceReport(json);
+    });
+  }
+
+  /**
+   * Get a compliance report by its uuid including its JSON summary.
+   * @param {string} reportUuid Report UUID
+   * @returns {Promise<ComplianceReport>} promise Promise that resolves with a ComplianceReport
+   */
+  /* istanbul ignore next: autogenerated */
+  async getComplianceReportWithSummary(reportUuid: string): Promise<ComplianceReport> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/reports/${reportUuid}/summary`).then((response) => {
+      const json = response.data as ComplianceReportJson;
+      return new ComplianceReport(json);
+    });
+  }
+
+  /**
+   * Generate the anti-malware report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateAntiMalwareReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                                  email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-anti-malware`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the billing report for a given organization.
+   * @param {BillingReportRequest} billingReportSpec Billing report
+   * ({@link http://doc.10.api.iland.test/1.0/apidocs/#!/org-reporting/generateBillingReport|Doc})
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateBillingReport(billingReportSpec: BillingReportRequest, emailOnCompletion?: boolean,
+                              email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-billing`, billingReportSpec.json, {
+      params: {
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate a continuity protection summary report for the given organization.
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateContinuityProtectionSummaryReport(format?: string, emailOnCompletion?: boolean,
+                                                  email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-continuity-protection`, {
+      params: {
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the DPI event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateDPIEventHistoryReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+      email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-dpi-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the dr admin report for the given organization.
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateDRAdminReport(format?: string, emailOnCompletion?: boolean, email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-dr-admin`, {
+      params: {
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the ecs event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateEcsEventHistoryReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+      email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-ecs-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the firewall event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateFirewallEventHistoryReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                                           email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-firewall-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the HIPAA report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateHippaReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                            email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-hippa`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the integrity event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateIntegrityEventHistoryReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+      email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-integrity-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the log inspection report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateLogInspectionReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                                    email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-log-inspection`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the login event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateLoginEventHistoryReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                                        email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-login-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the support request history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateSupportRequestReport(start?: number, end?: number, format?: string, emailOnCompletion?: boolean,
+                                     email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-support-request`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the VM encryption report for the given organization.
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email 3mail address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateVmEncryptionReport(format?: string, emailOnCompletion?: boolean, email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-vm-encryption`, {
+      params: {
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the vm inventory report for a given organization.
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email 3mail address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateVmInventoryReport(emailOnCompletion?: boolean, email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-vm-inventory`, {
+      params: {
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the vulnerability report for the given organization.
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email 3mail address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateVulnerabilityReport(format?: string, emailOnCompletion?: boolean, email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-vulnerability`, {
+      params: {
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Generate the web reputation event history report for the given organization and time range.
+   * @param {number} start Start date as timestamp
+   * @param {number} end End date as timestamp
+   * @param {string} format Report format ('pdf' or 'html')
+   * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
+   * @param {string} email Email address to send the report to if emailOnCompletion is true,
+   * defaults to the user's profile email if not specified
+   * @returns {Promise<Task>} promise Promise that resolves with a Task
+   */
+  /* istanbul ignore next: autogenerated */
+  async generateWebReputationEventHistoryReport(start?: number, end?: number, format?: string,
+                                                emailOnCompletion?: boolean, email?: string): Promise<Task> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/reports/actions/generate-web-reputation-event-history`, {
+      params: {
+        start: start,
+        end: end,
+        format: format,
+        emailOnCompletion: emailOnCompletion,
+        email: email
+      }
+    }).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
+    });
+  }
+
+  /**
+   * Get the number of events for the given organization, date range, and report type.
+   * @param {string} report Type Type of report to filter on
+   * @param {number} start Start date (defaults to yesterday)
+   * @param {number} end End date (defaults to today)
+   * @returns {Promise<number>} promise Promise that resolves with the reports count
+   */
+  /* istanbul ignore next: autogenerated */
+  async getReportsCount(reportType?: string, start?: number, end?: number): Promise<number> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/report-count`, {
+      params: {
+        reportType: reportType,
+        start: start,
+        end: end
+      }
+    }).then((response) => {
+      return response.data.count;
     });
   }
 

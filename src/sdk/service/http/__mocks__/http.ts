@@ -1,20 +1,9 @@
 import { Http as RealHttp } from '../http';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import {
-  MockVmPerfCountersResponse,
-  MockVmPerfSamplesSeriesResponse,
-  MockVmResponse
-} from '../../../model/vm/__mocks__/vm';
+import { MockVmPerfCountersResponse } from '../../../model/vm/__mocks__/vm';
 import { MockNotFoundResponse } from '../../../config/__mocks__/errors';
-import { MockVmVirtualDisksResponse } from '../../../model/vm/virtual-disk/__mocks__/virtual-disk';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
 import { MockFakeMetadataResponse, MockMetadataResponse } from '../../../model/common/metadata/__mocks__/metadata';
-import { MockVmBackupRestorePointsResponse }
-  from '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
-import { MockVmSnapshotResponse } from '../../../model/vm/snapshot/__mocks__/snapshot';
-import { MockVmScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/screen-ticket';
-import { MockVmMksScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/mks-screen-ticket';
-import { MockVmBillResponse, MockVmCurrentBillingSummaryResponse } from '../../../model/common/billing/__mocks__/bill';
 import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVdcVappsResponse } from '../../../model/vdc/__mocks__/vdc-vapps';
 import { MockVdcVmsResponse } from '../../../model/vdc/__mocks__/vdc-vms';
@@ -97,6 +86,7 @@ import { MockIpAddressSetResponse, MockOrgDnsRecordsResponse } from '../../../mo
 import { DnsRecordCreateRequestJson, DnsRecordUpdateRequestJson, DnsZoneCreateRequestJson } from '../../../model/org';
 import { MockOrgResource } from '../../../model/org/__mocks__/org-resource';
 import { MockCheckDnsZoneResponse, MockOrgDnsZonesResponse } from '../../../model/org/__mocks__/org-dns-zones';
+import { MockVmDelete, MockVmGet, MockVmPost, MockVmPut } from './http.vm';
 
 jest.unmock('../http');
 
@@ -135,46 +125,17 @@ export class Http {
 
   async get(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
-      case /\/vms\/[^\/]+?$/.test(url):
-        // get vm by uuid
-        return MockVmResponse;
-      case /\/vms\/[^\/]+?\/virtual-disks$/.test(url):
-        // get virtual disks for VM
-        return MockVmVirtualDisksResponse;
+      case /^\/vms\//.test(url):
+        return MockVmGet(url, config);
       case /\/task\/[^\/]+?\/([^\/]+)$/.test(url):
         // get task by uuid
         const taskUuid = /\/task\/[^\/]+?\/([^\/]+)$/.exec(url)![1];
         return MockTaskService.getExistingMockTaskResponse(taskUuid);
-      case /\/vms\/[^\/]+?\/metadata$/.test(url):
       case /\/vapps\/[^\/]+?\/metadata$/.test(url):
       case /\/vdcs\/[^\/]+?\/metadata$/.test(url):
       case /\/media\/[^\/]+?\/metadata$/.test(url):
         // get metadata
         return MockMetadataResponse;
-      case /\/vms\/[^\/]+?\/backups$/.test(url):
-        // get vm backup restore points
-        return MockVmBackupRestorePointsResponse;
-      case /\/vms\/[^\/]+?\/snapshot$/.test(url):
-        // get vm snapshot
-        return MockVmSnapshotResponse;
-      case /\/vms\/[^\/]+?\/screen-ticket$/.test(url):
-        // get vm screenticket
-        return MockVmScreenTicketResponse;
-      case /\/vms\/[^\/]+?\/mks-screen-ticket$/.test(url):
-        // get vm mks screenticket
-        return MockVmMksScreenTicketResponse;
-      case /\/vms\/[^\/]+?\/bill$/.test(url):
-        // get vm bill
-        return MockVmBillResponse;
-      case /\/vms\/[^\/]+?\/billing\/current$/.test(url):
-        // get vm current billing summary
-        return MockVmCurrentBillingSummaryResponse;
-      case /\/vms\/[^\/]+?\/performance-counters/.test(url):
-        // get vm perf counters
-        return MockVmPerfCountersResponse;
-      case /\/vms\/[^\/]+?\/performance/.test(url):
-        // get vm perf samples
-        return MockVmPerfSamplesSeriesResponse;
       case /\/vapps\/[^\/]+?\/vms$/.test(url):
         // get a vapps child vms
         return MockVappVmsResponse;
@@ -271,16 +232,16 @@ export class Http {
       case /\/orgs\/[^\/]+?\/edges$/.test(url):
         // get an orgs edges
         return MockOrgEdgesResponse;
-      case /\/orgs\/[^\/]+?\/dns$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url):
         // get an orgs dns records
         return MockOrgDnsRecordsResponse;
-      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-zones$/.test(url):
         // get an orgs dns zones
         return MockOrgDnsZonesResponse;
-      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?\/is-valid$/.test(url):
+      case /\/orgs\/[^\/]+?\/dns-zones\/[^\/]+?\/is-valid$/.test(url):
         // get an orgs dns zones check
         return MockCheckDnsZoneResponse;
-      case /\/orgs\/[^\/]+?\/dns\/unmapped-ptr-ip-addresses$/.test(url):
+      case /\/orgs\/[^\/]+?\/unmapped-dns-ptr-ip-addresses$/.test(url):
         // get an orgs unmapped ptr ips
         return MockIpAddressSetResponse;
       case /\/companies\/[^\/]+?$/.test(url):
@@ -369,20 +330,12 @@ export class Http {
 
   async delete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
-      case /\/vms\/[^\/]+?\/disks\/[^\/]+?$/.test(url):
-        // delete single virtual disk
-        return MockTaskService.getNewMockTaskResponse('delete virtual disk');
-      case /\/vms\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
+      case /^\/vms\//.test(url):
+        return MockVmDelete(url, config);
       case /\/vdcs\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
       case /\/media\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
         // delete single metadata entry
         return MockTaskService.getNewMockTaskResponse('delete metadata');
-      case /\/vms\/[^\/]+?$/.test(url):
-        // delete vm
-        return MockTaskService.getNewMockTaskResponse('delete entity');
-      case /\/vms\/[^\/]+?\/snapshot$/.test(url):
-        // delete vm snapshot
-        return MockTaskService.getNewMockTaskResponse('remove snapshot');
       case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
         // delete a role
         return MockService.getMockNoContentResponse();
@@ -392,11 +345,11 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Delete media
         return MockTaskService.getNewMockTaskResponse('delete entity');
-      case /\/orgs\/[^\/]+?\/dns\/[^\/]+?$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records\/[^\/]+?$/.test(url): {
         // delete dns record
         return MockOrgResource.deleteDnsRecord();
       }
-      case /\/orgs\/[^\/]+?\/dns-zone\/[^\/]+?$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-zones\/[^\/]+?$/.test(url): {
         // delete dns zone
         return MockOrgResource.deleteDnsZone();
       }
@@ -412,6 +365,8 @@ export class Http {
       case /\/vcc-backup-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
         // update cloud tenant contract
         return MockService.getMockVoidResponse();
+      case /^\/vms\//.test(url):
+        return MockVmPost(url, data, config);
       case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
         // add a vpg failover test alert
         return MockVpgAlertResponse;
@@ -430,42 +385,6 @@ export class Http {
       case /\/vpgs\/[^\/]+?\/failover-rollback$/.test(url):
         // add a vpg failover test alert
         return MockTaskService.getNewMockTaskResponse('zerto failover rollback');
-      case /\/vms\/[^\/]+?\/virtual-disk$/.test(url):
-        // update single virtual disk
-        return MockTaskService.getNewMockTaskResponse('add virtual disk');
-      case /\/vms\/[^\/]+?\/poweron$/.test(url):
-        // power on VM
-        return MockTaskService.getNewMockTaskResponse('power on');
-      case /\/vms\/[^\/]+?\/poweroff$/.test(url):
-        // power off VM
-        return MockTaskService.getNewMockTaskResponse('power off');
-      case /\/vms\/[^\/]+?\/suspend$/.test(url):
-        // suspend VM
-        return MockTaskService.getNewMockTaskResponse('suspend');
-      case /\/vms\/[^\/]+?\/reboot$/.test(url):
-        // reboot VM
-        return MockTaskService.getNewMockTaskResponse('reboot');
-      case /\/vms\/[^\/]+?\/reset$/.test(url):
-        // reset VM
-        return MockTaskService.getNewMockTaskResponse('reset');
-      case /\/vms\/[^\/]+?\/shutdown$/.test(url):
-        // shutdown VM
-        return MockTaskService.getNewMockTaskResponse('shutdown');
-      case /\/vms\/[^\/]+?\/restore$/.test(url):
-        // restore VM backup
-        return MockTaskService.getNewMockTaskResponse('restore backup');
-      case /\/vms\/[^\/]+?\/snapshot$/.test(url):
-        // create snapshot
-        return MockTaskService.getNewMockTaskResponse('create snapshot');
-      case /\/vms\/[^\/]+?\/snapshot\/restore$/.test(url):
-        // restore snapshot
-        return MockTaskService.getNewMockTaskResponse('restore snapshot');
-      case /\/vms\/[^\/]+?\/media\/insert$/.test(url):
-        // insert media into vm
-        return MockTaskService.getNewMockTaskResponse('insert media');
-      case /\/vms\/[^\/]+?\/media\/eject$/.test(url):
-        // eject media from vm
-        return MockTaskService.getNewMockTaskResponse('eject media');
       case /\/vdcs\/[^\/]+?\/build-vapp$/.test(url):
         // build vapp task
         return MockTaskService.getNewMockTaskResponse('build vapp');
@@ -487,12 +406,12 @@ export class Http {
         const request = data as UserCreationRequestJson;
         return MockCompanyService.createUser(request);
       }
-      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url): {
         // create new org dns record
         const request = data as DnsRecordCreateRequestJson;
         return MockOrgResource.addDnsRecord(request);
       }
-      case /\/orgs\/[^\/]+?\/dns-zone$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-zones$/.test(url): {
         // create new org dns zone
         const request = data as DnsZoneCreateRequestJson;
         return MockOrgResource.addDnsZone(request);
@@ -504,32 +423,12 @@ export class Http {
 
   async put(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
     switch (true) {
-      case /\/vms\/[^\/]+?\/virtual-disks$/.test(url):
-        // update VM's virtual disks
-        return MockTaskService.getNewMockTaskResponse('update vm disks');
-      case /\/vms\/[^\/]+?\/virtual-disk$/.test(url):
-        // update single virtual disk
-        return MockTaskService.getNewMockTaskResponse('update vm disks');
-      case /\/vms\/[^\/]+?\/mem$/.test(url):
-        // update VMs memory size
-        return MockTaskService.getNewMockTaskResponse('update memory size');
-      case /\/vms\/[^\/]+?\/cpu$/.test(url):
-        // update VMs CPUs
-        return MockTaskService.getNewMockTaskResponse('update cpu count');
-      case /\/vms\/[^\/]+?\/metadata$/.test(url):
+      case /^\/vms\//.test(url):
+        return MockVmPut(url, data, config);
       case /\/vdcs\/[^\/]+?\/metadata$/.test(url):
       case /\/media\/[^\/]+?\/metadata$/.test(url):
         // update metadata
         return MockTaskService.getNewMockTaskResponse('update metadata');
-      case /\/vms\/[^\/]+?\/name$/.test(url):
-        // rename VM
-        return MockTaskService.getNewMockTaskResponse('rename vm');
-      case /\/vms\/[^\/]+?\/virtual-hardware-version$/.test(url):
-        // upgrade vms virtual hardware
-        return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
-      case /\/vms\/[^\/]+?\/storage-profile$/.test(url):
-        // move VM to a different storage profile
-        return MockTaskService.getNewMockTaskResponse('relocate vm');
       case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
         // update a role
         const request = data as RoleCreationRequestJson;
@@ -539,7 +438,7 @@ export class Http {
       case /\/media\/[^\/]+?$/.test(url):
         // Update media
         return MockTaskService.getNewMockTaskResponse('update media');
-      case /\/orgs\/[^\/]+?\/dns$/.test(url): {
+      case /\/orgs\/[^\/]+?\/dns-records$/.test(url): {
         // update org dns record
         const request = data as DnsRecordUpdateRequestJson;
         return MockOrgResource.updateDnsRecord(request);

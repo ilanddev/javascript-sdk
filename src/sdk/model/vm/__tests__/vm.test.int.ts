@@ -255,6 +255,123 @@ test('Can refresh VM', async() => {
   });
 });
 
+test('Can get boot options', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getBootOptions().then((bootOptions) => {
+      expect(bootOptions).toBeDefined();
+      expect(bootOptions.bootDelay).toBeGreaterThan(-1);
+      expect(bootOptions.isEnterBios).toBeDefined();
+    });
+  });
+});
+
+test('Can get capabilities', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getCapabilities().then((capabilities) => {
+      expect(capabilities).toBeDefined();
+      expect(capabilities.cpuHotAddEnabled).toBeDefined();
+      expect(capabilities.memoryHotAddEnabled).toBeDefined();
+    });
+  });
+});
+
+test('Can get recommended disk bus type', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getRecommendedDiskBusType().then((busType) => {
+      expect(busType).toBeDefined();
+    });
+  });
+});
+
+test('Can get guest customization', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getGuestCustomization().then((guestCustomization) => {
+      expect(guestCustomization).toBeDefined();
+      const raw = guestCustomization.json;
+      expect(guestCustomization.enabled).toBe(raw.enabled);
+      expect(guestCustomization.changeSid).toBe(raw.change_sid);
+      expect(guestCustomization.virtualMachineId).toBe(raw.virtual_machine_id);
+      expect(guestCustomization.joinDomain).toBe(raw.join_domain);
+      expect(guestCustomization.useOrgSettings).toBe(raw.use_org_settings);
+      expect(guestCustomization.domainName).toBe(raw.domain_name);
+      expect(guestCustomization.domainUserName).toBe(raw.domain_user_name);
+      expect(guestCustomization.domainUserPassword).toBe(raw.domain_user_password);
+      expect(guestCustomization.machineObjectOu).toBe(raw.machine_object_ou);
+      expect(guestCustomization.adminPasswordEnabled).toBe(raw.admin_password_enabled);
+      expect(guestCustomization.adminPasswordAuto).toBe(raw.admin_password_auto);
+      expect(guestCustomization.adminPassword).toBe(raw.admin_password);
+      expect(guestCustomization.adminAutoLogonEnabled).toBe(raw.admin_auto_logon_enabled);
+      expect(guestCustomization.adminAutoLogonCount).toBe(raw.admin_auto_logon_count);
+      expect(guestCustomization.resetPasswordRequired).toBe(raw.reset_password_required);
+      expect(guestCustomization.computerName).toBe(raw.computer_name);
+      expect(guestCustomization.required).toBe(raw.required);
+    });
+  });
+});
+
+test('Can get guest tools information', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getGuestToolsInfo().then((guestTools) => {
+      expect(guestTools).toBeDefined();
+      const raw = guestTools.json;
+      expect(guestTools.status).toBe(raw.status);
+      expect(guestTools.runningStatus).toBe(raw.running_status);
+      expect(guestTools.version).toBe(raw.version);
+    });
+  });
+});
+
+test('Can get VM has snapshot', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.hasSnapshot().then((hasSnapshot) => {
+      expect(hasSnapshot).toBeDefined();
+    });
+  });
+});
+
+test('Can get summary', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getSummary().then((summary) => {
+      expect(summary).toBeDefined();
+      const raw = summary.json;
+      expect(summary.reservedCpu).toBe(raw.reserved_cpu);
+      expect(summary.reservedMemory).toBe(raw.reserved_mem);
+      expect(summary.consumedCpu).toBe(raw.consumed_cpu);
+      expect(summary.consumedMemory).toBe(raw.consumed_mem);
+      expect(summary.consumedDisk).toBe(raw.consumed_disk);
+      expect(summary.configuredDisk).toBe(raw.configured_disk);
+      expect(summary.provisionedDisk).toBe(raw.provisioned_disk);
+    });
+  });
+});
+
+test('Can get vm networks', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getNetworks().then((networks) => {
+      expect(networks).toBeDefined();
+      expect(networks.length).toBeGreaterThan(0);
+    });
+  });
+});
+
+test('Can get VM tools upgrade policy', async() => {
+  return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
+    expect(vm.uuid).toBe(inventoryVm.uuid);
+    return vm.getToolUpgradePolicy().then((policy) => {
+      expect(policy).toBeDefined();
+      expect(policy.length).toBeGreaterThan(0);
+    });
+  });
+});
+
 test('Can get perf counters', async() => {
   return Vm.getVm(inventoryVm.uuid).then(async(vm) => {
     expect(vm.uuid).toBe(inventoryVm.uuid);
