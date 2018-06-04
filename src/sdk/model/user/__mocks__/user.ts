@@ -648,7 +648,9 @@ export const MockUserRoleForCompanyResponse3: Promise<AxiosResponse> = new Promi
 
 export const MockUserCompaniesResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockUserCompaniesJson,
+    data: {
+      data: MockUserCompaniesJson
+    },
     status: 200,
     statusText: '',
     headers: {},

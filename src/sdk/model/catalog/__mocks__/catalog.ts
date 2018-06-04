@@ -106,7 +106,9 @@ export const MockPublicCatalogResponse: Promise<AxiosResponse> = new Promise<Axi
 export const CatalogItemDownloadsTemplateMockResponse: Promise<AxiosResponse> =
   new Promise<AxiosResponse>((resolve) => {
     resolve({
-      data: [CatalogItemDownloadTemplateMock],
+      data: {
+        data: [CatalogItemDownloadTemplateMock]
+      },
       status: 200,
       statusText: '',
       headers: {},
@@ -116,7 +118,9 @@ export const CatalogItemDownloadsTemplateMockResponse: Promise<AxiosResponse> =
 
 export const CatalogMediasMockResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>((resolve) => {
   resolve({
-    data: [MockMediaJson],
+    data: {
+      data: [MockMediaJson]
+    },
     status: 200,
     statusText: '',
     headers: {},
@@ -126,7 +130,9 @@ export const CatalogMediasMockResponse: Promise<AxiosResponse> = new Promise<Axi
 
 export const CatalogVappTemplateMockResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>((resolve) => {
   resolve({
-    data: [MockVappTemplateJson],
+    data: {
+      data: [MockVappTemplateJson]
+    },
     status: 200,
     statusText: '',
     headers: {},

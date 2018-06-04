@@ -19,14 +19,11 @@ beforeAll(() => {
 
 test('Properly get stats', async() => {
   const edge = new Edge(MockEdgeJson);
-  return edge.getStats('mem', 'test', 'absolute').then(stats => {
-    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/stats`, {
+  return edge.getPerformance('mem', 'test', 'absolute').then(stats => {
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/performance/mem:test:absolute`, {
       'params': {
         'end': undefined,
-        'group': 'mem',
-        'name': 'test',
-        'start': undefined,
-        'type': 'absolute'
+        'start': undefined
       }
     });
     expect(stats).toBeInstanceOf(NetworkPerfSampleSerie);

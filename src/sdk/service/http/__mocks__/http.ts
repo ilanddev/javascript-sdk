@@ -220,8 +220,8 @@ export class Http {
       case /\/edges\/[^\/]+\/static-routing$/.test(url):
         // get an edge static routing.
         return MockEdgeStaticRoutingServiceResponse;
-      case /\/edges\/[^\/]+\/stats$/.test(url):
-        // get an edge stats.
+      case /\/edges\/[^\/]+\/performance\/[^\/]+$/.test(url):
+        // get an edge performance.
         return MockEdgeStatsResponse;
       case /\/orgs\/[^\/]+?\/vdc-networks$/.test(url):
         // get an orgs internal networks
@@ -293,7 +293,7 @@ export class Http {
       case /\/catalogs\/[^\/]+\/item-downloads$/.test(url):
         // get catalog item downloads
         return CatalogItemDownloadsTemplateMockResponse;
-      case /\/catalogs\/[^\/]+\/medias$/.test(url):
+      case /\/catalogs\/[^\/]+\/media$/.test(url):
         // get catalog medias
         return CatalogMediasMockResponse;
       case /\/catalogs\/[^\/]+\/vapp-templates$/.test(url):

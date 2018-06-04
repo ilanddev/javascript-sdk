@@ -322,6 +322,13 @@ test('Can get guest tools information', async() => {
       expect(guestTools.status).toBe(raw.status);
       expect(guestTools.runningStatus).toBe(raw.running_status);
       expect(guestTools.version).toBe(raw.version);
+    }).catch(e => {
+      const err = e as ApiError;
+      if (err.getType() !== 'NotFoundError') {
+        return Promise.reject(err);
+      } else {
+        return Promise.resolve();
+      }
     });
   });
 });

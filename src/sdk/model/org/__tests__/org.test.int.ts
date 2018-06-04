@@ -97,7 +97,7 @@ test('Can refresh Org', async() => {
   });
 });
 
-test('Can get org historical billing', async() => {
+test.skip('Can get org historical billing', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
     expect(org.uuid).toBe(inventoryOrg.uuid);
     const now = new Date();
