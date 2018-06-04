@@ -696,7 +696,7 @@ test('Properly submits request to get the VM guest customization', async() => {
     expect(guestCustomization.domainName).toBe(MockVmGuestCustomizationJson.domain_name);
     expect(guestCustomization.domainUserName).toBe(MockVmGuestCustomizationJson.domain_user_name);
     expect(guestCustomization.domainUserPassword).toBe(MockVmGuestCustomizationJson.domain_user_password);
-    expect(guestCustomization.machineObjectOU).toBe(MockVmGuestCustomizationJson.machine_object_ou);
+    expect(guestCustomization.machineObjectOu).toBe(MockVmGuestCustomizationJson.machine_object_ou);
     expect(guestCustomization.adminPasswordEnabled).toBe(MockVmGuestCustomizationJson.admin_password_enabled);
     expect(guestCustomization.adminPasswordAuto).toBe(MockVmGuestCustomizationJson.admin_password_auto);
     expect(guestCustomization.adminPassword).toBe(MockVmGuestCustomizationJson.admin_password);

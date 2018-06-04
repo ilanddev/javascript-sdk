@@ -3,7 +3,9 @@ import { VmDiskRequestJson } from './__json__';
 import { VmCpuCountUpdateRequest } from './vm-cpu-count-update-request';
 import { VmMemorySizeUpdateRequest } from './vm-memory-size-update-request';
 import { GuestCustomizationUpdateRequest } from './guest-customization/guest-customization-update-request';
-import { GuestCustomizationUpdateRequestJson } from './guest-customization/__json__/guest-customization-update-request-json';
+import {
+  GuestCustomizationUpdateRequestJson
+} from './guest-customization/__json__/guest-customization-update-request-json';
 
 export class VmReconfigureRequest {
 
