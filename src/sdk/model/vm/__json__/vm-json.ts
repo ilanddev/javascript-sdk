@@ -173,3 +173,24 @@ export interface VmReconfigureRequestJson {
   guest_customization_section?: GuestCustomizationUpdateRequestJson;
   nested_hypervisor_enabled?: boolean;
 }
+
+/**
+ * Vm Copy Move Vm Vnic Request JSON
+ */
+export interface VmCopyMoveVmVnicRequestJson {
+  index: number;
+  network_name: string;
+  is_primary: boolean;
+  ip_address: string;
+  ip_addressing_mode: IpAddressingMode;
+}
+
+/**
+ * Vm Copy Move Request JSON
+ */
+export interface VmCopyMoveRequestJson {
+  vapp_uuid: string;
+  name: string;
+  storage_profile: string;
+  vnics: Array<VmCopyMoveVmVnicRequestJson>;
+}
