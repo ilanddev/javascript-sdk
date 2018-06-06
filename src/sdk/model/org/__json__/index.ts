@@ -15,3 +15,7 @@ export * from './disaster-recovery-runbook-create-request-json';
 export * from './disaster-recovery-runbook-json';
 export * from './recovery-group-descriptor-json';
 export * from './recovery-group-type';
+export * from './affinity-rule-type';
+export * from './vm-affinity-rule-json';
+export * from './vm-affinity-rule-operation-type';
+export * from './vm-affinity-rule-update-request-json';
