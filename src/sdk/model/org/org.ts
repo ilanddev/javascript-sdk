@@ -335,7 +335,7 @@ export class Org extends Entity {
    * @returns {Promise<InternalNetwork[]>} promise that resolves with an array of child Internal networks
    */
   async getInternalNetworks(): Promise<Array<InternalNetwork>> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/vdc-networks`).then((response) => {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/org-vdc-networks`).then((response) => {
       const json = response.data.data as Array<InternalNetworkJson>;
       return json.map((netJson) => new InternalNetwork(netJson));
     });

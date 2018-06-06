@@ -216,7 +216,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task response
    */
   async buildVms(buildVmRequestList: Array<BuildVmRequestJson>): Promise<Task> {
-    return Iland.getHttp().post(`/vapps/${this.uuid}/actions/add-vms`, buildVmRequestList).then((response) => {
+    return Iland.getHttp().post(`/vapps/${this.uuid}/actions/build-vms`, buildVmRequestList).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
     });

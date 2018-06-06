@@ -306,10 +306,11 @@ export class Vpg extends Entity {
    * @returns {Promise<VpgFailoverTestAlert>}
    */
   async addVpgFailoverTestAlert(alertRequest: VpgFailoverTestAlertRequest): Promise<VpgFailoverTestAlert> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover-test-alerts`, alertRequest.json).then((response) => {
-      const json = response.data as VpgFailoverTestAlertJson;
-      return new VpgFailoverTestAlert(json);
-    });
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/add-failover-test-alert`, alertRequest.json)
+      .then((response) => {
+        const json = response.data as VpgFailoverTestAlertJson;
+        return new VpgFailoverTestAlert(json);
+      });
   }
 
   /**
@@ -317,7 +318,7 @@ export class Vpg extends Entity {
    * @returns {Promise<AxiosResponse>}
    */
   async removeVpgFailoverTestAlert(): Promise<AxiosResponse> {
-    return Iland.getHttp().delete(`/vpgs/${this.uuid}/failover-test-alerts`, {});
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`, {});
   }
 
   /**
@@ -331,11 +332,8 @@ export class Vpg extends Entity {
    */
   async getVpgPerfFor(group: string, name: string, type: string,
                       start?: number, end?: number): Promise<PerfSampleSerie> {
-    return Iland.getHttp().get(`/vpgs/${this.uuid}/p`, {
+    return Iland.getHttp().get(`/vpgs/${this.uuid}/performance/${group}::${name}::${type}`, {
       params: {
-        group: group,
-        name: name,
-        type: type,
         start: start,
         end: end
       }
@@ -354,10 +352,11 @@ export class Vpg extends Entity {
     const failoverTestCreateRequest = {
       checkpoint_id: checkpointId
     };
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover-test`, failoverTestCreateRequest).then((response) => {
-      const taskJson = response.data as TaskJson;
-      return new Task(taskJson);
-    });
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/failover-test`, failoverTestCreateRequest)
+      .then((response) => {
+        const taskJson = response.data as TaskJson;
+        return new Task(taskJson);
+      });
   }
 
   /**
@@ -371,10 +370,11 @@ export class Vpg extends Entity {
       failover_test_success: success,
       failover_test_summary: summary
     };
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover-test-stop`, failoverTestStopRequest).then((response) => {
-      const taskJson = response.data as TaskJson;
-      return new Task(taskJson);
-    });
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/failover-test-stop`, failoverTestStopRequest)
+      .then((response) => {
+        const taskJson = response.data as TaskJson;
+        return new Task(taskJson);
+      });
   }
 
   /**
@@ -405,7 +405,7 @@ export class Vpg extends Entity {
    * @returns {Promise<Task>} task
    */
   async failover(failoverCreateRequest: VpgFailoverCreateRequest): Promise<Task> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover`, failoverCreateRequest.json).then((response) => {
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/failover`, failoverCreateRequest.json).then((response) => {
       const taskJson = response.data as TaskJson;
       return new Task(taskJson);
     });
@@ -416,7 +416,7 @@ export class Vpg extends Entity {
    * @returns {Promise<Task>} task
    */
   async commitFailover(): Promise<Task> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover-commit`).then((response) => {
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/failover-commit`).then((response) => {
       const taskJson = response.data as TaskJson;
       return new Task(taskJson);
     });
@@ -427,7 +427,7 @@ export class Vpg extends Entity {
    * @returns {Promise<Task>} task
    */
   async rollbackFailover(): Promise<Task> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/failover-rollback`).then((response) => {
+    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/failover-rollback`).then((response) => {
       const taskJson = response.data as TaskJson;
       return new Task(taskJson);
     });

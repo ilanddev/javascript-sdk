@@ -26,7 +26,7 @@ export async function MockOrgGet(url: string, config?: AxiosRequestConfig): Prom
     case /\/orgs\/[^\/]+?\/vms$/.test(url):
       // get a orgs child vms
       return MockOrgVmsResponse;
-    case /\/orgs\/[^\/]+?\/vdc-networks$/.test(url):
+    case /\/orgs\/[^\/]+?\/org-vdc-networks$/.test(url):
       // get an orgs internal networks
       return MockOrgInternalNetworksResponse;
     case /\/orgs\/[^\/]+?\/vapp-networks$/.test(url):

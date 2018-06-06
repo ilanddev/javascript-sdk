@@ -39,7 +39,7 @@ export async function MockVmGet(url: string, config?: AxiosRequestConfig): Promi
     case /\/vms\/[^\/]+?\/capabilities$/.test(url):
       // get vm capabilities
       return MockVmCapabilitiesResponse;
-    case /\/vms\/[^\/]+?\/disks\/recommended-disk-bus-type$/.test(url):
+    case /\/vms\/[^\/]+?\/recommended-disk-bus-type$/.test(url):
       // get vm recommended disk bus type
       return MockVmRecommendedDiskBusTypeResponse;
     case /\/vms\/[^\/]+?\/guest-customization$/.test(url):
@@ -97,6 +97,9 @@ export async function MockVmPost(url: string, data?: any, config?: AxiosRequestC
     case /\/vms\/[^\/]+?\/actions\/create-snapshot$/.test(url):
       // copy vm
       return MockTaskService.getNewMockTaskResponse('create snapshot');
+    case /\/vms\/[^\/]+?\/actions\/remove-snapshot$/.test(url):
+      // remove snapshot
+      return MockTaskService.getNewMockTaskResponse('remove snapshot');
     case /\/vms\/[^\/]+?\/actions\/disable-nested-hypervisor$/.test(url):
       // copy vm
       return MockTaskService.getNewMockTaskResponse('disable nested hypervisor');
@@ -181,6 +184,9 @@ export async function MockVmPost(url: string, data?: any, config?: AxiosRequestC
     case /\/vms\/[^\/]+?\/actions\/upgrade-guest-tools$/.test(url):
       // upgrade VM guest tools
       return MockTaskService.getNewMockTaskResponse('vmware tools upgrade');
+    case /\/vms\/[^\/]+?\/actions\/update-virtual-hardware-version$/.test(url):
+      // upgrade virtual hardware version
+      return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
     default:
       return MockNotFoundResponse;
   }
@@ -191,9 +197,6 @@ export async function MockVmPut(url: string, data?: any, config?: AxiosRequestCo
     case /\/vms\/[^\/]+?\/metadata$/.test(url):
       // update metadata
       return MockTaskService.getNewMockTaskResponse('update metadata');
-    case /\/vms\/[^\/]+?\/virtual-hardware-version$/.test(url):
-      // upgrade vms virtual hardware
-      return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
     default:
       return MockNotFoundResponse;
   }
@@ -210,9 +213,6 @@ export async function MockVmDelete(url: string, config?: AxiosRequestConfig): Pr
     case /\/vms\/[^\/]+?$/.test(url):
       // delete vm
       return MockTaskService.getNewMockTaskResponse('delete entity');
-    case /\/vms\/[^\/]+?\/snapshot$/.test(url):
-      // delete vm snapshot
-      return MockTaskService.getNewMockTaskResponse('remove snapshot');
     case /\/vms\/[^\/]+?\/vnics\/[^\/]+?$/.test(url):
       // delete virtual network card
       return MockTaskService.getNewMockTaskResponse('delete virtual network card');

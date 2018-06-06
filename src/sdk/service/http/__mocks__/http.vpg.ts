@@ -19,22 +19,25 @@ export async function MockVpgGet(url: string, config?: AxiosRequestConfig): Prom
 
 export async function MockVpgPost(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
-    case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/add-failover-test-alert$/.test(url):
       // add a vpg failover test alert
       return MockVpgAlertResponse;
-    case /\/vpgs\/[^\/]+?\/failover-test$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/remove-failover-test-alert$/.test(url):
+      // remove a vpg failover test alert
+      return MockService.getMockVoidResponse();
+    case /\/vpgs\/[^\/]+?\/actions\/failover-test$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto failover test initiation');
-    case /\/vpgs\/[^\/]+?\/failover-test-stop$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/failover-test-stop$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto failover test stop');
-    case /\/vpgs\/[^\/]+?\/failover$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/failover$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto live failover initiation');
-    case /\/vpgs\/[^\/]+?\/failover-commit$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/failover-commit$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto failover commit');
-    case /\/vpgs\/[^\/]+?\/failover-rollback$/.test(url):
+    case /\/vpgs\/[^\/]+?\/actions\/failover-rollback$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto failover rollback');
     default:
@@ -51,9 +54,6 @@ export async function MockVpgPut(url: string, data?: any, config?: AxiosRequestC
 
 export async function MockVpgDelete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
-    case /\/vpgs\/[^\/]+?\/failover-test-alerts\/[^\/]+?$/.test(url):
-      // remove vpg failover test alert
-      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

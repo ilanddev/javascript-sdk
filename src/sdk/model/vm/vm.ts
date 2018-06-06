@@ -751,7 +751,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<DiskType>} promise that resolves with the vm recommended disk bus type
    */
   async getRecommendedDiskBusType(): Promise<DiskType> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/disks/recommended-disk-bus-type`).then((response) => {
+    return Iland.getHttp().get(`/vms/${this.uuid}/recommended-disk-bus-type`).then((response) => {
       return response.data.bus_type as DiskType;
     });
   }
@@ -908,7 +908,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async deleteSnapshot(): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}/snapshot`).then((response) => {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/remove-snapshot`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -942,7 +942,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateVirtualHardwareVersion(): Promise<Task> {
-    return Iland.getHttp().put(`/vms/${this.uuid}/virtual-hardware-version`).then((response) => {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-virtual-hardware-version`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });

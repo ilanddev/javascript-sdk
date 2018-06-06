@@ -54,7 +54,7 @@ test('Can get Vpg Failover Test Alert', async() => {
 
 test('Remove Vpg failover test alert', async() => {
   return vpg.removeVpgFailoverTestAlert().then(function() {
-    expect(Iland.getHttp().delete).lastCalledWith(`/vpgs/${vpg.uuid}/failover-test-alerts`, {});
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/remove-failover-test-alert`, {});
   });
 });
 
@@ -63,14 +63,14 @@ test('Test a failover for Vpg', async() => {
     checkpoint_id: 'mock-checkpoint-id'
   };
   return vpg.failoverTest(mockCheckpoint.checkpoint_id).then((task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/failover-test`, mockCheckpoint);
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/failover-test`, mockCheckpoint);
     expect(task.operation).toBe('zerto failover test initiation');
   });
 });
 
 test('Stop vpg failover', async() => {
   return vpg.failoverTestStop(true, 'mock-summary').then((task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/failover-test-stop`, {
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/failover-test-stop`, {
       failover_test_success: true,
       failover_test_summary: 'mock-summary'
     });
@@ -82,21 +82,21 @@ test('Initiate a live failover on Vpg', async() => {
   const failoverReq = new VpgFailoverCreateRequest('mock-checkpoint-id', 'COMMIT', 'NONE', 0, 1);
   expect(failoverReq.toString().length).toBeGreaterThan(0);
   return vpg.failover(failoverReq).then((task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/failover`, failoverReq.json);
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/failover`, failoverReq.json);
     expect(task.operation).toBe('zerto live failover initiation');
   });
 });
 
 test('Commits changes after a live failover for Vpg', async() => {
   return vpg.commitFailover().then((task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/failover-commit`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/failover-commit`);
     expect(task.operation).toBe('zerto failover commit');
   });
 });
 
 test('Rollback changes after a live failover for Vpg', async() => {
   return vpg.rollbackFailover().then((task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/failover-rollback`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/failover-rollback`);
     expect(task.operation).toBe('zerto failover rollback');
   });
 });

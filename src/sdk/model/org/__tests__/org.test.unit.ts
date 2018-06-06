@@ -88,7 +88,7 @@ test('Properly submits request to get Orgs child edges', async() => {
 test('Properly submits request to get Orgs child internal networks', async() => {
   const org = new Org(MockOrgJson);
   return org.getInternalNetworks().then(function(nets) {
-    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/vdc-networks`);
+    expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/org-vdc-networks`);
     expect(nets.length).toBe(MockOrgInternalNetworksJson.length);
     let idx = 0;
     for (const net of nets) {

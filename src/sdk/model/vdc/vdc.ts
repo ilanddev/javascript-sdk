@@ -248,7 +248,7 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async buildVapp(buildVappRequest: BuildVappRequestJson): Promise<Task> {
-    return Iland.getHttp().post(`/vdcs/${this.uuid}/build-vapp`, buildVappRequest).then((response) => {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/actions/build-vapp`, buildVappRequest).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
     });
@@ -271,10 +271,11 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async addVapp(addVappRequest: AddVappRequestJson): Promise<Task> {
-    return Iland.getHttp().post(`/vdcs/${this.uuid}/vapp`, addVappRequest).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
-    });
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/actions/add-vapp-from-template`, addVappRequest)
+      .then((response) => {
+        const json = response.data as TaskJson;
+        return new Task(json);
+      });
   }
 
   /**
