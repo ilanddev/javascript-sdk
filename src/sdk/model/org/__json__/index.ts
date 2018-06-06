@@ -11,3 +11,7 @@ export * from './dns-zone-create-request-json';
 export * from './dns-zone-json';
 export * from './dns-zone-type';
 export * from './ip-address-set-json';
+export * from './disaster-recovery-runbook-create-request-json';
+export * from './disaster-recovery-runbook-json';
+export * from './recovery-group-descriptor-json';
+export * from './recovery-group-type';

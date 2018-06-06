@@ -9,3 +9,6 @@ export * from './dns-record-update-request';
 export * from './dns-zone';
 export * from './dns-zone-create-request';
 export * from './ip-address-set';
+export * from './disaster-recovery-runbook-create-request';
+export * from './disaster-recovery-runbook';
+export * from './recovery-group-descriptor';
