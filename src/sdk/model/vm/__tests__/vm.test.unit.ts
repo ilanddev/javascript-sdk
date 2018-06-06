@@ -480,7 +480,7 @@ test('Properly submits request to restore a VM snapshot', async() => {
 test('Properly submits request to delete a VM snapshot', async() => {
   const vm = new Vm(MockVmJson);
   return vm.deleteSnapshot().then(function(task) {
-    expect(Iland.getHttp().delete).lastCalledWith(`/vms/${vm.uuid}/snapshot`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/remove-snapshot`);
     expect(task.operation).toBe('remove snapshot');
   });
 });
@@ -488,7 +488,7 @@ test('Properly submits request to delete a VM snapshot', async() => {
 test('Properly submits request to update VMs virtual hardware', async() => {
   const vm = new Vm(MockVmJson);
   return vm.updateVirtualHardwareVersion().then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/virtual-hardware-version`);
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-virtual-hardware-version`);
     expect(task.operation).toBe('upgrade virtual hardware');
   });
 });
@@ -677,7 +677,7 @@ test('Properly submits request to update VM capabilities', async() => {
 test('Properly submits request to get the VM recommended disk bus type', async() => {
   const vm = new Vm(MockVmJson);
   return vm.getRecommendedDiskBusType().then(function(diskBusType) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/disks/recommended-disk-bus-type`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/recommended-disk-bus-type`);
     expect(diskBusType).toBeDefined();
     expect(diskBusType).toBe(MockVmRecommendedDiskBusTypeJson.bus_type);
   });

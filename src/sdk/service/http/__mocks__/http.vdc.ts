@@ -40,10 +40,10 @@ export async function MockVdcGet(url: string, config?: AxiosRequestConfig): Prom
 
 export async function MockVdcPost(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
-    case /\/vdcs\/[^\/]+?\/build-vapp$/.test(url):
+    case /\/vdcs\/[^\/]+?\/actions\/build-vapp$/.test(url):
       // build vapp task
       return MockTaskService.getNewMockTaskResponse('build vapp');
-    case /\/vdcs\/[^\/]+?\/vapp$/.test(url):
+    case /\/vdcs\/[^\/]+?\/actions\/add-vapp-from-template$/.test(url):
       // add vapp
       return MockTaskService.getNewMockTaskResponse('add vapp');
     default:

@@ -114,7 +114,7 @@ test('Build vApp in vDC', async() => {
   };
   const vdc = new Vdc(MockVdcJson);
   return vdc.buildVapp(json).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/build-vapp`, json);
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/build-vapp`, json);
     expect(task.operation).toBe('build vapp');
   });
 });
@@ -154,7 +154,7 @@ test('Add vApp in vDC', async() => {
   };
   const vdc = new Vdc(MockVdcJson);
   return vdc.addVapp(vapp).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/vapp`, vapp);
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/add-vapp-from-template`, vapp);
     expect(task.operation).toBe('add vapp');
   });
 });
