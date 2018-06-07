@@ -34,3 +34,4 @@ export * from './nessus-vulnerability';
 export * from './external-network';
 export * from './catalog-create-request';
 export * from './org-currency-code';
+export * from './public-ip-assignment';

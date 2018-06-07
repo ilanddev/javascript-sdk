@@ -44,3 +44,5 @@ export * from './nessus-vulnerability-json';
 export * from './catalog-create-request-json';
 export * from './is-compliance-org-json';
 export * from './org-currency-code-json';
+export * from './public-ip-assignment-json';
+export * from './public-ip-assignment-type';
