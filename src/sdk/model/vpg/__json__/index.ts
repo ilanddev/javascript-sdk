@@ -4,3 +4,4 @@ export * from './vpg-status-type';
 export * from './vpg-sub-status-type';
 export * from './vpg-sub-entity-request';
 export * from './vpg';
+export * from './expanded-vpg-json';

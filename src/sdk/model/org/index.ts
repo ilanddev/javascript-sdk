@@ -32,3 +32,4 @@ export * from './nessus-scan-update';
 export * from './nessus-scan-update-request';
 export * from './nessus-vulnerability';
 export * from './external-network';
+export * from './catalog-create-request';

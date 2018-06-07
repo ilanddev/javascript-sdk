@@ -6,3 +6,4 @@ export * from './vpg';
 export * from './service-profile';
 export * from './vpg-entities';
 export * from './vpg-vm';
+export * from './expanded-vpg';
