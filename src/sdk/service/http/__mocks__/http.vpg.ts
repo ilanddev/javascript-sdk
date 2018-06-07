@@ -6,7 +6,7 @@ import { MockService } from '../../../config/__mocks__/util';
 
 export async function MockVpgGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
-    case /\/vpgs\/[^\/]+?\/failover-report\/[^\/]+?$/.test(url):
+    case /\/vpgs\/[^\/]+?\/failover-task-details\/[^\/]+?$/.test(url):
       // remove vpg failover test alert
       return MockVpgReportDetailsResponse;
     case /\/vpgs\/[^\/]+?\/failover-test-alerts$/.test(url):

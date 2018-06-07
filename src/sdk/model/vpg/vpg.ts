@@ -445,12 +445,12 @@ export class Vpg extends Entity {
   }
 
   /**
-   * Gets failover report details for a failover task
+   * Gets failover task details for a failover.
    * @param {string} taskUuid
    * @returns {Promise<VpgFailoverReportDetails>} vpg failover report detail
    */
-  async getFailoverReportDetails(taskUuid: string): Promise<VpgFailoverReportDetails> {
-    return Iland.getHttp().get(`/vpgs/${this.uuid}/failover-report/${taskUuid}`).then((response) => {
+  async getFailoverTaskDetails(taskUuid: string): Promise<VpgFailoverReportDetails> {
+    return Iland.getHttp().get(`/vpgs/${this.uuid}/failover-task-details/${taskUuid}`).then((response) => {
       const reportJson = response.data as VpgFailoverReportDetailsJson;
       return new VpgFailoverReportDetails(reportJson);
     });
@@ -458,12 +458,12 @@ export class Vpg extends Entity {
 
   /**
    * Get a failover report file for a task
-   * @param {string} taskUuid
+   * @param {string} reportUuid the UUID of the task to retrieve the report for
    * @param {string} fileName
    * @returns {Observable<String>}
    */
-  getFailoverReport(taskUuid: string, fileName?: string): Observable<String> {
-    let href = `${Iland.baseUrl}/vpgs/${this.uuid}/failover-report/${taskUuid}/download?accept=` +
+  downloadFailoverReport(reportUuid: string, fileName?: string): Observable<String> {
+    let href = `${Iland.baseUrl}/vpgs/${this.uuid}/failover-reports/${reportUuid}?accept=` +
       encodeURIComponent(Http.versionMime('application/octet-stream'));
     if (fileName) {
       href = href + '&filename=' + encodeURIComponent(fileName);
