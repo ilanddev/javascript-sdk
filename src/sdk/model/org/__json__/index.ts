@@ -42,3 +42,4 @@ export * from './nessus-scan-update-json';
 export * from './nessus-scan-update-request-json';
 export * from './nessus-vulnerability-json';
 export * from './catalog-create-request-json';
+export * from './is-compliance-org-json';
