@@ -103,8 +103,8 @@ test('Rollback changes after a live failover for Vpg', async() => {
 
 test('Get a failover report details for a failover task', async() => {
   const mockTaskUuid = 'mock-task-uuid';
-  return vpg.getFailoverReportDetails(mockTaskUuid).then((report) => {
-    expect(Iland.getHttp().get).lastCalledWith(`/vpgs/${vpg.uuid}/failover-report/${mockTaskUuid}`);
+  return vpg.getFailoverTaskDetails(mockTaskUuid).then((report) => {
+    expect(Iland.getHttp().get).lastCalledWith(`/vpgs/${vpg.uuid}/failover-task-details/${mockTaskUuid}`);
     const rawData = report.json;
     expect(report.toString().length).toBeGreaterThan(0);
     expect(report.locationId).toBe(rawData.location_id);
@@ -172,9 +172,9 @@ test('Get a failover report details for a failover task', async() => {
 test('Get download report href from Vpg failover report', (done) => {
   const mockTaskUuid = 'mock-task-uuid';
   expect.assertions(1);
-  vpg.getFailoverReport(mockTaskUuid, 'downloadFileName').subscribe(url => {
-    expect(url).toEqual(Iland.baseUrl + '/vpgs/' + vpg.uuid + '/failover-report/'
-      + mockTaskUuid + '/download?accept='
+  vpg.downloadFailoverReport(mockTaskUuid, 'downloadFileName').subscribe(url => {
+    expect(url).toEqual(Iland.baseUrl + '/vpgs/' + vpg.uuid + '/failover-reports/'
+      + mockTaskUuid + '?accept='
       + encodeURIComponent(Http.versionMime('application/octet-stream'))
       + '&filename=' + encodeURIComponent('downloadFileName')
       + '&oauth_token=fake-auth-token-2');
