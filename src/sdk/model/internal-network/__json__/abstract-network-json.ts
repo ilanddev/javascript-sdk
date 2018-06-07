@@ -1,4 +1,4 @@
-import { IpRangeJson } from '../../edge/ip-range/__json__/ip-range-json';
+import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
 import { EntityJson } from '../../common/__json__/entity-json';
 import { NetworkFenceMode } from './network-fence-mode-type';
 

@@ -1,4 +1,4 @@
-import { IpRangeJson } from '../../ip-range/__json__/ip-range-json';
+import { IpRangeJson } from '../../../common/ip-range/__json__/ip-range-json';
 
 /**
  * Interface for Edge SubnetParticipation JSON representation.
