@@ -1,5 +1,5 @@
 import { Entity } from '../common/entity';
-import { IpRange } from '../edge/ip-range/ip-range';
+import { IpRange } from '../common/ip-range/ip-range';
 import { AbstractNetworkJson } from './__json__/abstract-network-json';
 import { NetworkFenceMode } from './__json__/network-fence-mode-type';
 

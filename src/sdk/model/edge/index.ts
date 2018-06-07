@@ -4,7 +4,7 @@ export * from './dhcp/index';
 export * from './edge-interface/index';
 export * from './firewall/index';
 export * from './gateway-nat-rule/index';
-export * from './ip-range/index';
+export * from '../common/ip-range/index';
 export * from './ipsec-vpn/index';
 export * from './load-balancer/index';
 export * from './nat/index';

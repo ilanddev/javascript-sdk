@@ -1,5 +1,5 @@
-import { IpRange } from '../ip-range/ip-range';
-import { IpRangeJson } from '../ip-range/__json__/ip-range-json';
+import { IpRange } from '../../common/ip-range/ip-range';
+import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
 import { EdgeSubnetParticipationJson } from './__json__/subnet-participation-json';
 
 /**
