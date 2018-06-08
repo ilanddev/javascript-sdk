@@ -48,3 +48,7 @@ export * from './public-ip-assignment-json';
 export * from './public-ip-assignment-type';
 export * from './billing-sample-json';
 export * from './billing-sample-serie-json';
+export * from './failover-test-params-request-json';
+export * from './failover-params-request-json';
+export * from './batch-failover-test-params-request-json';
+export * from './batch-failover-params-request-json';
