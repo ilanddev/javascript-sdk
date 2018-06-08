@@ -1,5 +1,5 @@
-import { ReportTypeJson } from './report-type-json';
-import { ReportFormat } from './report-format';
+import { ReportTypeJson } from '../../../common/__json__/report-type-json';
+import { ReportFormat } from '../../../common/__json__/report-format';
 
 export interface ReportWithContentJson {
   uuid: string;
