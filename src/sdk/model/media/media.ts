@@ -34,44 +34,6 @@ export class Media extends Entity {
   }
 
   /**
-   * Delete the Media from API.
-   * @param {string} uuid
-   * @returns {Promise<Task>} promise that resolves with a Task
-   */
-  static async deleteMedia(uuid: string): Promise<Task> {
-    return Iland.getHttp().delete(`/media/${uuid}`).then(async(response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
-  }
-
-  /**
-   * Update the Media.
-   * @param {string} uuid
-   * @param {MediaUpdateRequest} request
-   * @returns {Promise<Task>} promise that resolves with a Task
-   */
-  static async updateMedia(uuid: string, request: MediaUpdateRequest): Promise<Task> {
-    return Iland.getHttp().put(`/media/${uuid}`, request.json).then(async(response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
-  }
-
-  /**
-   * Clone the Media.
-   * @param {string} uuid
-   * @param {MediaCloneRequest} request
-   * @returns {Promise<Task>} promise that resolves with a Task
-   */
-  static async cloneMedia(uuid: string, request: MediaCloneRequest): Promise<Task> {
-    return Iland.getHttp().post(`/media/${uuid}/actions/clone`, request.json).then(async(response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
-  }
-
-  /**
    * Get entity type for Media
    * @returns {EntityType}
    */
@@ -183,7 +145,10 @@ export class Media extends Entity {
    * @returns {Promise<Task>} promise that resolves with a Task
    */
   async delete(): Promise<Task> {
-    return Media.deleteMedia(this.uuid);
+    return Iland.getHttp().delete(`/media/${this.uuid}`).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -192,7 +157,10 @@ export class Media extends Entity {
    * @returns {Promise<Task>} promise that resolves with a Task
    */
   async update(request: MediaUpdateRequest): Promise<Task> {
-    return Media.updateMedia(this.uuid, request);
+    return Iland.getHttp().put(`/media/${this.uuid}`, request.json).then(async(response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
   }
 
   /**
@@ -201,7 +169,11 @@ export class Media extends Entity {
    * @returns {Promise<Task>} promise that resolves with a Task
    */
   async clone(request: MediaCloneRequest): Promise<Task> {
-    return Media.cloneMedia(this.uuid, request);
+    return Iland.getHttp().post(`/media/${this.uuid}/actions/clone`, request.json)
+        .then(async(response) => {
+          const apiTask = response.data as TaskJson;
+          return new Task(apiTask);
+        });
   }
 
   /**

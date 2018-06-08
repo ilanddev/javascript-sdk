@@ -1,5 +1,4 @@
 import { Iland } from '../../../iland';
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
 import { Media } from '../media';
 import { MockMediaJson } from '../__mocks__/media';
 import { MediaUpdateRequest } from '../media-update-request';
@@ -7,11 +6,12 @@ import { MediaCloneRequest } from '../media-clone-request';
 import { MockMetadataJson } from '../../common/metadata/__mocks__/metadata';
 import { Metadata } from '../../common/metadata';
 import { Http } from '../../../service/http/http';
+import { MockIlandDirectGrantAuthProvider } from '../../../auth/__mocks__/iland-direct-grant-auth-privider';
 
 jest.mock('../../../service/http/http');
 
 beforeAll(() => {
-  Iland.init(new IlandDirectGrantAuthProvider({
+  Iland.init(new MockIlandDirectGrantAuthProvider({
     username: '',
     password: '',
     clientSecret: '',
@@ -61,14 +61,6 @@ test('Properly submits request to refresh media', async() => {
   });
 });
 
-test('Properly submits request to delete media [static]', async() => {
-  const media = new Media(MockMediaJson);
-  return Media.deleteMedia(media.uuid).then(async(task) => {
-    expect(Iland.getHttp().delete).lastCalledWith(`/media/${MockMediaJson.uuid}`);
-    expect(task.operation).toBe('delete entity');
-  });
-});
-
 test('Properly submits request to delete media', async() => {
   const media = new Media(MockMediaJson);
   return media.delete().then(async(task) => {
@@ -104,19 +96,6 @@ test('Can construct MediaUpdateRequest', async() => {
   expect(copy.name).toEqual(data.name);
   expect(copy.description).toEqual(data.description);
   expect(copy.storageProfileUuid).toEqual(data.storage_profile_uuid);
-});
-
-test('Properly submits request to update media [static]', async() => {
-  const media = new Media(MockMediaJson);
-  const request = new MediaUpdateRequest({
-    name: MockMediaJson.name,
-    description: MockMediaJson.description,
-    storage_profile_uuid: MockMediaJson.storage_profile_uuid
-  });
-  return Media.updateMedia(media.uuid, request).then(async(task) => {
-    expect(Iland.getHttp().put).lastCalledWith(`/media/${MockMediaJson.uuid}`, request.json);
-    expect(task.operation).toBe('update media');
-  });
 });
 
 test('Properly submits request to update media', async() => {
@@ -163,21 +142,6 @@ test('Can construct MediaCloneRequest', async() => {
   expect(copy.storageProfileUuid).toEqual(data.storage_profile_uuid);
   expect(copy.catalogUuid).toEqual(data.catalog_uuid);
   expect(copy.mediaName).toEqual(data.media_name);
-});
-
-test('Properly submits request to clone media [static]', async() => {
-  const media = new Media(MockMediaJson);
-  const request = new MediaCloneRequest({
-    vdc_uuid: '00',
-    storage_profile_uuid: '00',
-    catalog_uuid: '00',
-    media_name: 'name'
-  });
-
-  return Media.cloneMedia(media.uuid, request).then(async(task) => {
-    expect(Iland.getHttp().post).lastCalledWith(`/media/${MockMediaJson.uuid}/actions/clone`, request.json);
-    expect(task.operation).toBe('clone media');
-  });
 });
 
 test('Properly submits request to clone media', async() => {
@@ -264,14 +228,14 @@ test('Properly submits request to delete media metadata', async() => {
 
 test('Get media download link', (done) => {
   const media = new Media(MockMediaJson);
+  expect.assertions(1);
   media.getDownloadLink('downloadFileName').subscribe(url => {
-    expect(url).toEqual(Iland.baseUrl + '/medias/' + media.uuid + '/download?accept='
+    expect(url).toEqual(Iland.baseUrl + '/media/' + media.uuid + '/download?accept='
         + encodeURIComponent(Http.versionMime('application/octet-stream'))
         + '&filename=' + encodeURIComponent('downloadFileName')
         + '&oauth_token=fake-auth-token-2');
     done();
   }, (error) => {
-    console.log(error);
-    done();
+    done.fail(error);
   });
 });
