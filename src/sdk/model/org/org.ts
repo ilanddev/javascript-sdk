@@ -34,7 +34,7 @@ import { Catalog, VappTemplate, VappTemplateJson } from '../catalog';
 import { Task, TaskJson } from '../task';
 import { Bill, BillingSummary, BillingSummaryJson, BillJson } from '../common/billing';
 import { BillingReportRequest } from './reports/billing-report-request';
-import { ReportHeader } from './reports/report-header';
+import { ReportHeader } from '../common/reports/report-header';
 import { ComplianceOverTime } from './reports/compliance-over-time';
 import { VulnerabilityOverTime } from './reports/vulnerability-over-time';
 import { AntimalwareOverTime } from './reports/anti-malware-over-time';
@@ -69,7 +69,7 @@ import { IsComplianceOrg } from './is-compliance-org';
 import { IsComplianceOrgJson } from './__json__';
 import { OrgCurrencyCode } from './org-currency-code';
 import { OrgCurrencyCodeJson } from './__json__/org-currency-code-json';
-import { ReportFormat } from './reports/__json__/report-format';
+import { ReportFormat } from '../common/__json__/report-format';
 import { ReportWithContent } from './reports/report-with-content';
 import { ReportWithContentJson } from './reports/__json__/report-with-content-json';
 import { ReportWithSummaryJson } from './reports/__json__/report-with-summary-json';
@@ -79,11 +79,11 @@ import { ComplianceOverTimeJson } from './reports/__json__/compliance-over-time-
 import { SerieType } from './reports/__json__/serie-type';
 import { AntimalwareOverTimeJson } from './reports/__json__/anti-malware-over-time-json';
 import { FirewallOverTimeJson } from './reports/__json__/firewall-over-time-json';
-import { ReportHeaderJson } from './reports/__json__/report-header-json';
 import { PublicIpAssignment } from './public-ip-assignment';
 import { PublicIpAssignmentJson } from './__json__/public-ip-assignment-json';
 import { BillingSampleSerie } from './billing-sample-serie';
 import { BillingSampleSerieJson } from './__json__/billing-sample-serie-json';
+import { ReportHeaderJson } from '../common/__json__/report-header-json';
 
 /**
  * IaaS Organization.
