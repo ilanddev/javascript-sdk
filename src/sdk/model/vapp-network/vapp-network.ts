@@ -3,7 +3,6 @@ import { EntityType } from '../common/__json__/entity-type';
 import { Task, TaskJson } from '../task';
 import { VappNetworkUpdateRequest } from './vapp-network-update-request';
 import { VappNetworkDHCPService } from './vapp-network-dhcp-service';
-import { VappNetworkDHCPServiceJson, VappNetworkJson } from './__json__';
 import { VappNetworkNATService } from './vapp-network-nat-service';
 import { VappNetworkNATServiceUpdateRequest } from './vapp-network-nat-service-update-request';
 import { VappNetworkDHCPServiceJson, VappNetworkFirewallJson, VappNetworkJson, VappNetworkNATServiceJson }
