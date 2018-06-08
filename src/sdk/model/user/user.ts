@@ -7,6 +7,8 @@ import { UserType } from './__json__/user-type';
 import { UserInventoryJson } from './inventory-entity/__json__/user-inventory-json';
 import { RoleJson } from '../iam/role/__json__/role-json';
 import { CompanyJson } from '../company/__json__/company-json';
+import { UserDomainJson } from './__json__/user-domain-json';
+import { UserUpdateRequest } from './user-update-request';
 
 /**
  * User.
@@ -94,9 +96,9 @@ export class User {
 
   /**
    * Gets the user's domain.
-   * @returns {string} user domain
+   * @returns {string | UserDomainJson}
    */
-  get domain(): string {
+  get domain(): string | UserDomainJson {
     return this._apiUser.domain;
   }
 
@@ -197,6 +199,27 @@ export class User {
       this._apiUser = response.data as UserJson;
       return this;
     });
+  }
+
+  /**
+   * Update the user.
+   * @param {UserUpdateRequest} request
+   * @returns {Promise<User>}
+   */
+  async update(request: UserUpdateRequest): Promise<User> {
+    return Iland.getHttp().put(`/users/${this.username}`, request.json).then((response) => {
+      const json = response.data as UserJson;
+      return new User(json);
+    });
+  }
+
+  /**
+   * Delete the current user.
+   * @returns {Promise<void>}
+   * @throws Error
+   */
+  async delete(): Promise<any> {
+    return Iland.getHttp().delete(`/users/${this.username}`);
   }
 
   /**
