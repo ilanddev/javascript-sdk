@@ -23,6 +23,25 @@ export const MockUserJson: UserJson = {
   domain: 'SYSTEM'
 };
 
+export const MockUserUpdatedJson: UserJson = {
+  name: 'testName',
+  address: 'testAddress',
+  city: 'testCity',
+  company: 'testCompany',
+  country: 'testCountry',
+  created_date: 12394123948,
+  deleted: false,
+  deleted_date: null,
+  email: 'coke@coke.com',
+  fullname: 'Coke User',
+  locked: false,
+  phone: '123-123-1234',
+  state: 'testState',
+  user_type: 'SYSTEM_ADMIN',
+  zip: '12345',
+  domain: 'SYSTEM'
+};
+
 export const MockUserCustomerJson: UserJson = {
   name: 'customer',
   address: '111 washington st.',
@@ -605,6 +624,16 @@ export const MockUserRoleForCompanyJson3: RoleJson = {
   ],
   'type': 'CUSTOM'
 };
+
+export const MockUserUpdatedJsonResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
+  resolve({
+    data: MockUserUpdatedJson,
+    status: 200,
+    statusText: '',
+    headers: {},
+    config: {}
+  });
+});
 
 export const MockUserCompanyInventoryResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
