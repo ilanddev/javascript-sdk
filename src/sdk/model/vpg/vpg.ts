@@ -26,8 +26,8 @@ import { VpgStatus } from './__json__/vpg-status-type';
 import { VpgSubStatus } from './__json__/vpg-sub-status-type';
 import { VpgPriority } from './__json__/vpg-priority-type';
 import { ActiveProcessStage } from './__json__/vpg-active-process-stage';
-import {PerfCounter} from "../mixins/perf-samples/perf-counter";
-import {PerfCounterJson} from "../mixins/perf-samples/__json__/perf-samples";
+import { PerfCounter } from '../mixins/perf-samples/perf-counter';
+import { PerfCounterJson } from '../mixins/perf-samples/__json__/perf-samples';
 
 /**
  * Virtual Protection Group
