@@ -19,7 +19,7 @@ import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request'
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
 import { Media } from '../media';
-import { MediaJson } from '../media';
+import { MediaJson } from '../media/__json__/media-json';
 import { Edge } from '../edge';
 import { EdgeJson } from '../edge';
 import { ReportFormat } from '../common/__json__/report-format';
