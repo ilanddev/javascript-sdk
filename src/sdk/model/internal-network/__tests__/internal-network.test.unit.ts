@@ -29,8 +29,8 @@ test('Properly submits request to get Internal Network', async() => {
     expect(net.ipRanges.length).toBe(MockInternalNetworkJson.ip_ranges.length);
     let idx = 0;
     for (const ipRange of net.ipRanges) {
-      expect(ipRange.startAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.endAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.start).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.end).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockInternalNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;
@@ -71,8 +71,8 @@ test('Properly submits request to refresh Internal Network', async() => {
     expect(net.ipRanges.length).toBe(MockInternalNetworkJson.ip_ranges.length);
     let idx = 0;
     for (const ipRange of net.ipRanges) {
-      expect(ipRange.startAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.endAddress).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.start).toBe(MockInternalNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.end).toBe(MockInternalNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockInternalNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;

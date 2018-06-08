@@ -1,4 +1,4 @@
-import { IpRangeRequestJson } from '../../common/ip-range/__json__';
+import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
 import { NetworkFenceMode } from '../..';
 
 export interface VappNetworkUpdateRequestJson {
@@ -10,6 +10,6 @@ export interface VappNetworkUpdateRequestJson {
   secondary_dns: string;
   dns_suffix: string;
   inherited: boolean;
-  ip_ranges: Array<IpRangeRequestJson>;
+  ip_ranges: Array<IpRangeJson>;
   router_external_ip: string;
 }

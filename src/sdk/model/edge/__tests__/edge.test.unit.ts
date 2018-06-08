@@ -70,8 +70,8 @@ function runEdgeAssertionsAgainsMock(edge: Edge) {
             let rangeIdx = 0;
             for (const range of sp.ipRanges) {
               const mockRange = mockSp.ip_ranges[rangeIdx];
-              expect(range.startAddress).toBe(mockRange.start);
-              expect(range.endAddress).toBe(mockRange.end);
+              expect(range.start).toBe(mockRange.start);
+              expect(range.end).toBe(mockRange.end);
               expect(range.json).toEqual(mockRange);
               expect(range.toString().length).toBeGreaterThan(0);
               rangeIdx++;

@@ -550,8 +550,8 @@ test('Properly submits request to get VM networks', async() => {
     expect(network.toString().length).toBeGreaterThan(0);
 
     const ipRange = network.ipRanges[0];
-    expect(ipRange.startAddress).toBe(MockVmNetworkJson.ip_ranges[0].start);
-    expect(ipRange.endAddress).toBe(MockVmNetworkJson.ip_ranges[0].end);
+    expect(ipRange.start).toBe(MockVmNetworkJson.ip_ranges[0].start);
+    expect(ipRange.end).toBe(MockVmNetworkJson.ip_ranges[0].end);
   });
 });
 
