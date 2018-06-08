@@ -1,7 +1,6 @@
-import { Entity } from '../common/entity';
-import { IpRange } from '../common/ip-range/ip-range';
-import { AbstractNetworkJson } from './__json__/abstract-network-json';
-import { NetworkFenceMode } from './__json__/network-fence-mode-type';
+import { Entity, NetworkFenceMode } from '../common';
+import { AbstractNetworkJson } from './__json__';
+import { IpRange } from '../common/ip-range';
 
 /**
  * Abstract Network.
