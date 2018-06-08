@@ -46,3 +46,5 @@ export * from './is-compliance-org-json';
 export * from './org-currency-code-json';
 export * from './public-ip-assignment-json';
 export * from './public-ip-assignment-type';
+export * from './billing-sample-json';
+export * from './billing-sample-serie-json';
