@@ -9,6 +9,7 @@ import {
 } from '../__mocks__/user';
 import { UserWithSecurity } from '../user-with-security';
 import { Role } from '../../iam/role/role';
+import { UserUpdateRequest } from '../user-update-request';
 
 jest.mock('../../../service/http/http');
 
@@ -97,5 +98,29 @@ test('Properly delete role to User', async() => {
   const role = new Role(MockUserRoleForCompanyJson2);
   return user.unassignRole(role.companyId).then(() => {
     expect(Iland.getHttp().delete).lastCalledWith(`/users/${user.username}/roles/${role.companyId}`);
+  });
+});
+
+test('Properly update a User', async() => {
+  const user = new User(MockUserJson);
+  const userUpdateReq = new UserUpdateRequest('testName', 'testPhone', 'testCompany',
+    'testAddress', 'testCity', 'testState', 'testZip', 'testCountry');
+  return user.update(userUpdateReq).then(userUpdated => {
+    expect(Iland.getHttp().put).lastCalledWith(`/users/${user.username}`, userUpdateReq.json);
+    expect(userUpdated.username).toEqual('testName');
+    expect(userUpdated.phoneNumber).toEqual('123-123-1234');
+    expect(userUpdated.company).toEqual('testCompany');
+    expect(userUpdated.address).toEqual('testAddress');
+    expect(userUpdated.city).toEqual('testCity');
+    expect(userUpdated.state).toEqual('testState');
+    expect(userUpdated.zip).toEqual('12345');
+    expect(userUpdated.country).toEqual('testCountry');
+  });
+});
+
+test('Properly delete a User', async() => {
+  const user = new User(MockUserJson);
+  return user.delete().then(() => {
+    expect(Iland.getHttp().delete).lastCalledWith(`/users/${user.username}`);
   });
 });
