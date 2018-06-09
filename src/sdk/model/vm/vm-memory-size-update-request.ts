@@ -6,9 +6,9 @@ export class VmMemorySizeUpdateRequest {
 
   constructor(vmMemorySizeUpdateRequest: VmMemorySizeUpdateRequest);
   constructor(vmMemorySizeUpdateRequestJson: VmMemorySizeUpdateRequestJson);
-  constructor(memorySize: string);
-  constructor(firstParam: string | VmMemorySizeUpdateRequest | VmMemorySizeUpdateRequestJson) {
-    if (typeof firstParam === 'string') {
+  constructor(memorySize: number);
+  constructor(firstParam: number | VmMemorySizeUpdateRequest | VmMemorySizeUpdateRequestJson) {
+    if (typeof firstParam === 'number') {
       // Parameters constructor
       this._json = {
         memory_size: firstParam
@@ -28,10 +28,6 @@ export class VmMemorySizeUpdateRequest {
    */
   get memorySize(): number {
     return Number(this._json.memory_size);
-  }
-
-  set memorySize(size: number) {
-    this._json.memory_size = size.toString();
   }
 
   /**

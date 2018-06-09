@@ -158,7 +158,7 @@ export interface VmCpuCountUpdateRequestJson {
  * VM memory size update request JSON
  */
 export interface VmMemorySizeUpdateRequestJson {
-  memory_size: string;
+  memory_size: number;
 }
 
 /**

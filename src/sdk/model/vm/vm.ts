@@ -624,7 +624,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
-    const request = new VmMemorySizeUpdateRequest({memory_size: String(memorySizeMb)});
+    const request = new VmMemorySizeUpdateRequest({memory_size: memorySizeMb});
     return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-memory-size`, request.json)
       .then((response) => {
         const apiTask = response.data as TaskJson;
