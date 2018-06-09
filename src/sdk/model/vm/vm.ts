@@ -991,11 +991,11 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Gets the list of VNICs for this VM.
-   * @returns {Promise<Vnic[]>}
+   * Delete a VNIC from this VM.
+   * @returns {Promise<Task>} a promise that resolves with the task
    */
-  async deleteVnics(vnicUuid: string): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicUuid}`).then((response) => {
+  async deleteVnic(vnicId: number): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicId}`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
