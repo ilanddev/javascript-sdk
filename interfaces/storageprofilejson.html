@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LocationJson | iland-sdk</title>
+	<title>StorageProfileJson | iland-sdk</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -910,13 +910,31 @@ img { max-width: 100%; }
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-interface tsd-is-external">
-			<a href="locationjson.html" class="tsd-kind-icon">Location<wbr>Json</a>
+			<a href="storageprofilejson.html" class="tsd-kind-icon">Storage<wbr>Profile<wbr>Json</a>
 			<ul>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a href="locationjson.html#name" class="tsd-kind-icon">name</a>
+					<a href="storageprofilejson.html#default_profile" class="tsd-kind-icon">default_<wbr>profile</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a href="locationjson.html#uuid" class="tsd-kind-icon">uuid</a>
+					<a href="storageprofilejson.html#enabled" class="tsd-kind-icon">enabled</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#limit" class="tsd-kind-icon">limit</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#name" class="tsd-kind-icon">name</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#storage_used_in_mb" class="tsd-kind-icon">storage_<wbr>used_<wbr>in_<wbr>mb</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#unit" class="tsd-kind-icon">unit</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#uuid" class="tsd-kind-icon">uuid</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a href="storageprofilejson.html#vdc_uuid" class="tsd-kind-icon">vdc_<wbr>uuid</a>
 				</li>
 			</ul>
 		</li>
@@ -928,7 +946,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">LocationJson</span>
+					<span class="target">StorageProfileJson</span>
 				</li>
 			</ul>
 		</section>
@@ -939,8 +957,14 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="locationjson.html#name" class="tsd-kind-icon">name</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="locationjson.html#uuid" class="tsd-kind-icon">uuid</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#default_profile" class="tsd-kind-icon">default_<wbr>profile</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#enabled" class="tsd-kind-icon">enabled</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#limit" class="tsd-kind-icon">limit</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#storage_used_in_mb" class="tsd-kind-icon">storage_<wbr>used_<wbr>in_<wbr>mb</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#unit" class="tsd-kind-icon">unit</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#uuid" class="tsd-kind-icon">uuid</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="storageprofilejson.html#vdc_uuid" class="tsd-kind-icon">vdc_<wbr>uuid</a></li>
 						</ul>
 					</section>
 				</div>
@@ -949,12 +973,62 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-external">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="default_profile" class="tsd-anchor"></a>
+				<h3>default_<wbr>profile</h3>
+				<div class="tsd-signature tsd-kind-icon">default_<wbr>profile<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L6">sdk/model/common/__json__/storage-profile-json.ts:6</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="enabled" class="tsd-anchor"></a>
+				<h3>enabled</h3>
+				<div class="tsd-signature tsd-kind-icon">enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L5">sdk/model/common/__json__/storage-profile-json.ts:5</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="limit" class="tsd-anchor"></a>
+				<h3>limit</h3>
+				<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L8">sdk/model/common/__json__/storage-profile-json.ts:8</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 				<a name="name" class="tsd-anchor"></a>
 				<h3>name</h3>
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/location/__json__/location-json.ts#L3">sdk/model/location/__json__/location-json.ts:3</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L4">sdk/model/common/__json__/storage-profile-json.ts:4</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="storage_used_in_mb" class="tsd-anchor"></a>
+				<h3>storage_<wbr>used_<wbr>in_<wbr>mb</h3>
+				<div class="tsd-signature tsd-kind-icon">storage_<wbr>used_<wbr>in_<wbr>mb<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L9">sdk/model/common/__json__/storage-profile-json.ts:9</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="unit" class="tsd-anchor"></a>
+				<h3>unit</h3>
+				<div class="tsd-signature tsd-kind-icon">unit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L7">sdk/model/common/__json__/storage-profile-json.ts:7</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -964,7 +1038,17 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/location/__json__/location-json.ts#L2">sdk/model/location/__json__/location-json.ts:2</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L2">sdk/model/common/__json__/storage-profile-json.ts:2</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+				<a name="vdc_uuid" class="tsd-anchor"></a>
+				<h3>vdc_<wbr>uuid</h3>
+				<div class="tsd-signature tsd-kind-icon">vdc_<wbr>uuid<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/36b970b/src/sdk/model/common/__json__/storage-profile-json.ts#L3">sdk/model/common/__json__/storage-profile-json.ts:3</a></li>
 					</ul>
 				</aside>
 			</section>
