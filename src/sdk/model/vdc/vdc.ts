@@ -18,7 +18,7 @@ import { PerfCounter } from '../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
-import { Media } from '../media';
+import { Media } from '../media/media';
 import { MediaJson } from '../media/__json__/media-json';
 import { Edge } from '../edge';
 import { EdgeJson } from '../edge';
