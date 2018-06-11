@@ -8,3 +8,7 @@ export * from './vapp-network-nat-service-json';
 export * from './vapp-network-ip-translation-nat-rule-request-json';
 export * from './vapp-network-port-forward-nat-rule-request-json';
 export * from './vapp-network-nat-service-update-request-json';
+export * from './vapp-network-firewall-json';
+export * from './vapp-network-firewall-rule-json';
+export * from './vapp-network-firewall-rule-request-json';
+export * from './vapp-network-firewall-update-request-json';
