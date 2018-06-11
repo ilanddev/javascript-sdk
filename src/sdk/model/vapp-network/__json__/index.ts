@@ -2,6 +2,7 @@ export * from './vapp-network-json';
 export * from './vapp-network-update-request-json';
 export * from './vapp-network-dhcp-service-json';
 export * from './vapp-network-dhcp-service-update-request-json';
+export * from './vapp-network-interface-json';
 export * from './vapp-network-ip-translation-nat-rule-json';
 export * from './vapp-network-port-forward-nat-rule-json';
 export * from './vapp-network-nat-service-json';
