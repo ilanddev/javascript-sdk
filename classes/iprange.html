@@ -916,13 +916,13 @@ img { max-width: 100%; }
 					<a href="iprange.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a href="iprange.html#endaddress" class="tsd-kind-icon">end<wbr>Address</a>
+					<a href="iprange.html#end" class="tsd-kind-icon">end</a>
 				</li>
 				<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
 					<a href="iprange.html#json" class="tsd-kind-icon">json</a>
 				</li>
 				<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-					<a href="iprange.html#startaddress" class="tsd-kind-icon">start<wbr>Address</a>
+					<a href="iprange.html#start" class="tsd-kind-icon">start</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 					<a href="iprange.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
@@ -961,9 +961,9 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-external">
 						<h3>Accessors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="iprange.html#endaddress" class="tsd-kind-icon">end<wbr>Address</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="iprange.html#end" class="tsd-kind-icon">end</a></li>
 							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="iprange.html#json" class="tsd-kind-icon">json</a></li>
-							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="iprange.html#startaddress" class="tsd-kind-icon">start<wbr>Address</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-external"><a href="iprange.html#start" class="tsd-kind-icon">start</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-external">
@@ -981,19 +981,52 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>IpRange<span class="tsd-signature-symbol">(</span>_json<span class="tsd-signature-symbol">: </span><a href="../interfaces/iprangejson.html" class="tsd-signature-type">IpRangeJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iprange.html" class="tsd-signature-type">IpRange</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>IpRange<span class="tsd-signature-symbol">(</span>ipRange<span class="tsd-signature-symbol">: </span><a href="iprange.html" class="tsd-signature-type">IpRange</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iprange.html" class="tsd-signature-type">IpRange</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>IpRange<span class="tsd-signature-symbol">(</span>ipRangeJson<span class="tsd-signature-symbol">: </span><a href="../interfaces/iprangejson.html" class="tsd-signature-type">IpRangeJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iprange.html" class="tsd-signature-type">IpRange</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>IpRange<span class="tsd-signature-symbol">(</span>start<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="iprange.html" class="tsd-signature-type">IpRange</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/8dda1f2/src/sdk/model/common/ip-range/ip-range.ts#L6">sdk/model/common/ip-range/ip-range.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L9">sdk/model/common/ip-range/ip-range.ts:9</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>_json: <a href="../interfaces/iprangejson.html" class="tsd-signature-type">IpRangeJson</a></h5>
+								<h5>ipRange: <a href="iprange.html" class="tsd-signature-type">IpRange</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="iprange.html" class="tsd-signature-type">IpRange</a></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L11">sdk/model/common/ip-range/ip-range.ts:11</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>ipRangeJson: <a href="../interfaces/iprangejson.html" class="tsd-signature-type">IpRangeJson</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="iprange.html" class="tsd-signature-type">IpRange</a></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L12">sdk/model/common/ip-range/ip-range.ts:12</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>start: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>end: <span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="iprange.html" class="tsd-signature-type">IpRange</a></h4>
@@ -1004,17 +1037,17 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-external">
 			<h2>Accessors</h2>
 			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-				<a name="endaddress" class="tsd-anchor"></a>
-				<h3>end<wbr>Address</h3>
-				<div class="tsd-signature tsd-kind-icon">end<wbr>Address<span class="tsd-signature-symbol">:</span> </div>
+				<a name="end" class="tsd-anchor"></a>
+				<h3>end</h3>
+				<div class="tsd-signature tsd-kind-icon">end<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/8dda1f2/src/sdk/model/common/ip-range/ip-range.ts#L23">sdk/model/common/ip-range/ip-range.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L42">sdk/model/common/ip-range/ip-range.ts:42</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Gets the IP address at the end of the range.</p>
+						<p>Get end.</p>
 					</div>
 				</div>
 			</section>
@@ -1024,27 +1057,27 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/8dda1f2/src/sdk/model/common/ip-range/ip-range.ts#L39">sdk/model/common/ip-range/ip-range.ts:39</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L50">sdk/model/common/ip-range/ip-range.ts:50</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Gets the raw JSON object from the API.</p>
+						<p>Get the json representation of this class.</p>
 					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-external">
-				<a name="startaddress" class="tsd-anchor"></a>
-				<h3>start<wbr>Address</h3>
-				<div class="tsd-signature tsd-kind-icon">start<wbr>Address<span class="tsd-signature-symbol">:</span> </div>
+				<a name="start" class="tsd-anchor"></a>
+				<h3>start</h3>
+				<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/8dda1f2/src/sdk/model/common/ip-range/ip-range.ts#L15">sdk/model/common/ip-range/ip-range.ts:15</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L34">sdk/model/common/ip-range/ip-range.ts:34</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Gets the IP address at the start of the range.</p>
+						<p>Get start.</p>
 					</div>
 				</div>
 			</section>
@@ -1061,12 +1094,12 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/8dda1f2/src/sdk/model/common/ip-range/ip-range.ts#L31">sdk/model/common/ip-range/ip-range.ts:31</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/83e8a9f/src/sdk/model/common/ip-range/ip-range.ts#L58">sdk/model/common/ip-range/ip-range.ts:58</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>JSON format.</p>
+								<p>Get the string representation of this class.</p>
 							</div>
 						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
