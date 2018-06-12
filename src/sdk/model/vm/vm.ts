@@ -624,7 +624,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
-    const request = new VmMemorySizeUpdateRequest({memory_size: String(memorySizeMb)});
+    const request = new VmMemorySizeUpdateRequest({memory_size: memorySizeMb});
     return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-memory-size`, request.json)
       .then((response) => {
         const apiTask = response.data as TaskJson;
@@ -991,11 +991,11 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Gets the list of VNICs for this VM.
-   * @returns {Promise<Vnic[]>}
+   * Delete a VNIC from this VM.
+   * @returns {Promise<Task>} a promise that resolves with the task
    */
-  async deleteVnics(vnicUuid: string): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicUuid}`).then((response) => {
+  async deleteVnic(vnicId: number): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicId}`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });

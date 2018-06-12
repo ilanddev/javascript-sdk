@@ -122,16 +122,13 @@ test('Properly submits request for updating VM memory size', async() => {
   const vm = new Vm(MockVmJson);
   const newMemSize = 10000;
   const expectedSpec: VmMemorySizeUpdateRequestJson = {
-    memory_size: newMemSize.toString()
+    memory_size: newMemSize
   };
 
-  const request = new VmMemorySizeUpdateRequest({memory_size: String(200)});
-  expect(request.memorySize).toBe(200);
-  request.memorySize = newMemSize;
+  const request = new VmMemorySizeUpdateRequest({memory_size: newMemSize});
   expect(request.memorySize).toBe(newMemSize);
   expect(request.json).toEqual(expectedSpec);
   expect(request.toString().length).toBeGreaterThan(0);
-
   return vm.updateMemorySize(newMemSize).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/update-memory-size`, expectedSpec);
     expect(task.operation).toBe('update memory size');
@@ -288,7 +285,7 @@ test('Properly submits request to reconfigure a VM', async() => {
     name: 'test name',
     description: 'test description',
     cpu_spec: {number_of_cpus: 2, cores_per_socket: 1},
-    memory_spec: {memory_size: '1000'},
+    memory_spec: {memory_size: 1000},
     guest_customization_section: MockVmGuestCustomizationJson,
     disk_spec: undefined,
     nested_hypervisor_enabled: false
