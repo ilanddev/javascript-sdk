@@ -11,10 +11,10 @@ import {
   MockBackupRestorePoint1Json,
   MockBackupRestorePoint2Json
 } from '../backup-restore-point/__mocks__/backup-restore-point';
-import { MockSnapshotJson } from '../snapshot/__mocks__/snapshot';
+import { MockSnapshotJson } from '../../common/snapshot/__mocks__/snapshot';
 import { MockScreenTicketJson } from '../screen-ticket/__mocks__/screen-ticket';
 import { MockMksScreenTicketJson } from '../screen-ticket/__mocks__/mks-screen-ticket';
-import { VmCreateSnapshotRequest } from '../snapshot/vm-create-snapshot-request';
+import { SnapshotCreateRequest } from '../../common/snapshot/snapshot-create-request';
 import { VirtualDiskJson } from '../virtual-disk/__json__/virtual-disk-json';
 import {
   VmCpuCountUpdateRequestJson,
@@ -448,7 +448,7 @@ test('Properly submits request to retrieve a VMs snapshot', async() => {
     expect(snapshot).toBeDefined();
     expect(snapshot.size).toBe(MockSnapshotJson.size);
     expect(snapshot.creationDate.getTime()).toBe(MockSnapshotJson.creation_date);
-    expect(snapshot.poweredOn).toBe(MockSnapshotJson.is_powered_on);
+    expect(snapshot.poweredOn).toBe(MockSnapshotJson.powered_on);
     expect(snapshot.json).toEqual(MockSnapshotJson);
     expect(snapshot.toString().length).toBeGreaterThan(0);
   });
@@ -462,7 +462,7 @@ test('Properly submits request to create a VM snapshot', async() => {
     name: 'snapshot name',
     description: 'snapshot description'
   };
-  return vm.createSnapshot(new VmCreateSnapshotRequest(json.name, json.description, json.memory, json.quiesce))
+  return vm.createSnapshot(new SnapshotCreateRequest(json.memory, json.quiesce, json.name, json.description))
     .then(function(task) {
       expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/create-snapshot`, json);
       expect(task.operation).toBe('create snapshot');

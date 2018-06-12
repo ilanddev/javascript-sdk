@@ -6,11 +6,11 @@ import { Vnic } from './vnic/vnic';
 import { VirtualDisk } from './virtual-disk/virtual-disk';
 import { Metadata } from '../common/metadata/metadata';
 import { BackupRestorePoint } from './backup-restore-point/backup-restore-point';
-import { Snapshot } from './snapshot/snapshot';
+import { Snapshot } from '../common/snapshot/snapshot';
 import { ScreenTicket } from './screen-ticket/screen-ticket';
 import { MksScreenTicket } from './screen-ticket/mks-screen-ticket';
 import { Bill } from '../common/billing/bill';
-import { VmCreateSnapshotRequest } from './snapshot/vm-create-snapshot-request';
+import { SnapshotCreateRequest } from '../common/snapshot/snapshot-create-request';
 import {
   VmInsertMediaRequestJson,
   VmJson,
@@ -28,7 +28,7 @@ import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 import { VmPowerOperation } from './__json__/vm-power-operation-type';
 import { BackupRestorePointJson } from './backup-restore-point/__json__/backup-restore-point-json';
-import { SnapshotJson } from './snapshot/__json__/snapshot-json';
+import { SnapshotJson } from '../common/snapshot/__json__/snapshot-json';
 import { ScreenTicketJson } from './screen-ticket/__json__/screen-ticket-json';
 import { MksScreenTicketJson } from './screen-ticket/__json__/mks-screen-ticket-json';
 import { BillJson } from '../common/billing/__json__/bill-json';
@@ -331,13 +331,13 @@ export class Vm extends Entity implements EntityWithPerfSamples {
 
   /**
    * Creates a snapshot of the VM.
-   * @param {VmCreateSnapshotRequest} options the snapshot creation options
+   * @param {SnapshotCreateRequest} request the snapshot creation request
    * @returns {Promise<Task>} task promise
    */
-  async createSnapshot(options: VmCreateSnapshotRequest): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/create-snapshot`, options.json).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
+  async createSnapshot(request: SnapshotCreateRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/create-snapshot`, request.json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
     });
   }
 
