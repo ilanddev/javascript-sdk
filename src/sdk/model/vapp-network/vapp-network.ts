@@ -171,9 +171,9 @@ export class VappNetwork extends AbstractNetwork {
   async updateStaticRouting(staticRoutingService: VappNetworkStaticRoutingServiceUpdateRequest): Promise<Task> {
     return Iland.getHttp().post(
         `/vapp-networks/${this.uuid}/actions/update-static-routing`, staticRoutingService.json).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
-    });
+          const json = response.data as TaskJson;
+          return new Task(json);
+        });
   }
 
   /**
