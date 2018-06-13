@@ -32,7 +32,6 @@ import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 import { MockBootOptionsJson } from '../boot-options/__mocks__/boot-options';
 import { MockVmCapabilitiesJson } from '../capabilities/__mocks__/capabilities';
-import { MockVmBillJson } from '../../common/billing/__mocks__/bill';
 import { MockVmGuestCustomizationJson } from '../guest-customization/__mocks__/guest-customization';
 import { MockVmGuestToolsJson } from '../guest-tools/__mocks__/guest-tools';
 import { MockVmSummaryJson } from '../summary/__mocks__/vm-summary';
@@ -561,69 +560,6 @@ test('Properly submits request to get a VM bill', async() => {
         year: 2017
       }
     });
-    expect(bill.timestamp.getTime()).toBe(MockVmBillJson.time);
-    expect(bill.entityUuid).toBe(MockVmBillJson.entity_uuid);
-    expect(bill.entityType).toBe(MockVmBillJson.entity_type);
-    expect(bill.archiveStorageBurstCost).toBe(MockVmBillJson.archive_burst_cost);
-    expect(bill.archiveStorageBurstUsage).toBe(MockVmBillJson.archive_burst_usage);
-    expect(bill.archiveStorageCost).toBe(MockVmBillJson.archive_cost);
-    expect(bill.archiveStorageReservedCost).toBe(MockVmBillJson.archive_reserved_cost);
-    expect(bill.archiveStorageReservedUsage).toBe(MockVmBillJson.archive_reserved_usage);
-    expect(bill.archiveStorageUsage).toBe(MockVmBillJson.archive_usage);
-    expect(bill.bandwidthBurstCost).toBe(MockVmBillJson.bandwidth_burst);
-    expect(bill.bandwidthBurstUsage).toBe(MockVmBillJson.bandwidth_burst_usage);
-    expect(bill.bandwidthCost).toBe(MockVmBillJson.bandwidth);
-    expect(bill.bandwidthReservedCost).toBe(MockVmBillJson.bandwidth_reserved_cost);
-    expect(bill.bandwidthReservedUsage).toBe(MockVmBillJson.bandwidth_reserved_usage);
-    expect(bill.bandwidthUsage).toBe(MockVmBillJson.bandwidth_usage);
-    expect(bill.cpuBurstCost).toBe(MockVmBillJson.cpu_burst);
-    expect(bill.cpuBurstUsage).toBe(MockVmBillJson.cpu_burst_usage);
-    expect(bill.cpuCost).toBe(MockVmBillJson.cpu);
-    expect(bill.cpuReservedUsage).toBe(MockVmBillJson.cpu_res_usage);
-    expect(bill.cpuUsage).toBe(MockVmBillJson.cpu_usage);
-    expect(bill.currencyCode).toBe(MockVmBillJson.currency_code);
-    expect(bill.discount).toBe(MockVmBillJson.discount);
-    expect(bill.diskBurstCost).toBe(MockVmBillJson.disk_burst);
-    expect(bill.diskBurstUsage).toBe(MockVmBillJson.disk_burst_usage);
-    expect(bill.diskCost).toBe(MockVmBillJson.disk);
-    expect(bill.diskUsage).toBe(MockVmBillJson.disk_usage);
-    expect(bill.entityName).toBe(MockVmBillJson.entity_name);
-    expect(bill.estimatedCost).toBe(MockVmBillJson.estimate);
-    expect(bill.hddStorageCost).toBe(MockVmBillJson.hdd_cost);
-    expect(bill.hddStorageReservedCost).toBe(MockVmBillJson.hdd_reserved_cost);
-    expect(bill.hddStorageReservedUsage).toBe(MockVmBillJson.hdd_reserved_usage);
-    expect(bill.hddStorageUsage).toBe(MockVmBillJson.hdd_usage);
-    expect(bill.lineItems.length).toBe(MockVmBillJson.line_items.length);
-    let idx = 0;
-    for (const item of bill.lineItems) {
-      expect(item.name).toBe(MockVmBillJson.line_items[idx].name);
-      expect(item.price).toBe(MockVmBillJson.line_items[idx].price);
-      expect(item.productId).toBe(MockVmBillJson.line_items[idx].product_id);
-      expect(item.quantity).toBe(MockVmBillJson.line_items[idx].quantity);
-      expect(item.json).toEqual(MockVmBillJson.line_items[idx]);
-      expect(item.toString().length).toBeGreaterThan(0);
-      idx++;
-    }
-    expect(bill.memoryBurstCost).toBe(MockVmBillJson.mem_burst);
-    expect(bill.memoryBurstUsage).toBe(MockVmBillJson.mem_burst_usage);
-    expect(bill.memoryCost).toBe(MockVmBillJson.mem);
-    expect(bill.memoryReservedUsage).toBe(MockVmBillJson.mem_res_usage);
-    expect(bill.memoryUsage).toBe(MockVmBillJson.mem_usage);
-    expect(bill.ssdStorageBurstCost).toBe(MockVmBillJson.ssd_burst_cost);
-    expect(bill.ssdStorageBurstUsage).toBe(MockVmBillJson.ssd_burst_usage);
-    expect(bill.ssdStorageCost).toBe(MockVmBillJson.ssd_cost);
-    expect(bill.ssdStorageReservedCost).toBe(MockVmBillJson.ssd_reserved_cost);
-    expect(bill.ssdStorageReservedUsage).toBe(MockVmBillJson.ssd_reserved_usage);
-    expect(bill.ssdStorageUsage).toBe(MockVmBillJson.ssd_usage);
-    expect(bill.totalCost).toBe(MockVmBillJson.total);
-    expect(bill.zertoAdvancedStorageCost).toBe(MockVmBillJson.zerto_advanced_cost);
-    expect(bill.zertoAdvancedStorageUsage).toBe(MockVmBillJson.zerto_advanced_usage);
-    expect(bill.zertoArchiveStorageCost).toBe(MockVmBillJson.zerto_archive_cost);
-    expect(bill.zertoArchiveStorageUsage).toBe(MockVmBillJson.zerto_archive_usage);
-    expect(bill.hddStorageBurstCost).toBe(MockVmBillJson.hdd_burst_cost);
-    expect(bill.testDrive).toBe(MockVmBillJson.test_drive);
-    expect(bill.json).toEqual(MockVmBillJson);
-    expect(bill.toString().length).toBeGreaterThan(0);
   });
 });
 

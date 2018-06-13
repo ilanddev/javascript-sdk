@@ -103,6 +103,27 @@ test('Can get vApp and verify required properties', async() => {
   });
 });
 
+test('Can get billing', async() => {
+  return Vapp.getVapp(inventoryVapp.uuid).then(async(vapp) => {
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
+    const now = new Date();
+    const thisMonth = now.getMonth() + 1;
+    const thisYear = now.getFullYear();
+    return vapp.getBilling(thisYear, thisMonth).then((bill) => {
+      expect(bill).toBeDefined();
+    });
+  });
+});
+
+test('Can get current billing', async() => {
+  return Vapp.getVapp(inventoryVapp.uuid).then(async(vapp) => {
+    expect(vapp.uuid).toBe(inventoryVapp.uuid);
+    return vapp.getCurrentBilling().then((bill) => {
+      expect(bill).toBeDefined();
+    });
+  });
+});
+
 test('Can refresh vApp', async() => {
   return Vapp.getVapp(inventoryVapp.uuid).then(async function(vapp) {
     expect(vapp.uuid).toBe(inventoryVapp.uuid);
