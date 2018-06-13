@@ -10,6 +10,8 @@ import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
+import { MockMetadataJson } from '../../common/metadata/__mocks__/metadata';
+import { Metadata } from '../../common/metadata/metadata';
 
 jest.mock('../../../service/http/http');
 
@@ -111,7 +113,7 @@ test('Properly submits request to get vApp perf counters', async() => {
 test('Properly submits request to get vApps perf samples', async() => {
   const vapp = new Vapp(MockVappJson);
   const request = new PerfSamplesRequest({
-    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    counter: { group: 'cpu', name: 'usage', type: 'average' },
     start: 1,
     end: 2,
     interval: 3,
@@ -119,9 +121,9 @@ test('Properly submits request to get vApps perf samples', async() => {
   } as PerfSamplesRequestJson);
   return vapp.getPerfSamples(request).then(async(perfSamples) => {
     expect(Iland.getHttp().get).lastCalledWith(
-        `${vapp.apiPrefix}/${vapp.uuid}/performance/` +
-        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
-        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+      `${vapp.apiPrefix}/${vapp.uuid}/performance/` +
+      `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+      { params: { start: 1, end: 2, interval: 3, limit: 4 } }
     );
 
     expect(perfSamples).toBeDefined();
@@ -147,5 +149,60 @@ test('Properly submits request to get vApps perf samples', async() => {
     expect(perfSample.value).toBe(MockVappPerfSamplesSeriesJson.samples[0].value);
     expect(perfSample.json).toEqual(MockVappPerfSamplesSeriesJson.samples[0]);
     expect(perfSample.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly handles request for retrieving a vApps metadata', async() => {
+  const vapp = new Vapp(MockVappJson);
+  return vapp.getMetadata().then(function(metadata) {
+    expect(metadata).toBeDefined();
+    expect(metadata.length).toBe(4);
+    expect(metadata[0].key).toBe(MockMetadataJson[0].key);
+    expect(metadata[0].access).toBe(MockMetadataJson[0].access);
+    expect(metadata[0].type).toBe(MockMetadataJson[0].type);
+    expect(metadata[0].value).toBe(MockMetadataJson[0].value);
+    expect(metadata[0].json).toEqual(MockMetadataJson[0]);
+    expect(metadata[0].toString().length).toBeGreaterThan(0);
+
+    expect(metadata[1].key).toBe(MockMetadataJson[1].key);
+    expect(metadata[1].access).toBe(MockMetadataJson[1].access);
+    expect(metadata[1].type).toBe(MockMetadataJson[1].type);
+    expect(metadata[1].value).toBe(MockMetadataJson[1].value);
+    expect(metadata[1].json).toEqual(MockMetadataJson[1]);
+    expect(metadata[1].toString().length).toBeGreaterThan(0);
+
+    expect(metadata[2].key).toBe(MockMetadataJson[2].key);
+    expect(metadata[2].access).toBe(MockMetadataJson[2].access);
+    expect(metadata[2].type).toBe(MockMetadataJson[2].type);
+    expect(metadata[2].value).toBe(MockMetadataJson[2].value);
+    expect(metadata[2].json).toEqual(MockMetadataJson[2]);
+    expect(metadata[2].toString().length).toBeGreaterThan(0);
+
+    expect(metadata[3].key).toBe(MockMetadataJson[3].key);
+    expect(metadata[3].access).toBe(MockMetadataJson[3].access);
+    expect(metadata[3].type).toBe(MockMetadataJson[3].type);
+    expect(metadata[3].value).toBe(MockMetadataJson[3].value);
+    expect(metadata[3].json).toEqual(MockMetadataJson[3]);
+    expect(metadata[3].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly submits request for updating vApps metadata', async() => {
+  const vapp = new Vapp(MockVappJson);
+  const metadata = MockMetadataJson.map(m => {
+    return new Metadata(m);
+  });
+  return vapp.updateMetadata(metadata).then(function(task) {
+    expect(Iland.getHttp().put).lastCalledWith(`/vapps/${vapp.uuid}/metadata`, MockMetadataJson);
+    expect(task.operation).toBe('update metadata');
+  });
+});
+
+test('Properly submits request for deleting a vApps metadata entry', async() => {
+  const vapp = new Vapp(MockVappJson);
+  const metadataKey = 'metadata-key';
+  return vapp.deleteMetadata(metadataKey).then(function(task) {
+    expect(Iland.getHttp().delete).lastCalledWith(`/vapps/${vapp.uuid}/metadata/${metadataKey}`);
+    expect(task.operation).toBe('delete metadata');
   });
 });
