@@ -535,7 +535,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
     return Iland.getHttp().get(`/vapps/${this.uuid}/startup-section`).then((response) => {
       const json = response.data.data as Array<VappStartupSectionItemJson>;
       return json.map((it) => new VappStartupSectionItem(it));
-      });
+    });
   }
 
   /**
