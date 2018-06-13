@@ -320,12 +320,12 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Creates a new Vm in the Vapp based on an existing Vm.
-   * @param {VmJson} vmJson Vm properties
+   * Creates a new Vm in the vApp based on an existing Vm.
+   * @param {VmCopyMoveRequest} copyMoveRequest Vm properties
    * @returns {Promise<Task>} task promise
    */
-  async copy(vmJson: VmJson): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/copy`, vmJson).then((response) => {
+  async copy(copyMoveRequest: VmCopyMoveRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/copy`, copyMoveRequest.json).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });

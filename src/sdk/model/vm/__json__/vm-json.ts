@@ -190,7 +190,7 @@ export interface VmCopyMoveVmVnicRequestJson {
  */
 export interface VmCopyMoveRequestJson {
   vapp_uuid: string;
-  name: string;
-  storage_profile: string;
-  vnics: Array<VmCopyMoveVmVnicRequestJson>;
+  name?: string;
+  storage_profile?: string;
+  vnics?: Array<VmCopyMoveVmVnicRequestJson>;
 }
