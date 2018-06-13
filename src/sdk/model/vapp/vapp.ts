@@ -23,6 +23,9 @@ import { HasSnapshotJson } from '../common/snapshot/__json__/has-snapshot-json';
 import { SnapshotCreateRequest } from '../common/snapshot/snapshot-create-request';
 import { VappRenameRequest } from './vapp-rename-request';
 import { VappDescriptionUpdateRequest } from './vapp-update-description-request';
+import { MetadataType } from '../common/metadata/__json__/metadata-type';
+import { MetadataJson } from '../common/metadata/__json__/metadata-json';
+import { Metadata } from '../common/metadata/metadata';
 
 /**
  * Virtual Application.
@@ -428,6 +431,57 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
     return Iland.getHttp().post(`/vapps/${this.uuid}/actions/remove-snapshot`).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
+    });
+  }
+
+  /**
+   * Gets the vApp's metadata.
+   * @returns {Promise<Metadata<MetadataType>[]>}
+   * @throws Error if type not found for metadata
+   */
+  async getMetadata(): Promise<Array<Metadata<MetadataType>>> {
+    return Iland.getHttp().get(`/vapps/${this.uuid}/metadata`).then((response) => {
+      const jsonMetadata = response.data.data as Array<MetadataJson<MetadataType>>;
+      return jsonMetadata.map<Metadata<MetadataType>>((json) => {
+        switch (json.type) {
+          case 'number':
+            return new Metadata<number>(json as MetadataJson<number>);
+          case 'boolean':
+            return new Metadata<boolean>(json as MetadataJson<boolean>);
+          case 'datetime':
+            return new Metadata<Date>(json as MetadataJson<Date>);
+          case 'string':
+            return new Metadata<string>(json as MetadataJson<string>);
+        }
+        throw new Error(`Metadata with type ${json.type} is unknown.`);
+      });
+    });
+  }
+
+  /**
+   * Updates the vApp's metadata.
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    const metadataJson: Array<MetadataJson<MetadataType>> = metadata.map(m => {
+      return m.json;
+    });
+    return Iland.getHttp().put(`/vapps/${this.uuid}/metadata`, metadataJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    return Iland.getHttp().delete(`/vapps/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
     });
   }
 
