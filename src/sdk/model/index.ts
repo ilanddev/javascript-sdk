@@ -14,3 +14,4 @@ export * from './vdc/index';
 export * from './vcc/index';
 export * from './vapp-network/index';
 export * from './vapp/index';
+export * from './vpg/index';
