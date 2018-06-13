@@ -862,10 +862,13 @@ export class Vm extends Entity implements EntityWithPerfSamples {
 
   /**
    * Updates the VM's metadata.
-   * @param {Array<MetadataJson<MetadataType>>} metadataJson the new array of metadata
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
    * @returns {Promise<Task>} task promise
    */
-  async updateMetadata(metadataJson: Array<MetadataJson<MetadataType>>): Promise<Task> {
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    const metadataJson: Array<MetadataJson<MetadataType>> = metadata.map(m => {
+      return m.json;
+    });
     return Iland.getHttp().put(`/vms/${this.uuid}/metadata`, metadataJson).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
