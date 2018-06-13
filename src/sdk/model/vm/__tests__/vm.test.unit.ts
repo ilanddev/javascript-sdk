@@ -47,6 +47,7 @@ import { VmMemorySizeUpdateRequest } from '../vm-memory-size-update-request';
 import {
   GuestCustomizationUpdateRequestJson
 } from '../guest-customization/__json__/guest-customization-update-request-json';
+import { Metadata } from '../../common/metadata/metadata';
 
 jest.mock('../../../service/http/http');
 
@@ -124,7 +125,7 @@ test('Properly submits request for updating VM memory size', async() => {
     memory_size: newMemSize
   };
 
-  const request = new VmMemorySizeUpdateRequest({memory_size: newMemSize});
+  const request = new VmMemorySizeUpdateRequest({ memory_size: newMemSize });
   expect(request.memorySize).toBe(newMemSize);
   expect(request.json).toEqual(expectedSpec);
   expect(request.toString().length).toBeGreaterThan(0);
@@ -141,7 +142,7 @@ test('Properly submits request for updating VM cpu number', async() => {
     cores_per_socket: 2
   };
 
-  const request = new VmCpuCountUpdateRequest({number_of_cpus: 6, cores_per_socket: 1});
+  const request = new VmCpuCountUpdateRequest({ number_of_cpus: 6, cores_per_socket: 1 });
   expect(request.numberOfCpus).toBe(6);
   expect(request.coresPerSocket).toBe(1);
 
@@ -195,7 +196,10 @@ test('Properly handles request for retrieving a VMs metadata', async() => {
 
 test('Properly submits request for updating VM metadata', async() => {
   const vm = new Vm(MockVmJson);
-  return vm.updateMetadata(MockMetadataJson).then(function(task) {
+  const metadata = MockMetadataJson.map(m => {
+    return new Metadata(m);
+  });
+  return vm.updateMetadata(metadata).then(function(task) {
     expect(Iland.getHttp().put).lastCalledWith(`/vms/${vm.uuid}/metadata`, MockMetadataJson);
     expect(task.operation).toBe('update metadata');
   });
@@ -283,8 +287,8 @@ test('Properly submits request to reconfigure a VM', async() => {
   const json = {
     name: 'test name',
     description: 'test description',
-    cpu_spec: {number_of_cpus: 2, cores_per_socket: 1},
-    memory_spec: {memory_size: 1000},
+    cpu_spec: { number_of_cpus: 2, cores_per_socket: 1 },
+    memory_spec: { memory_size: 1000 },
     guest_customization_section: MockVmGuestCustomizationJson,
     disk_spec: undefined,
     nested_hypervisor_enabled: false
@@ -799,7 +803,7 @@ test('Properly submits request to get VM perf counters', async() => {
 test('Properly submits request to get VM perf samples', async() => {
   const vm = new Vm(MockVmJson);
   const request = new PerfSamplesRequest({
-    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    counter: { group: 'cpu', name: 'usage', type: 'average' },
     start: 1,
     end: 2,
     interval: 3,
@@ -808,9 +812,9 @@ test('Properly submits request to get VM perf samples', async() => {
 
   return vm.getPerfSamples(request).then(async(perfSamples) => {
     expect(Iland.getHttp().get).lastCalledWith(
-        `${vm.apiPrefix}/${vm.uuid}/performance/` +
-        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
-        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+      `${vm.apiPrefix}/${vm.uuid}/performance/` +
+      `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+      { params: { start: 1, end: 2, interval: 3, limit: 4 } }
     );
 
     expect(perfSamples).toBeDefined();
