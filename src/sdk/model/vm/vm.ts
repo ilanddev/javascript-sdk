@@ -6,11 +6,11 @@ import { Vnic } from './vnic/vnic';
 import { VirtualDisk } from './virtual-disk/virtual-disk';
 import { Metadata } from '../common/metadata/metadata';
 import { BackupRestorePoint } from './backup-restore-point/backup-restore-point';
-import { Snapshot } from './snapshot/snapshot';
+import { Snapshot } from '../common/snapshot/snapshot';
 import { ScreenTicket } from './screen-ticket/screen-ticket';
 import { MksScreenTicket } from './screen-ticket/mks-screen-ticket';
 import { Bill } from '../common/billing/bill';
-import { VmCreateSnapshotRequest } from './snapshot/vm-create-snapshot-request';
+import { SnapshotCreateRequest } from '../common/snapshot/snapshot-create-request';
 import {
   VmInsertMediaRequestJson,
   VmJson,
@@ -28,7 +28,7 @@ import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 import { VmPowerOperation } from './__json__/vm-power-operation-type';
 import { BackupRestorePointJson } from './backup-restore-point/__json__/backup-restore-point-json';
-import { SnapshotJson } from './snapshot/__json__/snapshot-json';
+import { SnapshotJson } from '../common/snapshot/__json__/snapshot-json';
 import { ScreenTicketJson } from './screen-ticket/__json__/screen-ticket-json';
 import { MksScreenTicketJson } from './screen-ticket/__json__/mks-screen-ticket-json';
 import { BillJson } from '../common/billing/__json__/bill-json';
@@ -58,6 +58,8 @@ import { VmCpuCountUpdateRequest } from './vm-cpu-count-update-request';
 import { VmReconfigureRequest } from './vm-reconfigure-request';
 import { JpegImage } from '../common/jpeg-image';
 import { VmCopyMoveRequest } from './vm-copy-move-request';
+import { BillingSummary } from '../common/billing/billing-summary';
+import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
 
 /**
  * Virtual Machine.
@@ -318,12 +320,12 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Creates a new Vm in the Vapp based on an existing Vm.
-   * @param {VmJson} vmJson Vm properties
+   * Creates a new Vm in the vApp based on an existing Vm.
+   * @param {VmCopyMoveRequest} copyMoveRequest Vm properties
    * @returns {Promise<Task>} task promise
    */
-  async copy(vmJson: VmJson): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/copy`, vmJson).then((response) => {
+  async copy(copyMoveRequest: VmCopyMoveRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/copy`, copyMoveRequest.json).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -331,13 +333,13 @@ export class Vm extends Entity implements EntityWithPerfSamples {
 
   /**
    * Creates a snapshot of the VM.
-   * @param {VmCreateSnapshotRequest} options the snapshot creation options
+   * @param {SnapshotCreateRequest} request the snapshot creation request
    * @returns {Promise<Task>} task promise
    */
-  async createSnapshot(options: VmCreateSnapshotRequest): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/create-snapshot`, options.json).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
+  async createSnapshot(request: SnapshotCreateRequest): Promise<Task> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/create-snapshot`, request.json).then((response) => {
+      const json = response.data as TaskJson;
+      return new Task(json);
     });
   }
 
@@ -624,7 +626,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateMemorySize(memorySizeMb: number): Promise<Task> {
-    const request = new VmMemorySizeUpdateRequest({memory_size: String(memorySizeMb)});
+    const request = new VmMemorySizeUpdateRequest({memory_size: memorySizeMb});
     return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-memory-size`, request.json)
       .then((response) => {
         const apiTask = response.data as TaskJson;
@@ -862,10 +864,13 @@ export class Vm extends Entity implements EntityWithPerfSamples {
 
   /**
    * Updates the VM's metadata.
-   * @param {Array<MetadataJson<MetadataType>>} metadataJson the new array of metadata
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
    * @returns {Promise<Task>} task promise
    */
-  async updateMetadata(metadataJson: Array<MetadataJson<MetadataType>>): Promise<Task> {
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    const metadataJson: Array<MetadataJson<MetadataType>> = metadata.map(m => {
+      return m.json;
+    });
     return Iland.getHttp().put(`/vms/${this.uuid}/metadata`, metadataJson).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
@@ -991,11 +996,11 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Gets the list of VNICs for this VM.
-   * @returns {Promise<Vnic[]>}
+   * Delete a VNIC from this VM.
+   * @returns {Promise<Task>} a promise that resolves with the task
    */
-  async deleteVnics(vnicUuid: string): Promise<Task> {
-    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicUuid}`).then((response) => {
+  async deleteVnic(vnicId: number): Promise<Task> {
+    return Iland.getHttp().delete(`/vms/${this.uuid}/vnics/${vnicId}`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -1030,6 +1035,18 @@ export class Vm extends Entity implements EntityWithPerfSamples {
     return Iland.getHttp().post(`/vms/${this.uuid}/actions/${type}`, undefined, config).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Get the billing summary for a VM.
+   * @returns {Promise<BillingSummary>} a promise that resolves with the current billing information
+   */
+  /* istanbul ignore next: autogenerated */
+  async getCurrentBilling(): Promise<BillingSummary> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/billing-summary`).then((response) => {
+      const json = response.data as BillingSummaryJson;
+      return new BillingSummary(json);
     });
   }
 }

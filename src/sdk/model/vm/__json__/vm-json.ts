@@ -158,7 +158,7 @@ export interface VmCpuCountUpdateRequestJson {
  * VM memory size update request JSON
  */
 export interface VmMemorySizeUpdateRequestJson {
-  memory_size: string;
+  memory_size: number;
 }
 
 /**
@@ -190,7 +190,7 @@ export interface VmCopyMoveVmVnicRequestJson {
  */
 export interface VmCopyMoveRequestJson {
   vapp_uuid: string;
-  name: string;
-  storage_profile: string;
-  vnics: Array<VmCopyMoveVmVnicRequestJson>;
+  name?: string;
+  storage_profile?: string;
+  vnics?: Array<VmCopyMoveVmVnicRequestJson>;
 }

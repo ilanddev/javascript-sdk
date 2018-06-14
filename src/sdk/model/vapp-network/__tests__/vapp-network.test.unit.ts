@@ -29,8 +29,8 @@ test('Properly submits request to get vApp Network', async() => {
     expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
     for (const ipRange of net.ipRanges) {
-      expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.start).toBe(MockVappNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.end).toBe(MockVappNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;
@@ -71,8 +71,8 @@ test('Properly submits request to refresh vApp Network', async() => {
     expect(net.ipRanges.length).toBe(MockVappNetworkJson.ip_ranges.length);
     let idx = 0;
     for (const ipRange of net.ipRanges) {
-      expect(ipRange.startAddress).toBe(MockVappNetworkJson.ip_ranges[idx].start);
-      expect(ipRange.endAddress).toBe(MockVappNetworkJson.ip_ranges[idx].end);
+      expect(ipRange.start).toBe(MockVappNetworkJson.ip_ranges[idx].start);
+      expect(ipRange.end).toBe(MockVappNetworkJson.ip_ranges[idx].end);
       expect(ipRange.json).toEqual(MockVappNetworkJson.ip_ranges[idx]);
       expect(ipRange.toString().length).toBeGreaterThan(0);
       idx++;

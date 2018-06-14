@@ -11,7 +11,7 @@ import {
   MockVmBackupRestorePointsResponse
 } from '../../../model/vm/backup-restore-point/__mocks__/backup-restore-point';
 import { MockVmScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/screen-ticket';
-import { MockVmSnapshotResponse } from '../../../model/vm/snapshot/__mocks__/snapshot';
+import { MockVmSnapshotResponse } from '../../../model/common/snapshot/__mocks__/snapshot';
 import { MockVmMksScreenTicketResponse } from '../../../model/vm/screen-ticket/__mocks__/mks-screen-ticket';
 import { MockVmBillResponse } from '../../../model/common/billing/__mocks__/bill';
 import { MockTaskService } from '../../../model/task/__mocks__/task';

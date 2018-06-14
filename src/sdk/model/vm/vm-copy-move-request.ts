@@ -40,7 +40,7 @@ export class VmCopyMoveRequest {
    * Get name.
    * @returns {string}
    */
-  get name(): string {
+  get name(): string | undefined {
     return this._json.name;
   }
 
@@ -48,7 +48,7 @@ export class VmCopyMoveRequest {
    * Get storage profile.
    * @returns {string}
    */
-  get storageProfile(): string {
+  get storageProfile(): string | undefined {
     return this._json.storage_profile;
   }
 
@@ -56,8 +56,10 @@ export class VmCopyMoveRequest {
    * Get vnics.
    * @returns {Array<VmCopyMoveVmVnicRequest>}
    */
-  get vnics(): Array<VmCopyMoveVmVnicRequest> {
-    return this._json.vnics.map((vnic) => { return new VmCopyMoveVmVnicRequest(vnic); });
+  get vnics(): Array<VmCopyMoveVmVnicRequest> | undefined {
+    return this._json.vnics ? this._json.vnics.map((vnic) => {
+      return new VmCopyMoveVmVnicRequest(vnic);
+    }) : undefined;
   }
 
   /**

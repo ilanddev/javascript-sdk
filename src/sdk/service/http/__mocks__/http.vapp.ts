@@ -5,6 +5,7 @@ import { MockVmPerfCountersResponse } from '../../../model/vm/__mocks__/vm';
 import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVappVappNetworksResponse } from '../../../model/vapp/__mocks__/vapp-networks';
 import { MockVappPerfSamplesSeriesResponse } from '../../../model/vapp/__mocks__/vapp';
+import { MockTaskService } from '../../../model/task/__mocks__/task';
 
 export async function MockVappGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
@@ -37,6 +38,9 @@ export async function MockVappPost(url: string, data?: any, config?: AxiosReques
 
 export async function MockVappPut(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
+    case /\/vapps\/[^\/]+?\/metadata$/.test(url):
+      // update metadata
+      return MockTaskService.getNewMockTaskResponse('update metadata');
     default:
       return MockNotFoundResponse;
   }
@@ -44,6 +48,9 @@ export async function MockVappPut(url: string, data?: any, config?: AxiosRequest
 
 export async function MockVappDelete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
+    case /\/vapps\/[^\/]+?\/metadata\/[^\/]+?$/.test(url):
+      // delete single metadata entry
+      return MockTaskService.getNewMockTaskResponse('delete metadata');
     default:
       return MockNotFoundResponse;
   }

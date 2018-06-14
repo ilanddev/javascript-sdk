@@ -4,7 +4,7 @@ import { SnapshotJson } from '../__json__/snapshot-json';
 export const MockSnapshotJson: SnapshotJson = {
   creation_date: (new Date()).getTime(),
   size: 1000,
-  is_powered_on: false
+  powered_on: false
 };
 
 export const MockVmSnapshotResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
