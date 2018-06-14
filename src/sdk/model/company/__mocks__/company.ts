@@ -142,7 +142,8 @@ export class MockCompanyService {
       state: '',
       user_type: 'CUSTOMER',
       zip: '',
-      domain: request.domain
+      domain: request.domain,
+      role: null
     };
     return new Promise<AxiosResponse>(function(resolve) {
       resolve({
