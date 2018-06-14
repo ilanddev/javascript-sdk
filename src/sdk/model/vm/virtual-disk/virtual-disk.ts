@@ -1,5 +1,5 @@
-import { VirtualDiskJson } from './__json__/virtual-disk-json';
-import { DiskType } from './__json__/disk-type';
+import { VirtualDiskJson } from './__json__/';
+import { DiskType } from '../../common';
 
 /**
  * Virtual Disk.

@@ -42,7 +42,6 @@ import { BootOptions } from './boot-options/boot-options';
 import { BootOptionsJson } from './boot-options/__json__';
 import { Capabilities } from './capabilities';
 import { CapabilitiesJson } from './capabilities/__json__';
-import { DiskType } from './virtual-disk/__json__';
 import { GuestCustomization } from './guest-customization';
 import { GuestCustomizationJson } from './guest-customization/__json__';
 import { GuestTools } from './guest-tools/guest-tools';
@@ -60,6 +59,7 @@ import { JpegImage } from '../common/jpeg-image';
 import { VmCopyMoveRequest } from './vm-copy-move-request';
 import { BillingSummary } from '../common/billing/billing-summary';
 import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
+import { DiskType } from '../common';
 
 /**
  * Virtual Machine.
