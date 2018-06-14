@@ -20,7 +20,8 @@ export const MockUserJson: UserJson = {
   state: 'NY',
   user_type: 'SYSTEM_ADMIN',
   zip: '11111',
-  domain: 'SYSTEM'
+  domain: 'SYSTEM',
+  role: null
 };
 
 export const MockUserUpdatedJson: UserJson = {
@@ -39,7 +40,8 @@ export const MockUserUpdatedJson: UserJson = {
   state: 'testState',
   user_type: 'SYSTEM_ADMIN',
   zip: '12345',
-  domain: 'SYSTEM'
+  domain: 'SYSTEM',
+  role: null
 };
 
 export const MockUserCustomerJson: UserJson = {
@@ -58,7 +60,8 @@ export const MockUserCustomerJson: UserJson = {
   state: 'NY',
   user_type: 'CUSTOMER',
   zip: '11111',
-  domain: 'CUSTOMER'
+  domain: 'CUSTOMER',
+  role: null
 };
 export const MockUserCompaniesJson: Array<CompanyJson> = [{
   deleted: false,

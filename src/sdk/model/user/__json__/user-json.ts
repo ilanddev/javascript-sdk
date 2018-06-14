@@ -23,4 +23,5 @@ export interface UserJson {
   domain: string | UserDomainJson;
   first_name?: string;
   last_name?: string;
+  role: string | null;
 }
