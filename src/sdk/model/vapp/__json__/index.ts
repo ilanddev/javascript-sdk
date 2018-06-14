@@ -5,3 +5,6 @@ export * from './vapp-rename-request-json';
 export * from './vapp-update-description-request-json';
 export * from './vapp-startup-section-item-json';
 export * from './vapp-startup-section-item-request-json';
+export * from './vapp-network-create-request-json';
+export * from './vapp-storage-lease-update-request-json';
+export * from './vapp-runtime-lease-update-request-json';
