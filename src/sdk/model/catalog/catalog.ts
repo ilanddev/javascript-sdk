@@ -222,6 +222,33 @@ export class Catalog extends Entity {
   }
 
   /**
+   * Updates the catalog's metadata.
+   * @param {Array<Metadata<MetadataType>>} metadata the new array of metadata
+   * @returns {Promise<Task>} task promise
+   */
+  async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
+    const metadataJson: Array<MetadataJson<MetadataType>> = metadata.map(m => {
+      return m.json;
+    });
+    return Iland.getHttp().put(`/catalogs/${this.uuid}/metadata`, metadataJson).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Deletes a metadata entry.
+   * @param {string} metadataKey the key of the metadata entry to delete
+   * @returns {Promise<Task>} task promise
+   */
+  async deleteMetadata(metadataKey: string): Promise<Task> {
+    return Iland.getHttp().delete(`/catalogs/${this.uuid}/metadata/${metadataKey}`).then((response) => {
+      const apiTask = response.data as TaskJson;
+      return new Task(apiTask);
+    });
+  }
+
+  /**
    * Updates the catalog.
    * @param {CatalogUpdateRequest} catalog
    * @return {Promise<Catalog>}
