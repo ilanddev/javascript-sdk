@@ -9,13 +9,13 @@ export class VappNetworkStaticRouteRequest {
   constructor(vappNetworkStaticRouteRequestJson: VappNetworkStaticRouteRequestJson);
   constructor(name: string, network: string, nextHopIP: string);
   constructor(firstParam: string | VappNetworkStaticRouteRequest | VappNetworkStaticRouteRequestJson, network?: string,
-              nextHopIP?: string) {
+              nextHopIp?: string) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
         name: firstParam,
         network: network,
-        next_hop_i_p: nextHopIP
+        next_hop_ip: nextHopIp
       } as VappNetworkStaticRouteRequestJson;
     } else if (firstParam instanceof VappNetworkStaticRouteRequest) {
       // Copy constructor
@@ -43,11 +43,11 @@ export class VappNetworkStaticRouteRequest {
   }
 
   /**
-   * Get next hop i p.
+   * Get next hop ip.
    * @returns {string}
    */
   get nextHopIP(): string {
-    return this._json.next_hop_i_p;
+    return this._json.next_hop_ip;
   }
 
   /**
