@@ -1,9 +1,5 @@
-export type ContactType = 'PHONE' |
-    'EMAIL';
-
-export type Severity = 'PRODUCTION_SYSTEM_DOWN' |
-    'SYSTEM_IMPAIRED' |
-    'GENERAL_GUIDANCE';
+import { ContactType } from './contact-type';
+import { SeverityType } from './severity-type';
 
 /**
  * Support Ticket Create Request JSON interface.
@@ -16,7 +12,7 @@ export interface SupportTicketCreateRequestJson {
   regarding_id: number;
   service_id: number;
   category_id: number;
-  severity: Severity;
+  severity: SeverityType;
   contact_type: ContactType;
   phone_number: string;
   phone_number_ext: string;
