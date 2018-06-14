@@ -23,11 +23,11 @@ export class VappNetworkStaticRoute {
   }
 
   /**
-   * Get next hop i p.
+   * Get next hop ip.
    * @returns {string}
    */
   get nextHopIP(): string {
-    return this._json.next_hop_i_p;
+    return this._json.next_hop_ip;
   }
 
   /**
