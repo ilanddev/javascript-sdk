@@ -1,4 +1,4 @@
-import { IpRangeJson } from '../../common/ip-range/__json__';
+import { IpRangeJson } from '../ip-range/__json__/index';
 
 export interface NetworkSubAllocationJson {
   edge_name: string;

@@ -7,3 +7,5 @@ export * from './vapp-child-vm-copy-move-request';
 export * from './vapp-copy-move-request';
 export * from './vapp-storage-lease-update-request';
 export * from './vapp-runtime-lease-update-request';
+export * from './vapp-storage-lease-update-request';
+export * from './vapp-runtime-lease-update-request';

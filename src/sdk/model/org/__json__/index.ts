@@ -19,8 +19,6 @@ export * from './affinity-rule-type';
 export * from './vm-affinity-rule-json';
 export * from './vm-affinity-rule-operation-type';
 export * from './vm-affinity-rule-update-request-json';
-export * from './network-ip-scope-json';
-export * from './network-sub-allocation-json';
 export * from './external-network-json';
 export * from './affinity-rule-type';
 export * from './vm-affinity-rule-json';

@@ -1,3 +1,4 @@
+export * from './__json__/index';
 export * from './entity-domain';
 export * from './entity';
 export * from './billing/index';
@@ -5,3 +6,8 @@ export * from './metadata/index';
 export * from './reports/index';
 export * from './network-fence-mode-type';
 export * from './storage-profile';
+export * from './ip-adressing-mode-type';
+export * from './adapter-type';
+export * from './disk-type';
+export * from './network-ip-scope';
+export * from './network-sub-allocation';

@@ -1,12 +1,11 @@
 import { EntityJson } from '../../common/__json__/entity-json';
 import { OperatingSystem } from './operating-system-type';
 import { VmStatus } from './vm-status-type';
-import { DiskType } from '../virtual-disk/__json__/disk-type';
-import { IpAddressingMode } from './ip-adressing-mode-type';
-import { AdapterType } from './adapter-type';
+import { DiskType } from '../../common/disk-type';
 import {
   GuestCustomizationUpdateRequestJson
 } from '../guest-customization/__json__/guest-customization-update-request-json';
+import { AdapterType, IpAddressingMode } from '../../common';
 
 /**
  * Interface for VM properties.
