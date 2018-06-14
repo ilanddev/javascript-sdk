@@ -6,3 +6,8 @@ export * from './support-ticket-create-request-json';
 export * from './support-ticket-update-request-json';
 export * from './contact-type';
 export * from './severity-type';
+export * from './support-ticket-comment-json';
+export * from './support-ticket-attachment-json';
+export * from './support-category-json';
+export * from './support-regarding-option-json';
+export * from './support-service-option-json';
