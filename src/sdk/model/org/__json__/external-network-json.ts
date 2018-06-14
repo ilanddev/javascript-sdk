@@ -1,4 +1,4 @@
-import { NetworkIpScopeJson } from './network-ip-scope-json';
+import { NetworkIpScopeJson } from '../../common';
 
 /**
  * External Network JSON

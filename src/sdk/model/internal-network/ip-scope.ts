@@ -1,8 +1,8 @@
 import { IpScopeJson } from './__json__/ip-scope-json';
 import { IpRangeJson } from '../common/ip-range/__json__';
-import { NetworkSubAllocationJson } from './__json__/network-sub-allocation-json';
 import { IpRange } from '../common/ip-range';
-import { NetworkSubAllocation } from '../org/network-sub-allocation';
+import { NetworkSubAllocationJson } from '../common/__json__';
+import { NetworkSubAllocation } from '../common';
 
 /**
  * Ip Scope.
