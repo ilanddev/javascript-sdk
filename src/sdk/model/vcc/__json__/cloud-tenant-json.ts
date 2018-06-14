@@ -63,13 +63,6 @@ export interface VccPerfSampleJson {
 }
 
 /**
- * Interface for an Upgrade Tenant Contract Request
- */
-export interface UpgradeTenantContractRequestJson {
-  additional_storage_in_gb: number;
-}
-
-/**
  * Interface for Cloud Tenant Backup History Json properties.
  */
 export interface CloudTenantBackupHistoryJson {
