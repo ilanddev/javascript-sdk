@@ -1,6 +1,6 @@
 import { VappCopyMoveRequestJson } from './__json__/vapp-copy-move-request-json';
-import { VappChildVmCopyMoveRequestJson } from './__json__/vapp-child-vm-copy-move-request-json';
 import { VappChildVmCopyMoveRequest } from './vapp-child-vm-copy-move-request';
+import { VappChildVmCopyMoveRequestJson } from './__json__/vapp-child-vm-copy-move-request-json';
 
 /**
  * vApp copy move request.
@@ -53,7 +53,7 @@ export class VappCopyMoveRequest {
    * @returns {Array<VappChildVmCopyMoveRequest>}
    */
   get vmSpecs(): Array<VappChildVmCopyMoveRequest> {
-    return this.vmSpecs;
+    return this._json.vm_specs.map(it => new VappChildVmCopyMoveRequest(it));
   }
 
   /**

@@ -6,3 +6,5 @@ export * from './vapp-update-description-request-json';
 export * from './vapp-network-create-request-json';
 export * from './vapp-child-vm-copy-move-request-json';
 export * from './vapp-copy-move-request-json';
+export * from './vapp-storage-lease-update-request-json';
+export * from './vapp-runtime-lease-update-request-json';
