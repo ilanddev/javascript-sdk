@@ -1,5 +1,5 @@
 import { SupportRegardingOptionJson } from './__json__/support-regarding-option-json';
-import { SupportServiceOptionJson } from './__json__/support-service-option-json';
+import { SupportServiceOption } from './support-service-option';
 
 /**
  * Support Regarding Option.
@@ -28,10 +28,10 @@ export class SupportRegardingOption {
 
   /**
    * Get service options.
-   * @returns {Array<SupportServiceOptionJson>}
+   * @returns {Array<SupportServiceOption>}
    */
-  get serviceOptions(): Array<SupportServiceOptionJson> {
-    return this._json.service_options;
+  get serviceOptions(): Array<SupportServiceOption> {
+    return this._json.service_options.map(it => new SupportServiceOption(it));
   }
 
   /**
