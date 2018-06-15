@@ -17,7 +17,6 @@ import { Checkpoint } from './checkpoint/checkpoint';
 import { SslVpn } from './ssl-vpn/ssl-vpn';
 import { IpsecVpn } from './ipsec-vpn/ipsec-vpn';
 import { StaticRouting } from './static-routing/static-routing';
-import { EdgeDhcpJson } from './dhcp/__json__';
 import { NetworkPerfSampleSerie } from './network-perf-sample/network-perf-sample-serie';
 import { NetworkPerfSampleSerieJson } from './network-perf-sample/__json__/network-perf-sample-json';
 import { LoadBalancer } from './load-balancer/load-balancer';
@@ -30,7 +29,9 @@ import { EdgeFirewallLogType } from './firewall/__json__/edge-firewall-log-type'
 import { EdgeBackingConfigurationType } from './__json__/edge-backing-configuration-type';
 import { EdgeInterfaceJson } from './edge-interface/__json__/edge-interface-json';
 import { EntityType } from '../common/__json__/entity-type';
-import { Task, TaskJson } from '../task';
+import { Task } from '..';
+import { TaskJson } from '../task/__json__/task-json';
+import { EdgeDhcpJson } from './dhcp/__json__/edge-dhcp-json';
 
 /**
  * Edge Gateway.

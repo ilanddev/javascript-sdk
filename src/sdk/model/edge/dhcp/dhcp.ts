@@ -1,6 +1,6 @@
 import { DhcpPool } from './dhcp-pool';
 import { DhcpJson } from './__json__/dhcp-json';
-import { EdgeDhcpJson } from './__json__';
+import { EdgeDhcpJson } from './__json__/edge-dhcp-json';
 
 /**
  * Dhcp class
