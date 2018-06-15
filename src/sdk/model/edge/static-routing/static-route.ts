@@ -1,4 +1,4 @@
-import { StaticRouteJson } from './__json__/static-routing-json';
+import { StaticRouteJson } from './__json__/static-route-json';
 
 /**
  * StaticRoute class
