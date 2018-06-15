@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Iland } from '../../iland';
@@ -317,10 +316,10 @@ export class Vpg extends Entity {
 
   /**
    * Remove a Vpg Failover Test Alert
-   * @returns {Promise<AxiosResponse>}
+   * @returns {Promise<any>}
    */
-  async removeVpgFailoverTestAlert(): Promise<AxiosResponse> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`, {});
+  async removeVpgFailoverTestAlert(): Promise<any> {
+    return Iland.getHttp().delete(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`);
   }
 
   /**

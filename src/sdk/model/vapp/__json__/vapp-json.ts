@@ -1,8 +1,9 @@
 import { VappStatus } from './vapp-status-type';
 import { EntityJson } from '../../common/__json__/entity-json';
-import { AddVappVmRequestJson, BuildVmRequestJson } from '../../vm/__json__/vm-json';
+import { BuildVmRequestJson } from '../../vm/__json__/vm-json';
 import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
-import { NetworkFenceMode } from '../../common/network-fence-mode-type';
+import { VmCreateRequestJson } from '../../vm/__json__/vm-create-request-json';
+import { NetworkFenceModeType } from '../../common/__json__/network-fence-mode-type';
 
 /**
  * Interface for vApp properties.
@@ -40,8 +41,8 @@ export interface AddVappRequestJson {
   vapp_template_uuid: string;
   name: string;
   description: string;
-  vms: Array<AddVappVmRequestJson>;
-  fence_mode: NetworkFenceMode;
+  fence_mode: NetworkFenceModeType;
+  vms: Array<VmCreateRequestJson>;
   vapp_network: AddVappNetworkInitializationParamsJson;
 }
 

@@ -1,6 +1,6 @@
 import { EntityJson } from '../../common/__json__/entity-json';
-import { NetworkFenceMode } from '../../common/network-fence-mode-type';
 import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
+import { NetworkFenceModeType } from '../../common/__json__/network-fence-mode-type';
 
 /**
  * Interface for abstract Network JSON properties.
@@ -13,7 +13,7 @@ export interface AbstractNetworkJson extends EntityJson {
   primary_dns: string;
   secondary_dns: string;
   dns_suffix: string;
-  fence_mode: NetworkFenceMode;
+  fence_mode: NetworkFenceModeType;
   gateway: string;
   netmask: string;
   ip_ranges: Array<IpRangeJson>;

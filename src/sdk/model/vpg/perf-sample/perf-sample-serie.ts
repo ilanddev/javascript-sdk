@@ -1,45 +1,6 @@
-import { PerfSampleJson, PerfSampleSerieJson } from './__json__/perf-sample-serie';
+import { PerfSampleSerieJson } from './__json__/perf-sample-serie';
+import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 
-/**
- * Perf Sample
- */
-export class PerfSample {
-
-  constructor(private _json: PerfSampleJson) {}
-
-  /**
-   * Get timestamp for Perf Sample
-   * @returns {number} timestamp
-   */
-  get timestamp(): number {
-    return this._json.timestamp;
-  }
-
-  /**
-   * Get value for Perf Sample
-   * @returns {number} value
-   */
-  get value(): number {
-    return this._json.value;
-  }
-
-  /**
-   * JSON format.
-   * @returns {string}
-   */
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
-   * Gets the raw JSON object from the API.
-   * @returns {PerfSampleJson} the API Perf Sample object
-   */
-  get json(): PerfSampleJson {
-    return Object.assign({}, this._json);
-  }
-
-}
 /**
  * Perf Sample Serie
  */
