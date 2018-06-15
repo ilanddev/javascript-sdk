@@ -20,7 +20,8 @@ import { VdcJson } from '../vdc/__json__/vdc-json';
 import { VmJson } from '../vm/__json__/vm-json';
 import { SupportTicketCreateRequest } from './support-ticket/support-ticket-create-request';
 import { SupportTicketUpdateRequest } from './support-ticket/support-ticket-update-request';
-import { CloudTenant, CloudTenantJson } from '../vcc';
+import { CloudTenant } from '../vcc/cloud-tenant';
+import { CloudTenantJson } from '../vcc/__json__/cloud-tenant-json';
 
 /**
  * Company.

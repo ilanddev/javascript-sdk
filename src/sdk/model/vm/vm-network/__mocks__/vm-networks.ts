@@ -1,5 +1,5 @@
-import { VmNetworkJson } from '../__json__';
 import { AxiosResponse } from 'axios';
+import { VmNetworkJson } from '../__json__/vm-network-json';
 
 export const MockVmNetworkJson: VmNetworkJson = {
   uuid: 'dev-vcd01.iland.dev:urn:vcloud:network:66c1c555-c160-450f-bf60-73481b95554e',

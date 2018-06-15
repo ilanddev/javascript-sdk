@@ -1,4 +1,5 @@
-import { NetworkFenceMode, NetworkIpScopeJson } from '../../common';
+import { NetworkFenceMode } from '../../common/network-fence-mode-type';
+import { NetworkIpScopeJson } from '../../common/__json__/network-ip-scope-json';
 
 /**
  * vApp Template Network Configuration Response JSON.

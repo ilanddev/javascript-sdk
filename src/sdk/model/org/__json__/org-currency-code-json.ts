@@ -1,4 +1,4 @@
-import { CurrencyCode } from '../../common/billing/__json__';
+import { CurrencyCode } from '../../common/billing/__json__/currency-code-type';
 
 /**
  * Org Currency Code API JSON interface.

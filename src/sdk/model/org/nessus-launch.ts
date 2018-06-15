@@ -1,4 +1,4 @@
-import { NessusLaunchJson } from './__json__';
+import { NessusLaunchJson } from './__json__/nessus-launch-json';
 
 /**
  *  Nessus Launch result.
