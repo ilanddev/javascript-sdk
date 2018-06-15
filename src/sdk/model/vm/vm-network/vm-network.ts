@@ -1,5 +1,5 @@
-import { VmNetworkJson } from './__json__';
-import { IpRange } from '../../common/ip-range';
+import { VmNetworkJson } from './__json__/vm-network-json';
+import { IpRange } from '../../common/ip-range/ip-range';
 
 export class VmNetwork {
 

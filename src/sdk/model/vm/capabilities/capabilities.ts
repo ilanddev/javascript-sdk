@@ -1,4 +1,4 @@
-import { CapabilitiesJson } from './__json__';
+import { CapabilitiesJson } from './__json__/capabilities-json';
 
 /**
  * VM Capabilities

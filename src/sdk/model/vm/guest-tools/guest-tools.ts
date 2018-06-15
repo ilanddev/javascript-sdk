@@ -1,4 +1,4 @@
-import { GuestToolsJson } from './__json__';
+import { GuestToolsJson } from './__json__/guest-tools-json';
 
 /**
  * VM Guest Tools

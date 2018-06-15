@@ -1,8 +1,8 @@
-import { AuthProvider } from './auth/';
 import { Logger } from './logger/logger';
 import { Http } from './service/http/http';
 import { BasicConfiguration } from './config/basic-configuration';
 import { noop } from 'rxjs/util/noop';
+import { AuthProvider } from './auth/auth-provider';
 
 const DEFAULT_API_URL = `${BasicConfiguration.getApiUrl()}/v1`;
 

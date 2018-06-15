@@ -1,4 +1,4 @@
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { TestConfiguration } from '../../../../../__tests__/configuration';
 import { Iland } from '../../../iland';
 import { AxiosRequestConfig } from 'axios';

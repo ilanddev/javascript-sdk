@@ -1,6 +1,8 @@
-import { EventJson, EventOwnerType, EventType } from './__json__';
 import { Iland } from '../../iland';
 import { EntityType } from '../common/__json__/entity-type';
+import { EventJson } from './__json__/event-json';
+import { EventOwnerType } from './__json__/event-owner-type';
+import { EventType } from './__json__/event-type';
 
 /**
  * Event.
