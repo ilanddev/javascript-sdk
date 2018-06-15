@@ -1,229 +1,14 @@
 import { Entity } from '../common/entity';
-import { VccPerfSample } from './vcc-perf-sample';
-import {
-  CloudRepositoryJson,
-  CloudTenantBackupHistoryJson,
-  CloudTenantJson,
-  CloudTenantResourceJson,
-  VccPerfSampleJson,
-  WanAcceleratorJson
-} from './__json__/cloud-tenant-json';
+import { VccPerfSample } from './vcc-perf-sample/vcc-perf-sample';
+import { CloudTenantJson } from './__json__/cloud-tenant-json';
 import { EntityType } from '../common/__json__/entity-type';
 import { Iland } from '../../iland';
-import { PerfIntervalType } from './__json__/perf-interval-type';
-import { UpdateTenantContractRequest } from './upgrade-tenant-contract-request';
-
-/**
- * Wan Accelerator.
- */
-export class WanAccelerator {
-
-  constructor(private _json: WanAcceleratorJson) {
-  }
-
-  /**
-   * Gets the name of the Wan Accelerator
-   * @returns {string} name
-   */
-  get name(): string {
-    return this._json.name;
-  }
-
-  /**
-   * Gets the description of the Wan Accelerator
-   * @returns {string} description
-   */
-  get description(): string {
-    return this._json.description;
-  }
-
-  /**
-   * Gets the is ouf of date of the Wan Accelerator
-   * @returns {boolean} is out of date
-   */
-  get outOfDate(): boolean {
-    return this._json.out_of_date;
-  }
-
-  /**
-   * Gets the version of the Wan Accelerator
-   * @returns {string} version
-   */
-  get version(): string {
-    return this._json.version;
-  }
-
-  /**
-   * Gets the capacity of the Wan Accelerator
-   * @returns {number} capacity
-   */
-  get capacity(): number {
-    return this._json.capacity;
-  }
-
-  /**
-   * Gets the traffic port of the Wan Accelerator
-   * @returns {number} port
-   */
-  get trafficPort(): number {
-    return this._json.traffic_port;
-  }
-
-  /**
-   * Gets the connection count of the Wan Accelerator
-   * @returns {number} count
-   */
-  get connectionCount(): number {
-    return this._json.connection_count;
-  }
-
-  /**
-   * Gets the cache path of the Wan Accelerator
-   * @returns {string} cache path
-   */
-  get cachePath(): string {
-    return this._json.cache_path;
-  }
-
-  /**
-   * JSON format.
-   * @returns {string}
-   */
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
-   * Gets the raw JSON object from the API.
-   * @returns {WanAcceleratorJson} the API __json__ object
-   */
-  get json(): WanAcceleratorJson {
-    return Object.assign({}, this._json);
-  }
-}
-
-/**
- * Cloud Repository.
- */
-export class CloudRepository {
-
-  constructor(private _json: CloudRepositoryJson) {
-  }
-
-  /**
-   * Gets the display name for the Cloud Repository
-   * @returns {string} display name
-   */
-  get displayName(): string {
-    return this._json.display_name;
-  }
-
-  /**
-   * Gets the quota for the Cloud Repository
-   * @returns {number} quota
-   */
-  get quota(): number {
-    return this._json.quota;
-  }
-
-  /**
-   * Gets the used quota for the Cloud Repository
-   * @returns {number} used quota
-   */
-  get usedQuota(): number {
-    return this._json.used_quota;
-  }
-
-  /**
-   * Gets the Wan Accelerator uuid for the Cloud Repository
-   * @returns {string} wan accelerator uuid
-   */
-  get wanAcceleratorUuid(): string | null {
-    return this._json.wan_accelerator_uuid;
-  }
-
-  /**
-   * Gets the Wan Accelerator object for the Cloud Repository
-   * @returns {WanAccelerator} wan accelerator
-   */
-  get wanAccelerator(): WanAccelerator | null {
-    return (this._json.wan_accelerator ? new WanAccelerator(this._json.wan_accelerator) : null);
-  }
-
-  /**
-   * JSON format.
-   * @returns {string}
-   */
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
-   * Gets the raw JSON object from the API.
-   * @returns {CloudRepositoryJson} the API __json__ object
-   */
-  get json(): CloudRepositoryJson {
-    return Object.assign({}, this._json);
-  }
-}
-
-/**
- * Cloud Tenant Resource.
- */
-export class CloudTenantResource {
-
-  constructor(private _json: CloudTenantResourceJson) {
-  }
-
-  /**
-   * Gets a CloudRepository object
-   * @returns {CloudRepository} cloud repository object
-   */
-  get repository(): CloudRepository {
-    return new CloudRepository(this._json.repository);
-  }
-
-  /**
-   * JSON format.
-   * @returns {string}
-   */
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  /**
-   * Gets the raw JSON object from the API.
-   * @returns {CloudTenantResourceJson} the API __json__ object
-   */
-  get json(): CloudTenantResourceJson {
-    return Object.assign({}, this._json);
-  }
-}
-
-/**
- * Cloud Tenant Backup History.
- */
-export class CloudTenantBackupHistory {
-
-  constructor(private _json: CloudTenantBackupHistoryJson) {
-  }
-
-  get lastResult(): string {
-    return this._json.last_result;
-  }
-
-  get lastActive(): number {
-    return this._json.last_active;
-  }
-
-  toString(): string {
-    return JSON.stringify(this._json, undefined, 2);
-  }
-
-  get json(): CloudTenantBackupHistoryJson {
-    return Object.assign({}, this._json);
-  }
-}
+import { PerfIntervalType } from './vcc-perf-sample/__json__/perf-interval-type';
+import { CloudTenantResource } from './cloud-tenant-resource/cloud-tenant-resource';
+import { CloudTenantBackupHistory } from './cloud-tenant-backup-history/cloud-tenant-backup-history';
+import { VccPerfSampleJson } from './vcc-perf-sample/__json__/vcc-perf-sample-json';
+import { CloudTenantBackupHistoryJson } from './cloud-tenant-backup-history/__json__/cloud-tenant-backup-history-json';
+import { UpdateTenantContractRequest } from './upgrade-tenant-contract-request/upgrade-tenant-contract-request';
 
 /**
  * Cloud Tenant.
@@ -414,10 +199,11 @@ export class CloudTenant extends Entity {
    * @param {UpdateTenantContractRequest} contract
    * @returns {Promise<any>}
    */
+
   /* istanbul ignore next: autogenerated */
   async upgradeTenantContract(updateContractRequest: UpdateTenantContractRequest): Promise<any> {
     return Iland.getHttp().post(`/vcc-backup-tenants/${this.uuid}/actions/upgrade-contract`,
-        updateContractRequest.json);
+      updateContractRequest.json);
   }
 
   /**
