@@ -1,5 +1,5 @@
 import { SupportServiceOptionJson } from './__json__/support-service-option-json';
-import { SupportCategory } from './support-category';
+import { SupportCategoryJson } from './__json__/support-category-json';
 
 /**
  * Support Service Option.
@@ -36,9 +36,9 @@ export class SupportServiceOption {
 
   /**
    * Get support categories.
-   * @returns {Array<SupportCategory>}
+   * @returns {Array<SupportCategoryJson>}
    */
-  get supportCategories(): Array<SupportCategory> {
+  get supportCategories(): Array<SupportCategoryJson> {
     return this._json.support_categories;
   }
 
