@@ -30,7 +30,8 @@ import { EdgeFirewallLogType } from './firewall/__json__/edge-firewall-log-type'
 import { EdgeBackingConfigurationType } from './__json__/edge-backing-configuration-type';
 import { EdgeInterfaceJson } from './edge-interface/__json__/edge-interface-json';
 import { EntityType } from '../common/__json__/entity-type';
-import { Task, TaskJson } from '../task';
+import { Task } from '..';
+import { TaskJson } from '../task/__json__/task-json';
 
 /**
  * Edge Gateway.
