@@ -1,5 +1,5 @@
-import { VmJson } from '../../vm/__json__';
 import { AffinityRuleType } from './affinity-rule-type';
+import { VmJson } from '../../vm/__json__/vm-json';
 
 /**
  * VM Affinity Rule API JSON interface.

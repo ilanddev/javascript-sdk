@@ -1,4 +1,4 @@
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { User } from '../user';
 import {

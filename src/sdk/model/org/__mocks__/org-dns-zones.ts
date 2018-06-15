@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { CheckDnsZoneJson, DnsZoneJson } from '../__json__';
+import { DnsZoneJson } from '../__json__/dns-zone-json';
+import { CheckDnsZoneJson } from '../__json__/check-dns-zone-json';
 
 export const MockOrgDnsZonesJson: Array<DnsZoneJson> = [{
   id: 1,

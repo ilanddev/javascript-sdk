@@ -1,4 +1,4 @@
-import { VmCpuCountUpdateRequestJson } from './__json__';
+import { VmCpuCountUpdateRequestJson } from './__json__/vm-json';
 
 /**
  * VM Cpu Update Request.

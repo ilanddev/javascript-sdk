@@ -1,5 +1,5 @@
 import { Iland } from '../../../iland';
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { MockLocation } from '../__mocks__/location';
 import { Location } from '../location';
 

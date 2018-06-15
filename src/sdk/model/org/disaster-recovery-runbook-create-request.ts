@@ -1,5 +1,5 @@
 import { DisasterRecoveryRunbookCreateRequestJson } from './__json__/disaster-recovery-runbook-create-request-json';
-import { RecoveryGroupDescriptorJson } from './__json__';
+import { RecoveryGroupDescriptorJson } from './__json__/recovery-group-descriptor-json';
 
 /**
  * Disaster recovery runbook create request.

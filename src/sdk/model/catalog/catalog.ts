@@ -11,8 +11,9 @@ import { VappTemplateJson } from '../vapp-template/__json__/vapp-template-json';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { VappTemplateFromVappCreateRequest } from './vapp-template-from-vapp-create-request';
-import { Task, TaskJson } from '../task';
 import { CatalogUpdateRequest } from './catalog-update-request';
+import { Task } from '../task/task';
+import { TaskJson } from '../task/__json__/task-json';
 
 /**
  * Catalog.

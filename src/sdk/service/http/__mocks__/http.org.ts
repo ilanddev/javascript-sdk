@@ -10,7 +10,9 @@ import { MockCheckDnsZoneResponse, MockOrgDnsZonesResponse } from '../../../mode
 import { MockOrgEdgesResponse } from '../../../model/org/__mocks__/edges';
 import { MockOrgVappNetworksResponse } from '../../../model/org/__mocks__/org-vapp-networks';
 import { MockOrgResource } from '../../../model/org/__mocks__/org-resource';
-import { DnsRecordCreateRequestJson, DnsRecordUpdateRequestJson, DnsZoneCreateRequestJson } from '../../../model/org';
+import { DnsRecordUpdateRequestJson } from '../../../model/org/__json__/dns-record-update-request-json';
+import { DnsZoneCreateRequestJson } from '../../../model/org/__json__/dns-zone-create-request-json';
+import { DnsRecordCreateRequestJson } from '../../../model/org/__json__/dns-record-create-request-json';
 
 export async function MockOrgGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {

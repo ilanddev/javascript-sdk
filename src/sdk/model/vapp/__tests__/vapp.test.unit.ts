@@ -1,7 +1,7 @@
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
 import { Vapp } from '../vapp';
-import { VappJson } from '../__json__';
+import { VappJson } from '../__json__/vapp-json';
 import { MockVappJson, MockVappPerfCountersJson, MockVappPerfSamplesSeriesJson } from '../__mocks__/vapp';
 import { MockVappVmsJson } from '../__mocks__/vapp-vms';
 import { MockVappNetworksJson } from '../__mocks__/vapp-networks';

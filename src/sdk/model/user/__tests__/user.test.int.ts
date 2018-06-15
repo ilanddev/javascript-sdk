@@ -1,7 +1,7 @@
 import { Iland } from '../../../iland';
 import { User } from '../user';
 import { TestConfiguration } from '../../../../../__tests__/configuration';
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 
 let auth;
 

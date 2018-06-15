@@ -1,4 +1,4 @@
-import { VmCapabilityUpdateRequestJson } from './__json__';
+import { VmCapabilityUpdateRequestJson } from './__json__/capabilities-update-request-json';
 
 /**
  * VM Capabilities update request.
