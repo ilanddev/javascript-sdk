@@ -1,4 +1,3 @@
-
 import { NessusScanDetailsJson } from './__json__/nessus-scan-details-json';
 import { NessusRemediations } from './nessus-remediations';
 import { NessusScanInfo } from './nessus-scan-info';

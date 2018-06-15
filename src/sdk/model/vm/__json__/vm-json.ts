@@ -5,7 +5,8 @@ import { DiskType } from '../../common/disk-type';
 import {
   GuestCustomizationUpdateRequestJson
 } from '../guest-customization/__json__/guest-customization-update-request-json';
-import { AdapterType, IpAddressingMode } from '../../common';
+import { IpAddressingMode } from '../../common/ip-adressing-mode-type';
+import { AdapterType } from '../../common/adapter-type';
 
 /**
  * Interface for VM properties.

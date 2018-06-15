@@ -1,4 +1,4 @@
-import { IsComplianceOrgJson } from './__json__';
+import { IsComplianceOrgJson } from './__json__/is-compliance-org-json';
 
 /**
  * Is Compliance Org result.

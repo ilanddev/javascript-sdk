@@ -1,5 +1,5 @@
-import { GuestCustomizationJson } from '../__json__';
 import { AxiosResponse } from 'axios';
+import { GuestCustomizationJson } from '../__json__/guest-customization-json';
 
 export const MockVmGuestCustomizationJson: GuestCustomizationJson = {
   enabled: true,

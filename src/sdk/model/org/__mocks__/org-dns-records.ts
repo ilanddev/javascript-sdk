@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { DnsRecordJson, IpAddressSetJson } from '../__json__';
+import { IpAddressSetJson } from '../__json__/ip-address-set-json';
+import { DnsRecordJson } from '../__json__/dns-record-json';
 
 export const MockIpAddressSetJson: IpAddressSetJson = {
   ips: ['1.1.1.1', '2.2.2.2']

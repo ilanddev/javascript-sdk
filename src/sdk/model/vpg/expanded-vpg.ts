@@ -1,9 +1,11 @@
 import { ExpandedVpgJson } from './__json__/expanded-vpg-json';
-import { VpgPriority, VpgStatus, VpgSubStatus } from './__json__';
 import { ActiveProcessStage } from './__json__/vpg-active-process-stage';
 import { VpgEntities } from './vpg-entities';
 import { ServiceProfile } from './service-profile';
 import { VpgVm } from './vpg-vm';
+import { VpgStatus } from './__json__/vpg-status-type';
+import { VpgSubStatus } from './__json__/vpg-sub-status-type';
+import { VpgPriority } from './__json__/vpg-priority-type';
 
 /**
  * Expanded VPG.
