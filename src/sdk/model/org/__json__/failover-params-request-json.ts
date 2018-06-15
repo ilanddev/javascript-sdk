@@ -1,4 +1,5 @@
-import { CommitPolicy, ShutdownPolicy } from '../../vpg/vpg-failover/__json__';
+import { CommitPolicy } from '../../vpg/vpg-failover/__json__/vpg-failover-commit-policy-type';
+import { ShutdownPolicy } from '../../vpg/vpg-failover/__json__/vpg-failover-shutdown-policy-type';
 
 export interface FailoverParamsRequestJson {
   checkpoint_identifier: string;

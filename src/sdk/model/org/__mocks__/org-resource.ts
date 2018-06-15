@@ -1,11 +1,9 @@
-import {
-  DnsRecordCreateRequestJson,
-  DnsRecordJson,
-  DnsRecordUpdateRequestJson,
-  DnsZoneCreateRequestJson,
-  DnsZoneJson
-} from '../__json__';
 import { AxiosResponse } from 'axios';
+import { DnsZoneCreateRequestJson } from '../__json__/dns-zone-create-request-json';
+import { DnsZoneJson } from '../__json__/dns-zone-json';
+import { DnsRecordCreateRequestJson } from '../__json__/dns-record-create-request-json';
+import { DnsRecordJson } from '../__json__/dns-record-json';
+import { DnsRecordUpdateRequestJson } from '../__json__/dns-record-update-request-json';
 
 export class MockOrgResource {
 

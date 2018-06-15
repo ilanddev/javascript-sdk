@@ -14,7 +14,7 @@ import { PerfCounter } from '../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
-import { VappStartupSectionItemJson } from './__json__';
+import { VappStartupSectionItemJson } from './__json__/vapp-startup-section-item-json';
 import { Snapshot } from '../common/snapshot/snapshot';
 import { SnapshotJson } from '../common/snapshot/__json__/snapshot-json';
 import { HasSnapshot } from '../common/snapshot/has-snapshot';
@@ -25,7 +25,6 @@ import { VappDescriptionUpdateRequest } from './vapp-update-description-request'
 import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 import { Metadata } from '../common/metadata/metadata';
-import { Bill, BillingSummary, BillingSummaryJson, BillJson } from '../common/billing';
 import { VappStartupSectionItem } from './vapp-startup-section-item';
 import { VappStartupSectionItemRequest } from './vapp-startup-section-item-request';
 import { VappNetworkCreateRequest } from './vapp-network-create-request';
@@ -38,6 +37,10 @@ import { VmResourceSummaryMapResponse } from './summary/vm-resource-summary-map-
 import { VmSummaryMapResponseJson } from './summary/__json__/vm-ressource-summary-map-response-json';
 import { VappResourceSummary } from './summary/vapp-resource-summary';
 import { VappResourceSummaryJson } from './summary/__json__/vapp-resource-summary-json';
+import { Bill } from '../common/billing/bill';
+import { BillingSummary } from '../common/billing/billing-summary';
+import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
+import { BillJson } from '../common/billing/__json__/bill-json';
 
 /**
  * Virtual Application.

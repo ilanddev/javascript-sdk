@@ -1,4 +1,4 @@
-import { GuestCustomizationJson } from './__json__';
+import { GuestCustomizationJson } from './__json__/guest-customization-json';
 
 /**
  * VM Guest Customization

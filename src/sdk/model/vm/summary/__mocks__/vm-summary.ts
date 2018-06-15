@@ -1,5 +1,5 @@
-import { VmSummaryJson } from '../__json__';
 import { AxiosResponse } from 'axios';
+import { VmSummaryJson } from '../__json__/vm-summary-json';
 
 export const MockVmSummaryJson: VmSummaryJson = {
   reserved_cpu: 4,

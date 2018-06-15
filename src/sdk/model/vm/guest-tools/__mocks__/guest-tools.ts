@@ -1,5 +1,5 @@
-import { GuestToolsJson } from '../__json__';
 import { AxiosResponse } from 'axios';
+import { GuestToolsJson } from '../__json__/guest-tools-json';
 
 export const MockVmGuestToolsJson: GuestToolsJson = {
   status: 'fake-status',

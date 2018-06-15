@@ -1,7 +1,6 @@
-
-import { VmTemplateConfigurationJson } from './__json__';
 import { TemplateDiskConfiguration } from './template-disk-configuration';
 import { TemplateVnicConfiguration } from './template-vnic-configuration';
+import { VmTemplateConfigurationJson } from './__json__/vm-template-configuration-json';
 
 /**
  * VM Template Configuration Response.

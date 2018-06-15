@@ -4,9 +4,9 @@ import { MockMediaJson } from '../__mocks__/media';
 import { MediaUpdateRequest } from '../media-update-request';
 import { MediaCloneRequest } from '../media-clone-request';
 import { MockMetadataJson } from '../../common/metadata/__mocks__/metadata';
-import { Metadata } from '../../common/metadata';
 import { Http } from '../../../service/http/http';
 import { MockIlandDirectGrantAuthProvider } from '../../../auth/__mocks__/iland-direct-grant-auth-privider';
+import { Metadata } from '../../common/metadata/metadata';
 
 jest.mock('../../../service/http/http');
 

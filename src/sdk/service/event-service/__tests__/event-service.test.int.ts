@@ -1,9 +1,9 @@
 import { EventService } from '../event-service';
-import { IlandDirectGrantAuthProvider } from '../../../auth';
 import { TestConfiguration } from '../../../../../__tests__/configuration';
 import { Iland } from '../../../iland';
-import { Event } from '../../../model/event';
 import { Subscription } from 'rxjs/Subscription';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
+import { Event } from '../../../model/event/event';
 
 let auth: IlandDirectGrantAuthProvider;
 

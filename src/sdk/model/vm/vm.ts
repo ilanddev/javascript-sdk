@@ -39,18 +39,9 @@ import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request'
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
 import { BootOptions } from './boot-options/boot-options';
-import { BootOptionsJson } from './boot-options/__json__';
-import { Capabilities } from './capabilities';
-import { CapabilitiesJson } from './capabilities/__json__';
-import { GuestCustomization } from './guest-customization';
-import { GuestCustomizationJson } from './guest-customization/__json__';
 import { GuestTools } from './guest-tools/guest-tools';
-import { GuestToolsJson } from './guest-tools/__json__';
-import { VmSummary } from './summary';
-import { VmSummaryJson } from './summary/__json__';
 import { ToolsUpgradePolicy } from './__json__/tools-upgrade-policy';
 import { GuestCustomizationUpdateRequest } from './guest-customization/guest-customization-update-request';
-import { VmNetwork, VmNetworkJson } from './vm-network';
 import { VmCapabilityUpdateRequest } from './capabilities/capabilities-update-request';
 import { VmMemorySizeUpdateRequest } from './vm-memory-size-update-request';
 import { VmCpuCountUpdateRequest } from './vm-cpu-count-update-request';
@@ -59,7 +50,17 @@ import { JpegImage } from '../common/jpeg-image';
 import { VmCopyMoveRequest } from './vm-copy-move-request';
 import { BillingSummary } from '../common/billing/billing-summary';
 import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
-import { DiskType } from '../common';
+import { BootOptionsJson } from './boot-options/__json__/boot-options-json';
+import { Capabilities } from './capabilities/capabilities';
+import { CapabilitiesJson } from './capabilities/__json__/capabilities-json';
+import { DiskType } from '../common/disk-type';
+import { GuestCustomization } from './guest-customization/guest-customization';
+import { GuestCustomizationJson } from './guest-customization/__json__/guest-customization-json';
+import { GuestToolsJson } from './guest-tools/__json__/guest-tools-json';
+import { VmSummary } from './summary/vm-summary';
+import { VmSummaryJson } from './summary/__json__/vm-summary-json';
+import { VmNetwork } from './vm-network/vm-network';
+import { VmNetworkJson } from './vm-network/__json__/vm-network-json';
 
 /**
  * Virtual Machine.
