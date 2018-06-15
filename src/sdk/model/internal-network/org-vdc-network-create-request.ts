@@ -1,7 +1,7 @@
 import { IpScope } from './ip-scope';
-import { NetworkFenceMode } from '../common/network-fence-mode-type';
 import { IpScopeJson } from './__json__/ip-scope-json';
 import { OrgVdcNetworkCreateRequestJson } from './__json__/org-vdc-network-create-request-json';
+import { FenceModeType } from '../common/__json__/fence-mode-type';
 
 /**
  * Org vDC Network Create Request.
@@ -14,9 +14,9 @@ export class OrgVdcNetworkCreateRequest {
   constructor(orgVdcNetworkRequest: OrgVdcNetworkCreateRequest);
   constructor(orgVdcNetworkRequestJson: OrgVdcNetworkCreateRequestJson);
   constructor(uuid: string, name: string, description: string, edgeUuid: string, shared: boolean,
-              fenceMode: NetworkFenceMode, ipScope: IpScopeJson);
+              fenceMode: FenceModeType, ipScope: IpScopeJson);
   constructor(firstParam: string | OrgVdcNetworkCreateRequest | OrgVdcNetworkCreateRequestJson, name?: string,
-              description?: string, edgeUuid?: string, shared?: boolean, fenceMode?: NetworkFenceMode,
+              description?: string, edgeUuid?: string, shared?: boolean, fenceMode?: FenceModeType,
               ipScope?: IpScopeJson) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
@@ -80,9 +80,9 @@ export class OrgVdcNetworkCreateRequest {
 
   /**
    * Get fence mode.
-   * @returns {NetworkFenceMode}
+   * @returns {FenceModeType}
    */
-  get fenceMode(): NetworkFenceMode {
+  get fenceMode(): FenceModeType {
     return this._json.fence_mode;
   }
 
