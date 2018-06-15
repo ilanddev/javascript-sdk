@@ -1,4 +1,4 @@
-import { DiskType } from '../../../common';
+import { DiskType } from '../../../common/disk-type';
 
 /**
  * Interface for virtual disk properties JSON representation.

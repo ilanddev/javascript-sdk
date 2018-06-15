@@ -1,19 +1,24 @@
 import { Iland } from '../../iland';
 import { EntityType } from '../common/__json__/entity-type';
-import { Task, TaskJson } from '../task';
 import { VappNetworkUpdateRequest } from './vapp-network-update-request';
 import { VappNetworkDHCPService } from './vapp-network-dhcp-service';
-import { AbstractNetwork } from '../internal-network';
 import { VappNetworkStaticRoutingService } from './vapp-network-static-routing-service';
 import { VappNetworkStaticRoutingServiceUpdateRequest } from './vapp-network-static-routing-service-update-request';
 import { VappNetworkInterface } from './vapp-network-interface';
 import { VappNetworkNATService } from './vapp-network-nat-service';
 import { VappNetworkNATServiceUpdateRequest } from './vapp-network-nat-service-update-request';
-import { VappNetworkDHCPServiceJson, VappNetworkFirewallJson, VappNetworkJson,
-        VappNetworkNATServiceJson, VappNetworkInterfaceJson, VappNetworkStaticRoutingServiceJson } from './__json__';
 import { VappNetworkDHCPServiceUpdateRequest } from './vapp-network-dhcp-service-update-request';
 import { VappNetworkFirewall } from './vapp-network-firewall';
 import { VappNetworkFirewallUpdateRequest } from './vapp-network-firewall-update-request';
+import { AbstractNetwork } from '../internal-network/abstract-network';
+import { VappNetworkJson } from './__json__/vapp-network-json';
+import { Task } from '../task/task';
+import { TaskJson } from '../task/__json__/task-json';
+import { VappNetworkDHCPServiceJson } from './__json__/vapp-network-dhcp-service-json';
+import { VappNetworkStaticRoutingServiceJson } from './__json__/vapp-network-static-routing-service-json';
+import { VappNetworkInterfaceJson } from './__json__/vapp-network-interface-json';
+import { VappNetworkNATServiceJson } from './__json__/vapp-network-nat-service-json';
+import { VappNetworkFirewallJson } from './__json__/vapp-network-firewall-json';
 
 /**
  * vApp Network.

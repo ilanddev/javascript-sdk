@@ -1,5 +1,6 @@
 import { VappTemplateNetworkConfigurationJson } from './__json__/vapp-template-network-configuration-json';
-import { NetworkFenceMode, NetworkIpScope } from '../common';
+import { NetworkFenceMode } from '../common/network-fence-mode-type';
+import { NetworkIpScope } from '../common/network-ip-scope';
 
 /**
  * vApp Template Network Configuration Response.

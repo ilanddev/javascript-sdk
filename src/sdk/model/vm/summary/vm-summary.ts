@@ -1,4 +1,4 @@
-import { VmSummaryJson } from './__json__';
+import { VmSummaryJson } from './__json__/vm-summary-json';
 
 /**
  * VM Summary
