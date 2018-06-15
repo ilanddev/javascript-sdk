@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { VdcJson } from '../__json__';
+import { VdcJson } from '../__json__/vdc-json';
 import { PerfCounterJson, PerfSamplesSeriesJson } from '../../mixins/perf-samples/__json__/perf-samples';
 import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 

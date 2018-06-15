@@ -1,4 +1,4 @@
-import { BillJson } from './__json__';
+import { BillJson } from './__json__/bill-json';
 import { ResourceCostAndUsage } from './resource-cost-and-usage';
 import { DiskCostAndUsage } from './disk-cost-and-usage';
 import { EntityType } from '../__json__/entity-type';

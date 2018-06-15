@@ -1,8 +1,7 @@
-
-import { OrgVdcNetworkCreateRequestJson } from './__json__/org-vdc-network-create-request-json';
 import { IpScope } from './ip-scope';
 import { NetworkFenceMode } from '../common/network-fence-mode-type';
 import { IpScopeJson } from './__json__/ip-scope-json';
+import { OrgVdcNetworkCreateRequestJson } from './__json__/org-vdc-network-create-request-json';
 
 /**
  * Org vDC Network Create Request.

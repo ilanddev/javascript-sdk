@@ -1,4 +1,4 @@
-import { IpRangeJson } from '../../../common/ip-range/__json__';
+import { IpRangeJson } from '../../../common/ip-range/__json__/ip-range-json';
 
 export interface VmNetworkJson {
   uuid: string;

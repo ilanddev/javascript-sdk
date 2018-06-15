@@ -4,10 +4,10 @@ import { Iland } from '../../../iland';
 import { User } from '../../user/user';
 import { ApiError } from '../../../config/api-error';
 import { Vdc } from '../vdc';
-import { InventoryEntity } from '../../user/inventory-entity';
 import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-request';
 import { PerfCounterJson } from '../../mixins/perf-samples/__json__/perf-samples';
 import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
+import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVdc: InventoryEntity;

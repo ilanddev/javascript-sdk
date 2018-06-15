@@ -1,4 +1,4 @@
-import { DiskType } from '../../common';
+import { DiskType } from '../../common/disk-type';
 
 /**
  * Template Disk Configuration JSON.

@@ -1,4 +1,5 @@
-import { AdapterType, IpAddressingMode } from '../../common';
+import { IpAddressingMode } from '../../common/ip-adressing-mode-type';
+import { AdapterType } from '../../common/adapter-type';
 
 /**
  * Template VNIC Configuration Response JSON.

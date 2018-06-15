@@ -1,4 +1,4 @@
-import { VappTemplateUpdateRequestJson } from './__json__';
+import { VappTemplateUpdateRequestJson } from './__json__/vapp-template-update-request-json';
 
 /**
  * Vapp Template Update Request.
