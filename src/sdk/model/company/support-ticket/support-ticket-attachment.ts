@@ -1,4 +1,4 @@
-import { SupportTicketAttachmentJson } from './__json__';
+import { SupportTicketAttachmentJson } from './__json__/support-ticket-attachment-json';
 
 /**
  * Support Ticket Attachment.

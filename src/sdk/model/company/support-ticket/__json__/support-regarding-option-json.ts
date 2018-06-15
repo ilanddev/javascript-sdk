@@ -1,4 +1,4 @@
-import { SupportServiceOptionJson } from './support-service-option-json';
+import { SupportServiceOption } from '../support-service-option';
 
 /**
  * Support Regarding Option JSON interface.
@@ -6,5 +6,5 @@ import { SupportServiceOptionJson } from './support-service-option-json';
 export interface SupportRegardingOptionJson {
   id: number;
   name: string;
-  service_options: Array<SupportServiceOptionJson>;
+  service_options: Array<SupportServiceOption>;
 }

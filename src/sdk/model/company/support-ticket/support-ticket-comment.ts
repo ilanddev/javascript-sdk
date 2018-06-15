@@ -1,4 +1,5 @@
-import { SupportTicketCommentJson, SupportTicketCommentType } from './__json__';
+import { SupportTicketCommentJson } from './__json__/support-ticket-comment-json';
+import { SupportTicketCommentType } from './__json__/support-ticket-comment-type';
 
 /**
  * Support Ticket Comment.
