@@ -1,7 +1,7 @@
-import { Entity } from '../common/entity';
-import { NetworkFenceMode } from '../common/network-fence-mode-type';
 import { AbstractNetworkJson } from './__json__/abstract-network-json';
 import { IpRange } from '../common/ip-range/ip-range';
+import { Entity } from '../common/entity';
+import { FenceModeType } from '../common/__json__/fence-mode-type';
 
 /**
  * Abstract Network.
@@ -70,9 +70,9 @@ export abstract class AbstractNetwork extends Entity {
 
   /**
    * Gets the networks fence mode.
-   * @returns {NetworkFenceMode} fence mode
+   * @returns {FenceModeType} fence mode
    */
-  get fenceMode(): NetworkFenceMode {
+  get fenceMode(): FenceModeType {
     return this._json.fence_mode;
   }
 

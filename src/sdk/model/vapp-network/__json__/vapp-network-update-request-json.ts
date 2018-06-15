@@ -1,8 +1,8 @@
 import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
-import { NetworkFenceMode } from '../../common/network-fence-mode-type';
+import { FenceModeType } from '../../common/__json__/fence-mode-type';
 
 export interface VappNetworkUpdateRequestJson {
-  fence_mode: NetworkFenceMode;
+  fence_mode: FenceModeType;
   parent_network_uuid: string;
   description: string;
   name: string;
