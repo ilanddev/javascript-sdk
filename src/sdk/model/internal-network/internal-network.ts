@@ -2,8 +2,9 @@ import { InternalNetworkJson } from './__json__/internal-network-json';
 import { Iland } from '../../iland';
 import { AbstractNetwork } from './abstract-network';
 import { EntityType } from '../common/__json__/entity-type';
-import { Task, TaskJson } from '../task';
+import { Task } from '../task/task';
 import { OrgVdcNetworkUpdateRequest } from './org-vdc-network-update-request';
+import { TaskJson } from '../task/__json__/task-json';
 
 /**
  * Internal Network.

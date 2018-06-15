@@ -1,4 +1,4 @@
-import { OrgVappLeaseUpdateRequestJson } from './__json__';
+import { OrgVappLeaseUpdateRequestJson } from './__json__/org-vapp-lease-update-request-json';
 
 /**
  * Org vApp Lease Update Request.

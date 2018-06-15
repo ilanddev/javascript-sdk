@@ -1,8 +1,8 @@
-import { Event } from '../../model/event';
+import { Event } from '../../model/event/event';
 import { Observable } from 'rxjs/Observable';
 import { Iland } from '../../iland';
 import { Subscriber } from 'rxjs/Subscriber';
-import { EventJson } from '../../model/event/__json__';
+import { EventJson } from '../../model/event/__json__/event-json';
 import { noop } from 'rxjs/util/noop';
 
 /**

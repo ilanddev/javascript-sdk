@@ -1,5 +1,5 @@
 import { VmAffinityRuleJson } from './__json__/vm-affinity-rule-json';
-import { Vm } from '../vm';
+import { Vm } from '../vm/vm';
 import { AffinityRuleType } from './__json__/affinity-rule-type';
 
 /**

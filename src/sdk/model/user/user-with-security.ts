@@ -1,7 +1,7 @@
 import { Role } from '../iam/role/role';
 import { CompanyInventory } from './inventory-entity/inventory-entity';
 import { Iland } from '../../iland';
-import { IamService } from '../../service/index';
+import { IamService } from '../../service/iam-service/iam-service';
 import { UserJson } from './__json__/user-json';
 import { User } from './user';
 import { PermissionType } from '../iam/permission/__json__/permission-type';

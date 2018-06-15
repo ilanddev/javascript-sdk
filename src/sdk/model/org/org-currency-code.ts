@@ -1,5 +1,5 @@
 import { OrgCurrencyCodeJson } from './__json__/org-currency-code-json';
-import { CurrencyCode } from '../common/billing/__json__';
+import { CurrencyCode } from '../common/billing/__json__/currency-code-type';
 
 /**
  * Org Currency Code.

@@ -1,5 +1,5 @@
-import { BootOptionsJson } from '../__json__';
 import { AxiosResponse } from 'axios';
+import { BootOptionsJson } from '../__json__/boot-options-json';
 
 export const MockBootOptionsJson: BootOptionsJson = {
   boot_delay: 0,
