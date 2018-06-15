@@ -4,12 +4,7 @@ import { Vdc } from '../vdc';
 import { MockSecondVdcJson, MockVdcJson, MockVdcPerfSamplesSeriesJson } from '../__mocks__/vdc';
 import { MockVdcVmsJson } from '../__mocks__/vdc-vms';
 import { MockVdcVappsJson } from '../__mocks__/vdc-vapps';
-import {
-  AddVappVmRequestJson,
-  BuildVmRequestJson,
-  VmDiskRequestJson,
-  VmVnicRequestJson
-} from '../../vm/__json__/vm-json';
+import { BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../../vm/__json__/vm-json';
 import {
   AddVappNetworkInitializationParamsJson,
   AddVappRequestJson,
@@ -30,6 +25,8 @@ import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-reque
 import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
+import { VmCreateRequestJson } from '../../vm/__json__/vm-create-request-json';
+import { AddVappRequest } from '../add-vapp-request';
 
 jest.mock('../../../service/http/http');
 
@@ -120,10 +117,10 @@ test('Build vApp in vDC', async() => {
 });
 
 test('Add vApp in vDC', async() => {
-  const vm: AddVappVmRequestJson = {
+  const vm: VmCreateRequestJson = {
     name: 'test vm',
     description: '',
-    ip_addressing_mode: 'POOL',
+    ip_address_mode: 'POOL',
     network_uuid: 'network-uuid909',
     vapp_template_uuid: 'vappTemplateUuid909',
     vm_template_uuid: 'vmTemplateUuid909',
@@ -144,7 +141,7 @@ test('Add vApp in vDC', async() => {
     dns_suffix: '',
     ip_ranges: []
   };
-  const vapp: AddVappRequestJson = {
+  const vappRequestJson: AddVappRequestJson = {
     name: 'test vapp',
     description: 'test desc',
     vapp_template_uuid: 'vappTemplateUuid',
@@ -153,8 +150,9 @@ test('Add vApp in vDC', async() => {
     vapp_network: vappNetwork
   };
   const vdc = new Vdc(MockVdcJson);
-  return vdc.addVapp(vapp).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/add-vapp-from-template`, vapp);
+  const vappRequest = new AddVappRequest(vappRequestJson);
+  return vdc.addVappFromTemplate(vappRequest).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/add-vapp-from-template`, vappRequest.json);
     expect(task.operation).toBe('add vapp');
   });
 });

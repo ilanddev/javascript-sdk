@@ -53,7 +53,6 @@ import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-j
 import { BootOptionsJson } from './boot-options/__json__/boot-options-json';
 import { Capabilities } from './capabilities/capabilities';
 import { CapabilitiesJson } from './capabilities/__json__/capabilities-json';
-import { DiskType } from '../common/disk-type';
 import { GuestCustomization } from './guest-customization/guest-customization';
 import { GuestCustomizationJson } from './guest-customization/__json__/guest-customization-json';
 import { GuestToolsJson } from './guest-tools/__json__/guest-tools-json';
@@ -61,6 +60,7 @@ import { VmSummary } from './summary/vm-summary';
 import { VmSummaryJson } from './summary/__json__/vm-summary-json';
 import { VmNetwork } from './vm-network/vm-network';
 import { VmNetworkJson } from './vm-network/__json__/vm-network-json';
+import { DiskType } from '../common/__json__/disk-type';
 
 /**
  * Virtual Machine.

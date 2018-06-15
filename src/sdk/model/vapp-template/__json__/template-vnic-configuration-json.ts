@@ -1,12 +1,12 @@
-import { IpAddressingMode } from '../../common/ip-adressing-mode-type';
-import { AdapterType } from '../../common/adapter-type';
+import { IpAddressingModeType } from '../../common/__json__/ip-adressing-mode-type';
+import { AdapterType } from '../../common/__json__/adapter-type';
 
 /**
  * Template VNIC Configuration Response JSON.
  */
 export interface TemplateVnicConfigurationJson {
   network_name: string;
-  ip_assignment_mode: IpAddressingMode;
+  ip_assignment_mode: IpAddressingModeType;
   ip_address: string;
   primary_vnic: boolean;
   network_adapter_type: AdapterType;

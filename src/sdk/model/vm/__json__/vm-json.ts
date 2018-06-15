@@ -1,12 +1,11 @@
 import { EntityJson } from '../../common/__json__/entity-json';
 import { OperatingSystem } from './operating-system-type';
 import { VmStatus } from './vm-status-type';
-import { DiskType } from '../../common/disk-type';
-import {
-  GuestCustomizationUpdateRequestJson
-} from '../guest-customization/__json__/guest-customization-update-request-json';
-import { IpAddressingMode } from '../../common/ip-adressing-mode-type';
-import { AdapterType } from '../../common/adapter-type';
+import { DiskType } from '../../common/__json__/disk-type';
+import { GuestCustomizationUpdateRequestJson } from
+    '../guest-customization/__json__/guest-customization-update-request-json';
+import { IpAddressingModeType } from '../../common/__json__/ip-adressing-mode-type';
+import { AdapterType } from '../../common/__json__/adapter-type';
 
 /**
  * Interface for VM properties.
@@ -97,7 +96,7 @@ export interface VmDiskRequestJson {
 export interface VmVnicRequestJson {
   primary_vnic: boolean;
   ip_address: string;
-  ip_assignment: IpAddressingMode;
+  ip_assignment: IpAddressingModeType;
   network_uuid: string;
   network_adapter_type: AdapterType;
 }
@@ -122,20 +121,6 @@ export interface BuildVmRequestJson {
   computer_name: string;
   storage_profile_uuid: string;
   vnics: Array<VmVnicRequestJson>;
-}
-
-/**
- * Specification for an addVapp VM request.
- */
-export interface AddVappVmRequestJson {
-  name: string;
-  description: string;
-  ip_addressing_mode: IpAddressingMode;
-  network_uuid: string;
-  vapp_template_uuid: string;
-  vm_template_uuid: string;
-  ip_address: string;
-  storage_profile_uuid: string;
 }
 
 /**
@@ -182,7 +167,7 @@ export interface VmCopyMoveVmVnicRequestJson {
   network_name: string;
   is_primary: boolean;
   ip_address: string;
-  ip_addressing_mode: IpAddressingMode;
+  ip_addressing_mode: IpAddressingModeType;
 }
 
 /**

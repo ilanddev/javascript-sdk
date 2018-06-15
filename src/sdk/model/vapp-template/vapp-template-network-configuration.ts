@@ -1,5 +1,5 @@
 import { VappTemplateNetworkConfigurationJson } from './__json__/vapp-template-network-configuration-json';
-import { NetworkFenceMode } from '../common/network-fence-mode-type';
+import { NetworkFenceModeType } from '../common/__json__/network-fence-mode-type';
 import { NetworkIpScope } from '../common/network-ip-scope';
 
 /**
@@ -29,9 +29,9 @@ export class VappTemplateNetworkConfiguration {
 
   /**
    * Get fence mode.
-   * @returns {NetworkFenceMode}
+   * @returns {NetworkFenceModeType}
    */
-  get fenceMode(): NetworkFenceMode {
+  get fenceMode(): NetworkFenceModeType {
     return this._json.fence_mode;
   }
 
