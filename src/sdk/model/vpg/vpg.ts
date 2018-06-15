@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Iland } from '../../iland';
@@ -7,8 +6,6 @@ import { VpgSubEntityRequest } from './__json__/vpg-sub-entity-request';
 import { VpgFailoverTestAlertJson } from './vpg-failover/__json__/vpg-failover-test-alert';
 import { VpgFailoverTestAlert } from './vpg-failover/vpg-failover-test-alert';
 import { VpgFailoverTestAlertRequest } from './vpg-failover/vpg-failover-test-alert-request';
-import { PerfSampleSerieJson } from './perf-sample/__json__/perf-sample-serie';
-import { PerfSampleSerie } from './perf-sample/perf-sample-serie';
 import { Task } from '../task/task';
 import { VpgFailoverCreateRequest } from './vpg-failover/vpg-failover-create-request';
 import { VpgCheckpoint } from './vpg-checkpoint/vpg-checkpoint';
@@ -27,7 +24,8 @@ import { VpgSubStatus } from './__json__/vpg-sub-status-type';
 import { VpgPriority } from './__json__/vpg-priority-type';
 import { ActiveProcessStage } from './__json__/vpg-active-process-stage';
 import { PerfCounter } from '../mixins/perf-samples/perf-counter';
-import { PerfCounterJson } from '../mixins/perf-samples/__json__/perf-samples';
+import { PerfCounterJson, PerfSamplesSeriesJson } from '../mixins/perf-samples/__json__/perf-samples';
+import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 
 /**
  * Virtual Protection Group
@@ -317,10 +315,10 @@ export class Vpg extends Entity {
 
   /**
    * Remove a Vpg Failover Test Alert
-   * @returns {Promise<AxiosResponse>}
+   * @returns {Promise<any>}
    */
-  async removeVpgFailoverTestAlert(): Promise<AxiosResponse> {
-    return Iland.getHttp().post(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`, {});
+  async removeVpgFailoverTestAlert(): Promise<any> {
+    return Iland.getHttp().delete(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`, {});
   }
 
   /**
@@ -333,15 +331,15 @@ export class Vpg extends Entity {
    * @returns {Promise<PerfSampleSerie>} perf sample serie
    */
   async getVpgPerfFor(group: string, name: string, type: string,
-                      start?: number, end?: number): Promise<PerfSampleSerie> {
+                      start?: number, end?: number): Promise<PerfSamplesSeries> {
     return Iland.getHttp().get(`/vpgs/${this.uuid}/performance/${group}::${name}::${type}`, {
       params: {
         start: start,
         end: end
       }
     }).then((response) => {
-      const perfSampleJson = response.data as PerfSampleSerieJson;
-      return new PerfSampleSerie(perfSampleJson);
+      const perfSampleJson = response.data as PerfSamplesSeriesJson;
+      return new PerfSamplesSeries(perfSampleJson);
     });
   }
 
