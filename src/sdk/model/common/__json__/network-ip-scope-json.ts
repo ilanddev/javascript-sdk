@@ -1,5 +1,5 @@
-import { IpRangeJson } from '../ip-range/__json__';
 import { NetworkSubAllocationJson } from './network-sub-allocation-json';
+import { IpRangeJson } from '../ip-range/__json__/ip-range-json';
 
 export interface NetworkIpScopeJson {
   inherited: boolean;

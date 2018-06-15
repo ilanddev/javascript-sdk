@@ -20,11 +20,7 @@ import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
 import { applyMixins } from 'rxjs/util/applyMixins';
 import { Media } from '../media/media';
 import { MediaJson } from '../media/__json__/media-json';
-import { Edge, EdgeJson } from '../edge';
 import { ReportFormat } from '../common/__json__/report-format';
-import { ReportHeader } from '../common/reports';
-import { ReportHeaderJson } from '../common/__json__';
-import { InternalNetwork, InternalNetworkJson } from '../internal-network';
 import { OrgVdcNetworkCreateRequest } from '../internal-network/org-vdc-network-create-request';
 import { StorageProfileJson } from '../common/__json__/storage-profile-json';
 import { StorageProfile } from '../common/storage-profile';
@@ -36,6 +32,12 @@ import { VdcStorageProfileSummary } from './vdc-storage-profile-summary';
 import { VdcStorageProfileSummaryJson } from './__json__/vdc-storage-profile-summary-json';
 import { BillingSampleSerie } from '../org/billing-sample-serie';
 import { BillingSampleSerieJson } from '../org/__json__/billing-sample-serie-json';
+import { ReportHeader } from '../common/reports/report-header';
+import { ReportHeaderJson } from '../common/__json__/report-header-json';
+import { Edge } from '../edge/edge';
+import { EdgeJson } from '../edge/__json__/edge-json';
+import { InternalNetwork } from '../internal-network/internal-network';
+import { InternalNetworkJson } from '../internal-network/__json__/internal-network-json';
 
 /**
  * Virtual Data Center.

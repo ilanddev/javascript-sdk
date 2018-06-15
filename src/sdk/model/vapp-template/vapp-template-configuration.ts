@@ -1,6 +1,6 @@
-import { VappTemplateConfigurationJson } from './__json__';
 import { VmTemplateConfiguration } from './vm-template-configuration';
 import { VappTemplateNetworkConfiguration } from './vapp-template-network-configuration';
+import { VappTemplateConfigurationJson } from './__json__/vapp-template-configuration-json';
 
 /**
  * Vapp Template Configuration Response.

@@ -1,4 +1,4 @@
-import { VmMemorySizeUpdateRequestJson } from './__json__';
+import { VmMemorySizeUpdateRequestJson } from './__json__/vm-json';
 
 export class VmMemorySizeUpdateRequest {
 

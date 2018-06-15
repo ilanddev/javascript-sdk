@@ -1,6 +1,6 @@
 import { EntityJson } from '../../common/__json__/entity-json';
-import { NetworkFenceMode } from '../../common';
-import { IpRangeJson } from '../../common/ip-range/__json__';
+import { NetworkFenceMode } from '../../common/network-fence-mode-type';
+import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
 
 /**
  * Interface for abstract Network JSON properties.

@@ -1,5 +1,5 @@
 import { Iland } from '../../../iland';
-import { IlandDirectGrantAuthProvider } from '../../../auth/index';
+import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { VappTemplate } from '../vapp-template';
 import { MockVappTemplateJson } from '../__mocks__/vapp-template';
 

@@ -5,10 +5,13 @@ import { Entity } from '../common/entity';
 import { VappTemplateVm } from './vapp-template-vm';
 import { VappTemplateVmJson } from './__json__/vapp-template-vm-json';
 import { VappTemplateConfiguration } from './vapp-template-configuration';
-import { VappTemplateConfigurationJson } from './__json__';
-import { Task, TaskJson } from '../task';
 import { VappTemplateUpdateRequest } from './vapp-template-update-request';
-import { Metadata, MetadataJson, MetadataType } from '../common/metadata';
+import { Task } from '../task/task';
+import { TaskJson } from '../task/__json__/task-json';
+import { Metadata } from '../common/metadata/metadata';
+import { VappTemplateConfigurationJson } from './__json__/vapp-template-configuration-json';
+import { MetadataType } from '../common/metadata/__json__/metadata-type';
+import { MetadataJson } from '../common/metadata/__json__/metadata-json';
 
 /**
  * VappTemplate

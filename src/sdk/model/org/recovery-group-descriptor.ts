@@ -1,4 +1,5 @@
-import { RecoveryGroupDescriptorJson, RecoveryGroupType } from './__json__';
+import { RecoveryGroupDescriptorJson } from './__json__/recovery-group-descriptor-json';
+import { RecoveryGroupType } from './__json__/recovery-group-type';
 
 /**
  * Recovery group descriptor request.

@@ -1,4 +1,4 @@
-import { BootOptionsJson } from './__json__';
+import { BootOptionsJson } from './__json__/boot-options-json';
 
 /**
  * VM Boot Options

@@ -37,10 +37,8 @@ import { MockVmGuestToolsJson } from '../guest-tools/__mocks__/guest-tools';
 import { MockVmSummaryJson } from '../summary/__mocks__/vm-summary';
 import { ToolsUpgradePolicy } from '../__json__/tools-upgrade-policy';
 import { GuestCustomizationUpdateRequest } from '../guest-customization/guest-customization-update-request';
-import { GuestCustomizationJson } from '../guest-customization/__json__';
 import { MockVmNetworkJson } from '../vm-network/__mocks__/vm-networks';
 import { VmCapabilityUpdateRequest } from '../capabilities/capabilities-update-request';
-import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__';
 import { VmReconfigureRequest } from '../vm-reconfigure-request';
 import { VmCpuCountUpdateRequest } from '../vm-cpu-count-update-request';
 import { VmMemorySizeUpdateRequest } from '../vm-memory-size-update-request';
@@ -48,6 +46,8 @@ import {
   GuestCustomizationUpdateRequestJson
 } from '../guest-customization/__json__/guest-customization-update-request-json';
 import { Metadata } from '../../common/metadata/metadata';
+import { GuestCustomizationJson } from '../guest-customization/__json__/guest-customization-json';
+import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__/capabilities-update-request-json';
 
 jest.mock('../../../service/http/http');
 
