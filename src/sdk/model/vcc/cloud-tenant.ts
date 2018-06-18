@@ -223,4 +223,15 @@ export class CloudTenant extends Entity {
       return json.map((backupHistoryJson) => new CloudTenantBackupHistory(backupHistoryJson));
     });
   }
+
+  /**
+   * Refreshes the Cloud Tenant data by retrieving it from the API again.
+   * @returns {Promise<CloudTenant>} promise that resolves with this object
+   */
+  async refresh(): Promise<CloudTenant> {
+    return Iland.getHttp().get(`/vcc-backup-tenants/${this.uuid}`).then((response) => {
+      this._json = response.data as CloudTenantJson;
+      return this;
+    });
+  }
 }
