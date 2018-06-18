@@ -2,6 +2,9 @@ import { EdgeIpSecVpnServiceUpdateRequestJson } from './__json__/edge-ip-sec-vpn
 import { LoggingSettingsRequestJson } from './__json__/logging-settings-request-json';
 import { GlobalSettingsRequestJson } from './__json__/global-settings-request-json';
 import { IpSecVpnSiteRequestJson } from './__json__/ip-sec-vpn-site-request-json';
+import { LoggingSettingsRequest } from './logging-settings-request';
+import { GlobalSettingsRequest } from './global-settings-request';
+import { IpSecVpnSiteRequest } from './ip-sec-vpn-site-request';
 
 /**
  * Edge Ip Sec Vpn Service Update Request.
@@ -45,26 +48,26 @@ export class EdgeIpSecVpnServiceUpdateRequest {
 
   /**
    * Get logging settings.
-   * @returns {LoggingSettingsRequestJson}
+   * @returns {LoggingSettingsRequest}
    */
-  get loggingSettings(): LoggingSettingsRequestJson {
-    return this._json.logging_settings;
+  get loggingSettings(): LoggingSettingsRequest {
+    return new LoggingSettingsRequest(this._json.logging_settings);
   }
 
   /**
    * Get global settings.
-   * @returns {GlobalSettingsRequestJson}
+   * @returns {GlobalSettingsRequest}
    */
-  get globalSettings(): GlobalSettingsRequestJson {
-    return this._json.global_settings;
+  get globalSettings(): GlobalSettingsRequest {
+    return new GlobalSettingsRequest(this._json.global_settings);
   }
 
   /**
    * Get sites.
-   * @returns {Array<IpSecVpnSiteRequestJson>}
+   * @returns {Array<IpSecVpnSiteRequest>}
    */
-  get sites(): Array<IpSecVpnSiteRequestJson> {
-    return this._json.sites;
+  get sites(): Array<IpSecVpnSiteRequest> {
+    return this._json.sites.map(it => new IpSecVpnSiteRequest(it));
   }
 
   /**
