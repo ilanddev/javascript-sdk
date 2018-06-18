@@ -1333,7 +1333,7 @@ export class Org extends Entity {
    * Generate the vulnerability report for the given organization.
    * @param {string} format Report format ('pdf' or 'html')
    * @param {boolean} emailOnCompletion Whether to email the report upon successful generation
-   * @param {string} email 3mail address to send the report to if emailOnCompletion is true,
+   * @param {string} email email address to send the report to if emailOnCompletion is true,
    * defaults to the user's profile email if not specified
    * @returns {Promise<Task>} promise Promise that resolves with a Task
    */

@@ -179,7 +179,7 @@ test('Can update VM description', async() => {
   expect.hasAssertions();
   const task = await vm.updateDescription('test description');
   const rawTask = task.json;
-  expect(task.complete).toBe(rawTask.synchronized);
+  expect(task.complete).toBe(rawTask.synced);
   expect(task.uuid).toBeDefined();
   expect(task.uuid).toBe(rawTask.uuid);
   expect(task.locationId).toBeDefined();
@@ -236,7 +236,7 @@ test('Can update VM description', async() => {
     });
   }));
   promises.push(task.getPromise());
-  promises.push(Task.getTask(task.locationId, task.uuid).then(function(taskCopy) {
+  promises.push(Task.getTask(task.uuid).then(function(taskCopy) {
     expect(taskCopy.uuid).toBe(task.uuid);
     expect(taskCopy.locationId).toBe(task.locationId);
     expect(taskCopy.entityUuid).toBe(task.entityUuid);

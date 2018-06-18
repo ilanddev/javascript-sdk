@@ -1,9 +1,9 @@
 /**
  * Enumeration of possible task types.
  */
-export type TaskType = 'vcd' |
-  'veeam' |
-  'vi' |
-  'zerto' |
-  'reporting' |
-  'iland';
+export type TaskType = 'ILAND' |
+  'REPORTING' |
+  'VCD' |
+  'VEEAM' |
+  'VI' |
+  'ZERTO';

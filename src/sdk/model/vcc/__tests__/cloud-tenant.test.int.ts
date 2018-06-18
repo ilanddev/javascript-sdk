@@ -3,9 +3,11 @@ import { TestConfiguration } from '../../../../../__tests__/configuration';
 import { Iland } from '../../../iland';
 import { User } from '../../user/user';
 import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
-import { CloudTenant, CloudTenantBackupHistory, WanAccelerator } from '../cloud-tenant';
-import { VccPerfSample } from '../vcc-perf-sample';
-import { WanAcceleratorJson } from '../__json__/cloud-tenant-json';
+import { CloudTenant } from '../cloud-tenant';
+import { VccPerfSample } from '../vcc-perf-sample/vcc-perf-sample';
+import { WanAccelerator } from '../wan-accelerator/wan-accelerator';
+import { WanAcceleratorJson } from '../wan-accelerator/__json__/wan-accelerator-json';
+import { CloudTenantBackupHistory } from '../cloud-tenant-backup-history/cloud-tenant-backup-history';
 
 let auth: IlandDirectGrantAuthProvider;
 let tenant: InventoryEntity;
@@ -140,20 +142,20 @@ test('Can get hourly storage usage for Cloud Tenant', async() => {
   const startTime = new Date(date.setDate(date.getDate() - 1)).getTime();
   return CloudTenant.getCloudTenant(tenant.uuid).then(async function(cloudTenant) {
     return cloudTenant.getStorageUsageFor(startTime, endTime, null, 'HOUR')
-        .then(function(perfSamples: Array<VccPerfSample>) {
-          expect(perfSamples).toBeDefined();
-          if (perfSamples.length > 0) {
-            const perfSample: VccPerfSample = perfSamples[0];
-            const rawPerfSample = perfSample.json;
-            expect(perfSample.usedQuota).toBeDefined();
-            expect(perfSample.usedQuota).toBe(rawPerfSample.used_quota);
-            expect(perfSample.quota).toBeDefined();
-            expect(perfSample.quota).toBe(rawPerfSample.quota);
-            expect(perfSample.timeStamp).toBeDefined();
-            expect(perfSample.timeStamp).toBe(rawPerfSample.time);
-            expect(perfSample.toString().length).toBeGreaterThan(0);
-          }
-        });
+      .then(function(perfSamples: Array<VccPerfSample>) {
+        expect(perfSamples).toBeDefined();
+        if (perfSamples.length > 0) {
+          const perfSample: VccPerfSample = perfSamples[0];
+          const rawPerfSample = perfSample.json;
+          expect(perfSample.usedQuota).toBeDefined();
+          expect(perfSample.usedQuota).toBe(rawPerfSample.used_quota);
+          expect(perfSample.quota).toBeDefined();
+          expect(perfSample.quota).toBe(rawPerfSample.quota);
+          expect(perfSample.timeStamp).toBeDefined();
+          expect(perfSample.timeStamp).toBe(rawPerfSample.time);
+          expect(perfSample.toString().length).toBeGreaterThan(0);
+        }
+      });
   });
 });
 
@@ -164,15 +166,15 @@ test('Can get backup history for Cloud Tenant', async() => {
   }
   return CloudTenant.getCloudTenant(tenant.uuid).then(async function(cloudTenant) {
     return cloudTenant.getBackupHistoryFor(null, null)
-        .then(function(backupHistoryList: Array<CloudTenantBackupHistory>) {
-          expect(backupHistoryList).toBeDefined();
-          const backupHistory: CloudTenantBackupHistory = backupHistoryList[0];
-          const rawBackupHistory = backupHistory.json;
-          expect(backupHistory.lastActive).toBeDefined();
-          expect(backupHistory.lastActive).toBe(rawBackupHistory.last_active);
-          expect(backupHistory.lastResult).toBeDefined();
-          expect(backupHistory.lastResult).toBe(rawBackupHistory.last_result);
-          expect(backupHistory.toString().length).toBeGreaterThan(0);
-        });
+      .then(function(backupHistoryList: Array<CloudTenantBackupHistory>) {
+        expect(backupHistoryList).toBeDefined();
+        const backupHistory: CloudTenantBackupHistory = backupHistoryList[0];
+        const rawBackupHistory = backupHistory.json;
+        expect(backupHistory.lastActive).toBeDefined();
+        expect(backupHistory.lastActive).toBe(rawBackupHistory.last_active);
+        expect(backupHistory.lastResult).toBeDefined();
+        expect(backupHistory.lastResult).toBe(rawBackupHistory.last_result);
+        expect(backupHistory.toString().length).toBeGreaterThan(0);
+      });
   });
 });

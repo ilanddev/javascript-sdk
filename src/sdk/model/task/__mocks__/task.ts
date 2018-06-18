@@ -12,9 +12,10 @@ export class MockTaskService {
     const uuid = 'task-uuid:' + Math.floor((Math.random() * 10000));
     const mockTask: TaskJson = {
       active: true,
-      synchronized: false,
+      synced: false,
       uuid: uuid,
       status: 'running' as TaskStatus,
+      company_id: '12345',
       location_id: 'dal02.ilandcloud.com',
       operation: op,
       end_time: null,
@@ -30,7 +31,7 @@ export class MockTaskService {
       start_time: null,
       sub_tasks: [],
       task_id: uuid,
-      task_type: 'iland',
+      task_type: 'ILAND',
       user_full_name: 'Cory Snyder',
       username: 'csnyder'
     };
