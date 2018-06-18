@@ -1,4 +1,4 @@
-import { VccPerfSampleJson } from './__json__/cloud-tenant-json';
+import { VccPerfSampleJson } from './__json__/vcc-perf-sample-json';
 
 /**
  * Vcc Perf Sample.
