@@ -7,7 +7,8 @@ import { TaskType } from './task-type';
  */
 export interface TaskJson {
   active: boolean;
-  synchronized: boolean;
+  company_id: string;
+  synced: boolean;
   uuid: string;
   status: TaskStatus;
   location_id: string;
