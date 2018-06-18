@@ -1,6 +1,8 @@
 var webpack = require('webpack'),
     path = require('path'),
     yargs = require('yargs');
+var glob = require('glob');
+var fs = require('fs');
 
 var libraryName = 'iland',
     outputFile;
@@ -15,8 +17,26 @@ if (yargs.argv.p) {
   outputFile = libraryName + ".js";
 }
 
+var filter = function(it) {
+  return it.indexOf('__mocks__') < 0 && it.indexOf('__tests__') < 0;
+};
+var tsFiles = glob.sync('./src/sdk/**/*.ts').filter(filter);
+var index = '';
+for (var i in tsFiles) {
+  index += 'export * from \'../.' + tsFiles[i] + '\';\n';
+}
+var buildDir = './build';
+if (!fs.existsSync(buildDir)) {
+    fs.mkdirSync(buildDir);
+}
+var indexDir = buildDir + '/build';
+if (!fs.existsSync(indexDir)) {
+    fs.mkdirSync(indexDir);
+}
+var indexFilename = indexDir + '/index.ts';
+fs.writeFileSync(indexFilename, index);
 var config = {
-  entry: './src/index.ts',
+  entry: indexFilename,
   output: {
     filename: outputFile,
     path: path.resolve(__dirname, 'build'),
@@ -69,8 +89,11 @@ DtsBundlePlugin.prototype.apply = function(compiler) {
     var dts = require('dts-bundle');
     dts.bundle({
       name: libraryName,
-      main: 'build/build/src/index.d.ts',
-      out: '../../' + libraryName + '.d.ts',
+      main: 'build/build/src/sdk/**/*.d.ts',
+      exclude: function(it) {
+        return !filter(it);
+      },
+      out: '../../../' + libraryName + '.d.ts',
       removeSource: true,
       outputAsModuleFolder: true
     });

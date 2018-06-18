@@ -1,11 +1,11 @@
 import { Iland } from '../../../iland';
 import {
-  SupportTicketAttachmentJson,
-  SupportTicketCommentJson,
   SupportTicketJson
 } from './__json__/support-ticket-json';
 import { SupportTicketStatus } from './__json__/support-ticket-status-type';
 import { SupportTicketSeverity } from './__json__/support-ticket-severity-type';
+import { SupportTicketComment } from './support-ticket-comment';
+import { SupportTicketAttachment } from './support-ticket-attachment';
 
 /**
  * SupportTicket.
@@ -161,23 +161,23 @@ export class SupportTicket {
 
   /**
    * Get all ticket attachments.
-   * @returns {Promise<Array<SupportTicketAttachmentJson>>}
+   * @returns {Promise<Array<SupportTicketAttachment>>}
    */
-  async getAttachments(): Promise<Array<SupportTicketAttachmentJson>> {
+  async getAttachments(): Promise<Array<SupportTicketAttachment>> {
     return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/attachments`).then((response) => {
-      return response.data as Array<SupportTicketAttachmentJson>;
+      return response.data as Array<SupportTicketAttachment>;
     });
   }
 
   /**
    * Get ticket attachment.
    * @param {number} attachmentId
-   * @returns {Promise<SupportTicketAttachmentJson>}
+   * @returns {Promise<SupportTicketAttachment>}
    */
-  async getAttachment(attachmentId: number): Promise<SupportTicketAttachmentJson> {
+  async getAttachment(attachmentId: number): Promise<SupportTicketAttachment> {
     return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/attachments/${attachmentId}`)
       .then((response) => {
-        return response.data as SupportTicketAttachmentJson;
+        return response.data as SupportTicketAttachment;
       });
   }
 
@@ -195,12 +195,12 @@ export class SupportTicket {
   }
 
   /**
-   * Get ticket comments
-   * @returns {Promise<Array<SupportTicketCommentJson>>}
+   * Get ticket comments.
+   * @returns {Promise<Array<SupportTicketComment>>}
    */
-  async getComments(): Promise<Array<SupportTicketCommentJson>> {
+  async getComments(): Promise<Array<SupportTicketComment>> {
     return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/comments`).then((response) => {
-      return response.data as Array<SupportTicketCommentJson>;
+      return response.data as Array<SupportTicketComment>;
     });
   }
 
