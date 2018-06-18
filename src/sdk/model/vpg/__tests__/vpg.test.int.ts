@@ -3,10 +3,10 @@ import { TestConfiguration } from '../../../../../__tests__/configuration';
 import { Iland } from '../../../iland';
 import { Vpg } from '../vpg';
 import { VpgSubEntityRequest } from '../__json__/vpg-sub-entity-request';
-import { PerfSampleSerie } from '../perf-sample/perf-sample-serie';
 import { VpgVm } from '../vpg-vm';
 import { InventoryEntity } from '../../user/inventory-entity/inventory-entity';
 import { User } from '../../user/user';
+import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 
 let auth: IlandDirectGrantAuthProvider;
 let inventoryVpg: InventoryEntity;
@@ -216,7 +216,7 @@ test('Can get Vpg performance samples given a performance series info', async() 
   }
   return Vpg.getVpg(inventoryVpg.uuid, params).then(async function(vpg) {
     return vpg.getVpgPerfFor('vpg', 'ThroughputInMB', 'latest')
-        .then((perfSample: PerfSampleSerie) => {
+        .then((perfSample: PerfSamplesSeries) => {
           expect(perfSample).toBeDefined();
           const rawData = perfSample.json;
           expect(perfSample.toString().length).toBeGreaterThan(0);

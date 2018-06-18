@@ -22,9 +22,6 @@ export async function MockVpgPost(url: string, data?: any, config?: AxiosRequest
     case /\/vpgs\/[^\/]+?\/actions\/add-failover-test-alert$/.test(url):
       // add a vpg failover test alert
       return MockVpgAlertResponse;
-    case /\/vpgs\/[^\/]+?\/actions\/remove-failover-test-alert$/.test(url):
-      // remove a vpg failover test alert
-      return MockService.getMockVoidResponse();
     case /\/vpgs\/[^\/]+?\/actions\/failover-test$/.test(url):
       // add a vpg failover test alert
       return MockTaskService.getNewMockTaskResponse('zerto failover test initiation');
@@ -54,6 +51,9 @@ export async function MockVpgPut(url: string, data?: any, config?: AxiosRequestC
 
 export async function MockVpgDelete(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
+    case /\/vpgs\/[^\/]+?\/actions\/remove-failover-test-alert$/.test(url):
+      // remove a vpg failover test alert
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

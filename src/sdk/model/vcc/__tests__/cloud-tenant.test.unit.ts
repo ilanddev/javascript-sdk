@@ -2,7 +2,7 @@ import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-pr
 import { Iland } from '../../../iland';
 import { CloudTenant } from '../cloud-tenant';
 import { MockCloudTenantJson } from '../__mocks__/cloud-tenant';
-import { UpgradeTenantContractRequestJson } from '../__json__/cloud-tenant-json';
+import { UpdateTenantContractRequest } from '../upgrade-tenant-contract-request';
 
 jest.mock('../../../service/http/http');
 
@@ -16,12 +16,10 @@ beforeAll(() => {
 });
 
 test('Upgrade Cloud Tenant contract', async() => {
-  const contractRequest: UpgradeTenantContractRequestJson = {
-    additional_storage_in_gb: 500
-  };
+  const contractRequest = new UpdateTenantContractRequest(500);
   const cloudTenant = new CloudTenant(MockCloudTenantJson);
   return cloudTenant.upgradeTenantContract(contractRequest).then(function() {
     expect(Iland.getHttp().post)
-        .lastCalledWith(`/vcc-backup-tenants/${cloudTenant.uuid}/actions/upgrade-contract`, contractRequest);
+        .lastCalledWith(`/vcc-backup-tenants/${cloudTenant.uuid}/actions/upgrade-contract`, contractRequest.json);
   });
 });

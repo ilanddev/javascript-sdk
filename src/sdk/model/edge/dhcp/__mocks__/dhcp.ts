@@ -1,4 +1,4 @@
-import { EdgeDhcpJson } from '../__json__/dhcp-json';
+import { EdgeDhcpJson } from '../__json__/edge-dhcp-json';
 import { AxiosResponse } from 'axios';
 
 export const MockEdgeDhcpJson: EdgeDhcpJson = {

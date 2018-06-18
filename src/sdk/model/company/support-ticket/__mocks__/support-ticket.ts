@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios';
 import {
-  SupportTicketAttachmentJson,
-  SupportTicketCommentJson,
   SupportTicketJson
 } from '../__json__/support-ticket-json';
+import { SupportTicketAttachmentJson } from '../__json__/support-ticket-attachment-json';
+import { SupportTicketCommentJson } from '../__json__/support-ticket-comment-json';
 
 export const SupportTicketMock: SupportTicketJson = {
   id: 240501,
