@@ -1,6 +1,5 @@
 import { SupportTicketStatus } from './support-ticket-status-type';
 import { SupportTicketSeverity } from './support-ticket-severity-type';
-import { SupportTicketCommentType } from './support-ticket-comment-type';
 
 export interface SupportTicketJson {
   id: number;
@@ -19,24 +18,4 @@ export interface SupportTicketJson {
   regarding_name: string;
   service_name: string;
   category_name: string;
-}
-
-export interface SupportTicketAttachmentJson {
-  id: number;
-  title: string;
-  filename: string;
-  server_filename: string;
-  creation_date: number;
-  creator_user_name: string;
-  creator_full_name: string;
-}
-
-export interface SupportTicketCommentJson {
-  id: number;
-  ticket_id: number;
-  text: string;
-  creator_username: string;
-  creator_full_name: string;
-  comment_type: SupportTicketCommentType;
-  creation_date: number;
 }
