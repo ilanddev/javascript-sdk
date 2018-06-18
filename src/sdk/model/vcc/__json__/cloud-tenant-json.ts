@@ -1,4 +1,5 @@
 import { EntityJson } from '../../common/__json__/entity-json';
+import { CloudTenantResourceJson } from '../cloud-tenant-resource/__json__/cloud-tenant-resource-json';
 
 /**
  * Interface for Cloud Tenant JSON properties.
@@ -19,53 +20,4 @@ export interface CloudTenantJson extends EntityJson {
   location_id: string;
   endpoint: string;
   backup_count: number;
-}
-
-/**
- * Interface for CloudTenantResource JSON properties.
- */
-export interface CloudTenantResourceJson {
-  repository: CloudRepositoryJson;
-}
-
-/**
- * Interface for CloudRepository JSON properties.
- */
-export interface CloudRepositoryJson {
-  display_name: string;
-  quota: number;
-  used_quota: number;
-  wan_accelerator_uuid: string | null;
-  wan_accelerator: WanAcceleratorJson | null;
-}
-
-/**
- * Interface for WanAccelerator JSON properties.
- */
-export interface WanAcceleratorJson {
-  name: string;
-  description: string;
-  out_of_date: boolean;
-  version: string;
-  capacity: number;
-  traffic_port: number;
-  connection_count: number;
-  cache_path: string;
-}
-
-/**
- * Interface for Vcc Perf Sample Json properties.
- */
-export interface VccPerfSampleJson {
-  used_quota: number;
-  quota: number;
-  time: number;
-}
-
-/**
- * Interface for Cloud Tenant Backup History Json properties.
- */
-export interface CloudTenantBackupHistoryJson {
-  last_result: string;
-  last_active: number;
 }

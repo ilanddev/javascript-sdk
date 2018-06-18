@@ -4,17 +4,8 @@ import { Vdc } from '../vdc';
 import { MockSecondVdcJson, MockVdcJson, MockVdcPerfSamplesSeriesJson } from '../__mocks__/vdc';
 import { MockVdcVmsJson } from '../__mocks__/vdc-vms';
 import { MockVdcVappsJson } from '../__mocks__/vdc-vapps';
-import {
-  AddVappVmRequestJson,
-  BuildVmRequestJson,
-  VmDiskRequestJson,
-  VmVnicRequestJson
-} from '../../vm/__json__/vm-json';
-import {
-  AddVappNetworkInitializationParamsJson,
-  AddVappRequestJson,
-  BuildVappRequestJson
-} from '../../vapp/__json__/vapp-json';
+import { BuildVmRequestJson, VmDiskRequestJson, VmVnicRequestJson } from '../../vm/__json__/vm-json';
+import { BuildVappRequestJson } from '../../vapp/__json__/vapp-json';
 import {
   MockBooleanMetadataJson,
   MockDatetimeMetadataJson,
@@ -30,6 +21,9 @@ import { PerfSamplesRequest } from '../../mixins/perf-samples/perf-samples-reque
 import { PerfSamplesRequestJson } from '../../mixins/perf-samples/__json__/perf-samples-request';
 import { PerfSamplesSeries } from '../../mixins/perf-samples/perf-samples-series';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
+import { VdcAddVappFromTemplateRequest } from '../vdc-add-vapp-from-template-request';
+import { VdcAddVappFromTemplateRequestJson } from '../__json__/vdc-add-vapp-from-template-request-json';
+import { TemplateVmConfigJson } from '../__json__/template-vm-config-json';
 
 jest.mock('../../../service/http/http');
 
@@ -120,41 +114,31 @@ test('Build vApp in vDC', async() => {
 });
 
 test('Add vApp in vDC', async() => {
-  const vm: AddVappVmRequestJson = {
+  const vmVnic: VmVnicRequestJson = {
+    primary_vnic: true,
+    ip_address: '192.168.1.1',
+    ip_assignment: 'DHCP',
+    network_uuid: 'Test network',
+    network_adapter_type: 'E1000'
+  };
+  const vm: TemplateVmConfigJson = {
     name: 'test vm',
-    description: '',
-    ip_addressing_mode: 'POOL',
-    network_uuid: 'network-uuid909',
-    vapp_template_uuid: 'vappTemplateUuid909',
+    description: 'test',
     vm_template_uuid: 'vmTemplateUuid909',
-    ip_address: '',
-    storage_profile_uuid: 'storageProfileUuid909'
+    storage_profile_uuid: 'storageProfileUuid909',
+    computer_name: 'Test computer name',
+    vnics: [vmVnic]
   };
-  const vappNetwork: AddVappNetworkInitializationParamsJson = {
-    name: 'test network',
-    description: '',
-    deployed: true,
-    backward_compatibility_mode: true,
-    retain_net_info_across_deployments: true,
-    parent_network_uuid: '',
-    gateway_address: '',
-    network_mask: '255.255.255.255',
-    primary_dns: '',
-    secondary_dns: '',
-    dns_suffix: '',
-    ip_ranges: []
-  };
-  const vapp: AddVappRequestJson = {
+  const vappRequestJson: VdcAddVappFromTemplateRequestJson = {
     name: 'test vapp',
     description: 'test desc',
     vapp_template_uuid: 'vappTemplateUuid',
-    vms: [vm],
-    fence_mode: 'ISOLATED',
-    vapp_network: vappNetwork
+    vms: [vm]
   };
   const vdc = new Vdc(MockVdcJson);
-  return vdc.addVapp(vapp).then(function(task) {
-    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/add-vapp-from-template`, vapp);
+  const vappRequest = new VdcAddVappFromTemplateRequest(vappRequestJson);
+  return vdc.addVappFromTemplate(vappRequest).then(function(task) {
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/add-vapp-from-template`, vappRequest.json);
     expect(task.operation).toBe('add vapp');
   });
 });
@@ -215,7 +199,7 @@ test('Properly submits request to get vDC perf counters', async() => {
 test('Properly submits request to get vDC perf samples', async() => {
   const vdc = new Vdc(MockVdcJson);
   const request = new PerfSamplesRequest({
-    counter: {group: 'cpu', name: 'usage', type: 'average'},
+    counter: { group: 'cpu', name: 'usage', type: 'average' },
     start: 1,
     end: 2,
     interval: 3,
@@ -223,9 +207,9 @@ test('Properly submits request to get vDC perf samples', async() => {
   } as PerfSamplesRequestJson);
   return vdc.getPerfSamples(request).then(async(perfSamples) => {
     expect(Iland.getHttp().get).lastCalledWith(
-        `${vdc.apiPrefix}/${vdc.uuid}/performance/` +
-        `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
-        {params: {start: 1, end: 2, interval: 3, limit: 4}}
+      `${vdc.apiPrefix}/${vdc.uuid}/performance/` +
+      `${request.counter.group}::${request.counter.name}::${request.counter.type}`,
+      { params: { start: 1, end: 2, interval: 3, limit: 4 } }
     );
 
     expect(perfSamples).toBeDefined();

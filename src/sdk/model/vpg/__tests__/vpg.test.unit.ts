@@ -54,7 +54,7 @@ test('Can get Vpg Failover Test Alert', async() => {
 
 test('Remove Vpg failover test alert', async() => {
   return vpg.removeVpgFailoverTestAlert().then(function() {
-    expect(Iland.getHttp().post).lastCalledWith(`/vpgs/${vpg.uuid}/actions/remove-failover-test-alert`, {});
+    expect(Iland.getHttp().delete).lastCalledWith(`/vpgs/${vpg.uuid}/actions/remove-failover-test-alert`);
   });
 });
 

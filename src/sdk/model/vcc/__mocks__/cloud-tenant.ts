@@ -1,4 +1,6 @@
-import { CloudRepositoryJson, CloudTenantJson, CloudTenantResourceJson } from '../__json__/cloud-tenant-json';
+import { CloudRepositoryJson } from '../cloud-repository/__json__/cloud-repository-json';
+import { CloudTenantResourceJson } from '../cloud-tenant-resource/__json__/cloud-tenant-resource-json';
+import { CloudTenantJson } from '../__json__/cloud-tenant-json';
 
 export const MockCloudRepository: CloudRepositoryJson = {
   display_name: 'test-repository-name',

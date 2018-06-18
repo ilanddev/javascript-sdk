@@ -1,5 +1,5 @@
 import { IpScopeJson } from './ip-scope-json';
-import { NetworkFenceMode } from '../../common/network-fence-mode-type';
+import { FenceModeType } from '../../common/__json__/fence-mode-type';
 
 /**
  * Org vDC Network Create Request JSON interface.
@@ -10,6 +10,6 @@ export interface OrgVdcNetworkCreateRequestJson {
   description: string;
   edge_uuid: string;
   shared: boolean;
-  fence_mode: NetworkFenceMode;
+  fence_mode: FenceModeType;
   ip_scope: IpScopeJson;
 }
