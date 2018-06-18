@@ -318,7 +318,7 @@ export class Vpg extends Entity {
    * @returns {Promise<any>}
    */
   async removeVpgFailoverTestAlert(): Promise<any> {
-    return Iland.getHttp().delete(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`, {});
+    return Iland.getHttp().delete(`/vpgs/${this.uuid}/actions/remove-failover-test-alert`);
   }
 
   /**

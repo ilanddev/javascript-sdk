@@ -1,6 +1,6 @@
+import { IpAddressingModeType } from '../common/__json__/ip-adressing-mode-type';
+import { AdapterType } from '../common/__json__/adapter-type';
 import { TemplateVnicConfigurationJson } from './__json__/template-vnic-configuration-json';
-import { IpAddressingMode } from '../common/ip-adressing-mode-type';
-import { AdapterType } from '../common/adapter-type';
 
 /**
  * Template VNIC Configuration Response.
@@ -21,9 +21,9 @@ export class TemplateVnicConfiguration {
 
   /**
    * Get ip assignment mode.
-   * @returns {IpAddressingMode}
+   * @returns {IpAddressingModeType}
    */
-  get ipAssignmentMode(): IpAddressingMode {
+  get ipAssignmentMode(): IpAddressingModeType {
     return this._json.ip_assignment_mode;
   }
 

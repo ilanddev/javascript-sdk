@@ -1,5 +1,5 @@
 import { TemplateDiskConfigurationJson } from './__json__/template-disk-configuration-json';
-import { DiskType } from '../common/disk-type';
+import { DiskType } from '../common/__json__/disk-type';
 
 /**
  * Template Disk Configuration.
