@@ -1,8 +1,9 @@
 import { AxiosResponse } from 'axios';
 import { EdgeSslVpnServiceJson } from '../__json__/edge-ssl-vpn-json';
-import { VpnLocalAuthenticationServerType } from '../__json__/vpn-local-authentication-server-type';
+import { EdgeSslVpnAuthServerType } from '../__json__/edge-ssl-vpn-auth-server-type';
 
 export const MockEdgeSslVpn: EdgeSslVpnServiceJson = {
+  'edge_uuid': 'fake-uuid',
   'enabled': true,
   'log_enabled': true,
   'log_level': 'notice',
@@ -20,7 +21,19 @@ export const MockEdgeSslVpn: EdgeSslVpnServiceJson = {
       'optimize': true
     }
   ],
-  'users': null,
+  'users': [
+    {
+      'user_id': 'fake-id',
+      'object_id': 'fake-id',
+      'first_name': 'name',
+      'last_name': 'last name',
+      'description': 'description',
+      'disable_account': false,
+      'password': 'pwd',
+      'password_never_expires': true,
+      'change_pwd_on_next_login': false
+    }
+  ],
   'ip_pools': [
     {
       'description': '',
@@ -75,7 +88,7 @@ export const MockEdgeSslVpn: EdgeSslVpnServiceJson = {
     'pwd_min_alphabets': 0,
     'pwd_min_digits': 0,
     'pwd_min_special_characters': 0,
-    'pwd_allow_user_id_within_pwd': true,
+    'allow_user_id_within_pwd': false,
     'pwd_lifetime': 30,
     'pwd_expiry_notification': 25,
     'retry_count': 3,
@@ -93,7 +106,7 @@ export const MockEdgeSslVpn: EdgeSslVpnServiceJson = {
         'pwd_min_alphabets': 0,
         'pwd_min_digits': 0,
         'pwd_min_special_characters': 0,
-        'pwd_allow_user_id_within_pwd': true,
+        'allow_user_id_within_pwd': true,
         'pwd_lifetime': 30,
         'pwd_expiry_notification': 25,
         'retry_count': 3,
@@ -157,14 +170,14 @@ export const MockSslVpnServiceUsers = {
 export const MockLocalAuthenticationServer = {
   'authentication_servers': [],
   'secondary_authentication_server': {
-    'type': 'LOCAL' as VpnLocalAuthenticationServerType,
+    'type': 'LOCAL' as EdgeSslVpnAuthServerType,
     'enabled': true,
     'pwd_min_length': 1,
     'pwd_max_length': 63,
     'pwd_min_alphabets': 0,
     'pwd_min_digits': 0,
     'pwd_min_special_characters': 0,
-    'pwd_allow_user_id_within_pwd': true,
+    'allow_user_id_within_pwd': true,
     'pwd_lifetime': 30,
     'pwd_expiry_notification': 25,
     'retry_count': 3,
@@ -176,7 +189,7 @@ export const MockLocalAuthenticationServer = {
 export const MockRsaAuthenticationServer = {
   'authentication_servers': [],
   'secondary_authentication_server': {
-    'type': 'RSA' as VpnLocalAuthenticationServerType,
+    'type': 'RSA' as EdgeSslVpnAuthServerType,
     'timeout': 30,
     'source_ip': ''
   }
@@ -185,7 +198,7 @@ export const MockRsaAuthenticationServer = {
 export const MockRadiusAuthenticationServer = {
   'authentication_servers': [],
   'secondary_authentication_server': {
-    'type': 'RADIUS' as VpnLocalAuthenticationServerType,
+    'type': 'RADIUS' as EdgeSslVpnAuthServerType,
     'ip': '',
     'port': 54621,
     'timeout': 30,
@@ -198,7 +211,7 @@ export const MockRadiusAuthenticationServer = {
 export const MockAdAuthenticationServer = {
   'authentication_servers': [],
   'secondary_authentication_server': {
-    'type': 'AD' as VpnLocalAuthenticationServerType,
+    'type': 'AD' as EdgeSslVpnAuthServerType,
     'enabled': true,
     'ip': '',
     'port': 60013,
@@ -216,7 +229,7 @@ export const MockAdAuthenticationServer = {
 export const MockLdapAuthenticationServer = {
   'authentication_servers': [],
   'secondary_authentication_server': {
-    'type': 'LDAP' as VpnLocalAuthenticationServerType,
+    'type': 'LDAP' as EdgeSslVpnAuthServerType,
     'enabled': true,
     'ip': '',
     'port': 8080,

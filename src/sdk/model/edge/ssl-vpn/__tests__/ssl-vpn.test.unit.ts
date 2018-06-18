@@ -11,8 +11,10 @@ import {
 } from '../__mocks__/edge-ssl-vpn';
 import { Edge } from '../../edge';
 import { MockEdgeJson } from '../../__mocks__/edge';
-import { SslVpn } from '../ssl-vpn';
-import { SslVpnAuthenticationServer } from '../ssl-vpn-authentication-server';
+import { EdgeSslVpnClientInstallPackage } from '../edge-ssl-vpn-client-install-package';
+import { EdgeSslVpnLocalAuthenticationServer } from '../edge-ssl-vpn-local-authentication-server';
+import { EdgeSslVpnService } from '../edge-ssl-vpn-service';
+import { EdgeSslVpnAuthenticationServer } from '../edge-ssl-vpn-authentication-server';
 import {
   EdgeSslVpnAdAuthenticationServerJson,
   EdgeSslVpnClientInstallPackageJson,
@@ -24,17 +26,15 @@ import {
   EdgeSslVpnRadiusAuthenticationServerJson,
   EdgeSslVpnRsaAuthenticationServerJson
 } from '../__json__/edge-ssl-vpn-json';
-import { SslVpnLocalAuthenticationServer } from '../ssl-vpn-local-authentication-server';
-import { SslVpnLdapAuthenticationServer } from '../ssl-vpn-ldap-authentication-server';
-import { SslVpnAdAuthenticationServer } from '../ssl-vpn-ad-authentication-server';
-import { SslVpnRadiusAuthenticationServer } from '../ssl-vpn-radius-authentication-server';
-import { SslVpnRsaAuthenticationServer } from '../ssl-vpn-rsa-authentication-server';
-import { SslVpnAuthentication } from '../ssl-vpn-authentication';
-import { SslVpnClientInstallPackage } from '../ssl-vpn-client-install-package';
-import { SslVpnGateway } from '../ssl-vpn-gateway';
-import { SslVpnIpPool } from '../ssl-vpn-ip-pool';
-import { SslVpnPrivateNetwork } from '../ssl-vpn-private-network';
-import { SslVpnUser } from '../ssl-vpn-user';
+import { EdgeSslVpnLdapAuthenticationServer } from '../edge-ssl-vpn-ldap-authentication-server';
+import { EdgeSslVpnAdAuthenticationServer } from '../edge-ssl-vpn-ad-authentication-server';
+import { EdgeSslVpnRadiusAuthenticationServer } from '../edge-ssl-vpn-radius-authentication-server';
+import { EdgeSslVpnRsaAuthenticationServer } from '../edge-ssl-vpn-rsa-authentication-server';
+import { EdgeSslVpnAuthentication } from '../edge-ssl-vpn-authentication';
+import { EdgeSslVpnGateway } from '../edge-ssl-vpn-gateway';
+import { EdgeSslVpnIpPool } from '../edge-ssl-vpn-ip-pool';
+import { EdgeSslVpnPrivateNetwork } from '../edge-ssl-vpn-private-network';
+import { EdgeSslVpnUser } from '../edge-ssl-vpn-user';
 
 jest.mock('../../../../service/http/http');
 
@@ -47,11 +47,10 @@ beforeAll(() => {
   }));
 });
 
-function runAssertionsAgainstLocalAuthenticationServerMock(authServer: SslVpnLocalAuthenticationServer,
+function runAssertionsAgainstLocalAuthenticationServerMock(authServer: EdgeSslVpnLocalAuthenticationServer,
                                                            mockAuthServer: EdgeSslVpnLocalAuthenticationServerJson) {
-  expect(authServer).toBeInstanceOf(SslVpnLocalAuthenticationServer);
+  expect(authServer).toBeInstanceOf(EdgeSslVpnLocalAuthenticationServer);
   expect(authServer.enabled).toEqual((mockAuthServer).enabled);
-  expect(authServer.pwdAllowUserIdWithinPwd).toEqual((mockAuthServer).pwd_allow_user_id_within_pwd);
   expect(authServer.pwdExpiryNotification).toEqual((mockAuthServer).pwd_expiry_notification);
   expect(authServer.pwdLifetime).toEqual((mockAuthServer).pwd_lifetime);
   expect(authServer.pwdMaxLength).toEqual((mockAuthServer).pwd_max_length);
@@ -67,9 +66,9 @@ function runAssertionsAgainstLocalAuthenticationServerMock(authServer: SslVpnLoc
   expect(authServer.toString()).toEqual(JSON.stringify(mockAuthServer, undefined, 2));
 }
 
-function runAssertionsAgainstAdAuthenticationServerMock(authServer: SslVpnAdAuthenticationServer,
+function runAssertionsAgainstAdAuthenticationServerMock(authServer: EdgeSslVpnAdAuthenticationServer,
                                                         mockAuthServer: EdgeSslVpnAdAuthenticationServerJson) {
-  expect(authServer).toBeInstanceOf(SslVpnAdAuthenticationServer);
+  expect(authServer).toBeInstanceOf(EdgeSslVpnAdAuthenticationServer);
   expect(authServer.enabled).toEqual((mockAuthServer).enabled);
   expect(authServer.type).toEqual((mockAuthServer).type);
   expect(authServer.bindDomainName).toEqual((mockAuthServer).bind_domain_name);
@@ -86,9 +85,9 @@ function runAssertionsAgainstAdAuthenticationServerMock(authServer: SslVpnAdAuth
   expect(authServer.toString()).toEqual(JSON.stringify(mockAuthServer, undefined, 2));
 }
 
-function runAssertionsAgainstLdapAuthenticationServerMock(authServer: SslVpnLdapAuthenticationServer,
+function runAssertionsAgainstLdapAuthenticationServerMock(authServer: EdgeSslVpnLdapAuthenticationServer,
                                                           mockAuthServer: EdgeSslVpnLdapAuthenticationServerJson) {
-  expect(authServer).toBeInstanceOf(SslVpnLdapAuthenticationServer);
+  expect(authServer).toBeInstanceOf(EdgeSslVpnLdapAuthenticationServer);
   expect(authServer.enabled).toEqual((mockAuthServer).enabled);
   expect(authServer.type).toEqual((mockAuthServer).type);
   expect(authServer.bindDomainName).toEqual((mockAuthServer).bind_domain_name);
@@ -104,9 +103,9 @@ function runAssertionsAgainstLdapAuthenticationServerMock(authServer: SslVpnLdap
   expect(authServer.toString()).toEqual(JSON.stringify(mockAuthServer, undefined, 2));
 }
 
-function runAssertionsAgainstRadiusAuthenticationServerMock(authServer: SslVpnRadiusAuthenticationServer,
+function runAssertionsAgainstRadiusAuthenticationServerMock(authServer: EdgeSslVpnRadiusAuthenticationServer,
                                                             mockAuthServer: EdgeSslVpnRadiusAuthenticationServerJson) {
-  expect(authServer).toBeInstanceOf(SslVpnRadiusAuthenticationServer);
+  expect(authServer).toBeInstanceOf(EdgeSslVpnRadiusAuthenticationServer);
   expect(authServer.type).toEqual((mockAuthServer).type);
   expect(authServer.ip).toEqual((mockAuthServer).ip);
   expect(authServer.port).toEqual((mockAuthServer).port);
@@ -118,9 +117,9 @@ function runAssertionsAgainstRadiusAuthenticationServerMock(authServer: SslVpnRa
   expect(authServer.toString()).toEqual(JSON.stringify(mockAuthServer, undefined, 2));
 }
 
-function runAssertionsAgainstRsaAuthenticationServerMock(authServer: SslVpnRsaAuthenticationServer,
+function runAssertionsAgainstRsaAuthenticationServerMock(authServer: EdgeSslVpnRsaAuthenticationServer,
                                                          mockAuthServer: EdgeSslVpnRsaAuthenticationServerJson) {
-  expect(authServer).toBeInstanceOf(SslVpnRsaAuthenticationServer);
+  expect(authServer).toBeInstanceOf(EdgeSslVpnRsaAuthenticationServer);
   expect(authServer.type).toEqual((mockAuthServer).type);
   expect(authServer.timeout).toEqual((mockAuthServer).timeout);
   expect(authServer.sourceIp).toEqual((mockAuthServer).source_ip);
@@ -128,42 +127,42 @@ function runAssertionsAgainstRsaAuthenticationServerMock(authServer: SslVpnRsaAu
   expect(authServer.toString()).toEqual(JSON.stringify(mockAuthServer, undefined, 2));
 }
 
-function runAssertionsAgainstAuthenticationServersMock(authServers: Array<SslVpnAuthenticationServer |
-  SslVpnLocalAuthenticationServer>) {
+function runAssertionsAgainstAuthenticationServersMock(authServers: Array<EdgeSslVpnAuthenticationServer |
+  EdgeSslVpnLocalAuthenticationServer>) {
   if (MockEdgeSslVpn.authentication) {
     expect(authServers.length).toEqual(MockEdgeSslVpn.authentication.authentication_servers.length);
-    let authServer: SslVpnAuthenticationServer;
+    let authServer: EdgeSslVpnAuthenticationServer;
     let mockAuthServer;
     for (const authServerIdx in authServers) {
       authServer = authServers[authServerIdx];
       mockAuthServer = MockEdgeSslVpn.authentication.authentication_servers[authServerIdx];
       switch (authServer.type) {
         case 'LOCAL':
-          if (authServer instanceof SslVpnLocalAuthenticationServer) {
+          if (authServer instanceof EdgeSslVpnLocalAuthenticationServer) {
             runAssertionsAgainstLocalAuthenticationServerMock(authServer,
               mockAuthServer as EdgeSslVpnLocalAuthenticationServerJson);
           }
           break;
         case 'LDAP':
-          if (authServer instanceof SslVpnLdapAuthenticationServer) {
+          if (authServer instanceof EdgeSslVpnLdapAuthenticationServer) {
             runAssertionsAgainstLdapAuthenticationServerMock(authServer,
               mockAuthServer as EdgeSslVpnLdapAuthenticationServerJson);
           }
           break;
         case 'AD':
-          if (authServer instanceof SslVpnAdAuthenticationServer) {
+          if (authServer instanceof EdgeSslVpnAdAuthenticationServer) {
             runAssertionsAgainstAdAuthenticationServerMock(authServer,
               mockAuthServer as EdgeSslVpnAdAuthenticationServerJson);
           }
           break;
         case 'RADIUS':
-          if (authServer instanceof SslVpnRadiusAuthenticationServer) {
+          if (authServer instanceof EdgeSslVpnRadiusAuthenticationServer) {
             runAssertionsAgainstRadiusAuthenticationServerMock(authServer,
               mockAuthServer as EdgeSslVpnRadiusAuthenticationServerJson);
           }
           break;
         case 'RSA':
-          if (authServer instanceof SslVpnRsaAuthenticationServer) {
+          if (authServer instanceof EdgeSslVpnRsaAuthenticationServer) {
             runAssertionsAgainstRsaAuthenticationServerMock(authServer,
               mockAuthServer as EdgeSslVpnRsaAuthenticationServerJson);
           }
@@ -179,50 +178,50 @@ function runAssertionsAgainstSecondaryAuthenticationServerMocks() {
   const radiusAuthServerMock = MockRadiusAuthenticationServer.secondary_authentication_server;
   const adAuthServerMock = MockAdAuthenticationServer.secondary_authentication_server;
   const rsaAuthServerMock = MockRsaAuthenticationServer.secondary_authentication_server;
-  const localAuthServer = new SslVpnAuthentication(MockLocalAuthenticationServer);
-  const ldapAuthServer = new SslVpnAuthentication(MockLdapAuthenticationServer);
-  const radiusAuthServer = new SslVpnAuthentication(MockRadiusAuthenticationServer);
-  const adAuthServer = new SslVpnAuthentication(MockAdAuthenticationServer);
-  const rsaAuthServer = new SslVpnAuthentication(MockRsaAuthenticationServer);
+  const localAuthServer = new EdgeSslVpnAuthentication(MockLocalAuthenticationServer);
+  const ldapAuthServer = new EdgeSslVpnAuthentication(MockLdapAuthenticationServer);
+  const radiusAuthServer = new EdgeSslVpnAuthentication(MockRadiusAuthenticationServer);
+  const adAuthServer = new EdgeSslVpnAuthentication(MockAdAuthenticationServer);
+  const rsaAuthServer = new EdgeSslVpnAuthentication(MockRsaAuthenticationServer);
 
   expect(localAuthServer.secondaryAuthenticationServer).not.toBeNull();
-  expect(localAuthServer.secondaryAuthenticationServer).toBeInstanceOf(SslVpnLocalAuthenticationServer);
+  expect(localAuthServer.secondaryAuthenticationServer).toBeInstanceOf(EdgeSslVpnLocalAuthenticationServer);
   if (localAuthServer.secondaryAuthenticationServer !== null &&
-    localAuthServer.secondaryAuthenticationServer instanceof SslVpnLocalAuthenticationServer) {
+    localAuthServer.secondaryAuthenticationServer instanceof EdgeSslVpnLocalAuthenticationServer) {
     runAssertionsAgainstLocalAuthenticationServerMock(localAuthServer.secondaryAuthenticationServer,
       localAuthServerMock as EdgeSslVpnLocalAuthenticationServerJson);
   }
   expect(ldapAuthServer.secondaryAuthenticationServer).not.toBeNull();
-  expect(ldapAuthServer.secondaryAuthenticationServer).toBeInstanceOf(SslVpnLdapAuthenticationServer);
+  expect(ldapAuthServer.secondaryAuthenticationServer).toBeInstanceOf(EdgeSslVpnLdapAuthenticationServer);
   if (ldapAuthServer.secondaryAuthenticationServer !== null &&
-    ldapAuthServer.secondaryAuthenticationServer instanceof SslVpnLdapAuthenticationServer) {
+    ldapAuthServer.secondaryAuthenticationServer instanceof EdgeSslVpnLdapAuthenticationServer) {
     runAssertionsAgainstLdapAuthenticationServerMock(ldapAuthServer.secondaryAuthenticationServer,
       ldapAuthServerMock as EdgeSslVpnLdapAuthenticationServerJson);
   }
   expect(adAuthServer.secondaryAuthenticationServer).not.toBeNull();
-  expect(adAuthServer.secondaryAuthenticationServer).toBeInstanceOf(SslVpnAdAuthenticationServer);
+  expect(adAuthServer.secondaryAuthenticationServer).toBeInstanceOf(EdgeSslVpnAdAuthenticationServer);
   if (adAuthServer.secondaryAuthenticationServer !== null &&
-    adAuthServer.secondaryAuthenticationServer instanceof SslVpnAdAuthenticationServer) {
+    adAuthServer.secondaryAuthenticationServer instanceof EdgeSslVpnAdAuthenticationServer) {
     runAssertionsAgainstAdAuthenticationServerMock(adAuthServer.secondaryAuthenticationServer,
       adAuthServerMock as EdgeSslVpnAdAuthenticationServerJson);
   }
   expect(radiusAuthServer.secondaryAuthenticationServer).not.toBeNull();
-  expect(radiusAuthServer.secondaryAuthenticationServer).toBeInstanceOf(SslVpnRadiusAuthenticationServer);
+  expect(radiusAuthServer.secondaryAuthenticationServer).toBeInstanceOf(EdgeSslVpnRadiusAuthenticationServer);
   if (radiusAuthServer.secondaryAuthenticationServer !== null &&
-    radiusAuthServer.secondaryAuthenticationServer instanceof SslVpnRadiusAuthenticationServer) {
+    radiusAuthServer.secondaryAuthenticationServer instanceof EdgeSslVpnRadiusAuthenticationServer) {
     runAssertionsAgainstRadiusAuthenticationServerMock(radiusAuthServer.secondaryAuthenticationServer,
       radiusAuthServerMock as EdgeSslVpnRadiusAuthenticationServerJson);
   }
   expect(rsaAuthServer.secondaryAuthenticationServer).not.toBeNull();
-  expect(rsaAuthServer.secondaryAuthenticationServer).toBeInstanceOf(SslVpnRsaAuthenticationServer);
+  expect(rsaAuthServer.secondaryAuthenticationServer).toBeInstanceOf(EdgeSslVpnRsaAuthenticationServer);
   if (rsaAuthServer.secondaryAuthenticationServer !== null &&
-    rsaAuthServer.secondaryAuthenticationServer instanceof SslVpnRsaAuthenticationServer) {
+    rsaAuthServer.secondaryAuthenticationServer instanceof EdgeSslVpnRsaAuthenticationServer) {
     runAssertionsAgainstRsaAuthenticationServerMock(rsaAuthServer.secondaryAuthenticationServer,
       rsaAuthServerMock as EdgeSslVpnRsaAuthenticationServerJson);
   }
 }
 
-function runAssertionsAgainstMockClientInstallPackage(clientInsPack: SslVpnClientInstallPackage,
+function runAssertionsAgainstMockClientInstallPackage(clientInsPack: EdgeSslVpnClientInstallPackage,
                                                       clientInsPackMock: EdgeSslVpnClientInstallPackageJson) {
   expect(clientInsPack.createDesktopIcon).toEqual(clientInsPackMock.create_desktop_icon);
   expect(clientInsPack.createLinuxClient).toEqual(clientInsPackMock.create_linux_client);
@@ -233,16 +232,14 @@ function runAssertionsAgainstMockClientInstallPackage(clientInsPack: SslVpnClien
   expect(clientInsPack.gatewayList).not.toBeNull();
   if (clientInsPackMock.gateway_list) {
     expect(clientInsPack.gatewayList.length).toEqual(clientInsPackMock.gateway_list.length);
-    let gateway: SslVpnGateway;
     let gatewayMock: EdgeSslVpnGatewayJson;
-    for (const gatewayIdx in clientInsPack.gatewayList) {
-      gateway = clientInsPack.gatewayList[gatewayIdx];
-      gatewayMock = clientInsPackMock.gateway_list[gatewayIdx];
+    clientInsPack.gatewayList.forEach((gateway: EdgeSslVpnGateway, index: number) => {
+      gatewayMock = clientInsPackMock.gateway_list[index];
       expect(gateway.hostName).toEqual(gatewayMock.host_name);
       expect(gateway.port).toEqual(gatewayMock.port);
       expect(gateway.json).toEqual(Object.assign({}, gatewayMock));
       expect(gateway.toString()).toEqual(JSON.stringify(gatewayMock, undefined, 2));
-    }
+    });
   }
   expect(clientInsPack.hideNetworkAdaptor).toEqual(clientInsPackMock.hide_network_adaptor);
   expect(clientInsPack.hideSystrayIcon).toEqual(clientInsPackMock.hide_systray_icon);
@@ -260,7 +257,7 @@ test('Properly get ssl vpn', async() => {
   const edge = new Edge(MockEdgeJson);
   return edge.getSslVpn().then(sslVpn => {
     expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/sslvpn`);
-    expect(sslVpn).toBeInstanceOf(SslVpn);
+    expect(sslVpn).toBeInstanceOf(EdgeSslVpnService);
     expect(sslVpn.authentication).not.toBeNull();
     if (sslVpn.authentication) {
       runAssertionsAgainstAuthenticationServersMock(sslVpn.authentication.authenticationServers);
@@ -271,7 +268,7 @@ test('Properly get ssl vpn', async() => {
     expect(sslVpn.ipPools).not.toBeNull();
     if (sslVpn.ipPools && MockEdgeSslVpn.ip_pools) {
       expect(sslVpn.ipPools.length).toEqual(MockEdgeSslVpn.ip_pools.length);
-      let ipPool: SslVpnIpPool;
+      let ipPool: EdgeSslVpnIpPool;
       let ipPoolMock: EdgeSslVpnIpPoolJson;
       for (const ipPoolIdx in sslVpn.ipPools) {
         ipPool = sslVpn.ipPools[ipPoolIdx];
@@ -292,7 +289,7 @@ test('Properly get ssl vpn', async() => {
     expect(sslVpn.privateNetworks).not.toBeNull();
     if (sslVpn.privateNetworks && MockEdgeSslVpn.private_networks) {
       expect(sslVpn.privateNetworks.length).toEqual(MockEdgeSslVpn.private_networks.length);
-      let privateNetwork: SslVpnPrivateNetwork;
+      let privateNetwork: EdgeSslVpnPrivateNetwork;
       let privateNetworkMock: EdgeSslVpnPrivateNetworkJson;
       for (const privateNetworkIdx in sslVpn.privateNetworks) {
         privateNetwork = sslVpn.privateNetworks[privateNetworkIdx];
@@ -308,7 +305,7 @@ test('Properly get ssl vpn', async() => {
     }
     expect(sslVpn.clientInstallPackages).not.toBeNull();
     if (sslVpn.clientInstallPackages && MockEdgeSslVpn.client_install_packages) {
-      let clientInsPack: SslVpnClientInstallPackage;
+      let clientInsPack: EdgeSslVpnClientInstallPackage;
       let clientInsPackMock: EdgeSslVpnClientInstallPackageJson;
       for (const clientInsPackIdx in sslVpn.clientInstallPackages) {
         clientInsPack = sslVpn.clientInstallPackages[clientInsPackIdx];
@@ -327,7 +324,8 @@ test('Properly get ssl vpn', async() => {
     expect(sslVpn.logLevel).toEqual(MockEdgeSslVpn.log_level);
     expect(sslVpn.json).toEqual(Object.assign({}, MockEdgeSslVpn));
     expect(sslVpn.toString()).toEqual(JSON.stringify(MockEdgeSslVpn, undefined, 2));
-    expect(sslVpn.users).toEqual([]);
+    expect(sslVpn.users).toBeDefined();
+    expect(sslVpn.users.length).toBeGreaterThan(0);
     expect(sslVpn.authenticationConfig).not.toBeNull();
     if (sslVpn.authenticationConfig) {
       runAssertionsAgainstLocalAuthenticationServerMock(sslVpn.authenticationConfig,
@@ -340,8 +338,8 @@ test('Properly implement the secondary authentication server', () => {
   runAssertionsAgainstSecondaryAuthenticationServerMocks();
 });
 
-test('Properly implement an SslVpnUser class', () => {
-  const sslVpnUser = new SslVpnUser(MockSslVpnServiceUsers);
+test('Properly implement an EdgeSslVpnUser class', () => {
+  const sslVpnUser = new EdgeSslVpnUser(MockSslVpnServiceUsers);
   expect(sslVpnUser.changePwdOnNextLogin).toEqual(MockSslVpnServiceUsers.change_pwd_on_next_login);
   expect(sslVpnUser.userId).toEqual(MockSslVpnServiceUsers.user_id);
   expect(sslVpnUser.description).toEqual(MockSslVpnServiceUsers.description);
