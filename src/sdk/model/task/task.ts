@@ -1,19 +1,10 @@
 import { Iland } from '../../iland';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { BasicConfiguration } from '../../config/basic-configuration';
 import { TaskJson } from './__json__/task-json';
 import { TaskStatus } from './__json__/task-status-type';
 import { TaskOperation } from './__json__/task-operation-type';
 import { TaskType } from './__json__/task-type';
-
-const TASK_CONFIG = {
-  baseURL: `${BasicConfiguration.getApiUrl()}/ecs`,
-  headers: {
-    'Accept': 'application/vnd.ilandcloud.api.v0.9+json',
-    'Content-Type': 'application/vnd.ilandcloud.api.v0.9+json'
-  }
-};
 
 /**
  * Task.
@@ -27,12 +18,11 @@ export class Task {
 
   /**
    * Gets a Task by datacenter and UUID.
-   * @param locationId the datacenter identifier
    * @param taskUuid the task uuid
    * @returns {Promise<Task>} promise that resolves with the Task
    */
-  static async getTask(locationId: string, taskUuid: string): Promise<Task> {
-    return Iland.getHttp().get(`/task/${locationId}/${taskUuid}`, TASK_CONFIG).then((response) => {
+  static async getTask(taskUuid: string): Promise<Task> {
+    return Iland.getHttp().get(`/tasks/${taskUuid}`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
     });
@@ -44,6 +34,14 @@ export class Task {
    */
   get uuid(): string {
     return this._apiTask.uuid;
+  }
+
+  /**
+   * Get company id.
+   * @returns {string}
+   */
+  get companyId(): string {
+    return this._apiTask.company_id;
   }
 
   /**
@@ -59,7 +57,7 @@ export class Task {
    * @returns {boolean} value
    */
   get complete(): boolean {
-    return this._apiTask.synchronized;
+    return this._apiTask.synced;
   }
 
   /**
@@ -227,7 +225,7 @@ export class Task {
    * @returns {Promise<Task>} promise that resolves with updated task
    */
   async refresh(): Promise<Task> {
-    return Iland.getHttp().get(`/task/${this.locationId}/${this.uuid}`, TASK_CONFIG).then((response) => {
+    return Iland.getHttp().get(`/tasks/${this.uuid}`).then((response) => {
       this._apiTask = response.data as TaskJson;
       return this;
     });
