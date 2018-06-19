@@ -483,4 +483,15 @@ export class Vpg extends Entity {
       return json.map((it) => new PerfCounter(it));
     });
   }
+
+  /**
+   * Refreshes the Vpg data by retrieving it from the API again.
+   * @returns {Promise<Vpg>} promise that resolves with this object
+   */
+  async refresh(): Promise<Vpg> {
+    return Iland.getHttp().get(`/vpgs/${this.uuid}`).then((response) => {
+      this._json = response.data as VpgJson;
+      return this;
+    });
+  }
 }
