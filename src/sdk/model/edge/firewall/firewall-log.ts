@@ -1,8 +1,8 @@
-import { EdgeFirewallLogJson } from './__json__/edge-firewall-json';
-
 /**
  * FirewallLog class
  */
+import { EdgeFirewallLogJson } from './__json__/edge-firewall-log-json';
+
 export class FirewallLog {
 
   constructor(private _json: EdgeFirewallLogJson) {

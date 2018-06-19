@@ -1,4 +1,4 @@
-import { EdgeIpSecVpnEndpointJson } from './__json__/edge-ipsec-vpn-json';
+import { EdgeIpSecVpnEndpointJson } from './__json__/edge-ipsec-vpn-endpoint-json';
 
 /**
  * IpSecVpnEndpoint class

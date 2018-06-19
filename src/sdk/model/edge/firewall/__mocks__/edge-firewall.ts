@@ -1,5 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { EdgeFirewallJson, EdgeFirewallLogJson } from '../__json__/edge-firewall-json';
+import { EdgeFirewallJson } from '../__json__/edge-firewall-json';
+import { EdgeFirewallLogJson } from '../__json__/edge-firewall-log-json';
 import { CheckpointJson } from '../../checkpoint/__json__/checkpoint-json';
 
 export const MockEdgeFirewall: EdgeFirewallJson = {
