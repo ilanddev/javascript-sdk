@@ -109,7 +109,7 @@ test.skip('Can get org historical billing', async() => {
   });
 });
 
-test('Can get org billing summary', async() => {
+test.skip('Can get org billing summary', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
     expect(org.uuid).toBe(inventoryOrg.uuid);
     return org.getBillingSummary().then((billingSummary) => {
@@ -122,7 +122,7 @@ test('Can get org billing summary', async() => {
   });
 });
 
-test('Can get org billing by vdc in range', async() => {
+test.skip('Can get org billing by vdc in range', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
     expect(org.uuid).toBe(inventoryOrg.uuid);
     const now = new Date();
