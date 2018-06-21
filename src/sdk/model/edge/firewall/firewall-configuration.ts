@@ -1,13 +1,21 @@
-import { EdgeFirewallJson } from './__json__/edge-firewall-json';
 import { FirewallRule } from './firewall-rule';
 import { FirewallRuleJson } from './__json__/firewall-rule-json';
+import { EdgeFirewallConfigJson } from './__json__/edge-firewall-config-json';
 
 /**
- * Firewall class
+ * Firewall Configuration class.
  */
-export class Firewall {
+export class FirewallConfiguration {
 
-  constructor(private _json: EdgeFirewallJson) {
+  constructor(private _json: EdgeFirewallConfigJson) {
+  }
+
+  /**
+   * Get the version.
+   * @returns {number}
+   */
+  get version(): number {
+    return this._json.version;
   }
 
   /**
@@ -53,9 +61,9 @@ export class Firewall {
 
   /**
    * Get the __json__ representation of this class.
-   * @returns {EdgeFirewallJson}
+   * @returns {EdgeFirewallConfigJson}
    */
-  get json(): EdgeFirewallJson {
+  get json(): EdgeFirewallConfigJson {
     return Object.assign({}, this._json);
   }
 

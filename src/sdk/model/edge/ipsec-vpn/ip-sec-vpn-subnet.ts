@@ -1,4 +1,4 @@
-import { EdgeIpSecVpnSubnetJson } from './__json__/edge-ipsec-vpn-json';
+import { EdgeIpSecVpnSubnetJson } from './__json__/edge-ipsec-vpn-subnet-json';
 
 /**
  * IpSecVpnSubnet class
