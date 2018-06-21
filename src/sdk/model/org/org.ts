@@ -38,9 +38,10 @@ import { AntimalwareOverTime } from './reports/anti-malware-over-time';
 import { LogInspectionOverTime } from './reports/log-inspection-over-time';
 import { LogInspectionOverTimeJson } from './reports/__json__/log-inspection-over-time-json';
 import { FirewallOverTime } from './reports/firewall-over-time';
-import { DisasterRecoveryRunbookCreateRequest } from './disaster-recovery-runbook-create-request';
-import { DisasterRecoveryRunbookJson } from './__json__/disaster-recovery-runbook-json';
-import { DisasterRecoveryRunbook } from './disaster-recovery-runbook';
+import { DisasterRecoveryRunbookCreateRequest } from
+    './disaster-recovery-runbook/disaster-recovery-runbook-create-request';
+import { DisasterRecoveryRunbookJson } from './disaster-recovery-runbook/__json__/disaster-recovery-runbook-json';
+import { DisasterRecoveryRunbook } from './disaster-recovery-runbook/disaster-recovery-runbook';
 import { ExternalNetwork } from './external-network';
 import { ExternalNetworkJson } from './__json__/external-network-json';
 import { VmAffinityRuleJson } from './__json__/vm-affinity-rule-json';

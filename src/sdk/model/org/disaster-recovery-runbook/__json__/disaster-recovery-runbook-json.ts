@@ -4,7 +4,6 @@ import { RecoveryGroupDescriptorJson } from './recovery-group-descriptor-json';
  * Disaster recovery runbook JSON API interface.
  */
 export interface DisasterRecoveryRunbookJson {
-  crm: string;
   location_id: string;
   org_uuid: string;
   description: string;
@@ -16,4 +15,5 @@ export interface DisasterRecoveryRunbookJson {
   deleted: boolean;
   deleted_date: number;
   updated_date: number;
+  company_id: string;
 }
