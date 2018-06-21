@@ -133,9 +133,9 @@ export class Task {
 
   /**
    * Gets a map of additional task details that are specific to the task operation type.
-   * @returns {Map<string, any>} map of other task attributes
+   * @returns {{ [key: string]: string }} map of other task attributes
    */
-  get otherAttributes(): Map<string, any> {
+  get otherAttributes(): { [key: string]: string } {
     return this._apiTask.other_attributes;
   }
 

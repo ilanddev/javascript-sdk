@@ -20,7 +20,7 @@ export interface TaskJson {
   message: string|null;
   operation_description: string;
   org_uuid: string;
-  other_attributes: Map<string, any>;
+  other_attributes: { [key: string]: string };
   parent_task_uuid: string|null;
   progress: number;
   start_time: number|null;
