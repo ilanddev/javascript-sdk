@@ -1,9 +1,10 @@
 import { FirewallRuleJson } from './firewall-rule-json';
 
 /**
- * Interface for Edge firewall service.
+ * Edge Firewall Config JSON interface.
  */
-export interface EdgeFirewallJson {
+export interface EdgeFirewallConfigJson {
+  version: number;
   edge_uuid: string | null;
   log: boolean;
   enabled: boolean;

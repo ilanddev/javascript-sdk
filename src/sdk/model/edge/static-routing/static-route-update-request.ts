@@ -21,7 +21,7 @@ export class StaticRouteUpdateRequest {
         idx: idx,
         name: name,
         network: network,
-        next_hop_i_p: nextHopIP,
+        next_hop_ip: nextHopIP,
         interface_type: interfaceType,
         interface: _interface
       } as StaticRouteUpdateRequestJson;
@@ -67,11 +67,11 @@ export class StaticRouteUpdateRequest {
   }
 
   /**
-   * Get next hop i p.
+   * Get next hop ip.
    * @returns {string}
    */
   get nextHopIP(): string {
-    return this._json.next_hop_i_p;
+    return this._json.next_hop_ip;
   }
 
   /**

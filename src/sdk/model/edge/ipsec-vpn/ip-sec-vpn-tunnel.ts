@@ -1,4 +1,5 @@
-import { EdgeIpSecVpnSubnetJson, EdgeIpSecVpnTunnelJson } from './__json__/edge-ipsec-vpn-json';
+import { EdgeIpSecVpnTunnelJson } from './__json__/edge-ipsec-vpn-tunnel-json';
+import { EdgeIpSecVpnSubnetJson } from './__json__/edge-ipsec-vpn-subnet-json';
 import { IpSecVpnSubnet } from './ip-sec-vpn-subnet';
 import { IpSecVpnPeer } from './ip-sec-vpn-peer';
 

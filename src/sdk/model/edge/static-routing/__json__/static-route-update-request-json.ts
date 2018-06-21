@@ -6,7 +6,7 @@ export interface StaticRouteUpdateRequestJson {
   idx: number;
   name: string;
   network: string;
-  next_hop_i_p: string;
+  next_hop_ip: string;
   interface_type: string;
   interface: string;
 }
