@@ -1,8 +1,8 @@
-import { FirewallRuleJson } from './__json__/edge-firewall-json';
-
 /**
  * FirewallRule class
  */
+import { FirewallRuleJson } from './__json__/firewall-rule-json';
+
 export class FirewallRule {
 
   constructor(private _json: FirewallRuleJson) {

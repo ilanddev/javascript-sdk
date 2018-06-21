@@ -1,5 +1,6 @@
 import { DisasterRecoveryRunbookCreateRequestJson } from './__json__/disaster-recovery-runbook-create-request-json';
 import { RecoveryGroupDescriptorJson } from './__json__/recovery-group-descriptor-json';
+import { RecoveryGroupDescriptor } from './recovery-group-descriptor';
 
 /**
  * Disaster recovery runbook create request.
@@ -50,8 +51,10 @@ export class DisasterRecoveryRunbookCreateRequest {
    * Get recovery groups.
    * @returns {Array<RecoveryGroupDescriptorJson>}
    */
-  get recoveryGroups(): Array<RecoveryGroupDescriptorJson> {
-    return this._json.recovery_groups;
+  get recoveryGroups(): Array<RecoveryGroupDescriptor> {
+    return this._json.recovery_groups.map(rGroup => {
+      return new RecoveryGroupDescriptor(rGroup);
+    });
   }
 
   /**

@@ -1,4 +1,4 @@
-import { EdgeIpSecVpnPeerJson } from './__json__/edge-ipsec-vpn-json';
+import { EdgeIpSecVpnPeerJson } from './__json__/edge-ipsec-vpn-peer-json';
 
 /**
  * IpSecVpnPeer class

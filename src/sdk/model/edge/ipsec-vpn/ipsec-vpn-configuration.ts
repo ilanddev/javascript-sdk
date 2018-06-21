@@ -1,15 +1,23 @@
-import { EdgeIpsecVpnServiceJson } from './__json__/edge-ipsec-vpn-json';
 import { IpSecVpnEndpoint } from './ip-sec-vpn-endpoint';
 import { IpSecVpnTunnel } from './ip-sec-vpn-tunnel';
 import { EdgeIpSecVpnEndpointJson } from './__json__/edge-ipsec-vpn-endpoint-json';
 import { EdgeIpSecVpnTunnelJson } from './__json__/edge-ipsec-vpn-tunnel-json';
+import { EdgeIpsecVpnServiceConfigJson } from './__json__/edge-ipsec-vpn-configuration-json';
 
 /**
- * IpsecVpn class
+ * Ipsec Vpn Configuration class.
  */
-export class IpsecVpn {
+export class IpsecVpnConfiguration {
 
-  constructor(private _json: EdgeIpsecVpnServiceJson) {
+  constructor(private _json: EdgeIpsecVpnServiceConfigJson) {
+  }
+
+  /**
+   * Get the version.
+   * @returns {number}
+   */
+  get version(): number {
+    return this._json.version;
   }
 
   /**
@@ -34,7 +42,7 @@ export class IpsecVpn {
    */
   get endpoints(): Array<IpSecVpnEndpoint> {
     return (this._json.endpoints as Array<EdgeIpSecVpnEndpointJson>)
-      .map(endpoint => new IpSecVpnEndpoint(endpoint));
+        .map(endpoint => new IpSecVpnEndpoint(endpoint));
   }
 
   /**
@@ -47,9 +55,9 @@ export class IpsecVpn {
 
   /**
    * Get the __json__ representation of this class.
-   * @returns {EdgeIpsecVpnServiceJson}
+   * @returns {EdgeIpsecVpnServiceConfigJson}
    */
-  get json(): EdgeIpsecVpnServiceJson {
+  get json(): EdgeIpsecVpnServiceConfigJson {
     return Object.assign({}, this._json);
   }
 
