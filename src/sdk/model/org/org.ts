@@ -216,7 +216,7 @@ export class Org extends Entity {
    * @returns {string} company ID
    */
   get companyId(): string {
-    return this._json.crm;
+    return this._json.company_id;
   }
 
   /**

@@ -15,5 +15,5 @@ export interface OrgJson extends EntityJson {
   fullname: string;
   description: string;
   vcloud_href: string;
-  crm: string;
+  company_id: string;
 }
