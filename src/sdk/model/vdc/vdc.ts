@@ -251,7 +251,7 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    */
   async getVapps(): Promise<Array<Vapp>> {
     return Iland.getHttp().get(`/vdcs/${this.uuid}/vapps`).then((response) => {
-      const json = response.data as Array<VappJson>;
+      const json = response.data.data as Array<VappJson>;
       return json.map((vappJson) => new Vapp(vappJson));
     });
   }
@@ -262,7 +262,7 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    */
   async getVms(): Promise<Array<Vm>> {
     return Iland.getHttp().get(`/vdcs/${this.uuid}/vms`).then((response) => {
-      const json = response.data as Array<VmJson>;
+      const json = response.data.data as Array<VmJson>;
       return json.map((vmJson) => new Vm(vmJson));
     });
   }
