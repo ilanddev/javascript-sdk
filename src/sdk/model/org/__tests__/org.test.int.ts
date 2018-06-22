@@ -84,7 +84,7 @@ test('Can get Org and verify required properties', async() => {
     expect(org.fullName).toBeDefined();
     expect(org.fullName).toBe(raw.fullname);
     expect(org.companyId).toBeDefined();
-    expect(org.companyId).toBe(raw.crm);
+    expect(org.companyId).toBe(raw.company_id);
   });
 });
 
