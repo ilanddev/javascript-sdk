@@ -5,7 +5,7 @@ export interface SupportTicketJson {
   id: number;
   summary: string;
   status: SupportTicketStatus;
-  crm: string;
+  company_id: string;
   creator_full_name: string;
   creator_user_name: string;
   creation_date: number;

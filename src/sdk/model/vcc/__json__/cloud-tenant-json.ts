@@ -14,10 +14,10 @@ export interface CloudTenantJson extends EntityJson {
   throttling_speed_limit: number;
   throttling_speed_unit: string;
   public_ip_count: number;
-  crm: string;
   owner_name: string;
   contract_uuid: string;
   location_id: string;
   endpoint: string;
   backup_count: number;
+  company_id: string;
 }

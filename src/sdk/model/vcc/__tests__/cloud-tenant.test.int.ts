@@ -66,8 +66,8 @@ test('Can get Cloud Tenant and verify properties', async() => {
     expect(cloudTenant.publicIpCount).toBe(rawData.public_ip_count);
     expect(cloudTenant.backupCount).toBeDefined();
     expect(cloudTenant.backupCount).toBe(rawData.backup_count);
-    expect(cloudTenant.crmNumber).toBeDefined();
-    expect(cloudTenant.crmNumber).toBe(rawData.crm);
+    expect(cloudTenant.companyId).toBeDefined();
+    expect(cloudTenant.companyId).toBe(rawData.company_id);
     expect(cloudTenant.ownerName).toBeDefined();
     expect(cloudTenant.ownerName).toBe(rawData.owner_name);
     expect(cloudTenant.contractUuid).toBeDefined();

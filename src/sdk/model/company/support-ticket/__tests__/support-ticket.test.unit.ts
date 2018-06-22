@@ -24,7 +24,7 @@ function runAssertionAgainstMock(ticket: SupportTicket) {
   expect(ticket.id).toEqual(SupportTicketMock.id);
   expect(ticket.summary).toEqual(SupportTicketMock.summary);
   expect(ticket.status).toEqual(SupportTicketMock.status);
-  expect(ticket.crm).toEqual(SupportTicketMock.crm);
+  expect(ticket.companyId).toEqual(SupportTicketMock.company_id);
   expect(ticket.creatorFullName).toEqual(SupportTicketMock.creator_full_name);
   expect(ticket.creatorUserName).toEqual(SupportTicketMock.creator_user_name);
   expect(ticket.creationDate.toTimeString()).toEqual((new Date(SupportTicketMock.creation_date)).toTimeString());
@@ -44,7 +44,7 @@ function runAssertionAgainstMock(ticket: SupportTicket) {
   expect(ticket.toString()).toEqual(JSON.stringify(SupportTicketMock, undefined, 2));
 }
 
-test('Properly instanciate a support ticket instance', () => {
+test('Properly instantiate a support ticket instance', () => {
   const ticket = new SupportTicket(SupportTicketMock);
   runAssertionAgainstMock(ticket);
 });
