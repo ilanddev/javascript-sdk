@@ -26,6 +26,8 @@ import { CloudTenant } from '../vcc/cloud-tenant';
 import { CloudTenantJson } from '../vcc/__json__/cloud-tenant-json';
 import { CloudTenantBillHistory } from './cloud-tenant-bill-history';
 import { CloudTenantBillHistoryJson } from './__json__/cloud-tenant-billing-history-json';
+import { CompanyUser } from './company-user';
+import { CompanyUserJson } from './__json__/company-user';
 
 /**
  * Company.
@@ -149,12 +151,12 @@ export class Company extends Entity {
 
   /**
    * Gets all company users.
-   * @returns {Promise<Array<User>>} a promise with the list of the company users
+   * @returns {Promise<Array<CompanyUser>>} a promise with the list of the company users
    */
-  async getUsers(): Promise<Array<User>> {
+  async getUsers(): Promise<Array<CompanyUser>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/users`).then((response) => {
-      const json = response.data.data as Array<UserJson>;
-      return json.map((it) => new User(it));
+      const json = response.data.data as Array<CompanyUserJson>;
+      return json.map((it) => new CompanyUser(it));
     });
   }
 

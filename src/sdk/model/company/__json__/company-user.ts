@@ -1,10 +1,7 @@
-import { UserType } from './user-type';
-import { UserDomainJson } from './user-domain-json';
+import { UserType } from '../../user/__json__/user-type';
+import { UserDomainJson } from '../../user/__json__/user-domain-json';
 
-/**
- * API User JSON Representation.
- */
-export interface UserJson {
+export interface CompanyUserJson {
   user_type: UserType;
   locked: boolean;
   email: string;
@@ -19,8 +16,9 @@ export interface UserJson {
   fullname: string;
   deleted: boolean;
   created_date: number;
-  deleted_date: number | null;
+  deleted_date: number;
   domain: string | UserDomainJson;
-  first_name?: string;
-  last_name?: string;
+  first_name: string;
+  last_name: string;
+  role: string;
 }
