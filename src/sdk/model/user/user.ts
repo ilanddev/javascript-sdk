@@ -180,14 +180,6 @@ export class User {
   }
 
   /**
-   * Get the user role.
-   * @returns {string}
-   */
-  get role(): string | null {
-    return this._apiUser.role;
-  }
-
-  /**
    * JSON format.
    * @returns {string}
    */
