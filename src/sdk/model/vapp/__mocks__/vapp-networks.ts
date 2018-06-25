@@ -6,7 +6,9 @@ export const MockVappNetworksJson: Array<VappNetworkJson> = [MockVappNetworkJson
 
 export const MockVappVappNetworksResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockVappNetworksJson,
+    data: {
+      data: MockVappNetworksJson
+    },
     status: 200,
     statusText: '',
     headers: {},
