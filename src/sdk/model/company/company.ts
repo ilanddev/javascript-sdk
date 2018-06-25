@@ -3,7 +3,6 @@ import { Iland } from '../../iland';
 import { Role } from '../iam/role/role';
 import { RoleCreationRequest } from '../iam/role/role-creation-request';
 import { User } from '../user/user';
-import { UserCreationRequest } from '../user/user-creation-request';
 import { SupportTicket } from './support-ticket/support-ticket';
 import { Org } from '../org/org';
 import { Vapp } from '../vapp/vapp';
@@ -28,6 +27,7 @@ import { CloudTenantBillHistory } from './cloud-tenant-bill-history';
 import { CloudTenantBillHistoryJson } from './__json__/cloud-tenant-billing-history-json';
 import { CompanyUser } from './company-user';
 import { CompanyUserJson } from './__json__/company-user';
+import { UserCreateRequest } from './user-creation-request';
 
 /**
  * Company.
@@ -190,7 +190,7 @@ export class Company extends Entity {
    * Creates a new company user.
    * @returns {Promise<User>} a promise with the newly created user
    */
-  async createUser(request: UserCreationRequest): Promise<User> {
+  async createUser(request: UserCreateRequest): Promise<User> {
     return Iland.getHttp().post(`/companies/${this.uuid}/users`, request.json).then((response) => {
       const json = response.data as UserJson;
       return new User(json);
