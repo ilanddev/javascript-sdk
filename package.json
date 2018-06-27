@@ -30,6 +30,7 @@
   "devDependencies": {
     "@types/jest": "20.0.2",
     "@types/node": "7.0.12",
+    "@types/qs": "^6.5.1",
     "dts-bundle": "^0.7.3",
     "gh-pages": "1.0.0",
     "glob": "^7.1.2",
@@ -84,6 +85,7 @@
     "@types/keycloak-js": "2.4.0",
     "axios": "0.16.2",
     "keycloak-js": "1.9.8",
+    "qs": "^6.5.2",
     "rxjs": "5.4.2",
     "tslib": "1.7.1"
   }
