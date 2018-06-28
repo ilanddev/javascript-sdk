@@ -1,4 +1,4 @@
-import { UserCreateRequestJson } from './__json__/user-creation-request-json';
+import { UserCreateRequestJson } from './__json__/user-create-request-json';
 
 /**
  * User Creation Request.

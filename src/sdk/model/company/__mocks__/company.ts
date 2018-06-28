@@ -7,8 +7,8 @@ import { SupportTicketMock } from '../support-ticket/__mocks__/support-ticket';
 import { CompanyJson } from '../__json__/company-json';
 import { RoleCreationRequestJson } from '../../iam/role/__json__/role-creation-request-json';
 import { RoleJson } from '../../iam/role/__json__/role-json';
-import { UserCreationRequestJson } from '../../user/__json__/user-creation-request-json';
 import { UserJson } from '../../user/__json__/user-json';
+import { UserCreateRequestJson } from '../__json__/user-create-request-json';
 
 export const MockCompanyJson: CompanyJson = {
   deleted: false,
@@ -125,9 +125,9 @@ export class MockCompanyService {
     });
   }
 
-  static async createUser(request: UserCreationRequestJson): Promise<AxiosResponse> {
+  static async createUser(request: UserCreateRequestJson): Promise<AxiosResponse> {
     const mockUser: UserJson = {
-      name: request.name,
+      name: request.username,
       address: '',
       city: '',
       company: '',
@@ -142,8 +142,7 @@ export class MockCompanyService {
       state: '',
       user_type: 'CUSTOMER',
       zip: '',
-      domain: request.domain,
-      role: null
+      domain: request.domain
     };
     return new Promise<AxiosResponse>(function(resolve) {
       resolve({

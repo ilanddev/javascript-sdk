@@ -27,7 +27,7 @@ import { CloudTenantBillHistory } from './cloud-tenant-bill-history';
 import { CloudTenantBillHistoryJson } from './__json__/cloud-tenant-billing-history-json';
 import { CompanyUser } from './company-user';
 import { CompanyUserJson } from './__json__/company-user';
-import { UserCreateRequest } from './user-creation-request';
+import { UserCreateRequest } from './user-create-request';
 
 /**
  * Company.
