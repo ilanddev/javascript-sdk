@@ -47,8 +47,8 @@ export class SupportTicket {
    * Get support ticket crm
    * @returns {string}
    */
-  get crm(): string {
-    return this._json.crm;
+  get companyId(): string {
+    return this._json.company_id;
   }
 
   /**
@@ -168,9 +168,10 @@ export class SupportTicket {
    * @returns {Promise<Array<SupportTicketAttachment>>}
    */
   async getAttachments(): Promise<Array<SupportTicketAttachment>> {
-    return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/attachments`).then((response) => {
-      return response.data as Array<SupportTicketAttachment>;
-    });
+    return Iland.getHttp().get(`/companies/${this.companyId}/support-tickets/${this.id}/attachments`)
+        .then((response) => {
+          return response.data as Array<SupportTicketAttachment>;
+        });
   }
 
   /**
@@ -179,7 +180,7 @@ export class SupportTicket {
    * @returns {Promise<SupportTicketAttachment>}
    */
   async getAttachment(attachmentId: number): Promise<SupportTicketAttachment> {
-    return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/attachments/${attachmentId}`)
+    return Iland.getHttp().get(`/companies/${this.companyId}/support-tickets/${this.id}/attachments/${attachmentId}`)
       .then((response) => {
         return response.data as SupportTicketAttachment;
       });
@@ -192,7 +193,7 @@ export class SupportTicket {
    */
   async isAttachmentDownloadable(attachmentId: number): Promise<boolean> {
     return Iland.getHttp()
-      .get(`/companies/${this.crm}/support-tickets/${this.id}/attachments/${attachmentId}/is-downloadable`)
+      .get(`/companies/${this.companyId}/support-tickets/${this.id}/attachments/${attachmentId}/is-downloadable`)
       .then((response) => {
         return response.data.is_downloadable;
       });
@@ -203,7 +204,7 @@ export class SupportTicket {
    * @returns {Promise<Array<SupportTicketComment>>}
    */
   async getComments(): Promise<Array<SupportTicketComment>> {
-    return Iland.getHttp().get(`/companies/${this.crm}/support-tickets/${this.id}/comments`).then((response) => {
+    return Iland.getHttp().get(`/companies/${this.companyId}/support-tickets/${this.id}/comments`).then((response) => {
       return response.data as Array<SupportTicketComment>;
     });
   }

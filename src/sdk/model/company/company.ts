@@ -3,7 +3,6 @@ import { Iland } from '../../iland';
 import { Role } from '../iam/role/role';
 import { RoleCreationRequest } from '../iam/role/role-creation-request';
 import { User } from '../user/user';
-import { UserCreationRequest } from '../user/user-creation-request';
 import { SupportTicket } from './support-ticket/support-ticket';
 import { Org } from '../org/org';
 import { Vapp } from '../vapp/vapp';
@@ -26,6 +25,9 @@ import { CloudTenant } from '../vcc/cloud-tenant';
 import { CloudTenantJson } from '../vcc/__json__/cloud-tenant-json';
 import { CloudTenantBillHistory } from './cloud-tenant-bill-history';
 import { CloudTenantBillHistoryJson } from './__json__/cloud-tenant-billing-history-json';
+import { CompanyUser } from './company-user';
+import { CompanyUserJson } from './__json__/company-user';
+import { UserCreateRequest } from './user-creation-request';
 
 /**
  * Company.
@@ -149,12 +151,12 @@ export class Company extends Entity {
 
   /**
    * Gets all company users.
-   * @returns {Promise<Array<User>>} a promise with the list of the company users
+   * @returns {Promise<Array<CompanyUser>>} a promise with the list of the company users
    */
-  async getUsers(): Promise<Array<User>> {
+  async getUsers(): Promise<Array<CompanyUser>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/users`).then((response) => {
-      const json = response.data.data as Array<UserJson>;
-      return json.map((it) => new User(it));
+      const json = response.data.data as Array<CompanyUserJson>;
+      return json.map((it) => new CompanyUser(it));
     });
   }
 
@@ -188,7 +190,7 @@ export class Company extends Entity {
    * Creates a new company user.
    * @returns {Promise<User>} a promise with the newly created user
    */
-  async createUser(request: UserCreationRequest): Promise<User> {
+  async createUser(request: UserCreateRequest): Promise<User> {
     return Iland.getHttp().post(`/companies/${this.uuid}/users`, request.json).then((response) => {
       const json = response.data as UserJson;
       return new User(json);

@@ -4,7 +4,7 @@ import { Company } from '../company';
 import { MockCompanyJson } from '../__mocks__/company';
 import { RoleCreationRequestBuilder } from '../../iam/role/role-creation-request';
 import { PolicyBuilder } from '../../iam/policy/policy';
-import { UserCreationRequest } from '../../user/user-creation-request';
+import { UserCreationRequest } from '../user-creation-request';
 import { MockOrgJson } from '../../org/__mocks__/org';
 import { MockVdcJson } from '../../vdc/__mocks__/vdc';
 import { MockVappJson } from '../../vapp/__mocks__/vapp';

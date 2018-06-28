@@ -116,11 +116,11 @@ export class CloudTenant extends Entity {
   }
 
   /**
-   * Gets the crm number of the Cloud Tenant.
-   * @returns {string} value
+   * Gets the company ID of the Cloud Tenant.
+   * @returns {string} company ID
    */
-  get crmNumber(): string {
-    return this._json.crm;
+  get companyId(): string {
+    return this._json.company_id;
   }
 
   /**

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Iland } from '../../iland';
 import { ApiError, ApiErrorJson } from '../../config/api-error';
+import * as qs from 'qs';
 
 const DEFAULT_API_VERSION = 1.0;
 const ILAND_MIME_VND_PREFIX = 'vnd.ilandcloud.api';
@@ -24,6 +25,9 @@ export class Http {
         'x-enable-json-security-chars': 'true',
         'Accept': defaultMime,
         'Content-Type': 'application/json'
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: 'repeat' });
       }
     });
 

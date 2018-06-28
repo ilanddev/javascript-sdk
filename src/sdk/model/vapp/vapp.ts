@@ -245,7 +245,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    */
   async getVms(): Promise<Array<Vm>> {
     return Iland.getHttp().get(`/vapps/${this.uuid}/vms`).then((response) => {
-      const json = response.data as Array<VmJson>;
+      const json = response.data.data as Array<VmJson>;
       return json.map((vmJson) => new Vm(vmJson));
     });
   }
@@ -256,7 +256,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    */
   async getVappNetworks(): Promise<Array<VappNetwork>> {
     return Iland.getHttp().get(`/vapps/${this.uuid}/networks`).then((response) => {
-      const json = response.data as Array<VappNetworkJson>;
+      const json = response.data.data as Array<VappNetworkJson>;
       return json.map((vappNetJson) => new VappNetwork(vappNetJson));
     });
   }

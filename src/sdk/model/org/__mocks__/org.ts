@@ -13,7 +13,7 @@ export const MockOrgJson: OrgJson = {
   fullname: 'My Corp, Inc',
   description: 'ab',
   vcloud_href: 'https://dev-vcd02.iland.dev/cloud/org/ilandTestJa-000003',
-  crm: '000003',
+  company_id: '000003',
   uuid: 'dev-vcd01.iland.dev:urn:vcloud:org:69e9c2b7-ee9f-4a3e-80f0-8ffc66aac147',
   name: 'ilandTestJa-000003',
   deleted: false,

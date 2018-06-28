@@ -62,6 +62,12 @@ var config = {
       commonjs2: "rxjs",
       amd: "rxjs",
       root: "rxjs"
+    },
+    "qs": {
+      commonjs: "qs",
+      commonjs2: "qs",
+      amd: "qs",
+      root: "qs"
     }
   },
   resolve: {

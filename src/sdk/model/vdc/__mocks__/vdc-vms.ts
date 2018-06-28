@@ -6,7 +6,9 @@ export const MockVdcVmsJson: Array<VmJson> = [MockVmJson];
 
 export const MockVdcVmsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockVdcVmsJson,
+    data: {
+      data: MockVdcVmsJson
+    },
     status: 200,
     statusText: '',
     headers: {},
