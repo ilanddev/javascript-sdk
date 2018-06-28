@@ -84,7 +84,7 @@ test('Can get company users', async() => {
       expect(users).toBeDefined();
       expect(users.length).toBeGreaterThan(0);
       for (const user of users) {
-        expect(user.username).toBeDefined();
+        expect(user.name).toBeDefined();
         expect(user.userType).toBeDefined();
       }
     });

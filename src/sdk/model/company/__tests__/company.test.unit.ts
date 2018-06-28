@@ -4,12 +4,12 @@ import { Company } from '../company';
 import { MockCompanyJson } from '../__mocks__/company';
 import { RoleCreationRequestBuilder } from '../../iam/role/role-creation-request';
 import { PolicyBuilder } from '../../iam/policy/policy';
-import { UserCreationRequest } from '../user-creation-request';
 import { MockOrgJson } from '../../org/__mocks__/org';
 import { MockVdcJson } from '../../vdc/__mocks__/vdc';
 import { MockVappJson } from '../../vapp/__mocks__/vapp';
 import { MockVmJson } from '../../vm/__mocks__/vm';
 import { SupportTicketMock } from '../support-ticket/__mocks__/support-ticket';
+import { UserCreateRequest } from '../user-create-request';
 
 jest.mock('../../../service/http/http');
 
@@ -118,14 +118,15 @@ test('Properly submits request to create a new user', async() => {
   return Company.getCompany(id).then(async(company) => {
     expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}`);
     expect(company.entityType).toBe('COMPANY');
-    const userCreationRequest = new UserCreationRequest('domain', 'username', 'fullName', 'email', 'password');
+    const userCreationRequest = new UserCreateRequest('password', 'domain', 'fullName',
+      'email', 'username');
     expect(userCreationRequest.toString()).toBeDefined();
     return company.createUser(userCreationRequest).then((user) => {
       expect(Iland.getHttp().post).lastCalledWith(`/companies/${id}/users`, userCreationRequest.json);
-      expect(user.email).toBe(userCreationRequest.email);
-      expect(user.username).toBe(userCreationRequest.username);
-      expect(user.domain).toBe(userCreationRequest.domain);
-      expect(user.fullName).toBe(userCreationRequest.fullName);
+      expect(user.email).toEqual(userCreationRequest.email);
+      expect(user.username).toEqual(userCreationRequest.username);
+      expect(user.domain).toEqual(userCreationRequest.domain);
+      expect(user.fullName).toEqual(userCreationRequest.fullname);
     });
   });
 });
@@ -189,7 +190,7 @@ test('Properly submits request to get company logo', async() => {
     return company.getLogo().then(async(logo) => {
       expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}/logo`,
         {
-          'headers': {'Accept': 'image/jpeg'},
+          'headers': { 'Accept': 'image/jpeg' },
           'responseType': 'arraybuffer'
         }
       );
@@ -208,7 +209,7 @@ test('Properly submits request to set company logo', async() => {
       expect(Iland.getHttp().post).lastCalledWith(
         `/companies/${id}/logo`,
         new Uint8Array([255, 216, 255, 224]),
-        {'headers': {'Content-Type': 'image/jpeg'}}
+        { 'headers': { 'Content-Type': 'image/jpeg' } }
       );
       expect(response).toBeTruthy();
     });
