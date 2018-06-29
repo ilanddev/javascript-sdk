@@ -212,7 +212,7 @@ export class Company extends Entity {
         search: search || ''
       }
     }).then((response) => {
-      const supportTickets = response.data as Array<SupportTicketJson>;
+      const supportTickets = response.data.data as Array<SupportTicketJson>;
       return supportTickets.map(it => new SupportTicket(it));
     });
   }
@@ -236,7 +236,7 @@ export class Company extends Entity {
    */
   async getOrganizations(locationId: string): Promise<Array<Org>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/orgs`).then((response) => {
-      const orgs = response.data as Array<OrgJson>;
+      const orgs = response.data.data as Array<OrgJson>;
       return orgs.map(it => new Org(it));
     });
   }
@@ -248,7 +248,7 @@ export class Company extends Entity {
    */
   async getVapps(locationId: string): Promise<Array<Vapp>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vapps`).then((response) => {
-      const vapps = response.data as Array<VappJson>;
+      const vapps = response.data.data as Array<VappJson>;
       return vapps.map(it => new Vapp(it));
     });
   }
@@ -260,7 +260,7 @@ export class Company extends Entity {
    */
   async getVdcs(locationId: string): Promise<Array<Vdc>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vdcs`).then((response) => {
-      const vdcs = response.data as Array<VdcJson>;
+      const vdcs = response.data.data as Array<VdcJson>;
       return vdcs.map(it => new Vdc(it));
     });
   }
@@ -272,7 +272,7 @@ export class Company extends Entity {
    */
   async getVms(locationId: string): Promise<Array<Vm>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/location/${locationId}/vms`).then((response) => {
-      const vms = response.data as Array<VmJson>;
+      const vms = response.data.data as Array<VmJson>;
       return vms.map(it => new Vm(it));
     });
   }

@@ -54,7 +54,9 @@ export const MockCompanyLogoResponse: Promise<AxiosResponse> = new Promise<Axios
 
 export const MockCompanyOrgsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [MockOrgJson],
+    data: {
+      data: [MockOrgJson]
+    },
     status: 200,
     statusText: '',
     headers: {},
@@ -64,7 +66,9 @@ export const MockCompanyOrgsResponse: Promise<AxiosResponse> = new Promise<Axios
 
 export const MockCompanyVdcsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [MockVdcJson],
+    data: {
+      data: [MockVdcJson]
+    },
     status: 200,
     statusText: '',
     headers: {},
@@ -74,7 +78,9 @@ export const MockCompanyVdcsResponse: Promise<AxiosResponse> = new Promise<Axios
 
 export const MockCompanyVappsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [MockVappJson],
+    data: {
+      data: [MockVappJson]
+    },
     status: 200,
     statusText: '',
     headers: {},
@@ -84,7 +90,9 @@ export const MockCompanyVappsResponse: Promise<AxiosResponse> = new Promise<Axio
 
 export const MockCompanyVmsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [MockVmJson],
+    data: {
+      data: [MockVmJson]
+    },
     status: 200,
     statusText: '',
     headers: {},
@@ -94,7 +102,9 @@ export const MockCompanyVmsResponse: Promise<AxiosResponse> = new Promise<AxiosR
 
 export const MockCompanySupportTicketsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: [SupportTicketMock],
+    data: {
+      data: [SupportTicketMock]
+    },
     status: 200,
     statusText: '',
     headers: {},
