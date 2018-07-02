@@ -29,6 +29,7 @@ test('Properly submits request to get a Company', async() => {
     expect(company.entityType).toBe('COMPANY');
     expect(company.hasIlandBackup).toBe(MockCompanyJson.has_vcc);
     expect(company.hasIlandCloud).toBe(MockCompanyJson.has_iaas);
+    expect(company.hasIlandObjectStorage).toBe(MockCompanyJson.has_object_storage);
     expect(company.uuid).toBe(MockCompanyJson.uuid);
     expect(company.name).toBe(MockCompanyJson.name);
     expect(company.deleted).toBe(MockCompanyJson.deleted);
