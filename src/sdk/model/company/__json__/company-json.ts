@@ -6,4 +6,5 @@ import { EntityJson } from '../../common/__json__/entity-json';
 export interface CompanyJson extends EntityJson {
   has_iaas: boolean;
   has_vcc: boolean;
+  has_object_storage: boolean;
 }

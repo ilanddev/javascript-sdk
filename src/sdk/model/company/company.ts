@@ -71,6 +71,14 @@ export class Company extends Entity {
   }
 
   /**
+   * Indicates whether the company has the iland Object Storage product
+   * @returns {boolean}
+   */
+  get hasIlandObjectStorage(): boolean {
+    return this._json.has_object_storage;
+  }
+
+  /**
    * Gets the raw JSON object from the API.
    * @returns {CompanyJson} the JSON representation
    */
