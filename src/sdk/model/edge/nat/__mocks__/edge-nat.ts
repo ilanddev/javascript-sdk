@@ -3,22 +3,22 @@ import { AxiosResponse } from 'axios';
 
 export const MockEdgeNatJson: NatServiceJson = {
   'external_ip': null,
-  'type': null,
+  'nat_type': null,
   'policy': null,
   'rules': [
     {
+      'description': 'Outbound NAT',
+      'id': 204913,
+      'rule_type': 'SNAT',
+      'enabled': true,
       'icmp_sub_type': null,
       'original_ip': '10.1.22.0/24',
       'original_port': null,
       'protocol': null,
-      'translated_ip': '209.143.151.73',
+      'translated_ip': '209.143.151.72',
       'translated_port': null,
-      'interface': 'External - 209.143.151.64/26',
-      'idx': 1,
-      'description': 'Outbound traffic',
-      'id': 196646,
-      'type': 'SNAT',
-      'enabled': true
+      'interface_name': 'External - 209.143.151.64/26',
+      'rule_index': 1
     }
   ],
   'enabled': true
