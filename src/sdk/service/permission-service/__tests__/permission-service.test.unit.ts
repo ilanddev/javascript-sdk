@@ -159,17 +159,13 @@ test('Properly get the view permissions for domain', () => {
 
 test('Properly get implied permissions', () => {
   const impliedPermissionType: Array<PermissionType> =
-      ['VIEW_ILAND_CLOUD_VDC', 'VIEW_ILAND_CLOUD_CATALOG', 'VIEW_ILAND_CLOUD_VPG'];
+      ['VIEW_ILAND_CLOUD_VDC'];
   const permissionService = PermissionService.getInstance();
-  let impliedPermissions = permissionService.getImpliedPermissions(impliedPermissionType);
+  const impliedPermissions = permissionService.getImpliedPermissions(impliedPermissionType);
   if (impliedPermissions !== null) {
     for (const permission of impliedPermissions) {
       expect(permission).toBeInstanceOf(Permission);
     }
-    expect(impliedPermissions[0].permissionType).toBe('VIEW_ILAND_CLOUD_VDC');
-    expect(impliedPermissions[1].permissionType).toBe('VIEW_ILAND_CLOUD_CATALOG');
-    expect(impliedPermissions[2].permissionType).toBe('VIEW_ILAND_CLOUD_VPG');
+    expect(impliedPermissions[0].permissionType).toBe('VIEW_ILAND_CLOUD_VAPP');
   }
-  impliedPermissions = permissionService.getImpliedPermissions(undefined);
-  expect(impliedPermissions).toBeNull();
 });

@@ -81,11 +81,9 @@ export class IamService {
         const builder: PolicyBuilder = new PolicyBuilder(target.uuid, target.type, 'CUSTOM');
         const permissions: Array<Permission> | null =
           PermissionService.getInstance().getImpliedPermissions(directParentPolicy.permissions);
-        if (permissions !== null) {
-          for (const p of permissions) {
-            if (p.domain === target.type) {
-              builder.addPermission(p.permissionType);
-            }
+        for (const p of permissions) {
+          if (p.domain === target.type) {
+            builder.addPermission(p.permissionType);
           }
         }
         return builder.build();
