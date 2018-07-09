@@ -46,20 +46,19 @@ export class PermissionService {
 
   /**
    * Get implied permission for the current permission.
-   * @param {Array<PermissionType> | undefined} _impliedPermissions
+   * @param {Array<PermissionType> | undefined} originalPermissions
    * @returns {Array<Permission> | null}
    */
-  getImpliedPermissions(_impliedPermissions: Array<PermissionType> | undefined): Array<Permission> | null {
-    if (_impliedPermissions === undefined) {
-      return null;
+  getImpliedPermissions(originalPermissions: Array<PermissionType> | undefined): Array<Permission> {
+    if (originalPermissions === undefined) {
+      return [];
     }
     const impliedPermissions: Array<Permission> = [];
-    let tmp;
-    for (const permission of _impliedPermissions) {
-      if (this.permissions) {
-        tmp = this.permissions.get(permission);
-        if (tmp) {
-          impliedPermissions.push(tmp);
+    for (const permissionType of originalPermissions) {
+      const permission = this.permissions.get(permissionType);
+      if (permission && permission.impliedPermissions !== null) {
+        for (const impliedPermission of permission.impliedPermissions) {
+          impliedPermissions.push(this.permissions.get(impliedPermission)!!);
         }
       }
     }
