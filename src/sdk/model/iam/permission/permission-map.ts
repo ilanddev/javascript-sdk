@@ -228,6 +228,15 @@ export class PermissionsMap {
     this._permissions.set('MANAGE_ILAND_CLOUD_ORG_SECURITY',
       (new Permission('MANAGE_ILAND_CLOUD_ORG_SECURITY', 'IAAS_ORGANIZATION', 'WRITE', true,
         false, ['VIEW_ILAND_CLOUD_ORG_SECURITY'])));
+    this._permissions.set('VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS',
+        (new Permission('VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS', 'IAAS_ORGANIZATION', 'READ', true,
+            false, ['VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS'])));
+    this._permissions.set('MANAGE_ILAND_CLOUD_ORG_DR_RUNBOOKS',
+        (new Permission('MANAGE_ILAND_CLOUD_ORG_DR_RUNBOOKS', 'IAAS_ORGANIZATION', 'WRITE', true,
+            false, ['VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS',
+              'INITIATE_ILAND_CLOUD_VPG_LIVE_FAILOVER',
+              'INITIATE_ILAND_CLOUD_VPG_TEST_FAILOVER',
+              'MANAGE_ILAND_CLOUD_VPG_CONFIGURATION'])));
     // IAAS_LOCATION level permissions
     this._permissions.set('VIEW_ILAND_CLOUD_LOCATION',
       (new Permission('VIEW_ILAND_CLOUD_LOCATION', 'IAAS_LOCATION', 'READ', true,

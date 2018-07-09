@@ -35,7 +35,7 @@ function runPermissionServiceViewPermissionAssertions(permission: Permission | u
 
 test('Properly instantiate permission service to get permissions and domain permissions maps', () => {
   const permissionService = PermissionService.getInstance();
-  expect(permissionService.permissions.size).toBe(79);
+  expect(permissionService.permissions.size).toBe(81);
   expect(permissionService.domainPermissions.size).toBe(17);
 });
 
@@ -50,7 +50,7 @@ test('Properly get the available permissions for domain', () => {
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_LOCATION');
   runPermissionServiceAssertions(availablePermissions, 2);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_ORGANIZATION');
-  runPermissionServiceAssertions(availablePermissions, 7);
+  runPermissionServiceAssertions(availablePermissions, 9);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VPG');
   runPermissionServiceAssertions(availablePermissions, 4);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_CATALOG');
