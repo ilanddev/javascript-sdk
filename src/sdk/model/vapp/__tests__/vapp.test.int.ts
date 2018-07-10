@@ -83,9 +83,9 @@ test('Can get vApp and verify required properties', async() => {
     expect(vapp.deletedDate).toBeNull();
     expect(vapp.entityType).toBe('IAAS_VAPP');
     expect(vapp.runtimeLease).toBeDefined();
-    expect(vapp.runtimeLease).toBe(raw.runtime_lease);
+    expect(vapp.runtimeLease).toBe(raw.runtime_lease_in_seconds);
     expect(vapp.storageLease).toBeDefined();
-    expect(vapp.storageLease).toBe(raw.storage_lease);
+    expect(vapp.storageLease).toBe(raw.storage_lease_in_seconds);
     if (vapp.storageLeaseExpirationDate === null) {
       expect(vapp.storageLeaseExpirationDate).toBeNull();
     } else {

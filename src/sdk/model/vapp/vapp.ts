@@ -105,7 +105,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    * @returns {number} runtime lease
    */
   get runtimeLease(): number {
-    return this._json.runtime_lease;
+    return this._json.runtime_lease_in_seconds;
   }
 
   /**
@@ -113,7 +113,7 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    * @returns {number} storage lease
    */
   get storageLease(): number {
-    return this._json.storage_lease;
+    return this._json.storage_lease_in_seconds;
   }
 
   /**
