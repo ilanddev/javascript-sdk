@@ -12,8 +12,8 @@ export interface VappJson extends EntityJson {
   deployed: boolean;
   status: VappStatus;
   storage_profiles: Array<string>;
-  runtime_lease: number;
-  storage_lease: number;
+  runtime_lease_in_seconds: number;
+  storage_lease_in_seconds: number;
   runtime_expire: number | null;
   storage_expire: number | null;
   vdc_uuid: string;
