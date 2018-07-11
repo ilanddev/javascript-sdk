@@ -29,7 +29,7 @@ function runAssertionsAgainstCheckpointMock(checkpoint: Checkpoint, checkpointMo
 test('Properly get NAT checkpoints', async() => {
   const edge = new Edge(MockEdgeJson);
   return edge.getNatCheckpoints().then(natCheckpoints => {
-    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/nat/checkpoints`);
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/nat-checkpoints`);
     expect(natCheckpoints.length).toEqual(MockEdgeNatCheckpointsJson.length);
     let checkpoint;
     let checkpointMock;
@@ -45,7 +45,7 @@ test('Properly get NAT checkpoint', async() => {
   const edge = new Edge(MockEdgeJson);
   const checkpointID = '0ea3ac90-d471-11e7-b86f-79bbfaab00e8';
   return edge.getNatCheckpoint(checkpointID).then(natCheckpoint => {
-    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/nat/checkpoints/${checkpointID}`);
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/nat-checkpoints/${checkpointID}`);
     runAssertionsAgainstCheckpointMock(natCheckpoint, MockEdgeNatCheckpointsJson[0]);
   });
 });
