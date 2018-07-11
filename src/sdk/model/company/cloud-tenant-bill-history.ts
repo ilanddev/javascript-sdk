@@ -16,7 +16,7 @@ export class CloudTenantBillHistory {
    */
   get bills(): { [key: string]: Array<CloudTenantBill> } {
     const bills: { [key: string]: Array<CloudTenantBill> } = {};
-    for (const k in this._json) {
+    for (const k in this._json.bills) {
       const v = this._json.bills[k];
       bills[k] = v.map(it => new CloudTenantBill(it));
     }
