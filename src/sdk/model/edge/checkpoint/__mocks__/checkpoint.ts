@@ -17,7 +17,9 @@ export const MockEdgeNatCheckpointsJson: Array<CheckpointJson> = [
 
 export const MockEdgeNatCheckpointsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
   resolve({
-    data: MockEdgeNatCheckpointsJson,
+    data: {
+      data: MockEdgeNatCheckpointsJson
+    },
     status: 200,
     statusText: '',
     headers: {},

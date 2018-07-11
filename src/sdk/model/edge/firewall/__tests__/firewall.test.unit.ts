@@ -82,7 +82,7 @@ test('Properly get firewall logs for Edge.', async() => {
 test('Properly get firewall checkpoints for Edge.', async() => {
   const edge = new Edge(MockEdgeJson);
   return edge.getFirewallCheckpoints().then(checkpoints => {
-    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/firewall/checkpoints`);
+    expect(Iland.getHttp().get).lastCalledWith(`/edges/${MockEdgeJson.uuid}/firewall-checkpoints`);
     expect(checkpoints.length).toEqual(MockEdgeFirewallCheckpoints.length);
     for (const idx in checkpoints) {
       expect(checkpoints[idx].export).toEqual(MockEdgeFirewallCheckpoints[idx].export);
@@ -98,7 +98,7 @@ test('Properly get firewall checkpoint by it\'s ID for Edge.', async() => {
   const edge = new Edge(MockEdgeJson);
   return edge.getFirewallCheckpoint('82f74090-8915-11e7-b13e-2d72519d62d5').then(checkpoint => {
     expect(Iland.getHttp().get)
-      .lastCalledWith(`/edges/${MockEdgeJson.uuid}/firewall/checkpoints/82f74090-8915-11e7-b13e-2d72519d62d5`);
+      .lastCalledWith(`/edges/${MockEdgeJson.uuid}/firewall-checkpoints/82f74090-8915-11e7-b13e-2d72519d62d5`);
     expect(checkpoint.uuid).toEqual(MockEdgeFirewallCheckpoints[0].uuid);
     expect(checkpoint.time).toEqual(new Date(MockEdgeFirewallCheckpoints[0].time));
     expect(checkpoint.export).toEqual(MockEdgeFirewallCheckpoints[0].export);

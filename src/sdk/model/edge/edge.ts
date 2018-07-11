@@ -251,12 +251,10 @@ export class Edge extends Entity {
    * Get a list of edge firewall checkpoints that are snapshots of an edge firewall in time.
    * @returns {Promise<Array<Checkpoint>>}
    * @description These checkpoints can be used to restore the edge firewall to a previous state in time.
-   * The actual firewall config is not returned by this endpoint,
-   * to retrieve the actual config the edge/{edgeUuid}/firewall/checkpoint/{checkpointUuid} endpoint must be used..
    */
   async getFirewallCheckpoints(): Promise<Array<Checkpoint>> {
-    return Iland.getHttp().get(`/edges/${this.uuid}/firewall/checkpoints`).then((response) => {
-      return (response.data as Array<CheckpointJson>).map(checkpoint => new Checkpoint(checkpoint));
+    return Iland.getHttp().get(`/edges/${this.uuid}/firewall-checkpoints`).then((response) => {
+      return (response.data.data as Array<CheckpointJson>).map(checkpoint => new Checkpoint(checkpoint));
     });
   }
 
@@ -265,10 +263,9 @@ export class Edge extends Entity {
    * @param {string} checkpointUuid
    * @returns {Promise<Checkpoint>}
    * @description The actual firewall config of the checkpoint will be included in the return.
-   * Valid checkpoint uuids can be found using the /edge/{edgeUuid}/firewall/checkpoint endpoint.
    */
   async getFirewallCheckpoint(checkpointUuid: string): Promise<Checkpoint> {
-    return Iland.getHttp().get(`/edges/${this.uuid}/firewall/checkpoints/${checkpointUuid}`).then((response) => {
+    return Iland.getHttp().get(`/edges/${this.uuid}/firewall-checkpoints/${checkpointUuid}`).then((response) => {
       return new Checkpoint(response.data as CheckpointJson);
     });
   }
@@ -336,12 +333,10 @@ export class Edge extends Entity {
    * Get a list of edge NAT checkpoints that are snapshots of an edge NAT service in time
    * @returns {Promise<Array<Checkpoint>>}
    * @description These checkpoints can be used to restore the edge NAT service to a previous state in time.
-   * The actual NAT config is not returned by this endpoint,
-   * to retrieve the actual config the edge/{edgeUuid}/nat/checkpoint/{checkpointUuid} endpoint must be used.
    */
   async getNatCheckpoints(): Promise<Array<Checkpoint>> {
-    return Iland.getHttp().get(`/edges/${this.uuid}/nat/checkpoints`).then((response) => {
-      return (response.data as Array<CheckpointJson>).map(checkpoint => new Checkpoint(checkpoint));
+    return Iland.getHttp().get(`/edges/${this.uuid}/nat-checkpoints`).then((response) => {
+      return (response.data.data as Array<CheckpointJson>).map(checkpoint => new Checkpoint(checkpoint));
     });
   }
 
@@ -350,10 +345,9 @@ export class Edge extends Entity {
    * @param {string} checkpointUuid
    * @returns {Promise<Checkpoint>}
    * @description The actual NAT config of the checkpoint will be included in the return.
-   * Valid checkpoint uuids can be found using the /edge/{edgeUuid}/nat/checkpoint endpoint
    */
   async getNatCheckpoint(checkpointUuid: string): Promise<Checkpoint> {
-    return Iland.getHttp().get(`/edges/${this.uuid}/nat/checkpoints/${checkpointUuid}`).then((response) => {
+    return Iland.getHttp().get(`/edges/${this.uuid}/nat-checkpoints/${checkpointUuid}`).then((response) => {
       return new Checkpoint(response.data as CheckpointJson);
     });
   }

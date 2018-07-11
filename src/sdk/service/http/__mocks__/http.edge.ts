@@ -31,10 +31,10 @@ export async function MockEdgeGet(url: string, config?: AxiosRequestConfig): Pro
     case /\/edges\/[^\/]+\/firewall-logs/.test(url):
       // get an edge Firewall logs
       return MockEdgeFirewallLogsResponse;
-    case /\/edges\/[^\/]+\/firewall\/checkpoints$/.test(url):
+    case /\/edges\/[^\/]+\/firewall-checkpoints$/.test(url):
       // get an edge Firewall checkpoints
       return MockEdgeFirewallCheckpointsResponse;
-    case /\/edges\/[^\/]+\/firewall\/checkpoints\/[^\/]+$/.test(url):
+    case /\/edges\/[^\/]+\/firewall-checkpoints\/[^\/]+$/.test(url):
       // get an edge Firewall checkpoints
       return MockEdgeFirewallCheckpointResponse;
     case /\/edges\/[^\/]+\/ipsec-vpn$/.test(url):
@@ -46,10 +46,10 @@ export async function MockEdgeGet(url: string, config?: AxiosRequestConfig): Pro
     case /\/edges\/[^\/]+\/nat$/.test(url):
       // get an edge nat service.
       return MockEdgeNatJsonResponse;
-    case /\/edges\/[^\/]+\/nat\/checkpoints$/.test(url):
+    case /\/edges\/[^\/]+\/nat-checkpoints$/.test(url):
       // get an edge nat checkpoints.
       return MockEdgeNatCheckpointsResponse;
-    case /\/edges\/[^\/]+\/nat\/checkpoints\/[^\/]+$/.test(url):
+    case /\/edges\/[^\/]+\/nat-checkpoints\/[^\/]+$/.test(url):
       // get an edge nat checkpoint.
       return MockEdgeNatCheckpointResponse;
     case /\/edges\/[^\/]+\/sslvpn$/.test(url):

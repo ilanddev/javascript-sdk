@@ -93,7 +93,9 @@ export const MockEdgeFirewallLogsResponse: Promise<AxiosResponse> = new Promise<
 export const MockEdgeFirewallCheckpointsResponse: Promise<AxiosResponse> =
   new Promise<AxiosResponse>(function(resolve) {
     resolve({
-      data: MockEdgeFirewallCheckpoints,
+      data: {
+        data: MockEdgeFirewallCheckpoints
+      },
       status: 200,
       statusText: '',
       headers: {},
