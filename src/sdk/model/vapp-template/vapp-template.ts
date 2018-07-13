@@ -165,6 +165,14 @@ export class VappTemplate extends Entity {
   }
 
   /**
+   * Get vm templates.
+   * @returns {Array<VappTemplateVm>}
+   */
+  get vmTemplates(): Array<VappTemplateVm> {
+    return this._json.vm_templates.map(it => new VappTemplateVm(it));
+  }
+
+  /**
    * Gets the raw JSON object from the API.
    * @returns {VappTemplateJson} the API __json__ object
    */
