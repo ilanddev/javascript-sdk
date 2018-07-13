@@ -15,7 +15,7 @@ export async function MockUserGet(url: string, config?: AxiosRequestConfig): Pro
     case /\/users\/[^\/]+\/companies?$/.test(url):
       // get companies for a user
       return MockUserCompaniesResponse;
-    case /\/users\/[^\/]+\/iaas-inventory$/.test(url):
+    case /\/users\/[^\/]+\/inventory$/.test(url):
       return MockUserCompanyInventoryResponse;
     case /\/users\/[^\/]+\/roles\/000002$/.test(url):
       return MockUserRoleForCompanyResponse1;
