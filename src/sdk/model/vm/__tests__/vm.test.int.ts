@@ -27,7 +27,8 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const vms = inventory.getEntitiesByType('IAAS_VM');
+      const vms =
+          inventory.getEntitiesByType('IAAS_VM').filter(it => it.uuid.startsWith('res') || it.uuid.startsWith('dev'));
       expect(vms).toBeDefined();
       if (vms) {
         expect(vms.length).toBeGreaterThan(0);
