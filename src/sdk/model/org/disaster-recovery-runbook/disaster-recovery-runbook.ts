@@ -11,6 +11,8 @@ import {
 } from './disaster-recovery-runbook-finalize-execution-request';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '../../../service/http/http';
+import { DisasterRecoveryRunbookReportDetails } from './disaster-recovery-runbook-task-details';
+import { DisasterRecoveryRunbookReportDetailsJson } from './__json__/disaster-recovery-runbook-task-details-json';
 
 /**
  * Disaster recovery runbook
@@ -249,13 +251,13 @@ export class DisasterRecoveryRunbook {
   /**
    * Get runbook task details
    * @param {string} taskUuid
-   * @returns {Promise<Task>}
+   * @returns {Promise<DisasterRecoveryRunbookReportDetails>}
    */
-  async getRunbookTaskDetails(taskUuid: string) {
+  async getRunbookTaskDetails(taskUuid: string): Promise<DisasterRecoveryRunbookReportDetails> {
     return Iland.getHttp().get(`/disaster-recovery-runbooks/${this.uuid}/runbook-task-details/${taskUuid}`)
       .then((response) => {
-        const json = response.data as TaskJson;
-        return new Task(json);
+        const json = response.data as DisasterRecoveryRunbookReportDetailsJson;
+        return new DisasterRecoveryRunbookReportDetails(json);
       });
   }
 }
