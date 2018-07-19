@@ -1,4 +1,5 @@
 import { EntityJson } from '../../common/__json__/entity-json';
+import { VappTemplateVmJson } from './vapp-template-vm-json';
 
 /**
  * Interface for VappTemplate JSON representation.
@@ -19,4 +20,5 @@ export interface VappTemplateJson extends EntityJson {
   catalog_uuid: string;
   created_date: number;
   is_expired: boolean;
+  vm_templates: Array<VappTemplateVmJson>;
 }
