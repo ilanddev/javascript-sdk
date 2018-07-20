@@ -43,6 +43,10 @@ import { VappNetworkJson } from '../vapp-network/__json__/vapp-network-json';
 import { VappNetwork } from '../vapp-network/vapp-network';
 import { CatalogJson } from '../catalog/__json__/catalog-json';
 import { Catalog } from '../catalog/catalog';
+import { Task } from '../task/task';
+import { TaskList } from '../task/task-list';
+import { TaskFilterParams } from '../task/task-filter-params';
+import { CompanyTaskFilterParams } from './company-task-filter-params';
 
 /**
  * Company.
@@ -513,4 +517,20 @@ export class Company extends Entity {
       return new CloudTenantBillHistory(json);
     });
   }
+
+  /**
+   * Get company tasks.
+   * @param {CompanyTaskFilterParams} filters used to get tasks matching specific criteria
+   * @returns {Promise<TaskList>} a promise that resolves with a task list
+   */
+  async getTasks(filters?: CompanyTaskFilterParams): Promise<TaskList> {
+    if (filters) {
+      return Task.getTasks(new TaskFilterParams(this.uuid, 'COMPANY', filters.includeDescendantTasks,
+          filters.synced, filters.username, filters.timestampAfter, filters.timestampBefore, filters.queryTimestamp,
+          filters.offset, filters.limit, filters.order));
+    } else {
+      return Task.getTasks(new TaskFilterParams(this.uuid, 'COMPANY'));
+    }
+  }
+
 }

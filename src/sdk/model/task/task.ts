@@ -5,6 +5,9 @@ import { TaskJson } from './__json__/task-json';
 import { TaskStatus } from './__json__/task-status-type';
 import { TaskOperation } from './__json__/task-operation-type';
 import { TaskType } from './__json__/task-type';
+import { TaskFilterParams } from './task-filter-params';
+import { TaskListJson } from './__json__/task-page-json';
+import { TaskList } from './task-list';
 
 /**
  * Task.
@@ -17,7 +20,7 @@ export class Task {
   }
 
   /**
-   * Gets a Task by datacenter and UUID.
+   * Gets a Task by UUID.
    * @param taskUuid the task uuid
    * @returns {Promise<Task>} promise that resolves with the Task
    */
@@ -25,6 +28,20 @@ export class Task {
     return Iland.getHttp().get(`/tasks/${taskUuid}`).then((response) => {
       const apiTask = response.data as TaskJson;
       return new Task(apiTask);
+    });
+  }
+
+  /**
+   * Gets a list of tasks filtered by specified query parameters.
+   * @param params the query params
+   * @returns {Promise<TaskList>} promise that resolves with the TaskList
+   */
+  static async getTasks(params: TaskFilterParams): Promise<TaskList> {
+    return Iland.getHttp().get(`/tasks`, {
+      params: params.getQueryParams()
+    }).then((response) => {
+      const list = response.data as TaskListJson;
+      return new TaskList(list);
     });
   }
 
