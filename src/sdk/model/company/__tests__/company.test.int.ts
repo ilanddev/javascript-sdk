@@ -122,3 +122,22 @@ test('Can get logo', async() => {
     });
   });
 });
+
+test('Can get task list', async() => {
+  return Company.getCompany(companyEntity.uuid).then(async(company) => {
+    return company.getTasks({
+      includeDescendantTasks: true
+    }).then(tasks => {
+      expect(tasks.totalRecords).toBeGreaterThan(0);
+      expect(tasks.currentPageParameters).toBeDefined();
+      if (tasks.totalRecords > tasks.data.length) {
+        expect(tasks.nextPageParameters).toBeDefined();
+        expect(tasks.lastPage).toBeFalsy();
+      }
+      expect(tasks.data.length).toBeGreaterThan(0);
+      for (const task of tasks.data) {
+        expect(task.companyId).toEqual(company.uuid);
+      }
+    });
+  });
+});
