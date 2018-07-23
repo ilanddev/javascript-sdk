@@ -1,11 +1,11 @@
 import { Event } from '../event/event';
 import { Observable } from 'rxjs/Observable';
 import { Iland } from '../../iland';
-import { Subscriber } from 'rxjs/Subscriber';
 import { EventJson } from '../event/__json__/event-json';
 import { noop } from 'rxjs/util/noop';
 import { TaskJson } from '../task/__json__/task-json';
 import { Task } from '../task/task';
+import { Subject } from 'rxjs/Subject';
 
 /**
  * PushChannel is an abstraction over a websocket connection that provides an easy way to observe updates for events and
@@ -21,8 +21,7 @@ export class PushChannel {
   private static LONG_POLL_THRESHOLD = 60000;
 
   private _websocket: WebSocket;
-  private _generator: Subscriber<Event | Task>;
-  private _observable: Observable<Event | Task>;
+  private _generator: Subject<Event | Task>;
 
   private constructor(private companyId?: string) {
   }
@@ -39,7 +38,7 @@ export class PushChannel {
   getObservable(): Observable<Event | Task> {
     // connect to ws if necessary
     this._init();
-    return this._observable;
+    return this._generator;
   }
 
   /**
@@ -60,11 +59,9 @@ export class PushChannel {
    */
   private _init() {
     // create the observable
-    if (!this._observable) {
-      this._observable = Observable.create((generator: Subscriber<Event | Task>) => {
-        this._generator = generator;
-        this._initWebsocket();
-      });
+    if (!this._generator) {
+      this._generator = new Subject<Event|Task>();
+      this._initWebsocket();
     }
   }
 
