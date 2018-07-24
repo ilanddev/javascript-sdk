@@ -139,4 +139,12 @@ export class UserWithSecurity extends User {
   isPermittedTo(permissionType: PermissionType, entityUuid: string): boolean {
     return IamService.isUserPermitted(this, entityUuid, permissionType);
   }
+
+  /**
+   * Retrieves a new representation of the user from the API.
+   * @returns {Promise<User>} promise that resolves with updated user
+   */
+  async refresh(): Promise<UserWithSecurity> {
+    return super.refresh().then(() => this);
+  }
 }
