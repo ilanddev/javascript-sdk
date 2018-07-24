@@ -1,6 +1,6 @@
 import { Iland } from '../../iland';
 import { JpegImage } from '../common/jpeg-image';
-import { CompanyInventory } from './inventory-entity/inventory-entity';
+import { CompanyInventory, CompanyInventoryImpl } from './inventory-entity/inventory-entity';
 import { Company } from '../company/company';
 import { Role } from '../iam/role/role';
 import { UserJson } from './__json__/user-json';
@@ -276,7 +276,7 @@ export class User {
       }
     }).then((response) => {
       const userInventory = response.data as UserInventoryJson;
-      return new CompanyInventory(userInventory.inventory[0]);
+      return new CompanyInventoryImpl(userInventory.inventory[0]);
     }, () => {
       throw new Error(`No inventory found for company with id=${companyId}.`);
     });
@@ -289,7 +289,7 @@ export class User {
   async getInventory(): Promise<Array<CompanyInventory>> {
     return Iland.getHttp().get(`/users/${this.username}/inventory`).then((response) => {
       const userInventory = response.data as UserInventoryJson;
-      return userInventory.inventory.map((it) => new CompanyInventory(it));
+      return userInventory.inventory.map((it) => new CompanyInventoryImpl(it));
     });
   }
 
