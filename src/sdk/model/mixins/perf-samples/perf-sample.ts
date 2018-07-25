@@ -14,7 +14,7 @@ export class PerfSample {
     if (typeof firstParam === 'number') {
       // Parameters constructor
       this._json = {
-        timestamp: firstParam,
+        time: firstParam,
         value: value
       } as PerfSampleJson;
     } else if (firstParam instanceof PerfSample) {
@@ -31,7 +31,7 @@ export class PerfSample {
    * @returns {Date}
    */
   get date(): Date {
-    return new Date(this._json.timestamp);
+    return new Date(this._json.time);
   }
 
   /**
@@ -39,7 +39,7 @@ export class PerfSample {
    * @returns {number}
    */
   get timestamp(): number {
-    return this._json.timestamp;
+    return this._json.time;
   }
 
   /**

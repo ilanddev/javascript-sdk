@@ -836,7 +836,7 @@ test('Properly submits request to get VM perf samples', async() => {
     const perfSample = perfSamples.samples[0];
     expect(perfSample instanceof PerfSample).toBeTruthy();
     expect(perfSample.date instanceof Date).toBeTruthy();
-    expect(perfSample.timestamp).toBe(MockVmPerfSamplesSeriesJson.samples[0].timestamp);
+    expect(perfSample.timestamp).toBe(MockVmPerfSamplesSeriesJson.samples[0].time);
     expect(perfSample.value).toBe(MockVmPerfSamplesSeriesJson.samples[0].value);
     expect(perfSample.json).toEqual(MockVmPerfSamplesSeriesJson.samples[0]);
     expect(perfSample.toString().length).toBeGreaterThan(0);

@@ -239,7 +239,7 @@ test('Can get Vpg performance samples given a performance series info', async() 
           expect(sample.toString().length).toBeGreaterThan(0);
           const sampleJson = sample.json;
           expect(sample.timestamp).toBeDefined();
-          expect(sample.timestamp).toBe(sampleJson.timestamp);
+          expect(sample.timestamp).toBe(sampleJson.time);
           expect(sample.value).toBeDefined();
           expect(sample.value).toBe(sampleJson.value);
         });

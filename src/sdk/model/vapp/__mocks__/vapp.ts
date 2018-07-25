@@ -44,15 +44,15 @@ export const MockVappPerfSamplesSeriesJson: PerfSamplesSeriesJson = {
   type: 'average',
   unit: '',
   samples: [
-    { timestamp: 1525259560000, value: 0 },
-    { timestamp: 1525259580000, value: 0 },
-    { timestamp: 1525259600000, value: 0 },
-    { timestamp: 1525259620000, value: 0 },
-    { timestamp: 1525259640000, value: 0 },
-    { timestamp: 1525259660000, value: 0 },
-    { timestamp: 1525259680000, value: 0 },
-    { timestamp: 1525259700000, value: 0 },
-    { timestamp: 1525259720000, value: 0 }
+    { time: 1525259560000, value: 0 },
+    { time: 1525259580000, value: 0 },
+    { time: 1525259600000, value: 0 },
+    { time: 1525259620000, value: 0 },
+    { time: 1525259640000, value: 0 },
+    { time: 1525259660000, value: 0 },
+    { time: 1525259680000, value: 0 },
+    { time: 1525259700000, value: 0 },
+    { time: 1525259720000, value: 0 }
   ]
 };
 
