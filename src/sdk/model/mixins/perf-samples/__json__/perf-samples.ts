@@ -2,7 +2,7 @@
  * API PerfSample JSON Representation.
  */
 export interface PerfSampleJson {
-  timestamp: number;
+  time: number;
   value: number;
 }
 
