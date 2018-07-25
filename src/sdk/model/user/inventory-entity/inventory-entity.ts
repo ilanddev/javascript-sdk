@@ -2,9 +2,20 @@ import { UserCompanyInventoryJson, UserInventoryEntityJson } from './__json__/us
 import { IamEntityType } from '../../common/__json__/iam-entity-type';
 
 /**
- * User inventory.
+ * Inventory Entity.
  */
-export class InventoryEntity {
+export interface InventoryEntity {
+  readonly uuid: string;
+  readonly type: IamEntityType;
+  readonly name: string;
+  readonly parentUuid: string | null;
+  readonly parentType: IamEntityType | null;
+}
+
+/**
+ * User inventory entity implementation.
+ */
+export class InventoryEntityImpl implements InventoryEntity {
 
   constructor(private _json: UserInventoryEntityJson) {
   }
@@ -34,6 +45,14 @@ export class InventoryEntity {
   }
 
   /**
+   * Sets the name of the entity.
+   * @param {string} val the name
+   */
+  set name(val: string) {
+    this._json.name = val;
+  }
+
+  /**
    * Gets the UUID of the parent entity.
    * @returns {string} the parent entity UUID
    */
@@ -50,29 +69,25 @@ export class InventoryEntity {
   }
 }
 
-export class CompanyInventory {
+export interface CompanyInventory {
+  readonly companyId: string;
+  getEntityByUuid(uuid: string): InventoryEntity | undefined;
+  getAllEntitiesByType(): { [type: string]: Array<InventoryEntity> };
+  getEntitiesByType(type: IamEntityType): Array<InventoryEntity>;
+  getChildrenForEntity(uuid: string): { [type: string]: Array<InventoryEntity> } | undefined;
+}
+
+export class CompanyInventoryImpl implements CompanyInventory {
 
   private _uuidMap: { [uuid: string]: InventoryEntity } = {};
   private _childrenMap: { [uuid: string]: { [type: string]: Array<InventoryEntity> } } = {};
-  private _companyId: string;
+  private readonly _companyId: string;
 
   constructor(private _inventory: UserCompanyInventoryJson) {
     this._companyId = _inventory.company_id;
     for (const type in this._inventory.entities) {
       for (const entity of this._inventory.entities[type]) {
-        const inventoryEntity = new InventoryEntity(entity);
-        this._uuidMap[entity.uuid] = inventoryEntity;
-        let parentUuid = 'root';
-        if (entity.parent_uuid !== null) {
-          parentUuid = entity.parent_uuid;
-        }
-        if (!this._childrenMap[parentUuid]) {
-          this._childrenMap[parentUuid] = {};
-        }
-        if (!this._childrenMap[parentUuid][entity.type]) {
-          this._childrenMap[parentUuid][entity.type] = [];
-        }
-        this._childrenMap[parentUuid][entity.type].push(inventoryEntity);
+        this.addEntity(entity, true);
       }
     }
   }
@@ -99,7 +114,7 @@ export class CompanyInventory {
     for (const type in this._inventory.entities) {
       entities[type] = [];
       for (const entity of this._inventory.entities[type]) {
-        entities[type].push(new InventoryEntity(entity));
+        entities[type].push(new InventoryEntityImpl(entity));
       }
     }
     return entities;
@@ -112,7 +127,7 @@ export class CompanyInventory {
    */
   getEntitiesByType(type: IamEntityType): Array<InventoryEntity> {
     const result = this._inventory.entities[type];
-    return result ? result.map((it) => new InventoryEntity(it)) : [];
+    return result ? result.map((it) => new InventoryEntityImpl(it)) : [];
   }
 
   /**
@@ -122,6 +137,50 @@ export class CompanyInventory {
    */
   getChildrenForEntity(uuid: string): { [type: string]: Array<InventoryEntity> } | undefined {
     return this._childrenMap[uuid];
+  }
+
+  addEntity(entity: UserInventoryEntityJson, original: boolean = false) {
+    const inventoryEntity = new InventoryEntityImpl(entity);
+    if (!original) {
+      this._inventory.entities[entity.type].push(entity);
+    }
+    this._uuidMap[entity.uuid] = inventoryEntity;
+    let parentUuid = 'root';
+    if (entity.parent_uuid !== null) {
+      parentUuid = entity.parent_uuid;
+    }
+    if (!this._childrenMap[parentUuid]) {
+      this._childrenMap[parentUuid] = {};
+    }
+    if (!this._childrenMap[parentUuid][entity.type]) {
+      this._childrenMap[parentUuid][entity.type] = [];
+    }
+    this._childrenMap[parentUuid][entity.type].push(inventoryEntity);
+  }
+
+  removeEntity(entityUuid: string) {
+    const entity = this._uuidMap[entityUuid];
+    if (entity) {
+      delete this._uuidMap[entityUuid];
+      const invIdx = this._inventory.entities[entity.type].findIndex(it => it.uuid === entityUuid);
+      if (invIdx >= 0) {
+        this._inventory.entities[entity.type].splice(invIdx, 1);
+      }
+      if (entity.parentUuid) {
+        const parentChildArray = this._childrenMap[entity.parentUuid][entity.type];
+        const parentIdx = parentChildArray.findIndex(it => it.uuid === entityUuid);
+        if (parentIdx >= 0) {
+          parentChildArray.splice(parentIdx, 1);
+        }
+      }
+    }
+  }
+
+  renameEntity(entityUuid: string, newName: string) {
+    const entity = this.getEntityByUuid(entityUuid);
+    if (entity) {
+      (entity as InventoryEntityImpl).name = newName;
+    }
   }
 
 }
