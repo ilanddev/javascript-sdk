@@ -46,6 +46,7 @@ export type EventType =
     'VM_CREATE' |
     'VM_CREATE_REQUEST' |
     'VM_DELETE' |
+    'VM_MODIFY' |
     'VM_MODIFY_REQUEST' |
     'VM_DEPLOY' |
     'VM_DEPLOY_REQUEST' |
@@ -173,13 +174,19 @@ export type EventType =
     'VCD_USER_DISABLE' |
     // USER / KEYCLOAK BASED
     'USER_LOGIN' |
+    'USER_LOGOUT' |
     'USER_REFRESH_TOKEN' |
+    'USER_UPDATE_PASSWORD' |
     'USER_UPDATE_TOTP' |
+    'USER_REMOVE_TOTP' |
     'USER_SEND_RESET_PASSWORD' |
+    'USER_RESET_PASSWORD' |
     'USER_IMPERSONATE' |
     // TASK
     'TASK_CREATE' |
+    'TASK_START' |
     'TASK_ABORT' |
+    'TASK_COMPLETE' |
     'TASK_FAIL' |
     // STORAGE PROFILE
     'STORAGE_PROFILE_CREATE' |
@@ -189,6 +196,7 @@ export type EventType =
     'STORAGE_PROFILE_REMOVE' |
     // SUPPORT TICKET
     'SUPPORT_TICKET_CREATED' |
+    'SUPPORT_TICKET_UPDATED' |
     'SUPPORT_TICKET_COMMENT_CREATED' |
     'SUPPORT_TICKET_ATTACHMENT_CREATED' |
     // VPG
@@ -206,10 +214,9 @@ export type EventType =
     'DISK_CREATE' |
     'DISK_DELETE_REQUEST' |
     'DISK_DELETE' |
-    // RUNBOOKS
     'DR_RUNBOOK_CREATE' |
     'DR_RUNBOOK_UPDATE' |
     'DR_RUNBOOK_DELETE' |
-    // USERS
     'USER_CREATE' |
+    'USER_UPDATE' |
     'USER_DELETE';
