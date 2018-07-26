@@ -1,5 +1,7 @@
 import { UserCompanyInventoryJson, UserInventoryEntityJson } from './__json__/user-inventory-json';
 import { IamEntityType } from '../../common/__json__/iam-entity-type';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 /**
  * Inventory Entity.
@@ -82,6 +84,7 @@ export class CompanyInventoryImpl implements CompanyInventory {
   private _uuidMap: { [uuid: string]: InventoryEntity } = {};
   private _childrenMap: { [uuid: string]: { [type: string]: Array<InventoryEntity> } } = {};
   private readonly _companyId: string;
+  private subject = new Subject<InventoryUpdate>();
 
   constructor(private _inventory: UserCompanyInventoryJson) {
     this._companyId = _inventory.company_id;
@@ -156,6 +159,12 @@ export class CompanyInventoryImpl implements CompanyInventory {
       this._childrenMap[parentUuid][entity.type] = [];
     }
     this._childrenMap[parentUuid][entity.type].push(inventoryEntity);
+    if (!original) {
+      this.subject.next({
+        type: 'CREATE',
+        entity: inventoryEntity
+      });
+    }
   }
 
   removeEntity(entityUuid: string) {
@@ -173,14 +182,35 @@ export class CompanyInventoryImpl implements CompanyInventory {
           parentChildArray.splice(parentIdx, 1);
         }
       }
+      this.subject.next({
+        type: 'DELETE',
+        entity: entity
+      });
     }
   }
 
   renameEntity(entityUuid: string, newName: string) {
     const entity = this.getEntityByUuid(entityUuid);
     if (entity) {
-      (entity as InventoryEntityImpl).name = newName;
+      if (entity.name !== newName) {
+        (entity as InventoryEntityImpl).name = newName;
+        this.subject.next({
+          type: 'UPDATE',
+          entity: entity
+        });
+      }
     }
   }
 
+  getObservable(): Observable<InventoryUpdate> {
+    return this.subject;
+  }
+
 }
+
+export interface InventoryUpdate {
+  type: InventoryUpdateType;
+  entity: InventoryEntity;
+}
+
+export type InventoryUpdateType = 'CREATE' | 'DELETE' | 'UPDATE';
