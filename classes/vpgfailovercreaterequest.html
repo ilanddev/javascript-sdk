@@ -916,7 +916,22 @@ img { max-width: 100%; }
 					<a href="vpgfailovercreaterequest.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="vpgfailovercreaterequest.html#checkpointidentifier" class="tsd-kind-icon">checkpoint<wbr>Identifier</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="vpgfailovercreaterequest.html#commitpolicy" class="tsd-kind-icon">commit<wbr>Policy</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="vpgfailovercreaterequest.html#commitvalue" class="tsd-kind-icon">commit<wbr>Value</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 					<a href="vpgfailovercreaterequest.html#json" class="tsd-kind-icon">json</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="vpgfailovercreaterequest.html#shutdownpolicy" class="tsd-kind-icon">shutdown<wbr>Policy</a>
+				</li>
+				<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+					<a href="vpgfailovercreaterequest.html#timetowaitbeforeshutdowninsec" class="tsd-kind-icon">time<wbr>ToWait<wbr>Before<wbr>Shutdown<wbr>InSec</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="vpgfailovercreaterequest.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
@@ -955,7 +970,12 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Accessors</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#checkpointidentifier" class="tsd-kind-icon">checkpoint<wbr>Identifier</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#commitpolicy" class="tsd-kind-icon">commit<wbr>Policy</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#commitvalue" class="tsd-kind-icon">commit<wbr>Value</a></li>
 							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#json" class="tsd-kind-icon">json</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#shutdownpolicy" class="tsd-kind-icon">shutdown<wbr>Policy</a></li>
+							<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="vpgfailovercreaterequest.html#timetowaitbeforeshutdowninsec" class="tsd-kind-icon">time<wbr>ToWait<wbr>Before<wbr>Shutdown<wbr>InSec</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -973,24 +993,49 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Vpg<wbr>Failover<wbr>Create<wbr>Request<span class="tsd-signature-symbol">(</span>checkpointId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commitPolicy<span class="tsd-signature-symbol">: </span><a href="../globals.html#commitpolicy" class="tsd-signature-type">CommitPolicy</a>, shutdownPolicy<span class="tsd-signature-symbol">: </span><a href="../globals.html#shutdownpolicy" class="tsd-signature-type">ShutdownPolicy</a>, timeToWaitBeforeShutdownInSec<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, commitValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Vpg<wbr>Failover<wbr>Create<wbr>Request<span class="tsd-signature-symbol">(</span>failoverCreateRequest<span class="tsd-signature-symbol">: </span><a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Vpg<wbr>Failover<wbr>Create<wbr>Request<span class="tsd-signature-symbol">(</span>VpgFailoverCreateRequestJson<span class="tsd-signature-symbol">: </span><a href="../interfaces/vpgfailovercreaterequestjson.html" class="tsd-signature-type">VpgFailoverCreateRequestJson</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Vpg<wbr>Failover<wbr>Create<wbr>Request<span class="tsd-signature-symbol">(</span>checkpointIdentifier<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, commitPolicy<span class="tsd-signature-symbol">: </span><a href="../globals.html#commitpolicy" class="tsd-signature-type">CommitPolicy</a>, shutdownPolicy<span class="tsd-signature-symbol">: </span><a href="../globals.html#shutdownpolicy" class="tsd-signature-type">ShutdownPolicy</a>, timeToWaitBeforeShutdownInSec<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, commitValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/7be6e185/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L14">model/vpg/vpg-failover/vpg-failover-create-request.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L11">model/vpg/vpg-failover/vpg-failover-create-request.ts:11</a></li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Creates a new Vpg Failover Create Request.</p>
-							</div>
-						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>checkpointId: <span class="tsd-signature-type">string</span></h5>
+								<h5>failoverCreateRequest: <a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L13">model/vpg/vpg-failover/vpg-failover-create-request.ts:13</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>VpgFailoverCreateRequestJson: <a href="../interfaces/vpgfailovercreaterequestjson.html" class="tsd-signature-type">VpgFailoverCreateRequestJson</a></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L14">model/vpg/vpg-failover/vpg-failover-create-request.ts:14</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>checkpointIdentifier: <span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li>
 								<h5>commitPolicy: <a href="../globals.html#commitpolicy" class="tsd-signature-type">CommitPolicy</a></h5>
@@ -1003,10 +1048,6 @@ img { max-width: 100%; }
 							</li>
 							<li>
 								<h5>commitValue: <span class="tsd-signature-type">number</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-									</div>
-								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="vpgfailovercreaterequest.html" class="tsd-signature-type">VpgFailoverCreateRequest</a></h4>
@@ -1017,17 +1058,92 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Accessors</h2>
 			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="checkpointidentifier" class="tsd-anchor"></a>
+				<h3>checkpoint<wbr>Identifier</h3>
+				<div class="tsd-signature tsd-kind-icon">checkpoint<wbr>Identifier<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L41">model/vpg/vpg-failover/vpg-failover-create-request.ts:41</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Get checkpoint identifier.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="commitpolicy" class="tsd-anchor"></a>
+				<h3>commit<wbr>Policy</h3>
+				<div class="tsd-signature tsd-kind-icon">commit<wbr>Policy<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L49">model/vpg/vpg-failover/vpg-failover-create-request.ts:49</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Get commit policy.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="commitvalue" class="tsd-anchor"></a>
+				<h3>commit<wbr>Value</h3>
+				<div class="tsd-signature tsd-kind-icon">commit<wbr>Value<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L73">model/vpg/vpg-failover/vpg-failover-create-request.ts:73</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Get commit value.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
 				<a name="json" class="tsd-anchor"></a>
 				<h3>json</h3>
 				<div class="tsd-signature tsd-kind-icon">json<span class="tsd-signature-symbol">:</span> </div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/7be6e185/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L37">model/vpg/vpg-failover/vpg-failover-create-request.ts:37</a></li>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L81">model/vpg/vpg-failover/vpg-failover-create-request.ts:81</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Gets the raw JSON object from the API.</p>
+						<p>Get the json representation of this class.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="shutdownpolicy" class="tsd-anchor"></a>
+				<h3>shutdown<wbr>Policy</h3>
+				<div class="tsd-signature tsd-kind-icon">shutdown<wbr>Policy<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L57">model/vpg/vpg-failover/vpg-failover-create-request.ts:57</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Get shutdown policy.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<a name="timetowaitbeforeshutdowninsec" class="tsd-anchor"></a>
+				<h3>time<wbr>ToWait<wbr>Before<wbr>Shutdown<wbr>InSec</h3>
+				<div class="tsd-signature tsd-kind-icon">time<wbr>ToWait<wbr>Before<wbr>Shutdown<wbr>InSec<span class="tsd-signature-symbol">:</span> </div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L65">model/vpg/vpg-failover/vpg-failover-create-request.ts:65</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Get time to wait before shutdown in sec.</p>
 					</div>
 				</div>
 			</section>
@@ -1044,12 +1160,12 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/7be6e185/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L51">model/vpg/vpg-failover/vpg-failover-create-request.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/9c3d3751/src/sdk/model/vpg/vpg-failover/vpg-failover-create-request.ts#L89">model/vpg/vpg-failover/vpg-failover-create-request.ts:89</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>JSON format.</p>
+								<p>Get the string representation of this class.</p>
 							</div>
 						</div>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
