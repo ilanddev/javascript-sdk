@@ -235,7 +235,8 @@ export class SupportTicket {
   async addTicketAttachment(companyId: string, attachment: SupportTicketAttachmentCreateRequest):
       Promise<SupportTicketAttachment> {
     const formData = new FormData();
-    formData.append('attachment', attachment.getContents, attachment.getFilename);
+    formData.append('file', attachment.getContents, attachment.getFilename);
+    formData.append('filename', attachment.getFilename);
     return Iland.getHttp().post(`/companies/${companyId}/support-tickets/${this.id}/attachments`,
         formData).then((response) => {
           const json = response.data as SupportTicketAttachmentJson;
