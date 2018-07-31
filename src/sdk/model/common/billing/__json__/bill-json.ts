@@ -1,6 +1,7 @@
 import { ResourceCostAndUsageJson } from './resource-cost-and-usage-json';
 import { DiskCostAndUsageJson } from './disk-cost-and-usage-json';
 import { EntityType } from '../../__json__/entity-type';
+import { CurrencyCode } from './currency-code-type';
 
 /**
  * Interface for BillJson JSON representation.
@@ -17,6 +18,9 @@ export interface BillJson {
   entity_uuid: string;
   entity_name: string;
   entity_type: EntityType;
+  line_items: Array<BillLineItemJson>;
+  currency_code: CurrencyCode;
+  test_drive: boolean;
 }
 
 /**
@@ -24,8 +28,7 @@ export interface BillJson {
  */
 export interface BillLineItemJson {
   name: string;
-  price: number;
+  cost_per_unit: number;
   quantity: number;
   product_id: string;
-  entity_type: EntityType;
 }

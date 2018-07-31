@@ -17,11 +17,11 @@ export class BillLineItem {
   }
 
   /**
-   * Gets the price.
-   * @returns {number} price
+   * Gets the cost per unit.
+   * @returns {number} cost per unit
    */
-  get price(): number {
-    return this._json.price;
+  get costPerUnit(): number {
+    return this._json.cost_per_unit;
   }
 
   /**

@@ -46,7 +46,10 @@ export const MockVmBillJson: BillJson = {
   month: 6,
   entity_uuid: 'dal02.ilandcloud.com:urn:vcloud:vapp:6cb9af7b-0d46-4919-b061-fb242c2ccf12',
   entity_name: 'DAL Windows',
-  entity_type: 'IAAS_VAPP'
+  entity_type: 'IAAS_VAPP',
+  test_drive: false,
+  currency_code: 'USD',
+  line_items: []
 };
 
 export const MockVmBillingSummaryJson: BillingSummaryJson = {
