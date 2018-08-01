@@ -86,6 +86,8 @@ test('Can get vApp and verify required properties', async() => {
     expect(vapp.runtimeLease).toBe(raw.runtime_lease_in_seconds);
     expect(vapp.storageLease).toBeDefined();
     expect(vapp.storageLease).toBe(raw.storage_lease_in_seconds);
+    expect(vapp.allocationModel).toBeDefined();
+    expect(vapp.allocationModel).toBe(raw.allocation_model);
     if (vapp.storageLeaseExpirationDate === null) {
       expect(vapp.storageLeaseExpirationDate).toBeNull();
     } else {
