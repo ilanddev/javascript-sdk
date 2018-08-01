@@ -63,6 +63,7 @@ import { VmNetworkJson } from './vm-network/__json__/vm-network-json';
 import { DiskType } from '../common/__json__/disk-type';
 import { VmResourceSummary } from './vm-resource-summary';
 import { VmResourceSummaryJson } from './__json__/vm-resource-summary-json';
+import { VdcAllocationModel } from '../vdc/__json__/vdc-allocation-model-type';
 
 /**
  * Virtual Machine.
@@ -281,6 +282,14 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    */
   get memorySize(): number {
     return this._apiVm.memory_size;
+  }
+
+  /**
+   * Gets the VM's Vdc Allocation Model.
+   * @returns {VdcAllocationModel} allocation model
+   */
+  get allocationModel(): VdcAllocationModel {
+    return this._apiVm.allocation_model;
   }
 
   /**

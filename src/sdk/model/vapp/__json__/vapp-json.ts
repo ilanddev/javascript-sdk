@@ -4,6 +4,7 @@ import { BuildVmRequestJson } from '../../vm/__json__/vm-json';
 import { IpRangeJson } from '../../common/ip-range/__json__/ip-range-json';
 import { VmCreateRequestJson } from '../../vm/__json__/vm-create-request-json';
 import { FenceModeType } from '../../common/__json__/fence-mode-type';
+import { VdcAllocationModel } from '../../vdc/__json__/vdc-allocation-model-type';
 
 /**
  * Interface for vApp properties.
@@ -23,6 +24,7 @@ export interface VappJson extends EntityJson {
   vcloud_href: string;
   created_date: number;
   is_expired: boolean;
+  allocation_model: VdcAllocationModel;
 }
 
 /**

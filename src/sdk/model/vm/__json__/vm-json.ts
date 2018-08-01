@@ -6,11 +6,13 @@ import { GuestCustomizationUpdateRequestJson } from
     '../guest-customization/__json__/guest-customization-update-request-json';
 import { IpAddressingModeType } from '../../common/__json__/ip-adressing-mode-type';
 import { AdapterType } from '../../common/__json__/adapter-type';
+import { VdcAllocationModel } from '../../vdc/__json__/vdc-allocation-model-type';
 
 /**
  * Interface for VM properties.
  */
 export interface VmJson extends EntityJson {
+  allocation_model: VdcAllocationModel;
   cores_per_socket: number;
   cpus_number: number;
   created_date: number | null;
