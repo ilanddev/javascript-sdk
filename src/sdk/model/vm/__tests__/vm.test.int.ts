@@ -121,6 +121,8 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.updatedDate.getTime()).toBeLessThan(new Date().getTime());
     expect(vm.deletedDate).toBeNull();
     expect(vm.entityType).toBe('IAAS_VM');
+    expect(vm.allocationModel).toBeDefined();
+    expect(vm.allocationModel).toBe(raw.allocation_model);
     return vm;
   });
 });

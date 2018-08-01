@@ -48,6 +48,7 @@ import {
 import { Metadata } from '../../common/metadata/metadata';
 import { GuestCustomizationJson } from '../guest-customization/__json__/guest-customization-json';
 import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__/capabilities-update-request-json';
+import { VdcAllocationModel } from '../../vdc/__json__/vdc-allocation-model-type';
 
 jest.mock('../../../service/http/http');
 
@@ -760,7 +761,8 @@ test('Parses power status correctly', () => {
     vcloud_href: '',
     vdc_uuid: '',
     vim_datastore_ref: '',
-    vm_local_id: ''
+    vm_local_id: '',
+    allocation_model: 'paygo' as VdcAllocationModel
   };
   const vm = new Vm(apiVm);
   expect(vm.powerStatus).toBe('PARTIALLY_POWERED_OFF');

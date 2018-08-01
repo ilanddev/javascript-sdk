@@ -22,7 +22,8 @@ export const MockVappJson: VappJson = {
   name: 'Auth vApp',
   deleted: false,
   deleted_date: null,
-  updated_date: 1493992836044
+  updated_date: 1493992836044,
+  allocation_model: 'paygo'
 };
 
 export const MockVappResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
