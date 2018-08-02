@@ -259,20 +259,17 @@ export class PermissionsMap {
       (new Permission('VIEW_ILAND_CLOUD_BILLING', 'IAAS_PRODUCT', 'READ', true,
         false, ['VIEW_ILAND_CLOUD_LOCATION_BILLING'])));
     // OBJECT_STORAGE_LOCATION level permissions
-    this._permissions.set('VIEW_ILAND_OBJECT_STORAGE_LOCATION',
-        (new Permission('VIEW_ILAND_OBJECT_STORAGE_LOCATION', 'OBJECT_STORAGE_LOCATION', 'READ', true,
-            true, null)));
+    this._permissions.set('MANAGE_ILAND_OBJECT_STORAGE_LOCATION',
+        (new Permission('MANAGE_ILAND_OBJECT_STORAGE_LOCATION', 'OBJECT_STORAGE_LOCATION', 'WRITE', true,
+            false, null)));
     // OBJECT_STORAGE_PRODUCT level permissions
-    this._permissions.set('VIEW_ILAND_OBJECT_STORAGE',
-        (new Permission('VIEW_ILAND_OBJECT_STORAGE', 'OBJECT_STORAGE_PRODUCT', 'READ', true,
-            true, ['VIEW_ILAND_OBJECT_STORAGE_LOCATION'])));
     this._permissions.set('MANAGE_ILAND_OBJECT_STORAGE',
         (new Permission('MANAGE_ILAND_OBJECT_STORAGE', 'OBJECT_STORAGE_PRODUCT', 'WRITE', true,
-            false, ['VIEW_ILAND_OBJECT_STORAGE'])));
+            false, ['MANAGE_ILAND_OBJECT_STORAGE_LOCATION'])));
     // COMPANY level permissions
     this._permissions.set('VIEW_COMPANY',
       (new Permission('VIEW_COMPANY', 'COMPANY', 'READ', true,
-        true, ['VIEW_ILAND_CLOUD', 'VIEW_ILAND_BACKUP', 'VIEW_ILAND_OBJECT_STORAGE'])));
+        true, ['VIEW_ILAND_CLOUD', 'VIEW_ILAND_BACKUP'])));
     this._permissions.set('VIEW_COMPANY_SUPPORT_TICKETS',
       (new Permission('VIEW_COMPANY_SUPPORT_TICKETS', 'COMPANY', 'READ', true,
         false, null)));

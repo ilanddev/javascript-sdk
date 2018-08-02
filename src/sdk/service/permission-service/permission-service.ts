@@ -111,8 +111,8 @@ export class PermissionService {
             p.permissionType === 'VIEW_ILAND_CLOUD_EDGE' || p.permissionType === 'VIEW_ILAND_CLOUD_INTERNAL_NETWORK' ||
             p.permissionType === 'VIEW_ILAND_CLOUD_VAPP' || p.permissionType === 'VIEW_ILAND_CLOUD_VAPP_NETWORK' ||
             p.permissionType === 'VIEW_ILAND_CLOUD_VM' || p.permissionType === 'VIEW_ILAND_BACKUP_LOCATION' ||
-            p.permissionType === 'VIEW_ILAND_BACKUP_TENANT' || p.permissionType === 'VIEW_ILAND_OBJECT_STORAGE' ||
-            p.permissionType === 'VIEW_ILAND_OBJECT_STORAGE_LOCATION');
+            p.permissionType === 'VIEW_ILAND_BACKUP_TENANT' || p.permissionType === 'MANAGE_ILAND_OBJECT_STORAGE' ||
+            p.permissionType === 'MANAGE_ILAND_OBJECT_STORAGE_LOCATION');
         });
         if (permissions) {
           permission = permissions[0];
