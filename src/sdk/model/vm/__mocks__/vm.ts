@@ -33,7 +33,8 @@ export const MockVmJson: VmJson = {
   vcloud_href: '',
   vdc_uuid: '',
   vim_datastore_ref: '',
-  vm_local_id: ''
+  vm_local_id: '',
+  allocation_model: 'paygo'
 };
 
 export const MockVmResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {

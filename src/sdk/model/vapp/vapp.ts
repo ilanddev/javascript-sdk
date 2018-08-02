@@ -41,6 +41,7 @@ import { Bill } from '../common/billing/bill';
 import { BillingSummary } from '../common/billing/billing-summary';
 import { BillingSummaryJson } from '../common/billing/__json__/billing-summary-json';
 import { BillJson } from '../common/billing/__json__/bill-json';
+import { VdcAllocationModel } from '../vdc/__json__/vdc-allocation-model-type';
 
 /**
  * Virtual Application.
@@ -186,6 +187,14 @@ export class Vapp extends Entity implements EntityWithPerfSamples {
    */
   get expired(): boolean {
     return this._json.is_expired;
+  }
+
+  /**
+   * Get Vapp's Vdc Allocation Model
+   * @returns {VdcAllocationModel} allocation model
+   */
+  get allocationModel(): VdcAllocationModel {
+    return this._json.allocation_model;
   }
 
   /**
