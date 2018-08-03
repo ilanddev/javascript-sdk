@@ -10,14 +10,14 @@ export class UserUpdateRequest {
 
   constructor(userUpdateRequest: UserUpdateRequest);
   constructor(userUpdateRequestJson: UserUpdateRequestJson);
-  constructor(name: string, phone: string, company: string, address: string, city: string, state: string, zip: string,
-              country: string);
+  constructor(fullname: string, phone: string, company: string, address: string, city: string, state: string,
+              zip: string, country: string);
   constructor(firstParam: string | UserUpdateRequest | UserUpdateRequestJson, phone?: string, company?: string,
               address?: string, city?: string, state?: string, zip?: string, country?: string) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
-        name: firstParam,
+        fullname: firstParam,
         phone: phone,
         company: company,
         address: address,
@@ -36,11 +36,11 @@ export class UserUpdateRequest {
   }
 
   /**
-   * Get name.
+   * Get the full name.
    * @returns {string}
    */
-  get name(): string {
-    return this._json.name;
+  get fullname(): string {
+    return this._json.fullname;
   }
 
   /**
