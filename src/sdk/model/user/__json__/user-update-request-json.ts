@@ -1,5 +1,5 @@
 export interface UserUpdateRequestJson {
-  name: string;
+  fullname: string;
   phone: string;
   company: string;
   address: string;
