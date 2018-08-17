@@ -3,6 +3,9 @@ import { EntityType } from '../common/__json__/entity-type';
 import { EventJson } from './__json__/event-json';
 import { EventOwnerType } from './__json__/event-owner-type';
 import { EventType } from './__json__/event-type';
+import { EventFilterParams } from './event-filter-params';
+import { EventListJson } from './__json__/event-list-json';
+import { EventList } from './event-list';
 
 /**
  * Event.
@@ -21,6 +24,20 @@ export class Event {
     return Iland.getHttp().get(`/events/${uuid}`).then((response) => {
       const json = response.data as EventJson;
       return new Event(json);
+    });
+  }
+
+  /**
+   * Get a list of events depending on filter params.
+   * @param filterParams
+   * @returns {Promise<EventList>} promise that resolves with the EventList
+   */
+  static async getEvents(filterParams: EventFilterParams): Promise<EventList> {
+    return Iland.getHttp().get(`/events`, {
+      params: filterParams.getQueryParams()
+    }).then((response) => {
+      const json = response.data as EventListJson;
+      return new EventList(json);
     });
   }
 
