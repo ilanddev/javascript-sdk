@@ -13,6 +13,8 @@ import { MockOrgResource } from '../../../model/org/__mocks__/org-resource';
 import { DnsRecordUpdateRequestJson } from '../../../model/org/__json__/dns-record-update-request-json';
 import { DnsZoneCreateRequestJson } from '../../../model/org/__json__/dns-zone-create-request-json';
 import { DnsRecordCreateRequestJson } from '../../../model/org/__json__/dns-record-create-request-json';
+import { MockTaskService } from '../../../model/task/__mocks__/task';
+import { MockService } from '../../../config/__mocks__/util';
 
 export async function MockOrgGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
@@ -66,6 +68,9 @@ export async function MockOrgPost(url: string, data?: any, config?: AxiosRequest
       const request = data as DnsZoneCreateRequestJson;
       return MockOrgResource.addDnsZone(request);
     }
+    case /\/orgs\/[^\/]+?\/actions\/email-event-history$/.test(url):
+      // send a csv file with event history by email.
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

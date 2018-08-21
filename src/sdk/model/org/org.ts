@@ -1800,4 +1800,13 @@ export class Org extends Entity {
     });
   }
 
+  /**
+   * Retrieve a CSV report email with all event history for a given Org.
+   * @returns {Promise<void>} there is no response object.
+   */
+  async emailEventHistory(email: string): Promise<void> {
+    return Iland.getHttp().post(`/orgs/${this.uuid}/actions/email-event-history`, {
+      email: email
+    }).then(() => undefined);
+  }
 }

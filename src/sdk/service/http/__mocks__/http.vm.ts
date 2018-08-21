@@ -21,6 +21,7 @@ import { MockVmGuestCustomizationResponse } from '../../../model/vm/guest-custom
 import { MockVmGuestToolsResponse } from '../../../model/vm/guest-tools/__mocks__/guest-tools';
 import { MockVmSummaryResponse } from '../../../model/vm/summary/__mocks__/vm-summary';
 import { MockVmNetworksResponse } from '../../../model/vm/vm-network/__mocks__/vm-networks';
+import { MockService } from '../../../config/__mocks__/util';
 
 export async function MockVmGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
@@ -187,6 +188,9 @@ export async function MockVmPost(url: string, data?: any, config?: AxiosRequestC
     case /\/vms\/[^\/]+?\/actions\/update-virtual-hardware-version$/.test(url):
       // upgrade virtual hardware version
       return MockTaskService.getNewMockTaskResponse('upgrade virtual hardware');
+    case /\/vms\/[^\/]+?\/actions\/email-event-history$/.test(url):
+      // send a csv file with event history by email.
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

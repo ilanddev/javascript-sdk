@@ -24,6 +24,8 @@ import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 import { VdcAddVappFromTemplateRequest } from '../vdc-add-vapp-from-template-request';
 import { VdcAddVappFromTemplateRequestJson } from '../__json__/vdc-add-vapp-from-template-request-json';
 import { TemplateVmConfigJson } from '../__json__/template-vm-config-json';
+import { Vm } from '../../vm/vm';
+import { MockVmJson } from '../../vm/__mocks__/vm';
 
 jest.mock('../../../service/http/http');
 
@@ -235,5 +237,14 @@ test('Properly submits request to get vDC perf samples', async() => {
     expect(perfSample.value).toBe(MockVdcPerfSamplesSeriesJson.samples[0].value);
     expect(perfSample.json).toEqual(MockVdcPerfSamplesSeriesJson.samples[0]);
     expect(perfSample.toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly send an Event History CSV file by email', () => {
+  const vdc = new Vdc(MockVdcJson);
+  return vdc.emailEventHistory('coke@coke.com').then(() => {
+    expect(Iland.getHttp().post).lastCalledWith(`/vdcs/${vdc.uuid}/actions/email-event-history`, {
+      email: 'coke@coke.com'
+    });
   });
 });

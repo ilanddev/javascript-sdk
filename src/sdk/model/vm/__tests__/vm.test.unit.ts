@@ -49,6 +49,8 @@ import { Metadata } from '../../common/metadata/metadata';
 import { GuestCustomizationJson } from '../guest-customization/__json__/guest-customization-json';
 import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__/capabilities-update-request-json';
 import { VdcAllocationModel } from '../../vdc/__json__/vdc-allocation-model-type';
+import { Org } from '../../org/org';
+import { MockOrgJson } from '../../org/__mocks__/org';
 
 jest.mock('../../../service/http/http');
 
@@ -799,6 +801,15 @@ test('Properly submits request to get VM perf counters', async() => {
     expect(perfCounters[0].type).toBe(MockVmPerfCountersJson[0].type);
     expect(perfCounters[0].json).toEqual(MockVmPerfCountersJson[0]);
     expect(perfCounters[0].toString().length).toBeGreaterThan(0);
+  });
+});
+
+test('Properly send an Event History CSV file by email', () => {
+  const vm = new Vm(MockVmJson);
+  return vm.emailEventHistory('coke@coke.com').then(() => {
+    expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/email-event-history`, {
+      email: 'coke@coke.com'
+    });
   });
 });
 
