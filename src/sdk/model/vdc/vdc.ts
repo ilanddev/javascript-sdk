@@ -593,6 +593,16 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
     });
   }
 
+  /**
+   * Retrieve a CSV report email with all event history for a given vDC.
+   * @returns {Promise<void>} there is no response object.
+   */
+  async emailEventHistory(email: string): Promise<void> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/actions/email-event-history`, {
+      email: email
+    }).then(() => undefined);
+  }
+
 }
 
 applyMixins(Vdc, [EntityWithPerfSamples]);

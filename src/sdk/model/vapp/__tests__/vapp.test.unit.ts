@@ -12,6 +12,8 @@ import { PerfCounter } from '../../mixins/perf-samples/perf-counter';
 import { PerfSample } from '../../mixins/perf-samples/perf-sample';
 import { MockMetadataJson } from '../../common/metadata/__mocks__/metadata';
 import { Metadata } from '../../common/metadata/metadata';
+import { Vdc } from '../../vdc/vdc';
+import { MockVdcJson } from '../../vdc/__mocks__/vdc';
 
 jest.mock('../../../service/http/http');
 
@@ -205,5 +207,14 @@ test('Properly submits request for deleting a vApps metadata entry', async() => 
   return vapp.deleteMetadata(metadataKey).then(function(task) {
     expect(Iland.getHttp().delete).lastCalledWith(`/vapps/${vapp.uuid}/metadata/${metadataKey}`);
     expect(task.operation).toBe('delete metadata');
+  });
+});
+
+test('Properly send an Event History CSV file by email', () => {
+  const vapp = new Vapp(MockVappJson);
+  return vapp.emailEventHistory('coke@coke.com').then(() => {
+    expect(Iland.getHttp().post).lastCalledWith(`/vapps/${vapp.uuid}/actions/email-event-history`, {
+      email: 'coke@coke.com'
+    });
   });
 });

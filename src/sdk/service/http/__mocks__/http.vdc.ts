@@ -9,6 +9,7 @@ import {
 import { MockVdcVmsResponse } from '../../../model/vdc/__mocks__/vdc-vms';
 import { MockVdcVappsResponse } from '../../../model/vdc/__mocks__/vdc-vapps';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
+import { MockService } from '../../../config/__mocks__/util';
 
 export async function MockVdcGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
@@ -46,6 +47,9 @@ export async function MockVdcPost(url: string, data?: any, config?: AxiosRequest
     case /\/vdcs\/[^\/]+?\/actions\/add-vapp-from-template$/.test(url):
       // add vapp
       return MockTaskService.getNewMockTaskResponse('add vapp');
+    case /\/vms\/[^\/]+?\/actions\/email-event-history$/.test(url):
+      // send a csv file with event history by email.
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

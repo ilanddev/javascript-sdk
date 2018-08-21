@@ -254,7 +254,7 @@ test('Properly submits request to check org dns zone', async() => {
 
 test('Properly submits request to get org available IPs for ptr records', async() => {
   const org = new Org(MockOrgJson);
-  return org.getAvailableIpsForPtrRecords().then(function(ips) {
+  return org.getAvailableIpsForPtrRecords().then((ips) => {
     expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/unmapped-dns-ptr-ip-addresses`);
     expect(ips).toBeDefined();
     expect(ips.toString()).toBeDefined();
@@ -264,5 +264,14 @@ test('Properly submits request to get org available IPs for ptr records', async(
       expect(ip).toBe(MockIpAddressSetJson.ips[idx]);
       idx++;
     }
+  });
+});
+
+test('Properly send an Event History CSV file by email', () => {
+  const org = new Org(MockOrgJson);
+  return org.emailEventHistory('coke@coke.com').then(() => {
+    expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/actions/email-event-history`, {
+      email: 'coke@coke.com'
+    });
   });
 });

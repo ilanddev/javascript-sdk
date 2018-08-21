@@ -6,6 +6,7 @@ import { MockVappVmsResponse } from '../../../model/vapp/__mocks__/vapp-vms';
 import { MockVappVappNetworksResponse } from '../../../model/vapp/__mocks__/vapp-networks';
 import { MockVappPerfSamplesSeriesResponse } from '../../../model/vapp/__mocks__/vapp';
 import { MockTaskService } from '../../../model/task/__mocks__/task';
+import { MockService } from '../../../config/__mocks__/util';
 
 export async function MockVappGet(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
@@ -31,6 +32,9 @@ export async function MockVappGet(url: string, config?: AxiosRequestConfig): Pro
 
 export async function MockVappPost(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
+    case /\/vapps\/[^\/]+?\/actions\/email-event-history$/.test(url):
+      // send a csv file with event history by email.
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

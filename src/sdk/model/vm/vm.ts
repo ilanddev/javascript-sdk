@@ -381,13 +381,12 @@ export class Vm extends Entity implements EntityWithPerfSamples {
 
   /**
    * Retrieve a CSV report email with all event history for a given Vm.
-   * @returns {Promise<Task>} task promise
+   * @returns {Promise<void>} there is no response object.
    */
-  async emailEventHistory(email: string): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/email-event-history`, {email: email}).then((response) => {
-      const json = response.data as TaskJson;
-      return new Task(json);
-    });
+  async emailEventHistory(email: string): Promise<void> {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/email-event-history`, {
+      email: email
+    }).then(() => undefined);
   }
 
   /**
