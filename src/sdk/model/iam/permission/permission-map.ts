@@ -279,6 +279,9 @@ export class PermissionsMap {
     this._permissions.set('MANAGE_COMPANY_IAM',
       (new Permission('MANAGE_COMPANY_IAM', 'COMPANY', 'WRITE', false,
         false, ['VIEW_COMPANY_IAM'])));
+    this._permissions.set('MANAGE_COMPANY_SETTINGS',
+        (new Permission('MANAGE_COMPANY_SETTINGS', 'COMPANY', 'WRITE', true,
+            false, ['VIEW_COMPANY'])));
     this._permissions.set('MANAGE_COMPANY_SUPPORT_TICKETS',
       (new Permission('MANAGE_COMPANY_SUPPORT_TICKETS', 'COMPANY', 'WRITE', true,
         false, ['VIEW_COMPANY_SUPPORT_TICKETS'])));

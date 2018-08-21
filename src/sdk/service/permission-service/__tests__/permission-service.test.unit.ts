@@ -35,14 +35,14 @@ function runPermissionServiceViewPermissionAssertions(permission: Permission | u
 
 test('Properly instantiate permission service to get permissions and domain permissions maps', () => {
   const permissionService = PermissionService.getInstance();
-  expect(permissionService.permissions.size).toBe(83);
+  expect(permissionService.permissions.size).toBe(84);
   expect(permissionService.domainPermissions.size).toBe(19);
 });
 
 test('Properly get the available permissions for domain', () => {
   const permissionService = PermissionService.getInstance();
   let availablePermissions = permissionService.getAvailablePermissionsForDomain('COMPANY');
-  runPermissionServiceAssertions(availablePermissions, 5);
+  runPermissionServiceAssertions(availablePermissions, 6);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_PRODUCT');
   runPermissionServiceAssertions(availablePermissions, 2);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('VCC_BACKUP_PRODUCT');
