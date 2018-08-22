@@ -230,7 +230,7 @@ export class PermissionsMap {
         false, ['VIEW_ILAND_CLOUD_ORG_SECURITY'])));
     this._permissions.set('VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS',
         (new Permission('VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS', 'IAAS_ORGANIZATION', 'READ', true,
-            false, ['VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS'])));
+            false, ['VIEW_ILAND_CLOUD_VPG'])));
     this._permissions.set('MANAGE_ILAND_CLOUD_ORG_DR_RUNBOOKS',
         (new Permission('MANAGE_ILAND_CLOUD_ORG_DR_RUNBOOKS', 'IAAS_ORGANIZATION', 'WRITE', true,
             false, ['VIEW_ILAND_CLOUD_ORG_DR_RUNBOOKS',
