@@ -407,7 +407,7 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    */
   async insertMedia(mediaUuid: string): Promise<Task> {
     const json: VmInsertMediaRequestJson = {
-      media: mediaUuid
+      media_uuid: mediaUuid
     };
     return Iland.getHttp().post(`/vms/${this.uuid}/actions/insert-media`, json).then((response) => {
       const json = response.data as TaskJson;

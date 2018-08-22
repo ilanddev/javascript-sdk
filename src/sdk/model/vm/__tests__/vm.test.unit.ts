@@ -709,7 +709,7 @@ test('Properly submits request to insert media into VM ', async() => {
   const mediaUuid = 'test-media-uuid';
   return vm.insertMedia(mediaUuid).then(function(task) {
     expect(Iland.getHttp().post).lastCalledWith(`/vms/${vm.uuid}/actions/insert-media`, {
-      media: mediaUuid
+      media_uuid: mediaUuid
     });
     expect(task.operation).toBe('insert media');
   });
