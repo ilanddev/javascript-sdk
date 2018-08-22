@@ -40,4 +40,5 @@ export interface ExpandedVpgJson {
   deleted: boolean;
   deleted_date: number;
   updated_date: number;
+  company_id: string;
 }

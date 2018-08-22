@@ -17,6 +17,13 @@ export class ExpandedVpg {
   }
 
   /**
+   * The ID of the company that the VPG belongs to.
+   */
+  get companyId(): string {
+    return this._json.company_id;
+  }
+
+  /**
    * Get service profile.
    * @returns {ServiceProfileJson}
    */
