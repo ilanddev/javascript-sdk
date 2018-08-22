@@ -73,7 +73,7 @@ export interface VmRestoreBackupRequestJson {
  * Specification for VM media insertion request.
  */
 export interface VmInsertMediaRequestJson {
-  media: string;
+  media_uuid: string;
 }
 
 /**
