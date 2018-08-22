@@ -7,4 +7,5 @@ export interface EntityJson {
   deleted: boolean;
   deleted_date: number | null;
   updated_date: number;
+  company_id: string;
 }

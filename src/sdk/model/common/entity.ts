@@ -50,6 +50,13 @@ export abstract class Entity {
   }
 
   /**
+   * Gets the ID of the company that the entity belongs to.
+   */
+  get companyId(): string {
+    return this._apiEntity.company_id;
+  }
+
+  /**
    * Gets the type of the entity.
    * @returns {EntityType} the type of the entity
    */
