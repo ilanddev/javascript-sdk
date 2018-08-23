@@ -574,7 +574,10 @@ export class Vm extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>}
    */
   async updateBootOptions(bootDelay: number, enterBios: boolean): Promise<Task> {
-    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-boot-options`).then((response) => {
+    return Iland.getHttp().post(`/vms/${this.uuid}/actions/update-boot-options`, {
+      boot_delay: bootDelay,
+      is_enter_bios: enterBios
+    }).then((response) => {
       const json = response.data as TaskJson;
       return new Task(json);
     });
