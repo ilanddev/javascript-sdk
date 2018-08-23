@@ -419,13 +419,13 @@ test('Properly submits request to get a VMs restore points', async() => {
     expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/backups`);
     expect(restorePoints.length).toBe(2);
     expect(restorePoints[0].name).toBe(MockBackupRestorePoint1Json.name);
-    expect(restorePoints[0].timestamp.getTime()).toBe(MockBackupRestorePoint1Json.timestamp);
+    expect(restorePoints[0].timestamp.getTime()).toBe(MockBackupRestorePoint1Json.time);
     expect(restorePoints[0].backupServerName).toBe(MockBackupRestorePoint1Json.backup_server_name);
     expect(restorePoints[0].json).toEqual(MockBackupRestorePoint1Json);
     expect(restorePoints[0].toString().length).toBeGreaterThan(0);
 
     expect(restorePoints[1].name).toBe(MockBackupRestorePoint2Json.name);
-    expect(restorePoints[1].timestamp.getTime()).toBe(MockBackupRestorePoint2Json.timestamp);
+    expect(restorePoints[1].timestamp.getTime()).toBe(MockBackupRestorePoint2Json.time);
     expect(restorePoints[1].backupServerName).toBe(MockBackupRestorePoint2Json.backup_server_name);
     expect(restorePoints[1].json).toEqual(MockBackupRestorePoint2Json);
     expect(restorePoints[1].toString().length).toBeGreaterThan(0);

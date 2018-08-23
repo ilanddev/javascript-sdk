@@ -21,7 +21,7 @@ export class BackupRestorePoint {
    * @returns {Date} date of the restore point
    */
   get timestamp(): Date {
-    return new Date(this._json.timestamp);
+    return new Date(this._json.time);
   }
 
   /**
