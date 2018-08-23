@@ -3,6 +3,6 @@
  */
 export interface BackupRestorePointJson {
   name: string;
-  timestamp: number;
+  time: number;
   backup_server_name: string;
 }

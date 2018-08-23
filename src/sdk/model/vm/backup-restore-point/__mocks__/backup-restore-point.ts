@@ -3,13 +3,13 @@ import { BackupRestorePointJson } from '../__json__/backup-restore-point-json';
 
 export const MockBackupRestorePoint1Json: BackupRestorePointJson = {
   name: 'test disk 1',
-  timestamp: (new Date()).getTime(),
+  time: (new Date()).getTime(),
   backup_server_name: 'backup server 1'
 };
 
 export const MockBackupRestorePoint2Json: BackupRestorePointJson = {
   name: 'test disk 2',
-  timestamp: (new Date()).getTime() + 100,
+  time: (new Date()).getTime() + 100,
   backup_server_name: 'backup server 2'
 };
 
