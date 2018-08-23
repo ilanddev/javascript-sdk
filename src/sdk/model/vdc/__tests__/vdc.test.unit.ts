@@ -149,7 +149,7 @@ test('Update vDC metadata', async() => {
   const vdc = new Vdc(MockVdcJson);
   const metaData = MockMetadataJson as Array<Metadata<MetadataType>>;
   return vdc.updateMetadata(metaData).then(function(task) {
-    expect(Iland.getHttp().put).lastCalledWith(`/vdcs/${vdc.uuid}/metadata`, metaData);
+    expect(Iland.getHttp().put).lastCalledWith(`/vdcs/${vdc.uuid}/metadata`, metaData.map(it => it.json));
     expect(task.operation).toBe('update metadata');
   });
 });
