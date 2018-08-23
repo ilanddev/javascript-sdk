@@ -362,10 +362,11 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    * @returns {Promise<Task>} task promise
    */
   async updateMetadata(metadata: Array<Metadata<MetadataType>>): Promise<Task> {
-    return Iland.getHttp().put(`/vdcs/${this.uuid}/metadata`, metadata).then((response) => {
-      const apiTask = response.data as TaskJson;
-      return new Task(apiTask);
-    });
+    return Iland.getHttp().put(`/vdcs/${this.uuid}/metadata`, metadata.map(it => it.json))
+        .then((response) => {
+          const apiTask = response.data as TaskJson;
+          return new Task(apiTask);
+        });
   }
 
   /**
