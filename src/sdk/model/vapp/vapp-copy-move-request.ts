@@ -15,7 +15,7 @@ export class VappCopyMoveRequest {
   constructor(name: string, description: string, vmSpecs: Array<VappChildVmCopyMoveRequestJson>, vdcUuid: string);
   constructor(firstParam: string | VappCopyMoveRequest | VappCopyMoveRequestJson, description?: string,
               vmSpecs?: Array<VappChildVmCopyMoveRequestJson>, vdcUuid?: string) {
-    if (typeof firstParam === 'string') {
+    if (!firstParam || typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
         name: firstParam,
