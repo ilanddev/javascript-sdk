@@ -4,20 +4,16 @@ import { EdgeIpsecVpnServiceJson } from '../__json__/edge-ipsec-vpn-json';
 export const MockEdgeIpsecVpn: EdgeIpsecVpnServiceJson = {
   'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:af286787-9cb3-4c9d-b86e-c42dc5dfabc5',
   'enabled': true,
-  'logging_settings': [
-    {
-      'log_level': 'mock-log-level',
-      'enabled': true
-    }
-  ],
-  'global_settings': [
-    {
-      'psk': 'mock-psk',
-      'service_certificate': 'mock-service-certificate',
-      'ca_certificates': ['mock-ca-certificate'],
-      'crl_certificates': ['mock-crl-certificate']
-    }
-  ],
+  'logging_settings': {
+    'log_level': 'mock-log-level',
+    'enabled': true
+  },
+  'global_settings': {
+    'psk': 'mock-psk',
+    'service_certificate': 'mock-service-certificate',
+    'ca_certificates': ['mock-ca-certificate'],
+    'crl_certificates': ['mock-crl-certificate']
+  },
   'sites': [
     {
       'name': 'Tunnel name',

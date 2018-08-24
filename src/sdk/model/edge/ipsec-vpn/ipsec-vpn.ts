@@ -30,17 +30,17 @@ export class IpsecVpn {
 
   /**
    * Get global settings
-   * @returns {Array<GlobalSettingsJson>}
+   * @returns {GlobalSettingsJson}
    */
-  get globalSettings(): Array<GlobalSettingsJson> {
+  get globalSettings(): GlobalSettingsJson {
     return this._json.global_settings;
   }
 
   /**
    * Get logging settings
-   * @returns {Array<LoggingSettingsJson>}
+   * @returns {LoggingSettingsJson}
    */
-  get loggingSettings(): Array<LoggingSettingsJson> {
+  get loggingSettings(): LoggingSettingsJson {
     return this._json.logging_settings;
   }
 

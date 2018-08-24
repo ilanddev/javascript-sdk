@@ -28,23 +28,23 @@ test('Properly get Ipsec Vpn service', () => {
     expect(ipsecVpn.json).toEqual(Object.assign({}, MockEdgeIpsecVpn));
     expect(ipsecVpn.toString()).toEqual(JSON.stringify(MockEdgeIpsecVpn, undefined, 2));
     if (MockEdgeIpsecVpn.logging_settings) {
-      expect(ipsecVpn.loggingSettings.length).toEqual(MockEdgeIpsecVpn.logging_settings.length);
-      expect(ipsecVpn.loggingSettings[0]).not.toBeNull();
-      if (ipsecVpn.loggingSettings[0]) {
-        expect(ipsecVpn.loggingSettings[0].log_level).toEqual(MockEdgeIpsecVpn.logging_settings[0].log_level);
-        expect(ipsecVpn.loggingSettings[0].enabled).toEqual(MockEdgeIpsecVpn.logging_settings[0].enabled);
+      expect(ipsecVpn.loggingSettings).toEqual(MockEdgeIpsecVpn.logging_settings);
+      expect(ipsecVpn.loggingSettings).not.toBeNull();
+      if (ipsecVpn.loggingSettings) {
+        expect(ipsecVpn.loggingSettings.log_level).toEqual(MockEdgeIpsecVpn.logging_settings.log_level);
+        expect(ipsecVpn.loggingSettings.enabled).toEqual(MockEdgeIpsecVpn.logging_settings.enabled);
       }
     }
     if (MockEdgeIpsecVpn.global_settings) {
-      expect(ipsecVpn.globalSettings.length).toEqual(MockEdgeIpsecVpn.global_settings.length);
-      expect(ipsecVpn.globalSettings[0]).not.toBeNull();
-      if (ipsecVpn.globalSettings[0]) {
-        expect(ipsecVpn.globalSettings[0].psk).toEqual(MockEdgeIpsecVpn.global_settings[0].psk);
-        expect(ipsecVpn.globalSettings[0].service_certificate)
-            .toEqual(MockEdgeIpsecVpn.global_settings[0].service_certificate);
-        expect(ipsecVpn.globalSettings[0].ca_certificates).toEqual(MockEdgeIpsecVpn.global_settings[0].ca_certificates);
-        expect(ipsecVpn.globalSettings[0].crl_certificates)
-            .toEqual(MockEdgeIpsecVpn.global_settings[0].crl_certificates);
+      expect(ipsecVpn.globalSettings).toEqual(MockEdgeIpsecVpn.global_settings);
+      expect(ipsecVpn.globalSettings).not.toBeNull();
+      if (ipsecVpn.globalSettings) {
+        expect(ipsecVpn.globalSettings.psk).toEqual(MockEdgeIpsecVpn.global_settings.psk);
+        expect(ipsecVpn.globalSettings.service_certificate)
+            .toEqual(MockEdgeIpsecVpn.global_settings.service_certificate);
+        expect(ipsecVpn.globalSettings.ca_certificates).toEqual(MockEdgeIpsecVpn.global_settings.ca_certificates);
+        expect(ipsecVpn.globalSettings.crl_certificates)
+            .toEqual(MockEdgeIpsecVpn.global_settings.crl_certificates);
       }
     }
     if (MockEdgeIpsecVpn.sites) {
