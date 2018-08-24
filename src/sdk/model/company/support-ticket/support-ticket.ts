@@ -205,7 +205,7 @@ export class SupportTicket {
    */
   async getComments(): Promise<Array<SupportTicketComment>> {
     return Iland.getHttp().get(`/companies/${this.companyId}/support-tickets/${this.id}/comments`).then((response) => {
-      return response.data as Array<SupportTicketComment>;
+      return response.data.data as Array<SupportTicketComment>;
     });
   }
 
