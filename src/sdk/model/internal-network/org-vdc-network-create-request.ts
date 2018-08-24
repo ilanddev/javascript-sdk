@@ -13,16 +13,15 @@ export class OrgVdcNetworkCreateRequest {
 
   constructor(orgVdcNetworkRequest: OrgVdcNetworkCreateRequest);
   constructor(orgVdcNetworkRequestJson: OrgVdcNetworkCreateRequestJson);
-  constructor(uuid: string, name: string, description: string, edgeUuid: string, shared: boolean,
+  constructor(name: string, description: string, edgeUuid: string, shared: boolean,
               fenceMode: FenceModeType, ipScope: IpScopeJson);
-  constructor(firstParam: string | OrgVdcNetworkCreateRequest | OrgVdcNetworkCreateRequestJson, name?: string,
+  constructor(firstParam: string | OrgVdcNetworkCreateRequest | OrgVdcNetworkCreateRequestJson,
               description?: string, edgeUuid?: string, shared?: boolean, fenceMode?: FenceModeType,
               ipScope?: IpScopeJson) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
-        uuid: firstParam,
-        name: name,
+        name: firstParam,
         description: description,
         edge_uuid: edgeUuid,
         shared: shared,
@@ -36,14 +35,6 @@ export class OrgVdcNetworkCreateRequest {
       // Json or empty constructor
       this._json = (firstParam || {}) as OrgVdcNetworkCreateRequestJson;
     }
-  }
-
-  /**
-   * Get uuid.
-   * @returns {string}
-   */
-  get uuid(): string {
-    return this._json.uuid;
   }
 
   /**

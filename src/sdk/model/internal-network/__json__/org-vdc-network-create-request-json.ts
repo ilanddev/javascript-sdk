@@ -5,7 +5,6 @@ import { FenceModeType } from '../../common/__json__/fence-mode-type';
  * Org vDC Network Create Request JSON interface.
  */
 export interface OrgVdcNetworkCreateRequestJson {
-  uuid: string;
   name: string;
   description: string;
   edge_uuid: string;
