@@ -1,5 +1,6 @@
-import { EdgeIpSecVpnEndpointJson } from './edge-ipsec-vpn-endpoint-json';
-import { EdgeIpSecVpnTunnelJson } from './edge-ipsec-vpn-tunnel-json';
+import { LoggingSettingsJson } from './logging-settings-json';
+import { GlobalSettingsJson } from './global-settings-json';
+import { IpSecVpnSiteJson } from './ip-sec-vpn-site-json';
 
 /**
  * Edge Ip Sec Vpn Service JSON interface.
@@ -7,6 +8,7 @@ import { EdgeIpSecVpnTunnelJson } from './edge-ipsec-vpn-tunnel-json';
 export interface EdgeIpsecVpnServiceJson {
   edge_uuid: string;
   enabled: boolean | null;
-  endpoints: Array<EdgeIpSecVpnEndpointJson> | null;
-  tunnels: Array<EdgeIpSecVpnTunnelJson> | null;
+  logging_settings: Array<LoggingSettingsJson>;
+  global_settings: Array<GlobalSettingsJson>;
+  sites: Array<IpSecVpnSiteJson>;
 }

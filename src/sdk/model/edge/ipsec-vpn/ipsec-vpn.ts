@@ -1,8 +1,8 @@
 import { EdgeIpsecVpnServiceJson } from './__json__/edge-ipsec-vpn-json';
-import { IpSecVpnEndpoint } from './ip-sec-vpn-endpoint';
-import { IpSecVpnTunnel } from './ip-sec-vpn-tunnel';
-import { EdgeIpSecVpnEndpointJson } from './__json__/edge-ipsec-vpn-endpoint-json';
-import { EdgeIpSecVpnTunnelJson } from './__json__/edge-ipsec-vpn-tunnel-json';
+import { GlobalSettingsJson } from './__json__/global-settings-json';
+import { LoggingSettingsJson } from './__json__/logging-settings-json';
+import { IpSecVpnSiteJson } from './__json__/ip-sec-vpn-site-json';
+import { IpSecVpnSite } from './ip-sec-vpn-site';
 
 /**
  * IpsecVpn class
@@ -29,20 +29,28 @@ export class IpsecVpn {
   }
 
   /**
-   * Get list of vpn-endpoints
-   * @returns {Array<IpSecVpnEndpoint>}
+   * Get global settings
+   * @returns {Array<GlobalSettingsJson>}
    */
-  get endpoints(): Array<IpSecVpnEndpoint> {
-    return (this._json.endpoints as Array<EdgeIpSecVpnEndpointJson>)
-      .map(endpoint => new IpSecVpnEndpoint(endpoint));
+  get globalSettings(): Array<GlobalSettingsJson> {
+    return this._json.global_settings;
   }
 
   /**
-   * Get list of tunnels
-   * @returns {Array<IpSecVpnTunnel>}
+   * Get logging settings
+   * @returns {Array<LoggingSettingsJson>}
    */
-  get tunnels(): Array<IpSecVpnTunnel> {
-    return (this._json.tunnels as Array<EdgeIpSecVpnTunnelJson>).map(tunnel => new IpSecVpnTunnel(tunnel));
+  get loggingSettings(): Array<LoggingSettingsJson> {
+    return this._json.logging_settings;
+  }
+
+  /**
+   * Get Ip Sec Vpn Sites
+   * @returns {Array<IpSecVpnSite>}
+   */
+  get sites(): Array<IpSecVpnSite> {
+    return (this._json.sites as Array<IpSecVpnSiteJson>)
+        .map(site => new IpSecVpnSite(site));
   }
 
   /**
