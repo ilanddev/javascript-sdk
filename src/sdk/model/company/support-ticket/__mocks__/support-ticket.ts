@@ -96,7 +96,9 @@ export const SupportTicketAttachmentDownloadableMockResponse: Promise<AxiosRespo
 export const SupportTicketCommentsMockResponse: Promise<AxiosResponse> =
   new Promise<AxiosResponse>(function(resolve) {
     resolve({
-      data: [SupportTicketCommentMock],
+      data: {
+        data: [SupportTicketCommentMock]
+      },
       status: 200,
       statusText: '',
       headers: {},
