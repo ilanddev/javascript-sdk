@@ -8,7 +8,7 @@ import { IpSecVpnSiteJson } from './ip-sec-vpn-site-json';
 export interface EdgeIpsecVpnServiceJson {
   edge_uuid: string;
   enabled: boolean | null;
-  logging_settings: Array<LoggingSettingsJson>;
-  global_settings: Array<GlobalSettingsJson>;
+  logging_settings: LoggingSettingsJson;
+  global_settings: GlobalSettingsJson;
   sites: Array<IpSecVpnSiteJson>;
 }
