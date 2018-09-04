@@ -288,6 +288,14 @@ export class ExpandedVpg {
   }
 
   /**
+   * Return whether or not the vpg is failing over or not.
+   * @returns {boolean}
+   */
+  isFailingOver(): boolean {
+    return this.status === 'FAILING_OVER' || this.activeProcessStage !== 'NONE';
+  }
+
+  /**
    * Get the string representation of this class.
    * @returns {string}
    */
