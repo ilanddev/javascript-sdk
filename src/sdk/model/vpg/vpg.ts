@@ -58,11 +58,11 @@ export class Vpg extends Entity {
   }
 
   /**
-   * Get service profile for Vpg
-   * @returns {ServiceProfile} service profile
+   * Get service profile for Vpg.
+   * @returns {ServiceProfile | null} service profile or null if there is no service profile for this vpg.
    */
-  get serviceProfile(): ServiceProfile {
-    return new ServiceProfile(this._json.service_profile);
+  get serviceProfile(): ServiceProfile | null {
+    return this._json.service_profile ? new ServiceProfile(this._json.service_profile) : null;
   }
 
   /**
@@ -271,6 +271,14 @@ export class Vpg extends Entity {
    */
   get recoveryJournalUsedStorageGb(): number {
     return this._json.recovery_journal_used_storage_gb;
+  }
+
+  /**
+   * Return whether or not the vpg is failing over or not.
+   * @returns {boolean}
+   */
+  isFailingOver(): boolean {
+    return this.status === 'FAILING_OVER' || this.activeProcessStage !== 'NONE';
   }
 
   /**

@@ -45,6 +45,7 @@ test('Can get Vpg by uuid', async() => {
   return Vpg.getVpg(inventoryVpg.uuid, params).then(function(vpg) {
     expect(vpg).toBeDefined();
     expect(vpg.toString().length).toBeGreaterThan(0);
+    expect(vpg.isFailingOver()).toBeDefined();
     const rawData = vpg.json;
     expect(vpg.entityType).toBe('IAAS_VPG');
     expect(vpg.serviceProfile).toBeDefined();
