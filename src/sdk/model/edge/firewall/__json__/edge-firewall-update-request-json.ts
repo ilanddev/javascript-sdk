@@ -1,3 +1,5 @@
+import { EdgeFirewallRuleUpdateRequestJson } from './edge-firewall-rule-update-request-json';
+
 /**
  * Edge Firewall Update Request JSON representation.
  */
@@ -6,4 +8,5 @@ export interface EdgeFirewallUpdateRequestJson {
   log: boolean;
   enabled: boolean;
   default_action: string;
+  rules: Array<EdgeFirewallRuleUpdateRequestJson>;
 }
