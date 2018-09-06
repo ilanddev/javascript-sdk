@@ -1,4 +1,5 @@
 import { EdgeFirewallUpdateRequestJson } from './__json__/edge-firewall-update-request-json';
+import { EdgeFirewallRuleUpdateRequestJson } from './__json__/edge-firewall-rule-update-request-json';
 
 /**
  * Edge Firewall Update Request.
@@ -10,22 +11,25 @@ export class EdgeFirewallUpdateRequest {
 
   constructor(edgeFirewallUpdateRequest: EdgeFirewallUpdateRequest);
   constructor(edgeFirewallUpdateRequestJson: EdgeFirewallUpdateRequestJson);
-  constructor(edgeUuid: string, log: boolean, enabled: boolean, defaultAction: string);
-  constructor(firstParam: string | EdgeFirewallUpdateRequest | EdgeFirewallUpdateRequestJson, log?: boolean,
-              enabled?: boolean, defaultAction?: string) {
+  constructor(edgeUuid: string, log: boolean, enabled: boolean, defaultAction: string,
+              rules: Array<EdgeFirewallRuleUpdateRequestJson>);
+  constructor(firstParam: string | EdgeFirewallUpdateRequest | EdgeFirewallUpdateRequestJson,
+              log?: boolean, enabled?: boolean, defaultAction?: string,
+              rules?: Array<EdgeFirewallRuleUpdateRequestJson>) {
     if (typeof firstParam === 'string') {
-      // Parameters constructor
+            // Parameters constructor
       this._json = {
         edge_uuid: firstParam,
         log: log,
         enabled: enabled,
-        default_action: defaultAction
+        default_action: defaultAction,
+        rules: rules
       } as EdgeFirewallUpdateRequestJson;
     } else if (firstParam instanceof EdgeFirewallUpdateRequest) {
-      // Copy constructor
+            // Copy constructor
       this._json = (firstParam as EdgeFirewallUpdateRequest).json;
     } else {
-      // Json or empty constructor
+            // Json or empty constructor
       this._json = (firstParam || {}) as EdgeFirewallUpdateRequestJson;
     }
   }
@@ -60,6 +64,14 @@ export class EdgeFirewallUpdateRequest {
    */
   get defaultAction(): string {
     return this._json.default_action;
+  }
+
+  /**
+   * Get rules.
+   * @returns {Array<EdgeFirewallRuleUpdateRequestJson>}
+   */
+  get rules(): Array<EdgeFirewallRuleUpdateRequestJson> {
+    return this._json.rules;
   }
 
   /**
