@@ -46,17 +46,17 @@ export class IpScope {
 
   /**
    * Get inherited.
-   * @returns {boolean}
+   * @returns {boolean | undefined}
    */
-  get inherited(): boolean {
+  get inherited(): boolean | undefined {
     return this._json.inherited;
   }
 
   /**
    * Get enabled.
-   * @returns {boolean}
+   * @returns {boolean | undefined}
    */
-  get enabled(): boolean {
+  get enabled(): boolean | undefined {
     return this._json.enabled;
   }
 
@@ -110,18 +110,19 @@ export class IpScope {
 
   /**
    * Get allocated ip addresses.
-   * @returns {Array<string>}
+   * @returns {Array<string> | undefined}
    */
-  get allocatedIpAddresses(): Array<string> {
+  get allocatedIpAddresses(): Array<string> | undefined {
     return this._json.allocated_ip_addresses;
   }
 
   /**
    * Get sub allocations.
-   * @returns {Array<NetworkSubAllocation>}
+   * @returns {Array<NetworkSubAllocation> | undefined}
    */
-  get subAllocations(): Array<NetworkSubAllocation> {
-    return this._json.sub_allocations.map(it => new NetworkSubAllocation(it));
+  get subAllocations(): Array<NetworkSubAllocation> | undefined {
+    return this._json.sub_allocations ? this._json.sub_allocations
+      .map(it => new NetworkSubAllocation(it)) : undefined;
   }
 
   /**
