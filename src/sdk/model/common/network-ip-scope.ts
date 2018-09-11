@@ -12,16 +12,8 @@ export class NetworkIpScope {
    * Get inherited.
    * @returns {boolean}
    */
-  get inherited(): boolean {
+  get inherited(): boolean | undefined {
     return this._json.inherited;
-  }
-
-  /**
-   * Get enabled.
-   * @returns {boolean}
-   */
-  get enabled(): boolean {
-    return this._json.enabled;
   }
 
   /**
@@ -73,19 +65,29 @@ export class NetworkIpScope {
   }
 
   /**
-   * Get allocated ip addresses.
-   * @returns {Array<string>}
+   * Get enabled.
+   * @returns {boolean | undefined}
    */
-  get allocatedIpAddresses(): Array<string> {
+  get enabled(): boolean | undefined {
+    return this._json.enabled;
+  }
+
+  /**
+   * Get allocated ip addresses.
+   * @returns {Array<string> | undefined}
+   */
+  get allocatedIpAddresses(): Array<string> | undefined {
     return this._json.allocated_ip_addresses;
   }
 
   /**
    * Get sub allocations.
-   * @returns {Array<NetworkSubAllocation>}
+   * @returns {Array<NetworkSubAllocation> | undefined}
    */
-  get subAllocations(): Array<NetworkSubAllocation> {
-    return this._json.sub_allocations.map((alloc) => { return new NetworkSubAllocation(alloc); });
+  get subAllocations(): Array<NetworkSubAllocation> | undefined {
+    return this._json.sub_allocations ? this._json.sub_allocations.map((alloc) => {
+      return new NetworkSubAllocation(alloc);
+    }) : undefined;
   }
 
   /**
