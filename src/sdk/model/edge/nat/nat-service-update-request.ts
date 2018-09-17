@@ -1,4 +1,5 @@
 import { NATServiceUpdateRequestJson } from './__json__/nat-service-update-request-json';
+import { EdgeNATRuleUpdateRequestJson } from './__json__/edge-nat-rule-update-request-json';
 
 /**
  * Nat Service Update Request.
@@ -10,15 +11,17 @@ export class NATServiceUpdateRequest {
 
   constructor(nATServiceUpdateRequest: NATServiceUpdateRequest);
   constructor(nATServiceUpdateRequestJson: NATServiceUpdateRequestJson);
-  constructor(externalIp: string, natType: string, policy: string, enabled: boolean);
+  constructor(externalIp: string, natType: string, policy: string,
+                rules: Array<EdgeNATRuleUpdateRequestJson>, enabled: boolean);
   constructor(firstParam: string | NATServiceUpdateRequest | NATServiceUpdateRequestJson, natType?: string,
-              policy?: string, enabled?: boolean) {
+                policy?: string, rules?: Array<EdgeNATRuleUpdateRequestJson>, enabled?: boolean) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
         external_ip: firstParam,
         nat_type: natType,
         policy: policy,
+        rules: rules,
         enabled: enabled
       } as NATServiceUpdateRequestJson;
     } else if (firstParam instanceof NATServiceUpdateRequest) {
@@ -52,6 +55,14 @@ export class NATServiceUpdateRequest {
    */
   get policy(): string {
     return this._json.policy;
+  }
+
+  /**
+   * Get rules.
+   * @returns {Array<EdgeNATRuleUpdateRequestJson>}
+   */
+  get rules(): Array <EdgeNATRuleUpdateRequestJson> {
+    return this._json.rules;
   }
 
   /**
