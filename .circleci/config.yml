@@ -1,0 +1,69 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/ilanddev/javascript-sdk
+    parallelism: 1
+    shell: /bin/bash --login
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      command: /sbin/init
+    steps:
+    - checkout
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+    - run:
+        working_directory: ~/ilanddev/javascript-sdk
+        command: nvm install 6.2.2 && nvm alias default 6.2.2
+    - restore_cache:
+        keys:
+        - v1-dep-{{ .Branch }}-
+        - v1-dep-master-
+        - v1-dep-
+    - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
+    - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
+    - run: npm install
+    - save_cache:
+        key: v1-dep-{{ .Branch }}-{{ epoch }}
+        paths:
+        - ./node_modules
+    - run: npm test
+    - run: bash <(curl -s https://codecov.io/bash)
+    - store_test_results:
+        path: /tmp/circleci-test-results
+    - store_artifacts:
+        path: /tmp/circleci-artifacts
+    - store_artifacts:
+        path: coverage
+    - store_artifacts:
+        path: /tmp/circleci-test-results
+  deploy-docs:
+    working_directory: ~/ilanddev/javascript-sdk
+    parallelism: 1
+    shell: /bin/bash --login
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      command: /sbin/init
+    steps:
+      - checkout
+      - run: git config --global user.email "csnyder@iland.com"
+      - run: git config --global user.name "CircleCI"
+      - run: yarn publish:docs
+workflows:
+  version: 2
+  build_and_deploy_docs:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: gh-pages
+      - deploy-docs:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

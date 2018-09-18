@@ -67,6 +67,7 @@
       "/node_modules/",
       "test-setup.js"
     ],
+    "testURL": "http://localhost",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.ts",
