@@ -1,17 +1,17 @@
-import { StaticRoutingServiceJson } from '../__json__/static-routing-json';
 import { AxiosResponse } from 'axios';
+import { EdgeStaticRoutingServiceJson } from '../__json__/edge-static-routing-service-json';
 
-export const MockEdgeStaticRoutingServiceJson: StaticRoutingServiceJson = {
+export const MockEdgeStaticRoutingServiceJson: EdgeStaticRoutingServiceJson = {
   'edge_uuid': 'dev-vcd01.iland.dev:urn:vcloud:gateway:af286787-9cb3-4c9d-b86e-c42dc5dfabc5',
   'enabled': true,
   'routes': [{
     edge_uuid: 'test',
-    idx: 0,
+    index: 0,
     name: 'test',
     network: 'network test',
     next_hop_ip: '111.222.333.444',
     interface_type: 'test',
-    interface: 'test'
+    interface_name: 'test'
   }]
 };
 
