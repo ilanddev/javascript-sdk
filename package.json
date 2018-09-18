@@ -14,7 +14,7 @@
     "build": "yarn lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
     "test": "jest --coverage --maxWorkers 2",
     "docs": "typedoc src/sdk --excludePrivate --exclude **/__*__/**/* --mode file --theme minimal --out build/docs",
-    "publish:docs": "yarn docs && cp circle.yml build/docs && gh-pages -d build/docs"
+    "publish:docs": "yarn docs && cp -R .circleci build/docs && gh-pages -d build/docs"
   },
   "scripts-info": {
     "info": "Display information about the scripts",

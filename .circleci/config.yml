@@ -50,6 +50,15 @@ jobs:
       command: /sbin/init
     steps:
       - checkout
+      - run:
+          working_directory: ~/ilanddev/javascript-sdk
+          command: nvm install 6.2.2 && nvm alias default 6.2.2
+      - restore_cache:
+          keys:
+          - v1-dep-{{ .Branch }}-
+          - v1-dep-master-
+          - v1-dep-
+      - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
       - run: git config --global user.email "csnyder@iland.com"
       - run: git config --global user.name "CircleCI"
       - run: yarn publish:docs
