@@ -50,6 +50,9 @@ jobs:
       command: /sbin/init
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "20:eb:b0:26:6f:3d:ed:a6:b2:16:f4:f6:f2:cf:60:2a"
       - run:
           working_directory: ~/ilanddev/javascript-sdk
           command: nvm install 6.2.2 && nvm alias default 6.2.2
