@@ -23,7 +23,7 @@ jobs:
         - v1-dep-
     - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
     - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
-    - run: npm install
+    - run: yarn install
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:

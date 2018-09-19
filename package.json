@@ -10,7 +10,7 @@
   "scripts": {
     "prepare": "yarn build",
     "info": "npm-scripts-info",
-    "lint": "tslint --project tsconfig.json --type-check",
+    "lint": "tslint --project tsconfig.json",
     "build": "yarn lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
     "test": "jest --coverage --maxWorkers 2",
     "docs": "typedoc src/sdk --excludePrivate --exclude **/__*__/**/* --mode file --theme minimal --out build/docs",
@@ -28,22 +28,22 @@
     "node": ">=6.2.2"
   },
   "devDependencies": {
-    "@types/jest": "20.0.2",
-    "@types/node": "7.0.12",
-    "@types/qs": "^6.5.1",
-    "dts-bundle": "^0.7.3",
-    "gh-pages": "1.0.0",
-    "glob": "^7.1.2",
-    "jest": "22.4.4",
-    "ts-jest": "22.4.6",
-    "ts-loader": "2.2.2",
-    "tslint": "5.5.0",
-    "tslint-config-standard": "6.0.1",
-    "typedoc": "0.11.1",
-    "typescript": "2.4.0",
-    "webpack": "3.0.0",
-    "yargs": "^11.0.0",
-    "yarn": "^1.5.1"
+    "@types/jest": "20",
+    "@types/node": "7",
+    "@types/qs": "6",
+    "dts-bundle": "0",
+    "gh-pages": "1",
+    "glob": "7",
+    "jest": "23",
+    "ts-jest": "22",
+    "ts-loader": "2",
+    "tslint": "5",
+    "tslint-config-standard": "6",
+    "typedoc": "0",
+    "typescript": "2",
+    "webpack": "3",
+    "yargs": "11",
+    "yarn": "1"
   },
   "keywords": [
     "iland",
@@ -84,10 +84,10 @@
   },
   "dependencies": {
     "@types/keycloak-js": "2.4.0",
-    "axios": "0.16.2",
+    "axios": "0",
     "keycloak-js": "github:ilanddev/keycloak-js-bower",
-    "qs": "^6.5.2",
-    "rxjs": "^5.5.11",
-    "tslib": "1.7.1"
+    "qs": "6",
+    "rxjs": "5",
+    "tslib": "1"
   }
 }
