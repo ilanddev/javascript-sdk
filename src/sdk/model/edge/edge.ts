@@ -41,7 +41,6 @@ import { NetworkPerfSampleSerie } from './network-perf-sample/network-perf-sampl
 import { NetworkPerfSampleSerieJson } from './network-perf-sample/__json__/network-perf-sample-json';
 import { LoadBalancer } from './load-balancer/load-balancer';
 import { NatServiceJson } from './nat/__json__/nat-service-json';
-import { StaticRoutingServiceJson } from './static-routing/__json__/static-routing-json';
 import { PerfGroupType } from './network-perf-sample/__json__/perf-group-type';
 import { PerfStatsType } from './network-perf-sample/__json__/perf-stats-type';
 import { EdgeJson } from './__json__/edge-json';
@@ -64,6 +63,8 @@ import { IpsecVpnConfiguration } from './ipsec-vpn/ipsec-vpn-configuration';
 import { EdgeIpsecVpnServiceConfigJson } from './ipsec-vpn/__json__/edge-ipsec-vpn-configuration-json';
 import { NatServiceConfiguration } from './nat/nat-service-config';
 import { NatServiceConfigJson } from './nat/__json__/nat-service-config-json';
+import { EdgeStaticRoutingService } from './static-routing/edge-static-routing-service';
+import { EdgeStaticRoutingServiceJson } from './static-routing/__json__/edge-static-routing-service-json';
 
 /**
  * Edge Gateway.
@@ -381,9 +382,9 @@ export class Edge extends Entity {
    * Gets static routing details for a VCD edge.
    * @returns {Promise<StaticRouting>}
    */
-  async getStaticRouting(): Promise<StaticRouting> {
+  async getStaticRouting(): Promise<EdgeStaticRoutingService> {
     return Iland.getHttp().get(`/edges/${this.uuid}/static-routing`).then((response) => {
-      return new StaticRouting(response.data as StaticRoutingServiceJson);
+      return new EdgeStaticRoutingService(response.data as EdgeStaticRoutingServiceJson);
     });
   }
 
