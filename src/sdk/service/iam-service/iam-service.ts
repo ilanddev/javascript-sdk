@@ -102,11 +102,11 @@ export class IamService {
       // handle public catalogs, media, and templates
       switch (permissionObject.domain) {
         case 'IAAS_CATALOG':
-          return (entityUuid.includes('public:') && permissionObject.accessType === 'READ');
+          return (entityUuid.includes(':public') && permissionObject.accessType === 'READ');
         case 'IAAS_MEDIA':
-          return (entityUuid.includes('public:') && permissionObject.accessType === 'READ');
+          return (entityUuid.includes(':public') && permissionObject.accessType === 'READ');
         case 'IAAS_VAPP_TEMPLATE':
-          return (entityUuid.includes('public:') && permissionObject.accessType === 'READ');
+          return (entityUuid.includes(':public') && permissionObject.accessType === 'READ');
       }
     }
     return false;

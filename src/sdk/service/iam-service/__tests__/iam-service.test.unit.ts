@@ -155,7 +155,7 @@ test('Properly validate public entities', async() => {
     if (vappTemplatePermissions) {
       for (const permission of vappTemplatePermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
-          'public:dev-vcd01.iland.dev:urn:vcloud:vapptemplate:b1ffb935-f32c-4886-a7a6-2e4d3d7b1de8');
+          'dev-vcd01.iland.dev:urn:vcloud:public-vapptemplate:b1ffb935-f32c-4886-a7a6-2e4d3d7b1de8');
         if (permission.accessType === 'READ') {
           expect(isUserPermitted).toBeTruthy();
         } else {
@@ -167,7 +167,7 @@ test('Properly validate public entities', async() => {
     if (catalogPermissions) {
       for (const permission of catalogPermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
-          'public:dev-vcd01.iland.dev:urn:vcloud:catalog:0c73d242-101d-43b3-a856-7eb4b4688534');
+          'dev-vcd01.iland.dev:urn:vcloud:public-catalog:0c73d242-101d-43b3-a856-7eb4b4688534');
         if (permission.accessType === 'READ') {
           expect(isUserPermitted).toBeTruthy();
         } else {
@@ -179,7 +179,7 @@ test('Properly validate public entities', async() => {
     if (mediaPermissions) {
       for (const permission of mediaPermissions) {
         const isUserPermitted = u.isPermittedTo(permission.permissionType,
-          'public:dev-vcd01.iland.dev:urn:vcloud:media:0c73d242-101d-43b3-a856-7eb4b4688534');
+          'dev-vcd01.iland.dev:urn:vcloud:public-media:0c73d242-101d-43b3-a856-7eb4b4688534');
         if (permission.accessType === 'READ') {
           expect(isUserPermitted).toBeTruthy();
         } else {
