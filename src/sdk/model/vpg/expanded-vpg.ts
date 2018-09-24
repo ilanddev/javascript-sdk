@@ -232,11 +232,11 @@ export class ExpandedVpg {
   }
 
   /**
-   * Get recovery journal used storage gb.
+   * Get recovery journal used storage mb.
    * @returns {number}
    */
-  get recoveryJournalUsedStorageGb(): number {
-    return this._json.recovery_journal_used_storage_gb;
+  get recoveryJournalUsedStorageInMb(): number {
+    return this._json.recovery_journal_used_storage_in_mb;
   }
 
   /**
