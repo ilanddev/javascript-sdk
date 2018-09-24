@@ -79,7 +79,7 @@ export const MockVpgJson: VpgJson = {
   recovery_site_identifier: 'mock-recovery-site-id',
   protected_site_identifier: 'mock-protected-site',
   active_process_stage: 'NONE',
-  recovery_journal_used_storage_gb: 5
+  recovery_journal_used_storage_in_mb: 5
 };
 
 export const MockAlertJson: VpgFailoverTestAlertJson = {

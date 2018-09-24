@@ -266,11 +266,11 @@ export class Vpg extends Entity {
   }
 
   /**
-   * Get recovery journal used storage in gb for Vpg
-   * @returns {number} recovery journal used storage in gb
+   * Get recovery journal used storage in mb for Vpg
+   * @returns {number} recovery journal used storage in mb
    */
-  get recoveryJournalUsedStorageGb(): number {
-    return this._json.recovery_journal_used_storage_gb;
+  get recoveryJournalUsedStorageInMb(): number {
+    return this._json.recovery_journal_used_storage_in_mb;
   }
 
   /**

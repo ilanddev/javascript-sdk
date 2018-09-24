@@ -35,7 +35,7 @@ export interface VpgJson extends EntityJson {
   recovery_site_identifier: string;
   protected_site_identifier: string;
   active_process_stage: ActiveProcessStage;
-  recovery_journal_used_storage_gb: number;
+  recovery_journal_used_storage_in_mb: number;
 }
 
 /**
