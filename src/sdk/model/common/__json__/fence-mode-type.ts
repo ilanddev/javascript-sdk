@@ -1,1 +1,1 @@
-export type FenceModeType = 'BRIDGED' | 'NATROUTED' | 'ISOLATED';
+export type FenceModeType = 'BRIDGED' | 'NAT_ROUTED' | 'ISOLATED';
