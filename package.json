@@ -1,6 +1,6 @@
 {
   "name": "iland-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK for the ilandcloud REST API",
   "main": "build/iland.js",
   "typings": "build/iland.d.ts",
