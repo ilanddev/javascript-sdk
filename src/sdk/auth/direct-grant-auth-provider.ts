@@ -63,7 +63,7 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
     return this._tokenObservable;
   }
 
-  async logout(): Promise<any> {
+  async logout(options?: any): Promise<any> {
     const url = this._config.url || DEFAULT_AUTH_URL;
     const promise = Axios.post(`${url}/realms/${DEFAULT_REALM}/protocol/openid-connect/logout`, querystring.stringify({
       client_id: this._config.clientId,

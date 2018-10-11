@@ -22,7 +22,7 @@ export interface AuthProvider {
    * Log out the current authentication session.
    * @returns {Promise<null>}
    */
-  logout(): Promise<null>;
+  logout(options?: any): Promise<null>;
 
   /**
    * Gets the username of the currently authenticated user.
