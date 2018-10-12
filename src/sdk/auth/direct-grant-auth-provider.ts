@@ -19,7 +19,7 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
       }).catch(e => {
         observable.error(e);
       });
-      this._onTokenRefresh = function() {
+      this._onTokenRefresh = () => {
         if (this._token !== undefined) {
           observable.next(this._token.access_token);
         }
@@ -61,6 +61,14 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
    */
   getTokenObservable(): Observable<string> {
     return this._tokenObservable;
+  }
+
+  /**
+   * Return the currently used access token synchronously.
+   * @return {string | undefined}
+   */
+  getTokenSync(): string | undefined {
+    return (this._token && this._token.access_token) ? this._token.access_token : undefined;
   }
 
   async logout(options?: any): Promise<any> {
