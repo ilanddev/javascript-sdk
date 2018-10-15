@@ -19,6 +19,12 @@ export interface AuthProvider {
   getTokenObservable(): Observable<string>;
 
   /**
+   * Retrieve the current access token synchronously.
+   * @returns {string | undefined}
+   */
+  getTokenSync(): string | undefined;
+
+  /**
    * Log out the current authentication session.
    * @returns {Promise<null>}
    */

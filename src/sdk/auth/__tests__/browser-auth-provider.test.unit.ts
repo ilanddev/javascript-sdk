@@ -95,13 +95,13 @@ jest.mock('keycloak-js', () => {
   };
 });
 
-test('IlandBrowserAuthProvider can retrieve token', async() => {
+test('IlandBrowserAuthProvider can retrieve token', async () => {
   const auth = new IlandBrowserAuthProvider({
     clientId: TestConfiguration.getClientId()
   });
   return auth.getToken().then(async function(token) {
     expect(token).toBe('fake-auth-token-1');
-    return auth.getAuthenticatedUsername().then(async function(preferredUsername) {
+    return auth.getAuthenticatedUsername().then(async (preferredUsername) => {
       expect(preferredUsername).toBe('csnyder');
       return auth.logout();
     });
@@ -131,4 +131,25 @@ test('IlandBrowserAuthProvider can retrieve a token observable', (done) => {
       done();
     });
   }, 1000);
+});
+
+test('IlandBrowserAuthProvider can retrieve token synchronously', async () => {
+  const auth = new IlandBrowserAuthProvider({
+    clientId: TestConfiguration.getClientId()
+  });
+  return auth.getToken().then(() => {
+    expect(auth.getTokenSync()).toBe('fake-auth-token-1');
+  });
+});
+
+test('IlandBrowserAuthProvider can retrieve impersonated token synchronously', async () => {
+  const auth = new IlandBrowserAuthProvider({
+    clientId: TestConfiguration.getClientId()
+  });
+  auth.testRole('ROLE_UUID');
+  return auth.getToken().then(() => {
+    expect(auth.getTokenSync()).toBe('impersonate=ROLE_UUID;fake-auth-token-1');
+    auth.endRoleTest();
+    expect(auth.getTokenSync()).toBe('fake-auth-token-1');
+  });
 });

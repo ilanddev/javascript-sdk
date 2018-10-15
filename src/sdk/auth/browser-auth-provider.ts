@@ -7,6 +7,7 @@ import { Subscriber } from 'rxjs/Subscriber';
 
 export class IlandBrowserAuthProvider implements AuthProvider {
 
+  private _testingRoleUuid: string | undefined;
   private _keycloak: KeycloakInstance;
   private _tokenObservable: Observable<string>;
 
@@ -20,13 +21,13 @@ export class IlandBrowserAuthProvider implements AuthProvider {
     };
     this._keycloak = Keycloak(kcConfig);
     this._tokenObservable = Observable.create((observable: Subscriber<string>) => {
-      this.getToken().then(token => {
-        observable.next(token);
+      this.getToken().then(() => {
+        observable.next(this.getTokenSync());
       }).catch(reason => {
         observable.error(reason);
       });
       this._keycloak.onAuthRefreshSuccess = () => {
-        observable.next(this._keycloak.token);
+        observable.next(this.getTokenSync());
       };
       this._keycloak.onAuthRefreshError = () => {
         observable.error('[keycloak][onAuthRefreshError] Can\'t refresh the access token.');
@@ -37,15 +38,23 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   async getToken(): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       this._keycloak.updateToken(15).success(() => {
-        resolve(this._keycloak.token);
+        resolve(this.getTokenSync());
       }).error(async() => {
         return this._init().then(() => {
-          resolve(this._keycloak.token);
+          resolve(this.getTokenSync());
         }, (err) => {
           reject(err);
         });
       });
     });
+  }
+
+  /**
+   * Return the current complete access token
+   * @returns {string | undefined} the access token
+   */
+  getTokenSync(): string | undefined {
+    return this.getImpersonateToken(this._keycloak.token);
   }
 
   /**
@@ -65,6 +74,21 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       const tokenParsed = this._keycloak.tokenParsed as any;
       return tokenParsed.preferred_username;
     });
+  }
+
+  /**
+   * Activate the role testing mode.
+   * @param roleUuid
+   */
+  testRole(roleUuid: string): void {
+    this._testingRoleUuid = roleUuid;
+  }
+
+  /**
+   * End role testing session.
+   */
+  endRoleTest(): void {
+    this._testingRoleUuid = undefined;
   }
 
   /**
@@ -92,6 +116,15 @@ export class IlandBrowserAuthProvider implements AuthProvider {
         reject(error);
       });
     });
+  }
+
+  /**
+   * If we have an impersonated role initialized with the SDK, we need to update all token.
+   * @param {string | undefined} token
+   * @returns {string | undefined} the complete token.
+   */
+  private getImpersonateToken(token?: string | undefined): string | undefined {
+    return (this._testingRoleUuid && token) ? `impersonate=${this._testingRoleUuid};${token}` : token;
   }
 }
 
