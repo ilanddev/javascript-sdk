@@ -195,7 +195,7 @@ export class SupportTicket {
     return Iland.getHttp()
       .get(`/companies/${this.companyId}/support-tickets/${this.id}/attachments/${attachmentId}/is-downloadable`)
       .then((response) => {
-        return response.data.is_downloadable;
+        return response.data.downloadable;
       });
   }
 

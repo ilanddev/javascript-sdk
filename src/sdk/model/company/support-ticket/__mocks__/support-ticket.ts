@@ -47,7 +47,7 @@ export const SupportTicketAttachmentMock: SupportTicketAttachmentJson = {
 };
 
 export const SupportTicketAttachmentDownloadableMock = {
-  is_downloadable: true
+  downloadable: true
 };
 
 export const SupportTicketCommentMock: SupportTicketCommentJson = {
