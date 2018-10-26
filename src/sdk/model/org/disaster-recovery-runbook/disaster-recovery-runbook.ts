@@ -240,7 +240,7 @@ export class DisasterRecoveryRunbook {
    */
   getReportHref(reportUuid: string, filename?: string): Observable<string> {
     let href = `${Iland.baseUrl}/disaster-recovery-runbooks/${this.uuid}/reports/${reportUuid}/export?accept=` +
-      encodeURIComponent(Http.versionMime('application/octet-stream'));
+      encodeURIComponent(Http.versionMime('application/pdf'));
     if (filename) {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
