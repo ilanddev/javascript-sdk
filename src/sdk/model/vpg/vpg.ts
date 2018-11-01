@@ -472,7 +472,7 @@ export class Vpg extends Entity {
    */
   downloadFailoverReport(reportUuid: string, fileName?: string): Observable<String> {
     let href = `${Iland.baseUrl}/vpgs/${this.uuid}/failover-reports/${reportUuid}?accept=` +
-      encodeURIComponent(Http.versionMime('application/octet-stream'));
+      encodeURIComponent(Http.versionMime('application/pdf'));
     if (fileName) {
       href = href + '&filename=' + encodeURIComponent(fileName);
     }

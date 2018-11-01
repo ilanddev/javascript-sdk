@@ -175,7 +175,7 @@ test('Get download report href from Vpg failover report', (done) => {
   vpg.downloadFailoverReport(mockTaskUuid, 'downloadFileName').subscribe(url => {
     expect(url).toEqual(Iland.baseUrl + '/vpgs/' + vpg.uuid + '/failover-reports/'
       + mockTaskUuid + '?accept='
-      + encodeURIComponent(Http.versionMime('application/octet-stream'))
+      + encodeURIComponent(Http.versionMime('application/pdf'))
       + '&filename=' + encodeURIComponent('downloadFileName')
       + '&oauth_token=fake-auth-token-2');
     done();
