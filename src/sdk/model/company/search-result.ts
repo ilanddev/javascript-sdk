@@ -17,19 +17,19 @@ export class SearchResult {
   }
 
   /**
-   * Get offset.
+   * Get page offset.
    * @returns {number}
    */
-  get offset(): number {
-    return this._json.offset;
+  get pageOffset(): number {
+    return this._json.page_offset;
   }
 
   /**
-   * Get limit.
+   * Get page size.
    * @returns {number}
    */
-  get limit(): number {
-    return this._json.limit;
+  get pageSize(): number {
+    return this._json.page_size;
   }
 
   /**

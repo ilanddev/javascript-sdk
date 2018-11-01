@@ -1,7 +1,7 @@
 export interface SearchResultJson {
   query: string;
-  offset: number;
-  limit: number;
+  page_offset: number;
+  page_size: number;
   returned_hits: number;
   total_hits: number;
   results: Array<{ [key: string]: string }>;
