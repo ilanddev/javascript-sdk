@@ -25,7 +25,7 @@ export class PermissionsMap {
         false, null)));
     this._permissions.set('MANAGE_ILAND_BACKUP_DATA_CENTER_STORAGE',
       (new Permission('MANAGE_ILAND_BACKUP_DATA_CENTER_STORAGE', 'VCC_BACKUP_LOCATION', 'WRITE', true,
-        false, ['VIEW_ILAND_BACKUP_TENANT'])));
+        false, ['MANAGE_ILAND_BACKUP_TENANT_STORAGE'])));
     // IAAS_VM level permissions
     this._permissions.set('VIEW_ILAND_CLOUD_VM',
       (new Permission('VIEW_ILAND_CLOUD_VM', 'IAAS_VM', 'READ', true,
