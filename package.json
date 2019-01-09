@@ -41,7 +41,7 @@
     "tslint-config-standard": "6",
     "typedoc": "0",
     "typescript": "2",
-    "webpack": "3",
+    "webpack": "^3.1.11",
     "yargs": "11",
     "yarn": "1"
   },
