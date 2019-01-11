@@ -7,6 +7,7 @@
     "promise-function-async": true,
     "prefer-const": true,
     "indent": [true, "spaces"],
-    "unified-signatures": false
+    "unified-signatures": false,
+    "no-unnecessary-type-assertion": false
   }
 }

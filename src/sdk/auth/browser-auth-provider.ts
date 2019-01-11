@@ -98,7 +98,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   async logout(options?: any): Promise<any> {
     const redirectUri = options && options.redirectUri ? options.redirectUri : null;
     return new Promise<any>((resolve, reject) => {
-      this._keycloak.logout({redirectUri: redirectUri}).success(() => {
+      this._keycloak.logout({ redirectUri: redirectUri }).success(() => {
         resolve(null);
       }).error(function() {
         reject(null);

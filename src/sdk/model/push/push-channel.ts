@@ -60,7 +60,7 @@ export class PushChannel {
   private _init() {
     // create the observable
     if (!this._generator) {
-      this._generator = new Subject<Event|Task>();
+      this._generator = new Subject<Event | Task>();
       this._initWebsocket();
     }
   }
