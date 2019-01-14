@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
 import { MediaJson } from './__json__/media-json';
@@ -5,11 +7,9 @@ import { EntityType } from '../common/__json__/entity-type';
 import { Task } from '../task/task';
 import { MediaUpdateRequest } from './media-update-request';
 import { MediaCloneRequest } from './media-clone-request';
-import { Observable } from 'rxjs/Observable';
 import { Http } from '../../service/http/http';
 import { Metadata } from '../common/metadata/metadata';
 import { MetadataJson } from '../common/metadata/__json__/metadata-json';
-import 'rxjs/add/operator/map';
 import { MetadataType } from '../common/metadata/__json__/metadata-type';
 import { TaskJson } from '../task/__json__/task-json';
 
@@ -200,7 +200,7 @@ export class Media extends Entity {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
   /**

@@ -1,5 +1,5 @@
+import { Observable } from 'rxjs/internal/Observable';
 import { BasicConfiguration } from '../config/basic-configuration';
-import { Observable } from 'rxjs/Observable';
 
 /**
  * Authorization Provider interface.

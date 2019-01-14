@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
 import { EdgeInterface } from './edge-interface/edge-interface';
@@ -12,8 +14,6 @@ import {
   EdgeSslVpnServiceJson, EdgeSslVpnUserJson
 } from './ssl-vpn/__json__/edge-ssl-vpn-json';
 import { NATServiceUpdateRequest } from './nat/nat-service-update-request';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 import { NatService } from './nat/nat-service';
 import { Dhcp } from './dhcp/dhcp';
 import { Firewall } from './firewall/firewall';
@@ -281,7 +281,7 @@ export class Edge extends Entity {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
   /**
@@ -306,7 +306,7 @@ export class Edge extends Entity {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
   /**
@@ -364,7 +364,7 @@ export class Edge extends Entity {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
   /**

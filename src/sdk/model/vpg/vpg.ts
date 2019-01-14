@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 import { Iland } from '../../iland';
 import { ServiceProfileJson, VpgJson, VpgVmJson } from './__json__/vpg';
 import { VpgSubEntityRequest } from './__json__/vpg-sub-entity-request';
@@ -477,7 +477,7 @@ export class Vpg extends Entity {
       href = href + '&filename=' + encodeURIComponent(fileName);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
     /**

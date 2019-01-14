@@ -1,8 +1,8 @@
+import { Subscriber } from 'rxjs/internal-compatibility';
+import { Observable } from 'rxjs/internal/Observable';
 import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Axios, { AxiosError, AxiosResponse } from 'axios';
 import querystring = require('querystring');
-import { Subscriber } from 'rxjs/Subscriber';
-import { Observable } from 'rxjs/Observable';
 
 const TOKEN_REFRESH_THRESHOLD = 10;
 

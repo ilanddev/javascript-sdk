@@ -1,6 +1,6 @@
+import { Subscriber } from 'rxjs/internal-compatibility';
+import { Observable } from 'rxjs/internal/Observable';
 import { IlandDirectGrantAuthConfig, IlandDirectGrantAuthProvider } from '../direct-grant-auth-provider';
-import { Subscriber } from 'rxjs/Subscriber';
-import { Observable } from 'rxjs/Observable';
 
 export class MockIlandDirectGrantAuthProvider extends IlandDirectGrantAuthProvider {
 

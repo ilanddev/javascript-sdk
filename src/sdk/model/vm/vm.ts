@@ -1,3 +1,4 @@
+import { applyMixins } from 'rxjs/internal-compatibility';
 import { Task } from '../task/task';
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
@@ -37,7 +38,6 @@ import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-s
 import { PerfCounter } from '../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
-import { applyMixins } from 'rxjs/util/applyMixins';
 import { BootOptions } from './boot-options/boot-options';
 import { GuestTools } from './guest-tools/guest-tools';
 import { ToolsUpgradePolicy } from './__json__/tools-upgrade-policy';

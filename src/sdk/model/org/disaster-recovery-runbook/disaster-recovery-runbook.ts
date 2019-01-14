@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/operators';
 import { DisasterRecoveryRunbookJson } from './__json__/disaster-recovery-runbook-json';
 import { RecoveryGroupDescriptor } from './recovery-group-descriptor';
 import { Iland } from '../../../iland';
@@ -9,7 +11,6 @@ import { DisasterRecoveryRunbookExecuteRequest } from './disaster-recovery-runbo
 import {
   DisasterRecoveryRunbookFinalizeExecutionRequest
 } from './disaster-recovery-runbook-finalize-execution-request';
-import { Observable } from 'rxjs/Observable';
 import { Http } from '../../../service/http/http';
 import { DisasterRecoveryRunbookReportDetails } from './disaster-recovery-runbook-task-details';
 import { DisasterRecoveryRunbookReportDetailsJson } from './__json__/disaster-recovery-runbook-task-details-json';
@@ -245,7 +246,7 @@ export class DisasterRecoveryRunbook {
       href = href + '&filename=' + encodeURIComponent(filename);
     }
     const observable: Observable<string> = Iland.getAuthProvider().getTokenObservable();
-    return observable.map(token => `${href}&oauth_token=${token}`);
+    return observable.pipe(map(token => `${href}&oauth_token=${token}`));
   }
 
   /**
