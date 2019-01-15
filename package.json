@@ -36,12 +36,12 @@
     "glob": "7",
     "jest": "23",
     "ts-jest": "22",
-    "ts-loader": "2",
+    "ts-loader": "3",
     "tslint": "5",
-    "tslint-config-standard": "6",
+    "tslint-config-standard": "^8.0.1",
     "typedoc": "0",
-    "typescript": "2",
-    "webpack": "3",
+    "typescript": "^3.2.2",
+    "webpack": "^3.1.11",
     "yargs": "11",
     "yarn": "1"
   },
@@ -80,7 +80,14 @@
       "/__test__/.*\\.js$",
       "/build/.*\\.(ts|js)$",
       "/src/sdk/logger.*"
-    ]
+    ],
+    "globals": {
+      "ts-jest": {
+        "tsConfig": {
+          "importHelpers": true
+        }
+      }
+    }
   },
   "dependencies": {
     "@types/keycloak-js": "2.4.0",
@@ -88,7 +95,6 @@
     "keycloak-js": "github:ilanddev/keycloak-js-bower",
     "qs": "6",
     "rxjs": "6",
-    "rxjs-compat": "^6.3.3",
     "tslib": "1"
   }
 }

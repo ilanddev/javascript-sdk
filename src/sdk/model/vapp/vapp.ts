@@ -1,3 +1,4 @@
+import { applyMixins } from 'rxjs/internal-compatibility';
 import { EntityWithPerfSamples } from '../mixins/perf-samples/entity-with-perf-samples';
 import { Entity } from '../common/entity';
 import { Iland } from '../../iland';
@@ -13,7 +14,6 @@ import { VappStatus } from './__json__/vapp-status-type';
 import { PerfCounter } from '../mixins/perf-samples/perf-counter';
 import { PerfSamplesRequest } from '../mixins/perf-samples/perf-samples-request';
 import { PerfSamplesSeries } from '../mixins/perf-samples/perf-samples-series';
-import { applyMixins } from 'rxjs/util/applyMixins';
 import { VappStartupSectionItemJson } from './__json__/vapp-startup-section-item-json';
 import { Snapshot } from '../common/snapshot/snapshot';
 import { SnapshotJson } from '../common/snapshot/__json__/snapshot-json';

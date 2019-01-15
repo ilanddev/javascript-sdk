@@ -1,8 +1,8 @@
+import { noop } from 'rxjs/internal-compatibility';
 import { AuthProvider } from './auth/auth-provider';
 import { Logger } from './logger/logger';
 import { Http } from './service/http/http';
 import { BasicConfiguration } from './config/basic-configuration';
-import { noop } from 'rxjs/util/noop';
 
 const DEFAULT_API_URL = `${BasicConfiguration.getApiUrl()}/v1`;
 

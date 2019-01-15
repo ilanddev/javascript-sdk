@@ -308,7 +308,7 @@ export class Org extends Entity {
    * @returns {Promise<Array<OrgVdcBills|null>>} a promise that resolves with the org vdc bill object or null if none
    * exists for the specified month
    */
-  async getBillingByVdc(month?: number, year?: number): Promise<OrgVdcBills|null> {
+  async getBillingByVdc(month?: number, year?: number): Promise<OrgVdcBills | null> {
     return this.getBillingByVdcInRange(month, year, month, year).then((bills) => {
       return bills.length === 1 ? bills[0] : null;
     });

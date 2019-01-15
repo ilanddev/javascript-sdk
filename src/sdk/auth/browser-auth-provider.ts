@@ -1,9 +1,9 @@
 import { KeycloakInstance } from 'keycloak-js';
+import { Subscriber } from 'rxjs/internal-compatibility';
+import { Observable } from 'rxjs/internal/Observable';
 import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;
-import { Observable } from 'rxjs/Observable';
-import { Subscriber } from 'rxjs/Subscriber';
 
 export class IlandBrowserAuthProvider implements AuthProvider {
 
@@ -98,7 +98,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
   async logout(options?: any): Promise<any> {
     const redirectUri = options && options.redirectUri ? options.redirectUri : null;
     return new Promise<any>((resolve, reject) => {
-      this._keycloak.logout({redirectUri: redirectUri}).success(() => {
+      this._keycloak.logout({ redirectUri: redirectUri }).success(() => {
         resolve(null);
       }).error(function() {
         reject(null);
