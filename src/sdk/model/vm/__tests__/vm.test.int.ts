@@ -46,7 +46,7 @@ test('Get a proper error when trying to retrieve non-existent VM', async() => {
   } catch (err) {
     const apiError = err as ApiError;
     const raw = apiError.getJson();
-    expect(apiError.getType()).toBe('UnauthorizedError');
+    expect(apiError.getType()).toBe('UnknownError');
     expect(apiError.getMessage()).toBeDefined();
     expect(apiError.getDetailMessage()).toBe(raw.detail_message);
     expect(apiError.getMessage()).toBe(raw.message);
