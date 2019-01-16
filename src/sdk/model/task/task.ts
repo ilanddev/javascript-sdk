@@ -222,6 +222,14 @@ export class Task {
   }
 
   /**
+   * Gets the tasks entity name
+   * @returns {string} entity name
+   */
+  get entityName(): string {
+    return this._apiTask.entity_name;
+  }
+
+  /**
    * JSON format.
    * @returns {string}
    */

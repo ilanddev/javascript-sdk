@@ -33,7 +33,8 @@ export class MockTaskService {
       task_id: uuid,
       task_type: 'ILAND',
       user_full_name: 'Cory Snyder',
-      username: 'csnyder'
+      username: 'csnyder',
+      entity_name: 'task-entity-name'
     };
     MockTaskService.taskMap.set(uuid, mockTask);
     return new Promise<AxiosResponse>(function(resolve) {
