@@ -29,4 +29,5 @@ export interface TaskJson {
   task_type: TaskType;
   user_full_name: string;
   username: string;
+  entity_name: string;
 }

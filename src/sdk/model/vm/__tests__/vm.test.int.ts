@@ -227,6 +227,8 @@ test('Can update VM description', async() => {
   expect(task.userFullName).toBe(rawTask.user_full_name);
   expect(task.username).toBeDefined();
   expect(task.username).toBe(rawTask.username);
+  expect(task.entityName).toBeDefined();
+  expect(task.entityName).toBe(rawTask.entity_name);
   const promises = [];
   promises.push(new Promise(function(resolve) {
     task.getObservable().subscribe(function() {
