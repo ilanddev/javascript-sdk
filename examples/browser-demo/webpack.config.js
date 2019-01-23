@@ -13,13 +13,5 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 9000
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.tsx?$/,
-        exclude: /.*?node_modules/,
-        loader: "ts-loader" }
-    ]
   }
 };
