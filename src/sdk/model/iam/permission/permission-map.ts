@@ -192,6 +192,22 @@ export class PermissionsMap {
     this._permissions.set('CREATE_ILAND_CLOUD_CATALOG_MEDIA',
       (new Permission('CREATE_ILAND_CLOUD_CATALOG_MEDIA', 'IAAS_CATALOG', 'WRITE', true,
         false, null)));
+    // IAAS VCC FAILOVER PLAN permissions
+    this._permissions.set('VIEW_ILAND_CLOUD_VCC_FAILOVER_PLAN',
+        (new Permission('VIEW_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'READ', true,
+            true, null)));
+    this._permissions.set('MANAGE_ILAND_CLOUD_VCC_FAILOVER_PLAN_CONFIGURATION',
+        (new Permission('MANAGE_ILAND_CLOUD_VCC_FAILOVER_PLAN_CONFIGURATION', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
+            false, null)));
+    this._permissions.set('TEST_ILAND_CLOUD_VCC_FAILOVER_PLAN',
+        (new Permission('TEST_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
+            false, null)));
+    this._permissions.set('START_ILAND_CLOUD_VCC_FAILOVER_PLAN',
+        (new Permission('START_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
+            false, null)));
+    this._permissions.set('UNDO_ILAND_CLOUD_VCC_FAILOVER_PLAN',
+        (new Permission('UNDO_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
+            false, null)));
     // IAAS_VPG level permissions
     this._permissions.set('VIEW_ILAND_CLOUD_VPG',
       (new Permission('VIEW_ILAND_CLOUD_VPG', 'IAAS_VPG', 'READ', true,
