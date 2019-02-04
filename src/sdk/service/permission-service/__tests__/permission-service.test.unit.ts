@@ -35,8 +35,8 @@ function runPermissionServiceViewPermissionAssertions(permission: Permission | u
 
 test('Properly instantiate permission service to get permissions and domain permissions maps', () => {
   const permissionService = PermissionService.getInstance();
-  expect(permissionService.permissions.size).toBe(84);
-  expect(permissionService.domainPermissions.size).toBe(19);
+  expect(permissionService.permissions.size).toBe(89);
+  expect(permissionService.domainPermissions.size).toBe(20);
 });
 
 test('Properly get the available permissions for domain', () => {

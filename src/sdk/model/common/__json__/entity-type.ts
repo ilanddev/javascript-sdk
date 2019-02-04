@@ -25,6 +25,8 @@ export type EntityType =
 
     'IAAS_VPG' |
 
+    'IAAS_VCC_FAILOVER_PLAN' |
+
     'IAAS_DISASTER_RECOVERY_RUNBOOK' |
 
     'IAAS_CATALOG' |

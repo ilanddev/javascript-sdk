@@ -24,7 +24,7 @@ export class CloudTenant extends Entity {
    * @param {string} uuid
    * @returns {Promise<CloudTenant>} promise that resolves with the Cloud Tenant
    */
-  static async getCloudTenant(uuid: string): Promise<any> {
+  static async getCloudTenant(uuid: string): Promise<CloudTenant> {
     return Iland.getHttp().get(`/vcc-backup-tenants/${uuid}`).then((response) => {
       const json = response.data as CloudTenantJson;
       return new CloudTenant(json);

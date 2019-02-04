@@ -5,6 +5,7 @@ export type IamEntityType =
   'IAAS_LOCATION' |
   'IAAS_ORGANIZATION' |
   'IAAS_VPG' |
+  'IAAS_VCC_FAILOVER_PLAN' |
   'IAAS_CATALOG' |
   'IAAS_MEDIA' |
   'IAAS_VAPP_TEMPLATE' |

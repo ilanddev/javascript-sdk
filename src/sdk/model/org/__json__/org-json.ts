@@ -12,6 +12,7 @@ export interface OrgJson extends EntityJson {
   vapp_delete_on_storage_expire: boolean;
   vapp_template_delete_on_storage_expire: boolean;
   zerto_target: boolean;
+  vccr_target: boolean;
   fullname: string;
   description: string;
   vcloud_href: string;
