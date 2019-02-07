@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
-import { Subject } from 'rxjs/internal/Subject';
+import { Observable, Subject } from 'rxjs';
 import { UserCompanyInventoryJson, UserInventoryEntityJson } from './__json__/user-inventory-json';
 import { IamEntityType } from '../../common/__json__/iam-entity-type';
 

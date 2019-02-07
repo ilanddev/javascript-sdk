@@ -1,4 +1,4 @@
-import { noop } from 'rxjs/internal-compatibility';
+import { noop } from 'rxjs';
 import { AuthProvider } from './auth/auth-provider';
 import { Logger } from './logger/logger';
 import { Http } from './service/http/http';
