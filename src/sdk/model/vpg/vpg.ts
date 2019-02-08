@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Iland } from '../../iland';
 import { ServiceProfileJson, VpgJson, VpgVmJson } from './__json__/vpg';

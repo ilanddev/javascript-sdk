@@ -1,6 +1,5 @@
 import { KeycloakInstance } from 'keycloak-js';
-import { Subscriber } from 'rxjs/internal-compatibility';
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable, Subscriber } from 'rxjs';
 import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
 import KeycloakError = Keycloak.KeycloakError;

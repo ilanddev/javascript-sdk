@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DisasterRecoveryRunbookJson } from './__json__/disaster-recovery-runbook-json';
 import { RecoveryGroupDescriptor } from './recovery-group-descriptor';

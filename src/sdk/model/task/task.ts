@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/internal/Observable';
-import { Subject } from 'rxjs/internal/Subject';
+import { Observable, Subject } from 'rxjs';
 import { Iland } from '../../iland';
 import { TaskJson } from './__json__/task-json';
 import { TaskStatus } from './__json__/task-status-type';

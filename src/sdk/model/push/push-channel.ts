@@ -1,6 +1,4 @@
-import { noop } from 'rxjs/internal-compatibility';
-import { Observable } from 'rxjs/internal/Observable';
-import { Subject } from 'rxjs/internal/Subject';
+import { Observable, Subject, noop } from 'rxjs';
 import { Event } from '../event/event';
 import { Iland } from '../../iland';
 import { EventJson } from '../event/__json__/event-json';
