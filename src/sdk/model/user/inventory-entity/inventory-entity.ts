@@ -144,6 +144,9 @@ export class CompanyInventoryImpl implements CompanyInventory {
   addEntity(entity: UserInventoryEntityJson, original: boolean = false) {
     const inventoryEntity = new InventoryEntityImpl(entity);
     if (!original) {
+      if (!this._inventory.entities[entity.type]) {
+        this._inventory.entities[entity.type] = [];
+      }
       this._inventory.entities[entity.type].push(entity);
     }
     this._uuidMap[entity.uuid] = inventoryEntity;
