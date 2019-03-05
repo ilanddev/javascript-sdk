@@ -10,16 +10,15 @@ export class InitiateOVFUploadRequest {
 
   constructor(initiateOVFUploadRequest: InitiateOVFUploadRequest);
   constructor(initiateOVFUploadRequestJson: InitiateOVFUploadRequestJson);
-  constructor(name: string, description: string | undefined, storageProfileUuid: string, descriptor: string,
+  constructor(name: string, description: string | undefined, descriptor: string,
               uploadType?: TemplateUploadType);
   constructor(firstParam: string | InitiateOVFUploadRequest | InitiateOVFUploadRequestJson, description?: string,
-              storageProfileUuid?: string, descriptor?: string, uploadType?: TemplateUploadType) {
+              descriptor?: string, uploadType?: TemplateUploadType) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
         name: firstParam,
         description: description,
-        storage_profile_uuid: storageProfileUuid,
         descriptor: descriptor,
         upload_type: uploadType
       } as InitiateOVFUploadRequestJson;
@@ -46,14 +45,6 @@ export class InitiateOVFUploadRequest {
    */
   get description(): string | undefined {
     return this._json.description;
-  }
-
-  /**
-   * Get storage profile uuid.
-   * @returns {string}
-   */
-  get storageProfileUuid(): string {
-    return this._json.storage_profile_uuid;
   }
 
   /**

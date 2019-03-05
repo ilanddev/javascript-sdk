@@ -54,7 +54,8 @@ export abstract class UploadService {
    * @param params the invocation params for the session
    * @returns a promise that resolves when the session has started
    */
-  static async startUploadSession(host: string, sessionID: string, params: StartUploadSessionParams): Promise<any> {
+  private static async startUploadSession(host: string, sessionID: string, params: StartUploadSessionParams):
+      Promise<any> {
     const client = this.getHTTPClient();
     return client.post(`${host}/v1/sessions/${sessionID}/actions/start`, params);
   }
@@ -159,36 +160,56 @@ export abstract class UploadService {
   static uploadFiles(host: string, sessionID: string, files: Array<File>, logger?: Logger):
       FileProgressObservable {
     const progressSubject = new Subject<FileProgress>();
-    const promises = [];
-    for (const f of files) {
-      const fileSubject = new Subject<number>();
-      promises.push(this.uploadFile(host, sessionID, f, fileSubject));
-      fileSubject.subscribe(v => {
-        progressSubject.next({
-          name: f.name,
-          progressPercentage: v
-        });
-      });
-    }
-    const client = this.getHTTPClient();
-    const completeSessionFn = async() => {
-      return this.assertSessionComplete(host, sessionID).then(undefined, async(err) => {
-        if (logger) {
-          logger.error(`${err.code}: failed to assert sessoin '${sessionID}' complete,
-              retrying in 5s: ${err.message}`);
-        }
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(completeSessionFn());
-          }, 5000);
-        });
-      });
-    };
-    /* tslint:disable-next-line */
-    Promise.all(promises).then(() => {
-      return completeSessionFn();
+    // get the session file list. if I don't have the file size for any, start the session. If I don't have all of the
+    // needed files, throw an error
+    this.startUploadSession(host, sessionID, {
+      manifest: files.map(it => {
+        return {
+          fileName: it.name,
+          sizeInBytes: it.size
+        };
+      })
+    }).then(undefined, async(err) => {
+      if (err.message.indexOf('session is already started') >= 0) {
+        // if the error is caused by the fact that the session is already started, we ignore it
+        return Promise.resolve();
+      } else {
+        return Promise.reject(err);
+      }
     }).then(() => {
-      return progressSubject.complete();
+      const promises = [];
+      for (const f of files) {
+        const fileSubject = new Subject<number>();
+        promises.push(this.uploadFile(host, sessionID, f, fileSubject));
+        fileSubject.subscribe(v => {
+          progressSubject.next({
+            name: f.name,
+            progressPercentage: v
+          });
+        });
+      }
+      const client = this.getHTTPClient();
+      const completeSessionFn = async() => {
+        return this.assertSessionComplete(host, sessionID).then(undefined, async(err) => {
+          if (logger) {
+            logger.error(`${err.code}: failed to assert session '${sessionID}' complete,
+              retrying in 5s: ${err.message}`);
+          }
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(completeSessionFn());
+            }, 5000);
+          });
+        });
+      };
+      /* tslint:disable-next-line */
+      Promise.all(promises).then(() => {
+        return completeSessionFn();
+      }).then(() => {
+        return progressSubject.complete();
+      });
+    }, err => {
+      progressSubject.error(err);
     });
     return progressSubject;
   }
@@ -203,8 +224,9 @@ export abstract class UploadService {
    * @param parallelism number of chunks to upload simulaneously
    * @returns a promise that resolves when the file upload is complete
    */
-  static async uploadFile(host: string, sessionID: string, file: File,
-                          progressSink?: Subject<number>, logger?: Logger, parallelism: number = 1): Promise<any> {
+  private static async uploadFile(host: string, sessionID: string, file: File,
+                                  progressSink?: Subject<number>, logger?: Logger,
+                                  parallelism: number = 1): Promise<any> {
     const self = this;
     const fileInfo = await UploadService.getSessionFileInfo(host, sessionID, file.name);
     const missingFileChunks = await UploadService.listMissingFileChunks(host, sessionID, file.name);
@@ -212,6 +234,7 @@ export abstract class UploadService {
     let activeCount = 0;
     return new Promise<any>(async(resolve) => {
       const uploadChunk = async(chunk: Chunk): Promise<ChunkUploadResult> => {
+        activeCount++;
         return this.uploadFileChunk(host, sessionID, file.name, chunk.chunkNumber, chunk)
             .then(() => {
               activeCount--;
@@ -310,7 +333,12 @@ export abstract class UploadService {
         }
       });
       if (progressSink) {
-        let successCount = 0;
+        let successCount = fileInfo.totalNumberOfChunks -
+            missingFileChunks.data.map(it => it.end + 1 - it.begin)
+            .reduce((p, c) => p + c, 0);
+        if (successCount > 0) {
+          progressSink.next((successCount / fileInfo.totalNumberOfChunks) * 100);
+        }
         subject.pipe(filter(it => it.success)).pipe(map(() => {
           successCount++;
           return (successCount / fileInfo.totalNumberOfChunks) * 100;
