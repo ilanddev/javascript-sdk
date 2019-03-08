@@ -114,4 +114,9 @@ export type TaskOperation = 'power on' |
   'generate failover test report' |
   'update cloud tenant repository size' |
   'enable nested hypervisor' |
-  'disable nested hypervisor';
+  'disable nested hypervisor' |
+  'upload ovf to catalog' |
+  'create catalog item in vcloud' |
+  'receive ovf file upload' |
+  'upload ovf files to vcloud' |
+  'prepare ovf template in vcloud';
