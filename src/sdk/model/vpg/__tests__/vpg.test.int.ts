@@ -99,6 +99,8 @@ test('Can get Vpg by uuid', async() => {
     expect(vpg.activeProcessStage).toBe(rawData.active_process_stage);
     expect(vpg.recoveryJournalUsedStorageInMb).toBeDefined();
     expect(vpg.recoveryJournalUsedStorageInMb).toBe(rawData.recovery_journal_used_storage_in_mb);
+    expect(vpg.recoveryJournalProvisionedStorageInMb).toBeDefined();
+    expect(vpg.recoveryJournalProvisionedStorageInMb).toBe(rawData.recovery_journal_provisioned_storage_in_mb);
   });
 });
 
