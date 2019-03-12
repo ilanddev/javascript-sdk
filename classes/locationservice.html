@@ -921,6 +921,9 @@ img { max-width: 100%; }
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a href="locationservice.html#getpublicvapptemplates" class="tsd-kind-icon">get<wbr>Public<wbr>Vapp<wbr>Templates</a>
 				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a href="locationservice.html#getvmconfigurationlimits" class="tsd-kind-icon">get<wbr>VmConfiguration<wbr>Limits</a>
+				</li>
 			</ul>
 		</li>
 	</ul>
@@ -945,6 +948,7 @@ img { max-width: 100%; }
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="locationservice.html#getpubliccatalogs" class="tsd-kind-icon">get<wbr>Public<wbr>Catalogs</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="locationservice.html#getpublicmedia" class="tsd-kind-icon">get<wbr>Public<wbr>Media</a></li>
 							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="locationservice.html#getpublicvapptemplates" class="tsd-kind-icon">get<wbr>Public<wbr>Vapp<wbr>Templates</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="locationservice.html#getvmconfigurationlimits" class="tsd-kind-icon">get<wbr>VmConfiguration<wbr>Limits</a></li>
 						</ul>
 					</section>
 				</div>
@@ -962,7 +966,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e9682356c/src/sdk/service/location/location-service.ts#L17">service/location/location-service.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fc54deea2/src/sdk/service/location/location-service.ts#L19">service/location/location-service.ts:19</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -994,7 +998,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e9682356c/src/sdk/service/location/location-service.ts#L43">service/location/location-service.ts:43</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fc54deea2/src/sdk/service/location/location-service.ts#L45">service/location/location-service.ts:45</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1026,7 +1030,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/e9682356c/src/sdk/service/location/location-service.ts#L30">service/location/location-service.ts:30</a></li>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fc54deea2/src/sdk/service/location/location-service.ts#L32">service/location/location-service.ts:32</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -1045,6 +1049,38 @@ img { max-width: 100%; }
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="vapptemplate.html" class="tsd-signature-type">VappTemplate</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						<p>promise Promise that resolves with a list of VappTemplate</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+				<a name="getvmconfigurationlimits" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>VmConfiguration<wbr>Limits</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>VmConfiguration<wbr>Limits<span class="tsd-signature-symbol">(</span>location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="vmconfigurationlimits.html" class="tsd-signature-type">VmConfigurationLimits</a><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/ilanddev/javascript-sdk/blob/fc54deea2/src/sdk/service/location/location-service.ts#L58">service/location/location-service.ts:58</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Get the VM configuration limits for a data center location.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>location: <span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>The location ID</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="vmconfigurationlimits.html" class="tsd-signature-type">VmConfigurationLimits</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						<p>promise Promise that resolves with the VM configuration limits</p>
 					</li>
 				</ul>
 			</section>
