@@ -21,6 +21,52 @@ export abstract class UploadService {
 
   private static _uploadAxios: AxiosInstance;
 
+  /**
+   * Lists info about the files in an upload session.
+   * @param host the upload session host
+   * @param sessionID the upload session UUID
+   * @returns a promise that resolves with upload session file info list
+   */
+  static async listSessionFileInfo(host: string, sessionID: string): Promise<UploadSessionFileInfoList> {
+    const client = this.getHTTPClient();
+    return client.get(`${host}/v1/sessions/${sessionID}/files`).then((resp) => {
+      return resp.data as UploadSessionFileInfoList;
+    });
+  }
+
+  /**
+   * Lists the missing file chunks for an upload session.
+   * @param host the upload session host
+   * @param sessionID the upload session UUID
+   * @param fileName the name of the file within the upload session
+   * @returns a promise that resolves with upload session missing file chunk range list
+   */
+  static async listMissingFileChunks(host: string, sessionID: string, fileName: string):
+    Promise<UploadSessionFileChunkRangeList> {
+    const client = this.getHTTPClient();
+    return client.get(`${host}/v1/sessions/${sessionID}/files/${fileName}/chunks`, {
+      params: {
+        filter: 'Missing'
+      }
+    }).then((resp) => {
+      return resp.data as UploadSessionFileChunkRangeList;
+    });
+  }
+
+  /**
+   * Gets info for a specific file within an upload session.
+   * @param host the upload session host
+   * @param sessionID the upload session UUID
+   * @param fileName the name of the file within the upload session
+   * @returns a promise that resolves with the file info
+   */
+  static async getSessionFileInfo(host: string, sessionID: string, fileName: string): Promise<UploadSessionFileInfo> {
+    const client = this.getHTTPClient();
+    return client.get(`${host}/v1/sessions/${sessionID}/files/${fileName}`).then((resp) => {
+      return resp.data as UploadSessionFileInfo;
+    });
+  }
+
   private static getHTTPClient(): AxiosInstance {
     if (!UploadService._uploadAxios) {
       UploadService._uploadAxios = axios.create();
@@ -58,52 +104,6 @@ export abstract class UploadService {
       Promise<any> {
     const client = this.getHTTPClient();
     return client.post(`${host}/v1/sessions/${sessionID}/actions/start`, params);
-  }
-
-  /**
-   * Lists info about the files in an upload session.
-   * @param host the upload session host
-   * @param sessionID the upload session UUID
-   * @returns a promise that resolves with upload session file info list
-   */
-  static async listSessionFileInfo(host: string, sessionID: string): Promise<UploadSessionFileInfoList> {
-    const client = this.getHTTPClient();
-    return client.get(`${host}/v1/sessions/${sessionID}/files`).then((resp) => {
-      return resp.data as UploadSessionFileInfoList;
-    });
-  }
-
-  /**
-   * Lists the missing file chunks for an upload session.
-   * @param host the upload session host
-   * @param sessionID the upload session UUID
-   * @param fileName the name of the file within the upload session
-   * @returns a promise that resolves with upload session missing file chunk range list
-   */
-  static async listMissingFileChunks(host: string, sessionID: string, fileName: string):
-      Promise<UploadSessionFileChunkRangeList> {
-    const client = this.getHTTPClient();
-    return client.get(`${host}/v1/sessions/${sessionID}/files/${fileName}/chunks`, {
-      params: {
-        filter: 'Missing'
-      }
-    }).then((resp) => {
-      return resp.data as UploadSessionFileChunkRangeList;
-    });
-  }
-
-  /**
-   * Gets info for a specific file within an upload session.
-   * @param host the upload session host
-   * @param sessionID the upload session UUID
-   * @param fileName the name of the file within the upload session
-   * @returns a promise that resolves with the file info
-   */
-  static async getSessionFileInfo(host: string, sessionID: string, fileName: string): Promise<UploadSessionFileInfo> {
-    const client = this.getHTTPClient();
-    return client.get(`${host}/v1/sessions/${sessionID}/files/${fileName}`).then((resp) => {
-      return resp.data as UploadSessionFileInfo;
-    });
   }
 
   /**
@@ -188,7 +188,6 @@ export abstract class UploadService {
           });
         });
       }
-      const client = this.getHTTPClient();
       const completeSessionFn = async() => {
         return this.assertSessionComplete(host, sessionID).then(undefined, async(err) => {
           if (logger) {
