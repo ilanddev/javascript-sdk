@@ -5,4 +5,3 @@ export interface VmConfigurationLimitsJson {
   max_disk_size_mebibytes: number;
   min_disk_size_mebibytes: number;
 }
-
