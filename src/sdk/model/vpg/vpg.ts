@@ -274,6 +274,14 @@ export class Vpg extends Entity {
   }
 
   /**
+   * Get recovery journal provisioned storage in mb for Vpg
+   * @returns {number} recovery journal provisioned storage in mb
+   */
+  get recoveryJournalProvisionedStorageInMb(): number {
+    return this._json.recovery_journal_provisioned_storage_in_mb;
+  }
+
+  /**
    * Return whether or not the vpg is failing over or not.
    * @returns {boolean}
    */
