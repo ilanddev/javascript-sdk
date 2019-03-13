@@ -240,6 +240,14 @@ export class ExpandedVpg {
   }
 
   /**
+   * Get recovery journal provisioned storage in mb for Vpg
+   * @returns {number} recovery journal provisioned storage in mb
+   */
+  get recoveryJournalProvisionedStorageInMb(): number {
+    return this._json.recovery_journal_provisioned_storage_in_mb;
+  }
+
+  /**
    * Get uuid.
    * @returns {string}
    */
