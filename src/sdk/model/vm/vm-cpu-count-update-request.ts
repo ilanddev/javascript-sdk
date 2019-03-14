@@ -13,7 +13,7 @@ export class VmCpuCountUpdateRequest {
    * @returns {number}
    */
   get numberOfCpus(): number {
-    return this._json.number_of_cpus;
+    return this._json.cpus_number;
   }
 
   /**
@@ -21,7 +21,7 @@ export class VmCpuCountUpdateRequest {
    * @param {number} count
    */
   set numberOfCpus(count: number) {
-    this._json.number_of_cpus = count;
+    this._json.cpus_number = count;
   }
 
   /**

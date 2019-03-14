@@ -141,17 +141,17 @@ test('Properly submits request for updating VM memory size', async() => {
 test('Properly submits request for updating VM cpu number', async() => {
   const vm = new Vm(MockVmJson);
   const spec: VmCpuCountUpdateRequestJson = {
-    number_of_cpus: 8,
+    cpus_number: 8,
     cores_per_socket: 2
   };
 
-  const request = new VmCpuCountUpdateRequest({ number_of_cpus: 6, cores_per_socket: 1 });
+  const request = new VmCpuCountUpdateRequest({ cpus_number: 6, cores_per_socket: 1 });
   expect(request.numberOfCpus).toBe(6);
   expect(request.coresPerSocket).toBe(1);
 
-  request.numberOfCpus = spec.number_of_cpus;
+  request.numberOfCpus = spec.cpus_number;
   request.coresPerSocket = spec.cores_per_socket;
-  expect(request.numberOfCpus).toBe(spec.number_of_cpus);
+  expect(request.numberOfCpus).toBe(spec.cpus_number);
   expect(request.coresPerSocket).toBe(spec.cores_per_socket);
   expect(request.json).toEqual(spec);
   expect(request.toString().length).toBeGreaterThan(0);
@@ -290,7 +290,7 @@ test('Properly submits request to reconfigure a VM', async() => {
   const json = {
     name: 'test name',
     description: 'test description',
-    cpu_spec: { number_of_cpus: 2, cores_per_socket: 1 },
+    cpu_spec: { cpus_number: 2, cores_per_socket: 1 },
     memory_spec: { memory_size: 1000 },
     guest_customization_section: MockVmGuestCustomizationJson,
     disk_spec: undefined,
