@@ -137,7 +137,7 @@ export interface VmRestoreBackupIntoVAppRequestJson {
  * VM cpu count update request JSON
  */
 export interface VmCpuCountUpdateRequestJson {
-  number_of_cpus: number;
+  cpus_number: number;
   cores_per_socket?: number;
 }
 
