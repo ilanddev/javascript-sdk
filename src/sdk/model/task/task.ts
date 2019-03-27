@@ -7,11 +7,15 @@ import { TaskType } from './__json__/task-type';
 import { TaskFilterParams } from './task-filter-params';
 import { TaskListJson } from './__json__/task-page-json';
 import { TaskList } from './task-list';
+import { PushChannel } from '../push/push-channel';
+import { finalize } from 'rxjs/operators';
 
 /**
  * Task.
  */
 export class Task {
+
+  private static _pushChannelProvider: PushChannelProvider;
 
   private _subject: Subject<Task> | undefined;
 
@@ -42,6 +46,16 @@ export class Task {
       const list = response.data as TaskListJson;
       return new TaskList(list);
     });
+  }
+
+  /**
+   * Sets a push channel provider to use for task updates. If not explicitly set,
+   * the getPromise() and getObservable() methods will simply poll for updates at 1 second intervals.
+   *
+   * @param provider {PushChannelProvider}
+   */
+  static setPushChannelProvider(provider: PushChannelProvider) {
+    this._pushChannelProvider = provider;
   }
 
   /**
@@ -299,11 +313,34 @@ export class Task {
     return this._subject!.asObservable();
   }
 
-  private async _updateUntilComplete(): Promise<Task> {
+  private async _updateUntilComplete(forcePoll?: boolean): Promise<Task> {
     if (this._subject === undefined) {
       this._subject = new Subject<Task>();
     }
     const subject = this._subject as Subject<Task>;
+    if (!forcePoll && Task._pushChannelProvider) {
+      const chan = Task._pushChannelProvider(this.companyId);
+      if (chan !== null) {
+        return new Promise(resolve => {
+          const pcSub = chan.getObservable()
+              .pipe(finalize(() => {
+                // if the push channel is closed, we try to re-call this method and force a poll on the next invocation
+                pcSub.unsubscribe();
+                resolve(this._updateUntilComplete(true));
+              })).subscribe(t => {
+                if (t instanceof Task && t.uuid === this.uuid) {
+                  this._apiTask = t.json;
+                  subject.next(t);
+                  if (t.complete) {
+                    subject.complete();
+                    pcSub.unsubscribe();
+                    resolve(this);
+                  }
+                }
+              });
+        });
+      }
+    }
     return this.refresh().then((task) => {
       subject.next(task);
       if (task.complete) {
@@ -320,3 +357,8 @@ export class Task {
   }
 
 }
+
+/**
+ * Push Channel Provider.
+ */
+export type PushChannelProvider = (companyId: string) => PushChannel | null;
