@@ -25,7 +25,7 @@ export class MockTaskService {
       message: null,
       operation_description: op,
       org_uuid: 'mock-org-uuid',
-      other_attributes: {} as Map<string, any>,
+      other_attributes: {},
       parent_task_uuid: null,
       progress: 1,
       start_time: null,
@@ -48,6 +48,10 @@ export class MockTaskService {
     });
   }
 
+  static setMockTask(uuid: string, taskJSON: TaskJson) {
+    MockTaskService.taskMap.set(uuid, taskJSON);
+  }
+
   static async getExistingMockTaskResponse(uuid: string): Promise<AxiosResponse> {
     const mockTask = MockTaskService.taskMap.get(uuid);
     if (mockTask === undefined) {
@@ -63,6 +67,18 @@ export class MockTaskService {
         });
       });
     }
+  }
+
+  static async getTaskResponseForJSON(json: TaskJson): Promise<AxiosResponse> {
+    return new Promise<AxiosResponse>(function(resolve) {
+      resolve({
+        data: json,
+        status: 200,
+        statusText: '',
+        headers: {},
+        config: {}
+      });
+    });
   }
 
 }

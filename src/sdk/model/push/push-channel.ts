@@ -1,4 +1,4 @@
-import { Observable, Subject, noop } from 'rxjs';
+import { noop, Observable, Subject } from 'rxjs';
 import { Event } from '../event/event';
 import { Iland } from '../../iland';
 import { EventJson } from '../event/__json__/event-json';
@@ -6,12 +6,19 @@ import { TaskJson } from '../task/__json__/task-json';
 import { Task } from '../task/task';
 
 /**
+ * Interface for PushChannel.
+ */
+export interface IPushChannel {
+  getObservable(): Observable<Event | Task>;
+}
+
+/**
  * PushChannel is an abstraction over a websocket connection that provides an easy way to observe updates for events and
  * tasks within the authenticated user's environment. Channels can be scoped to a single company or to all companies
  * that the authenticated user has access to. You must close the channel when you've finished using it in order to close
  * and clean up the underlying websocket.
  */
-export class PushChannel {
+export class PushChannel implements IPushChannel {
 
   // amount of time to wait for long poll reconnect
   private static LONG_POLL_TIMEOUT = 30000;

@@ -50,6 +50,9 @@ export async function MockVdcPost(url: string, data?: any, config?: AxiosRequest
     case /\/vms\/[^\/]+?\/actions\/email-event-history$/.test(url):
       // send a csv file with event history by email.
       return MockService.getMockVoidResponse();
+    case /\/vdcs\/[^\/]+?\/actions\/email-event-history$/.test(url):
+      // send a csv file with event history by email.
+      return MockService.getMockVoidResponse();
     default:
       return MockNotFoundResponse;
   }

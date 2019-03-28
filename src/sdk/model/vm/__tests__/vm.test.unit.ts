@@ -1,7 +1,10 @@
 import { Vm } from '../vm';
 import {
-  MockVmJson, MockVmPerfCountersJson, MockVmPerfSamplesSeriesJson,
-  MockVmRecommendedDiskBusTypeJson, MockVmToolUpgradePolicyJson
+  MockVmJson,
+  MockVmPerfCountersJson,
+  MockVmPerfSamplesSeriesJson,
+  MockVmRecommendedDiskBusTypeJson,
+  MockVmToolUpgradePolicyJson
 } from '../__mocks__/vm';
 import { IlandDirectGrantAuthProvider } from '../../../auth/direct-grant-auth-provider';
 import { Iland } from '../../../iland';
@@ -18,7 +21,8 @@ import { SnapshotCreateRequest } from '../../common/snapshot/snapshot-create-req
 import { VirtualDiskJson } from '../virtual-disk/__json__/virtual-disk-json';
 import {
   VmCpuCountUpdateRequestJson,
-  VmCreateSnapshotRequestJson, VmMemorySizeUpdateRequestJson,
+  VmCreateSnapshotRequestJson,
+  VmMemorySizeUpdateRequestJson,
   VmReconfigureRequestJson,
   VmRestoreBackupRequestJson,
   VmUpdateNameRequestJson
@@ -42,15 +46,12 @@ import { VmCapabilityUpdateRequest } from '../capabilities/capabilities-update-r
 import { VmReconfigureRequest } from '../vm-reconfigure-request';
 import { VmCpuCountUpdateRequest } from '../vm-cpu-count-update-request';
 import { VmMemorySizeUpdateRequest } from '../vm-memory-size-update-request';
-import {
-  GuestCustomizationUpdateRequestJson
-} from '../guest-customization/__json__/guest-customization-update-request-json';
+import { GuestCustomizationUpdateRequestJson }
+  from '../guest-customization/__json__/guest-customization-update-request-json';
 import { Metadata } from '../../common/metadata/metadata';
 import { GuestCustomizationJson } from '../guest-customization/__json__/guest-customization-json';
 import { VmCapabilityUpdateRequestJson } from '../capabilities/__json__/capabilities-update-request-json';
 import { VdcAllocationModel } from '../../vdc/__json__/vdc-allocation-model-type';
-import { Org } from '../../org/org';
-import { MockOrgJson } from '../../org/__mocks__/org';
 
 jest.mock('../../../service/http/http');
 
