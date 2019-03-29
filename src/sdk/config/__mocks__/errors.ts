@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { ApiErrorJson } from '../api-error';
+import { ApiError, ApiErrorJson } from '../api-error';
 
 export const MockNotFoundError: ApiErrorJson = {
   type: 'NotFoundError',
@@ -12,12 +12,6 @@ export const MockUnauthorizedApiError: ApiErrorJson = {
   message: 'The requested resource was not found.'
 };
 
-export const MockNotFoundResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
-  resolve({
-    data: MockNotFoundError,
-    status: 200,
-    statusText: '',
-    headers: {},
-    config: {}
-  });
+export const MockNotFoundResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve, reject) {
+  reject(new ApiError(MockNotFoundError));
 });

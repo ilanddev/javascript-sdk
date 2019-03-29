@@ -1,14 +1,21 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { MockNotFoundResponse } from '../../../config/__mocks__/errors';
 import {
-  MockCompanyLogoResponse, MockCompanyOrgsResponse,
-  MockCompanyResponse, MockCompanyService, MockCompanySupportTicketsResponse,
+  MockCompanyLogoResponse,
+  MockCompanyOrgsResponse,
+  MockCompanyResponse,
+  MockCompanyService,
+  MockCompanySupportTicketsResponse,
   MockCompanyUsersResponse,
-  MockCompanyVappsResponse, MockCompanyVdcsResponse, MockCompanyVmsResponse
+  MockCompanyVappsResponse,
+  MockCompanyVdcsResponse,
+  MockCompanyVmsResponse
 } from '../../../model/company/__mocks__/company';
 import {
   SupportTicketAttachmentDownloadableMockResponse,
-  SupportTicketAttachmentMockResponse, SupportTicketAttachmentsMockResponse, SupportTicketCommentsMockResponse,
+  SupportTicketAttachmentMockResponse,
+  SupportTicketAttachmentsMockResponse,
+  SupportTicketCommentsMockResponse,
   SupportTicketMockResponse
 } from '../../../model/company/support-ticket/__mocks__/support-ticket';
 import { MockService } from '../../../config/__mocks__/util';
@@ -62,6 +69,9 @@ export async function MockCompanyPost(url: string, data?: any, config?: AxiosReq
       const request = data as UserCreationRequestJson;
       return MockCompanyService.createUser(request);
     }
+    case /\/companies\/[^\/]+?\/logo$/.test(url): {
+      return MockService.getMockVoidResponse();
+    }
     default:
       return MockNotFoundResponse;
   }
@@ -82,6 +92,9 @@ export async function MockCompanyDelete(url: string, config?: AxiosRequestConfig
   switch (true) {
     case /\/companies\/[^\/]+?\/roles\/[^\/]+?$/.test(url):
       // delete a role
+      return MockService.getMockNoContentResponse();
+    case /\/companies\/[^\/]+?\/logo$/.test(url):
+      // delete company logo
       return MockService.getMockNoContentResponse();
     default:
       return MockNotFoundResponse;

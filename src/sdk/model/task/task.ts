@@ -1,4 +1,4 @@
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, Subscription, throwError } from 'rxjs';
 import { Iland } from '../../iland';
 import { TaskJson } from './__json__/task-json';
 import { TaskStatus } from './__json__/task-status-type';
@@ -7,17 +7,19 @@ import { TaskType } from './__json__/task-type';
 import { TaskFilterParams } from './task-filter-params';
 import { TaskListJson } from './__json__/task-page-json';
 import { TaskList } from './task-list';
-import { PushChannel } from '../push/push-channel';
-import { finalize } from 'rxjs/operators';
+import { IPushChannel } from '../push/push-channel';
+import { finalize, timeout } from 'rxjs/operators';
 
 /**
  * Task.
  */
 export class Task {
 
-  private static _pushChannelProvider: PushChannelProvider;
+  private static _pushChannelProvider: PushChannelProvider | null;
 
-  private _subject: Subject<Task> | undefined;
+  private static _subjectMap: Map<string, Subject<Task>> = new Map();
+
+  private _autoUpdating: boolean;
 
   constructor(private _apiTask: TaskJson) {
   }
@@ -54,7 +56,7 @@ export class Task {
    *
    * @param provider {PushChannelProvider}
    */
-  static setPushChannelProvider(provider: PushChannelProvider) {
+  static setPushChannelProvider(provider: PushChannelProvider | null) {
     this._pushChannelProvider = provider;
   }
 
@@ -282,25 +284,7 @@ export class Task {
    * @returns {Promise<Task>} completion promise
    */
   async getPromise(): Promise<Task> {
-    return new Promise<Task>((resolve, reject) => {
-      if (this.complete) {
-        if (self.status === 'error') {
-          reject(this);
-        } else {
-          resolve(this);
-        }
-      } else {
-        this.getObservable().subscribe((task: Task) => {
-          if (task.complete) {
-            if (task.status === 'error') {
-              reject(task);
-            } else {
-              resolve(task);
-            }
-          }
-        });
-      }
-    });
+    return this.getObservable().toPromise();
   }
 
   /**
@@ -308,51 +292,108 @@ export class Task {
    * @returns {Observable<Task>} task observable
    */
   getObservable(): Observable<Task> {
-    // tslint:disable-next-line:no-floating-promises
-    this._updateUntilComplete();
-    return this._subject!.asObservable();
+    let obs: Subject<Task>;
+    if (this.complete) {
+      if (this.status === 'error') {
+        return throwError(this);
+      } else {
+        return of(this);
+      }
+    }
+    if (Task._subjectMap.has(this.uuid)) {
+      obs = Task._subjectMap.get(this.uuid) as Subject<Task>;
+    } else {
+      obs = new BehaviorSubject<Task>(this);
+      // tslint:disable-next-line:no-floating-promises
+      Task._observe(this.companyId, this.uuid, obs).then(() => {
+        Task._subjectMap.delete(this.uuid);
+      });
+      Task._subjectMap.set(this.uuid, obs);
+    }
+    if (!this._autoUpdating) {
+      const handler = (t: Task) => this._apiTask = t.json;
+      const sub: Subscription = obs.pipe(finalize(() => {
+        this._autoUpdating = false;
+      })).subscribe(handler, handler);
+      this._autoUpdating = true;
+    }
+    return obs;
   }
 
-  private async _updateUntilComplete(forcePoll?: boolean): Promise<Task> {
-    if (this._subject === undefined) {
-      this._subject = new Subject<Task>();
-    }
-    const subject = this._subject as Subject<Task>;
+  /**
+   * Observes a task for progress updates. Uses a push channel if one has been set, otherwise polls at specified
+   * interval.
+   *
+   * @param companyID the ID of the company
+   * @param taskUUID the UUID of the task
+   * @param sink a {Subject} to sink progress updates into
+   * @param obsTimeout the observable timeout in ms. If a task update for this task is not received within this time,
+   * the task is retrieved via polling once to ensure we didn't miss an update (default 1 minute)
+   * @param pollInterval the polling interval in ms. the time between explicit polling of task (when push channel is not
+   * available)
+   * @param forcePoll boolean value indicating whether polling should be used vs. channel
+   * @returns a promise that resolves when the task completes
+   * @private
+   */
+  private static async _observe(companyID: string, taskUUID: string, sink: Subject<Task>, obsTimeout = 60000,
+                                pollInterval = 1000, forcePoll?: boolean): Promise<Task> {
     if (!forcePoll && Task._pushChannelProvider) {
-      const chan = Task._pushChannelProvider(this.companyId);
+      const chan = Task._pushChannelProvider(companyID);
       if (chan !== null) {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
+          let complete = false;
           const pcSub = chan.getObservable()
+              // if we don't get any updates for obsTimeout, force a poll through the finalize callback
+              .pipe(timeout(obsTimeout))
               .pipe(finalize(() => {
-                // if the push channel is closed, we try to re-call this method and force a poll on the next invocation
-                pcSub.unsubscribe();
-                resolve(this._updateUntilComplete(true));
+                // if the push channel is closed (or a timeout occurs), we try to re-call this method and force a poll
+                // on the next invocation
+                if (!complete) {
+                  resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
+                }
               })).subscribe(t => {
-                if (t instanceof Task && t.uuid === this.uuid) {
-                  this._apiTask = t.json;
-                  subject.next(t);
+                if (t instanceof Task && t.uuid === taskUUID) {
+                  sink.next(t);
                   if (t.complete) {
-                    subject.complete();
+                    complete = true;
                     pcSub.unsubscribe();
-                    resolve(this);
+                    if (t.status === 'error') {
+                      sink.error(t);
+                    } else {
+                      sink.complete();
+                    }
+                    resolve(t);
                   }
                 }
               });
         });
       }
     }
-    return this.refresh().then((task) => {
-      subject.next(task);
+    return Task.getTask(taskUUID).then((task) => {
+      sink.next(task);
       if (task.complete) {
-        subject.complete();
-        return this;
+        if (task.status === 'error') {
+          sink.error(task);
+        } else {
+          sink.complete();
+        }
+        return task;
       } else {
         return new Promise<Task>((resolve) => {
           setTimeout(() => {
-            resolve(this._updateUntilComplete());
-          }, 1000);
+            resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval));
+          }, pollInterval);
         });
       }
+    }, async(err) => {
+      const to = pollInterval * 5;
+      Iland.getLogger().error(`failed to retrieve task update for ${taskUUID}. trying again in ${to / 1000} ms:
+       ${err}`);
+      return new Promise<Task>((resolve) => {
+        setTimeout(() => {
+          resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
+        }, to);
+      });
     });
   }
 
@@ -361,4 +402,4 @@ export class Task {
 /**
  * Push Channel Provider.
  */
-export type PushChannelProvider = (companyId: string) => PushChannel | null;
+export type PushChannelProvider = (companyId: string) => IPushChannel | null;

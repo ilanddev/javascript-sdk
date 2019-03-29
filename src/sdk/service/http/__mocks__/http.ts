@@ -81,10 +81,9 @@ export class Http {
         return MockCatalogGet(url, config);
       case /^\/vapp-templates\//.test(url):
         return MockVappTemplateGet(url, config);
-
-      case /\/task\/[^\/]+?\/([^\/]+)$/.test(url):
+      case /^\/tasks\/[^\/]+?$/.test(url):
         // get task by uuid
-        const taskUuid = /\/task\/[^\/]+?\/([^\/]+)$/.exec(url)![1];
+        const taskUuid = /\/tasks\/([^\/]+)$/.exec(url)![1];
         return MockTaskService.getExistingMockTaskResponse(taskUuid);
       case /\/vapp-networks\/[^\/]+?$/.test(url):
         // get a vapp network
