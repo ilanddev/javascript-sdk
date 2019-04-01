@@ -36,6 +36,7 @@ export interface VmJson extends EntityJson {
   vdc_uuid: string;
   vim_datastore_ref: string;
   vm_local_id: string;
+  nested_hypervisor_enabled: boolean;
 }
 
 /**

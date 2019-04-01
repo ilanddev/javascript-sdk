@@ -765,7 +765,8 @@ test('Parses power status correctly', () => {
     vdc_uuid: '',
     vim_datastore_ref: '',
     vm_local_id: '',
-    allocation_model: 'paygo' as VdcAllocationModel
+    allocation_model: 'paygo' as VdcAllocationModel,
+    nested_hypervisor_enabled: false
   };
   const vm = new Vm(apiVm);
   expect(vm.powerStatus).toBe('PARTIALLY_POWERED_OFF');
