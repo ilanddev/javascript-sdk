@@ -61,6 +61,83 @@ export class Task {
   }
 
   /**
+   * Observes a task for progress updates. Uses a push channel if one has been set, otherwise polls at specified
+   * interval.
+   *
+   * @param companyID the ID of the company
+   * @param taskUUID the UUID of the task
+   * @param sink a {Subject} to sink progress updates into
+   * @param obsTimeout the observable timeout in ms. If a task update for this task is not received within this time,
+   * the task is retrieved via polling once to ensure we didn't miss an update (default 1 minute)
+   * @param pollInterval the polling interval in ms. the time between explicit polling of task (when push channel is not
+   * available)
+   * @param forcePoll boolean value indicating whether polling should be used vs. channel
+   * @returns a promise that resolves when the task completes
+   * @private
+   */
+  private static async _observe(companyID: string, taskUUID: string, sink: Subject<Task>, obsTimeout = 60000,
+                                  pollInterval = 1000, forcePoll?: boolean): Promise<Task> {
+    if (!forcePoll && Task._pushChannelProvider) {
+      const chan = Task._pushChannelProvider(companyID);
+      if (chan !== null) {
+        return new Promise((resolve, reject) => {
+          let complete = false;
+          const pcSub = chan.getObservable()
+              // if we don't get any updates for obsTimeout, force a poll through the finalize callback
+              .pipe(timeout(obsTimeout))
+              .pipe(finalize(() => {
+                  // if the push channel is closed (or a timeout occurs), we try to re-call this method and force a poll
+                  // on the next invocation
+                  if (!complete) {
+                      resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
+                  }
+              })).subscribe(t => {
+                if (t instanceof Task && t.uuid === taskUUID) {
+                  sink.next(t);
+                  if (t.complete) {
+                    complete = true;
+                    pcSub.unsubscribe();
+                    if (t.status === 'error') {
+                      sink.error(t);
+                    } else {
+                      sink.complete();
+                    }
+                    resolve(t);
+                  }
+                }
+              });
+        });
+      }
+    }
+    return Task.getTask(taskUUID).then((task) => {
+      sink.next(task);
+      if (task.complete) {
+        if (task.status === 'error') {
+          sink.error(task);
+        } else {
+          sink.complete();
+        }
+        return task;
+      } else {
+        return new Promise<Task>((resolve) => {
+          setTimeout(() => {
+            resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval));
+          }, pollInterval);
+        });
+      }
+    }, async(err) => {
+      const to = pollInterval * 5;
+      Iland.getLogger().error(`failed to retrieve task update for ${taskUUID}. trying again in ${to / 1000} ms:
+       ${err}`);
+      return new Promise<Task>((resolve) => {
+        setTimeout(() => {
+          resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
+        }, to);
+      });
+    });
+  }
+
+  /**
    * Gets the UUID of the task.
    * @returns {string} UUID
    */
@@ -312,89 +389,13 @@ export class Task {
     }
     if (!this._autoUpdating) {
       const handler = (t: Task) => this._apiTask = t.json;
+      // tslint:disable-next-line
       const sub: Subscription = obs.pipe(finalize(() => {
         this._autoUpdating = false;
       })).subscribe(handler, handler);
       this._autoUpdating = true;
     }
     return obs;
-  }
-
-  /**
-   * Observes a task for progress updates. Uses a push channel if one has been set, otherwise polls at specified
-   * interval.
-   *
-   * @param companyID the ID of the company
-   * @param taskUUID the UUID of the task
-   * @param sink a {Subject} to sink progress updates into
-   * @param obsTimeout the observable timeout in ms. If a task update for this task is not received within this time,
-   * the task is retrieved via polling once to ensure we didn't miss an update (default 1 minute)
-   * @param pollInterval the polling interval in ms. the time between explicit polling of task (when push channel is not
-   * available)
-   * @param forcePoll boolean value indicating whether polling should be used vs. channel
-   * @returns a promise that resolves when the task completes
-   * @private
-   */
-  private static async _observe(companyID: string, taskUUID: string, sink: Subject<Task>, obsTimeout = 60000,
-                                pollInterval = 1000, forcePoll?: boolean): Promise<Task> {
-    if (!forcePoll && Task._pushChannelProvider) {
-      const chan = Task._pushChannelProvider(companyID);
-      if (chan !== null) {
-        return new Promise((resolve, reject) => {
-          let complete = false;
-          const pcSub = chan.getObservable()
-              // if we don't get any updates for obsTimeout, force a poll through the finalize callback
-              .pipe(timeout(obsTimeout))
-              .pipe(finalize(() => {
-                // if the push channel is closed (or a timeout occurs), we try to re-call this method and force a poll
-                // on the next invocation
-                if (!complete) {
-                  resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
-                }
-              })).subscribe(t => {
-                if (t instanceof Task && t.uuid === taskUUID) {
-                  sink.next(t);
-                  if (t.complete) {
-                    complete = true;
-                    pcSub.unsubscribe();
-                    if (t.status === 'error') {
-                      sink.error(t);
-                    } else {
-                      sink.complete();
-                    }
-                    resolve(t);
-                  }
-                }
-              });
-        });
-      }
-    }
-    return Task.getTask(taskUUID).then((task) => {
-      sink.next(task);
-      if (task.complete) {
-        if (task.status === 'error') {
-          sink.error(task);
-        } else {
-          sink.complete();
-        }
-        return task;
-      } else {
-        return new Promise<Task>((resolve) => {
-          setTimeout(() => {
-            resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval));
-          }, pollInterval);
-        });
-      }
-    }, async(err) => {
-      const to = pollInterval * 5;
-      Iland.getLogger().error(`failed to retrieve task update for ${taskUUID}. trying again in ${to / 1000} ms:
-       ${err}`);
-      return new Promise<Task>((resolve) => {
-        setTimeout(() => {
-          resolve(Task._observe(companyID, taskUUID, sink, obsTimeout, pollInterval, true));
-        }, to);
-      });
-    });
   }
 
 }

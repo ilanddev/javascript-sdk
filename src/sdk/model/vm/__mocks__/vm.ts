@@ -34,7 +34,8 @@ export const MockVmJson: VmJson = {
   vdc_uuid: '',
   vim_datastore_ref: '',
   vm_local_id: '',
-  allocation_model: 'paygo'
+  allocation_model: 'paygo',
+  nested_hypervisor_enabled: false
 };
 
 export const MockVmResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {

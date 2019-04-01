@@ -123,6 +123,8 @@ test('Can get vm and verify required properties', async() => {
     expect(vm.entityType).toBe('IAAS_VM');
     expect(vm.allocationModel).toBeDefined();
     expect(vm.allocationModel).toBe(raw.allocation_model);
+    expect(vm.isNestedHypervisorEnabled).toBeDefined();
+    expect(vm.isNestedHypervisorEnabled).toBe(raw.nested_hypervisor_enabled);
     return vm;
   });
 });

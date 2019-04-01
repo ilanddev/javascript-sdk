@@ -295,6 +295,14 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
+   * Gets the VM's nested hypervisor enabled property
+   * @returns {boolean}
+   */
+  get isNestedHypervisorEnabled(): boolean {
+    return this._apiVm.nested_hypervisor_enabled;
+  }
+
+  /**
    * JSON format.
    * @returns {string}
    */
