@@ -1,5 +1,29 @@
 version: 2
 jobs:
+  lint:
+    working_directory: ~/ilanddev/javascript-sdk
+    parallelism: 1
+    shell: /bin/bash --login
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    docker:
+      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+        command: /sbin/init
+    steps:
+      - checkout
+      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+      - run:
+          working_directory: ~/ilanddev/javascript-sdk
+          command: nvm install 6.2.2 && nvm alias default 6.2.2
+      - restore_cache:
+          keys:
+            - v1-dep-{{ .Branch }}-
+            - v1-dep-master-
+            - v1-dep-
+      - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
+      - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
+      - run: yarn lint
   build:
     working_directory: ~/ilanddev/javascript-sdk
     parallelism: 1
@@ -67,8 +91,12 @@ jobs:
       - run: yarn publish:docs
 workflows:
   version: 2
-  build_and_deploy_docs:
+  lint_build_and_deploy_docs:
     jobs:
+      - lint:
+          filters:
+            branches:
+              ignore: gh-pages
       - build:
           filters:
             branches:
