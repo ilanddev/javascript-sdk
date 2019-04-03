@@ -322,6 +322,62 @@ export class Task {
   }
 
   /**
+   * Returns true if task is running
+   * @returns {boolean}
+   */
+  get isRunning(): boolean {
+    return this.status === 'running';
+  }
+
+  /**
+   * Returns true if task is cancelled
+   * @returns {boolean}
+   */
+  get isCancelled(): boolean {
+    return this.status === 'cancelled';
+  }
+
+  /**
+   * Returns true if task is success
+   * @returns {boolean}
+   */
+  get isSuccess(): boolean {
+    return this.status === 'success';
+  }
+
+  /**
+   * Returns true if task is queued
+   * @returns {boolean}
+   */
+  get isQueued(): boolean {
+    return this.status === 'queued';
+  }
+
+  /**
+   * Returns true if task is waiting on user input
+   * @returns {boolean}
+   */
+  get isWaitingOnUserInput(): boolean {
+    return this.status === 'waiting-on-user-input';
+  }
+
+  /**
+   * Returns true if task has error
+   * @returns {boolean}
+   */
+  get hasError(): boolean {
+    return this.status === 'error';
+  }
+
+  /**
+   * Returns true if task is waiting on user input
+   * @returns {boolean}
+   */
+  get hasUnknownStatus(): boolean {
+    return this.status === 'unknown';
+  }
+
+  /**
    * JSON format.
    * @returns {string}
    */
