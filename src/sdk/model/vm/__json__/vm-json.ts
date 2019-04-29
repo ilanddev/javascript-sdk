@@ -150,6 +150,16 @@ export interface VmMemorySizeUpdateRequestJson {
 }
 
 /**
+ * VM virtual disk request JSON
+ */
+export interface VirtualDiskRequestJson {
+  name?: string;
+  size: number;
+  type?: DiskType;
+  storage_profile_uuid?: string;
+}
+
+/**
  * VM reconfigure request JSON
  */
 export interface VmReconfigureRequestJson {
@@ -157,7 +167,7 @@ export interface VmReconfigureRequestJson {
   description?: string;
   cpu_spec?: VmCpuCountUpdateRequestJson;
   memory_spec?: VmMemorySizeUpdateRequestJson;
-  disk_spec?: Array<VmDiskRequestJson>;
+  disk_spec?: Array<VirtualDiskRequestJson>;
   guest_customization_section?: GuestCustomizationUpdateRequestJson;
   nested_hypervisor_enabled?: boolean;
 }
