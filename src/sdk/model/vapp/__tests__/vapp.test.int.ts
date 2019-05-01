@@ -30,7 +30,8 @@ beforeAll(async() => {
       expect(vapps).toBeDefined();
       if (vapps) {
         expect(vapps.length).toBeGreaterThan(0);
-        inventoryVapp = vapps[0];
+        // always get a reston or dev vapp for testing
+        inventoryVapp = vapps.filter(it => it.uuid.startsWith('dev') || it.uuid.startsWith('res01'))[0];
       } else {
         fail('failed to get inventory vapps for vapp integration tests');
       }
