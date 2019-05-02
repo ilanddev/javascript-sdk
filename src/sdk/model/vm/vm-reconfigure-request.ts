@@ -5,9 +5,10 @@ import {
   GuestCustomizationUpdateRequestJson
 } from './guest-customization/__json__/guest-customization-update-request-json';
 import {
-  VmCpuCountUpdateRequestJson, VmDiskRequestJson,
-  VmMemorySizeUpdateRequestJson,
-  VmReconfigureRequestJson
+    VirtualDiskRequestJson,
+    VmCpuCountUpdateRequestJson,
+    VmMemorySizeUpdateRequestJson,
+    VmReconfigureRequestJson
 } from './__json__/vm-json';
 
 export class VmReconfigureRequest {
@@ -17,11 +18,11 @@ export class VmReconfigureRequest {
   constructor(vmReconfigureRequest: VmReconfigureRequest);
   constructor(vmReconfigureRequestJson: VmReconfigureRequestJson);
   constructor(name: string, description: string, cpuSpec: VmCpuCountUpdateRequestJson,
-              memorySpec: VmMemorySizeUpdateRequestJson, diskSpec: Array<VmDiskRequestJson>,
+              memorySpec: VmMemorySizeUpdateRequestJson, diskSpec: Array<VirtualDiskRequestJson>,
               guestCustomizationSection: GuestCustomizationUpdateRequestJson, nestedHypervisorEnabled: boolean);
   constructor(firstParam: string | VmReconfigureRequest | VmReconfigureRequestJson, description?: string,
               cpuSpec?: VmCpuCountUpdateRequestJson, memorySpec?: VmMemorySizeUpdateRequestJson,
-              diskSpec?: Array<VmDiskRequestJson>, guestCustomizationSection?: GuestCustomizationUpdateRequestJson,
+              diskSpec?: Array<VirtualDiskRequestJson>, guestCustomizationSection?: GuestCustomizationUpdateRequestJson,
               nestedHypervisorEnabled?: boolean) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
@@ -111,7 +112,7 @@ export class VmReconfigureRequest {
    * Get disk spec.
    * @returns {Array<VmDiskRequestJson>}
    */
-  get diskSpec(): Array<VmDiskRequestJson> | undefined {
+  get diskSpec(): Array<VirtualDiskRequestJson> | undefined {
     return this._json.disk_spec;
   }
 
@@ -119,7 +120,7 @@ export class VmReconfigureRequest {
    * Set disk spec.
    * @param {Array<VmDiskRequestJson>} spec
    */
-  set diskSpec(spec: Array<VmDiskRequestJson> | undefined) {
+  set diskSpec(spec: Array<VirtualDiskRequestJson> | undefined) {
     this._json.disk_spec = spec;
   }
 
