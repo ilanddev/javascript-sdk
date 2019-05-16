@@ -17,6 +17,7 @@ export interface VCCFailoverPlanJson extends EntityJson {
 
 export type VccFailoverPlanStatus = 'UNKNOWN' |
     'UNDO_IN_PROGRESS' |
+    'UNDO_FAILED' |
     'READY' |
     'IN_PROGRESS' |
     'COMPLETED';
