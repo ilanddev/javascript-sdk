@@ -1,6 +1,6 @@
-import { VmAffinityRuleJson } from './__json__/vm-affinity-rule-json';
 import { Vm } from '../vm/vm';
 import { AffinityRuleType } from './__json__/affinity-rule-type';
+import { VmAffinityRuleJson } from './__json__/vm-affinity-rule-json';
 
 /**
  * VM  Affinity Rule.
@@ -12,19 +12,19 @@ export class VmAffinityRule {
   }
 
   /**
-   * Get vms.
-   * @returns {Array<Vm>}
-   */
-  get vms(): Array<Vm> {
-    return this._json.vms.map(it => new Vm(it));
-  }
-
-  /**
    * Get key.
    * @returns {number}
    */
   get key(): number {
     return this._json.key;
+  }
+
+  /**
+   * Get vm uuids.
+   * @returns {Array<string>}
+   */
+  get vmUuids(): Array<string> {
+    return this._json.vm_uuids;
   }
 
   /**
@@ -73,6 +73,14 @@ export class VmAffinityRule {
    */
   get type(): AffinityRuleType {
     return this._json.type;
+  }
+
+  /**
+   * Get Vm list
+   * @returns {Promise<Array<Vm>>}
+   */
+  async getVms(): Promise<Array<Vm>> {
+    return Promise.all(this._json.vm_uuids.map(async it => Vm.getVm(it)));
   }
 
   /**
