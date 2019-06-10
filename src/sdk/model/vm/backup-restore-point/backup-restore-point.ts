@@ -1,4 +1,4 @@
-import { BackupRestorePointJson } from './__json__/backup-restore-point-json';
+import { BackupRestorePointJson, BackupRestorePointType } from './__json__/backup-restore-point-json';
 
 /**
  * VM Backup Restore Point.
@@ -25,11 +25,19 @@ export class BackupRestorePoint {
   }
 
   /**
-   * Gets the name of the backup server that the restore point is stored on.
-   * @returns {string} the name of the backup server
+   * Gets the Type for the restore point.
+   * @returns {BackupRestorePointType}
    */
-  get backupServerName(): string {
-    return this._json.backup_server_name;
+  get type(): BackupRestorePointType {
+    return this._json.type;
+  }
+
+  /**
+   * Gets the Job Name for the restore point.
+   * @returns {string}
+   */
+  get jobName(): string {
+    return this._json.job_name;
   }
 
   /**
