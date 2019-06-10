@@ -4,5 +4,11 @@
 export interface BackupRestorePointJson {
   name: string;
   time: number;
-  backup_server_name: string;
+  type: BackupRestorePointType;
+  job_name: string;
 }
+
+/**
+ * Enumeration of possible Backup Restore Point types
+ */
+export type BackupRestorePointType = 'LOCAL' | 'COPY';
