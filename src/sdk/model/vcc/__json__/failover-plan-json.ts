@@ -20,4 +20,5 @@ export type VccFailoverPlanStatus = 'UNKNOWN' |
     'UNDO_FAILED' |
     'READY' |
     'IN_PROGRESS' |
-    'COMPLETED';
+    'COMPLETED' |
+    'FAILED';
