@@ -103,16 +103,46 @@ export class PermissionService {
       let permission: Permission | undefined;
       if (domainPermissions) {
         permissions = domainPermissions.filter((p) => {
-          return (p.permissionType === 'VIEW_COMPANY' || p.permissionType === 'VIEW_ILAND_CLOUD' ||
-            p.permissionType === 'VIEW_ILAND_BACKUP' || p.permissionType === 'VIEW_ILAND_CLOUD_LOCATION' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_ORG' || p.permissionType === 'VIEW_ILAND_CLOUD_VPG' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_CATALOG' || p.permissionType === 'VIEW_ILAND_CLOUD_MEDIA' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_VAPP_TEMPLATE' || p.permissionType === 'VIEW_ILAND_CLOUD_VDC' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_EDGE' || p.permissionType === 'VIEW_ILAND_CLOUD_INTERNAL_NETWORK' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_VAPP' || p.permissionType === 'VIEW_ILAND_CLOUD_VAPP_NETWORK' ||
-            p.permissionType === 'VIEW_ILAND_CLOUD_VM' || p.permissionType === 'VIEW_ILAND_BACKUP_LOCATION' ||
-            p.permissionType === 'VIEW_ILAND_BACKUP_TENANT' || p.permissionType === 'MANAGE_ILAND_OBJECT_STORAGE' ||
-            p.permissionType === 'MANAGE_ILAND_OBJECT_STORAGE_LOCATION');
+          return (p.permissionType ===
+                  'VIEW_COMPANY' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_BACKUP' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_LOCATION' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_ORG' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VPG' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VCC_FAILOVER_PLAN' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_CATALOG' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_MEDIA' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VAPP_TEMPLATE' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VDC' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_EDGE' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_INTERNAL_NETWORK' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VAPP' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VAPP_NETWORK' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_CLOUD_VM' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_BACKUP_LOCATION' ||
+                  p.permissionType ===
+                  'VIEW_ILAND_BACKUP_TENANT' ||
+                  p.permissionType ===
+                  'MANAGE_ILAND_OBJECT_STORAGE' ||
+                  p.permissionType ===
+                  'MANAGE_ILAND_OBJECT_STORAGE_LOCATION');
         });
         if (permissions) {
           permission = permissions[0];
