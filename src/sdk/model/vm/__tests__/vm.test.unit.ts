@@ -629,7 +629,11 @@ test('Properly submits request to get the VM recommended disk bus type', async()
 test('Properly submits request to get the VM guest customization', async() => {
   const vm = new Vm(MockVmJson);
   return vm.getGuestCustomization().then(function(guestCustomization) {
-    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/guest-customization`);
+    expect(Iland.getHttp().get).lastCalledWith(`/vms/${vm.uuid}/guest-customization`, {
+      params: {
+        omitPasswords: false
+      }
+    });
     expect(guestCustomization).toBeDefined();
     expect(guestCustomization.enabled).toBe(MockVmGuestCustomizationJson.enabled);
     expect(guestCustomization.changeSid).toBe(MockVmGuestCustomizationJson.change_sid);
