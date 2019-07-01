@@ -196,9 +196,6 @@ export class PermissionsMap {
     this._permissions.set('VIEW_ILAND_CLOUD_VCC_FAILOVER_PLAN',
         (new Permission('VIEW_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'READ', true,
             true, null)));
-    this._permissions.set('MANAGE_ILAND_CLOUD_VCC_FAILOVER_PLAN_CONFIGURATION',
-        (new Permission('MANAGE_ILAND_CLOUD_VCC_FAILOVER_PLAN_CONFIGURATION', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
-            false, null)));
     this._permissions.set('TEST_ILAND_CLOUD_VCC_FAILOVER_PLAN',
         (new Permission('TEST_ILAND_CLOUD_VCC_FAILOVER_PLAN', 'IAAS_VCC_FAILOVER_PLAN', 'WRITE', true,
             false, null)));

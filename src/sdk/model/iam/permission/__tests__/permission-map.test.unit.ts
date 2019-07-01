@@ -15,5 +15,5 @@ beforeAll(() => {
 
 test('Properly instantiate a Permission map and get permissions', () => {
   const permissions = PermissionsMap.getInstance().permissions;
-  expect(permissions.size).toBe(89);
+  expect(permissions.size).toBe(88);
 });
