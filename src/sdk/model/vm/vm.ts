@@ -800,10 +800,15 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   /**
    * Gets the VM guest customization section includes properties of the guest operating system that can be modified
    * such as passwords, and domain names.
+   * @param {boolean} omitPasswords Whether to omit passwords (default: false)
    * @returns {Promise<GuestCustomization>} promise that resolves with the vm guest customization object
    */
-  async getGuestCustomization(): Promise<GuestCustomization> {
-    return Iland.getHttp().get(`/vms/${this.uuid}/guest-customization`).then((response) => {
+  async getGuestCustomization(omitPasswords: boolean = false): Promise<GuestCustomization> {
+    return Iland.getHttp().get(`/vms/${this.uuid}/guest-customization`, {
+      params: {
+        omitPasswords: omitPasswords
+      }
+    }).then((response) => {
       const guestCustomizationJson = response.data as GuestCustomizationJson;
       return new GuestCustomization(guestCustomizationJson);
     });
