@@ -5,7 +5,7 @@ import { VmJson } from '../../vm/__json__/vm-json';
  * VM Affinity Rule API JSON interface.
  */
 export interface VmAffinityRuleJson {
-  vms: Array<VmJson>;
+  vm_uuids: Array<string>;
   key: number;
   enabled: boolean;
   name: string;
