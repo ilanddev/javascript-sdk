@@ -6,11 +6,9 @@ import { VmJson } from '../../vm/__json__/vm-json';
  */
 export interface VmAffinityRuleJson {
   vm_uuids: Array<string>;
-  key: number;
   enabled: boolean;
   name: string;
-  user_created: boolean;
-  in_compliance: boolean;
   uuid: string;
   type: AffinityRuleType;
+  is_mandatory: boolean;
 }

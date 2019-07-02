@@ -12,14 +12,6 @@ export class VmAffinityRule {
   }
 
   /**
-   * Get key.
-   * @returns {number}
-   */
-  get key(): number {
-    return this._json.key;
-  }
-
-  /**
    * Get vm uuids.
    * @returns {Array<string>}
    */
@@ -44,22 +36,6 @@ export class VmAffinityRule {
   }
 
   /**
-   * Get user created.
-   * @returns {boolean}
-   */
-  get userCreated(): boolean {
-    return this._json.user_created;
-  }
-
-  /**
-   * Get in compliance.
-   * @returns {boolean}
-   */
-  get inCompliance(): boolean {
-    return this._json.in_compliance;
-  }
-
-  /**
    * Get uuid.
    * @returns {string}
    */
@@ -73,6 +49,14 @@ export class VmAffinityRule {
    */
   get type(): AffinityRuleType {
     return this._json.type;
+  }
+
+  /**
+   * Get isMandatory.
+   * @returns {boolean}
+   */
+  get isMandatory(): boolean {
+    return this._json.is_mandatory;
   }
 
   /**
