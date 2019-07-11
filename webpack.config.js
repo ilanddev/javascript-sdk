@@ -20,6 +20,7 @@ if (yargs.argv.p) {
 var filter = function(it) {
   return it.indexOf('__mocks__') < 0 && it.indexOf('__tests__') < 0;
 };
+
 var tsFiles = glob.sync('./src/sdk/**/*.ts').filter(filter);
 var index = '';
 for (var i in tsFiles) {
@@ -35,6 +36,7 @@ if (!fs.existsSync(indexDir)) {
 }
 var indexFilename = indexDir + '/index.ts';
 fs.writeFileSync(indexFilename, index);
+
 var config = {
   entry: indexFilename,
   output: {
