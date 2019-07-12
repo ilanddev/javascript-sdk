@@ -3,6 +3,7 @@ import { EdgeJson } from '../__json__/edge-json';
 import { EdgeInterfacesMock } from '../edge-interface/__mocks__/edge-interface';
 
 export const MockEdgeJson: EdgeJson = {
+  'company_id': 'fakeid',
   'status': 1,
   'vdc_uuid': 'dev-vcd01.iland.dev:urn:vcloud:vdc:f83bb52c-271d-411f-9d0d-1307cb192cb2',
   'org_uuid': 'dev-vcd01.iland.dev:urn:vcloud:org:69e9c2b7-ee9f-4a3e-80f0-8ffc66aac147',

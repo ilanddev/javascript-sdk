@@ -73,6 +73,8 @@ export class Http {
         return MockVpgGet(url, config);
       case /^\/edges\//.test(url):
         return MockEdgeGet(url, config);
+      case /^\/edge-gateways\//.test(url):
+        return MockEdgeGet(url, config);
       case /^\/media\//.test(url):
         return MockMediaGet(url, config);
       case /^\/users\//.test(url):
