@@ -16,6 +16,7 @@ export const MockCompanyJson: CompanyJson = {
   has_iaas: true,
   has_vcc: false,
   has_object_storage: false,
+  has_vccr: true,
   name: 'MyCorp',
   updated_date: 1494608461964,
   uuid: '000003'

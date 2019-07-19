@@ -7,4 +7,5 @@ export interface CompanyJson extends EntityJson {
   has_iaas: boolean;
   has_vcc: boolean;
   has_object_storage: boolean;
+  has_vccr: boolean;
 }
