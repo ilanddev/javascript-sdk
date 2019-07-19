@@ -100,6 +100,14 @@ export class Company extends Entity {
   }
 
   /**
+   * Indicates whether the company has iland Veeam Cloud Connection Replication add-on product
+   * @returns {boolean}
+   */
+  get hasIlandVccr(): boolean {
+    return this._json.has_vccr;
+  }
+
+  /**
    * Gets the raw JSON object from the API.
    * @returns {CompanyJson} the JSON representation
    */
