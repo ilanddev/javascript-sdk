@@ -22,7 +22,7 @@ test('Get Edge Gateway Firewall Source Objects with string and number params', a
     expect(Iland.getHttp().get).lastCalledWith(`/edge-gateways/${MockEdgeJson.uuid}/firewall/sources/type`, {
       params: {
         page: 2,
-        page_size: 30
+        pageSize: 30
       }
     });
   });
@@ -38,7 +38,7 @@ test('Get Edge Gateway Firewall Source Objects with paging object', async() => {
     expect(Iland.getHttp().get).lastCalledWith(`/edge-gateways/${MockEdgeJson.uuid}/firewall/sources/type`, {
       params: {
         page: 2,
-        page_size: 30
+        pageSize: 30
       }
     });
   });
@@ -54,7 +54,7 @@ test('Get Edge Gateway Firewall Source Objects with type as object', async() => 
     expect(Iland.getHttp().get).lastCalledWith(`/edge-gateways/${MockEdgeJson.uuid}/firewall/sources/test_type`, {
       params: {
         page: 2,
-        page_size: 30
+        pageSize: 30
       }
     });
   });
