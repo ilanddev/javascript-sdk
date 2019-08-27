@@ -776,7 +776,7 @@ export class Edge extends Entity {
     return Iland.getHttp().get(`/edge-gateways/${this.uuid}/firewall/sources/${_type}`, {
       params: {
         page: _page,
-        page_size: _pageSize
+        pageSize: _pageSize
       }
     }).then((response) => {
       const json = response.data as EdgeGatewayFirewallObjectListJson;
@@ -819,7 +819,7 @@ export class Edge extends Entity {
     return Iland.getHttp().get(`/edge-gateways/${this.uuid}/firewall/destinations/${_type}`, {
       params: {
         page: _page,
-        page_size: _pageSize
+        pageSize: _pageSize
       }
     }).then((response) => {
       const json = response.data as EdgeGatewayFirewallObjectListJson;
