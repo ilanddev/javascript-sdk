@@ -22,7 +22,7 @@ jobs:
             - v1-dep-
       - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
       - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
-      - run: yarn lint
+      - run: npm run lint
   build:
     working_directory: ~/ilanddev/javascript-sdk
     parallelism: 1
@@ -45,7 +45,7 @@ jobs:
         - v1-dep-
     - run: if [ -z "${NODE_ENV:-}" ]; then export NODE_ENV=test; fi
     - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
-    - run: yarn install
+    - run: npm install
     - save_cache:
         key: v1-dep-{{ .Branch }}-{{ epoch }}
         paths:
@@ -86,7 +86,7 @@ jobs:
       - run: export PATH="~/ilanddev/javascript-sdk/node_modules/.bin:$PATH"
       - run: git config --global user.email "csnyder@iland.com"
       - run: git config --global user.name "CircleCI"
-      - run: yarn publish:docs
+      - run: npm run publish:docs
 workflows:
   version: 2
   lint_build_and_deploy_docs:

@@ -8,13 +8,13 @@
   "license": "BSD",
   "repository": " https://github.com/ilanddev/javascript-sdk",
   "scripts": {
-    "prepare": "yarn build",
+    "prepare": "npm run build",
     "info": "npm-scripts-info",
     "lint": "tslint --project tsconfig.json",
-    "build": "yarn lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
+    "build": "npm run lint && rm -rf ./build  && webpack --debug && webpack -p && rm -r ./build/build",
     "test": "jest --coverage --maxWorkers 2",
     "docs": "typedoc src/sdk --excludePrivate --exclude **/__*__/**/* --mode file --theme minimal --out build/docs",
-    "publish:docs": "yarn docs && cp -R .circleci build/docs && gh-pages -d build/docs"
+    "publish:docs": "npm run docs && cp -R .circleci build/docs && gh-pages -d build/docs"
   },
   "scripts-info": {
     "info": "Display information about the scripts",
@@ -39,11 +39,10 @@
     "ts-loader": "3",
     "tslint": "5",
     "tslint-config-standard": "^8.0.1",
-    "typedoc": "0",
+    "typedoc": "^0.15.0",
     "typescript": "^3.2.2",
     "webpack": "^3.1.11",
-    "yargs": "11",
-    "yarn": "1"
+    "yargs": "11"
   },
   "keywords": [
     "iland",
