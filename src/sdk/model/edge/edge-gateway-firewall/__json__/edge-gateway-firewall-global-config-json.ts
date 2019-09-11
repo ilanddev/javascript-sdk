@@ -17,7 +17,4 @@ export interface EdgeGatewayFirewallGlobalConfigJson {
   enable_syn_flood_protection: boolean;
   log_icmp_errors: boolean;
   drop_icmp_replays: boolean;
-  enable_snmp_alg: boolean;
-  enable_ftp_alg: boolean;
-  enable_tftp_alg: boolean;
 }
