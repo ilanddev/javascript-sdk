@@ -12,7 +12,7 @@ export interface EdgeGatewayNatRuleJson {
   translated_address: string;
   rule_type: string;
   action: EdgeGatewayNatActionType;
-  vnic: string;
+  vnic: number;
   original_address: string;
   dnat_match_source_address: string;
   snat_match_destination_address: string;
