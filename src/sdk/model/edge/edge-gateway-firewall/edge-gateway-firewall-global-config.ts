@@ -129,30 +129,6 @@ export class EdgeGatewayFirewallGlobalConfig {
   }
 
   /**
-   * Get enable snmp alg.
-   * @returns {boolean}
-   */
-  get enableSnmpAlg(): boolean {
-    return this._json.enable_snmp_alg;
-  }
-
-  /**
-   * Get enable ftp alg.
-   * @returns {boolean}
-   */
-  get enableFtpAlg(): boolean {
-    return this._json.enable_ftp_alg;
-  }
-
-  /**
-   * Get enable tftp alg.
-   * @returns {boolean}
-   */
-  get enableTftpAlg(): boolean {
-    return this._json.enable_tftp_alg;
-  }
-
-  /**
    * Get the json representation of this class.
    * @returns {EdgeGatewayFirewallGlobalConfigJson}
    */
