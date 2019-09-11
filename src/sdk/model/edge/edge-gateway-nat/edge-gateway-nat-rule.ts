@@ -77,7 +77,7 @@ export class EdgeGatewayNatRule {
    * Get vnic.
    * @returns {string}
    */
-  get vnic(): string {
+  get vnic(): number {
     return this._json.vnic;
   }
 
