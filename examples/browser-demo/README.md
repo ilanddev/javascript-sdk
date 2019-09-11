@@ -2,6 +2,6 @@
 
 ## Run the demo
 ```
-yarn install
-yarn serve
+npm install
+npm run serve
 ```

@@ -13,7 +13,7 @@ Required:
 [x] NodeJS >=6.2.2
 
 Clone repo then execute:
-``yarn install`` or ``npm install``
+``npm install``
 
 ## Tests
 For tests you'll have to add following environment variables, you can add them to your
@@ -29,4 +29,4 @@ bash_rc ou bash_profile file:
 
 To run tests:
 
-``yarn test`` or ``npm run test``
+``npm run test``
