@@ -14,7 +14,7 @@ export class SecondaryAddresses {
    * @returns {Array<string>}
    */
   get ipAddress(): Array<string> {
-    return this._json.ip_address;
+    return this._json.ip_address || [];
   }
 
   /**
