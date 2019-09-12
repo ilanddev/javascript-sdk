@@ -22,8 +22,8 @@ export class AddressGroup {
    * Get secondary addresses.
    * @returns {SecondaryAddresses}
    */
-  get secondaryAddresses(): SecondaryAddresses {
-    return new SecondaryAddresses(this._json.secondary_addresses);
+  get secondaryAddresses(): SecondaryAddresses | null {
+    return this._json.secondary_addresses ? new SecondaryAddresses(this._json.secondary_addresses) : null;
   }
 
   /**

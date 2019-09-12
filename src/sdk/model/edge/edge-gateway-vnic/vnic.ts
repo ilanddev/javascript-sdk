@@ -65,7 +65,7 @@ export class EdgeGatewayVNIC {
    * @returns {Array<AddressGroup>}
    */
   get addressGroups(): Array<AddressGroup> {
-    return this._json.address_groups.map(it => new AddressGroup(it));
+    return this._json.address_groups ? this._json.address_groups.map(it => new AddressGroup(it)) : [];
   }
 
   /**
@@ -73,7 +73,7 @@ export class EdgeGatewayVNIC {
    * @returns {Array<MacAddress>}
    */
   get macAddress(): Array<MacAddress> {
-    return this._json.mac_address.map(it => new MacAddress(it));
+    return this._json.mac_address ? this._json.mac_address.map(it => new MacAddress(it)) : [];
   }
 
   /**
@@ -112,16 +112,16 @@ export class EdgeGatewayVNIC {
    * Get in shaping policy.
    * @returns {ShapingPolicy}
    */
-  get inShapingPolicy(): ShapingPolicy {
-    return new ShapingPolicy(this._json.in_shaping_policy);
+  get inShapingPolicy(): ShapingPolicy | null {
+    return this._json.in_shaping_policy ? new ShapingPolicy(this._json.in_shaping_policy) : null;
   }
 
   /**
    * Get out shaping policy.
    * @returns {ShapingPolicy}
    */
-  get outShapingPolicy(): ShapingPolicy {
-    return new ShapingPolicy(this._json.out_shaping_policy);
+  get outShapingPolicy(): ShapingPolicy | null {
+    return this._json.out_shaping_policy ? new ShapingPolicy(this._json.out_shaping_policy) : null;
   }
 
   /**
