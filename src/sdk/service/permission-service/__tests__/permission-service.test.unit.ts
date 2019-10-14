@@ -50,7 +50,7 @@ test('Properly get the available permissions for domain', () => {
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_LOCATION');
   runPermissionServiceAssertions(availablePermissions, 2);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_ORGANIZATION');
-  runPermissionServiceAssertions(availablePermissions, 9);
+  runPermissionServiceAssertions(availablePermissions, 12);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VPG');
   runPermissionServiceAssertions(availablePermissions, 4);
   availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_CATALOG');

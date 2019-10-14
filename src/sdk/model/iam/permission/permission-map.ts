@@ -250,6 +250,15 @@ export class PermissionsMap {
               'INITIATE_ILAND_CLOUD_VPG_LIVE_FAILOVER',
               'INITIATE_ILAND_CLOUD_VPG_TEST_FAILOVER',
               'MANAGE_ILAND_CLOUD_VPG_CONFIGURATION'])));
+    this._permissions.set('VIEW_ILAND_CLOUD_ORG_VDI',
+        (new Permission('VIEW_ILAND_CLOUD_ORG_VDI', 'IAAS_ORGANIZATION', 'READ', true,
+            false, null)));
+    this._permissions.set('MANAGE_ILAND_CLOUD_ORG_VDI',
+        (new Permission('MANAGE_ILAND_CLOUD_ORG_VDI', 'IAAS_ORGANIZATION', 'WRITE', true,
+            false, ['VIEW_ILAND_CLOUD_ORG_VDI'])));
+    this._permissions.set('MANAGE_ILAND_CLOUD_ORG_VDI_DEPLOYMENTS',
+        (new Permission('MANAGE_ILAND_CLOUD_ORG_VDI_DEPLOYMENTS', 'IAAS_ORGANIZATION', 'WRITE', true,
+            false, ['VIEW_ILAND_CLOUD_ORG_VDI', 'CREATE_ILAND_CLOUD_VDC_VAPPS'])));
     // IAAS_LOCATION level permissions
     this._permissions.set('VIEW_ILAND_CLOUD_LOCATION',
       (new Permission('VIEW_ILAND_CLOUD_LOCATION', 'IAAS_LOCATION', 'READ', true,
