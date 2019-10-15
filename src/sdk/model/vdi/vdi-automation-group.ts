@@ -59,6 +59,14 @@ export class VdiAutomationGroup {
   }
 
   /**
+   * Get vm template uuid.
+   * @returns {string}
+   */
+  get vmTemplateUuid(): string {
+    return this._json.vm_template_uuid;
+  }
+
+  /**
    * Get deployment vdc uuid.
    * @returns {string}
    */
@@ -83,19 +91,11 @@ export class VdiAutomationGroup {
   }
 
   /**
-   * Get default teams.
-   * @returns {Array<string>}
+   * Get team uuid.
+   * @returns {string}
    */
-  get defaultTeams(): Array<string> {
-    return this._json.default_teams;
-  }
-
-  /**
-   * Get default users.
-   * @returns {Array<string>}
-   */
-  get defaultUsers(): Array<string> {
-    return this._json.default_users;
+  get teamUuid(): string {
+    return this._json.team_uuid;
   }
 
   /**
@@ -112,22 +112,6 @@ export class VdiAutomationGroup {
    */
   get joinDomainEnabled(): boolean {
     return this._json.join_domain_enabled;
-  }
-
-  /**
-   * Get domain user name.
-   * @returns {string}
-   */
-  get domainUserName(): string {
-    return this._json.domain_user_name;
-  }
-
-  /**
-   * Get domain user password.
-   * @returns {string}
-   */
-  get domainUserPassword(): string {
-    return this._json.domain_user_password;
   }
 
   /**

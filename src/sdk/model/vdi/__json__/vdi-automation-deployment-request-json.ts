@@ -1,3 +1,4 @@
 export interface VdiAutomationDeploymentRequestJson {
-  vdi_user_uuids: Array<string>;
+  domain_user_name?: string;
+  domain_user_password?: string;
 }

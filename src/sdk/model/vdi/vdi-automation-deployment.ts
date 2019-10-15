@@ -25,6 +25,14 @@ export class VdiAutomationDeployment {
   }
 
   /**
+   * Get org uuid.
+   * @returns {string}
+   */
+  get orgUuid(): string {
+    return this._json.org_uuid;
+  }
+
+  /**
    * Get automation group uuid.
    * @returns {string}
    */
@@ -276,22 +284,6 @@ export class AutomationGroupConfig {
    */
   get joinDomainEnabled(): boolean {
     return this._json.join_domain_enabled;
-  }
-
-  /**
-   * Get domain user name.
-   * @returns {string}
-   */
-  get domainUserName(): string {
-    return this._json.domain_user_name;
-  }
-
-  /**
-   * Get domain user password.
-   * @returns {string}
-   */
-  get domainUserPassword(): string {
-    return this._json.domain_user_password;
   }
 
   /**

@@ -3,6 +3,7 @@ import { VdiDeploymentState } from '../vdi-deployment-state';
 
 export interface VdiAutomationDeploymentJson {
   uuid: string;
+  org_uuid: string;
   automation_group_uuid: string;
   state: VdiDeploymentState;
   deployment_user: DeploymentUserJson;
@@ -34,7 +35,5 @@ export interface AutomationGroupConfigJson {
   public_rdp_ip: string;
   network_connection_type: NetworkConnectionType;
   join_domain_enabled: boolean;
-  domain_user_name: string;
-  domain_user_password: string;
   guest_password_reset_required: boolean;
 }

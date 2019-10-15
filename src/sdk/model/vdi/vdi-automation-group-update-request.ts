@@ -11,33 +11,30 @@ export class VdiAutomationGroupUpdateRequest {
 
   constructor(vdiAutomationGroupUpdateRequest: VdiAutomationGroupUpdateRequest);
   constructor(vdiAutomationGroupUpdateRequestJson: VdiAutomationGroupUpdateRequestJson);
-  constructor(name: string, description: string, vappTemplateUuid: string, deploymentVdcUuid: string,
-              orgVdcNetworkUuid: string, domainToJoin: string, defaultTeams: Array<string>, defaultUsers: Array<string>,
+  constructor(name: string, description: string, vappTemplateUuid: string, vmTemplateUuid: string,
+              deploymentVdcUuid: string, orgVdcNetworkUuid: string, domainToJoin: string, teamUuid: string,
               edgeUuid: string, publicIp: string, networkConnectionType: NetworkConnectionType,
-              joinDomainEnabled: boolean, domainUserName: string, domainUserPassword: string,
-              guestPasswordResetRequired: boolean);
+              joinDomainEnabled: boolean, guestPasswordResetRequired: boolean);
   constructor(firstParam: string | VdiAutomationGroupUpdateRequest | VdiAutomationGroupUpdateRequestJson,
-              description?: string, vappTemplateUuid?: string, deploymentVdcUuid?: string, orgVdcNetworkUuid?: string,
-              domainToJoin?: string, defaultTeams?: Array<string>, defaultUsers?: Array<string>, edgeUuid?: string,
+              description?: string, vappTemplateUuid?: string, vmTemplateUuid?: string, deploymentVdcUuid?: string,
+              orgVdcNetworkUuid?: string, domainToJoin?: string, teamUuid?: string, edgeUuid?: string,
               publicIp?: string, networkConnectionType?: NetworkConnectionType, joinDomainEnabled?: boolean,
-              domainUserName?: string, domainUserPassword?: string, guestPasswordResetRequired?: boolean) {
+              guestPasswordResetRequired?: boolean) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
         name: firstParam,
         description: description,
         vapp_template_uuid: vappTemplateUuid,
+        vm_template_uuid: vmTemplateUuid,
         deployment_vdc_uuid: deploymentVdcUuid,
         org_vdc_network_uuid: orgVdcNetworkUuid,
         domain_to_join: domainToJoin,
-        default_teams: defaultTeams,
-        default_users: defaultUsers,
+        team_uuid: teamUuid,
         edge_uuid: edgeUuid,
         public_ip: publicIp,
         network_connection_type: networkConnectionType,
         join_domain_enabled: joinDomainEnabled,
-        domain_user_name: domainUserName,
-        domain_user_password: domainUserPassword,
         guest_password_reset_required: guestPasswordResetRequired
       } as VdiAutomationGroupUpdateRequestJson;
     } else if (firstParam instanceof VdiAutomationGroupUpdateRequest) {
@@ -74,6 +71,14 @@ export class VdiAutomationGroupUpdateRequest {
   }
 
   /**
+   * Get vm template uuid.
+   * @returns {string}
+   */
+  get vmTemplateUuid(): string {
+    return this._json.vm_template_uuid;
+  }
+
+  /**
    * Get deployment vdc uuid.
    * @returns {string}
    */
@@ -98,19 +103,11 @@ export class VdiAutomationGroupUpdateRequest {
   }
 
   /**
-   * Get default teams.
-   * @returns {Array<string>}
+   * Get team uuid.
+   * @returns {string}
    */
-  get defaultTeams(): Array<string> {
-    return this._json.default_teams;
-  }
-
-  /**
-   * Get default users.
-   * @returns {Array<string>}
-   */
-  get defaultUsers(): Array<string> {
-    return this._json.default_users;
+  get teamUuid(): string {
+    return this._json.team_uuid;
   }
 
   /**
@@ -143,22 +140,6 @@ export class VdiAutomationGroupUpdateRequest {
    */
   get joinDomainEnabled(): boolean {
     return this._json.join_domain_enabled;
-  }
-
-  /**
-   * Get domain user name.
-   * @returns {string}
-   */
-  get domainUserName(): string {
-    return this._json.domain_user_name;
-  }
-
-  /**
-   * Get domain user password.
-   * @returns {string}
-   */
-  get domainUserPassword(): string {
-    return this._json.domain_user_password;
   }
 
   /**

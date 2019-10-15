@@ -10,12 +10,14 @@ export class VdiAutomationDeploymentRequest {
 
   constructor(vdiAutomationDeploymentRequest: VdiAutomationDeploymentRequest);
   constructor(vdiAutomationDeploymentRequestJson: VdiAutomationDeploymentRequestJson);
-  constructor(vdiUserUuids: Array<string>);
-  constructor(firstParam: Array<string> | VdiAutomationDeploymentRequest | VdiAutomationDeploymentRequestJson) {
-    if (firstParam instanceof Array) {
+  constructor(domainUserName: string, domainUserPassword: string);
+  constructor(firstParam: string | VdiAutomationDeploymentRequest | VdiAutomationDeploymentRequestJson,
+              domainUserPassword?: string) {
+    if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
-        vdi_user_uuids: firstParam
+        domain_user_name: firstParam,
+        domain_user_password: domainUserPassword
       } as VdiAutomationDeploymentRequestJson;
     } else if (firstParam instanceof VdiAutomationDeploymentRequest) {
       // Copy constructor
@@ -27,11 +29,19 @@ export class VdiAutomationDeploymentRequest {
   }
 
   /**
-   * Get vdi user uuids.
-   * @returns {Array<string>}
+   * Get domain user name.
+   * @returns {string}
    */
-  get vdiUserUuids(): Array<string> {
-    return this._json.vdi_user_uuids;
+  get domainUserName(): string | undefined {
+    return this._json.domain_user_name;
+  }
+
+  /**
+   * Get domain user password.
+   * @returns {string}
+   */
+  get domainUserPassword(): string | undefined {
+    return this._json.domain_user_password;
   }
 
   /**
