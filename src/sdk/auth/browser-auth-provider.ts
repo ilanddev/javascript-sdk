@@ -19,7 +19,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       realm: DEFAULT_REALM
     };
     this._keycloak = Keycloak(kcConfig);
-    this._tokenObservable = Observable.create((observable: Subscriber<string>) => {
+    this._tokenObservable = new Observable<string>((observable: Subscriber<string>) => {
       this.getToken().then(() => {
         observable.next(this.getTokenSync());
       }).catch(reason => {
