@@ -15,4 +15,5 @@ export interface VdiAutomationGroupJson {
   network_connection_type: NetworkConnectionType;
   join_domain_enabled: boolean;
   guest_password_reset_required: boolean;
+  storage_profile_uuid?: string;
 }

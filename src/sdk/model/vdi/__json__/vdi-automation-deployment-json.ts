@@ -9,6 +9,7 @@ export interface VdiAutomationDeploymentJson {
   deployment_user: DeploymentUserJson;
   configuration: AutomationGroupConfigJson;
   deployment_details: DeploymentDetailsJson;
+  failure_message: string | undefined;
 }
 
 export interface DeploymentDetailsJson {

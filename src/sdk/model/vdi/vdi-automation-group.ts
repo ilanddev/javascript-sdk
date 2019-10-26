@@ -123,6 +123,14 @@ export class VdiAutomationGroup {
   }
 
   /**
+   * Get the storage profile uuid.
+   * @returns {string}
+   */
+  get storageProfileUuid(): string | undefined {
+    return this._json.storage_profile_uuid;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {VdiAutomationGroupJson}
    */

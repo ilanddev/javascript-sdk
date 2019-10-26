@@ -14,12 +14,12 @@ export class VdiAutomationGroupUpdateRequest {
   constructor(name: string, description: string, vappTemplateUuid: string, vmTemplateUuid: string,
               deploymentVdcUuid: string, orgVdcNetworkUuid: string, domainToJoin: string, teamUuid: string,
               edgeUuid: string, publicIp: string, networkConnectionType: NetworkConnectionType,
-              joinDomainEnabled: boolean, guestPasswordResetRequired: boolean);
+              joinDomainEnabled: boolean, guestPasswordResetRequired: boolean, storageProfileUuuid?: string);
   constructor(firstParam: string | VdiAutomationGroupUpdateRequest | VdiAutomationGroupUpdateRequestJson,
               description?: string, vappTemplateUuid?: string, vmTemplateUuid?: string, deploymentVdcUuid?: string,
               orgVdcNetworkUuid?: string, domainToJoin?: string, teamUuid?: string, edgeUuid?: string,
               publicIp?: string, networkConnectionType?: NetworkConnectionType, joinDomainEnabled?: boolean,
-              guestPasswordResetRequired?: boolean) {
+              guestPasswordResetRequired?: boolean, storageProfileUuid?: string) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
@@ -35,7 +35,8 @@ export class VdiAutomationGroupUpdateRequest {
         public_ip: publicIp,
         network_connection_type: networkConnectionType,
         join_domain_enabled: joinDomainEnabled,
-        guest_password_reset_required: guestPasswordResetRequired
+        guest_password_reset_required: guestPasswordResetRequired,
+        storage_profile_uuid: storageProfileUuid
       } as VdiAutomationGroupUpdateRequestJson;
     } else if (firstParam instanceof VdiAutomationGroupUpdateRequest) {
       // Copy constructor
@@ -148,6 +149,14 @@ export class VdiAutomationGroupUpdateRequest {
    */
   get guestPasswordResetRequired(): boolean {
     return this._json.guest_password_reset_required;
+  }
+
+  /**
+   * Get storage profile uuid.
+   * @returns {string}
+   */
+  get storageProfileUuid(): string | undefined {
+    return this._json.storage_profile_uuid;
   }
 
   /**

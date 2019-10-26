@@ -73,6 +73,14 @@ export class VdiAutomationDeployment {
   }
 
   /**
+   * Gets the failure message field.
+   * @returns {string | undefined}
+   */
+  get failureMessage(): string | undefined {
+    return this._json.failure_message;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {VdiAutomationDeploymentJson}
    */
