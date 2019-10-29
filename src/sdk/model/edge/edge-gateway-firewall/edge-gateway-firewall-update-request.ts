@@ -50,7 +50,7 @@ export class EdgeGatewayFirewallUpdateRequest {
 
   /**
    * Get firewall global config.
-   * @returns {FirewallGlobalConfig}
+   * @returns {EdgeGatewayFirewallGlobalConfig}
    */
   get firewallGlobalConfig(): EdgeGatewayFirewallGlobalConfig {
     return new EdgeGatewayFirewallGlobalConfig(this._json.firewall_global_config);
@@ -58,7 +58,7 @@ export class EdgeGatewayFirewallUpdateRequest {
 
   /**
    * Get firewall default policy.
-   * @returns {FirewallDefaultPolicy}
+   * @returns {EdgeGatewayFirewallDefaultPolicy}
    */
   get firewallDefaultPolicy(): EdgeGatewayFirewallDefaultPolicy {
     return new EdgeGatewayFirewallDefaultPolicy(this._json.firewall_default_policy);
@@ -66,7 +66,7 @@ export class EdgeGatewayFirewallUpdateRequest {
 
   /**
    * Get firewall rules.
-   * @returns {Array<FirewallRule>}
+   * @returns {Array<EdgeGatewayFirewallRule>}
    */
   get firewallRules(): Array<EdgeGatewayFirewallRule> {
     return this._json.firewall_rules.map(r => new EdgeGatewayFirewallRule(r));
