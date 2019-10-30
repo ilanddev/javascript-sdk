@@ -12,7 +12,7 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
   private _onTokenRefresh: () => void;
 
   constructor(private _config: IlandDirectGrantAuthConfig) {
-    this._tokenObservable = Observable.create((observable: Subscriber<string>) => {
+    this._tokenObservable = new Observable<string>((observable: Subscriber<string>) => {
       this.getToken().then(token => {
         observable.next(token);
       }).catch(e => {
