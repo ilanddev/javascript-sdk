@@ -53,6 +53,7 @@ export type EventType =
     'EDGE_MODIFY' |
     'EDGE_UPGRADE' |
     'EDGE_FIREWALL_MODIFIED' |
+    'EDGE_DHCP_MODIFIED' |
     'EDGE_NAT_MODIFIED' |
     'EDGE_IPSEC_VPN_SERVICE_UPDATE' |
     // VM
