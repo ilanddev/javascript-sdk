@@ -9,6 +9,7 @@ export interface EdgeGatewayDhcpIpPoolJson {
   pool_id: string;
   ip_range: string;
   lease_time: string;
+  subnet_mask: string;
   allow_huge_range: boolean;
   next_server: string;
   dhcp_options: EdgeGatewayDhcpOptionsJson;

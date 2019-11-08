@@ -64,6 +64,14 @@ export class EdgeGatewayDhcpIpPool {
   }
 
   /**
+   * Get subnet mask.
+   * @returns {string}
+   */
+  get subnetMask(): string {
+    return this._json.subnet_mask;
+  }
+
+  /**
    * Get lease time.
    * @returns {string}
    */
