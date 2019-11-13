@@ -244,7 +244,7 @@ export class Company extends Entity {
     return Iland.getHttp().get(`/companies/${this.uuid}/support-tickets`, {
       params: {
         offset: offset || 0,
-        limit: limit || 10,
+        limit: limit || 10
       }
     }).then((response) => {
       const supportTickets = response.data.data as Array<SupportTicketJson>;
