@@ -238,15 +238,13 @@ export class Company extends Entity {
    * Get all support tickets
    * @param {number} offset
    * @param {number} limit
-   * @param {string} search
    * @returns {Promise<Array<SupportTicket>>}
    */
-  async getSupportTickets(offset?: number, limit?: number, search?: string): Promise<Array<SupportTicket>> {
+  async getSupportTickets(offset?: number, limit?: number): Promise<Array<SupportTicket>> {
     return Iland.getHttp().get(`/companies/${this.uuid}/support-tickets`, {
       params: {
         offset: offset || 0,
         limit: limit || 10,
-        search: search || ''
       }
     }).then((response) => {
       const supportTickets = response.data.data as Array<SupportTicketJson>;
