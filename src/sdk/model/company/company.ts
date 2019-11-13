@@ -49,6 +49,8 @@ import { Task } from '../task/task';
 import { TaskList } from '../task/task-list';
 import { TaskFilterParams } from '../task/task-filter-params';
 import { CompanyTaskFilterParams } from './company-task-filter-params';
+import { BaCompany } from '../vac/ba-company';
+import { BaCompanyJson } from '../vac/__json__/ba-company';
 
 /**
  * Company.
@@ -492,6 +494,18 @@ export class Company extends Entity {
     return Iland.getHttp().get(url).then((response) => {
       const json = response.data.data as Array<CloudTenantJson>;
       return json.map((it) => new CloudTenant(it));
+    });
+  }
+
+  /**
+   * Get all vac companies in company location.
+   * @param {string} location
+   * @returns {Array<Promise<BaCompany>>}
+   */
+  async getVacCompanies(location: string): Promise<Array<BaCompany>> {
+    return Iland.getHttp().get(`/companies/${ this.uuid }/location/${ location }/vac-companies`).then((response) => {
+      const json = response.data.data as Array<BaCompanyJson>;
+      return json.map((it) => new BaCompany(it));
     });
   }
 
