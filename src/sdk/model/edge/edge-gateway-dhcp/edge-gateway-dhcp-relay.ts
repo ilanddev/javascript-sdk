@@ -12,7 +12,10 @@ export class EdgeGatewayDhcpRelay {
    * Get relay server.
    * @returns {EdgeGatewayDhcpRelayServer}
    */
-  get relayServer(): EdgeGatewayDhcpRelayServer {
+  get relayServer(): EdgeGatewayDhcpRelayServer | undefined {
+    if (!this._json.relay_server) {
+      return undefined;
+    }
     return new EdgeGatewayDhcpRelayServer(this._json.relay_server);
   }
 
@@ -21,6 +24,9 @@ export class EdgeGatewayDhcpRelay {
    * @returns {Array<EdgeGatewayDhcpRelayAgent>}
    */
   get relayAgents(): Array<EdgeGatewayDhcpRelayAgent> {
+    if (!this._json.relay_agents) {
+      return [];
+    }
     return this._json.relay_agents.map(it => new EdgeGatewayDhcpRelayAgent(it));
   }
 
