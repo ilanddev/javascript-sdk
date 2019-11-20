@@ -22,6 +22,9 @@ export class EdgeGatewayDhcp {
    * @returns {Array<EdgeGatewayDhcpStaticBinding>}
    */
   get staticBindings(): Array<EdgeGatewayDhcpStaticBinding> {
+    if (!this._json.static_bindings) {
+      return [];
+    }
     return this._json.static_bindings.map(it => new EdgeGatewayDhcpStaticBinding(it));
   }
 
@@ -30,6 +33,9 @@ export class EdgeGatewayDhcp {
    * @returns {Array<EdgeGatewayDhcpIpPool>}
    */
   get ipPools(): Array<EdgeGatewayDhcpIpPool> {
+    if (!this._json.ip_pools) {
+      return [];
+    }
     return this._json.ip_pools.map(it => new EdgeGatewayDhcpIpPool(it));
   }
 
@@ -37,7 +43,10 @@ export class EdgeGatewayDhcp {
    * Get logging.
    * @returns {EdgeGatewayDhcpLogging}
    */
-  get logging(): EdgeGatewayDhcpLogging {
+  get logging(): EdgeGatewayDhcpLogging | undefined {
+    if (!this._json.logging) {
+      return undefined;
+    }
     return new EdgeGatewayDhcpLogging(this._json.logging);
   }
 
@@ -45,7 +54,10 @@ export class EdgeGatewayDhcp {
    * Get relay.
    * @returns {EdgeGatewayDhcpRelay}
    */
-  get relay(): EdgeGatewayDhcpRelay {
+  get relay(): EdgeGatewayDhcpRelay | undefined {
+    if (!this._json.relay) {
+      return undefined;
+    }
     return new EdgeGatewayDhcpRelay(this._json.relay);
   }
 
