@@ -56,6 +56,7 @@ export type EventType =
     'EDGE_DHCP_MODIFIED' |
     'EDGE_NAT_MODIFIED' |
     'EDGE_IPSEC_VPN_SERVICE_UPDATE' |
+    'EDGE_L2_VPN_MODIFIED' |
     // VM
     'VM_CREATE' |
     'VM_CREATE_REQUEST' |
