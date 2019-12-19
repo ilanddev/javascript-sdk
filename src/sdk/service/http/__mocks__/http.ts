@@ -151,10 +151,6 @@ export class Http {
         return MockCatalogPost(url, data, config);
       case /^\/vapp-templates\//.test(url):
         return MockVappTemplatePost(url, data, config);
-
-      case /\/vcc-backup-tenants\/[^\/]+?\/actions\/upgrade-contract$/.test(url):
-        // update cloud tenant contract
-        return MockService.getMockVoidResponse();
       default:
         return MockNotFoundResponse;
     }
