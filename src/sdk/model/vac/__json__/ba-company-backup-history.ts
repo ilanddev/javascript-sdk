@@ -1,4 +1,4 @@
 export interface BaCompanyBackupHistoryJson {
   last_result: string;
-  last_active: number;
+  last_active: number | null;
 }

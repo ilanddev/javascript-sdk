@@ -76,10 +76,10 @@ export class BaCompany extends Entity {
 
   /**
    * Get backup resources.
-   * @returns {Array<BaBackupResource>}
+   * @returns {Array<BaBackupResource> | null}
    */
-  get backupResources(): Array<BaBackupResource> {
-    return this._json.backup_resources.map(it => new BaBackupResource(it));
+  get backupResources(): Array<BaBackupResource> | null {
+    return this._json.backup_resources ? this._json.backup_resources.map(it => new BaBackupResource(it)) : null;
   }
 
   /**

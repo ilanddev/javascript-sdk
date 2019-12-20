@@ -98,18 +98,18 @@ export class BaBackupResource {
 
   /**
    * Get backup repository.
-   * @returns {BaBackupRepository}
+   * @returns {BaBackupRepository | null}
    */
-  get backupRepository(): BaBackupRepository {
-    return new BaBackupRepository(this._json.backup_repository);
+  get backupRepository(): BaBackupRepository | null {
+    return this._json.backup_repository ? new BaBackupRepository(this._json.backup_repository) : null;
   }
 
   /**
    * Get wan accelerator.
-   * @returns {BaWanAccelerator}
+   * @returns {BaWanAccelerator | null}
    */
-  get wanAccelerator(): BaWanAccelerator {
-    return new BaWanAccelerator(this._json.wan_accelerator);
+  get wanAccelerator(): BaWanAccelerator | null {
+    return this._json.wan_accelerator ? new BaWanAccelerator(this._json.wan_accelerator) : null;
   }
 
   /**

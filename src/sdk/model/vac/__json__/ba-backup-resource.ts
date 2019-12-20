@@ -11,8 +11,8 @@ export interface BaBackupResourceJson {
   wan_acceleration_enabled: boolean;
   used_storage_quota: number;
   used_traffic_quota: number;
-  interval_start_time: number;
-  interval_end_time: number;
-  backup_repository: BaBackupRepositoryJson;
-  wan_accelerator: BaWanAcceleratorJson;
+  interval_start_time: number | null;
+  interval_end_time: number | null;
+  backup_repository: BaBackupRepositoryJson | null;
+  wan_accelerator: BaWanAcceleratorJson | null;
 }

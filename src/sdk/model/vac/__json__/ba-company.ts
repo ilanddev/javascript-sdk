@@ -7,8 +7,8 @@ export interface BaCompanyJson extends EntityJson {
   location_id: string;
   contract_uuid: string;
   owner_name: string;
-  backup_resources: Array<BaBackupResourceJson>;
-  last_active: number;
+  backup_resources: Array<BaBackupResourceJson> | null;
+  last_active: number | null;
   last_result: string;
   uuid: string;
   instance_uid: string;
@@ -51,7 +51,7 @@ export interface BaCompanyJson extends EntityJson {
   managed_physical_servers: number;
   managed_cloud_servers: number;
   expiration_enabled: boolean;
-  expiration_date: number;
+  expiration_date: number | null;
   total_storage_quota: number;
   used_storage_quota: number;
   endpoint: string;
