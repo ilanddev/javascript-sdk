@@ -56,18 +56,18 @@ export class X509Certificate {
 
   /**
    * Get not before.
-   * @returns {number}
+   * @returns {Date}
    */
-  get notBefore(): number {
-    return this._json.not_before;
+  get notBefore(): Date {
+    return new Date(this._json.not_before);
   }
 
   /**
    * Get not after.
-   * @returns {number}
+   * @returns {Date}
    */
-  get notAfter(): number {
-    return this._json.not_after;
+  get notAfter(): Date {
+    return new Date(this._json.not_after);
   }
 
   /**
