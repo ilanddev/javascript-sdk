@@ -1,6 +1,7 @@
 import { MacAddressJson } from './vnic-mac-address-json';
 import { ShapingPolicyJson } from './vnic-shaping-policy-json';
 import { AddressGroupJson } from './vnic-address-group-json';
+import { VnicSubInterfaceJson } from './vnic-sub-interface-json';
 
 export interface EdgeGatewayVNICJson {
   index: number;
@@ -17,6 +18,7 @@ export interface EdgeGatewayVNICJson {
   is_connected: boolean;
   in_shaping_policy: ShapingPolicyJson;
   out_shaping_policy: ShapingPolicyJson;
+  sub_interfaces: Array<VnicSubInterfaceJson>;
 }
 
 export type VnicType = 'INTERNAL' | 'UPLINK' | 'TRUNK';

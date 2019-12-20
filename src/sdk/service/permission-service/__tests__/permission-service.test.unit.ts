@@ -33,50 +33,6 @@ function runPermissionServiceViewPermissionAssertions(permission: Permission | u
   }
 }
 
-test('Properly instantiate permission service to get permissions and domain permissions maps', () => {
-  const permissionService = PermissionService.getInstance();
-  expect(permissionService.permissions.size).toBe(91);
-  expect(permissionService.domainPermissions.size).toBe(20);
-});
-
-test('Properly get the available permissions for domain', () => {
-  const permissionService = PermissionService.getInstance();
-  let availablePermissions = permissionService.getAvailablePermissionsForDomain('COMPANY');
-  runPermissionServiceAssertions(availablePermissions, 6);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_PRODUCT');
-  runPermissionServiceAssertions(availablePermissions, 2);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('VCC_BACKUP_PRODUCT');
-  runPermissionServiceAssertions(availablePermissions, 2);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_LOCATION');
-  runPermissionServiceAssertions(availablePermissions, 2);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_ORGANIZATION');
-  runPermissionServiceAssertions(availablePermissions, 12);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VPG');
-  runPermissionServiceAssertions(availablePermissions, 4);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_CATALOG');
-  runPermissionServiceAssertions(availablePermissions, 5);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_MEDIA');
-  runPermissionServiceAssertions(availablePermissions, 4);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VAPP_TEMPLATE');
-  runPermissionServiceAssertions(availablePermissions, 4);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VDC');
-  runPermissionServiceAssertions(availablePermissions, 6);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_EDGE');
-  runPermissionServiceAssertions(availablePermissions, 9);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_INTERNAL_NETWORK');
-  runPermissionServiceAssertions(availablePermissions, 3);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VAPP');
-  runPermissionServiceAssertions(availablePermissions, 10);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VAPP_NETWORK');
-  runPermissionServiceAssertions(availablePermissions, 3);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('IAAS_VM');
-  runPermissionServiceAssertions(availablePermissions, 8);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('VCC_BACKUP_LOCATION');
-  runPermissionServiceAssertions(availablePermissions, 3);
-  availablePermissions = permissionService.getAvailablePermissionsForDomain('VCC_BACKUP_TENANT');
-  runPermissionServiceAssertions(availablePermissions, 2);
-});
-
 test('Properly get the required permissions for domain', () => {
   const permissionService = PermissionService.getInstance();
   let requiredPermissions = permissionService.getRequiredPermissionsForDomain('COMPANY');

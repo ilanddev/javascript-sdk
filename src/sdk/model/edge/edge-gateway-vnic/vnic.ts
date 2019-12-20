@@ -2,6 +2,7 @@ import { EdgeGatewayVNICJson, VnicType } from './__json__/vnic-json';
 import { AddressGroup } from './vnic-address-group';
 import { MacAddress } from './vnic-mac-address';
 import { ShapingPolicy } from './vnic-shaping-policy';
+import { VnicSubInterface } from './vnic-sub-interface';
 
 /**
  * Edge Gateway VNIC.
@@ -122,6 +123,14 @@ export class EdgeGatewayVNIC {
    */
   get outShapingPolicy(): ShapingPolicy | null {
     return this._json.out_shaping_policy ? new ShapingPolicy(this._json.out_shaping_policy) : null;
+  }
+
+  /**
+   * Get sub interfaces.
+   * @returns {Array<SubInterfaceJson>}
+   */
+  get subInterfaces(): Array<VnicSubInterface> {
+    return this._json.sub_interfaces.map(it => new VnicSubInterface(it));
   }
 
   /**
