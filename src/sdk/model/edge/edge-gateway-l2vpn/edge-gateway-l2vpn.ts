@@ -35,9 +35,12 @@ export class EdgeGatewayL2Vpn {
 
   /**
    * Get l2 vpn site.
-   * @returns {EdgeGatewayL2VpnSite}
+   * @returns {EdgeGatewayL2VpnSite | undefined}
    */
-  get l2VpnSite(): EdgeGatewayL2VpnSite {
+  get l2VpnSite(): EdgeGatewayL2VpnSite | undefined {
+    if (!this._json.l2_vpn_site) {
+      return undefined;
+    }
     return new EdgeGatewayL2VpnSite(this._json.l2_vpn_site);
   }
 
