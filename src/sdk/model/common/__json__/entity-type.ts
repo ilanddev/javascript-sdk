@@ -71,4 +71,16 @@ export type EntityType =
 
     'ALERT' |
 
-    'TASK';
+    'TASK' |
+
+    'O365_PRODUCT' |
+
+    'O365_LOCATION' |
+
+    'O365_ORGANIZATION' |
+
+    'O365_JOB' |
+
+    'O365_JOB_SESSION' |
+
+    'O365_RESTORE_SESSION';

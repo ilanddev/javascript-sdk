@@ -61,6 +61,23 @@ export class EntityDomain {
       case 'VCC_BACKUP_TENANT':
         this._parent = 'VCC_BACKUP_LOCATION';
         break;
+      case 'O365_PRODUCT':
+        this._parent = 'COMPANY';
+        break;
+      case 'O365_LOCATION':
+        this._parent = 'O365_PRODUCT';
+        break;
+      case 'O365_ORGANIZATION':
+        this._parent = 'O365_LOCATION';
+        break;
+      case 'O365_JOB':
+        this._parent = 'O365_ORGANIZATION';
+        break;
+      case 'O365_JOB_SESSION':
+        this._parent = 'O365_JOB';
+        break;
+      case 'O365_RESTORE_SESSION':
+        this._parent = 'O365_ORGANIZATION';
     }
   }
 
