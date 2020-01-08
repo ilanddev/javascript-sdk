@@ -29,10 +29,10 @@ export class BGPFilter {
 
   /**
    * Get network.
-   * @returns {string}
+   * @returns {string | undefined}
    */
-  get network(): string {
-    return this._json.network;
+  get network(): string | undefined {
+    return this._json.network || undefined;
   }
 
   /**

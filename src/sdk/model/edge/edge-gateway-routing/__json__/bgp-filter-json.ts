@@ -7,7 +7,7 @@ import { RoutingActionType } from './routing-action-type';
 export interface BGPFilterJson {
   direction: RoutingDirectionType;
   action: RoutingActionType;
-  network: string;
+  network?: string;
   ip_prefix_ge: number;
   ip_prefix_le: number;
 }
