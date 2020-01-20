@@ -1,7 +1,6 @@
 export type IamEntityType =
   'COMPANY' |
   'IAAS_PRODUCT' |
-  'VCC_BACKUP_PRODUCT' |
   'IAAS_LOCATION' |
   'IAAS_ORGANIZATION' |
   'IAAS_VPG' |
@@ -15,6 +14,7 @@ export type IamEntityType =
   'IAAS_VAPP' |
   'IAAS_VAPP_NETWORK' |
   'IAAS_VM' |
+  'VCC_BACKUP_PRODUCT' |
   'VCC_BACKUP_LOCATION' |
   'VCC_BACKUP_TENANT' |
   'OBJECT_STORAGE_PRODUCT' |
