@@ -235,4 +235,6 @@ export type EventType =
     'DR_RUNBOOK_DELETE' |
     'USER_CREATE' |
     'USER_UPDATE' |
-    'USER_DELETE';
+    'USER_DELETE' |
+    // VAC
+    'VAC_COMPANY_UPDATE';

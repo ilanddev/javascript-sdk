@@ -10,6 +10,8 @@ import { Entity } from '../common/entity';
 import { BaBackupResource } from './ba-backup-resource';
 import { BaCompanyContractUpgradeRequest } from './upgrade-tenant-contract-request';
 import { BaCompanyContractUpgradeRequestJson } from './__json__/upgrade-tenant-contract-request';
+import { BaCompanyUpdateRequest } from './ba-company-update-request';
+import { BaCompanyUpdateRequestJson } from './__json__/ba-company-update-request';
 import { BaCompanyPasswordResetRequest } from './ba-password-reset-request';
 import { BaCompanyPasswordResetRequestJson } from './__json__/ba-password-reset-request';
 
@@ -530,18 +532,25 @@ export class BaCompany extends Entity {
 
   /**
    * Upgrades the contract for the BaCompany
-   * @param {BaCompanyContractUpgradeRequest | BaCompanyContractUpgradeRequestJson} updateContractRequest
+   * @param {BaCompanyContractUpgradeRequest} updateContractRequest
    * @returns {Promise}
    */
-  async upgradeTenantContract(updateContractRequest: BaCompanyContractUpgradeRequest |
-    BaCompanyContractUpgradeRequestJson): Promise<unknown> {
-    let request = {};
-    if (updateContractRequest instanceof BaCompanyContractUpgradeRequest && updateContractRequest.json) {
-      request = updateContractRequest.json;
-    } else {
-      request = updateContractRequest;
-    }
+  async upgradeTenantContract(updateContractRequest: BaCompanyContractUpgradeRequest): Promise<unknown> {
+    const request = updateContractRequest.json;
     return Iland.getHttp().post(`/vac-companies/${this.uuid}/actions/request-upgrade-contract`, request);
+  }
+
+  /**
+   * Update BaCompany name
+   * @param {BaCompanyUpdateRequest} updateRequest
+   * @returns {Promise<BaCompany>}
+   */
+  async updateVacCompany(updateRequest: BaCompanyUpdateRequest): Promise<BaCompany> {
+    const request: BaCompanyUpdateRequestJson = updateRequest.json;
+    return Iland.getHttp().put(`/vac-companies/${this.uuid}`, request).then((response) => {
+      this._json = response.data as BaCompanyJson;
+      return this;
+    });
   }
 
   /**
