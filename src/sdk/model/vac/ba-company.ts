@@ -532,32 +532,21 @@ export class BaCompany extends Entity {
 
   /**
    * Upgrades the contract for the BaCompany
-   * @param {BaCompanyContractUpgradeRequest | BaCompanyContractUpgradeRequestJson} updateContractRequest
+   * @param {BaCompanyContractUpgradeRequest} updateContractRequest
    * @returns {Promise}
    */
-  async upgradeTenantContract(updateContractRequest: BaCompanyContractUpgradeRequest |
-    BaCompanyContractUpgradeRequestJson): Promise<unknown> {
-    let request = {};
-    if (updateContractRequest instanceof BaCompanyContractUpgradeRequest && updateContractRequest.json) {
-      request = updateContractRequest.json;
-    } else {
-      request = updateContractRequest;
-    }
+  async upgradeTenantContract(updateContractRequest: BaCompanyContractUpgradeRequest): Promise<unknown> {
+    const request = updateContractRequest.json;
     return Iland.getHttp().post(`/vac-companies/${this.uuid}/actions/request-upgrade-contract`, request);
   }
 
   /**
    * Update BaCompany name
-   * @param {BaCompanyUpdateRequest | BaCompanyUpdateRequestJson} updateRequest
+   * @param {BaCompanyUpdateRequest} updateRequest
    * @returns {Promise<BaCompany>}
    */
-  async updateVacCompany(updateRequest: BaCompanyUpdateRequest | BaCompanyUpdateRequestJson): Promise<BaCompany> {
-    let request = {};
-    if (updateRequest instanceof BaCompanyUpdateRequest && updateRequest.json) {
-      request = updateRequest.json;
-    } else {
-      request = updateRequest;
-    }
+  async updateVacCompany(updateRequest: BaCompanyUpdateRequest): Promise<BaCompany> {
+    const request: BaCompanyUpdateRequestJson = updateRequest.json;
     return Iland.getHttp().put(`/vac-companies/${this.uuid}`, request).then((response) => {
       this._json = response.data as BaCompanyJson;
       return this;
