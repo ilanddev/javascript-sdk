@@ -546,17 +546,11 @@ export class BaCompany extends Entity {
 
   /**
    * Reset the password for a given tenant (BaCompany)
-   * @param {BaCompanyPasswordResetRequest | BaCompanyPasswordResetRequestJson} resetPasswordRequest
+   * @param {BaCompanyPasswordResetRequest} resetPasswordRequest
    * @returns {Promise}
    */
-  async resetVacCompanyPassword(resetPasswordRequest: BaCompanyPasswordResetRequest |
-    BaCompanyPasswordResetRequestJson): Promise<unknown> {
-    let request = {};
-    if (resetPasswordRequest instanceof BaCompanyPasswordResetRequest && resetPasswordRequest.json) {
-      request = resetPasswordRequest.json;
-    } else {
-      request = resetPasswordRequest;
-    }
+  async resetVacCompanyPassword(resetPasswordRequest: BaCompanyPasswordResetRequest): Promise<unknown> {
+    const request: BaCompanyPasswordResetRequestJson = resetPasswordRequest.json;
     return Iland.getHttp().post(`/vac-companies/${this.uuid}/actions/update-password`, request);
   }
 }
