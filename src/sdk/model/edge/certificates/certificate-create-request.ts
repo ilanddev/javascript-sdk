@@ -27,10 +27,10 @@ export class CertificateCreateRequest {
 
   /**
    * Get trust object.
-   * @returns {TrustObjectRequestJson}
+   * @returns {TrustObjectRequest}
    */
-  get trustObject(): TrustObjectRequestJson {
-    return this._json.trust_object;
+  get trustObject(): TrustObjectRequest {
+    return new TrustObjectRequest(this._json.trust_object);
   }
 
   /**
