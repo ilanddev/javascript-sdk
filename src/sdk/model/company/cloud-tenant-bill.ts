@@ -67,6 +67,22 @@ export class CloudTenantBill {
   }
 
   /**
+   * Get has insider protection.
+   * @returns {boolean}
+   */
+  get hasInsiderProtection(): boolean {
+    return this._json.has_insider_protection;
+  }
+
+  /**
+   * Get insider protection price per gb.
+   * @returns {number}
+   */
+  get insiderProtectionPricePerGb(): number {
+    return this._json.insider_protection_price_per_gb;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {CloudTenantBillJson}
    */
