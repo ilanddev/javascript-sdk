@@ -8,4 +8,6 @@ export interface CloudTenantBillJson {
   storage_quota_in_gb: number;
   storage_price_per_gb: number;
   full_month_contract_cost: number;
+  has_insider_protection: boolean;
+  insider_protection_price_per_gb: number;
 }

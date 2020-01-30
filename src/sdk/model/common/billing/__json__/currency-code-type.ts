@@ -1,4 +1,4 @@
 /**
  * Enumeration of supported currency codes.
  */
-export type CurrencyCode = 'USD' | 'EUR' | 'GBP' | 'SGD' | 'AUD';
+export type CurrencyCode = 'AUD' | 'CAD' | 'USD' | 'SGD' | 'EUR' | 'GBP';
