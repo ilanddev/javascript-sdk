@@ -7,5 +7,5 @@ export interface CRLJson {
   is_temporal: boolean;
   issuer_cn: string;
   pem_encoding: string;
-  x509_c_r_l: X509CRLJson;
+  x509_crl: X509CRLJson;
 }

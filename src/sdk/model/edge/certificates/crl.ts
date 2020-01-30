@@ -56,11 +56,11 @@ export class CRL {
   }
 
   /**
-   * Get x509 c r l.
+   * Get x509 crl.
    * @returns {X509CRL}
    */
   get x509CRL(): X509CRL {
-    return new X509CRL(this._json.x509_c_r_l);
+    return new X509CRL(this._json.x509_crl);
   }
 
   /**
