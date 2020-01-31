@@ -139,6 +139,9 @@ export class PermissionsMap {
     this._permissions.set('MANAGE_ILAND_CLOUD_EDGE_L2_VPN_CONFIGURATION',
         (new Permission('MANAGE_ILAND_CLOUD_EDGE_L2_VPN_CONFIGURATION', 'IAAS_EDGE', 'WRITE', true,
             false, null)));
+    this._permissions.set('MANAGE_ILAND_CLOUD_EDGE_CERTIFICATE_CONFIGURATION',
+        (new Permission('MANAGE_ILAND_CLOUD_EDGE_CERTIFICATE_CONFIGURATION', 'IAAS_EDGE', 'WRITE', true,
+            false, null)));
     // IAAS_VDC level permissions
     this._permissions.set('VIEW_ILAND_CLOUD_VDC',
       (new Permission('VIEW_ILAND_CLOUD_VDC', 'IAAS_VDC', 'READ', true,

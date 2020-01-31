@@ -97,18 +97,6 @@ test('Can refresh Org', async() => {
   });
 });
 
-test('Can get org historical billing', async() => {
-  return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
-    expect(org.uuid).toBe(inventoryOrg.uuid);
-    const now = new Date();
-    const oneYearAgo = new Date(now.valueOf() - (365 * 24 * 60 * 60 * 1000));
-    return org.getHistoricalBilling(oneYearAgo, now).then(function(bills) {
-      expect(bills).toBeDefined();
-      expect(bills.length).toBeGreaterThan(0);
-    });
-  });
-});
-
 test('Can get org billing summary', async() => {
   return Org.getOrg(inventoryOrg.uuid).then(async function(org) {
     expect(org.uuid).toBe(inventoryOrg.uuid);
