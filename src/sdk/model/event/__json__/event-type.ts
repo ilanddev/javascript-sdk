@@ -249,4 +249,5 @@ export type EventType =
     'USER_UPDATE' |
     'USER_DELETE' |
     // VAC
-    'VAC_COMPANY_UPDATE';
+    'VAC_COMPANY_UPDATE' |
+    'VAC_COMPANY_STORAGE_QUOTA_UPDATE';
