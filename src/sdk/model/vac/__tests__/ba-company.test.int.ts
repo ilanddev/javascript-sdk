@@ -16,7 +16,8 @@ import { BaCompanyBackupHistory } from '../ba-company-backup-history';
 import { BaCompanyBackupHistoryJson } from '../__json__/ba-company-backup-history';
 
 let auth: IlandDirectGrantAuthProvider;
-let tenant: InventoryEntity;
+let tenant: InventoryEntity | undefined;
+let tenants: InventoryEntity[];
 
 beforeAll(async() => {
   auth = new IlandDirectGrantAuthProvider({
@@ -32,11 +33,12 @@ beforeAll(async() => {
         throw Error('no company inventories returned for test user, cant perform test.');
       }
       const inventory = inventories[0];
-      const tenants: InventoryEntity[] = inventory.getEntitiesByType('VCC_BACKUP_TENANT');
+      tenants = inventory.getEntitiesByType('VCC_BACKUP_TENANT');
       expect(tenants).toBeDefined();
       if (tenants && tenants.length > 0) {
-        expect(tenants.length).toBeGreaterThan(0);
-        tenant = tenants[0];
+        // tenant ilandVACtesting1 is the only one that has backup history.
+        tenant = tenants.find(t =>
+          t.uuid === 'sin01.ilandcloud.com:urn:vac:tenant:345eaabc-ecf8-4400-a89a-4051881efbe8');
       } else {
         fail('failed to get inventory tenants for tenant integration tests');
       }
@@ -274,14 +276,16 @@ test('Can get backup history for BaCompany', async() => {
     return tenant.getBackupHistory()
       .then((backupHistoryList: Array<BaCompanyBackupHistory>) => {
         expect(backupHistoryList).toBeDefined();
-        const backupHistory: BaCompanyBackupHistory = backupHistoryList[0];
-        const rawBackupHistory: BaCompanyBackupHistoryJson = backupHistory.json;
-        expect(backupHistory.lastActive).toBeDefined();
-        expect(backupHistory.lastActive ? backupHistory.lastActive.getTime() : null)
-          .toBe(rawBackupHistory.last_active ? (new Date(rawBackupHistory.last_active)).getTime() : null);
-        expect(backupHistory.lastResult).toBeDefined();
-        expect(backupHistory.lastResult).toBe(rawBackupHistory.last_result);
-        expect(backupHistory.toString().length).toBeGreaterThan(0);
+        if (backupHistoryList.length > 0) {
+          const backupHistory: BaCompanyBackupHistory = backupHistoryList[0];
+          const rawBackupHistory: BaCompanyBackupHistoryJson = backupHistory.json;
+          expect(backupHistory.lastActive).toBeDefined();
+          expect(backupHistory.lastActive ? backupHistory.lastActive.getTime() : null)
+            .toBe(rawBackupHistory.last_active ? (new Date(rawBackupHistory.last_active)).getTime() : null);
+          expect(backupHistory.lastResult).toBeDefined();
+          expect(backupHistory.lastResult).toBe(rawBackupHistory.last_result);
+          expect(backupHistory.toString().length).toBeGreaterThan(0);
+        }
       });
   });
 });
