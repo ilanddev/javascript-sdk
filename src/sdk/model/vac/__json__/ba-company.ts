@@ -55,4 +55,5 @@ export interface BaCompanyJson extends EntityJson {
   total_storage_quota: number;
   used_storage_quota: number;
   endpoint: string;
+  agent_and_sub_tenant_count: number;
 }

@@ -463,6 +463,14 @@ export class BaCompany extends Entity {
   }
 
   /**
+   * Get agent and sub tenant count.
+   * @returns {number}
+   */
+  get agentAndSubTenantCount(): number {
+    return this._json.agent_and_sub_tenant_count;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {BaCompanyJson}
    */
