@@ -154,7 +154,7 @@ test('Can get BaCompany and verify properties', async() => {
     expect(tenant.json).toBeDefined();
     expect(tenant.backupResources).toBeDefined();
     if (tenant.backupResources) {
-      const tenantResourceList: BaBackupResource[] = tenant.backupResources;
+      const tenantResourceList: Array<BaBackupResource> = tenant.backupResources;
       const tenantResource: BaBackupResource = tenantResourceList[0];
       const tenantResourceRaw: BaBackupResourceJson = tenantResource.json;
       expect(tenantResource.toString().length).toBeGreaterThan(0);
