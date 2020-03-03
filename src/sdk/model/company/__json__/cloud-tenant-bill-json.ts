@@ -10,4 +10,8 @@ export interface CloudTenantBillJson {
   full_month_contract_cost: number;
   has_insider_protection: boolean;
   insider_protection_price_per_gb: number;
+  insider_protection_total: number;
+  wan_accelerator_appliance_total: number;
+  dedicated_veeam_gateway_total: number;
+  rental_licenses_subscriptions_total: number;
 }

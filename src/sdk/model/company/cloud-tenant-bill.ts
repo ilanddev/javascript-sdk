@@ -83,6 +83,38 @@ export class CloudTenantBill {
   }
 
   /**
+   * Get insider protection total.
+   * @returns {number}
+   */
+  get insiderProtectionTotal(): number {
+    return this._json.insider_protection_total;
+  }
+
+  /**
+   * Get wan accelerator appliance total.
+   * @returns {number}
+   */
+  get wanAcceleratorApplianceTotal(): number {
+    return this._json.wan_accelerator_appliance_total;
+  }
+
+  /**
+   * Get dedicated veeam gateway total.
+   * @returns {number}
+   */
+  get dedicatedVeeamGatewayTotal(): number {
+    return this._json.dedicated_veeam_gateway_total;
+  }
+
+  /**
+   * Get rental licenses subscriptions total.
+   * @returns {number}
+   */
+  get rentalLicensesSubscriptionsTotal(): number {
+    return this._json.rental_licenses_subscriptions_total;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {CloudTenantBillJson}
    */
