@@ -34,8 +34,8 @@ export class EdgeGatewayL2VpnPeerSite {
    * Get l2 vpn user.
    * @returns {EdgeGatewayL2VpnUser}
    */
-  get l2VpnUser(): EdgeGatewayL2VpnUser {
-    return new EdgeGatewayL2VpnUser(this._json.l2_vpn_user);
+  get l2VpnUser(): EdgeGatewayL2VpnUser | null {
+    return this._json.l2_vpn_user ? new EdgeGatewayL2VpnUser(this._json.l2_vpn_user) : null;
   }
 
   /**
@@ -43,7 +43,7 @@ export class EdgeGatewayL2VpnPeerSite {
    * @returns {Array<number>}
    */
   get vnics(): Array<number> {
-    return this._json.vnics;
+    return this._json.vnics || [];
   }
 
   /**
@@ -51,7 +51,7 @@ export class EdgeGatewayL2VpnPeerSite {
    * @returns {Array<string>}
    */
   get egressOptimization(): Array<string> {
-    return this._json.egress_optimization;
+    return this._json.egress_optimization || [];
   }
 
   /**

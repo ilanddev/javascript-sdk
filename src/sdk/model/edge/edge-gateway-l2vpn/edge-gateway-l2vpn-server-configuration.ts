@@ -28,7 +28,7 @@ export class EdgeGatewayL2VpnServerConfiguration {
    * @returns {Array<EdgeGatewayL2vpnEncryptionAlgorithmType>}
    */
   get encryptionAlgorithm(): Array<EdgeGatewayL2vpnEncryptionAlgorithmType> {
-    return this._json.encryption_algorithm;
+    return this._json.encryption_algorithm ? this._json.encryption_algorithm : [];
   }
 
   /**
@@ -44,7 +44,7 @@ export class EdgeGatewayL2VpnServerConfiguration {
    * @returns {Array<EdgeGatewayL2VpnPeerSite>}
    */
   get peerSites(): Array<EdgeGatewayL2VpnPeerSite> {
-    return this._json.peer_sites.map(it => new EdgeGatewayL2VpnPeerSite(it));
+    return this._json.peer_sites ? this._json.peer_sites.map(it => new EdgeGatewayL2VpnPeerSite(it)) : [];
   }
 
   /**
