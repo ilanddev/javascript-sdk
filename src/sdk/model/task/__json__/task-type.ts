@@ -5,5 +5,8 @@ export type TaskType = 'ILAND' |
   'REPORTING' |
   'VCD' |
   'VEEAM' |
+  'VCCR' |
   'VI' |
-  'ZERTO';
+  'ZERTO' |
+  'CATALOG_UPLOAD' |
+  'VAC';

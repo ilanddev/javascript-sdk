@@ -115,8 +115,13 @@ export type TaskOperation = 'power on' |
   'update cloud tenant repository size' |
   'enable nested hypervisor' |
   'disable nested hypervisor' |
+  'update product section' |
   'upload ovf to catalog' |
   'create catalog item in vcloud' |
   'receive ovf file upload' |
   'upload ovf files to vcloud' |
-  'prepare ovf template in vcloud';
+  'prepare ovf template in vcloud' |
+  'delete catalog' |
+  // VAC
+  'vac update company name' |
+  'vac update backup resource storage quota';
