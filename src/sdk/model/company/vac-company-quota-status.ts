@@ -31,6 +31,14 @@ export class VacCompanyQuotaStatus {
   }
 
   /**
+   * Get number of contracts.
+   * @returns {number}
+   */
+  get numberOfContracts(): number {
+    return this._json.number_of_contracts;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {VacCompanyQuotaStatusJson}
    */
