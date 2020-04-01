@@ -541,6 +541,8 @@ export class BaCompany extends Entity {
   }
 
   /**
+   * @deprecated (we are adding the request at company/location level instead, so this one won't be used anymore.
+   * We'll need to remove it at some point.)
    * Upgrades the contract for the BaCompany
    * @param {BaCompanyContractUpgradeRequest} updateContractRequest
    * @returns {Promise}
