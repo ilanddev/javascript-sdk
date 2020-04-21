@@ -22,6 +22,9 @@ export class PermissionsMap {
     this._permissions.set('MANAGE_ILAND_BACKUP_TENANT',
       (new Permission('MANAGE_ILAND_BACKUP_TENANT', 'VCC_BACKUP_TENANT', 'WRITE', true,
         false, null)));
+    this._permissions.set('DELETE_ILAND_BACKUP_TENANT',
+      (new Permission('DELETE_ILAND_BACKUP_TENANT', 'VCC_BACKUP_TENANT', 'WRITE', true,
+        false, null)));
     // VCC_BACKUP_LOCATION level permissions
     this._permissions.set('VIEW_ILAND_BACKUP_LOCATION',
       (new Permission('VIEW_ILAND_BACKUP_LOCATION', 'VCC_BACKUP_LOCATION', 'READ', true,
@@ -319,6 +322,9 @@ export class PermissionsMap {
     this._permissions.set('MANAGE_COMPANY_SUPPORT_TICKETS',
       (new Permission('MANAGE_COMPANY_SUPPORT_TICKETS', 'COMPANY', 'WRITE', true,
         false, ['VIEW_COMPANY_SUPPORT_TICKETS'])));
+    this._permissions.set('CREATE_ILAND_BACKUP_TENANT',
+      (new Permission('CREATE_ILAND_BACKUP_TENANT', 'COMPANY', 'WRITE', true,
+        false, null)));
   }
 
   /**
