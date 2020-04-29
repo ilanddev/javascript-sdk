@@ -123,5 +123,7 @@ export type TaskOperation = 'power on' |
   'prepare ovf template in vcloud' |
   'delete catalog' |
   // VAC
-  'vac update company name' |
-  'vac update backup resource storage quota';
+  'change VCC tenant name' |
+  'manage VCC tenant storage' |
+  'create VCC tenant' |
+  'delete VCC tenant';
