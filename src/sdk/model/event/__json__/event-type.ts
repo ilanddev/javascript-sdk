@@ -64,6 +64,8 @@ export type EventType =
     'EDGE_CSR_DELETE' |
     'EDGE_CRL_CREATE' |
     'EDGE_CRL_DELETE' |
+    'EDGE_SYSLOG_MODIFIED' |
+    'EDGE_SSH_SETTINGS_MODIFIED' |
     // VM
     'VM_CREATE' |
     'VM_CREATE_REQUEST' |
