@@ -25,26 +25,27 @@ export class EdgeGatewaySslVpn {
 
   /**
    * Get logging.
-   * @returns {EdgeGatewaySslVpnLogging}
+   * @returns {EdgeGatewaySslVpnLogging | null}
    */
-  get logging(): EdgeGatewaySslVpnLogging {
-    return new EdgeGatewaySslVpnLogging(this._json.logging);
+  get logging(): EdgeGatewaySslVpnLogging | null {
+    return this._json.logging ? new EdgeGatewaySslVpnLogging(this._json.logging) : null;
   }
 
   /**
    * Get advanced config.
-   * @returns {EdgeGatewaySslVpnAdvancedConfig}
+   * @returns {EdgeGatewaySslVpnAdvancedConfig | null}
    */
-  get advancedConfig(): EdgeGatewaySslVpnAdvancedConfig {
-    return new EdgeGatewaySslVpnAdvancedConfig(this._json.advanced_config);
+  get advancedConfig(): EdgeGatewaySslVpnAdvancedConfig | null {
+    return this._json.advanced_config ? new EdgeGatewaySslVpnAdvancedConfig(this._json.advanced_config) : null;
   }
 
   /**
    * Get client configuration.
-   * @returns {EdgeGatewaySslVpnClientConfiguration}
+   * @returns {EdgeGatewaySslVpnClientConfiguration | null}
    */
-  get clientConfiguration(): EdgeGatewaySslVpnClientConfiguration {
-    return new EdgeGatewaySslVpnClientConfiguration(this._json.client_configuration);
+  get clientConfiguration(): EdgeGatewaySslVpnClientConfiguration | null {
+    return this._json.client_configuration ?
+        new EdgeGatewaySslVpnClientConfiguration(this._json.client_configuration) : null;
   }
 
   /**
@@ -52,7 +53,8 @@ export class EdgeGatewaySslVpn {
    * @returns {Array<EdgeGatewaySslVpnIpAddressPool>}
    */
   get ipAddressPools(): Array<EdgeGatewaySslVpnIpAddressPool> {
-    return this._json.ip_address_pools.map(it => new EdgeGatewaySslVpnIpAddressPool(it));
+    return this._json.ip_address_pools ?
+        this._json.ip_address_pools.map(it => new EdgeGatewaySslVpnIpAddressPool(it)) : [];
   }
 
   /**
@@ -60,7 +62,8 @@ export class EdgeGatewaySslVpn {
    * @returns {Array<EdgeGatewaySslVpnPrivateNetwork>}
    */
   get privateNetworks(): Array<EdgeGatewaySslVpnPrivateNetwork> {
-    return this._json.private_networks.map(it => new EdgeGatewaySslVpnPrivateNetwork(it));
+    return this._json.private_networks ?
+        this._json.private_networks.map(it => new EdgeGatewaySslVpnPrivateNetwork(it)) : [];
   }
 
   /**
@@ -68,7 +71,7 @@ export class EdgeGatewaySslVpn {
    * @returns {Array<EdgeGatewaySslVpnUser>}
    */
   get users(): Array<EdgeGatewaySslVpnUser> {
-    return this._json.users.map(it => new EdgeGatewaySslVpnUser(it));
+    return this._json.users ? this._json.users.map(it => new EdgeGatewaySslVpnUser(it)) : [];
   }
 
   /**
@@ -81,18 +84,19 @@ export class EdgeGatewaySslVpn {
 
   /**
    * Get authentication configuration.
-   * @returns {EdgeGatewaySslVpnAuthenticationConfiguration}
+   * @returns {EdgeGatewaySslVpnAuthenticationConfiguration | null}
    */
-  get authenticationConfiguration(): EdgeGatewaySslVpnAuthenticationConfiguration {
-    return new EdgeGatewaySslVpnAuthenticationConfiguration(this._json.authentication_configuration);
+  get authenticationConfiguration(): EdgeGatewaySslVpnAuthenticationConfiguration | null {
+    return this._json.authentication_configuration ?
+        new EdgeGatewaySslVpnAuthenticationConfiguration(this._json.authentication_configuration) : null;
   }
 
   /**
    * Get server settings.
-   * @returns {EdgeGatewaySslVpnServerSettings}
+   * @returns {EdgeGatewaySslVpnServerSettings  | null}
    */
-  get serverSettings(): EdgeGatewaySslVpnServerSettings {
-    return new EdgeGatewaySslVpnServerSettings(this._json.server_settings);
+  get serverSettings(): EdgeGatewaySslVpnServerSettings | null {
+    return this._json.server_settings ? new EdgeGatewaySslVpnServerSettings(this._json.server_settings) : null;
   }
 
   /**
