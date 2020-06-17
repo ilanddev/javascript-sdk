@@ -8,4 +8,5 @@ export interface CompanyJson extends EntityJson {
   has_vcc: boolean;
   has_object_storage: boolean;
   has_vccr: boolean;
+  has_o365: boolean;
 }

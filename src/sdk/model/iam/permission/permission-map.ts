@@ -9,6 +9,29 @@ export class PermissionsMap {
   private _permissions: Map<PermissionType, Permission> = new Map<PermissionType, Permission>();
 
   private constructor() {
+    // O365 level permissions
+    this._permissions.set('VIEW_ILAND_O365',
+        new Permission('VIEW_ILAND_O365', 'O365_PRODUCT', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_BILLING',
+        new Permission('VIEW_ILAND_O365_BILLING', 'O365_PRODUCT', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_ORGANIZATION',
+        new Permission('VIEW_ILAND_O365_ORGANIZATION','O365_ORGANIZATION', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_JOB',
+        new Permission('VIEW_ILAND_O365_JOB','O365_JOB', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_RESTORE_SESSION',
+        new Permission('VIEW_ILAND_O365_RESTORE_SESSION','O365_RESTORE_SESSION', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_JOB_SESSION',
+        new Permission('VIEW_ILAND_O365_JOB_SESSION','O365_JOB_SESSION', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_LOCATION_BILLING',
+        new Permission('VIEW_ILAND_O365_LOCATION_BILLING','O365_LOCATION', 'READ', true, true, null));
+    this._permissions.set('VIEW_ILAND_O365_LOCATION',
+        new Permission('VIEW_ILAND_O365_LOCATION','O365_LOCATION', 'READ', true, true, null));
+    this._permissions.set('MANAGE_ILAND_O365_ORGANIZATION',
+        new Permission('MANAGE_ILAND_O365_ORGANIZATION', 'O365_ORGANIZATION', 'WRITE', true, false, null));
+    this._permissions.set('MANAGE_ILAND_O365_RESTORE_SESSION',
+        new Permission('MANAGE_ILAND_O365_RESTORE_SESSION', 'O365_RESTORE_SESSION', 'WRITE', true, false, null));
+    this._permissions.set('MANAGE_ILAND_O365_JOB',
+        new Permission('MANAGE_ILAND_O365_JOB', 'O365_JOB', 'WRITE', true, false, null));
     // VCC_BACKUP_TENANT level permissions
     this._permissions.set('VIEW_ILAND_BACKUP_TENANT',
       (new Permission('VIEW_ILAND_BACKUP_TENANT', 'VCC_BACKUP_TENANT', 'READ',
