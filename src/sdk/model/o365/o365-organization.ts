@@ -223,4 +223,13 @@ export class O365Organization extends Entity {
       return json.map((it) => new O365User(it));
     });
   }
+
+  /**
+   * Delete the O365 Organization
+   * @returns {Promise}
+   */
+  /* istanbul ignore next */
+  async deleteOrg(): Promise<unknown> {
+    return Iland.getHttp().delete(`/o365-organizations/${this.uuid}`);
+  }
 }
