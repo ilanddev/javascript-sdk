@@ -65,6 +65,7 @@ import { O365Organization } from '../o365/o365-organization';
 import { O365OrganizationJson } from '../o365/__json__/o365-organization-json';
 import { O365BillJson } from './__json__/o365-bill-json';
 import { O365Bill } from './o365-bill';
+import { O365OrgCreateRequest } from './o365-org-create-request';
 
 /**
  * Company.
@@ -612,6 +613,22 @@ export class Company extends Entity {
   async createBaCompany(locationUuid: string, creationRequest: BaCompanyCreateRequest): Promise<unknown> {
     return Iland.getHttp().post(`/companies/${this.uuid}/location/${locationUuid}/actions/create-vac-company`,
       creationRequest.json);
+  }
+
+  /**
+   * Create a new O365 Organization.
+   * @param {string} locationUuid
+   * @param {O365OrgCreateRequest} creationRequest
+   * @returns {Promise<O365Organization>}
+   */
+  /* istanbul ignore next */
+  async createO365Organization(locationUuid: string, creationRequest: O365OrgCreateRequest): Promise<O365Organization> {
+    return Iland.getHttp().post(`/companies/${this.uuid}/location/${locationUuid}/actions/create-o365-org`,
+      creationRequest.json)
+        .then((response) => {
+          const json = response.data as O365OrganizationJson;
+          return new O365Organization(json);
+        });
   }
 
   /**
