@@ -33,10 +33,10 @@ export class EdgeGatewaySslVpnPrivateNetwork {
 
   /**
    * Get send over tunnel.
-   * @returns {EdgeGatewaySslVpnSendOverTunnel}
+   * @returns {EdgeGatewaySslVpnSendOverTunnel | null}
    */
-  get sendOverTunnel(): EdgeGatewaySslVpnSendOverTunnel {
-    return new EdgeGatewaySslVpnSendOverTunnel(this._json.send_over_tunnel);
+  get sendOverTunnel(): EdgeGatewaySslVpnSendOverTunnel | null {
+    return this._json.send_over_tunnel ? new EdgeGatewaySslVpnSendOverTunnel(this._json.send_over_tunnel) : null;
   }
 
   /**
