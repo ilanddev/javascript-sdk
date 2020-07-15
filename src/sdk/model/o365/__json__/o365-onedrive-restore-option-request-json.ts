@@ -6,6 +6,13 @@ export interface O365OneDriveRestoreOptionsRequestJson {
   password: string;
   action: O365OneDriveDocumentAction;
   version: O365OneDriveDocumentVersion;
+  document_last_version_action?: O365OneDriveDocumentLastVersionAction;
+  folder?: string;
+  one_drive_id_to_restore_to?: string;
+  changed_items?: boolean;
+  deleted_items?: boolean;
+  restore_permissions?: boolean;
+  send_shared_links_notification?: boolean;
 }
 
 /**
@@ -22,4 +29,12 @@ export enum O365OneDriveDocumentAction {
 export enum O365OneDriveDocumentVersion {
   ALL = 'all',
   LAST = 'last'
+}
+
+/**
+ * O365 OneDrive document last version action enum
+ */
+export enum O365OneDriveDocumentLastVersionAction {
+  OVERWRITE = 'overwrite',
+  MERGE = 'merge'
 }

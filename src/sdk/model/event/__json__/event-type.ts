@@ -269,6 +269,9 @@ export type EventType =
     'O365_JOB_STOP' |
     'O365_JOB_DISABLE' |
     'O365_JOB_ENABLE' |
+    'O365_JOB_MODIFY' |
+    'O365_JOB_DELETE' |
+    'O365_JOB_CREATE' |
     'O365_ORGANIZATION_CREATE' |
     'O365_ORGANIZATION_DELETE' |
     // DFW

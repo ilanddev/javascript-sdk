@@ -7,4 +7,6 @@ export interface O365OrgCreateRequestJson {
   password: string;
   is_exchange_online: boolean;
   is_share_point_online: boolean;
+  create_default_jobs: boolean;
+  repository_id: string | null;
 }

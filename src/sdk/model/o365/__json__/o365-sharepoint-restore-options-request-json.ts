@@ -14,6 +14,7 @@ export interface O365SharePointRestoreOptionsRequestJson {
   send_shared_links_notification: boolean;
   document_last_version_action: O365SharePointDocumentLastVersionAction;
   list?: string; // specifies the target SharePoint list by name - needed in item and document restores
+  alias?: string; // specifies a target site if restoring to a different location
 }
 
 /**
