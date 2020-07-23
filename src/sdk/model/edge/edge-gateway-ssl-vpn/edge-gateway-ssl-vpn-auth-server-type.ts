@@ -3,7 +3,7 @@ export enum EdgeGatewaySslVpnAuthServerTypeEnum {
   LDAP = 'LDAP',
   AD = 'AD',
   RADIUS = 'RADIUS',
-  RSA = 'RSA'
+  ACE = 'ACE'
 }
 
 export type EdgeGatewaySslVpnAuthServerType = keyof typeof EdgeGatewaySslVpnAuthServerTypeEnum;

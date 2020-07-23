@@ -11,10 +11,11 @@ export class EdgeGatewaySslVpnAuthenticationConfiguration {
 
   /**
    * Get password authentication.
-   * @returns {EdgeGatewaySslVpnPasswordAuthentication}
+   * @returns {EdgeGatewaySslVpnPasswordAuthentication | null}
    */
-  get passwordAuthentication(): EdgeGatewaySslVpnPasswordAuthentication {
-    return new EdgeGatewaySslVpnPasswordAuthentication(this._json.password_authentication);
+  get passwordAuthentication(): EdgeGatewaySslVpnPasswordAuthentication | null {
+    return this._json.password_authentication ?
+      new EdgeGatewaySslVpnPasswordAuthentication(this._json.password_authentication) : null;
   }
 
   /**
