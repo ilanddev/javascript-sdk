@@ -1,4 +1,4 @@
-import { KeycloakInstance } from 'keycloak-js';
+import { KeycloakInstance, KeycloakProfile } from 'keycloak-js';
 import { Observable, Subscriber } from 'rxjs';
 import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
@@ -70,8 +70,7 @@ export class IlandBrowserAuthProvider implements AuthProvider {
    */
   async getAuthenticatedUsername(): Promise<string> {
     return this.getToken().then(() => {
-      const tokenParsed = this._keycloak.tokenParsed as any;
-      return tokenParsed.preferred_username;
+      return (this._keycloak.profile as KeycloakProfile).username as string;
     });
   }
 
@@ -110,7 +109,11 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       this._keycloak.init({
         onLoad: 'login-required'
       }).success((result: boolean) => {
-        resolve(result);
+        this._keycloak.loadUserProfile().success(() => {
+          resolve(result);
+        }).error((error) => {
+          reject(error);
+        });
       }).error((error: KeycloakError) => {
         reject(error);
       });

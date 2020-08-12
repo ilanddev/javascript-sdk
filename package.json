@@ -89,9 +89,8 @@
     }
   },
   "dependencies": {
-    "@types/keycloak-js": "2.4.0",
     "axios": "0",
-    "keycloak-js": "github:ilanddev/keycloak-js-bower",
+    "keycloak-js": "9.0.0",
     "qs": "6",
     "rxjs": "6",
     "tslib": "1"
