@@ -36,7 +36,7 @@ test('IlandDirectGrantAuthProvider has proper error handling when using bad clie
   });
   expect.assertions(1);
   return auth.getToken().then(undefined, function(reason: Error) {
-    expect(reason.message).toContain('400');
+    expect(reason.message).toContain('401');
   });
 });
 

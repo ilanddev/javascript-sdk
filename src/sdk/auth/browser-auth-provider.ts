@@ -1,16 +1,22 @@
-import { KeycloakInstance, KeycloakProfile } from 'keycloak-js';
+import {
+  BrowserAuthProvider,
+  DEFAULT_AUTH_TOKEN_MIN_VALIDITY,
+  DEFAULT_AUTH_URL,
+  DEFAULT_REALM,
+  IlandBrowserAuthConfig
+} from './auth-provider-interfaces';
+import { IlandAbstractAuthProvider } from './abstract-auth-provider';
+import { KeycloakError, KeycloakInstance, KeycloakProfile } from 'keycloak-js';
 import { Observable, Subscriber } from 'rxjs';
-import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
 import Keycloak = require('keycloak-js');
-import KeycloakError = Keycloak.KeycloakError;
 
-export class IlandBrowserAuthProvider implements AuthProvider {
+export class IlandBrowserAuthProvider extends IlandAbstractAuthProvider implements BrowserAuthProvider {
 
-  private _testingRoleUuid: string | undefined;
-  private _keycloak: KeycloakInstance;
-  private _tokenObservable: Observable<string>;
+  protected _keycloak: KeycloakInstance;
+  protected _testingRoleUuid: string | undefined;
 
   constructor(config: IlandBrowserAuthConfig) {
+    super();
     const kcConfig = {
       clientId: config.clientId,
       resource: config.clientId,
@@ -34,46 +40,6 @@ export class IlandBrowserAuthProvider implements AuthProvider {
     });
   }
 
-  async getToken(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this._keycloak.updateToken(15).success(() => {
-        resolve(this.getTokenSync());
-      }).error(async() => {
-        return this._init().then(() => {
-          resolve(this.getTokenSync());
-        }, (err) => {
-          reject(err);
-        });
-      });
-    });
-  }
-
-  /**
-   * Return the current complete access token
-   * @returns {string | undefined} the access token
-   */
-  getTokenSync(): string | undefined {
-    return this.getImpersonateToken(this._keycloak.token);
-  }
-
-  /**
-   * Return an Observable to get an up to date token over time.
-   * @returns {Observable<string>}
-   */
-  getTokenObservable(): Observable<string> {
-    return this._tokenObservable;
-  }
-
-  /**
-   * Gets the username of the currently authenticated user.
-   * @returns {string} username
-   */
-  async getAuthenticatedUsername(): Promise<string> {
-    return this.getToken().then(() => {
-      return (this._keycloak.profile as KeycloakProfile).username as string;
-    });
-  }
-
   /**
    * Activate the role testing mode.
    * @param roleUuid
@@ -87,6 +53,42 @@ export class IlandBrowserAuthProvider implements AuthProvider {
    */
   endRoleTest(): void {
     this._testingRoleUuid = undefined;
+  }
+
+  /**
+   * Return the current complete access token
+   * @returns {string | undefined} the access token
+   */
+  getTokenSync(): string | undefined {
+    return this.getImpersonateToken(this._keycloak.token);
+  }
+
+  /**
+   * Get the token. The token will be automatically refreshed when needed.
+   * @returns {Promise<string>}
+   */
+  async getToken(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this._keycloak.updateToken(DEFAULT_AUTH_TOKEN_MIN_VALIDITY).success(() => {
+        resolve(this.getTokenSync());
+      }).error(async() => {
+        return this._init().then(() => {
+          resolve(this.getTokenSync());
+        }, (err) => {
+          reject(err);
+        });
+      });
+    });
+  }
+
+  /**
+   * Gets the username of the currently authenticated user.
+   * @returns {string} username
+   */
+  async getAuthenticatedUsername(): Promise<string> {
+    return this.getToken().then(() => {
+      return (this._keycloak.profile as KeycloakProfile).username as string;
+    });
   }
 
   /**
@@ -104,7 +106,21 @@ export class IlandBrowserAuthProvider implements AuthProvider {
     });
   }
 
-  private async _init(): Promise<boolean> {
+  /**
+   * If we have an impersonated role initialized with the SDK, we need to update all token.
+   * @param {string | undefined} token
+   * @returns {string | undefined} the complete token.
+   */
+  protected getImpersonateToken(token?: string | undefined): string | undefined {
+    return (this._testingRoleUuid && token) ? `impersonate=${this._testingRoleUuid};${token}` : token;
+  }
+
+  /**
+   * Init keycloak.
+   * @protected
+   * @returns {Promise<boolean>}
+   */
+  protected async _init(): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       this._keycloak.init({
         onLoad: 'login-required'
@@ -119,18 +135,4 @@ export class IlandBrowserAuthProvider implements AuthProvider {
       });
     });
   }
-
-  /**
-   * If we have an impersonated role initialized with the SDK, we need to update all token.
-   * @param {string | undefined} token
-   * @returns {string | undefined} the complete token.
-   */
-  private getImpersonateToken(token?: string | undefined): string | undefined {
-    return (this._testingRoleUuid && token) ? `impersonate=${this._testingRoleUuid};${token}` : token;
-  }
-}
-
-export interface IlandBrowserAuthConfig {
-  clientId: string;
-  url?: string;
 }
