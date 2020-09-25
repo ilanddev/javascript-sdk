@@ -1,17 +1,23 @@
 import { Observable, Subscriber } from 'rxjs';
-import { AuthProvider, DEFAULT_AUTH_URL, DEFAULT_REALM } from './auth-provider';
+import {
+  AuthProvider,
+  DEFAULT_AUTH_URL,
+  DEFAULT_REALM,
+  IlandDirectGrantAuthConfig
+} from './auth-provider-interfaces';
 import Axios, { AxiosError, AxiosResponse } from 'axios';
+import { IlandAbstractAuthProvider } from './abstract-auth-provider';
 import querystring = require('querystring');
 
 const TOKEN_REFRESH_THRESHOLD = 10;
 
-export class IlandDirectGrantAuthProvider implements AuthProvider {
+export class IlandDirectGrantAuthProvider extends IlandAbstractAuthProvider implements AuthProvider {
 
   private _token: Token | undefined;
-  private _tokenObservable: Observable<string>;
   private _onTokenRefresh: () => void;
 
   constructor(private _config: IlandDirectGrantAuthConfig) {
+    super();
     this._tokenObservable = new Observable<string>((observable: Subscriber<string>) => {
       this.getToken().then(token => {
         observable.next(token);
@@ -52,14 +58,6 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
         });
       }
     }
-  }
-
-  /**
-   * Return an Observable to get an up to date token over time.
-   * @returns {Observable<string>}
-   */
-  getTokenObservable(): Observable<string> {
-    return this._tokenObservable;
   }
 
   /**
@@ -134,23 +132,11 @@ export class IlandDirectGrantAuthProvider implements AuthProvider {
       }
     });
   }
-
 }
 
 export interface Token {
-
   access_token: string;
   expires_in: number;
   refresh_token: string;
   expires_at: number;
-}
-
-export interface IlandDirectGrantAuthConfig {
-
-  username: string;
-  password: string;
-  clientSecret: string;
-  clientId: string;
-  url?: string;
-
 }

@@ -1,5 +1,5 @@
 import { noop } from 'rxjs';
-import { AuthProvider } from './auth/auth-provider';
+import { AuthProvider } from './auth/auth-provider-interfaces';
 import { Logger } from './logger/logger';
 import { Http } from './service/http/http';
 import { BasicConfiguration } from './config/basic-configuration';
