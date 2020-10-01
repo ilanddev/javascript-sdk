@@ -11,4 +11,8 @@ export interface OrgVdcNetworkCreateRequestJson {
   shared: boolean;
   fence_mode: FenceModeType;
   ip_scope: IpScopeJson;
+  retain_net_info_across_deployments: boolean;
+  sub_interface: boolean;
+  distributed_interface: boolean;
+  guest_vlan_allowed: boolean;
 }

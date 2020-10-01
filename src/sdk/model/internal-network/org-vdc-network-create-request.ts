@@ -14,10 +14,12 @@ export class OrgVdcNetworkCreateRequest {
   constructor(orgVdcNetworkRequest: OrgVdcNetworkCreateRequest);
   constructor(orgVdcNetworkRequestJson: OrgVdcNetworkCreateRequestJson);
   constructor(name: string, description: string, edgeUuid: string, shared: boolean,
-              fenceMode: FenceModeType, ipScope: IpScopeJson);
+              fenceMode: FenceModeType, ipScope: IpScopeJson, retainNetInfoAcrossDeployments: boolean,
+              subInterface: boolean, distributedInterface: boolean, guestVlanAllowed: boolean);
   constructor(firstParam: string | OrgVdcNetworkCreateRequest | OrgVdcNetworkCreateRequestJson,
               description?: string, edgeUuid?: string, shared?: boolean, fenceMode?: FenceModeType,
-              ipScope?: IpScopeJson) {
+              ipScope?: IpScopeJson, retainNetInfoAcrossDeployments?: boolean, subInterface?: boolean,
+              distributedInterface?: boolean, guestVlanAllowed?: boolean) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
@@ -26,7 +28,11 @@ export class OrgVdcNetworkCreateRequest {
         edge_uuid: edgeUuid,
         shared: shared,
         fence_mode: fenceMode,
-        ip_scope: ipScope
+        ip_scope: ipScope,
+        retain_net_info_across_deployments: retainNetInfoAcrossDeployments,
+        sub_interface: subInterface,
+        distributed_interface: distributedInterface,
+        guest_vlan_allowed: guestVlanAllowed
       } as OrgVdcNetworkCreateRequestJson;
     } else if (firstParam instanceof OrgVdcNetworkCreateRequest) {
       // Copy constructor
@@ -83,6 +89,38 @@ export class OrgVdcNetworkCreateRequest {
    */
   get ipScope(): IpScope {
     return new IpScope(this._json.ip_scope);
+  }
+
+  /**
+   * Get retain net info across deployments.
+   * @returns {boolean}
+   */
+  get retainNetInfoAcrossDeployments(): boolean {
+    return this._json.retain_net_info_across_deployments;
+  }
+
+  /**
+   * Get sub interface.
+   * @returns {boolean}
+   */
+  get subInterface(): boolean {
+    return this._json.sub_interface;
+  }
+
+  /**
+   * Get distributed interface.
+   * @returns {boolean}
+   */
+  get distributedInterface(): boolean {
+    return this._json.distributed_interface;
+  }
+
+  /**
+   * Get guest vlan allowed.
+   * @returns {boolean}
+   */
+  get guestVlanAllowed(): boolean {
+    return this._json.guest_vlan_allowed;
   }
 
   /**
