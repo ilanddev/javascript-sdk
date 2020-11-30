@@ -137,6 +137,14 @@ export class O365Organization extends Entity {
   }
 
   /**
+   * Get total licenses consumed by O365 Organization
+   * @returns {number}
+   */
+  get totalLicensesConsumed(): number {
+    return this._json.total_licenses_consumed;
+  }
+
+  /**
    * Refreshes the O365 Organization data by retrieving it from the API again.
    * @returns {Promise<O365Organization>} promise that resolves with this object
    */
