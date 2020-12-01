@@ -20,6 +20,7 @@ export interface O365OrganizationJson extends EntityJson {
   total_users: number;
   total_backedup_users: number;
   total_licensed_users: number;
+  total_licenses_consumed: number;
 }
 
 /**
