@@ -114,6 +114,8 @@ import { VdiOrgDeploymentSummary } from '../vdi/vdi-org-deployment-summary';
 import { VdiOrgDeploymentSummaryJson } from '../vdi/__json__/vdi-org-deployment-summary-json';
 import { VdiAutomationGroupDeploymentSummary } from '../vdi/vdi-automation-group-deployment-summary';
 import { VdiAutomationGroupDeploymentSummaryJson } from '../vdi/__json__/vdi-automation-group-deployment-summary-json';
+import { BillingLegacyResponse } from '../common/billing/billing-legacy-response';
+import { BillingLegacyResponseJson } from '../common/billing/__json__/billing-legacy-response-json';
 
 /**
  * IaaS Organization.
@@ -2178,6 +2180,19 @@ export class Org extends Entity {
           const json = response.data as VdiAutomationGroupDeploymentSummaryJson;
           return new VdiAutomationGroupDeploymentSummary(json);
         });
+  }
+
+  /**
+   * Whether or not this org has legacy billing.
+   *
+   * @return {Promise<BillingLegacyResponse>} a promise that resolves with the billing legacy response.
+   */
+  async hasLegacyBilling(): Promise<BillingLegacyResponse> {
+    return Iland.getHttp().get(`/orgs/${this.uuid}/has-legacy-billing`)
+      .then((response) => {
+        const json = response.data as BillingLegacyResponseJson;
+        return new BillingLegacyResponse(json);
+      });
   }
 
 }
