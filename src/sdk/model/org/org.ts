@@ -2188,7 +2188,7 @@ export class Org extends Entity {
    * @return {Promise<BillingLegacyResponse>} a promise that resolves with the billing legacy response.
    */
   async hasLegacyBilling(): Promise<BillingLegacyResponse> {
-    return Iland.getHttp().get(`/orgs/${this.uuid}/has-legacy-billing`)
+    return Iland.getHttp().get(`/orgs/${this.uuid}/legacy-billing-info`)
       .then((response) => {
         const json = response.data as BillingLegacyResponseJson;
         return new BillingLegacyResponse(json);
