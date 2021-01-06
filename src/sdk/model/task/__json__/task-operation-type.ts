@@ -126,4 +126,8 @@ export type TaskOperation = 'power on' |
   'change VCC tenant name' |
   'manage VCC tenant storage' |
   'create VCC tenant' |
-  'delete VCC tenant';
+  'delete VCC tenant' |
+  // Advanced Backups
+  'generate file download bundle' |
+  'restore vm backup' |
+  'restore backups in vdc';
