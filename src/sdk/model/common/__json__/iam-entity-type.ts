@@ -24,4 +24,5 @@ export type IamEntityType =
   'O365_LOCATION' |
   'O365_JOB' |
   'O365_JOB_SESSION' |
-  'O365_RESTORE_SESSION';
+  'O365_RESTORE_SESSION' |
+  'IAAS_BACKUP_GROUP';

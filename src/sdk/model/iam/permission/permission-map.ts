@@ -32,6 +32,17 @@ export class PermissionsMap {
         new Permission('MANAGE_ILAND_O365_RESTORE_SESSION', 'O365_RESTORE_SESSION', 'WRITE', true, false, null));
     this._permissions.set('MANAGE_ILAND_O365_JOB',
         new Permission('MANAGE_ILAND_O365_JOB', 'O365_JOB', 'WRITE', true, false, null));
+    // BACKUP_GROUP level permissions
+    this._permissions.set('VIEW_ILAND_CLOUD_BACKUP_GROUP',
+          (new Permission('VIEW_ILAND_CLOUD_BACKUP_GROUP', 'IAAS_BACKUP_GROUP', 'READ',
+            true, true, null)));
+    this._permissions.set('MANAGE_ILAND_CLOUD_BACKUP_GROUP_CONFIGURATION',
+          (new Permission('MANAGE_ILAND_CLOUD_BACKUP_GROUP_CONFIGURATION', 'IAAS_BACKUP_GROUP', 'WRITE',
+            true, false, null)));
+    this._permissions.set('DELETE_ILAND_CLOUD_BACKUP_GROUP',
+          (new Permission('DELETE_ILAND_CLOUD_BACKUP_GROUP', 'IAAS_BACKUP_GROUP', 'WRITE',
+            true, false, null)));
+
     // VCC_BACKUP_TENANT level permissions
     this._permissions.set('VIEW_ILAND_BACKUP_TENANT',
       (new Permission('VIEW_ILAND_BACKUP_TENANT', 'VCC_BACKUP_TENANT', 'READ',
