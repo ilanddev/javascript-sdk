@@ -3,6 +3,7 @@ import { RestoreTaskType } from './__JSON__/restore-task-type';
 import { BackupRestoreTaskJson } from './__JSON__/backup-restore-task-json';
 import { RestoreTaskObject } from './restore-task-object';
 import { RestoreTaskObjectState } from './restore-task-object-state';
+import { VmRecoveryOptions } from './vm-recovery-options';
 
 /**
  * Backup restore task.
@@ -62,6 +63,14 @@ export class BackupRestoreTask {
   }
 
   /**
+   * Get the UID of the associated backup group.
+   * @returns {string}
+   */
+  get backupGroupUid(): string {
+    return this._backupRestoreTaskJson.backup_group_uid;
+  }
+
+  /**
    * Get start time.
    * @returns {number}
    */
@@ -115,6 +124,15 @@ export class BackupRestoreTask {
    */
   get objectStates(): Array<RestoreTaskObjectState> {
     return this._backupRestoreTaskJson.object_states.map(it => new RestoreTaskObjectState(it));
+  }
+
+  /**
+   * Get the VM recovery options that were selected for the restore.
+   * Only applicable if the type of task is {RestoreTaskType.RESTORE_VMS}.
+   */
+  get vmRecoveryOptions(): VmRecoveryOptions | null {
+    return this._backupRestoreTaskJson.vm_recovery_options ?
+      new VmRecoveryOptions(this._backupRestoreTaskJson.vm_recovery_options) : null;
   }
 
   /**

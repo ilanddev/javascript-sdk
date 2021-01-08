@@ -13,11 +13,27 @@ export class BackupRestoreTaskDetail extends BackupRestoreTask {
   }
 
   /**
-   * Get task detail.
-   * @returns {Task | null}
+   * Get the UUID of the associated iland task.
+   * @returns {string | null}
    */
-  get taskDetail(): Task | null {
-    return this._json.task_detail ? new Task(this._json.task_detail) : null;
+  get taskUuid(): string | null {
+    return this._json.task_uuid ? this._json.task_uuid : null;
+  }
+
+  /**
+   * Get the full name of the user who initiated the restore operation.
+   * @returns {string | null}
+   */
+  get userFullName(): string | null {
+    return this._json.user_full_name ? this._json.user_full_name : null;
+  }
+
+  /**
+   * Get the username of the user who initiated the restore operation.
+   * @returns {string | null}
+   */
+  get username(): string | null {
+    return this._json.username ? this._json.username : null;
   }
 
   /**
