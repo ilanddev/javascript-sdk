@@ -1,4 +1,5 @@
 import { BandwidthUsageSummaryJson } from './__json__/bandwidth-usage-summary-json';
+import { BillingModelType } from '../common/billing/__json__/billing-model-type';
 
 /**
  * Bandwidth Usage Summary.
@@ -47,6 +48,14 @@ export class BandwidthUsageSummary {
    */
   get year(): number {
     return this._json.year;
+  }
+
+  /**
+   * Get the Billing model type.
+   * @returns {BillingModelType}
+   */
+  get billingModelType(): BillingModelType {
+    return this._json.billing_model_type;
   }
 
   /**
