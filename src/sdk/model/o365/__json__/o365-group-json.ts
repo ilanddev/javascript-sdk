@@ -1,15 +1,13 @@
 /**
- * O365 User JSON Properties
+ * Interface for O365 Group JSON properties
  */
-export interface O365UserJson {
+export interface O365GroupJson {
   display_name: string;
   organization_name: string;
   organization_uuid: string;
-  repository_id: string;
-  repository_name: string;
   type: string;
+  native_id: string;
+  name: string;
   is_backed_up: boolean;
   is_deleted_from_org: boolean;
-  name: string;
-  native_id: string;
 }

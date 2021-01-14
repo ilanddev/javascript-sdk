@@ -66,6 +66,20 @@ export class O365User {
   }
 
   /**
+   * Get the native id of O365 user
+   */
+  get nativeId(): string {
+    return this._json.native_id;
+  }
+
+  /**
+   * Get O365 user's name
+   */
+  get name(): string {
+    return this._json.name;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {O365UserJson}
    */

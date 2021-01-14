@@ -104,6 +104,13 @@ export class O365SharePointRestoreOptionsRequest {
   }
 
   /**
+   * Optional - specifies alias site if restoring a Site to a different location
+   */
+  get alias(): string | null {
+    return this._json.alias || null;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {O365SharePointRestoreOptionsRequestJson}
    */

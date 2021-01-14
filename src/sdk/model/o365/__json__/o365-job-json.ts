@@ -16,6 +16,8 @@ export interface O365JobJson extends EntityJson {
   type_vex: boolean;
   type_vesp: boolean;
   type_veod: boolean;
+  excluded_items?: SelectedExcludedItems;
+  selected_items?: SelectedExcludedItems;
 }
 
 /**
@@ -42,6 +44,9 @@ export interface O365JobSchedulePolicy {
   backup_window_enabled: boolean;
   backup_window: Array<boolean>;
   backup_window_minute_offset: number;
+  retry_enabled: boolean;
+  retry_number: number;
+  retry_wait_interval: number;
 }
 
 /**
@@ -80,4 +85,93 @@ export enum O365JobSchedulePolicyPeriodicallyEvery {
   HOURS2 = 'Hours2',
   HOURS4 = 'Hours4',
   HOURS8 = 'Hours8'
+}
+
+/**
+ * Selected or Excluded Items interface pertaining to any included or excluded items
+ * from O365 Backup Job
+ */
+export interface SelectedExcludedItems {
+  group_responses: Array<GroupResponse>;
+  partial_org_responses: Array<PartialOrgResponse>;
+  share_point_site_responses: Array<SharePointSiteResponse>;
+  user_responses: Array<UserResponse>;
+}
+
+/**
+ * Selected or Excluded Group Response interface
+ */
+export interface GroupResponse {
+  group_response: InnerGroupResponse;
+  mail?: boolean;
+  mailbox?: boolean;
+  member_archive_mailbox: boolean;
+  member_mailbox: boolean;
+  member_onedrive: boolean;
+  member_site: boolean;
+  members: boolean;
+  site: boolean;
+}
+
+/**
+ * Selected or Excluded Inner Group Response interface
+ */
+export interface InnerGroupResponse {
+  display_name: string;
+  is_backed_up: boolean;
+  is_deleted_from_org: boolean;
+  name: string;
+  native_id: string;
+  organization_name: string;
+  organization_uuid: string;
+  type: string;
+}
+
+/**
+ * Selected or Excluded Partial Org Response interface
+ */
+export interface PartialOrgResponse {
+  archive_mailbox: boolean;
+  id: string;
+  mailbox: boolean;
+  one_drive: boolean;
+  site: boolean;
+}
+
+/**
+ * Selected or Excluded SharePoint Site Response interface
+ */
+export interface SharePointSiteResponse {
+  available: boolean;
+  backed_up: boolean;
+  cloud: boolean;
+  id: string;
+  name: string;
+  title: string;
+  url: string;
+}
+
+/**
+ * Selected or Excluded User Response interface
+ */
+export interface UserResponse {
+  archive_mailbox: boolean;
+  mailbox: boolean;
+  one_drive: boolean;
+  site: boolean;
+  user_response: InnerUserResponse;
+}
+
+/**
+ * Selected or Excluded Inner User Response interface
+ */
+export interface InnerUserResponse {
+  display_name: string;
+  is_backed_up: boolean;
+  is_deleted_from_org: boolean;
+  name: string;
+  native_id: string;
+  organization_name: string;
+  organization_uuid: string;
+  type: string;
 }
