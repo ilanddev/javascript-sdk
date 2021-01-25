@@ -11,6 +11,7 @@ export class O365AuditLog {
 
   /**
    * Get username of the audit log
+   * @returns {string}
    */
   get username(): string {
     return this._json.username;
@@ -18,6 +19,7 @@ export class O365AuditLog {
 
   /**
    * Get location id of the audit log
+   * @returns {string}
    */
   get locationId(): string {
     return this._json.location_id;
@@ -25,6 +27,7 @@ export class O365AuditLog {
 
   /**
    * Get O365 Org's uuid of the audit log
+   * @returns {string}
    */
   get o365OrgUuid(): string {
     return this._json.o365_org_uuid;
@@ -32,13 +35,15 @@ export class O365AuditLog {
 
   /**
    * Get event type of the audit log
+   * @returns {string}
    */
   get eventType(): string {
     return this._json.event_type;
   }
 
   /**
-   * Get console user of the audit log
+   * Get console entity of the audit log
+   * @returns {string}
    */
   get consoleEntity(): string {
     return this._json.console_entity;
@@ -46,6 +51,7 @@ export class O365AuditLog {
 
   /**
    * Get entity name of audit log
+   * @returns {string}
    */
   get entityName(): string {
     return this._json.entity_name;
@@ -53,6 +59,7 @@ export class O365AuditLog {
 
   /**
    * Get timestamp of audit log
+   * @returns {number}
    */
   get timestamp(): number {
     return this._json.time;
@@ -60,6 +67,7 @@ export class O365AuditLog {
 
   /**
    * Get IP Address of audit log
+   * @returns {string}
    */
   get ipAddress(): string {
     return this._json.ip_address;

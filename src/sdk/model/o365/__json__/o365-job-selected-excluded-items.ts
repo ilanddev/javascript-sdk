@@ -17,6 +17,7 @@ export class O365BackupJobSelectedExcludedItems {
 
   /**
    * Get the O365 Backup Job selected or excluded partial org responses
+   * @returns {Array<PartialOrgResponse>}
    */
   get partialOrgResponses(): Array<PartialOrgResponse> {
     return this._json.partial_org_responses;
@@ -24,6 +25,7 @@ export class O365BackupJobSelectedExcludedItems {
 
   /**
    * Get the O365 Backup Job selected or excluded Group responses
+   * @returns {Array<GroupResponse>}
    */
   get groupResponses(): Array<GroupResponse> {
     return this._json.group_responses;
@@ -31,6 +33,7 @@ export class O365BackupJobSelectedExcludedItems {
 
   /**
    * Get the O365 Backup Job selected or excluded User responses
+   * @returns {Array<UserResponse>}
    */
   get userResponses(): Array<UserResponse> {
     return this._json.user_responses;
@@ -38,6 +41,7 @@ export class O365BackupJobSelectedExcludedItems {
 
   /**
    * Get the O365 Backup Job selected or excluded SharePoint site responses
+   * @returns {Array<SharePointSiteResponse>}
    */
   get sitesResponses(): Array<SharePointSiteResponse> {
     return this._json.share_point_site_responses;

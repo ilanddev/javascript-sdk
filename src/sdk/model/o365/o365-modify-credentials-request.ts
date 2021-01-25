@@ -11,6 +11,7 @@ export class O365ModifyCredentialsRequest {
 
   /**
    * Get user name of modify credentials request
+   * @returns {string}
    */
   get user(): string {
     return this._json.user;
@@ -18,6 +19,7 @@ export class O365ModifyCredentialsRequest {
 
   /**
    * Get password of modify credentials request
+   * @returns {string}
    */
   get password(): string {
     return this._json.password;

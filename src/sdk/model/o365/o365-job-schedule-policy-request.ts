@@ -16,6 +16,7 @@ export class O365JobSchedulePolicyRequest {
 
   /**
    * Gets the specified the job schedule type. e.g Daily or Periodically
+   * @returns {O365JobSchedulePolicyType}
    */
   get policyType(): O365JobSchedulePolicyType {
     return this._json.policy_type;
@@ -23,6 +24,7 @@ export class O365JobSchedulePolicyRequest {
 
   /**
    * Gets the daily type specifying the days when the backup job will run. Required if policyType is Daily.
+   * @returns {O365JobSchedulePolicyDailyType | null}
    */
   get dailyType(): O365JobSchedulePolicyDailyType | null {
     return this._json.daily_type || null;
@@ -30,6 +32,7 @@ export class O365JobSchedulePolicyRequest {
 
   /**
    * Gets the daily time specifying the time when the job will start. Required if policyType is Daily.
+   * @returns {string | null}
    */
   get dailyTime(): string | null {
     return this._json.daily_time || null;
@@ -38,6 +41,7 @@ export class O365JobSchedulePolicyRequest {
   /**
    * Gets the periodically every time specifying the time interval between the job runs.
    * Required if policyType is Periodically.
+   * @returns {O365JobSchedulePolicyPeriodicallyEvery | null}
    */
   get periodicallyEvery(): O365JobSchedulePolicyPeriodicallyEvery | null {
     return this._json.periodically_every || null;
@@ -46,6 +50,7 @@ export class O365JobSchedulePolicyRequest {
   /**
    * Gets the retry enabled of O365 Job, if set to True, indicates that Veeam Backup for Microsoft Office 365 will
    * attempt to restart a backup job if it fails for some reason.
+   * @returns {boolean}
    */
   get isRetryEnabled(): boolean {
     return this._json.is_retry_enabled;
@@ -53,6 +58,7 @@ export class O365JobSchedulePolicyRequest {
 
   /**
    * Get the retry number that specifies the number of attempts to run the backup job if retry is enabled.
+   * @returns {number}
    */
   get retryNumber(): number {
     return this._json.retry_number;
@@ -60,6 +66,7 @@ export class O365JobSchedulePolicyRequest {
 
   /**
    * Gets the retry wait interval specifying the time intervals between the job retry attempts (minutes).
+   * @returns {number}
    */
   get retryWaitInterval(): number {
     return this._json.retry_wait_interval;
