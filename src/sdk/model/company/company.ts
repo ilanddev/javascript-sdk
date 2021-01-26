@@ -70,6 +70,7 @@ import { O365AuditLogJson } from './__json__/o365-audit-log-json';
 import { O365AuditLog } from './o365-audit-log';
 import { O365BackupRepositoryJson } from './__json__/o365-backup-repository-json';
 import { O365BackupRepository } from './o365-backup-repository';
+import { Http } from '../../service/http/http';
 
 /**
  * Company.
@@ -530,7 +531,7 @@ export class Company extends Entity {
   async getLogo(): Promise<Uint8Array | null> {
     return Iland.getHttp().get(`/companies/${this.uuid}/logo`, {
       headers: {
-        'Accept': 'image/jpeg'
+        'Accept': Http.versionMime('image/jpeg')
       },
       responseType: 'arraybuffer'
     }).then((response) => {

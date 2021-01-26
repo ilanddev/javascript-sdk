@@ -10,6 +10,7 @@ import { MockVappJson } from '../../vapp/__mocks__/vapp';
 import { MockVmJson } from '../../vm/__mocks__/vm';
 import { SupportTicketMock } from '../support-ticket/__mocks__/support-ticket';
 import { UserCreateRequest } from '../user-create-request';
+import { Http } from '../../../service/http/__mocks__/http';
 
 jest.mock('../../../service/http/http');
 
@@ -192,7 +193,7 @@ test('Properly submits request to get company logo', async() => {
     return company.getLogo().then(async(logo) => {
       expect(Iland.getHttp().get).lastCalledWith(`/companies/${id}/logo`,
         {
-          'headers': { 'Accept': 'image/jpeg' },
+          'headers': { 'Accept': Http.versionMime('image/jpeg') },
           'responseType': 'arraybuffer'
         }
       );
