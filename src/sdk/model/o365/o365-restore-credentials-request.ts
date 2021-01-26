@@ -11,6 +11,7 @@ export class O365RestoreCredentialsRequest {
 
   /**
    * Get the credential request user
+   * @returns {string}
    */
   get user(): string {
     return this._json.user;
@@ -18,6 +19,7 @@ export class O365RestoreCredentialsRequest {
 
   /**
    * Get the credential request password
+   * @returns {string}
    */
   get password(): string {
     return this._json.password;
@@ -26,6 +28,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get the specific email address of the mailbox to which you want to restore mailbox data
    * Required when restoring to a different mailbox
+   * @returns {string | undefined}
    */
   get mailboxToRestoreTo(): string | undefined {
     return this._json.mailbox_to_restore_to;
@@ -34,6 +37,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get changed items, If set to True, indicates that all versions of mailbox items will be restored
    * Required when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get changedItems(): boolean | undefined {
     return this._json.changed_items;
@@ -42,6 +46,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get deleted items, If set to True, indicates that deleted mailbox items will be restored
    * Required when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get deletedItems(): boolean | undefined {
     return this._json.deleted_items;
@@ -51,6 +56,7 @@ export class O365RestoreCredentialsRequest {
    * Get mark restored items as unread, If set to True, indicates that restored mailbox folder data will
    * be marked as unread
    * Required when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get markRestoredAsUnread(): boolean | undefined {
     return this._json.mark_restored_as_unread;
@@ -59,6 +65,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get exclude drafts, If set to True, indicates that Drafts mailbox folder will not be restored
    * Optional when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get excludeDrafts(): boolean | undefined {
     return this._json.exclude_drafts;
@@ -67,6 +74,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get exclude deleted items, If set to True, indicates that Deleted Items mailbox folder will not be restored
    * Optional when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get excludeDeletedItems(): boolean | undefined {
     return this._json.exclude_deleted_items;
@@ -76,6 +84,7 @@ export class O365RestoreCredentialsRequest {
    * Get exclude in place hold items, If set to True, indicates that preserved items of mailboxes placed on
    * In-Place Hold will not be restored.
    * Optional when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get excludeInPlaceHoldItems(): boolean | undefined {
     return this._json.exclude_in_place_hold_items;
@@ -85,6 +94,7 @@ export class O365RestoreCredentialsRequest {
    * Get exclude litigation hold items, If set to True, indicates that preserved items of mailboxes placed on
    * Litigation Hold will not be restored
    * Optional when restoring to a different mailbox.
+   * @returns {boolean | undefined}
    */
   get excludeLitigationHoldItems(): boolean | undefined {
     return this._json.exclude_litigation_hold_items;
@@ -93,6 +103,7 @@ export class O365RestoreCredentialsRequest {
   /**
    * Get folder to restore to, Specifies the folder to which you want to restore mailbox folder data
    * Optional when restoring to a different mailbox.
+   * @returns {string | null}
    */
   get folder(): string | null {
     return this._json.folder || null;
@@ -102,6 +113,7 @@ export class O365RestoreCredentialsRequest {
    * Get CAS Server, Specifies the Microsoft Exchange server with Client Access Server (CAS) role.
    * The mailbox data will be restored to a specified mailbox server
    * Optional when restoring to a different mailbox.
+   * @returns {string | null}
    */
   get casServer(): string | null {
     return this._json.cas_server || null;

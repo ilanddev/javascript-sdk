@@ -17,6 +17,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request name
+   * @returns {string}
    */
   get name(): string {
     return this._json.name;
@@ -24,6 +25,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request description
+   * @returns {string | undefined}
    */
   get description(): string | undefined {
     return this._json.description;
@@ -31,6 +33,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get the O365 Job creation request repo id
+   * @returns {string}
    */
   get repositoryId(): string {
     return this._json.repository_id;
@@ -38,6 +41,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request backup type
+   * @returns {O365JobBackupType}
    */
   get backupType(): O365JobBackupType {
     return this._json.backup_type;
@@ -45,6 +49,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request run now status
+   * @returns {boolean}
    */
   get runNow(): boolean {
     return this._json.run_now;
@@ -52,6 +57,7 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request job schedule request
+   * @returns {O365JobSchedulePolicyRequest}
    */
   get jobScheduleRequest(): O365JobSchedulePolicyRequest {
     return new O365JobSchedulePolicyRequest(this._json.job_schedule_policy_request);
@@ -59,6 +65,8 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request selected items request
+   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem>
+   *   | undefined}
    */
   get selectedItemsRequest(): Array<PartialOrganizationSelectedItem |
       GroupSelectedItem | UserSelectedItem | SiteSelectedItem> | undefined {
@@ -67,6 +75,8 @@ export class O365CreateJobRequest {
 
   /**
    * Get O365 Job creation request excluded items request
+   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem>
+   *   | undefined}
    */
   get excludedItemsRequest(): Array<PartialOrganizationSelectedItem |
       GroupSelectedItem | UserSelectedItem | SiteSelectedItem> | undefined {

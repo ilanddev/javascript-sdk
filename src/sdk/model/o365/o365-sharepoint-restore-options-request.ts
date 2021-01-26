@@ -15,6 +15,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Get user name you want to use for authenticating with the Microsoft organization
+   * @returns {string}
    */
   get user(): string {
     return this._json.user;
@@ -22,6 +23,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Get the user password you want to use for authenticating with the Microsoft organization
+   * @returns {string}
    */
   get password(): string {
     return this._json.password;
@@ -29,6 +31,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates that the SharePoint lists will be restored with all list views
+   * @returns {boolean}
    */
   get restoreListViews(): boolean {
     return this._json.restore_list_views;
@@ -38,6 +41,7 @@ export class O365SharePointRestoreOptionsRequest {
    * Indicates that the SharePoint site will be restored with all changed items
    *
    * One or both of changedItems and deletedItems must be set to true
+   * @returns {boolean}
    */
   get changedItems(): boolean {
     return this._json.changed_items;
@@ -47,6 +51,7 @@ export class O365SharePointRestoreOptionsRequest {
    * Indicates that the SharePoint site will be restored with all deleted items
    *
    * One or both of changedItems and deletedItems must be set to true
+   * @returns {boolean}
    */
   get deletedItems(): boolean {
     return this._json.deleted_items;
@@ -54,6 +59,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates that the SharePoint site will be restored with all subsites
+   * @returns {boolean}
    */
   get restoreSubsites(): boolean {
     return this._json.restore_subsites;
@@ -61,6 +67,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates that the SharePoint site will be restored with all master pages
+   * @returns {boolean}
    */
   get restoreMasterPages(): boolean {
     return this._json.restore_master_pages;
@@ -68,6 +75,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates that the SharePoint site will be restored with all permissions
+   * @returns {boolean}
    */
   get restorePermissions(): boolean {
     return this._json.restore_permissions;
@@ -75,6 +83,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates what versions of the SharePoint documents will be restored
+   * @returns {O365SharePointDocumentVersion}
    */
   get documentVersion(): O365SharePointDocumentVersion {
     return this._json.document_version;
@@ -82,6 +91,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Indicates that shared links notifications will be sent.
+   * @returns {boolean}
    */
   get sendSharedLinksNotification(): boolean {
     return this._json.send_shared_links_notification;
@@ -90,6 +100,7 @@ export class O365SharePointRestoreOptionsRequest {
   /**
    * Indicates which action will be performed with the last version of the restored SharePoint document
    * on the destination list
+   * @returns {O365SharePointDocumentLastVersionAction}
    */
   get documentLastCrazyVersionAction(): O365SharePointDocumentLastVersionAction {
     return this._json.document_last_version_action;
@@ -98,6 +109,7 @@ export class O365SharePointRestoreOptionsRequest {
   /**
    * Optional - specifies the target SharePoint list by name.
    * Default location if not provided
+   * @returns {string | null}
    */
   get list(): string | null {
     return this._json.list || null;
@@ -105,6 +117,7 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Optional - specifies alias site if restoring a Site to a different location
+   * @returns {string | null}
    */
   get alias(): string | null {
     return this._json.alias || null;

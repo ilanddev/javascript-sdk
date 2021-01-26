@@ -11,6 +11,7 @@ export class O365Group {
 
   /**
    * Get the O365 Group display name
+   * @returns {string}
    */
   get displayName(): string {
     return this._json.display_name;
@@ -18,6 +19,7 @@ export class O365Group {
 
   /**
    * Get the O365 Group organization's name
+   * @returns {string}
    */
   get organizationName(): string {
     return this._json.organization_name;
@@ -25,6 +27,7 @@ export class O365Group {
 
   /**
    * Get the O365 VBO Organization iland platform UUID
+   * @returns {string}
    */
   get organizationUuid(): string {
     return this._json.organization_uuid;
@@ -32,6 +35,7 @@ export class O365Group {
 
   /**
    * Get the O365 Group type
+   * @returns {string}
    */
   get type(): string {
     return this._json.type;
@@ -39,6 +43,7 @@ export class O365Group {
 
   /**
    * Get the O365 Group name
+   * @returns {string}
    */
   get name(): string {
     return this._json.name;
@@ -46,6 +51,7 @@ export class O365Group {
 
   /**
    * Get the O365 Group native id
+   * @returns {string}
    */
   get nativeId(): string {
     return this._json.native_id;
@@ -53,6 +59,7 @@ export class O365Group {
 
   /**
    * Get whether the Office 365 Group is backed up
+   * @returns {boolean}
    */
   get isBackedUp(): boolean {
     return this._json.is_backed_up;
@@ -60,6 +67,7 @@ export class O365Group {
 
   /**
    * Get whether the Office 365 Group has been deleted from the O365 organization
+   * @returns {boolean}
    */
   get isDeletedFromOrg(): boolean {
     return this._json.is_deleted_from_org;

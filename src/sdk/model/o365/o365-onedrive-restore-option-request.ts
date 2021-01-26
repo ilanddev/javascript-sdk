@@ -14,6 +14,7 @@ export class O365OneDriveRestoreOptionsRequest {
 
   /**
    * Get user from OneDrive Restore request
+   * @returns {string}
    */
   get user(): string {
     return this._json.user;
@@ -21,6 +22,7 @@ export class O365OneDriveRestoreOptionsRequest {
 
   /**
    * Get password from OneDrive Restore request
+   * @returns {string}
    */
   get password(): string {
     return this._json.password;
@@ -28,6 +30,7 @@ export class O365OneDriveRestoreOptionsRequest {
 
   /**
    * Get action from OneDrive Restore request
+   * @returns {O365OneDriveDocumentAction}
    */
   get action(): O365OneDriveDocumentAction {
     return this._json.action;
@@ -35,6 +38,7 @@ export class O365OneDriveRestoreOptionsRequest {
 
   /**
    * Get version from OneDrive Restore request
+   * @returns {O365OneDriveDocumentVersion}
    */
   get version(): O365OneDriveDocumentVersion {
     return this._json.version;
@@ -44,6 +48,7 @@ export class O365OneDriveRestoreOptionsRequest {
    * Get document last version action, Specifies, which one of the following actions will be performed with the
    * last version of the restored OneDrive document on the production server
    * Required when restoring to a different location
+   * @returns {O365OneDriveDocumentLastVersionAction | undefined}
    */
   get documentLastVersionAction(): O365OneDriveDocumentLastVersionAction | undefined {
     return this._json.document_last_version_action;
@@ -51,6 +56,7 @@ export class O365OneDriveRestoreOptionsRequest {
 
   /**
    * Get folder to restore to, Specifies the target OneDrive folder copy destination.
+   * @returns {string | undefined}
    */
   get folder(): string | undefined {
     return this._json.folder;
@@ -59,6 +65,7 @@ export class O365OneDriveRestoreOptionsRequest {
   /**
    * Get oneDrive Id to restore to, Specifies the target OneDrive copy destination
    * Required when restoring to a different location
+   * @returns {string | undefined}
    */
   get oneDriveIdToRestoreTo(): string | undefined {
     return this._json.one_drive_id_to_restore_to;
@@ -67,6 +74,7 @@ export class O365OneDriveRestoreOptionsRequest {
   /**
    * Get changed items, If set to True, indicates that all versions of OneDrive items will be copied
    * Required when restoring to a different location
+   * @returns {boolean | undefined}
    */
   get changedItems(): boolean | undefined {
     return this._json.changed_items;
@@ -75,6 +83,7 @@ export class O365OneDriveRestoreOptionsRequest {
   /**
    * Get deleted items, If set to True, indicates that deleted OneDrive items will be copied
    * Required when restoring to a different location
+   * @returns {boolean | undefined}
    */
   get deletedItems(): boolean | undefined {
     return this._json.deleted_items;
@@ -83,6 +92,7 @@ export class O365OneDriveRestoreOptionsRequest {
   /**
    * Get restore permission, If set to True, indicates that the OneDrive items will be restored with all permissions
    * Required when restoring to a different location
+   * @returns {boolean | undefined}
    */
   get restorePermissions(): boolean | undefined {
     return this._json.restore_permissions;
@@ -91,6 +101,7 @@ export class O365OneDriveRestoreOptionsRequest {
   /**
    * Get send shared links notification, If set to True, indicates that shared links notifications will be sent
    * Required when restoring to a different location
+   * @returns {boolean | undefined}
    */
   get sendSharedLinksNotification(): boolean | undefined {
     return this._json.send_shared_links_notification;

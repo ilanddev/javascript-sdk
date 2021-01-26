@@ -11,6 +11,7 @@ export class O365User {
 
   /**
    * Get the O365 User display name
+   * @returns {string}
    */
   get displayName(): string {
     return this._json.display_name;
@@ -18,6 +19,7 @@ export class O365User {
 
   /**
    * Get the O365 user organization's name
+   * @returns {string}
    */
   get organizationName(): string {
     return this._json.organization_name;
@@ -25,6 +27,7 @@ export class O365User {
 
   /**
    * Get the O365 VBO Organization iland platform UUID
+   * @returns {string}
    */
   get organizationUuid(): string {
     return this._json.organization_uuid;
@@ -32,6 +35,7 @@ export class O365User {
 
   /**
    * Get the O365 user backup repository's id.
+   * @returns {string}
    */
   get respositoryId(): string {
     return this._json.repository_id;
@@ -39,6 +43,7 @@ export class O365User {
 
   /**
    * Get the O365 user backup repository's name
+   * @returns {string}
    */
   get repositoryName(): string {
     return this._json.repository_name;
@@ -46,6 +51,7 @@ export class O365User {
 
   /**
    * Get the O365 user type
+   * @returns {string}
    */
   get type(): string {
     return this._json.type;
@@ -53,6 +59,7 @@ export class O365User {
 
   /**
    * Get whether the Office 365 user is backed up
+   * @returns {boolean}
    */
   get isBackedUp(): boolean {
     return this._json.is_backed_up;
@@ -60,6 +67,7 @@ export class O365User {
 
   /**
    * Get whether the Office 365 user has been from the Office 365 organization
+   * @returns {boolean}
    */
   get isDeletedFromOrg(): boolean {
     return this._json.is_deleted_from_org;
@@ -67,6 +75,7 @@ export class O365User {
 
   /**
    * Get the native id of O365 user
+   * @returns {string}
    */
   get nativeId(): string {
     return this._json.native_id;
@@ -74,6 +83,7 @@ export class O365User {
 
   /**
    * Get O365 user's name
+   * @returns {string}
    */
   get name(): string {
     return this._json.name;
