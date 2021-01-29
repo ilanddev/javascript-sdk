@@ -1,6 +1,4 @@
-import {
-  SearchVdcRecoverableFilesAndFoldersFiltersJson
-} from './__json__/search-vdc-recoverable-files-and-folders-filters-json';
+import { SearchVdcRecoverableFilesAndFoldersFiltersJson } from './__json__/search-vdc-recoverable-files-and-folders-filters-json';
 import { FileType } from './__json__/file-type-enum';
 
 /**
@@ -17,7 +15,7 @@ export class SearchVdcRecoverableFilesAndFoldersFilters {
    * @returns {number | null}
    */
   get startTime(): number | null {
-    return this._json.start_time || null;
+    return this._json.startTime || null;
   }
 
   /**
@@ -25,7 +23,7 @@ export class SearchVdcRecoverableFilesAndFoldersFilters {
    * @returns {number | null}
    */
   get endTime(): number | null {
-    return this._json.end_time || null;
+    return this._json.endTime || null;
   }
 
   /**
@@ -41,7 +39,15 @@ export class SearchVdcRecoverableFilesAndFoldersFilters {
    * @returns {Array<string> | null}
    */
   get backupGroupUids(): Array<string> | null {
-    return this._json.backup_group_uids || null;
+    return this._json.backupGroupUids || null;
+  }
+
+  /**
+   * Get backup run uids.
+   * @returns {Array<string> | null}
+   */
+  get backupRunUids(): Array<string> | null {
+    return this._json.backupRunUids || null;
   }
 
   /**
@@ -49,7 +55,7 @@ export class SearchVdcRecoverableFilesAndFoldersFilters {
    * @returns {Array<string> | null}
    */
   get vmUuids(): Array<string> | null {
-    return this._json.vm_uuids || null;
+    return this._json.vmUuids || null;
   }
 
   /**
@@ -57,7 +63,7 @@ export class SearchVdcRecoverableFilesAndFoldersFilters {
    * @returns {FileType}
    */
   get fileType(): FileType {
-    return this._json.file_type;
+    return this._json.fileType;
   }
 
   /**

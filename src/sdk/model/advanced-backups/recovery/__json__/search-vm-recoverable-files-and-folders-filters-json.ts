@@ -1,12 +1,14 @@
 import { FileType } from './file-type-enum';
 
 /**
- * Search VM recoverable files and folders JSON.
+ * Search VM recoverable files and folders filters JSON.
+ * The request params are required to be in camelCase vs snake_case.
  */
 export interface SearchVmRecoverableFilesAndFoldersFiltersJson {
-  start_time?: number;
-  end_time?: number;
+  startTime?: number;
+  endTime?: number;
   search?: string;
-  backup_group_uids?: Array<string>;
-  file_type?: FileType;
+  backupGroupUids?: Array<string>;
+  backupRunUids?: Array<string>;
+  fileType?: FileType;
 }

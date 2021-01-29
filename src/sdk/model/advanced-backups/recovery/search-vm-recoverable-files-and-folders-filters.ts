@@ -15,7 +15,7 @@ export class SearchVmRecoverableFilesAndFoldersFilters {
    * @returns {number | null}
    */
   get startTime(): number | null {
-    return this._json.start_time || null;
+    return this._json.startTime || null;
   }
 
   /**
@@ -23,7 +23,7 @@ export class SearchVmRecoverableFilesAndFoldersFilters {
    * @returns {number | null}
    */
   get endTime(): number | null {
-    return this._json.end_time || null;
+    return this._json.endTime || null;
   }
 
   /**
@@ -39,7 +39,15 @@ export class SearchVmRecoverableFilesAndFoldersFilters {
    * @returns {Array<string> | null}
    */
   get backupGroupUids(): Array<string> | null {
-    return this._json.backup_group_uids || null;
+    return this._json.backupGroupUids || null;
+  }
+
+  /**
+   * Get backup run uids.
+   * @returns {Array<string> | null}
+   */
+  get backupRunUids(): Array<string> | null {
+    return this._json.backupRunUids || null;
   }
 
   /**
@@ -47,7 +55,7 @@ export class SearchVmRecoverableFilesAndFoldersFilters {
    * @returns {FileType | null}
    */
   get fileType(): FileType | null {
-    return this._json.file_type || null;
+    return this._json.fileType || null;
   }
 
   /**

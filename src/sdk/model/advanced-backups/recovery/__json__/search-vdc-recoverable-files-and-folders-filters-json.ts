@@ -1,13 +1,15 @@
 import { FileType } from './file-type-enum';
 
 /**
- * Search vDC recoverable files and folders JSON.
+ * Search vDC recoverable files and folders filters JSON.
+ * The request params are required to be in camelCase vs snake_case.
  */
 export interface SearchVdcRecoverableFilesAndFoldersFiltersJson {
-  start_time?: number;
-  end_time?: number;
+  startTime?: number;
+  endTime?: number;
   search?: string;
-  backup_group_uids?: Array<string>;
-  vm_uuids?: Array<string>;
-  file_type: FileType;
+  backupGroupUids?: Array<string>;
+  backupRunUids?: Array<string>;
+  vmUuids?: Array<string>;
+  fileType: FileType;
 }
