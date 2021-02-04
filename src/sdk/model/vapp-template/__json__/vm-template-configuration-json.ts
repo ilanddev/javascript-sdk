@@ -1,5 +1,6 @@
 import { TemplateDiskConfigurationJson } from './template-disk-configuration-json';
 import { TemplateVnicConfigurationJson } from './template-vnic-configuration-json';
+import { EulaSectionJson } from './eula-section-json';
 
 /**
  * VM Template Configuration Response JSON.
@@ -18,4 +19,5 @@ export interface VmTemplateConfigurationJson {
   computer_name: string;
   disks: Array<TemplateDiskConfigurationJson>;
   vnics: Array<TemplateVnicConfigurationJson>;
+  eula_sections: Array<EulaSectionJson>;
 }

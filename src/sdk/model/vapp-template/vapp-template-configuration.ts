@@ -1,6 +1,7 @@
 import { VmTemplateConfiguration } from './vm-template-configuration';
 import { VappTemplateNetworkConfiguration } from './vapp-template-network-configuration';
 import { VappTemplateConfigurationJson } from './__json__/vapp-template-configuration-json';
+import { EulaSection } from './eula-section';
 
 /**
  * Vapp Template Configuration Response.
@@ -49,6 +50,14 @@ export class VappTemplateConfiguration {
    */
   get networks(): Array<VappTemplateNetworkConfiguration> {
     return this._json.networks.map((tplConfig) => new VappTemplateNetworkConfiguration(tplConfig));
+  }
+
+  /**
+   * Get eula sections if any exist
+   * @return {Array<EulaSection>}
+   */
+  get eulaSections(): Array<EulaSection> {
+    return this._json.eula_sections.map((it) => new EulaSection(it));
   }
 
   /**

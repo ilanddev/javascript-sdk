@@ -1,6 +1,7 @@
 import { TemplateDiskConfiguration } from './template-disk-configuration';
 import { TemplateVnicConfiguration } from './template-vnic-configuration';
 import { VmTemplateConfigurationJson } from './__json__/vm-template-configuration-json';
+import { EulaSection } from './eula-section';
 
 /**
  * VM Template Configuration Response.
@@ -113,6 +114,14 @@ export class VmTemplateConfiguration {
    */
   get vnics(): Array<TemplateVnicConfiguration> {
     return this._json.vnics.map((tplVnicConfig) => new TemplateVnicConfiguration(tplVnicConfig));
+  }
+
+  /**
+   * Get eula sections if any exist
+   * @return {Array<EulaSection>}
+   */
+  get eulaSections(): Array<EulaSection> {
+    return this._json.eula_sections.map((it) => new EulaSection(it));
   }
 
   /**
