@@ -23,6 +23,8 @@ export interface VdcJson extends EntityJson {
   used_network_count: number;
   location_id: string;
   org_uuid: string;
+  has_iaas_backups: boolean;
+  has_integrated_backups: boolean;
 }
 
 /**

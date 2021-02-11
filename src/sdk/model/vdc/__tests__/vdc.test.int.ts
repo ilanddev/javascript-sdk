@@ -102,6 +102,10 @@ test('Can get vDC and verify required properties', async() => {
     expect(vdc.networkQuota).toBe(raw.network_quota);
     expect(vdc.usedNetworkCount).toBeDefined();
     expect(vdc.usedNetworkCount).toBe(raw.used_network_count);
+    expect(vdc.hasIaasBackups).toBeDefined();
+    expect(vdc.hasIaasBackups).toBe(raw.has_iaas_backups);
+    expect(vdc.hasIntegratedBackups).toBeDefined();
+    expect(vdc.hasIntegratedBackups).toBe(raw.has_integrated_backups);
     return vdc;
   });
 });
