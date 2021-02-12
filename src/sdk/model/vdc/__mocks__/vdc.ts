@@ -27,7 +27,7 @@ export const MockVdcJson: VdcJson = {
   deleted: false,
   deleted_date: null,
   updated_date: 1499693404432,
-  has_iaas_backups: false,
+  has_advanced_backups: false,
   company_id: '12345'
 };
 
@@ -55,7 +55,7 @@ export const MockSecondVdcJson: VdcJson = {
   deleted: false,
   deleted_date: null,
   updated_date: 1499693404654,
-  has_iaas_backups: false,
+  has_advanced_backups: false,
   company_id: '12345'
 };
 

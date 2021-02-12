@@ -318,11 +318,11 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
   }
 
   /**
-   * Get has IAAS backups.
+   * Whether the vDC has the advanced backups offering.
    * @returns {boolean}
    */
-  get hasIaasBackups(): boolean {
-    return this._json.has_iaas_backups;
+  get hasAdvancedBackups(): boolean {
+    return this._json.has_advanced_backups;
   }
 
   /**
