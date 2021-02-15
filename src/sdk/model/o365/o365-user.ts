@@ -34,22 +34,6 @@ export class O365User {
   }
 
   /**
-   * Get the O365 user backup repository's id.
-   * @returns {string}
-   */
-  get respositoryId(): string {
-    return this._json.repository_id;
-  }
-
-  /**
-   * Get the O365 user backup repository's name
-   * @returns {string}
-   */
-  get repositoryName(): string {
-    return this._json.repository_name;
-  }
-
-  /**
    * Get the O365 user type
    * @returns {string}
    */
