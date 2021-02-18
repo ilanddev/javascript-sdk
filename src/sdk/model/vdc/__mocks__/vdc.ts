@@ -26,7 +26,9 @@ export const MockVdcJson: VdcJson = {
   name: 'PAYG',
   deleted: false,
   deleted_date: null,
-  updated_date: 1499693404432
+  updated_date: 1499693404432,
+  has_iaas_backups: false,
+  has_integrated_backups: false
 };
 
 export const MockSecondVdcJson: VdcJson = {
@@ -52,7 +54,9 @@ export const MockSecondVdcJson: VdcJson = {
   name: 'PAYG',
   deleted: false,
   deleted_date: null,
-  updated_date: 1499693404654
+  updated_date: 1499693404654,
+  has_iaas_backups: true,
+  has_integrated_backups: true
 };
 
 export const MockVdcResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
