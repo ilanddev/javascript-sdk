@@ -126,7 +126,56 @@ export class O365Organization extends Entity {
   }
 
   /**
+   * Get the total number of backed up active users of account type User.
+   * @returns {number}
+   */
+  get protectedActiveUsers(): number {
+    return this._json.protected_active_users;
+  }
+
+  /**
+   * Get the total number of backed up inactive users of account type User.
+   * @returns {number}
+   */
+  get protectedInactiveUsers(): number {
+    return this._json.protected_inactive_users;
+  }
+
+  /**
+   * Get the total number of backed up users of account type User.
+   * @returns {number}
+   */
+  get totalProtectedUsers(): number {
+    return this._json.total_protected_users;
+  }
+
+  /**
+   * Get the total number of backed up Group/Shared/Public users.
+   * @returns {number}
+   */
+  get protectedSharedUsers(): number {
+    return this._json.protected_shared_users;
+  }
+
+  /**
+   * Get the total number of active users with account type User.
+   * @returns {number}
+   */
+  get totalLicensedUsers(): number {
+    return this._json.total_licensed_users;
+  }
+
+  /**
+   * Get the total number of unprotected active users with account type User.
+   * @returns {number}
+   */
+  get unprotectedLicensedUsers(): number {
+    return this._json.unprotected_licensed_users;
+  }
+
+  /**
    * Get total users of the O365 Organization
+   * @deprecated This O365 Org field is deprecated
    */
   get totalUsers(): number {
     return this._json.total_users;
@@ -134,20 +183,15 @@ export class O365Organization extends Entity {
 
   /**
    * Get total backed up users of the O365 Organization
+   * @deprecated This O365 Org field is deprecated
    */
   get totalBackedupUsers(): number {
     return this._json.total_backedup_users;
   }
 
   /**
-   * Get total licensed users of the O365 Organization
-   */
-  get totalLicensedUsers(): number {
-    return this._json.total_licensed_users;
-  }
-
-  /**
    * Get total licenses consumed by O365 Organization
+   * @deprecated This O365 Org field is deprecated
    * @returns {number}
    */
   get totalLicensesConsumed(): number {
@@ -156,6 +200,7 @@ export class O365Organization extends Entity {
 
   /**
    * Get total unprotected users of the O365 Organization
+   * @deprecated This O365 Org field is deprecated
    */
   get unprotectedUsers(): number {
     return this._json.unprotected_users;
