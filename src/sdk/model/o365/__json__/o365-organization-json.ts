@@ -17,11 +17,16 @@ export interface O365OrganizationJson extends EntityJson {
   exchange_online_settings: any;
   share_point_online_settings: any;
   is_trial: boolean;
-  total_users: number;
-  total_backedup_users: number;
+  protected_active_users: number;
+  protected_inactive_users: number;
+  total_protected_users: number;
+  protected_shared_users: number;
   total_licensed_users: number;
-  total_licenses_consumed: number;
-  unprotected_users: number;
+  unprotected_licensed_users: number;
+  total_users: number; // deprecated
+  total_backedup_users: number; // deprecated
+  total_licenses_consumed: number; // deprecated
+  unprotected_users: number; // deprecated
 }
 
 /**
