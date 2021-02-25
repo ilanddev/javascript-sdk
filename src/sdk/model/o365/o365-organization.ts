@@ -174,6 +174,14 @@ export class O365Organization extends Entity {
   }
 
   /**
+   * Get the number of reserved licenses (per the O365 Org's contract).
+   * @returns {number}
+   */
+  get numberOfReservedLicenses(): number {
+    return this._json.number_of_reserved_licenses;
+  }
+
+  /**
    * Get total users of the O365 Organization
    * @deprecated This O365 Org field is deprecated
    */
