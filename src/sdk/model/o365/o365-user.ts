@@ -50,7 +50,16 @@ export class O365User {
   }
 
   /**
-   * Get whether the Office 365 user has been from the Office 365 organization
+   * Get whether the O365 user is archived
+   * @returns {boolean} true for inactive, false for active
+   */
+  get archived(): boolean {
+    return this._json.archived;
+  }
+
+  /**
+   * Get whether the Office 365 user has been deleted from the Office 365 organization
+   * @deprecated Replaced by O365User.archived
    * @returns {boolean}
    */
   get isDeletedFromOrg(): boolean {
