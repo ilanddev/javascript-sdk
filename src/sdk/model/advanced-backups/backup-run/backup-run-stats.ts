@@ -50,7 +50,16 @@ export class BackupRunStats {
   }
 
   /**
+   * Get start time in milliseconds.
+   * @returns {number}
+   */
+  get startTimeMillis(): number {
+    return this._json.start_time_millis;
+  }
+
+  /**
    * Get start time usecs.
+   * @deprecated
    * @returns {number}
    */
   get startTimeUsecs(): number {
