@@ -14,4 +14,7 @@ export interface IaasBackupBillJson {
   burst_cost: number;
   reserved_cost: number;
   currency_code: CurrencyCode;
+  local_usage_byte_hours: number;
+  remote_usage_byte_hours: number;
+  total_usage_byte_hours: number;
 }
