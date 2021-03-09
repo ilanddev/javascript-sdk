@@ -7,6 +7,7 @@ export interface O365UserJson {
   organization_uuid: string;
   type: string;
   is_backed_up: boolean;
+  archived: boolean;
   is_deleted_from_org: boolean;
   name: string;
   native_id: string;
