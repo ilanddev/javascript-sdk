@@ -94,6 +94,30 @@ export class IaasBackupBill {
   }
 
   /**
+   * Get the total number of byte-hours that have been consumed by local backups
+   * @returns {number}
+   */
+  get localUsageByteHours(): number {
+    return this._json.local_usage_byte_hours;
+  }
+
+  /**
+   * Get the total number of byte-hours that have been consumed by remote backups
+   * @returns {number}
+   */
+  get remoteUsageByteHours(): number {
+    return this._json.remote_usage_byte_hours;
+  }
+
+  /**
+   * Get the total number of byte-hours that have been consumed
+   * @returns {number}
+   */
+  get totalUsageByteHours(): number {
+    return this._json.total_usage_byte_hours;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {IaasBackupBillJson}
    */
