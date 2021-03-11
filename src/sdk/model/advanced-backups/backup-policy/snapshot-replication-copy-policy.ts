@@ -1,6 +1,3 @@
-/**
- * Snapshot Replication Copy Policy JSON.
- */
 import { ReplicationPeriodicity } from './__json__/replication-periodicity';
 import { SnapshotReplicationCopyPolicyJson } from './__json__/snapshot-replication-copy-policy-json';
 import { ReplicationTargetSettings } from './replication-target-settings';
@@ -52,7 +49,7 @@ export class SnapshotReplicationCopyPolicy {
    * @returns {ReplicationTargetSettings}
    */
   get target(): ReplicationTargetSettings {
-    return this._json.target;
+    return new ReplicationTargetSettings(this._json.target);
   }
 
   /**
