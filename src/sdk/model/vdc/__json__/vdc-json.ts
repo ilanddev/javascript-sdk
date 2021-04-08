@@ -25,6 +25,7 @@ export interface VdcJson extends EntityJson {
   org_uuid: string;
   has_iaas_backups: boolean;
   has_integrated_backups: boolean;
+  has_advanced_backups: boolean;
 }
 
 /**

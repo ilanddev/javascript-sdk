@@ -115,6 +115,41 @@ import {
 import {
   VdcIntegratedBackupStatusDetailJson
 } from '../integrated-backups/integrated-backup-status/__json__/vdc-integrated-backup-status-detail-json';
+import { BackupGroup } from '../advanced-backups/backup-group/backup-group';
+import { BackupGroupJson } from '../advanced-backups/backup-group/__json__/backup-group-json';
+import { BackupGroupUpdateRequest } from '../advanced-backups/backup-group/backup-group-update-request';
+import { BackupPolicy } from '../advanced-backups/backup-policy/backup-policy';
+import { BackupPolicyJson } from '../advanced-backups/backup-policy/__json__/backup-policy-json';
+import { BackupPolicyUpdateRequest } from '../advanced-backups/backup-policy/backup-policy-update-request';
+import { VdcBackupSummaryStats } from '../advanced-backups/backup-run/vdc-backup-summary-stats';
+import { VdcBackupSummaryStatsJson } from '../advanced-backups/backup-run/__json__/vdc-backup-summary-stats-json';
+import { BackupGroupRun } from '../advanced-backups/backup-run/backup-group-run';
+import { BackupGroupRunJson } from '../advanced-backups/backup-run/__json__/backup-group-run-json';
+import { VdcBackupStatus } from '../advanced-backups/backup-status/vdc-backup-status';
+import { VdcBackupStatusJson } from '../advanced-backups/backup-status/__json__/vdc-backup-status-json';
+import { RestoreVmBackupsInVdcParams } from '../advanced-backups/recovery/restore-vm-backups-in-vdc-params';
+import { VmBackupSnapshotsListJson } from '../advanced-backups/recovery/__json__/vm-backup-snapshots-list-json';
+import { VmBackupSnapshot } from '../advanced-backups/recovery/vm-backup-snapshot';
+import { SearchVdcRecoverableFilesAndFoldersFilters } from '../advanced-backups/recovery/search-vdc-recoverable-files-and-folders-filters';
+import { RecoverableFileSearchResult } from '../advanced-backups/recovery/recoverable-file-search-result';
+import { RecoverableFilesSearchResultListJson } from '../advanced-backups/recovery/__json__/recoverable-files-search-result-list-json';
+import { BackupGroupSummaryStats } from '../advanced-backups/backup-run/backup-group-summary-stats';
+import { BackupGroupSummaryStatsJson } from '../advanced-backups/backup-run/__json__/backup-group-summary-stats-json';
+import { BackupRestoreTask } from '../advanced-backups/backup-task/backup-restore-task';
+import { BackupRestoreTaskJson } from '../advanced-backups/backup-task/__JSON__/backup-restore-task-json';
+import { BackupRestoreTaskListJson } from '../advanced-backups/backup-task/__JSON__/backup-restore-task-list-json';
+import { BackupRestoreTaskDetail } from '../advanced-backups/backup-task/backup-restore-task-detail';
+import { BackupRestoreTaskDetailJson } from '../advanced-backups/backup-task/__JSON__/backup-restore-task-detail-json';
+import { VdcBackupStorageMetric } from '../advanced-backups/backup-group/__json__/vdc-backup-storage-metric';
+import { BackupGroupStorageMetric } from '../advanced-backups/backup-group/__json__/backup-group-storage-metric';
+import { VdcBackupStorageSampleSeries } from '../advanced-backups/backup-group/vdc-backup-storage-sample-series';
+import { VdcBackupStorageSampleSeriesJson } from '../advanced-backups/backup-group/__json__/vdc-backup-storage-sample-series-json';
+import { IaasBackupBill } from '../advanced-backups/backup-group/iaas-backup-bill';
+import { IaasBackupBillJson } from '../advanced-backups/backup-group/__json__/iaas-backup-bill-json';
+import { IaasBackupSubscription } from '../advanced-backups/backup-group/iaas-backup-subscription';
+import { IaasBackupSubscriptionJson } from '../advanced-backups/backup-group/__json__/iaas-backup-subscription-json';
+import { VdcBackupClusterInfo } from '../advanced-backups/backup-policy/vdc-backup-cluster-info';
+import { VdcBackupClusterInfoJson } from '../advanced-backups/backup-policy/__json__/vdc-backup-cluster-info-json';
 
 /**
  * Virtual Data Center.
@@ -304,6 +339,14 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
    */
   get hasIntegratedBackups(): boolean {
     return this._json.has_integrated_backups;
+  }
+
+  /**
+   * Whether the vDC has the advanced backups offering.
+   * @returns {boolean}
+   */
+  get hasAdvancedBackups(): boolean {
+    return this._json.has_advanced_backups;
   }
 
   /**
@@ -1616,6 +1659,376 @@ export class Vdc extends Entity implements EntityWithPerfSamples {
       return new VdcIntegratedBackupStatusDetail(json);
     });
   }
+
+  /**
+   * List the existing backup groups that are configured in a specified virtual
+   * datacenter.
+   *
+   * @param {boolean} includeDeleted Whether to include deleted backup groups. Default is false. (Optional)
+   * @param {boolean} includeSummaryStats Default is false. (Optional)
+   * @param {boolean} includeLastRun Default is false. (Optional)
+   * @param {boolean} includeBackupPolicy Default is false. (Optional)
+   * @returns {Promise<Array<BackupGroup>>}
+   */
+   /* istanbul ignore next: autogenerated */
+  async listBackupGroups(includeDeleted?: boolean,
+                         includeSummaryStats?: boolean,
+                         includeLastRun?: boolean,
+                         includeBackupPolicy?: boolean): Promise<Array<BackupGroup>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-groups`, {
+      params: {
+        includeDeleted: includeDeleted ?? false,
+        includeSummaryStats: includeSummaryStats ?? false,
+        includeLastRun: includeLastRun ?? false,
+        includeBackupPolicy: includeBackupPolicy ?? false
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<BackupGroupJson>;
+      return json.map((it) => new BackupGroup(it));
+    });
+  }
+
+  /**
+   * Gets backup group summary stats for the vDC.
+   * Stat time-range defaults to the past 24 hours.
+   * Both startTimeMillis and endTimeMillis params are required if one is used.
+   *
+   * @param {number} startTimeMillis Default is 24 hours ago. (Optional)
+   * @param {number} endTimeMillis Default is now. (Optional)
+   * @returns {Promise<VdcBackupSummaryStats>}
+   */
+   /* istanbul ignore next: autogenerated */
+  async getBackupGroupSummaryStats(startTimeMillis?: number,
+                                   endTimeMillis?: number): Promise<VdcBackupSummaryStats> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-group-summary-stats`, {
+      params: {
+        startTimeMillis: startTimeMillis ?? null,
+        endTimeMillis: endTimeMillis ?? null
+      }
+    }).then((response) => {
+      const json = response.data as VdcBackupSummaryStatsJson;
+      return new VdcBackupSummaryStats(json);
+    });
+  }
+
+  /**
+   * Create a new backup group.
+   *
+   * @params {BackupGroupUpdateRequest} creationRequest the creation request body
+   * @return {Promise<BackupGroup>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async createBackupGroup(creationRequest: BackupGroupUpdateRequest): Promise<BackupGroup> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/backup-groups`, creationRequest.json).then((response) => {
+      const json = response.data as BackupGroupJson;
+      return new BackupGroup(json);
+    });
+  }
+
+  /**
+   * List the existing backup policies that are configured in a vDC.
+   *
+   * @param {boolean} includeOrgPolicies
+   * @return {Promise<Array<BackupPolicy>>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async listBackupPolicies(includeOrgPolicies?: boolean): Promise<Array<BackupPolicy>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-policies`, {
+      params: {
+        includeOrgPolicies: includeOrgPolicies
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<BackupPolicyJson>;
+      return json.map((it) => new BackupPolicy(it));
+    });
+  }
+
+  /**
+   * Get details of an individual vDC-scoped backup policy.
+   *
+   * @param {string} backupPolicyUid
+   * @return {Promise<BackupPolicy>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async getBackupPolicy(backupPolicyUid: string): Promise<BackupPolicy> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-policies/${backupPolicyUid}`).then((response) => {
+      const json = response.data as BackupPolicyJson;
+      return new BackupPolicy(json);
+    });
+  }
+
+  /**
+   * Create a new vdc-scoped backup policy.
+   *
+   * @param {BackupPolicyUpdateRequest} creationRequest
+   * @return {Promise<BackupPolicy>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async createBackupPolicy(creationRequest: BackupPolicyUpdateRequest): Promise<BackupPolicy> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/backup-policies`, creationRequest.json).then((response) => {
+      const json = response.data as BackupPolicyJson;
+      return new BackupPolicy(json);
+    });
+  }
+
+  /**
+   * Update a backup policy.
+   *
+   * @param {string} backupPolicyUid
+   * @param {BackupPolicyUpdateRequest} updateRequest
+   * @return {Promise<BackupPolicy>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async updateBackupPolicy(backupPolicyUid: string, updateRequest: BackupPolicyUpdateRequest): Promise<BackupPolicy> {
+    return Iland.getHttp().put(`/vdcs/${this.uuid}/backup-policies/${backupPolicyUid}`, updateRequest.json)
+      .then((response) => {
+        const json = response.data as BackupPolicyJson;
+        return new BackupPolicy(json);
+      });
+  }
+
+  /**
+   * Delete a backup policy.
+   *
+   * @param {string} backupPolicyUid
+   * @return {Promise<unknown>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async deleteBackupPolicy(backupPolicyUid: string): Promise<unknown> {
+    return Iland.getHttp().delete(`/vdcs/${this.uuid}/backup-policies/${backupPolicyUid}`);
+  }
+
+  /**
+   * List backup runs for the specified vDC.
+   * Limit defaults to 10 and query time range defaults to last 24 hours.
+   *
+   * @param {number} startTimeMillis Default is 24 hours ago. (Optional)
+   * @param {number} endTimeMillis Default is now. (Optional)
+   * @param {number} limit Default is 10. (Optional)
+   * @return {Promise<Array<BackupGroupRun>>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async listBackupGroupRuns(startTimeMillis?: number,
+                            endTimeMillis?: number,
+                            limit?: number): Promise<Array<BackupGroupRun>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-runs`, {
+      params: {
+        startTimeMillis: startTimeMillis ?? null,
+        endTimeMillis: endTimeMillis ?? null,
+        limit: limit ?? null
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<BackupGroupRunJson>;
+      return json.map((it) => new BackupGroupRun(it));
+    });
+  }
+
+  /**
+   * Gets the vDC's backup status.
+   * @return {Promise<VdcBackupStatus>}
+   */
+  /* istanbul ignore next: autogenerated */
+  async getBackupStatus(): Promise<VdcBackupStatus> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-status`).then((response) => {
+      const json = response.data as VdcBackupStatusJson;
+      return new VdcBackupStatus(json);
+    });
+  }
+
+  /**
+   * Searches for recoverable VM snapshots within the vDC.
+   *
+   * @param {number} startTimeMillis Earliest backup time for which file results should be included. (Optional)
+   * @param {number} endTimeMillis Latest backup time for which file results should be included. (Optional)
+   * @param {string} search The search string. Wildcards supported with '*'. (Optional)
+   * @param {Array<string>} backupGroupUids A set of backup groups that should be used to limit search results.
+   * (only results that are associated with specified backup groups will be included). (Optional)
+   * @return {Promise<Array<VmBackupSnapshot>>} a list of recoverable VM snapshots
+   */
+   /* istanbul ignore next: autogenerated */
+  async searchRecoverableVMs(startTimeMillis?: number,
+                             endTimeMillis?: number,
+                             search?: string,
+                             backupGroupUids?: Array<string>): Promise<Array<VmBackupSnapshot>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/recoverable-vms`, {
+      params: {
+        startTimeMillis: startTimeMillis ?? null,
+        endTimeMillis: endTimeMillis ?? null,
+        search: search ?? null,
+        backupGroupUids: backupGroupUids ?? null
+      }
+    }).then((response) => {
+      const json = (response.data as VmBackupSnapshotsListJson).data;
+      return json.map(it => new VmBackupSnapshot(it));
+    });
+  }
+
+  /**
+   * Restores one or more VM backups within the vDC.
+   *
+   * @param {RestoreVmBackupsInVdcParams} params restoration parameters
+   * @return {Promise<Task>} the restore task, used to track the asynchronous operation
+   */
+   /* istanbul ignore next: autogenerated */
+  async restoreVMBackupsInVdc(params: RestoreVmBackupsInVdcParams): Promise<Task> {
+    return Iland.getHttp().post(`/vdcs/${this.uuid}/actions/restore-vm-backups`, params.json)
+      .then((response) => {
+        const json = response.data as TaskJson;
+        return new Task(json);
+      });
+  }
+
+  /**
+   * Gets info about the backup cluster and remote replicas that are available
+   * to the vDC.
+   *
+   * @return {Promise<VdcBackupClusterInfo>} information about the local backup cluster and
+   * available remote clusters
+   */
+  /* istanbul ignore next: autogenerated */
+  async getVdcBackupClusterInfo(): Promise<VdcBackupClusterInfo> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-cluster-info`).then((response) => {
+      const json = response.data as VdcBackupClusterInfoJson;
+      return new VdcBackupClusterInfo(json);
+    });
+  }
+
+  /**
+   * Searches for recoverable backup files and folders within the vDC.
+   *
+   * @param {SearchVdcRecoverableFilesAndFoldersFilters} filters query filters (Optional)
+   * @return {Promise<Array<RecoverableFileSearchResult>>} a list of recoverable files and folders
+   */
+   /* istanbul ignore next: autogenerated */
+  async searchRecoverableFilesAndFolders(filters?: SearchVdcRecoverableFilesAndFoldersFilters)
+    : Promise<Array<RecoverableFileSearchResult>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/recoverable-files-and-folders`, {
+      params: filters?.json || null
+    }).then((response) => {
+      const json = (response.data as RecoverableFilesSearchResultListJson).data;
+      return json.map(it => new RecoverableFileSearchResult(it));
+    });
+  }
+
+  /**
+   * Lists detailed task information for advanced backup restore tasks in a
+   * specified vDC.
+   * This will always return any currently running tasks in addition to
+   * those that meet any optional filters.
+   * Both startTimeMillis and endTimeMillis params are required if one is used.
+   *
+   * @param {number} startTimeMillis (Optional)
+   * @param {number} endTimeMillis (Optional)
+   * @return {Promise<Array<BackupRestoreTask>>} listing of advanced backup restore task details
+   */
+   /* istanbul ignore next: autogenerated */
+  async listBackupRestoreTasks(startTimeMillis?: number,
+                               endTimeMillis?: number): Promise<Array<BackupRestoreTask>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-restore-tasks`, {
+      params: {
+        startTimeMillis: startTimeMillis ?? null,
+        endTimeMillis: endTimeMillis ?? null
+      }
+    }).then((response) => {
+      const json = response.data as BackupRestoreTaskListJson;
+      return json.data.map(task => new BackupRestoreTask(task));
+    });
+  }
+
+  /**
+   * Gets detailed recovery task information for a specific advanced backup
+   * restore task.
+   *
+   * @param {string} taskUid the restore task details to retrieve
+   * @return {Promise<BackupRestoreTaskDetail>} advanced backup restore task details
+   */
+   /* istanbul ignore next: autogenerated */
+  async getBackupRestoreTask(taskUid: string): Promise<BackupRestoreTaskDetail> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-restore-tasks/${taskUid}`).then((response) => {
+      const json = response.data as BackupRestoreTaskDetailJson;
+      return new BackupRestoreTaskDetail(json);
+    });
+  }
+
+  /**
+   * Gets the list of storage metrics that are available for the vDC.
+   *
+   * @return {Promise<Array<VdcBackupStorageMetric>>} the list of storage metrics names
+   */
+  /* istanbul ignore next: autogenerated */
+  async getBackupStorageMetrics(): Promise<Array<VdcBackupStorageMetric>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-storage-metrics`).then((response) => {
+      return response.data.data as Array<VdcBackupStorageMetric>;
+    });
+  }
+
+  /**
+   * Gets a series of vDC backup storage samples for a specified storage metric.
+   *
+   * @param metric  the storage metric name
+   * @param {number} startTimeMillis start of the series (Optional)
+   * @param {number} endTimeMillis end of the series (Optional)
+   * @return the sample series
+   */
+  /* istanbul ignore next: autogenerated */
+  async getBackupStorageSamples(metric: VdcBackupStorageMetric,
+                                startTimeMillis?: number,
+                                endTimeMillis?: number): Promise<VdcBackupStorageSampleSeries> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/backup-storage-metrics/${metric}/samples`,{
+      params: {
+        startTimeMillis: startTimeMillis ?? null,
+        endTimeMillis: endTimeMillis ?? null
+      }
+    }).then((response) => {
+      const json = response.data as VdcBackupStorageSampleSeriesJson;
+      return new VdcBackupStorageSampleSeries(json);
+    });
+  }
+
+  /**
+   * Lists bills for IaaS backup in the specified time range.
+   * Both start and end time query params default to the current month.
+   *
+   * @param {string} start Specifies the start of the range as a year-month in the
+   * ISO-8601 calendar system, such as 2007-12. (Optional)
+   * @param {string} end Specifies the end of the range as a year-month in the
+   * ISO-8601 calendar system, such as 2007-12. (Optional)
+   * @return {Promise<Array<IaasBackupBill>>} the list of bills
+   */
+  /* istanbul ignore next: autogenerated */
+  async listIaasBackupBills(start?: string, end?: string): Promise<Array<IaasBackupBill>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/iaas-backup-bills`, {
+      params: {
+        start: start,
+        end: end
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<IaasBackupBillJson>;
+      return json.map((it) => new IaasBackupBill(it));
+    });
+  }
+
+  /**
+   * Lists IaaS backup subscriptions that were active in the specified time range.
+   *
+   * @param {number} startTimeMillis the start time in epoch millis
+   * @param {number} endTimeMillis the end time in epoch millis
+   * @return {Promise<Array<IaasBackupSubscription>>} list of subscriptions
+   */
+  /* istanbul ignore next: autogenerated */
+  async listIaasBackupSubscriptions(startTimeMillis: number,
+                                    endTimeMillis: number): Promise<Array<IaasBackupSubscription>> {
+    return Iland.getHttp().get(`/vdcs/${this.uuid}/iaas-backup-subscriptions`, {
+      params: {
+        startTimeMillis: startTimeMillis,
+        endTimeMillis: endTimeMillis
+      }
+    }).then((response) => {
+      const json = response.data.data as Array<IaasBackupSubscriptionJson>;
+      return json.map((it) => new IaasBackupSubscription(it));
+    });
+  }
+
 }
 
 applyMixins(Vdc, [EntityWithPerfSamples]);

@@ -22,13 +22,15 @@ export const MockVdcJson: VdcJson = {
   used_network_count: 8,
   location_id: 'dev-vcd01.iland.dev',
   org_uuid: 'dev-vcd01.iland.dev:urn:vcloud:org:69e9c2b7-ee9f-4a3e-80f0-8ffc66aac147',
+  has_iaas_backups: false,
+  has_integrated_backups: false,
+  has_advanced_backups: false,
   uuid: 'dev-vcd01.iland.dev:urn:vcloud:vdc:f83bb52c-271d-411f-9d0d-1307cb192cb2',
   name: 'PAYG',
   deleted: false,
   deleted_date: null,
   updated_date: 1499693404432,
-  has_iaas_backups: false,
-  has_integrated_backups: false
+  company_id: '12345'
 };
 
 export const MockSecondVdcJson: VdcJson = {
@@ -50,13 +52,15 @@ export const MockSecondVdcJson: VdcJson = {
   used_network_count: 8,
   location_id: 'dev-vcd01.iland.dev',
   org_uuid: 'dev-vcd01.iland.dev:urn:vcloud:org:69e9c2b7-ee9f-4a3e-80f0-8ffc66aac147',
+  has_iaas_backups: true,
+  has_integrated_backups: true,
+  has_advanced_backups: false,
   uuid: 'dev-vcd01.iland.dev:urn:vcloud:vdc:e51cc45c-8890-r331-7e7e-2934lk235ie5',
   name: 'PAYG',
   deleted: false,
   deleted_date: null,
   updated_date: 1499693404654,
-  has_iaas_backups: true,
-  has_integrated_backups: true
+  company_id: '12345'
 };
 
 export const MockVdcResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {

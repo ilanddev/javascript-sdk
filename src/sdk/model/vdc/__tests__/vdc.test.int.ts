@@ -106,6 +106,8 @@ test('Can get vDC and verify required properties', async() => {
     expect(vdc.hasIaasBackups).toBe(raw.has_iaas_backups);
     expect(vdc.hasIntegratedBackups).toBeDefined();
     expect(vdc.hasIntegratedBackups).toBe(raw.has_integrated_backups);
+    expect(vdc.hasAdvancedBackups).toBeDefined();
+    expect(vdc.hasAdvancedBackups).toBe(raw.has_advanced_backups);
     return vdc;
   });
 });

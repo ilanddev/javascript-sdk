@@ -53,6 +53,8 @@ export type EntityType =
 
     'IAAS_PERSISTENT_DISK' |
 
+    'IAAS_BACKUP_GROUP' |
+
     // VCC BACKUP ENTITIES
 
     'VCC_BACKUP_PRODUCT' |
