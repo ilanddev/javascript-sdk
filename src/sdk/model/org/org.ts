@@ -131,6 +131,8 @@ import { OrgBackupSummaryStats } from '../advanced-backups/backup-run/org-backup
 import { OrgBackupSummaryStatsJson } from '../advanced-backups/backup-run/__json__/org-backup-summary-stats-json';
 import { OrgBackupStatus } from '../advanced-backups/backup-status/org-backup-status';
 import { OrgBackupStatusJson } from '../advanced-backups/backup-status/__json__/org-backup-status-json';
+import { OrgDnsZone } from './org-dns-zone';
+import { OrgDnsZoneJson } from './__json__/org-dns-zone-json';
 
 /**
  * IaaS Organization.
@@ -514,12 +516,12 @@ export class Org extends Entity {
 
   /**
    * Gets all DNS zones that exist within the org.
-   * @returns {Promise<Array<DnsZone>>} a promise that resolves with the list of DNS zones
+   * @returns {Promise<Array<OrgDnsZone>>} a promise that resolves with the list of DNS zones
    */
-  async getDnsZones(): Promise<Array<DnsZone>> {
+  async getOrgDnsZones(): Promise<Array<OrgDnsZone>> {
     return Iland.getHttp().get(`/orgs/${this.uuid}/dns-zones`).then((response) => {
-      const json = response.data.data as Array<DnsZoneJson>;
-      return json.map((it) => new DnsZone(it));
+      const json = response.data.data as Array<OrgDnsZoneJson>;
+      return json.map((it) => new OrgDnsZone(it));
     });
   }
 

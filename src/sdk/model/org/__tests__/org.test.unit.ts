@@ -184,37 +184,17 @@ test('Properly submits request to delete org dns record', async() => {
 
 test('Properly submits request to get org dns zones', async() => {
   const org = new Org(MockOrgJson);
-  return org.getDnsZones().then(function(zones) {
+  return org.getOrgDnsZones().then(function(zones) {
     expect(Iland.getHttp().get).lastCalledWith(`/orgs/${org.uuid}/dns-zones`);
     expect(zones.length).toBe(MockOrgDnsZonesJson.length);
     let idx = 0;
     for (const zone of zones) {
       const jsonZone = MockOrgDnsZonesJson[idx];
       expect(zone.json).toEqual(jsonZone);
-      expect(zone.autoCheck).toBe(jsonZone.auto_check);
-      expect(zone.enableDnsSec).toBe(jsonZone.enable_dns_sec);
-      expect(zone.id).toBe(jsonZone.id);
-      expect(zone.minimum).toBe(jsonZone.minimum);
-      expect(zone.expire).toBe(jsonZone.expire);
-      expect(zone.name).toBe(jsonZone.name);
-      expect(zone.recordDescription).toBe(jsonZone.record_description);
-      expect(zone.recordErrors).toBe(jsonZone.record_errors);
-      expect(zone.recordHost).toBe(jsonZone.record_host);
-      expect(zone.recordId).toBe(jsonZone.record_id);
-      expect(zone.recordOrdering).toBe(jsonZone.record_ordering);
-      expect(zone.recordType).toBe(jsonZone.record_type);
-      expect(zone.recordValue).toBe(jsonZone.record_value);
-      expect(zone.userCanCreate).toBe(jsonZone.user_can_create);
-      expect(zone.userCanUpdate).toBe(jsonZone.user_can_update);
-      expect(zone.userCanDelete).toBe(jsonZone.user_can_delete);
-      expect(zone.serial).toBe(jsonZone.serial);
-      expect(zone.retry).toBe(jsonZone.retry);
-      expect(zone.soa).toBe(jsonZone.soa);
-      expect(zone.tags).toBe(jsonZone.tags);
-      expect(zone.unpagedRows).toBe(jsonZone.unpaged_rows);
-      expect(zone.recordTtl).toBe(jsonZone.record_ttl);
-      expect(zone.recordOrdering).toBe(jsonZone.record_ordering);
-      expect(zone.recordErrors).toBe(jsonZone.record_errors);
+      expect(zone.orgUuid).toBe(jsonZone.org_uuid);
+      expect(zone.zoneId).toBe(jsonZone.zone_id);
+      expect(zone.deleted).toBe(jsonZone.deleted);
+      expect(zone.zoneName).toBe(jsonZone.zone_name);
       expect(zone.toString()).toBeDefined();
       idx++;
     }
@@ -228,6 +208,32 @@ test('Properly submits request to add dns zone', async() => {
   return org.addDnsZone(request).then(function(zone) {
     expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns-zones`, request.json);
     expect(zone.name).toBe(request.name);
+    expect(zone.id).toBeDefined();
+    expect(zone.resourceId).toBeDefined();
+    expect(zone.serial).toBeDefined();
+    expect(zone.refresh).toBeDefined();
+    expect(zone.retry).toBeDefined();
+    expect(zone.expire).toBeDefined();
+    expect(zone.minimum).toBeDefined();
+    expect(zone.soa).toBeDefined();
+    expect(zone.tags).toBeDefined();
+    expect(zone.ttl).toBeDefined();
+    expect(zone.enableDnsSec).toBeDefined();
+    expect(zone.autoCheck).toBeDefined();
+    expect(zone.recordId).toBeDefined();
+    expect(zone.recordHost).toBeDefined();
+    expect(zone.recordType).toBeDefined();
+    expect(zone.recordValue).toBeDefined();
+    expect(zone.recordDescription).toBeDefined();
+    expect(zone.recordTtl).toBeDefined();
+    expect(zone.recordOrdering).toBeDefined();
+    expect(zone.recordErrors).toBeDefined();
+    expect(zone.userCanCreate).toBeDefined();
+    expect(zone.userCanDelete).toBeDefined();
+    expect(zone.userCanUpdate).toBeDefined();
+    expect(zone.unpagedRows).toBeDefined();
+    expect(zone.json).toBeDefined();
+    expect(zone.toString()).toBeDefined();
   });
 });
 
