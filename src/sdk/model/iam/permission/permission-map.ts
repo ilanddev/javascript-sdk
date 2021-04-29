@@ -32,9 +32,10 @@ export class PermissionsMap {
         new Permission('VIEW_ILAND_O365_LOCATION','O365_LOCATION', 'READ', true, true,
             ['VIEW_ILAND_O365_ORGANIZATION']));
     this._permissions.set('MANAGE_ILAND_O365_ORGANIZATION',
-        new Permission('MANAGE_ILAND_O365_ORGANIZATION', 'O365_ORGANIZATION', 'WRITE', true, false, null));
+        new Permission('MANAGE_ILAND_O365_ORGANIZATION', 'O365_ORGANIZATION', 'WRITE', true, false,
+            ['MANAGE_ILAND_O365_RESTORE_SESSION']));
     this._permissions.set('MANAGE_ILAND_O365_RESTORE_SESSION',
-        new Permission('MANAGE_ILAND_O365_RESTORE_SESSION', 'O365_RESTORE_SESSION', 'WRITE', false, false, null));
+        new Permission('MANAGE_ILAND_O365_RESTORE_SESSION', 'O365_RESTORE_SESSION', 'WRITE', true, false, null));
     this._permissions.set('MANAGE_ILAND_O365_JOB',
         new Permission('MANAGE_ILAND_O365_JOB', 'O365_JOB', 'WRITE', true, false, null));
     this._permissions.set('CREATE_ILAND_O365_JOB',
