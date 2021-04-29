@@ -1,0 +1,8 @@
+export enum OIDCClientAuthEnum {
+  CLIENT_SECRET_POST= 'CLIENT_SECRET_POST',
+  CLIENT_SECRET_BASIC = 'CLIENT_SECRET_BASIC',
+  CLIENT_SECRET_JWT = 'CLIENT_SECRET_JWT',
+  PRIVATE_KEY_JWT = 'PRIVATE_KEY_JWT'
+}
+
+export type OIDCClientAuthType = keyof typeof OIDCClientAuthEnum;

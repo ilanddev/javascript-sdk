@@ -1,6 +1,8 @@
 import { CompanyUserJson } from './__json__/company-user';
 import { UserDomainJson } from '../user/__json__/user-domain-json';
 import { UserType } from '../user/__json__/user-type';
+import { UserLoginType } from './__json__/user-login-type';
+import { UserInvitationStatus } from './__json__/user-invitation-status-type';
 
 /**
  * Company user class.
@@ -161,6 +163,22 @@ export class CompanyUser {
    */
   get role(): string {
     return this._json.role;
+  }
+
+  /**
+   * Get login type.
+   * @returns {UserLoginType}
+   */
+  get loginType(): UserLoginType {
+    return this._json.login_type;
+  }
+
+  /**
+   * Get invitation status.
+   * @returns {UserInvitationStatus}
+   */
+  get invitationStatus(): UserInvitationStatus {
+    return this._json.invitation_status;
   }
 
   /**
