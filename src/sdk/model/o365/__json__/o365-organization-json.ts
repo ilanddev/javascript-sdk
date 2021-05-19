@@ -24,6 +24,7 @@ export interface O365OrganizationJson extends EntityJson {
   total_licensed_users: number;
   unprotected_licensed_users: number;
   number_of_reserved_licenses: number;
+  number_of_licenses_used: number;
   total_users: number; // deprecated
   total_backedup_users: number; // deprecated
   total_licenses_consumed: number; // deprecated
