@@ -8,6 +8,7 @@ export interface O365UserJson {
   type: string;
   is_backed_up: boolean;
   archived: boolean;
+  licensed: boolean;
   is_deleted_from_org: boolean;
   name: string;
   native_id: string;

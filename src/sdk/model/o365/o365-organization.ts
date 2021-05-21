@@ -182,6 +182,14 @@ export class O365Organization extends Entity {
   }
 
   /**
+   * Get the number of licenses used by this O365 Org.
+   * @returns {number}
+   */
+  get numberOfLicensesUsed(): number {
+    return this._json.number_of_licenses_used;
+  }
+
+  /**
    * Get total users of the O365 Organization
    * @deprecated This O365 Org field is deprecated
    */

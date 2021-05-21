@@ -58,6 +58,15 @@ export class O365User {
   }
 
   /**
+   * Get whether this O365 user is a licensed user in the Microsoft 365 organization
+   * it belongs. False for unlicensed.
+   * @returns {boolean}
+   */
+  get licensed(): boolean {
+    return this._json.licensed;
+  }
+
+  /**
    * Get whether the Office 365 user has been deleted from the Office 365 organization
    * @deprecated Replaced by O365User.archived
    * @returns {boolean}
