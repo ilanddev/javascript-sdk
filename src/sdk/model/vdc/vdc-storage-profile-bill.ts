@@ -82,6 +82,22 @@ export class StorageProfileBill {
   }
 
   /**
+   * Get Zerto journal storage usage.
+   * @returns {number} 0 if not a Zerto environ
+   */
+  get zertoJournalStorageUsage(): number {
+    return this._json.zerto_journal_storage_usage;
+  }
+
+  /**
+   * Get Zerto replicated storage usage.
+   * @returns {number} 0 if not a Zerto environ
+   */
+  get zertoReplicatedStorageUsage(): number {
+    return this._json.zerto_replicated_storage_usage;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {StorageProfileBillJson}
    */

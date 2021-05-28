@@ -11,4 +11,6 @@ export interface StorageProfileBillJson {
   burst_cost: number;
   vm_usage: number;
   catalog_usage: number;
+  zerto_journal_storage_usage: number;
+  zerto_replicated_storage_usage: number;
 }
