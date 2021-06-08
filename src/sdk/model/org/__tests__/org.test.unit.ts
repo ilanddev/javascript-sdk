@@ -123,7 +123,7 @@ test('Properly submits request to get orgs dns records', async() => {
       expect(record.description).toBe(jsonRecord.description);
       expect(record.host).toBe(jsonRecord.host);
       expect(record.ordering).toBe(jsonRecord.ordering);
-      expect(record.recordType).toBe(jsonRecord.record_type);
+      expect(record.type).toBe(jsonRecord.type);
       expect(record.ttl).toBe(jsonRecord.ttl);
       expect(record.zoneId).toBe(jsonRecord.zone_id);
       expect(record.zoneName).toBe(jsonRecord.zone_name);
@@ -146,7 +146,7 @@ test('Properly submits request to add orgs dns record', async() => {
     expect(Iland.getHttp().post).lastCalledWith(`/orgs/${org.uuid}/dns-records`, request.json);
     expect(record.description).toBe(request.description);
     expect(record.host).toBe(request.host);
-    expect(record.recordType).toBe(request.type);
+    expect(record.type).toBe(request.type);
     expect(record.ttl).toBe(request.ttl);
     expect(record.zoneId).toBe(request.zoneId);
     expect(record.ip).toBe(request.ipAddress);
@@ -161,11 +161,11 @@ test('Properly submits request to update org dns record', async() => {
       'value', '1.1.1.1', 0, 'description', 5);
   expect(request.toString()).toBeDefined();
   return org.updateDnsRecord(request).then(function(record) {
-    expect(Iland.getHttp().put).lastCalledWith(`/orgs/${org.uuid}/dns-records`, request.json);
+    expect(Iland.getHttp().put).lastCalledWith(`/orgs/${org.uuid}/dns-records/${request.id}`, request.json);
     expect(record.id).toBe(request.id);
     expect(record.description).toBe(request.description);
     expect(record.host).toBe(request.host);
-    expect(record.recordType).toBe(request.type);
+    expect(record.type).toBe(request.type);
     expect(record.ttl).toBe(request.ttl);
     expect(record.zoneId).toBe(request.zoneId);
     expect(record.ip).toBe(request.ipAddress);

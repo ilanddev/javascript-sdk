@@ -78,7 +78,7 @@ export async function MockOrgPost(url: string, data?: any, config?: AxiosRequest
 
 export async function MockOrgPut(url: string, data?: any, config?: AxiosRequestConfig): Promise<AxiosResponse> {
   switch (true) {
-    case /\/orgs\/[^\/]+?\/dns-records$/.test(url): {
+    case /\/orgs\/[^\/]+?\/dns-records\/[^\/]+?$/.test(url): {
       // update org dns record
       const request = data as DnsRecordUpdateRequestJson;
       return MockOrgResource.updateDnsRecord(request);

@@ -43,18 +43,18 @@ export class DnsRecord {
 
   /**
    * Gets the record description.
-   * @returns {string}
+   * @returns {string | null} null if no description is set.
    */
-  get description(): string {
-    return this._json.description;
+  get description(): string | null {
+    return this._json.description || null;
   }
 
   /**
-   * Gets the TTL setting of the record or undefined if no TTL is set.
-   * @returns {number | undefined}
+   * Gets the TTL setting of the record.
+   * @returns {number | null} null if no TTL is set.
    */
-  get ttl(): number | undefined {
-    return this._json.ttl;
+  get ttl(): number | null {
+    return this._json.ttl ?? null;
   }
 
   /**
@@ -67,18 +67,18 @@ export class DnsRecord {
 
   /**
    * Gets the record IP address.
-   * @returns {string}
+   * @returns {string | null} null if no IP address is set and/or not applicable.
    */
-  get ip(): string {
-    return this._json.ip;
+  get ip(): string | null {
+    return this._json.ip || null;
   }
 
   /**
    * Gets the last modified date.
-   * @returns {Date}
+   * @returns {Date | null} null if not applicable.
    */
-  get lastModified(): Date {
-    return new Date(this._json.last_modified);
+  get lastModified(): Date | null {
+    return this._json.last_modified ? new Date(this._json.last_modified) : null;
   }
 
   /**
@@ -90,11 +90,19 @@ export class DnsRecord {
   }
 
   /**
-   * Gets the record's type.
+   * Gets the record type.
    * @returns {DnsRecordType}
    */
-  get recordType(): DnsRecordType {
-    return this._json.record_type;
+  get type(): DnsRecordType {
+    return this._json.type;
+  }
+
+  /**
+   * Gets the record priority. Applicable for MX record type.
+   * @returns {number | null} null if not applicable.
+   */
+  get priority(): number | null {
+    return this._json.priority ?? null;
   }
 
   /**

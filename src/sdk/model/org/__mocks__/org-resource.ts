@@ -58,7 +58,7 @@ export class MockOrgResource {
       ip: request.ip_address,
       last_modified: Date.now(),
       value: request.value,
-      record_type: request.type
+      type: request.type
     };
     return new Promise<AxiosResponse>(function(resolve) {
       resolve({
@@ -83,7 +83,7 @@ export class MockOrgResource {
       ip: request.ip_address,
       last_modified: Date.now(),
       value: request.value,
-      record_type: request.type
+      type: request.type
     };
     return new Promise<AxiosResponse>(function(resolve) {
       resolve({
