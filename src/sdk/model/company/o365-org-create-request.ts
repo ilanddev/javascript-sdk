@@ -11,6 +11,7 @@ export class O365OrgCreateRequest {
   constructor(o365OrgCreateRequest: O365OrgCreateRequest);
   constructor(o365OrgCreateRequestJson: O365OrgCreateRequestJson);
   constructor(firstParam: string | O365OrgCreateRequest | O365OrgCreateRequestJson, account?: string, password?: string,
+              useModernAuth?: boolean, applicationId?: string | null, applicationSecret?: string | null,
               isExchangeOnline?: boolean, isSharePointOnline?: boolean, defaultJobs?: boolean, repoId?: string | null) {
     if (typeof firstParam === 'string') {
       // parameters constructor
@@ -18,6 +19,9 @@ export class O365OrgCreateRequest {
         name: firstParam,
         account: account,
         password: password,
+        use_modern_auth: useModernAuth,
+        application_id: applicationId,
+        application_secret: applicationSecret,
         is_exchange_online: isExchangeOnline,
         is_share_point_online: isSharePointOnline,
         create_default_jobs: defaultJobs,
@@ -54,6 +58,32 @@ export class O365OrgCreateRequest {
    */
   get password(): string {
     return this._json.password;
+  }
+
+  /**
+   * Get whether to use modern authentication.
+   * @returns {boolean}
+   */
+  get useModernAuth(): boolean {
+    return this._json.use_modern_auth;
+  }
+
+  /**
+   * Get the identification number of the Azure AD application that you want to use
+   * to access your O365 organization. Required only when useModernAuth is true.
+   * @returns {string | null}
+   */
+  get applicationId(): string | null {
+    return this._json.application_id;
+  }
+
+  /**
+   * Get the application secret for the specified Azure AD application. Required only
+   * when useModernAuth is true.
+   * @returns {string | null}
+   */
+  get applicationSecret(): string | null {
+    return this._json.application_secret;
   }
 
   /**
