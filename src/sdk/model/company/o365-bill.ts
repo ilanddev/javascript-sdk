@@ -11,7 +11,16 @@ export class O365Bill {
   }
 
   /**
+   * Get the number of licenses exceeding the reserved licenses count
+   * @returns {number}
+   */
+  get burstCountLicenses(): number {
+    return this._json.burst_count_licenses;
+  }
+
+  /**
    * Get cost per license of O365 bill
+   * @returns {number}
    */
   get costPerLicense(): number {
     return this._json.cost_per_license;
@@ -19,6 +28,7 @@ export class O365Bill {
 
   /**
    * Get currency code of O365 bill
+   * @returns {CurrencyCode}
    */
   get currencyCode(): CurrencyCode {
     return this._json.currency_code.currency_code;
@@ -26,6 +36,7 @@ export class O365Bill {
 
   /**
    * Get full month contract cost of O365 bill
+   * @returns {number}
    */
   get fullMonthContractCost(): number {
     return this._json.full_month_contract_cost;
@@ -33,6 +44,7 @@ export class O365Bill {
 
   /**
    * Get month of O365 bill
+   * @returns {number}
    */
   get month(): number {
     return this._json.month;
@@ -40,6 +52,7 @@ export class O365Bill {
 
   /**
    * Get number of licenses of O365 bill
+   * @returns {number}
    */
   get numberOfLicenses(): number {
     return this._json.number_of_licenses;
@@ -47,13 +60,23 @@ export class O365Bill {
 
   /**
    * Get total of O365 bill
+   * @returns {number}
    */
   get total(): number {
     return this._json.total;
   }
 
   /**
+   * Get the used total including burst usage if any
+   * @returns {number}
+   */
+  get totalCostForUsedLicenses(): number {
+    return this._json.total_cost_for_used_licenses;
+  }
+
+  /**
    * Get year of O365 bill
+   * @returns {number}
    */
   get year(): number {
     return this._json.year;
@@ -61,7 +84,7 @@ export class O365Bill {
 
   /**
    * Get the json representation of this class
-   * @return {O365BillJson}
+   * @returns {O365BillJson}
    */
   get json(): O365BillJson {
     return Object.assign({}, this._json);
