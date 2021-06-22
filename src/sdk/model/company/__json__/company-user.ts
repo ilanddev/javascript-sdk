@@ -1,5 +1,7 @@
 import { UserType } from '../../user/__json__/user-type';
 import { UserDomainJson } from '../../user/__json__/user-domain-json';
+import { UserLoginType } from './user-login-type';
+import { UserInvitationStatus } from './user-invitation-status-type';
 
 export interface CompanyUserJson {
   user_type: UserType;
@@ -21,4 +23,6 @@ export interface CompanyUserJson {
   first_name: string;
   last_name: string;
   role: string;
+  login_type: UserLoginType;
+  invitation_status: UserInvitationStatus;
 }

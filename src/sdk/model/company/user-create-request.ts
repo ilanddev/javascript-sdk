@@ -11,9 +11,10 @@ export class UserCreateRequest {
 
   constructor(userCreateRequest: UserCreateRequest);
   constructor(userCreateRequestJson: UserCreateRequestJson);
-  constructor(password: string, domain: string, fullname: string, email: string, username: string);
+  constructor(password: string, domain: string, fullname: string, email: string, username: string, roleUuid?: string,
+              sendInvitation?: boolean);
   constructor(firstParam: string | UserCreateRequest | UserCreateRequestJson, domain?: string, fullname?: string,
-              email?: string, username?: string) {
+              email?: string, username?: string, roleUuid?: string, sendInvitation?: boolean) {
     if (typeof firstParam === 'string') {
       // Parameters constructor
       this._json = {
@@ -21,7 +22,9 @@ export class UserCreateRequest {
         domain: domain,
         fullname: fullname,
         email: email,
-        username: username
+        username: username,
+        role_uuid: roleUuid,
+        send_invitation: sendInvitation
       } as UserCreateRequestJson;
     } else if (firstParam instanceof UserCreateRequest) {
       // Copy constructor
@@ -34,9 +37,9 @@ export class UserCreateRequest {
 
   /**
    * Get password.
-   * @returns {string}
+   * @returns {string | undefined}
    */
-  get password(): string {
+  get password(): string | undefined {
     return this._json.password;
   }
 
@@ -70,6 +73,22 @@ export class UserCreateRequest {
    */
   get username(): string {
     return this._json.username;
+  }
+
+  /**
+   * Get role uuid.
+   * @returns {string | undefined}
+   */
+  get roleUuid(): string | undefined {
+    return this._json.role_uuid;
+  }
+
+  /**
+   * Get send invitation.
+   * @returns {boolean | undefined}
+   */
+  get sendInvitation(): boolean | undefined {
+    return this._json.send_invitation;
   }
 
   /**
