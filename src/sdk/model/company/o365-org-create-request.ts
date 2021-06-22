@@ -57,6 +57,32 @@ export class O365OrgCreateRequest {
   }
 
   /**
+   * Get whether to use modern authentication.
+   * @returns {boolean}
+   */
+  get useModernAuth(): boolean {
+    return this._json.use_modern_auth;
+  }
+
+  /**
+   * Get the identification number of the Azure AD application that you want to use
+   * to access your O365 organization. Required only when useModernAuth is true.
+   * @returns {string}
+   */
+  get applicationId(): string {
+    return this._json.application_id;
+  }
+
+  /**
+   * Get the application secret for the specified Azure AD application. Required only
+   * when useModernAuth is true.
+   * @returns {string}
+   */
+  get applicationSecret(): string {
+    return this._json.application_secret;
+  }
+
+  /**
    * Get isExchangeOnline.
    * @returns {boolean}
    */
