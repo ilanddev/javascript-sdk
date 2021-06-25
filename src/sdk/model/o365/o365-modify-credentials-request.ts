@@ -26,6 +26,48 @@ export class O365ModifyCredentialsRequest {
   }
 
   /**
+   * Get whether to use modern authentication.
+   * @returns {boolean}
+   */
+  get useModernAuth(): boolean {
+    return this._json.use_modern_auth;
+  }
+
+  /**
+   * Get the identification number of the Azure AD application that you want to use
+   * to access your O365 organization. Required only when useModernAuth is true.
+   * @returns {string | null}
+   */
+  get applicationId(): string | null {
+    return this._json.application_id;
+  }
+
+  /**
+   * Get the application secret for the specified Azure AD application. Required only
+   * when useModernAuth is true.
+   * @returns {string | null}
+   */
+  get applicationSecret(): string | null {
+    return this._json.application_secret;
+  }
+
+  /**
+   * Get isSharePointOnline.
+   * @returns {boolean}
+   */
+  get isSharePointOnline(): boolean {
+    return this._json.is_share_point_online;
+  }
+
+  /**
+   * Get isExchangeOnline.
+   * @returns {boolean}
+   */
+  get isExchangeOnline(): boolean {
+    return this._json.is_exchange_online;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {O365ModifyCredentialsRequestJson}
    */
