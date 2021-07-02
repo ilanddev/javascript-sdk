@@ -499,7 +499,7 @@ export class Org extends Entity {
    * @returns {Promise<DnsRecord>} a promise that resolves with the updated record
    */
   async updateDnsRecord(record: DnsRecordUpdateRequest): Promise<DnsRecord> {
-    return Iland.getHttp().put(`/orgs/${this.uuid}/dns-records`, record.json).then((response) => {
+    return Iland.getHttp().put(`/orgs/${this.uuid}/dns-records/${record.id}`, record.json).then((response) => {
       const json = response.data as DnsRecordJson;
       return new DnsRecord(json);
     });

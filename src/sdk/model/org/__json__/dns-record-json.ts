@@ -8,11 +8,12 @@ export interface DnsRecordJson {
   zone_id: number;
   zone_name: string;
   host: string;
-  description: string;
+  description?: string;
   ttl?: number;
   ordering: string;
-  ip: string;
-  last_modified: number;
+  ip?: string;
+  last_modified?: number;
   value: string;
-  record_type: DnsRecordType;
+  type: DnsRecordType;
+  priority?: number;
 }

@@ -27,7 +27,7 @@ export const MockOrgDnsRecordsJson: Array<DnsRecordJson> = [{
   ip: '1.1.1.1',
   last_modified: 123413284,
   value: '',
-  record_type: 'PTR'
+  type: 'PTR'
 }];
 
 export const MockOrgDnsRecordsResponse: Promise<AxiosResponse> = new Promise<AxiosResponse>(function(resolve) {
