@@ -232,17 +232,16 @@ test('Can update VM description', async() => {
   expect(task.entityName).toBeDefined();
   expect(task.entityName).toBe(rawTask.entity_name);
   const promises = [];
-  promises.push(new Promise(function(resolve) {
-    task.getObservable().subscribe(function() {
-      expect(task.uuid).toBeDefined();
-      expect(task.locationId).toBeDefined();
-      expect(task.toString().length).toBeGreaterThan(0);
-      if (task.complete) {
-        resolve(task.getPromise());
+  promises.push(new Promise((resolve) => {
+    task.getObservable().subscribe((updatedTask) => {
+      expect(updatedTask.uuid).toBeDefined();
+      expect(updatedTask.locationId).toBeDefined();
+      expect(updatedTask.toString().length).toBeGreaterThan(0);
+      if (updatedTask.complete || updatedTask.progress === 100) {
+        resolve();
       }
     });
   }));
-  promises.push(task.getPromise());
   promises.push(Task.getTask(task.uuid).then(function(taskCopy) {
     expect(taskCopy.uuid).toBe(task.uuid);
     expect(taskCopy.locationId).toBe(task.locationId);
