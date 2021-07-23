@@ -12,7 +12,8 @@ export class O365OrgCreateRequest {
   constructor(o365OrgCreateRequestJson: O365OrgCreateRequestJson);
   constructor(firstParam: string | O365OrgCreateRequest | O365OrgCreateRequestJson, account?: string, password?: string,
               useModernAuth?: boolean, applicationId?: string | null, applicationSecret?: string | null,
-              isExchangeOnline?: boolean, isSharePointOnline?: boolean, defaultJobs?: boolean, repoId?: string | null) {
+              isExchangeOnline?: boolean, isTeamsOnline?: boolean, isSharePointOnline?: boolean,
+              defaultJobs?: boolean) {
     if (typeof firstParam === 'string') {
       // parameters constructor
       this._json = {
@@ -23,9 +24,9 @@ export class O365OrgCreateRequest {
         application_id: applicationId,
         application_secret: applicationSecret,
         is_exchange_online: isExchangeOnline,
+        is_teams_online: isTeamsOnline,
         is_share_point_online: isSharePointOnline,
-        create_default_jobs: defaultJobs,
-        repository_id: repoId
+        create_default_jobs: defaultJobs
       } as O365OrgCreateRequestJson;
     } else if (firstParam instanceof O365OrgCreateRequest) {
       // copy constructor
@@ -95,6 +96,14 @@ export class O365OrgCreateRequest {
   }
 
   /**
+   * Get isTeamsOnline.
+   * @returns {boolean}
+   */
+  get isTeamsOnline(): boolean {
+    return this._json.is_teams_online;
+  }
+
+  /**
    * Get isSharePointOnline.
    * @returns {boolean}
    */
@@ -108,14 +117,6 @@ export class O365OrgCreateRequest {
    */
   get createDefaultJobs(): boolean {
     return this._json.create_default_jobs;
-  }
-
-  /**
-   * Get repository id if create default jobs is true
-   * @returns {string}
-   */
-  get repositoryId(): string | null {
-    return this._json.repository_id;
   }
 
   /**
