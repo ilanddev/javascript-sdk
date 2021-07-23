@@ -22,7 +22,8 @@ export interface O365RestoreSessionJson extends EntityJson {
 export enum O365RestoreSessionType {
   VEX = 'Vex',
   VESP = 'Vesp',
-  VEOD = 'Veod'
+  VEOD = 'Veod',
+  VET = 'Vet'
 }
 
 /**
