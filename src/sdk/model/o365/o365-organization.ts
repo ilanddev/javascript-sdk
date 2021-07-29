@@ -43,6 +43,7 @@ export class O365Organization extends Entity {
 
   /**
    * Get the O365 Organization entity type
+   * @returns {EntityType}
    */
   get entityType(): EntityType {
     return 'O365_ORGANIZATION';
@@ -50,6 +51,7 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the CRM of the O365 Organization
+   * @returns {string}
    */
   get crm(): string {
     return this._json.crm;
@@ -57,6 +59,7 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the location id of the O365 Organization
+   * @returns {string}
    */
   get locationId(): string {
     return this._json.location_id;
@@ -64,6 +67,7 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the contract uuid of the O365 Organization
+   * @returns {string}
    */
   get contractUuid(): string {
     return this._json.contract_uuid;
@@ -71,6 +75,7 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the Type of the O365 Organization
+   * @returns {O365OrganizationType}
    */
   get type(): O365OrganizationType {
     return this._json.type;
@@ -78,13 +83,23 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the region of the O365 Organization
+   * @returns {O365OrganizationRegion}
    */
   get region(): O365OrganizationRegion {
     return this._json.region;
   }
 
   /**
+   * Get whether to use modern authentication.
+   * @returns {boolean}
+   */
+  get useModernAuth(): boolean {
+    return this._json.use_modern_auth;
+  }
+
+  /**
    * Is O365 Organization backed up
+   * @returns {boolean}
    */
   get isBackedUp(): boolean {
     return this._json.is_backed_up;
@@ -92,6 +107,7 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the first backup time of the O365 Organization
+   * @returns {Date}
    */
   get firstBackupTime(): Date {
     return this._json.first_backup_time;
@@ -99,13 +115,23 @@ export class O365Organization extends Entity {
 
   /**
    * Gets the last backup time of the O365 Organization
+   * @returns {Date}
    */
   get lastBackupTime(): Date {
     return this._json.last_backup_time;
   }
 
   /**
+   * Is the O365 Organization teams online
+   * @returns {boolean}
+   */
+  get isTeamsOnline(): boolean {
+    return this._json.is_teams_online;
+  }
+
+  /**
    * Is the O365 Organization exchange online
+   * @returns {boolean}
    */
   get isExchangeOnline(): boolean {
     return this._json.is_exchange_online;
@@ -113,6 +139,7 @@ export class O365Organization extends Entity {
 
   /**
    * Is the O365 Organization sharePoint online
+   * @returns {boolean}
    */
   get isSharePointOnline(): boolean {
     return this._json.is_share_point_online;
@@ -120,6 +147,7 @@ export class O365Organization extends Entity {
 
   /**
    * Is O365 Organization in trial
+   * @returns {boolean}
    */
   get isTrial(): boolean {
     return this._json.is_trial;
