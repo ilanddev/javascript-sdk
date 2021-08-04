@@ -1,9 +1,9 @@
 export enum OIDCPromptEnum {
-  UNSPECIFIED = 'UNSPECIFIED',
-  NONE = 'NONE',
-  CONSENT = 'CONSENT',
-  LOGIN = 'LOGIN',
-  SELECT_ACCOUNT = 'SELECT_ACCOUNT'
+  UNSPECIFIED = 'unspecified',
+  NONE = 'none',
+  CONSENT = 'consent',
+  LOGIN = 'login',
+  SELECT_ACCOUNT = 'select_account'
 }
 
-export type OIDCPromptType = keyof typeof OIDCPromptEnum;
+export type OIDCPromptType = 'unspecified' | 'none' | 'consent' | 'login' | 'select_account';
