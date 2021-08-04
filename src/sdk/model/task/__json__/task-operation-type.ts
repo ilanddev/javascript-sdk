@@ -54,6 +54,7 @@ export type TaskOperation = 'power on' |
   'update media' |
   'capture vapp as vapp template' |
   'update ipsec vpn service' |
+  'update ssl vpn configuration' |
   'clone vm' |
   'clone vapp' |
   'clone media' |
