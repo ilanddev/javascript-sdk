@@ -8,7 +8,6 @@ export interface O365CreateJobRequestJson {
   name: string;
   description?: string;
   backup_type: O365JobBackupType;
-  repository_id: string;
   run_now: boolean;
   job_schedule_policy_request: O365JobSchedulePolicyRequestJson;
   o365_job_selected_item_requests?: Array<PartialOrganizationSelectedItem |

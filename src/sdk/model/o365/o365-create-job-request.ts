@@ -32,14 +32,6 @@ export class O365CreateJobRequest {
   }
 
   /**
-   * Get the O365 Job creation request repo id
-   * @returns {string}
-   */
-  get repositoryId(): string {
-    return this._json.repository_id;
-  }
-
-  /**
    * Get O365 Job creation request backup type
    * @returns {O365JobBackupType}
    */
