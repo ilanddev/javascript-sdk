@@ -79,7 +79,8 @@ export class EdgeGatewaySslVpn {
    * @returns {Array<EdgeGatewaySslVpnClientInstallPackage>}
    */
   get clientInstallPackages(): Array<EdgeGatewaySslVpnClientInstallPackage> {
-    return this._json.client_install_packages.map(it => new EdgeGatewaySslVpnClientInstallPackage(it));
+    return this._json.client_install_packages ?
+      this._json.client_install_packages.map(it => new EdgeGatewaySslVpnClientInstallPackage(it)) : [];
   }
 
   /**
