@@ -96,6 +96,7 @@ export interface SelectedExcludedItems {
   partial_org_responses: Array<PartialOrgResponse>;
   share_point_site_responses: Array<SharePointSiteResponse>;
   user_responses: Array<UserResponse>;
+  team_responses: Array<TeamResponse>;
 }
 
 /**
@@ -136,6 +137,7 @@ export interface PartialOrgResponse {
   mailbox: boolean;
   one_drive: boolean;
   site: boolean;
+  teams: boolean;
 }
 
 /**
@@ -174,4 +176,16 @@ export interface InnerUserResponse {
   organization_name: string;
   organization_uuid: string;
   type: string;
+}
+
+/**
+ * Selected or Excluded Team Response interface
+ */
+export interface TeamResponse {
+  description: string;
+  display_name: string;
+  is_backed_up: boolean;
+  mail: string;
+  native_id: string;
+  organization_uuid: string;
 }

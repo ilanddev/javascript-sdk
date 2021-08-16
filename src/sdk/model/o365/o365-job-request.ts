@@ -3,7 +3,8 @@ import {
   O365JobRequestJson,
   PartialOrganizationSelectedItem,
   SiteSelectedItem,
-  UserSelectedItem
+  UserSelectedItem,
+  TeamSelectedItem
 } from './__json__/o365-job-request-json';
 import { O365JobBackupType } from './__json__/o365-job-json';
 import { O365JobSchedulePolicyRequest } from './o365-job-schedule-policy-request';
@@ -59,21 +60,21 @@ export class O365JobRequest {
 
   /**
    * Get O365 Job creation / modification request selected items request
-   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem>
-   *   | undefined}
+   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem |
+   *   TeamSelectedItem> | undefined}
    */
   get selectedItemsRequest(): Array<PartialOrganizationSelectedItem |
-      GroupSelectedItem | UserSelectedItem | SiteSelectedItem> | undefined {
+      GroupSelectedItem | UserSelectedItem | SiteSelectedItem | TeamSelectedItem> | undefined {
         return this._json.o365_job_selected_item_requests;
       }
 
   /**
    * Get O365 Job creation / modification request excluded items request
-   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem>
-   *   | undefined}
+   * @returns {Array<PartialOrganizationSelectedItem | GroupSelectedItem | UserSelectedItem | SiteSelectedItem |
+   *   TeamSelectedItem> | undefined}
    */
   get excludedItemsRequest(): Array<PartialOrganizationSelectedItem |
-      GroupSelectedItem | UserSelectedItem | SiteSelectedItem> | undefined {
+      GroupSelectedItem | UserSelectedItem | SiteSelectedItem | TeamSelectedItem> | undefined {
         return this._json.o365_job_excluded_item_requests;
       }
 
