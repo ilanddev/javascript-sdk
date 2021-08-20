@@ -2,9 +2,9 @@ import { O365JobBackupType } from './o365-job-json';
 import { O365JobSchedulePolicyRequestJson } from './o365-job-schedule-policy-request-json';
 
 /**
- * O365 Create Job request json
+ * O365 Create & Modify Job request json
  */
-export interface O365CreateJobRequestJson {
+export interface O365JobRequestJson {
   name: string;
   description?: string;
   backup_type: O365JobBackupType;
