@@ -1,9 +1,10 @@
 import {
-    GroupResponse,
-    PartialOrgResponse,
-    SelectedExcludedItems,
-    SharePointSiteResponse,
-    UserResponse
+  GroupResponse,
+  PartialOrgResponse,
+  SelectedExcludedItems,
+  SharePointSiteResponse,
+  UserResponse,
+  TeamResponse
 } from './o365-job-json';
 
 /**
@@ -45,6 +46,14 @@ export class O365BackupJobSelectedExcludedItems {
    */
   get sitesResponses(): Array<SharePointSiteResponse> {
     return this._json.share_point_site_responses;
+  }
+
+  /**
+   * Get the O365 Backup Job selected or excluded Team responses
+   * @returns {Array<TeamResponse>}
+   */
+  get teamResponses(): Array<TeamResponse> {
+    return this._json.team_responses;
   }
 
   /**
