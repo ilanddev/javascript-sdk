@@ -14,4 +14,5 @@ export interface CloudTenantBillJson {
   wan_accelerator_appliance_total: number;
   dedicated_veeam_gateway_total: number;
   rental_licenses_subscriptions_total: number;
+  cross_connect_subscriptions_total: number;
 }

@@ -115,6 +115,14 @@ export class CloudTenantBill {
   }
 
   /**
+   * Get the cross connect subscriptions total.
+   * @returns {number}
+   */
+  get crossConnectSubscriptionsTotal(): number {
+    return this._json.cross_connect_subscriptions_total;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {CloudTenantBillJson}
    */
