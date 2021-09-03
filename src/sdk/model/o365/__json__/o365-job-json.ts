@@ -16,6 +16,7 @@ export interface O365JobJson extends EntityJson {
   type_vex: boolean;
   type_vesp: boolean;
   type_veod: boolean;
+  type_vet: boolean;
   excluded_items?: SelectedExcludedItems;
   selected_items?: SelectedExcludedItems;
 }

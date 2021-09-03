@@ -138,6 +138,14 @@ export class O365Job extends Entity {
   }
 
   /**
+   * Indicates whether the Backup Job has the Teams service
+   * @returns {boolean}
+   */
+  get hasTeams(): boolean {
+    return this._json.type_vet;
+  }
+
+  /**
    * Gets the Excluded Items for a SelectedItems type of Backup Job
    * @returns {O365BackupJobSelectedExcludedItems | null}
    */
