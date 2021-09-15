@@ -58,7 +58,7 @@
     "transform": {
       "\\.(ts)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "testRegex": "/.*.test.+(unit|int).ts$",
+    "testRegex": "/.*.test.+(unit).ts$",
     "clearMocks": true,
     "bail": false,
     "testPathIgnorePatterns": [
