@@ -22,8 +22,8 @@ export interface O365SharePointRestoreOptionsRequestJson {
  * Specifies, which of the versions of the SharePoint documents will be restored
  */
 export enum O365SharePointDocumentVersion {
-  ALL = 'ALL',
-  LAST = 'LAST'
+  ALL = 'all',
+  LAST = 'last'
 }
 
 /**
@@ -32,6 +32,6 @@ export enum O365SharePointDocumentVersion {
  * last version of the restored SharePoint document on the destination list.
  */
 export enum O365SharePointDocumentLastVersionAction {
-  OVERWRITE = 'OVERWRITE',
-  MERGE = 'MERGE'
+  OVERWRITE = 'overwrite',
+  MERGE = 'merge'
 }

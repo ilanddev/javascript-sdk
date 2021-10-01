@@ -10,7 +10,7 @@ Full TypeDoc reference is available [here](https://ilanddev.github.io/javascript
 # Developers
 Required:
 
-[x] NodeJS >=6.2.2
+[x] NodeJS >=8.9.2
 
 Clone repo then execute:
 ``npm install``
