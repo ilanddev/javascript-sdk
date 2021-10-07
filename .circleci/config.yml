@@ -8,13 +8,23 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-      - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+      - image: buildpack-deps:focal
     steps:
       - checkout
+      - run: apt-get -y install ca-certificates
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run:
+          name: Install nvm
           working_directory: ~/ilanddev/javascript-sdk
-          command: nvm install 6.2.2 && nvm alias default 6.2.2
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+            echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+            echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+      - run:
+          name: Set node to version required by application for future circleci steps
+          command: |
+            nvm install 8.9.2
+            nvm alias default 8.9.2
       - restore_cache:
           keys:
             - v1-dep-{{ .Branch }}-
@@ -31,13 +41,24 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    - image: buildpack-deps:focal
     steps:
     - checkout
+    - run: apt-get -y install ca-certificates
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run:
+        name: Install nvm
         working_directory: ~/ilanddev/javascript-sdk
-        command: nvm install 6.2.2 && nvm alias default 6.2.2
+        command: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+          echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+          echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+    - run:
+        name: Set node to version required by application for future circleci steps
+        working_directory: ~/ilanddev/javascript-sdk
+        command: |
+          nvm install 8.9.2
+          nvm alias default 8.9.2
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
@@ -68,16 +89,26 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    - image: buildpack-deps:focal
       command: /sbin/init
     steps:
       - checkout
+      - run: apt-get -y install ca-certificates
       - add_ssh_keys:
           fingerprints:
             - "20:eb:b0:26:6f:3d:ed:a6:b2:16:f4:f6:f2:cf:60:2a"
       - run:
+          name: Install nvm
           working_directory: ~/ilanddev/javascript-sdk
-          command: nvm install 6.2.2 && nvm alias default 6.2.2
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+            echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+            echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+            - run:
+                name: Set node to version required by application for future circleci steps
+                command: |
+                  nvm install 8.9.2
+                  nvm alias default 8.9.2
       - restore_cache:
           keys:
           - v1-dep-{{ .Branch }}-
