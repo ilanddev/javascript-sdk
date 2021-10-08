@@ -42,6 +42,14 @@ export class O365TeamFile {
   }
 
   /**
+   * Get the parent folder ID of the sub file/folder.
+   * @returns {string}
+   */
+  get parentId(): string {
+    return this._json.parent_id;
+  }
+
+  /**
    * Get the file size.
    * @returns {number}
    */

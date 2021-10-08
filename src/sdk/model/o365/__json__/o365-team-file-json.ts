@@ -6,6 +6,7 @@ export interface O365TeamFileJson {
   name: string;
   modified_by: string;
   modified: number;
+  parent_id: string;
   size_bytes: number;
   type: string;
   version: string;
