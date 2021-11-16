@@ -331,6 +331,14 @@ export class Vm extends Entity implements EntityWithPerfSamples {
   }
 
   /**
+   * Get the VM's protection status
+   * @returns {boolean}
+   */
+  get isProtected(): boolean {
+    return this._apiVm.is_protected;
+  }
+
+  /**
    * JSON format.
    * @returns {string}
    */
