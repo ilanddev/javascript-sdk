@@ -10,4 +10,5 @@ export interface O365MarkedPurgeMailboxJson extends O365PurgeMailboxJson {
   purge_status: string;
   initiated_date: number;
   error_msg?: string;
+  requested_by: string;
 }

@@ -74,6 +74,14 @@ export class O365MarkedPurgeMailbox {
   }
 
   /**
+   * Get the user who requested the purged mailbox
+   * @returns {string | undefined}
+   */
+  get requestedBy(): string | undefined {
+    return this._json.requested_by;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {O365MarkedPurgeMailboxJson}
    */
