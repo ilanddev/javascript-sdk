@@ -10,6 +10,7 @@ export interface O365OrganizationJson extends EntityJson {
   type: O365OrganizationType;
   region: O365OrganizationRegion;
   use_modern_auth: boolean;
+  use_application_only_auth: boolean;
   is_backed_up: boolean;
   first_backup_time: Date;
   last_backup_time: Date;
