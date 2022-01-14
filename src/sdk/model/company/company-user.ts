@@ -182,6 +182,14 @@ export class CompanyUser {
   }
 
   /**
+   * Get 2FA status.
+   * @returns {boolean}
+   */
+  get twoFactorAuthenticationEnabled(): boolean {
+    return this._json.two_factor_enabled;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {CompanyUserJson}
    */

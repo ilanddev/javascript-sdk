@@ -25,4 +25,5 @@ export interface CompanyUserJson {
   role: string;
   login_type: UserLoginType;
   invitation_status: UserInvitationStatus;
+  two_factor_enabled: boolean;
 }
