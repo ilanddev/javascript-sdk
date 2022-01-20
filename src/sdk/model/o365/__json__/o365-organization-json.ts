@@ -9,9 +9,11 @@ export interface O365OrganizationJson extends EntityJson {
   contract_uuid: string;
   type: O365OrganizationType;
   region: O365OrganizationRegion;
+  use_modern_auth: boolean;
   is_backed_up: boolean;
   first_backup_time: Date;
   last_backup_time: Date;
+  is_teams_online: boolean;
   is_exchange_online: boolean;
   is_share_point_online: boolean;
   exchange_online_settings: any;

@@ -52,6 +52,14 @@ export class O365ModifyCredentialsRequest {
   }
 
   /**
+   * Get isTeamsOnline.
+   * @returns {boolean}
+   */
+  get isTeamsOnline(): boolean {
+    return this._json.is_teams_online;
+  }
+
+  /**
    * Get isSharePointOnline.
    * @returns {boolean}
    */

@@ -2,19 +2,18 @@ import { O365JobBackupType } from './o365-job-json';
 import { O365JobSchedulePolicyRequestJson } from './o365-job-schedule-policy-request-json';
 
 /**
- * O365 Create Job request json
+ * O365 Create & Modify Job request json
  */
-export interface O365CreateJobRequestJson {
+export interface O365JobRequestJson {
   name: string;
   description?: string;
   backup_type: O365JobBackupType;
-  repository_id: string;
   run_now: boolean;
   job_schedule_policy_request: O365JobSchedulePolicyRequestJson;
   o365_job_selected_item_requests?: Array<PartialOrganizationSelectedItem |
-      GroupSelectedItem | UserSelectedItem | SiteSelectedItem>;
+      GroupSelectedItem | UserSelectedItem | SiteSelectedItem | TeamSelectedItem>;
   o365_job_excluded_item_requests?: Array<PartialOrganizationSelectedItem |
-      GroupSelectedItem | UserSelectedItem | SiteSelectedItem>;
+      GroupSelectedItem | UserSelectedItem | SiteSelectedItem | TeamSelectedItem>;
 }
 
 /**
@@ -26,6 +25,7 @@ export interface PartialOrganizationSelectedItem {
   archive_mailbox: boolean;
   one_drive: boolean;
   site: boolean;
+  teams: boolean;
 }
 
 /**
@@ -99,6 +99,25 @@ export interface SelectedItemNestedSite {
 }
 
 /**
+ * O365 Team selected item
+ */
+export interface TeamSelectedItem {
+  type: O365ItemRequestType; // Team
+  team: SelectedItemNestedTeam;
+}
+
+/**
+ * O365 Team nested selected item
+ */
+export interface SelectedItemNestedTeam {
+  native_id: string;
+  backed_up: boolean;
+  display_name: string;
+  mail: string;
+  name: string;
+}
+
+/**
  * Enumeration of the available included/excluded items type of an O365 Backup Job
  */
-export type O365ItemRequestType = 'User' | 'Site' | 'Group' | 'PartialOrganization';
+export type O365ItemRequestType = 'User' | 'Site' | 'Team' | 'Group' | 'PartialOrganization';
