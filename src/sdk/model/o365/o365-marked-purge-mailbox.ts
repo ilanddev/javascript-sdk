@@ -82,6 +82,14 @@ export class O365MarkedPurgeMailbox {
   }
 
   /**
+   * Get the purge completed date time.
+   * @returns {number | undefined}
+   */
+  get completedDate(): number | undefined {
+    return this._json.completed_date;
+  }
+
+  /**
    * Get the json representation of this class.
    * @returns {O365MarkedPurgeMailboxJson}
    */
