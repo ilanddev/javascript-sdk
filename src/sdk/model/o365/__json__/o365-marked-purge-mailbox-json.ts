@@ -11,4 +11,5 @@ export interface O365MarkedPurgeMailboxJson extends O365PurgeMailboxJson {
   initiated_date: number;
   error_msg?: string;
   requested_by: string;
+  completed_date?: number;
 }
