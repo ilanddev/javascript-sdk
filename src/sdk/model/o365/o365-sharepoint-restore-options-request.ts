@@ -15,18 +15,26 @@ export class O365SharePointRestoreOptionsRequest {
 
   /**
    * Get user name you want to use for authenticating with the Microsoft organization
-   * @returns {string}
+   * @returns {string | null}
    */
-  get user(): string {
-    return this._json.user;
+  get user(): string | null {
+    return this._json.user || null;
   }
 
   /**
    * Get the user password you want to use for authenticating with the Microsoft organization
-   * @returns {string}
+   * @returns {string | null}
    */
-  get password(): string {
-    return this._json.password;
+  get password(): string | null {
+    return this._json.password || null;
+  }
+
+  /**
+   * Get the device code you want to use for authenticating with the Microsoft organization
+   * @returns {string | null}
+   */
+  get deviceCode(): string | null {
+    return this._json.device_code || null;
   }
 
   /**
