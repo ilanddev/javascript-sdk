@@ -83,6 +83,30 @@ export class O365Bill {
   }
 
   /**
+   * Get the licensed user count from licensed user api
+   * @returns {number}
+   */
+  get licensedUserCount(): number {
+    return this._json.licensed_user_count;
+  }
+
+  /**
+   * Get the used total including burst usage if any for licensed user count
+   * @returns {number}
+   */
+  get totalCostForLicensedUserCount(): number {
+    return this._json.total_cost_for_licensed_user_count;
+  }
+
+  /**
+   * Get the number of licensed users exceeded the reserved license count.
+   * @returns {number}
+   */
+  get burstCountForLicensedUserCount(): number {
+    return this._json.burst_count_for_licensed_user_count;
+  }
+
+  /**
    * Get the json representation of this class
    * @returns {O365BillJson}
    */

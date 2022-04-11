@@ -224,6 +224,14 @@ export class O365Organization extends Entity {
   }
 
   /**
+   * Get the licensed user count.
+   * @returns {number}
+   */
+  get ilandLicensedUsers(): number {
+    return this._json.iland_licensed_users;
+  }
+
+  /**
    * Get total users of the O365 Organization
    * @deprecated This O365 Org field is deprecated
    */

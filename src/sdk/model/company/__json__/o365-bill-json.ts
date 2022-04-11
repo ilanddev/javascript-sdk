@@ -13,6 +13,9 @@ export interface O365BillJson {
   total: number;
   total_cost_for_used_licenses: number;
   year: number;
+  licensed_user_count: number;
+  total_cost_for_licensed_user_count: number;
+  burst_count_for_licensed_user_count: number;
 }
 
 /**
