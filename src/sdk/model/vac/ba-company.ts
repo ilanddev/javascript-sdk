@@ -15,8 +15,6 @@ import { BaCompanyPasswordResetRequest } from './ba-password-reset-request';
 import { BaCompanyPasswordResetRequestJson } from './__json__/ba-password-reset-request';
 import { BaBackupResourceUpdateRequest } from './ba-backup-ressource-update-request';
 import { BaBackupResourceUpdateRequestJson } from './__json__/ba-backup-ressource-update-request';
-import { BaBackupDirectory } from './backup-directory/ba-backup-directory';
-import { BaBackupFile } from './backup-files/ba-backup-file';
 import { BaBackupFilterParams } from './ba-backup-filter-params';
 import { BaBackupDirectoryList } from './backup-directory/ba-backup-directory-list';
 import { BaBackupDirectoryListJson } from './backup-directory/__json__/ba-backup-directory-list-json';

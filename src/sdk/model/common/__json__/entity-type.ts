@@ -63,6 +63,8 @@ export type EntityType =
 
     'VCC_BACKUP_TENANT' |
 
+    'VAC_BACKUP_JOB' |
+
     // OBJECT STORAGE ENTITIES
 
     'OBJECT_STORAGE_PRODUCT' |

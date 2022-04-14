@@ -1,5 +1,5 @@
 export interface BaJobJson {
-  id: string;
+  uuid: string;
   name: string;
   status: string;
   type: string;
