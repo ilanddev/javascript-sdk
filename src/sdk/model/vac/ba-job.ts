@@ -22,7 +22,7 @@ export class BaJob {
   }
 
   /**
-   * Get UUID.
+   * Get the UUID of a VAC company.
    * @returns {string}
    */
   get uuid(): string {
