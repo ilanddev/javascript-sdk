@@ -52,6 +52,14 @@ export class O365ModifyCredentialsRequest {
   }
 
   /**
+   * Get whether to use Azure AD application authentication.
+   * @returns {boolean}
+   */
+  get useApplicationOnlyAuth(): boolean {
+    return this._json.use_application_only_auth;
+  }
+
+  /**
    * Get isTeamsOnline.
    * @returns {boolean}
    */

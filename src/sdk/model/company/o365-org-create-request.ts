@@ -12,8 +12,8 @@ export class O365OrgCreateRequest {
   constructor(o365OrgCreateRequestJson: O365OrgCreateRequestJson);
   constructor(firstParam: string | O365OrgCreateRequest | O365OrgCreateRequestJson, account?: string, password?: string,
               useModernAuth?: boolean, applicationId?: string | null, applicationSecret?: string | null,
-              isExchangeOnline?: boolean, isTeamsOnline?: boolean, isSharePointOnline?: boolean,
-              defaultJobs?: boolean) {
+              useApplicationOnlyAuth?: boolean, isExchangeOnline?: boolean, isTeamsOnline?: boolean,
+              isSharePointOnline?: boolean, defaultJobs?: boolean) {
     if (typeof firstParam === 'string') {
       // parameters constructor
       this._json = {
@@ -23,6 +23,7 @@ export class O365OrgCreateRequest {
         use_modern_auth: useModernAuth,
         application_id: applicationId,
         application_secret: applicationSecret,
+        use_application_only_auth: useApplicationOnlyAuth,
         is_exchange_online: isExchangeOnline,
         is_teams_online: isTeamsOnline,
         is_share_point_online: isSharePointOnline,
@@ -85,6 +86,14 @@ export class O365OrgCreateRequest {
    */
   get applicationSecret(): string | null {
     return this._json.application_secret;
+  }
+
+  /**
+   * Get whether to use Azure AD application authentication.
+   * @returns {boolean}
+   */
+  get useApplicationOnlyAuth(): boolean {
+    return this._json.use_application_only_auth;
   }
 
   /**
