@@ -171,6 +171,14 @@ export class Company extends Entity {
   }
 
   /**
+   * Indicates whether the company has the Ceph object storage (Object Storage 2.0) product
+   * @returns {boolean}
+   */
+  get hasCeph(): boolean {
+    return this._json.has_ceph;
+  }
+
+  /**
    * Gets the raw JSON object from the API.
    * @returns {CompanyJson} the JSON representation
    */
