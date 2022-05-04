@@ -15,5 +15,6 @@ export interface BaJobJson {
   protected_vms: number;
   scheduling_type: string;
   company_id: number;
+  company_uuid: string;
   location_id: number;
 }

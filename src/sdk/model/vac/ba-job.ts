@@ -20,7 +20,7 @@ export class BaJob {
   }
 
   /**
-   * Get the UUID of a VAC company.
+   * Get the UUID of a VAC job.
    * @returns {string}
    */
   get uuid(): string {
@@ -145,6 +145,14 @@ export class BaJob {
    */
   get companyId(): number {
     return this._json.company_id;
+  }
+
+  /**
+   * Get company UUID.
+   * @returns {number}
+   */
+  get companyUuid(): string {
+    return this._json.company_uuid;
   }
 
   /**
