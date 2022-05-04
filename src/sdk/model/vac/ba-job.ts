@@ -161,7 +161,7 @@ export class BaJob {
    * Gets the iland company uuid for the VAC job.
    * @returns {string}
    */
-  get companyUuid() {
+  get companyUuid(): string {
     return this._json.company_uuid;
   }
 
