@@ -1,9 +1,10 @@
 /**
- * Interface for O365 Restore Credentials Request JSON properties
+ * Interface for O365 Mailbox Restore Options Request JSON properties
  */
-export interface O365RestoreCredentialsRequestJson {
-  user: string;
-  password: string;
+export interface O365MailboxRestoreOptionsRequestJson {
+  user?: string;
+  password?: string;
+  device_code?: string;
   mailbox_to_restore_to?: string;
   changed_items?: boolean;
   deleted_items?: boolean;

@@ -13,19 +13,30 @@ export class O365TeamsRestoreOptionsRequest {
   }
 
   /**
-   * Get the user you want to use for authenticating with the O365 Teams organization
-   * @returns {string}
+   * Get the user you want to use for authenticating with the O365 Teams organization.
+   * Required only for basic authentication.
+   * @returns {string | undefined}
    */
-  get user(): string {
+  get user(): string | undefined {
     return this._json.user;
   }
 
   /**
-   * Get the password you want to use for authenticating with the O365 Teams organization
-   * @returns {string}
+   * Get the password you want to use for authenticating with the O365 Teams organization.
+   * Required only for basic authentication
+   * @returns {string | undefined}
    */
-  get password(): string {
+  get password(): string | undefined {
     return this._json.password;
+  }
+
+  /**
+   * Get the MS Azure one time device code obtained for the O365 session.
+   * Required only for modern app based authentication.
+   * @returns {string | undefined}
+   */
+  get deviceCode(): string | undefined {
+    return this._json.device_code;
   }
 
   /**

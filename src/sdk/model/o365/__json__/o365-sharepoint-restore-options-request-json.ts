@@ -2,8 +2,9 @@
  * O365 Restore Session SharePoint Options Request JSON properties
  */
 export interface O365SharePointRestoreOptionsRequestJson {
-  user: string;
-  password: string;
+  user?: string;
+  password?: string;
+  device_code?: string;
   restore_list_views: boolean;
   changed_items: boolean;
   deleted_items: boolean;
