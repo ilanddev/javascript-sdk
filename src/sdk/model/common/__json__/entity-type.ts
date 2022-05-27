@@ -75,6 +75,8 @@ export type EntityType =
 
     'TASK' |
 
+    // MS365 ENTITIES
+
     'O365_PRODUCT' |
 
     'O365_LOCATION' |
@@ -86,6 +88,10 @@ export type EntityType =
     'O365_JOB_SESSION' |
 
     'O365_RESTORE_SESSION' |
+
+    // OBJECT STORAGE CEPH ENTITIES
+
+    'OBJECT_STORAGE_CEPH_PRODUCT' |
 
     'OBJECT_STORAGE_CEPH_LOCATION' |
 
