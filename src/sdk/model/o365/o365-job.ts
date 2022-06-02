@@ -162,6 +162,14 @@ export class O365Job extends Entity {
   }
 
   /**
+   * Indicates whether the Backup Job has at least 1 restore session with a status of success or warning
+   * @returns {boolean}
+   */
+  get restoreSessionExist(): boolean {
+    return this._json.is_restore_session_exist;
+  }
+
+  /**
    * Refreshes the O365 Job data by retrieving it from the API again.
    * @return {Promise<O365Job>}
    */
