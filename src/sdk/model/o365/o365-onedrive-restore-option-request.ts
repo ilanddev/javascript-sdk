@@ -13,19 +13,28 @@ export class O365OneDriveRestoreOptionsRequest {
   }
 
   /**
-   * Get user from OneDrive Restore request
-   * @returns {string}
+   * Get user from OneDrive Restore request. Required for basic authentication
+   * @returns {string | undefined}
    */
-  get user(): string {
+  get user(): string | undefined {
     return this._json.user;
   }
 
   /**
-   * Get password from OneDrive Restore request
-   * @returns {string}
+   * Get password from OneDrive Restore request. Required for basic authentication
+   * @returns {string | undefined}
    */
-  get password(): string {
+  get password(): string | undefined {
     return this._json.password;
+  }
+
+  /**
+   * Get the MS Azure one time device code obtained for the O365 session.
+   * Required for modern app based authentication.
+   * @returns {string | undefined}
+   */
+  get deviceCode(): string | undefined {
+    return this._json.device_code;
   }
 
   /**

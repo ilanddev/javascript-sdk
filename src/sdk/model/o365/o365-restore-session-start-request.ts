@@ -12,6 +12,7 @@ export class O365RestoreSessionStartRequest {
 
   /**
    * Gets the date timestamp of request
+   * @returns {number}
    */
   get dateTime(): number {
     return this._json.datetime;
@@ -19,6 +20,7 @@ export class O365RestoreSessionStartRequest {
 
   /**
    * Gets the type of restore session of request
+   * @returns {O365RestoreSessionType}
    */
   get type(): O365RestoreSessionType {
     return this._json.type;
@@ -26,16 +28,18 @@ export class O365RestoreSessionStartRequest {
 
   /**
    * Gets the show all versions of request
+   * @returns {boolean}
    */
   get isShowAllVersions(): boolean {
     return this._json.show_all_versions;
   }
 
   /**
-   * Is show delete boolean of request
+   * Is show deleted boolean of request
+   * @returns {boolean}
    */
-  get isShowDelete(): boolean {
-    return this._json.show_delete;
+  get isShowDeleted(): boolean {
+    return this._json.show_deleted;
   }
 
   /**

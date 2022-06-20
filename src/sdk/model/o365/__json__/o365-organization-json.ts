@@ -10,6 +10,8 @@ export interface O365OrganizationJson extends EntityJson {
   type: O365OrganizationType;
   region: O365OrganizationRegion;
   use_modern_auth: boolean;
+  use_application_only_auth: boolean;
+  application_id: string;
   is_backed_up: boolean;
   first_backup_time: Date;
   last_backup_time: Date;
@@ -27,6 +29,7 @@ export interface O365OrganizationJson extends EntityJson {
   unprotected_licensed_users: number;
   number_of_reserved_licenses: number;
   number_of_licenses_used: number;
+  iland_licensed_users: number;
   total_users: number; // deprecated
   total_backedup_users: number; // deprecated
   total_licenses_consumed: number; // deprecated

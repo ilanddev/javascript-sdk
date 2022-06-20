@@ -2,8 +2,9 @@
  * O365 Teams restore options request JSON properties
  */
 export interface O365TeamsRestoreOptionsRequestJson {
-  user: string;
-  password: string;
+  user?: string;
+  password?: string;
+  device_code?: string;
   restore_settings?: boolean;
   restore_missing_items?: boolean;
   restore_members?: boolean;

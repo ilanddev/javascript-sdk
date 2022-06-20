@@ -94,6 +94,7 @@ import { map } from 'rxjs/operators';
 import { Http } from '../../service/http/http';
 import { VmBackupStatusDetail } from '../advanced-backups/backup-status/vm-backup-status-detail';
 import { VmBackupStatusDetailJson } from '../advanced-backups/backup-status/__json__/vm-backup-status-detail-json';
+import { URLEncoder } from '../../utils/url-encoder';
 
 /**
  * Virtual Machine.
@@ -1301,8 +1302,8 @@ export class Vm extends Entity implements EntityWithPerfSamples {
                                     volumeName: string,
                                     directoryPath: string,
                                     filters?: ListBackupSnapshotFilesAndFoldersFilters): Promise<DirectoryListing> {
-    const encodedVolumeName = encodeURIComponent(volumeName);
-    const encodedDirectoryPath = encodeURIComponent(directoryPath);
+    const encodedVolumeName = URLEncoder.encodeURIComponentRFC5987(volumeName, true);
+    const encodedDirectoryPath = URLEncoder.encodeURIComponentRFC5987(directoryPath, true);
     return Iland.getHttp().get(`/vms/${this.uuid}/backup-runs/${backupRunUid}/volumes/${encodedVolumeName}/directories/${encodedDirectoryPath}/contents`, {
       params: filters?.json || null
     }).then((response) => {

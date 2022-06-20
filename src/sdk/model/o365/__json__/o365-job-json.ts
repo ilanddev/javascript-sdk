@@ -19,6 +19,7 @@ export interface O365JobJson extends EntityJson {
   type_vet: boolean;
   excluded_items?: SelectedExcludedItems;
   selected_items?: SelectedExcludedItems;
+  is_restore_session_exist: boolean;
 }
 
 /**

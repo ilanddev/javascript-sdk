@@ -2,8 +2,9 @@
  * O365 OneDrive Restore Option Request JSON properties
  */
 export interface O365OneDriveRestoreOptionsRequestJson {
-  user: string;
-  password: string;
+  user?: string;
+  password?: string;
+  device_code?: string;
   action: O365OneDriveDocumentAction;
   version: O365OneDriveDocumentVersion;
   document_last_version_action?: O365OneDriveDocumentLastVersionAction;

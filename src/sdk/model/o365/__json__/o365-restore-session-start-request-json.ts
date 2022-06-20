@@ -7,5 +7,5 @@ export interface O365RestoreSessionStartRequestJson {
   datetime: number;
   type: O365RestoreSessionType;
   show_all_versions: boolean;
-  show_delete: boolean;
+  show_deleted: boolean;
 }
