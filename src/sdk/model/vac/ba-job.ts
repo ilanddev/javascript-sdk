@@ -22,7 +22,7 @@ export class BaJob {
   }
 
   /**
-   * Get UUID.
+   * Get the UUID.
    * @returns {string}
    */
   get uuid(): string {
