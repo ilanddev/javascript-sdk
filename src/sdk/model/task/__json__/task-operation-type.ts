@@ -128,6 +128,11 @@ export type TaskOperation = 'power on' |
   'manage VCC tenant storage' |
   'create VCC tenant' |
   'delete VCC tenant' |
+  'vac start job' |
+  'vac stop job' |
+  'vac retry job' |
+  'vac enable job' |
+  'vac disable job' |
   // Advanced Backups
   'generate file download bundle' |
   'restore vm backup' |
