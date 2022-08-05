@@ -25,10 +25,10 @@ export class ExpandedVpg {
 
   /**
    * Get service profile.
-   * @returns {ServiceProfileJson}
+   * @returns {ServiceProfile | null}
    */
-  get serviceProfile(): ServiceProfile {
-    return new ServiceProfile(this._json.service_profile);
+  get serviceProfile(): ServiceProfile | null {
+    return this._json.service_profile ? new ServiceProfile(this._json.service_profile) : null;
   }
 
   /**

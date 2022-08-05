@@ -64,6 +64,7 @@ export interface VpgVmJson {
   uuid: string;
   vm_name: string;
   vm_identifier: string;
+  vpg_name: string;
   organization_name: string;
   actual_rpo: number;
   entities: VpgEntitiesJson;
