@@ -23,7 +23,7 @@ export class DnsRecordUpdateRequest {
         host: host,
         type: type,
         value: value,
-        ip_address: ipAddress,
+        ip: ipAddress,
         ttl: ttl,
         description: description,
         priority: priority
@@ -82,7 +82,7 @@ export class DnsRecordUpdateRequest {
    * @returns {string}
    */
   get ipAddress(): string {
-    return this._json.ip_address;
+    return this._json.ip;
   }
 
   /**
