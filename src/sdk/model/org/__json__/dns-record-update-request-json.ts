@@ -9,7 +9,7 @@ export interface DnsRecordUpdateRequestJson {
   host: string;
   type: DnsRecordType;
   value: string;
-  ip: string;
+  ip_address: string;
   ttl: number;
   description: string;
   priority: number;
