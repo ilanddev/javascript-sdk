@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios';
-import { GuestToolsJson } from '../__json__/guest-tools-json';
+import { GuestToolsJson, ToolsRunningStatus, ToolsVersionStatus } from '../__json__/guest-tools-json';
 
 export const MockVmGuestToolsJson: GuestToolsJson = {
-  status: 'fake-status',
-  running_status: 'fake-running-status',
+  status: ToolsVersionStatus.UNMANAGED,
+  running_status: ToolsRunningStatus.NOT_RUNNING,
   version: 'fake-version'
 };
 

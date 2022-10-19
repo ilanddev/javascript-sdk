@@ -1,4 +1,4 @@
-import { GuestToolsJson } from './__json__/guest-tools-json';
+import { GuestToolsJson, ToolsRunningStatus, ToolsVersionStatus } from './__json__/guest-tools-json';
 
 /**
  * VM Guest Tools
@@ -20,17 +20,17 @@ export class GuestTools {
 
   /**
    * Returns guest tools status
-   * @returns {string}
+   * @returns {ToolsVersionStatus}
    */
-  get status(): string {
+  get status(): ToolsVersionStatus {
     return this._json.status;
   }
 
   /**
    * Returns guest tools running status
-   * @returns {string}
+   * @returns {ToolsRunningStatus}
    */
-  get runningStatus(): string {
+  get runningStatus(): ToolsRunningStatus {
     return this._json.running_status;
   }
 
