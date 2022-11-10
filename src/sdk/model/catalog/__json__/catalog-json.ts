@@ -6,7 +6,7 @@ import { EntityJson } from '../../common/__json__/entity-json';
 export interface CatalogJson extends EntityJson {
   location_id: string;
   shared: boolean;
-  public: boolean;
+  catalog_public: boolean;
   version: number;
   org_uuid: string;
   description: string;
