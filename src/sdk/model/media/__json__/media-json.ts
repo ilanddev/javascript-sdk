@@ -6,7 +6,7 @@ import { EntityJson } from '../../common/__json__/entity-json';
 export interface MediaJson extends EntityJson {
   status: number;
   size: number;
-  public: boolean;
+  is_public: boolean;
   location_id: string;
   org_uuid: string;
   catalog_uuid: string;

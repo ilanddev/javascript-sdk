@@ -74,7 +74,7 @@ export class Catalog extends Entity {
    * @returns {boolean}
    */
   get isPublic(): boolean {
-    return this._json.public;
+    return this._json.catalog_public;
   }
 
   /**
