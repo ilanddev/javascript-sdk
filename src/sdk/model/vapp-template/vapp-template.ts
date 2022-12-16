@@ -105,7 +105,7 @@ export class VappTemplate extends Entity {
    * @returns {boolean}
    */
   get isPublic(): boolean {
-    return this._json.public;
+    return this._json.is_public;
   }
 
   /**

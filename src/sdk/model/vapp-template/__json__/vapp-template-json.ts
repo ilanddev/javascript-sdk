@@ -13,7 +13,7 @@ export interface VappTemplateJson extends EntityJson {
   customization_required: boolean;
   gold_master: boolean;
   storage_profile_uuid: string;
-  public: boolean;
+  is_public: boolean;
   vdc_uuid: string;
   location_id: string;
   org_uuid: string;
