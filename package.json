@@ -34,14 +34,14 @@
     "dts-bundle": "0",
     "gh-pages": "1",
     "glob": "7",
-    "jest": "23",
-    "ts-jest": "22",
-    "ts-loader": "3",
+    "jest": "29",
+    "ts-jest": "29",
+    "ts-loader": "9",
     "tslint": "^5.12.0",
     "tslint-config-standard": "^8.0.1",
     "typedoc": "^0.15.0",
     "typescript": "^3.9.6",
-    "webpack": "^3.1.11",
+    "webpack": "^5.75.0",
     "yargs": "11"
   },
   "keywords": [
